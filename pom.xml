@@ -33,7 +33,7 @@
     <pluginRepositories>
         <pluginRepository>
             <id>plugins-releases</id>
-            <url>${artifactory}/plugins-releases-local</url>
+            <url>${artifactory}/plugins-releases</url>
             <releases><enabled>true</enabled></releases>
             <snapshots><enabled>false</enabled></snapshots>
         </pluginRepository>
