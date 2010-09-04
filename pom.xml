@@ -32,6 +32,12 @@
 
     <pluginRepositories>
         <pluginRepository>
+            <id>plugins-snapshots</id>
+            <url>${artifactory}/plugins-snapshots</url>
+            <releases><enabled>false</enabled></releases>
+            <snapshots><enabled>true</enabled></snapshots>
+        </pluginRepository>
+        <pluginRepository>
             <id>plugins-releases</id>
             <url>${artifactory}/plugins-releases</url>
             <releases><enabled>true</enabled></releases>
