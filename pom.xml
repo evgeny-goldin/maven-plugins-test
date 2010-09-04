@@ -7,14 +7,13 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.goldin.plugins</groupId>
-    <artifactId>maven-hudson-plugin-test.main</artifactId>
+    <artifactId>maven-plugins-test</artifactId>
     <packaging>pom</packaging>
     <version>0.1-SNAPSHOT</version>
     <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
 
 
     <properties>
-        <configs-dir>${project.build.directory}/configs</configs-dir>
         <artifactory>http://evgeny-goldin.org/artifactory</artifactory>
         <maven-hudson-plugin-version>0.1-beta</maven-hudson-plugin-version>
         <maven-assert-plugin-version>0.1-beta</maven-assert-plugin-version>
@@ -51,39 +50,7 @@
 
 
     <modules>
-        <module>local</module>
-        <module>wiki</module>
+        <module>maven-hudson-plugin</module>
     </modules>
-
-
-    <build>
-        <plugins>
-
-            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-            <!-- Verifying configs generated have not changed -->
-            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-
-            <plugin>
-                <groupId>com.goldin.plugins</groupId>
-                <artifactId>maven-assert-plugin</artifactId>
-                <version>${maven-assert-plugin-version}</version>
-                <executions>
-                    <execution>
-                        <id>check-jobs</id>
-                        <phase>integration-test</phase>
-                        <goals>
-                            <goal>assert</goal>
-                        </goals>
-                        <configuration>
-                            <runIf>{{ new File( configsDir ).isDirectory() }}</runIf>
-                            <endOfLine>windows</endOfLine>
-                            <assertEqual>${configs-dir}|${project.basedir}/src/test/resources/configs</assertEqual>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-        </plugins>
-    </build>
 
 </project>
