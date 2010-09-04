@@ -49,6 +49,38 @@
     </distributionManagement>
 
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.gmaven</groupId>
+                <artifactId>gmaven-plugin</artifactId>
+                <version>1.3</version>
+                <inherited>false</inherited>
+                <executions>
+                    <execution>
+                        <id>print-tested-plugins-versions</id>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <source>
+                                def date = new Date()
+                                println """
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[$date] - testing plugin versions:
+* maven-hudson-plugin-version : "${maven-hudson-plugin-version}"
+* maven-assert-plugin-version : "${maven-assert-plugin-version}"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+"""
+                            </source>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
     <modules>
         <module>maven-hudson-plugin</module>
     </modules>
