@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns              = "http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi          = "http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0
+                               http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.goldin.plugins</groupId>
+    <artifactId>maven-hudson-plugin-test.main</artifactId>
+    <packaging>pom</packaging>
+    <version>0.1-SNAPSHOT</version>
+    <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
+
+
+    <properties>
+        <configs-dir>${project.build.directory}/configs</configs-dir>
+        <artifactory>http://evgeny-goldin.org/artifactory</artifactory>
+        <maven-hudson-plugin-version>0.1-SNAPSHOT</maven-hudson-plugin-version>
+        <maven-assert-plugin-version>0.1-SNAPSHOT</maven-assert-plugin-version>
+    </properties>
+
+
+    <repositories>
+        <repository>
+            <id>remote-repos</id>
+            <url>${artifactory}/remote-repos</url>
+            <releases><enabled>true</enabled></releases>
+            <snapshots><enabled>false</enabled></snapshots>
+        </repository>
+    </repositories>
+
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>plugins-releases</id>
+            <url>${artifactory}/plugins-releases-local</url>
+            <releases><enabled>true</enabled></releases>
+            <snapshots><enabled>false</enabled></snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
+
+    <distributionManagement>
+        <repository>
+            <id>plugins-releases-local</id>
+            <name>plugins-releases-local</name>
+            <url>${artifactory}/plugins-releases-local</url>
+        </repository>
+    </distributionManagement>
+
+
+    <modules>
+        <module>local</module>
+        <module>wiki</module>
+    </modules>
+
+
+    <build>
+        <plugins>
+
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- Verifying configs generated have not changed -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-assert-plugin</artifactId>
+                <version>${maven-assert-plugin-version}</version>
+                <executions>
+                    <execution>
+                        <id>check-jobs</id>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <configuration>
+                            <runIf>{{ new File( configsDir ).isDirectory() }}</runIf>
+                            <endOfLine>windows</endOfLine>
+                            <assertEqual>${configs-dir}|${project.basedir}/src/test/resources/configs</assertEqual>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>
