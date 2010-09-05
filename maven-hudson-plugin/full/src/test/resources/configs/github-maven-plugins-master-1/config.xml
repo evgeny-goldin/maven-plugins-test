@@ -39,7 +39,7 @@
 <tr>
 <td valign="top">Repositories</td>
 <td>
-<li><a href="http://github.com/evgeny-goldin/maven-plugins/"><b><code>http://evgeny-goldin@github.com/evgeny-goldin/maven-plugins.git</code></b></a>
+<li><a href="http://github.com/evgeny-goldin/maven-plugins/"><b><code>git@github.com:evgeny-goldin/maven-plugins.git</code></b></a>
 : <a href="http://github.com/evgeny-goldin/maven-plugins/tree/master/"><b><code>master</code></b></a>
 </td>
 </tr>
@@ -76,7 +76,7 @@
         <string>uploadpack</string>
         <string>git-upload-pack</string>
         <string>url</string>
-        <string>http://evgeny-goldin@github.com/evgeny-goldin/maven-plugins.git</string>
+        <string>git@github.com:evgeny-goldin/maven-plugins.git</string>
         <string>tagopt</string>
         <string></string>
       </org.spearce.jgit.transport.RemoteConfig>

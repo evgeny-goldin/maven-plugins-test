@@ -21,7 +21,7 @@
 
 
     <properties>
-        <maven-plugins-repo>http://evgeny-goldin@github.com/evgeny-goldin/maven-plugins.git</maven-plugins-repo>
+        <maven-plugins-repo>git@github.com:evgeny-goldin/maven-plugins.git</maven-plugins-repo>
     </properties>
 
 
