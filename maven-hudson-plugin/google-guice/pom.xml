@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns              = "http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi          = "http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0
+                               http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.goldin.plugins</groupId>
+    <artifactId>maven-plugins-test.maven-hudson-plugin.google-guice</artifactId>
+    <packaging>pom</packaging>
+    <version>0.1-SNAPSHOT</version>
+    <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
+
+
+    <parent>
+        <groupId>com.goldin.plugins</groupId>
+        <artifactId>maven-plugins-test.maven-hudson-plugin</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-hudson-plugin</artifactId>
+                <version>${maven-hudson-plugin-version}</version>
+                <executions>
+                    <execution>
+                        <id>generate-hudson-jobs</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${configs-outputDirectory}</outputDirectory>
+                            <generationPom>${hudson-tests-root}/google-guice/pom.xml</generationPom>
+                            <hudsonUrl>${hudson-url}</hudsonUrl>
+                            <timestamp>false</timestamp>
+                            <jobs>
+
+                                <job>
+                                    <id>base</id>
+                                    <abstract>true</abstract>
+                                    <jdkName>jdk1.6.0_21</jdkName>
+                                    <mavenName>apache-maven-2.2.1</mavenName>
+                                    <mavenOpts>-Xmx256m -XX:MaxPermSize=128m</mavenOpts>
+                                    <daysToKeep>3</daysToKeep>
+                                    <numToKeep>7</numToKeep>
+                                    <useUpdate>true</useUpdate>
+                                    <mavenGoals>-e clean test</mavenGoals>
+                                    <mail>
+                                        <recipients>evgenyg@gmail.com evgeny.goldin@gmail.com</recipients>
+                                    </mail>
+                                </job>
+
+                                <job>
+                                    <id>google-guice-2.0-maven</id>
+                                    <parent>base</parent>
+                                    <repository>
+                                        <remote>http://google-guice.googlecode.com/svn/branches/2.0-maven/</remote>
+                                    </repository>
+                                    <trigger>
+                                        <type>timer</type>
+                                        <description>Runs every midnight except Saturday</description>
+                                        <expression>0 0 * * 0-5</expression>
+                                    </trigger>
+                                    <invoke>
+                                        <jobs>google-guice-2.0, google-guice-1.0-maven</jobs>
+                                        <always>true</always>
+                                    </invoke>
+                                </job>
+
+                                <job>
+                                    <id>google-guice-2.0</id>
+                                    <parent>base</parent>
+                                    <repository>
+                                        <remote>http://google-guice.googlecode.com/svn/tags/2.0/</remote>
+                                    </repository>
+                                </job>
+
+                                <job>
+                                    <id>google-guice-1.0-maven</id>
+                                    <parent>base</parent>
+                                    <repository>
+                                        <remote>http://google-guice.googlecode.com/svn/tags/1.0-maven/</remote>
+                                    </repository>
+                                </job>
+
+                            </jobs>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>
