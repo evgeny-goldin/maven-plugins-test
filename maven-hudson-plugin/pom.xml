@@ -21,8 +21,8 @@
 
 
     <properties>
-        <configs-dir>${project.build.directory}/configs</configs-dir>
-        <hudson-url>http://127.0.0.1:8080/hudson</hudson-url>
+        <configs-outputDirectory>${user.home}/.hudson/jobs</configs-outputDirectory>
+        <hudson-url>http://evgeny-goldin.org/hudson</hudson-url>
         <hudson-tests-root>http://github.com/evgeny-goldin/maven-plugins-test/blob/master/maven-hudson-plugin</hudson-tests-root>
     </properties>
 
@@ -52,9 +52,11 @@
                             <goal>assert</goal>
                         </goals>
                         <configuration>
-                            <runIf>{{ new File( configsDir ).isDirectory() }}</runIf>
+                            <runIf>{{ new File( project.basedir, 'src/test/resources/configs' ).isDirectory() }}</runIf>
                             <endOfLine>windows</endOfLine>
-                            <assertEqual>${configs-dir}|${project.basedir}/src/test/resources/configs</assertEqual>
+                            <assertEqual>
+                                ${project.basedir}/src/test/resources/configs|${configs-outputDirectory}|**/*.xml
+                            </assertEqual>
                         </configuration>
                     </execution>
                 </executions>

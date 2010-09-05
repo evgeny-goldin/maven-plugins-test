@@ -35,7 +35,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${configs-dir}</outputDirectory>
+                            <outputDirectory>${configs-outputDirectory}</outputDirectory>
                             <generationPom>${hudson-tests-root}/wiki/pom.xml</generationPom>
                             <hudsonUrl>${hudson-url}</hudsonUrl>
                             <timestamp>false</timestamp>
