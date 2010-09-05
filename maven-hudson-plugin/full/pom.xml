@@ -41,9 +41,8 @@
                         </goals>
                         <configuration>
                             <outputDirectory>${configs-dir}</outputDirectory>
-                            <generationPom>http://github.com/evgeny-goldin/maven-plugins/blob/master/maven-hudson-plugin-test/pom.xml</generationPom>
-                            <hudsonUrl>http://127.0.0.1:8080/hudson</hudsonUrl>
-                            <svnRepositoryLocalBase>svn</svnRepositoryLocalBase>
+                            <generationPom>${hudson-tests-root}/full/pom.xml</generationPom>
+                            <hudsonUrl>${hudson-url}</hudsonUrl>
                             <timestamp>false</timestamp>
                             <jobs>
                                 <job>

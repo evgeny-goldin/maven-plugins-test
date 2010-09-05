@@ -15,8 +15,8 @@
 
     <properties>
         <artifactory>http://evgeny-goldin.org/artifactory</artifactory>
-        <maven-hudson-plugin-version>0.1-beta</maven-hudson-plugin-version>
-        <maven-assert-plugin-version>0.1-beta</maven-assert-plugin-version>
+        <maven-hudson-plugin-version>0.1-SNAPSHOT</maven-hudson-plugin-version>
+        <maven-assert-plugin-version>0.1-SNAPSHOT</maven-assert-plugin-version>
     </properties>
 
 

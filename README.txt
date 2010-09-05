@@ -1,5 +1,5 @@
 
-"maven-hudson-plugin" tests and demonstration:
+"maven-plugins" tests and demonstration:
 
-* https://github.com/evgeny-goldin/maven-plugins/tree/master/maven-hudson-plugin/
-* http://evgeny-goldin.com/wiki/index.php?title=Maven-hudson-plugin
+* http://github.com/evgeny-goldin/maven-plugins/
+* http://evgeny-goldin.com/wiki/
