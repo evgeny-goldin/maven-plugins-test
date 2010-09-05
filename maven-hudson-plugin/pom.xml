@@ -19,6 +19,7 @@
         <version>0.1-SNAPSHOT</version>
     </parent>
 
+    
     <properties>
         <configs-dir>${project.build.directory}/configs</configs-dir>
     </properties>
@@ -43,7 +44,7 @@
                 <version>${maven-assert-plugin-version}</version>
                 <executions>
                     <execution>
-                        <id>check-jobs</id>
+                        <id>verify-configs</id>
                         <phase>integration-test</phase>
                         <goals>
                             <goal>assert</goal>
