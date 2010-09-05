@@ -3,6 +3,7 @@ Generating Hudson configs
 
 * http://github.com/evgeny-goldin/maven-plugins-test/blob/master/maven-hudson-plugin/full/pom.xml
 * http://github.com/evgeny-goldin/maven-plugins-test/blob/master/maven-hudson-plugin/wiki/pom.xml
+* http://github.com/evgeny-goldin/maven-plugins-test/blob/master/maven-hudson-plugin/google-guice/pom.xml
 
 and deploying them to
 
