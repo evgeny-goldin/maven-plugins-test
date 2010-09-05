@@ -55,6 +55,10 @@
     </distributionManagement>
 
 
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- Displaying plugin versions checked -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
     <build>
         <plugins>
             <plugin>
@@ -64,7 +68,7 @@
                 <inherited>false</inherited>
                 <executions>
                     <execution>
-                        <id>print-tested-plugins-versions</id>
+                        <id>plugins-versions</id>
                         <goals>
                             <goal>execute</goal>
                         </goals>
