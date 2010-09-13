@@ -162,6 +162,7 @@
                                 <job>
                                     <id>googlecode-google-guice-trunk</id>
                                     <parent>base-svn</parent>
+                                    <useUpdate>true</useUpdate>
                                     <repository>
                                         <remote>http://google-guice.googlecode.com/svn/trunk/</remote>
                                     </repository>
@@ -169,6 +170,10 @@
                                         <jobs>googlecode-facebook-java-api-trunk, googlecode-facebook-java-api-fbapi-2.0.0</jobs>
                                         <failed>true</failed>
                                     </invoke>
+                                    <trigger>
+                                        <type>timer</type>
+                                        <expression>0 12 * * *</expression>
+                                    </trigger>
                                 </job>
 
                                 <job>
@@ -181,6 +186,11 @@
                                         <jobs>googlecode-facebook-java-api-trunk, googlecode-facebook-java-api-fbapi-2.0.0</jobs>
                                         <unstable>true</unstable>
                                     </invoke>
+                                    <trigger>
+                                        <type>timer</type>
+                                        <expression>0 12 * * *</expression>
+                                        <description>[12:00] - daily build</description>
+                                    </trigger>
                                 </job>
 
                                 <job>
@@ -194,6 +204,10 @@
                                         <unstable>true</unstable>
                                         <failed>true</failed>
                                     </invoke>
+                                    <trigger>
+                                        <type>scm</type>
+                                        <expression>*/10 * * * *</expression>
+                                    </trigger>
                                 </job>
 
                                 <job>
@@ -207,6 +221,11 @@
                                         <stable>false</stable>
                                         <unstable>true</unstable>
                                     </invoke>
+                                    <trigger>
+                                        <type>scm</type>
+                                        <expression>*/10 * * * *</expression>
+                                        <description>Check SCM for changes every 10 minutes</description>
+                                    </trigger>
                                 </job>
 
                             </jobs>
