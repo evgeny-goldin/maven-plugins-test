@@ -6,8 +6,8 @@
                                http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.goldin.plugins</groupId>
-    <artifactId>maven-plugins-test.maven-hudson-plugin.standalone</artifactId>
+    <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+    <artifactId>maven-hudson-plugin.standalone</artifactId>
     <packaging>pom</packaging>
     <version>0.1-SNAPSHOT</version>
     <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
@@ -35,7 +35,7 @@
     </pluginRepositories>
 
 
-    
+
     <build>
         <plugins>
 
