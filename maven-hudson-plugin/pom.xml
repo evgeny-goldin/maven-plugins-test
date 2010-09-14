@@ -29,7 +29,6 @@
 
     <modules>
         <module>full</module>
-        <module>wiki</module>
         <module>google-guice</module>
         <module>standalone</module>
     </modules>

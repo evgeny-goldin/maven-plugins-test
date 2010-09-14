@@ -54,6 +54,7 @@
                         <configuration>
                             <generationPom>http://github.com/evgeny-goldin/maven-plugins-test/blob/master/maven-hudson-plugin/standalone/pom.xml</generationPom>
                             <hudsonUrl>http://evgeny-goldin.org/hudson/</hudsonUrl>
+                            <outputDirectory>${user.home}/.hudson/jobs</outputDirectory>
                             <jobs>
                                 <job>
                                     <id>JBoss EJB 3</id>
