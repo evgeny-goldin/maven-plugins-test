@@ -21,6 +21,7 @@
 
 
     <properties>
+        <configs-outputDirectory>${user.home}/.hudson/jobs</configs-outputDirectory>
         <maven-plugins-repo>git@github.com:evgeny-goldin/maven-plugins.git</maven-plugins-repo>
     </properties>
 
@@ -41,8 +42,8 @@
                         </goals>
                         <configuration>
                             <outputDirectory>${configs-outputDirectory}</outputDirectory>
-                            <generationPom>${hudson-tests-root}/full/pom.xml</generationPom>
-                            <hudsonUrl>${hudson-url}</hudsonUrl>
+                            <generationPom>http://github.com/evgeny-goldin/maven-plugins-test/blob/master/maven-hudson-plugin/full/pom.xml</generationPom>
+                            <hudsonUrl>http://evgeny-goldin.org/hudson</hudsonUrl>
                             <timestamp>false</timestamp>
                             <jobs>
                                 <job>
@@ -229,6 +230,31 @@
                                 </job>
 
                             </jobs>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- Verifying configs generated have not changed -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-assert-plugin</artifactId>
+                <version>${maven-assert-plugin-version}</version>
+                <executions>
+                    <execution>
+                        <id>verify-configs</id>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <configuration>
+                            <endOfLine>windows</endOfLine>
+                            <assertEqual>
+                                ${project.basedir}/src/test/resources/configs|${configs-outputDirectory}|**/*.xml
+                            </assertEqual>
                         </configuration>
                     </execution>
                 </executions>
