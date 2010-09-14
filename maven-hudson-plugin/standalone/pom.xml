@@ -13,23 +13,17 @@
     <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
 
 
-    <properties>
-        <maven-plugins-repo>git@github.com:evgeny-goldin/maven-plugins.git</maven-plugins-repo>
-        <artifactory>http://evgeny-goldin.org/artifactory</artifactory>
-    </properties>
-
-
 
     <pluginRepositories>
         <pluginRepository>
             <id>plugins-snapshots</id>
-            <url>${artifactory}/plugins-snapshots</url>
+            <url>http://evgeny-goldin.org/artifactory/plugins-snapshots</url>
             <releases><enabled>false</enabled></releases>
             <snapshots><enabled>true</enabled></snapshots>
         </pluginRepository>
         <pluginRepository>
             <id>plugins-releases</id>
-            <url>${artifactory}/plugins-releases</url>
+            <url>http://evgeny-goldin.org/artifactory/plugins-releases</url>
             <releases><enabled>true</enabled></releases>
             <snapshots><enabled>false</enabled></snapshots>
         </pluginRepository>
