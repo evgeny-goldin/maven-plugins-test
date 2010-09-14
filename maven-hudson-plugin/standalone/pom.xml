@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns              = "http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi          = "http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0
+                               http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.goldin.plugins</groupId>
+    <artifactId>maven-plugins-test.maven-hudson-plugin.standalone</artifactId>
+    <packaging>pom</packaging>
+    <version>0.1-SNAPSHOT</version>
+    <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
+
+
+    <properties>
+        <maven-plugins-repo>git@github.com:evgeny-goldin/maven-plugins.git</maven-plugins-repo>
+        <artifactory>http://evgeny-goldin.org/artifactory</artifactory>
+    </properties>
+
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>plugins-snapshots</id>
+            <url>${artifactory}/plugins-snapshots</url>
+            <releases><enabled>false</enabled></releases>
+            <snapshots><enabled>true</enabled></snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>plugins-releases</id>
+            <url>${artifactory}/plugins-releases</url>
+            <releases><enabled>true</enabled></releases>
+            <snapshots><enabled>false</enabled></snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
+
+    
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-hudson-plugin</artifactId>
+                <version>0.1-SNAPSHOT</version>
+                <executions>
+                    <execution>
+                        <id>generate-hudson-jobs</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <generationPom>full/pom.xml</generationPom>
+                            <hudsonUrl>hudson-url</hudsonUrl>
+                            <jobs>
+                                <job>
+                                    <id>base-git</id>
+                                    <abstract>true</abstract>
+                                    <scmType>git</scmType>
+                                    <mavenName>apache-maven-2.2.1</mavenName>
+                                    <jdkName>jdk1.6.0_21</jdkName>
+                                </job>
+
+                                <job>
+                                    <id>base-svn</id>
+                                    <abstract>true</abstract>
+                                    <parent>base-git</parent>
+                                    <scmType>svn</scmType>
+                                </job>
+
+                                <job>
+                                    <id>github-maven-plugins-master</id>
+                                    <parent>base-git</parent>
+                                    <repository>
+                                        <remote>${maven-plugins-repo}</remote>
+                                    </repository>
+                                </job>
+
+                                <job>
+                                    <id>github-maven-plugins-dev</id>
+                                    <parent>base-git</parent>
+                                    <repository>
+                                        <remote>${maven-plugins-repo}</remote>
+                                        <gitBranch>dev</gitBranch>
+                                    </repository>
+                                </job>
+
+                                <job>
+                                    <id>github-maven-plugins-master-1</id>
+                                    <parent>base-git</parent>
+                                    <repository>
+                                        <remote>${maven-plugins-repo}</remote>
+                                    </repository>
+                                    <localRepoBase>/.m2/repo</localRepoBase>
+                                    <localRepo>maven-plugins-master-1</localRepo>
+                                </job>
+
+                                <job>
+                                    <id>github-maven-plugins-master-2</id>
+                                    <parent>base-git</parent>
+                                    <repository>
+                                        <remote>${maven-plugins-repo}</remote>
+                                    </repository>
+                                    <localRepoBase>/.m2/repo</localRepoBase>
+                                </job>
+
+                                <job>
+                                    <id>github-maven-plugins-master-3</id>
+                                    <parent>base-git</parent>
+                                    <repository>
+                                        <remote>${maven-plugins-repo}</remote>
+                                    </repository>
+                                    <localRepoBase>/.m2/repo</localRepoBase>
+                                    <localRepo>maven-plugins-master-3</localRepo>
+                                    <mavenOpts>-server -Xmx256m</mavenOpts>
+                                    <mail>
+                                        <recipients>evgenyg@gmail.com evgeny.goldin@gmail.com</recipients>
+                                    </mail>
+                                </job>
+
+                                <job>
+                                    <id>github-maven-plugins-master-4</id>
+                                    <parent>base-git</parent>
+                                    <repository>
+                                        <remote>${maven-plugins-repo}</remote>
+                                    </repository>
+                                    <privateRepository>true</privateRepository>
+                                </job>
+
+                                <job>
+                                    <id>gitorious-JBoss EJB 3-master</id>
+                                    <parent>base-git</parent>
+                                    <repository>
+                                        <remote>git://gitorious.org/jboss-ejb3/jboss-ejb3-context.git</remote>
+                                    </repository>
+                                </job>
+
+                                <job>
+                                    <id>repo.or.cz-jgit-master</id>
+                                    <parent>base-git</parent>
+                                    <repository>
+                                        <remote>git://repo.or.cz/jgit.git</remote>
+                                    </repository>
+                                </job>
+
+                                <job>
+                                    <id>gitorious-wsarena3-master</id>
+                                    <parent>base-git</parent>
+                                    <repository>
+                                        <remote>git://gitorious.org/esp-home/wsarena3.git</remote>
+                                    </repository>
+                                    <invoke>
+                                        <jobs>gitorious-wsarena3-version1</jobs>
+                                        <always>true</always>
+                                    </invoke>
+                                </job>
+
+                                <job>
+                                    <id>gitorious-wsarena3-version1</id>
+                                    <parent>base-git</parent>
+                                    <repository>
+                                        <remote>git://gitorious.org/esp-home/wsarena3.git</remote>
+                                        <gitBranch>version1</gitBranch>
+                                    </repository>
+                                    <invoke>
+                                        <jobs>googlecode-google-guice-trunk, googlecode-google-guice-2.0-maven</jobs>
+                                    </invoke>
+                                </job>
+
+                                <job>
+                                    <id>googlecode-google-guice-trunk</id>
+                                    <parent>base-svn</parent>
+                                    <useUpdate>true</useUpdate>
+                                    <repository>
+                                        <remote>http://google-guice.googlecode.com/svn/trunk/</remote>
+                                    </repository>
+                                    <invoke>
+                                        <jobs>googlecode-facebook-java-api-trunk, googlecode-facebook-java-api-fbapi-2.0.0</jobs>
+                                        <failed>true</failed>
+                                    </invoke>
+                                    <trigger>
+                                        <type>timer</type>
+                                        <expression>0 12 * * *</expression>
+                                    </trigger>
+                                </job>
+
+                                <job>
+                                    <id>googlecode-google-guice-2.0-maven</id>
+                                    <parent>base-svn</parent>
+                                    <repository>
+                                        <remote>http://google-guice.googlecode.com/svn/branches/2.0-maven/</remote>
+                                    </repository>
+                                    <invoke>
+                                        <jobs>googlecode-facebook-java-api-trunk, googlecode-facebook-java-api-fbapi-2.0.0</jobs>
+                                        <unstable>true</unstable>
+                                    </invoke>
+                                    <trigger>
+                                        <type>timer</type>
+                                        <expression>0 12 * * *</expression>
+                                        <description>[12:00] - daily build</description>
+                                    </trigger>
+                                </job>
+
+                                <job>
+                                    <id>googlecode-facebook-java-api-trunk</id>
+                                    <parent>base-svn</parent>
+                                    <repository>
+                                        <remote>http://facebook-java-api.googlecode.com/svn/trunk/</remote>
+                                    </repository>
+                                    <invoke>
+                                        <jobs>googlecode-facebook-java-api-fbapi-2.0.0</jobs>
+                                        <unstable>true</unstable>
+                                        <failed>true</failed>
+                                    </invoke>
+                                    <trigger>
+                                        <type>scm</type>
+                                        <expression>*/10 * * * *</expression>
+                                    </trigger>
+                                </job>
+
+                                <job>
+                                    <id>googlecode-facebook-java-api-fbapi-2.0.0</id>
+                                    <parent>base-svn</parent>
+                                    <repository>
+                                        <remote>http://facebook-java-api.googlecode.com/svn/branches/fbapi-2.0.0/</remote>
+                                    </repository>
+                                    <invoke>
+                                        <jobs>github-maven-plugins-master</jobs>
+                                        <stable>false</stable>
+                                        <unstable>true</unstable>
+                                    </invoke>
+                                    <trigger>
+                                        <type>scm</type>
+                                        <expression>*/10 * * * *</expression>
+                                        <description>Check SCM for changes every 10 minutes</description>
+                                    </trigger>
+                                </job>
+
+                            </jobs>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>
