@@ -52,8 +52,8 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <generationPom>full/pom.xml</generationPom>
-                            <hudsonUrl>hudson-url</hudsonUrl>
+                            <generationPom>http://github.com/evgeny-goldin/maven-plugins-test/blob/master/maven-hudson-plugin/standalone/pom.xml</generationPom>
+                            <hudsonUrl>http://evgeny-goldin.org/hudson/</hudsonUrl>
                             <jobs>
                                 <job>
                                     <id>JBoss EJB 3</id>
