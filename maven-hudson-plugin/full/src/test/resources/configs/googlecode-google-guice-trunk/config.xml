@@ -20,6 +20,7 @@
 &nbsp;
 <p/>
 <table border="1" width="100%" cellpadding="3" cellspacing="3">
+
 <tr>
 <td valign="top">Job</td>
 <td><a href="http://evgeny-goldin.org/hudson/job/googlecode-google-guice-trunk"><strong>googlecode-google-guice-trunk</strong></a></td>
@@ -28,28 +29,39 @@
 <td valign="top">Maven goals</td>
 <td><strong><code>-e clean install</code></strong></td>
 </tr>
+
 <tr>
 <td valign="top">Maven repository</td>
 <td><strong><code>"&lt;hudson-user-home&gt;/.m2/repository"</code></strong></td>
 </tr>
+
 <tr>
 <td valign="top">SVN update policy</td>
 <td>Revert - [false], update - [true], checkout - [false]</td>
 </tr>
+
 <tr>
 <td valign="top">Node</td>
 <td><a href="http://evgeny-goldin.org/hudson/label/master/"><strong>master</strong></a></td>
 </tr>
+
 <tr>
 <td valign="top">Triggers</td>
 <td>
+
 <li> <strong><code>timer:</code></strong> <a href="http://linuxmanpages.com/man5/crontab.5.php"><strong><code>&quot;0 12 * * *&quot;</code></strong></a>
+
+
 </td>
 </tr>
+
 <tr>
 <td valign="top">Repositories</td>
 <td>
+
 <li><a href="http://google-guice.googlecode.com/svn/trunk/"><strong><code>http://google-guice.googlecode.com/svn/trunk</code></strong></a>
+
+
 </td>
 </tr>
 <tr>
@@ -58,19 +70,27 @@
 <li><a href="http://google-guice.googlecode.com/svn/trunk/pom.xml"><strong><code>http://google-guice.googlecode.com/svn/trunk/pom.xml</code></strong></a>
 </td>
 </tr>
+
 <tr>
 <td valign="top">Invokes</td>
 <td>
+
 <li><a href="http://evgeny-goldin.org/hudson/job/googlecode-facebook-java-api-trunk"><strong>googlecode-facebook-java-api-trunk</strong></a> when this job has <strong>failed</strong>
+
 <li><a href="http://evgeny-goldin.org/hudson/job/googlecode-facebook-java-api-fbapi-2.0.0"><strong>googlecode-facebook-java-api-fbapi-2.0.0</strong></a> when this job has <strong>failed</strong>
+
 </td>
 </tr>
+
 <tr>
 <td valign="top">Invoked by</td>
 <td>
+
 <li><a href="http://evgeny-goldin.org/hudson/job/gitorious-wsarena3-version1"><strong>gitorious-wsarena3-version1</strong></a> when it is <strong>stable</strong>
+
 </td>
 </tr>
+
 </table>
        ]]>
   </description>
