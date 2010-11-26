@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns              = "http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi          = "http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0
+                               http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+    <artifactId>maven-copy-plugin.copy-dependency</artifactId>
+    <packaging>jar</packaging>
+    <version>0.1-SNAPSHOT</version>
+    <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
+
+
+    <parent>
+        <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+        <artifactId>maven-copy-plugin</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-copy-plugin</artifactId>
+                <version>${maven-copy-plugin-version}</version>
+                <executions>
+                    <execution>
+                        <id>test-dependency-copy</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>validate</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${project.build.directory}/compile-deps</targetPath>
+                                    <dependency>
+                                        <includeScope>compile</includeScope>
+                                    </dependency>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
+    </dependencies>
+
+</project>
