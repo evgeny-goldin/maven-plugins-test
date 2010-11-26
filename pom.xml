@@ -17,6 +17,8 @@
         <artifactory>http://evgeny-goldin.org/artifactory</artifactory>
         <maven-hudson-plugin-version>0.2-SNAPSHOT</maven-hudson-plugin-version>
         <maven-assert-plugin-version>0.2-SNAPSHOT</maven-assert-plugin-version>
+        <maven-copy-plugin-version>0.2-SNAPSHOT</maven-copy-plugin-version>
+        <spring-version>3.0.5.RELEASE</spring-version>
     </properties>
 
 
@@ -91,8 +93,10 @@
         </plugins>
     </build>
 
+
     <modules>
         <module>maven-hudson-plugin</module>
+        <module>maven-copy-plugin</module>
     </modules>
 
 </project>
