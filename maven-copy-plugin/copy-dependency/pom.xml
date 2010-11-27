@@ -36,6 +36,13 @@
                         <phase>validate</phase>
                         <configuration>
                             <resources>
+
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- "compile" dependencies -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
+
+                                <!--includeGroupId-->
+
                                 <resource>
                                     <targetPath>${project.build.directory}/compile-deps-transitive-1</targetPath>
                                     <dependency>
@@ -56,6 +63,11 @@
                                         <excludeTransitive>true</excludeTransitive>
                                     </dependency>
                                 </resource>
+
+                                <!-- ~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- "test" dependencies -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~ -->
+
                                 <resource>
                                     <targetPath>${project.build.directory}/test-deps-transitive-1</targetPath>
                                     <dependency>
@@ -105,29 +117,56 @@
                                 ${project.build.directory}/compile-deps-transitive-1/commons-logging-1.1.1.jar
                                 ${project.build.directory}/compile-deps-transitive-1/spring-asm-${spring-version}.jar
                                 ${project.build.directory}/compile-deps-transitive-1/spring-core-${spring-version}.jar
+                                ${project.build.directory}/compile-deps-transitive-1/dom4j-1.6.1.jar
+                                ${project.build.directory}/compile-deps-transitive-1/icu4j-2.6.1.jar
+                                ${project.build.directory}/compile-deps-transitive-1/jaxen-${jaxen-version}.jar
+                                ${project.build.directory}/compile-deps-transitive-1/jdom-1.0.jar
+                                ${project.build.directory}/compile-deps-transitive-1/log4j-${log4j-version}.jar
+                                ${project.build.directory}/compile-deps-transitive-1/xalan-2.6.0.jar
+                                ${project.build.directory}/compile-deps-transitive-1/xercesImpl-2.6.2.jar
+                                ${project.build.directory}/compile-deps-transitive-1/xml-apis-1.3.02.jar
+                                ${project.build.directory}/compile-deps-transitive-1/xmlParserAPIs-2.6.2.jar
+                                ${project.build.directory}/compile-deps-transitive-1/xom-1.0.jar
 
                                 ${project.build.directory}/compile-deps-no-transitive/spring-core-${spring-version}.jar
+                                ${project.build.directory}/compile-deps-no-transitive/jaxen-${jaxen-version}.jar
+                                ${project.build.directory}/compile-deps-no-transitive/log4j-${log4j-version}.jar
 
-                                ${project.build.directory}/test-deps-transitive-1/junit-${junit-version}.jar
                                 ${project.build.directory}/test-deps-transitive-1/commons-logging-1.1.1.jar
                                 ${project.build.directory}/test-deps-transitive-1/spring-asm-${spring-version}.jar
                                 ${project.build.directory}/test-deps-transitive-1/spring-core-${spring-version}.jar
+                                ${project.build.directory}/test-deps-transitive-1/dom4j-1.6.1.jar
+                                ${project.build.directory}/test-deps-transitive-1/icu4j-2.6.1.jar
+                                ${project.build.directory}/test-deps-transitive-1/jaxen-${jaxen-version}.jar
+                                ${project.build.directory}/test-deps-transitive-1/jdom-1.0.jar
+                                ${project.build.directory}/test-deps-transitive-1/log4j-${log4j-version}.jar
+                                ${project.build.directory}/test-deps-transitive-1/xalan-2.6.0.jar
+                                ${project.build.directory}/test-deps-transitive-1/xercesImpl-2.6.2.jar
+                                ${project.build.directory}/test-deps-transitive-1/xml-apis-1.3.02.jar
+                                ${project.build.directory}/test-deps-transitive-1/xmlParserAPIs-2.6.2.jar
+                                ${project.build.directory}/test-deps-transitive-1/xom-1.0.jar
+                                ${project.build.directory}/test-deps-transitive-1/junit-${junit-version}.jar
+                                ${project.build.directory}/test-deps-transitive-1/spring-test-${spring-version}.jar
 
                                 ${project.build.directory}/test-deps-no-transitive/spring-core-${spring-version}.jar
+                                ${project.build.directory}/test-deps-no-transitive/log4j-${log4j-version}.jar
+                                ${project.build.directory}/test-deps-no-transitive/jaxen-${jaxen-version}.jar
                                 ${project.build.directory}/test-deps-no-transitive/junit-${junit-version}.jar
+                                ${project.build.directory}/test-deps-no-transitive/spring-test-${spring-version}.jar
 
                                 ${project.build.directory}/test-deps-no-transitive-no-compile/junit-${junit-version}.jar
+                                ${project.build.directory}/test-deps-no-transitive-no-compile/spring-test-${spring-version}.jar
                             </assertFiles>
                             <assertEqual>
                                 ${project.build.directory}/compile-deps-transitive-1|${project.build.directory}/compile-deps-transitive-2
                                 ${project.build.directory}/test-deps-transitive-1|${project.build.directory}/test-deps-transitive-2
                             </assertEqual>
                             <assertGroovy>
-                                new File( project.build.directory, 'compile-deps-transitive-1'  ).listFiles().size() == 3
-                                new File( project.build.directory, 'compile-deps-no-transitive' ).listFiles().size() == 1
-                                new File( project.build.directory, 'test-deps-transitive-1'     ).listFiles().size() == 4
-                                new File( project.build.directory, 'test-deps-no-transitive'    ).listFiles().size() == 2
-                                new File( project.build.directory, 'test-deps-no-transitive-no-compile' ).listFiles().size() == 1
+                                new File( project.build.directory, 'compile-deps-transitive-1'  ).listFiles().size()         == 13
+                                new File( project.build.directory, 'compile-deps-no-transitive' ).listFiles().size()         == 3
+                                new File( project.build.directory, 'test-deps-transitive-1'     ).listFiles().size()         == 15
+                                new File( project.build.directory, 'test-deps-no-transitive'    ).listFiles().size()         == 5
+                                new File( project.build.directory, 'test-deps-no-transitive-no-compile' ).listFiles().size() == 2
                             </assertGroovy>
                         </configuration>
                     </execution>
@@ -138,6 +177,11 @@
 
 
     <dependencies>
+
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
+        <!-- "compile" dependencies -->
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
@@ -145,9 +189,32 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j-version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>jaxen</groupId>
+            <artifactId>jaxen</artifactId>
+            <version>${jaxen-version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- ~~~~~~~~~~~~~~~~~~~ -->
+        <!-- "test" dependencies -->
+        <!-- ~~~~~~~~~~~~~~~~~~~ -->
+
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>${junit-version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring-version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
