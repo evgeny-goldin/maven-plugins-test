@@ -55,10 +55,24 @@
                                     </dependency>
                                 </resource>
                                 <resource>
-                                    <targetPath>${project.build.directory}/compile-deps-transitive-GroupId-include</targetPath>
+                                    <targetPath>${project.build.directory}/compile-deps-transitive-GroupId-include-1</targetPath>
                                     <dependency>
                                         <includeScope>compile</includeScope>
                                         <includeGroupId>org.springframework</includeGroupId>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${project.build.directory}/compile-deps-transitive-GroupId-include-2</targetPath>
+                                    <dependency>
+                                        <includeScope>compile</includeScope>
+                                        <includeGroupIds>org.springframework</includeGroupIds>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${project.build.directory}/compile-deps-transitive-GroupId-include-3</targetPath>
+                                    <dependency>
+                                        <includeScope>compile</includeScope>
+                                        <includeGroupIds>org.springframework,jaxen</includeGroupIds>
                                     </dependency>
                                 </resource>
                                 <resource>
@@ -94,10 +108,24 @@
                                     </dependency>
                                 </resource>
                                 <resource>
-                                    <targetPath>${project.build.directory}/test-deps-transitive-GroupId-include</targetPath>
+                                    <targetPath>${project.build.directory}/test-deps-transitive-GroupId-include-1</targetPath>
                                     <dependency>
                                         <includeScope>test</includeScope>
                                         <includeGroupId>org.springframework</includeGroupId>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${project.build.directory}/test-deps-transitive-GroupId-include-2</targetPath>
+                                    <dependency>
+                                        <includeScope>test</includeScope>
+                                        <includeGroupIds>org.springframework</includeGroupIds>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${project.build.directory}/test-deps-transitive-GroupId-include-3</targetPath>
+                                    <dependency>
+                                        <includeScope>test</includeScope>
+                                        <includeGroupIds>org.springframework,junit</includeGroupIds>
                                     </dependency>
                                 </resource>
                                 <resource>
@@ -154,8 +182,12 @@
                                 ${project.build.directory}/compile-deps-transitive-1/xmlParserAPIs-2.6.2.jar
                                 ${project.build.directory}/compile-deps-transitive-1/xom-1.0.jar
 
-                                ${project.build.directory}/compile-deps-transitive-GroupId-include/spring-asm-${spring-version}.jar
-                                ${project.build.directory}/compile-deps-transitive-GroupId-include/spring-core-${spring-version}.jar
+                                ${project.build.directory}/compile-deps-transitive-GroupId-include-1/spring-asm-${spring-version}.jar
+                                ${project.build.directory}/compile-deps-transitive-GroupId-include-1/spring-core-${spring-version}.jar
+
+                                ${project.build.directory}/compile-deps-transitive-GroupId-include-3/spring-asm-${spring-version}.jar
+                                ${project.build.directory}/compile-deps-transitive-GroupId-include-3/spring-core-${spring-version}.jar
+                                ${project.build.directory}/compile-deps-transitive-GroupId-include-3/jaxen-${jaxen-version}.jar
 
                                 ${project.build.directory}/compile-deps-no-transitive/spring-core-${spring-version}.jar
                                 ${project.build.directory}/compile-deps-no-transitive/jaxen-${jaxen-version}.jar
@@ -177,9 +209,14 @@
                                 ${project.build.directory}/test-deps-transitive-1/junit-${junit-version}.jar
                                 ${project.build.directory}/test-deps-transitive-1/spring-test-${spring-version}.jar
 
-                                ${project.build.directory}/test-deps-transitive-GroupId-include/spring-asm-${spring-version}.jar
-                                ${project.build.directory}/test-deps-transitive-GroupId-include/spring-core-${spring-version}.jar
-                                ${project.build.directory}/test-deps-transitive-GroupId-include/spring-test-${spring-version}.jar
+                                ${project.build.directory}/test-deps-transitive-GroupId-include-1/spring-asm-${spring-version}.jar
+                                ${project.build.directory}/test-deps-transitive-GroupId-include-1/spring-core-${spring-version}.jar
+                                ${project.build.directory}/test-deps-transitive-GroupId-include-1/spring-test-${spring-version}.jar
+
+                                ${project.build.directory}/test-deps-transitive-GroupId-include-3/spring-asm-${spring-version}.jar
+                                ${project.build.directory}/test-deps-transitive-GroupId-include-3/spring-core-${spring-version}.jar
+                                ${project.build.directory}/test-deps-transitive-GroupId-include-3/spring-test-${spring-version}.jar
+                                ${project.build.directory}/test-deps-transitive-GroupId-include-3/junit-${junit-version}.jar
 
                                 ${project.build.directory}/test-deps-no-transitive/spring-core-${spring-version}.jar
                                 ${project.build.directory}/test-deps-no-transitive/log4j-${log4j-version}.jar
@@ -191,20 +228,27 @@
                                 ${project.build.directory}/test-deps-no-transitive-no-compile/spring-test-${spring-version}.jar
                             </assertFiles>
                             <assertEqual>
-                                ${project.build.directory}/compile-deps-transitive-1 | ${project.build.directory}/compile-deps-transitive-2
-                                ${project.build.directory}/test-deps-transitive-1    | ${project.build.directory}/test-deps-transitive-2
+                                ${project.build.directory}/compile-deps-transitive-1                 | ${project.build.directory}/compile-deps-transitive-2
+                                ${project.build.directory}/compile-deps-transitive-GroupId-include-1 | ${project.build.directory}/compile-deps-transitive-GroupId-include-2
+
+                                ${project.build.directory}/test-deps-transitive-1                    | ${project.build.directory}/test-deps-transitive-2
+                                ${project.build.directory}/test-deps-transitive-GroupId-include-1    | ${project.build.directory}/test-deps-transitive-GroupId-include-2
                             </assertEqual>
                             <assertGroovy>
-                                new File( project.build.directory, 'compile-deps-transitive-1'               ).listFiles().size() == 13
-                                new File( project.build.directory, 'compile-deps-transitive-GroupId-include' ).listFiles().size() == 2
-                                new File( project.build.directory, 'compile-deps-transitive-GroupId-exclude' ).listFiles().size() == 11
-                                new File( project.build.directory, 'compile-deps-no-transitive'              ).listFiles().size() == 3
+                                new File( project.build.directory, 'compile-deps-transitive-1'                 ).listFiles().size() == 13
+                                new File( project.build.directory, 'compile-deps-transitive-GroupId-include-1' ).listFiles().size() == 2
+                                new File( project.build.directory, 'compile-deps-transitive-GroupId-include-2' ).listFiles().size() == 2
+                                new File( project.build.directory, 'compile-deps-transitive-GroupId-include-3' ).listFiles().size() == 3
+                                new File( project.build.directory, 'compile-deps-transitive-GroupId-exclude'   ).listFiles().size() == 11
+                                new File( project.build.directory, 'compile-deps-no-transitive'                ).listFiles().size() == 3
 
-                                new File( project.build.directory, 'test-deps-transitive-1'                  ).listFiles().size() == 15
-                                new File( project.build.directory, 'test-deps-transitive-GroupId-include'    ).listFiles().size() == 3
-                                new File( project.build.directory, 'test-deps-transitive-GroupId-exclude'    ).listFiles().size() == 12
-                                new File( project.build.directory, 'test-deps-no-transitive'                 ).listFiles().size() == 5
-                                new File( project.build.directory, 'test-deps-no-transitive-no-compile'      ).listFiles().size() == 2
+                                new File( project.build.directory, 'test-deps-transitive-1'                    ).listFiles().size() == 15
+                                new File( project.build.directory, 'test-deps-transitive-GroupId-include-1'    ).listFiles().size() == 3
+                                new File( project.build.directory, 'test-deps-transitive-GroupId-include-2'    ).listFiles().size() == 3
+                                new File( project.build.directory, 'test-deps-transitive-GroupId-include-3'    ).listFiles().size() == 4
+                                new File( project.build.directory, 'test-deps-transitive-GroupId-exclude'      ).listFiles().size() == 12
+                                new File( project.build.directory, 'test-deps-no-transitive'                   ).listFiles().size() == 5
+                                new File( project.build.directory, 'test-deps-no-transitive-no-compile'        ).listFiles().size() == 2
                             </assertGroovy>
                         </configuration>
                     </execution>
