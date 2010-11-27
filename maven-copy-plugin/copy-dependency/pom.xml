@@ -113,6 +113,12 @@
                                 ${project.build.directory}/compile-deps-transitive-1|${project.build.directory}/compile-deps-transitive-2
                                 ${project.build.directory}/test-deps-transitive-1|${project.build.directory}/test-deps-transitive-2
                             </assertEqual>
+                            <assertGroovy>
+                                new File( project.build.directory, 'compile-deps-transitive-1'  ).listFiles().size() == 3
+                                new File( project.build.directory, 'compile-deps-no-transitive' ).listFiles().size() == 1
+                                new File( project.build.directory, 'test-deps-transitive-1'     ).listFiles().size() == 4
+                                new File( project.build.directory, 'test-deps-no-transitive'    ).listFiles().size() == 2
+                            </assertGroovy>
                         </configuration>
                     </execution>
                 </executions>
