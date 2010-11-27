@@ -191,8 +191,8 @@
                                 ${project.build.directory}/test-deps-no-transitive-no-compile/spring-test-${spring-version}.jar
                             </assertFiles>
                             <assertEqual>
-                                ${project.build.directory}/compile-deps-transitive-1|${project.build.directory}/compile-deps-transitive-2
-                                ${project.build.directory}/test-deps-transitive-1|${project.build.directory}/test-deps-transitive-2
+                                ${project.build.directory}/compile-deps-transitive-1 | ${project.build.directory}/compile-deps-transitive-2
+                                ${project.build.directory}/test-deps-transitive-1    | ${project.build.directory}/test-deps-transitive-2
                             </assertEqual>
                             <assertGroovy>
                                 new File( project.build.directory, 'compile-deps-transitive-1'               ).listFiles().size() == 13
