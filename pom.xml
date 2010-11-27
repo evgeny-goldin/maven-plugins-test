@@ -84,6 +84,7 @@
                                 println """
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [$date] - testing plugin versions:
+* maven-copy-plugin-version   : "${maven-copy-plugin-version}"
 * maven-hudson-plugin-version : "${maven-hudson-plugin-version}"
 * maven-assert-plugin-version : "${maven-assert-plugin-version}"
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
