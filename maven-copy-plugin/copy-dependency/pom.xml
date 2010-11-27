@@ -37,12 +37,82 @@
                         <configuration>
                             <resources>
                                 <resource>
-                                    <targetPath>${project.build.directory}/compile-deps</targetPath>
+                                    <targetPath>${project.build.directory}/compile-deps-transitive-1</targetPath>
                                     <dependency>
                                         <includeScope>compile</includeScope>
                                     </dependency>
                                 </resource>
+                                <resource>
+                                    <targetPath>${project.build.directory}/compile-deps-transitive-2</targetPath>
+                                    <dependency>
+                                        <includeScope>compile</includeScope>
+                                        <excludeTransitive>false</excludeTransitive>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${project.build.directory}/compile-deps-no-transitive</targetPath>
+                                    <dependency>
+                                        <includeScope>compile</includeScope>
+                                        <excludeTransitive>true</excludeTransitive>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${project.build.directory}/test-deps-transitive-1</targetPath>
+                                    <dependency>
+                                        <includeScope>test</includeScope>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${project.build.directory}/test-deps-transitive-2</targetPath>
+                                    <dependency>
+                                        <includeScope>test</includeScope>
+                                        <excludeTransitive>false</excludeTransitive>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${project.build.directory}/test-deps-no-transitive</targetPath>
+                                    <dependency>
+                                        <includeScope>test</includeScope>
+                                        <excludeTransitive>true</excludeTransitive>
+                                    </dependency>
+                                </resource>
                             </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-assert-plugin</artifactId>
+                <version>${maven-assert-plugin-version}</version>
+                <executions>
+                    <execution>
+                        <id>assert-dependency-copy</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${project.build.directory}/compile-deps-transitive-1/commons-logging-1.1.1.jar
+                                ${project.build.directory}/compile-deps-transitive-1/spring-asm-${spring-version}.jar
+                                ${project.build.directory}/compile-deps-transitive-1/spring-core-${spring-version}.jar
+
+                                ${project.build.directory}/compile-deps-no-transitive/spring-core-${spring-version}.jar
+
+                                ${project.build.directory}/test-deps-transitive-1/junit-${junit-version}.jar
+                                ${project.build.directory}/test-deps-transitive-1/commons-logging-1.1.1.jar
+                                ${project.build.directory}/test-deps-transitive-1/spring-asm-${spring-version}.jar
+                                ${project.build.directory}/test-deps-transitive-1/spring-core-${spring-version}.jar
+
+                                ${project.build.directory}/test-deps-no-transitive/spring-core-${spring-version}.jar
+                                ${project.build.directory}/test-deps-no-transitive/junit-${junit-version}.jar
+                            </assertFiles>
+                            <assertEqual>
+                                ${project.build.directory}/compile-deps-transitive-1|${project.build.directory}/compile-deps-transitive-2
+                                ${project.build.directory}/test-deps-transitive-1|${project.build.directory}/test-deps-transitive-2
+                            </assertEqual>
                         </configuration>
                     </execution>
                 </executions>
@@ -56,7 +126,13 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
             <version>${spring-version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit-version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
-
 </project>

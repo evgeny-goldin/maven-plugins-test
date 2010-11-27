@@ -19,6 +19,7 @@
         <maven-assert-plugin-version>0.2-SNAPSHOT</maven-assert-plugin-version>
         <maven-copy-plugin-version>0.2-SNAPSHOT</maven-copy-plugin-version>
         <spring-version>3.0.5.RELEASE</spring-version>
+        <junit-version>4.8.2</junit-version>
     </properties>
 
 
