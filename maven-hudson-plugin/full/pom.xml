@@ -229,6 +229,19 @@
                                     </trigger>
                                 </job>
 
+                                <job>
+                                    <id>simple-wicket-full</id>
+                                    <scmType>cvs</scmType>
+                                    <mavenName>apache-maven-2.2.1</mavenName>
+                                    <jdkName>jdk1.6.0_21</jdkName>
+                                    <repository>
+                                        <remote>:pserver:anonymous@simple-wicket.cvs.sourceforge.net:/cvsroot/simple-wicket</remote>
+                                        <cvsModule>simple-wicket</cvsModule>
+                                        <cvsRepositoryBrowser>ViewCVS</cvsRepositoryBrowser>
+                                        <cvsRepositoryBrowserUrl>http://simple-wicket.cvs.sourceforge.net/viewvc/</cvsRepositoryBrowserUrl>
+                                    </repository>
+                                </job>
+
                             </jobs>
                         </configuration>
                     </execution>
