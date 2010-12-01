@@ -55,15 +55,15 @@
                                     </dependency>
                                 </resource>
 
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                                <!-- "compile" dependencies: <includeGroupId>, <includeGroupIds> -->
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- "compile" dependencies: <includeGroupIds>, <includeGroupIds> -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
                                 <resource>
                                     <targetPath>${project.build.directory}/compile-deps-transitive-GroupId-include-1</targetPath>
                                     <dependency>
                                         <includeScope>compile</includeScope>
-                                        <includeGroupId>org.springframework</includeGroupId>
+                                        <includeGroupIds>org.springframework</includeGroupIds>
                                     </dependency>
                                 </resource>
                                 <resource>
@@ -171,14 +171,14 @@
                                 </resource>
 
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                                <!-- "test" dependencies: <includeGroupId>, <includeGroupIds> -->
+                                <!-- "test" dependencies: <includeGroupIds>, <includeGroupIds> -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
                                 <resource>
                                     <targetPath>${project.build.directory}/test-deps-transitive-GroupId-include-1</targetPath>
                                     <dependency>
                                         <includeScope>test</includeScope>
-                                        <includeGroupId>org.springframework</includeGroupId>
+                                        <includeGroupIds>org.springframework</includeGroupIds>
                                     </dependency>
                                 </resource>
                                 <resource>
