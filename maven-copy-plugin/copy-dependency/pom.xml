@@ -82,14 +82,14 @@
                                 </resource>
 
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                                <!-- "compile" dependencies: <excludeGroupId>, <excludeTransitive> -->
+                                <!-- "compile" dependencies: <excludeGroupIds>, <excludeTransitive> -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
                                 <resource>
                                     <targetPath>${project.build.directory}/compile-deps-transitive-GroupId-exclude</targetPath>
                                     <dependency>
                                         <includeScope>compile</includeScope>
-                                        <excludeGroupId>org.springframework</excludeGroupId>
+                                        <excludeGroupIds>org.springframework</excludeGroupIds>
                                     </dependency>
                                 </resource>
                                 <resource>
@@ -170,9 +170,9 @@
                                     </dependency>
                                 </resource>
 
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <!-- "test" dependencies: <includeGroupIds>, <includeGroupIds> -->
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
                                 <resource>
                                     <targetPath>${project.build.directory}/test-deps-transitive-GroupId-include-1</targetPath>
@@ -196,15 +196,15 @@
                                     </dependency>
                                 </resource>
 
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                                <!-- "test" dependencies: <excludeGroupId>, <excludeScope>, <excludeTransitive> -->
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- "test" dependencies: <excludeGroupIds>, <excludeScope>, <excludeTransitive> -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
                                 <resource>
                                     <targetPath>${project.build.directory}/test-deps-transitive-GroupId-exclude</targetPath>
                                     <dependency>
                                         <includeScope>test</includeScope>
-                                        <excludeGroupId>org.springframework</excludeGroupId>
+                                        <excludeGroupIds>org.springframework</excludeGroupIds>
                                     </dependency>
                                 </resource>
                                 <resource>
