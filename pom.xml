@@ -27,13 +27,13 @@
 
     <repositories>
         <repository>
-            <id>remote-repos</id>
+            <id>libs-snapshots</id>
             <url>${artifactory}/libs-snapshots</url>
             <releases><enabled>false</enabled></releases>
             <snapshots><enabled>true</enabled></snapshots>
         </repository>
         <repository>
-            <id>remote-repos</id>
+            <id>libs-releases</id>
             <url>${artifactory}/libs-releases</url>
             <releases><enabled>true</enabled></releases>
             <snapshots><enabled>false</enabled></snapshots>
