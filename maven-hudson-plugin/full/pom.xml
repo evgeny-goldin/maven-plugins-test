@@ -237,6 +237,18 @@
                                     <repository>
                                         <remote>:pserver:anonymous@simple-wicket.cvs.sourceforge.net:/cvsroot/simple-wicket</remote>
                                         <cvsModule>simple-wicket</cvsModule>
+                                        <!-- Default -->
+                                        <cvsBranch></cvsBranch>
+                                        <!-- Default -->
+                                        <cvsRsh></cvsRsh>
+                                        <!-- Default -->
+                                        <cvsExcludedRegions></cvsExcludedRegions>
+                                        <!-- Default -->
+                                        <cvsTag>false</cvsTag>
+                                        <!-- Default -->
+                                        <cvsUpdate>true</cvsUpdate>
+                                        <!-- Default -->
+                                        <cvsLegacy>false</cvsLegacy>
                                         <cvsRepositoryBrowser>ViewCVS</cvsRepositoryBrowser>
                                         <cvsRepositoryBrowserUrl>http://simple-wicket.cvs.sourceforge.net/viewvc/</cvsRepositoryBrowserUrl>
                                     </repository>
