@@ -72,13 +72,13 @@
 
         <cvsroot>:pserver:anonymous@simple-wicket.cvs.sourceforge.net:/cvsroot/simple-wicket</cvsroot>
         <module>simple-wicket</module>
-        <branch></branch>
-        <cvsRsh></cvsRsh>
+        
+        
         <canUseUpdate>true</canUseUpdate>
         <flatten>true</flatten>
         <isTag>false</isTag>
         <excludedRegions></excludedRegions>
-  
+      
         <repositoryBrowser class="hudson.scm.browsers.ViewCVS">
             <url>http://simple-wicket.cvs.sourceforge.net/viewvc/</url>
         </repositoryBrowser>
