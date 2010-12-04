@@ -78,7 +78,7 @@
         <flatten>true</flatten>
         <isTag>false</isTag>
         <excludedRegions></excludedRegions>
-      
+  
         <repositoryBrowser class="hudson.scm.browsers.ViewCVS">
             <url>http://simple-wicket.cvs.sourceforge.net/viewvc/</url>
         </repositoryBrowser>
