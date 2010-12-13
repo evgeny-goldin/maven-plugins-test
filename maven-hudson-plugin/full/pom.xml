@@ -254,6 +254,14 @@
                                     </repository>
                                 </job>
 
+                                <job>
+									<id>test-job</id>
+									<archivingDisabled>false</archivingDisabled>
+                                    <mavenName>apache-maven-2.2.1</mavenName>
+                                    <jdkName>jdk1.6.0_21</jdkName>
+									<privateRepository>false</privateRepository>
+								</job>
+
                             </jobs>
                         </configuration>
                     </execution>
