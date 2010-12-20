@@ -191,11 +191,11 @@
                                 new File( outputDir, 'pl-214/pom-default/pom-UTF-8.xml' ).size() > new File( resourcesDir, 'pom-UTF-8.xml' ).size()
                               ! new File( outputDir, 'pl-214/pom-default/pom-UTF-8.xml' ).text.contains( '$' )
 
-                                new File( outputDir, 'pl-214/text-default/text-Windows-1251.txt'      ).size() == 203
-                                new File( outputDir, 'pl-214/text-UTF-8/text-Windows-1251.txt'        ).size() == 203
-                                new File( outputDir, 'pl-214/text-ASCII/text-Windows-1251.txt'        ).size() == 161
-                                new File( outputDir, 'pl-214/text-ISO-8859-1/text-Windows-1251.txt'   ).size() == 161
-                                new File( outputDir, 'pl-214/text-Windows-1251/text-Windows-1251.txt' ).size() == 161
+                                new File( outputDir, 'pl-214/text-default/text-Windows-1251.txt'      ).size() == 74
+                                new File( outputDir, 'pl-214/text-UTF-8/text-Windows-1251.txt'        ).size() == 74
+                                new File( outputDir, 'pl-214/text-ASCII/text-Windows-1251.txt'        ).size() == 32
+                                new File( outputDir, 'pl-214/text-ISO-8859-1/text-Windows-1251.txt'   ).size() == 32
+                                new File( outputDir, 'pl-214/text-Windows-1251/text-Windows-1251.txt' ).size() == 32
                                 
                                 new File( outputDir, 'pl-214/text-Windows-1251/text-Windows-1251.txt' ).getText( 'Windows-1251' ).contains( "Что-то, зачем-то"  )
                               ! new File( outputDir, 'pl-214/text-Windows-1251/text-Windows-1251.txt' ).getText( 'Windows-1251' ).contains( "Что-то, зачем-то?" )

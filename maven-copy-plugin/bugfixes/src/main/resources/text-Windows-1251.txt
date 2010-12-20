@@ -1,4 +1,1 @@
 Что-то, зачем-то и ${почему-то}!
-${project.basedir}
-${project.build.directory}
-
