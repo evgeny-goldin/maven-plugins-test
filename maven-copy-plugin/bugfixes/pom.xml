@@ -82,9 +82,9 @@
                         <phase>validate</phase>
                         <configuration>
                             <resources>
-                                <!-- ~~~~~~~~~~~~~~~~~~~ -->
-                                <!-- Filtering "pom.xml" -->
-                                <!-- ~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Filtering "pom-UTF-8.xml" -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
                                     <targetPath>${outputDir}/pl-214/pom-default</targetPath>
                                     <file>${resourcesDir}/pom-UTF-8.xml</file>
