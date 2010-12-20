@@ -187,9 +187,8 @@
                                 ${outputDir}/pl-214/text-ISO-8859-1|${outputDir}/pl-214/text-Windows-1251
                             </assertEqual>
                             <assertGroovy>
-                                new File( outputDir, 'pl-214/pom-default/pom-UTF-8.xml' ).size() == 12150
                                 new File( outputDir, 'pl-214/pom-default/pom-UTF-8.xml' ).size() == new File( outputDir,    'pl-214/pom-UTF-8//pom-UTF-8.xml' ).size()
-                                new File( outputDir, 'pl-214/pom-default/pom-UTF-8.xml' ).size() >  new File( resourcesDir, 'pom-UTF-8.xml' ).size()
+                                new File( outputDir, 'pl-214/pom-default/pom-UTF-8.xml' ).size() > new File( resourcesDir, 'pom-UTF-8.xml' ).size()
                               ! new File( outputDir, 'pl-214/pom-default/pom-UTF-8.xml' ).text.contains( '$' )
 
                                 new File( outputDir, 'pl-214/text-default/text-Windows-1251.txt'      ).size() == 203
