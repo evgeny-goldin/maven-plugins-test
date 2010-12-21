@@ -163,24 +163,6 @@
                             </resource>
                         </configuration>
                     </execution>
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-219: MojoUtils.unpack() - remove Ant code -->
-                    <!-- Unpacking ZIP archive with 70000 files, supported by last TrueZip version            -->
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                    <execution>
-                        <id>http://evgeny-goldin.org/youtrack/issue/pl-219</id>
-                        <goals>
-                            <goal>copy</goal>
-                        </goals>
-                        <phase>validate</phase>
-                        <configuration>
-                            <resource>
-                                <targetPath>${outputDir}/pl-219</targetPath>
-                                <file>${resourcesDir}/70000.zip</file>
-                                <unpack>true</unpack>
-                            </resource>
-                        </configuration>
-                    </execution>
                 </executions>
             </plugin>
 
@@ -295,38 +277,6 @@
                                 new File( outputDir, 'pl-233/start-gmi-2.bat' ).text.contains( '${testProperty}' )
                                 new File( outputDir, 'pl-233/start-gmi-2.bat' ).text.contains( '${anotherTestProperty}' )
                                 new File( outputDir, 'pl-233/start-gmi-2.bat' ).text.contains( '${spring-version}' )
-                            </assertGroovy>
-                        </configuration>
-                    </execution>
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-219 -->
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                    <execution>
-                        <id>http://evgeny-goldin.org/youtrack/issue/pl-219</id>
-                        <goals>
-                            <goal>assert</goal>
-                        </goals>
-                        <phase>test</phase>
-                        <configuration>
-                            <assertFiles>
-                                ${outputDir}/pl-219/70000
-                                ${outputDir}/pl-219/70000/*
-                                ${outputDir}/pl-219/70000/1
-                                ${outputDir}/pl-219/70000/2
-                                ${outputDir}/pl-219/70000/12345
-                                ${outputDir}/pl-219/70000/56789
-                                ${outputDir}/pl-219/70000/10111
-                                ${outputDir}/pl-219/70000/70000
-                            </assertFiles>
-                            <assertGroovy>
-                                new File( outputDir, 'pl-219/70000' ).directorySize()    == 338894
-                                new File( outputDir, 'pl-219/70000' ).listFiles().size() == 70000
-                                new File( outputDir, 'pl-219/70000/1' ).size()           == 1
-                                new File( outputDir, 'pl-219/70000/2' ).size()           == 1
-                                new File( outputDir, 'pl-219/70000/12345' ).size()       == 5
-                                new File( outputDir, 'pl-219/70000/56789' ).size()       == 5
-                                new File( outputDir, 'pl-219/70000/10111' ).size()       == 5
-                                new File( outputDir, 'pl-219/70000/70000' ).size()       == 5
                             </assertGroovy>
                         </configuration>
                     </execution>
