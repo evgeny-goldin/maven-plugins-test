@@ -131,6 +131,27 @@
                                         <to>#</to>
                                     </replace>
                                 </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Copying with <replace> and <file> -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/replace-3</targetPath>
+                                    <file>${resourcesDir}/pom.xml</file>
+                                    <replace>
+                                        <addDollar>true</addDollar>
+                                        <endOfLine>windows</endOfLine>
+                                    </replace>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Copying with <replace> and <file> -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/replace-4</targetPath>
+                                    <file>${resourcesDir}/pom.xml</file>
+                                    <replace>
+                                        <addDollar>projectGroupId,projectArtifactId,projectVersion</addDollar>
+                                    </replace>
+                                </resource>
                             </resources>
                         </configuration>
                     </execution>
@@ -160,26 +181,18 @@
                                 ${outputDir}/${antName}/lib/*.jar
                                 ${outputDir}/${antName}/lib/*.pom
                                 ${outputDir}/${antName}/lib/*.properties
-                                ${outputDir}/ant-jars-1
                                 ${outputDir}/ant-jars-1/*.jar
-                                ${outputDir}/ant-jars-2
                                 ${outputDir}/ant-jars-2/*.xsl
-                                ${outputDir}/ant-jars-3
                                 ${outputDir}/ant-jars-3/*.jar
-                                ${outputDir}/ant-jars-4
                                 ${outputDir}/ant-jars-4/*.xml
-                                ${outputDir}/all-files-1
                                 ${outputDir}/all-files-1/*.bat
-                                ${outputDir}/all-files-2
                                 ${outputDir}/all-files-2/*.pom
-                                ${outputDir}/all-files-3
                                 ${outputDir}/all-files-3/*.xml
-                                ${outputDir}/all-files-4
                                 ${outputDir}/all-files-4/*
-                                ${outputDir}/replace-1/
                                 ${outputDir}/replace-1/WHATSNEW
-                                ${outputDir}/replace-2/
                                 ${outputDir}/replace-2/WHATSNEW
+                                ${outputDir}/replace-3/pom.xml
+                                ${outputDir}/replace-4/pom.xml
                             </assertFiles>
                             <assertGroovy>
                                 new File( outputDir, antName ).directorySize()      == 2992317
@@ -200,6 +213,13 @@
                                 new File( outputDir, 'replace-2/WHATSNEW' ).size() == 81472
                             ! ( new File( outputDir, 'replace-2/WHATSNEW' ).text   =~ /\w/ )
                                 new File( outputDir, 'replace-2/WHATSNEW' ).text   =~ /#/
+
+                                new File( outputDir, 'replace-3/pom.xml' ).size() == 11260
+                                new File( outputDir, 'replace-3/pom.xml' ).size() == new File( outputDir, 'replace-4/pom.xml' ).size()
+                                new File( outputDir, 'replace-3/pom.xml' ).text   == new File( outputDir, 'replace-4/pom.xml' ).text
+                                new File( outputDir, 'replace-3/pom.xml' ).text.contains( '$' + '{projectGroupId}'    )
+                                new File( outputDir, 'replace-3/pom.xml' ).text.contains( '$' + '{projectArtifactId}' )
+                                new File( outputDir, 'replace-3/pom.xml' ).text.contains( '$' + '{projectVersion}'    )
                             </assertGroovy>
                             <assertEqualNoChecksum>
                                 ${outputDir}/ant-jars-1|${outputDir}/ant-jars-3
@@ -208,6 +228,9 @@
                                 ${outputDir}/all-files-3|${outputDir}/all-files-4
                                 ${outputDir}/all-files-3|${antDir}
                             </assertEqualNoChecksum>
+                            <assertEqual>
+                                ${outputDir}/replace-3|${outputDir}/replace-4
+                            </assertEqual>
                         </configuration>
                     </execution>
                 </executions>
