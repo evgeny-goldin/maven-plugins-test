@@ -57,7 +57,7 @@
                                 <!-- Copying single <include> -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/ant-jars-1</targetPath>
+                                    <targetPath>${outputDir}/ant-includes-1</targetPath>
                                     <directory>${antDir}</directory>
                                     <includes>
                                         <include>lib/*.jar</include>
@@ -67,7 +67,7 @@
                                 <!-- Copying single <exclude> -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/ant-jars-2</targetPath>
+                                    <targetPath>${outputDir}/ant-includes-2</targetPath>
                                     <directory>${antDir}</directory>
                                     <excludes>
                                         <exclude>lib/*.jar</exclude>
@@ -77,7 +77,7 @@
                                 <!-- Copying single <include> -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/ant-jars-3</targetPath>
+                                    <targetPath>${outputDir}/ant-includes-3</targetPath>
                                     <directory>${antDir}/lib</directory>
                                     <include>*.jar</include>
                                 </resource>
@@ -85,7 +85,7 @@
                                 <!-- Copying single <exclude> -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/ant-jars-4</targetPath>
+                                    <targetPath>${outputDir}/ant-includes-4</targetPath>
                                     <directory>${antDir}</directory>
                                     <exclude>lib/*.jar</exclude>
                                 </resource>
@@ -181,10 +181,10 @@
                                 ${outputDir}/${antName}/lib/*.jar
                                 ${outputDir}/${antName}/lib/*.pom
                                 ${outputDir}/${antName}/lib/*.properties
-                                ${outputDir}/ant-jars-1/*.jar
-                                ${outputDir}/ant-jars-2/*.xsl
-                                ${outputDir}/ant-jars-3/*.jar
-                                ${outputDir}/ant-jars-4/*.xml
+                                ${outputDir}/ant-includes-1/*.jar
+                                ${outputDir}/ant-includes-2/*.xsl
+                                ${outputDir}/ant-includes-3/*.jar
+                                ${outputDir}/ant-includes-4/*.xml
                                 ${outputDir}/all-files-1/*.bat
                                 ${outputDir}/all-files-2/*.pom
                                 ${outputDir}/all-files-3/*.xml
@@ -195,16 +195,16 @@
                                 ${outputDir}/replace-4/pom.xml
                             </assertFiles>
                             <assertGroovy>
-                                new File( outputDir, antName ).directorySize()      == 2992317
+                                new File( outputDir, antName ).directorySize() == 2992163
 
-                                new File( outputDir, 'ant-jars-1' ).directorySize() == 2312326
-                                new File( outputDir, 'ant-jars-1' ).directorySize() == new File( outputDir, 'ant-jars-3' ).directorySize()
-                                new File( outputDir, 'ant-jars-2' ).directorySize() == 679837
-                                new File( outputDir, 'ant-jars-2' ).directorySize() == new File( outputDir, 'ant-jars-4' ).directorySize()
+                                new File( outputDir, 'ant-includes-1' ).directorySize() == 2312326
+                                new File( outputDir, 'ant-includes-1' ).directorySize() == new File( outputDir, 'ant-includes-3' ).directorySize()
+                                new File( outputDir, 'ant-includes-2' ).directorySize() == 679837
+                                new File( outputDir, 'ant-includes-2' ).directorySize() == new File( outputDir, 'ant-includes-4' ).directorySize()
 
                                 new File( outputDir, 'all-files-1' ).directorySize() == 2992163
                                 new File( outputDir, 'all-files-1' ).directorySize() == new File( outputDir, 'all-files-2' ).directorySize()
-                                new File( outputDir, 'all-files-3' ).directorySize() == 2992317
+                                new File( outputDir, 'all-files-3' ).directorySize() == 2992163
                                 new File( outputDir, 'all-files-3' ).directorySize() == new File( outputDir, 'all-files-4' ).directorySize()
                                 new File( outputDir, 'all-files-3' ).directorySize() == new File( outputDir, antName ).directorySize()
 
@@ -222,11 +222,13 @@
                                 new File( outputDir, 'replace-3/pom.xml' ).text.contains( '$' + '{projectVersion}'    )
                             </assertGroovy>
                             <assertEqualNoChecksum>
-                                ${outputDir}/ant-jars-1|${outputDir}/ant-jars-3
-                                ${outputDir}/ant-jars-2|${outputDir}/ant-jars-4
+                                ${outputDir}/ant-includes-1|${outputDir}/ant-includes-3
+                                ${outputDir}/ant-includes-2|${outputDir}/ant-includes-4
                                 ${outputDir}/all-files-1|${outputDir}/all-files-2
+                                ${outputDir}/all-files-2|${outputDir}/all-files-1
                                 ${outputDir}/all-files-3|${outputDir}/all-files-4
                                 ${outputDir}/all-files-3|${antDir}
+                                ${outputDir}/all-files-4|${antDir}
                             </assertEqualNoChecksum>
                             <assertEqual>
                                 ${outputDir}/replace-3|${outputDir}/replace-4
