@@ -160,4 +160,44 @@ Groovy [$GroovySystem.version], [$date] - testing plugin versions:
         <module>maven-copy-plugin</module>
     </modules>
 
+
+    <profiles>
+        <profile>
+            <id>TeamCity</id>
+            <activation>
+                <os>
+                    <family>unix</family>
+                </os>
+            </activation>
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- Deleting all previous plugins from local Maven repo to re-download them -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.goldin.plugins</groupId>
+                        <artifactId>maven-copy-plugin</artifactId>
+                        <version>${maven-copy-plugin-version}</version>
+                        <inherited>false</inherited>
+                        <executions>
+                            <execution>
+                                <id>delete-plugins</id>
+                                <goals>
+                                    <goal>copy</goal>
+                                </goals>
+                                <phase>initialize</phase>
+                                <configuration>
+                                    <resource>
+                                        <directory>${maven.repo.local}/com/goldin</directory>
+                                        <clean>true</clean>
+                                    </resource>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
 </project>
