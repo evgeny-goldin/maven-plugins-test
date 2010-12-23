@@ -20,6 +20,15 @@
     </parent>
 
 
+    <properties>
+        <outputDir>${project.build.outputDirectory}</outputDir>
+        <resourcesDir>${project.basedir}/src/main/resources</resourcesDir>
+        <antName>apache-ant-1.8.1</antName>
+        <antDir>${outputDir}/${antName}</antDir>
+    </properties>
+
+
+
     <build>
         <plugins>
 
@@ -36,7 +45,53 @@
                         <phase>validate</phase>
                         <configuration>
                             <resources>
-
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Unpacking test archive -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <file>${resourcesDir}/${antName}.zip</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Copying single <include> - 1 -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/ant-jars-1</targetPath>
+                                    <directory>${antDir}</directory>
+                                    <includes>
+                                        <include>lib/*.jar</include>
+                                    </includes>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Copying single <include> - 2 -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/ant-jars-2</targetPath>
+                                    <directory>${antDir}/lib</directory>
+                                    <include>*.jar</include>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Copying with <targetPaths> - 1 -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPaths>
+                                        <targetPath>${outputDir}/all-files-1</targetPath>
+                                        <targetPath>${outputDir}/all-files-2</targetPath>
+                                    </targetPaths>
+                                    <directory>${antDir}</directory>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Copying with <targetPaths> - 2 -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPaths>
+                                        <targetPath>${outputDir}/all-files-3</targetPath>
+                                        <targetPath>${outputDir}/all-files-4</targetPath>
+                                    </targetPaths>
+                                    <directory>${antDir}</directory>
+                                    <preservePath>true</preservePath>
+                                </resource>
                             </resources>
                         </configuration>
                     </execution>
@@ -55,6 +110,27 @@
                         </goals>
                         <phase>initialize</phase>
                         <configuration>
+                            <assertFiles>
+                                ${outputDir}/${antName}
+                                ${outputDir}/${antName}/bin/*
+                                ${outputDir}/${antName}/bin/*.*
+                                ${outputDir}/${antName}/bin/*.cmd
+                                ${outputDir}/${antName}/bin/*.bat
+                                ${outputDir}/${antName}/bin/*.pl
+                                ${outputDir}/${antName}/bin/*.py
+                                ${outputDir}/${antName}/lib/*.jar
+                                ${outputDir}/${antName}/lib/*.pom
+                                ${outputDir}/${antName}/lib/*.properties
+                            </assertFiles>
+                            <assertGroovy>
+                                new File( outputDir, antName ).directorySize() == 2992317
+                            </assertGroovy>
+                            <assertEqual>
+                                ${outputDir}/ant-jars-1|${outputDir}/ant-jars-2
+                                ${outputDir}/all-files-1|${outputDir}/all-files-2
+                                ${outputDir}/all-files-3|${outputDir}/all-files-4
+                                ${outputDir}/all-files-3|${antDir}
+                            </assertEqual>
                         </configuration>
                     </execution>
                 </executions>
