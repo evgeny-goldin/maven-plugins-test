@@ -38,7 +38,7 @@
                 <version>${maven-copy-plugin-version}</version>
                 <executions>
                     <execution>
-                        <id>test-dependency-copy</id>
+                        <id>test-resource-copy</id>
                         <goals>
                             <goal>copy</goal>
                         </goals>
@@ -53,9 +53,9 @@
                                     <file>${resourcesDir}/${antName}.zip</file>
                                     <unpack>true</unpack>
                                 </resource>
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                                <!-- Copying single <include> - 1 -->
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Copying single <include> -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
                                     <targetPath>${outputDir}/ant-jars-1</targetPath>
                                     <directory>${antDir}</directory>
@@ -63,17 +63,35 @@
                                         <include>lib/*.jar</include>
                                     </includes>
                                 </resource>
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                                <!-- Copying single <include> - 2 -->
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Copying single <exclude> -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
                                     <targetPath>${outputDir}/ant-jars-2</targetPath>
+                                    <directory>${antDir}</directory>
+                                    <excludes>
+                                        <exclude>lib/*.jar</exclude>
+                                    </excludes>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Copying single <include> -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/ant-jars-3</targetPath>
                                     <directory>${antDir}/lib</directory>
                                     <include>*.jar</include>
                                 </resource>
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                                <!-- Copying with <targetPaths> - 1 -->
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Copying single <exclude> -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/ant-jars-4</targetPath>
+                                    <directory>${antDir}</directory>
+                                    <exclude>lib/*.jar</exclude>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Copying to <targetPaths> -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
                                     <targetPaths>
                                         <targetPath>${outputDir}/all-files-1</targetPath>
@@ -81,9 +99,9 @@
                                     </targetPaths>
                                     <directory>${antDir}</directory>
                                 </resource>
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                                <!-- Copying with <targetPaths> - 2 -->
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Copying to <targetPaths> -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
                                     <targetPaths>
                                         <targetPath>${outputDir}/all-files-3</targetPath>
@@ -91,6 +109,27 @@
                                     </targetPaths>
                                     <directory>${antDir}</directory>
                                     <preservePath>true</preservePath>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Copying with <replace> and <file> -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/replace-1</targetPath>
+                                    <file>${antDir}/WHATSNEW</file>
+                                    <replace>
+                                        <to>nothing</to>
+                                    </replace>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Copying with <replace> and <file> -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/replace-2</targetPath>
+                                    <file>${antDir}/WHATSNEW</file>
+                                    <replace>
+                                        <from>\w+</from>
+                                        <to>#</to>
+                                    </replace>
                                 </resource>
                             </resources>
                         </configuration>
@@ -121,16 +160,54 @@
                                 ${outputDir}/${antName}/lib/*.jar
                                 ${outputDir}/${antName}/lib/*.pom
                                 ${outputDir}/${antName}/lib/*.properties
+                                ${outputDir}/ant-jars-1
+                                ${outputDir}/ant-jars-1/*.jar
+                                ${outputDir}/ant-jars-2
+                                ${outputDir}/ant-jars-2/*.xsl
+                                ${outputDir}/ant-jars-3
+                                ${outputDir}/ant-jars-3/*.jar
+                                ${outputDir}/ant-jars-4
+                                ${outputDir}/ant-jars-4/*.xml
+                                ${outputDir}/all-files-1
+                                ${outputDir}/all-files-1/*.bat
+                                ${outputDir}/all-files-2
+                                ${outputDir}/all-files-2/*.pom
+                                ${outputDir}/all-files-3
+                                ${outputDir}/all-files-3/*.xml
+                                ${outputDir}/all-files-4
+                                ${outputDir}/all-files-4/*
+                                ${outputDir}/replace-1/
+                                ${outputDir}/replace-1/WHATSNEW
+                                ${outputDir}/replace-2/
+                                ${outputDir}/replace-2/WHATSNEW
                             </assertFiles>
                             <assertGroovy>
-                                new File( outputDir, antName ).directorySize() == 2992317
+                                new File( outputDir, antName ).directorySize()      == 2992317
+
+                                new File( outputDir, 'ant-jars-1' ).directorySize() == 2312326
+                                new File( outputDir, 'ant-jars-1' ).directorySize() == new File( outputDir, 'ant-jars-3' ).directorySize()
+                                new File( outputDir, 'ant-jars-2' ).directorySize() == 679837
+                                new File( outputDir, 'ant-jars-2' ).directorySize() == new File( outputDir, 'ant-jars-4' ).directorySize()
+
+                                new File( outputDir, 'all-files-1' ).directorySize() == 2992163
+                                new File( outputDir, 'all-files-1' ).directorySize() == new File( outputDir, 'all-files-2' ).directorySize()
+                                new File( outputDir, 'all-files-3' ).directorySize() == 2992317
+                                new File( outputDir, 'all-files-3' ).directorySize() == new File( outputDir, 'all-files-4' ).directorySize()
+                                new File( outputDir, 'all-files-3' ).directorySize() == new File( outputDir, antName ).directorySize()
+
+                                new File( outputDir, 'replace-1/WHATSNEW' ).size() == 7
+                                new File( outputDir, 'replace-1/WHATSNEW' ).text   == 'nothing'
+                                new File( outputDir, 'replace-2/WHATSNEW' ).size() == 81472
+                            ! ( new File( outputDir, 'replace-2/WHATSNEW' ).text   =~ /\w/ )
+                                new File( outputDir, 'replace-2/WHATSNEW' ).text   =~ /#/
                             </assertGroovy>
-                            <assertEqual>
-                                ${outputDir}/ant-jars-1|${outputDir}/ant-jars-2
+                            <assertEqualNoChecksum>
+                                ${outputDir}/ant-jars-1|${outputDir}/ant-jars-3
+                                ${outputDir}/ant-jars-2|${outputDir}/ant-jars-4
                                 ${outputDir}/all-files-1|${outputDir}/all-files-2
                                 ${outputDir}/all-files-3|${outputDir}/all-files-4
                                 ${outputDir}/all-files-3|${antDir}
-                            </assertEqual>
+                            </assertEqualNoChecksum>
                         </configuration>
                     </execution>
                 </executions>
