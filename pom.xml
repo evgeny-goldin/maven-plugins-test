@@ -165,9 +165,9 @@ Groovy [$GroovySystem.version], [$date] - testing plugin versions:
         <profile>
             <id>TeamCity</id>
             <activation>
-                <os>
-                    <family>unix</family>
-                </os>
+                <property>
+                    <name>maven.repo.local</name>
+                </property>
             </activation>
             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
             <!-- Deleting all previous plugins from local Maven repo to re-download them -->
