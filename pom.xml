@@ -120,6 +120,38 @@
 
         <plugins>
 
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- Enforcing Maven/Java versions -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>1.0</version>
+                <executions>
+                    <execution>
+                        <id>maven-enforcer-display-info</id>
+                        <goals><goal>display-info</goal></goals>
+                        <phase>validate</phase>
+                    </execution>
+                    <execution>
+                        <id>maven-enforcer-enforce</id>
+                        <goals><goal>enforce</goal></goals>
+                        <phase>validate</phase>
+                    </execution>
+                </executions>
+                <configuration>
+                    <rules>
+                        <requireMavenVersion>
+                            <version>3.0.1</version>
+                        </requireMavenVersion>
+                        <requireJavaVersion>
+                            <version>1.6</version>
+                        </requireJavaVersion>
+                    </rules>
+                </configuration>
+            </plugin>
+
             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
             <!-- Displaying plugin versions checked -->
             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
