@@ -152,6 +152,38 @@
                                         <addDollar>projectGroupId,projectArtifactId,projectVersion</addDollar>
                                     </replace>
                                 </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Copying with <replace> -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/replace-5</targetPath>
+                                    <directory>${antDir}</directory>
+                                    <include>**/*.xml</include>
+                                    <replace>
+                                        <from>(name="[^"]+")</from>
+                                        <to>$1</to>
+                                        <quoteReplacement>false</quoteReplacement>
+                                        <replaceAll>false</replaceAll>
+                                        <groovy>true</groovy>
+                                        <failIfNotFound>true</failIfNotFound>
+                                    </replace>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Copying with <replace> -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/replace-6</targetPath>
+                                    <directory>${antDir}</directory>
+                                    <include>**/*.xml</include>
+                                    <replace>
+                                        <from>name="[^"]+"</from>
+                                        <to>$1{{ [1, 2, 3].findAll{ it == 2 }.size() }}</to>
+                                        <quoteReplacement>true</quoteReplacement>
+                                        <replaceAll>true</replaceAll>
+                                        <groovy>true</groovy>
+                                        <failIfNotFound>true</failIfNotFound>
+                                    </replace>
+                                </resource>
                             </resources>
                         </configuration>
                     </execution>
@@ -193,6 +225,10 @@
                                 ${outputDir}/replace-2/WHATSNEW
                                 ${outputDir}/replace-3/pom.xml
                                 ${outputDir}/replace-4/pom.xml
+                                ${outputDir}/replace-5/fetch.xml
+                                ${outputDir}/replace-5/get-m2.xml
+                                ${outputDir}/replace-6/fetch.xml
+                                ${outputDir}/replace-6/get-m2.xml
                             </assertFiles>
                             <assertGroovy>
                                 new File( outputDir, antName ).directorySize() == 2992163
@@ -220,6 +256,19 @@
                                 new File( outputDir, 'replace-3/pom.xml' ).text.contains( '$' + '{projectGroupId}'    )
                                 new File( outputDir, 'replace-3/pom.xml' ).text.contains( '$' + '{projectArtifactId}' )
                                 new File( outputDir, 'replace-3/pom.xml' ).text.contains( '$' + '{projectVersion}'    )
+
+                                new File( outputDir, 'replace-5/fetch.xml'  ).size() == 7920
+                                new File( outputDir, 'replace-5/get-m2.xml' ).size() == 4566
+                                new File( outputDir, 'replace-5/fetch.xml'  ).text   == new File( antDir, 'fetch.xml'  ).text
+                                new File( outputDir, 'replace-5/get-m2.xml' ).text   == new File( antDir, 'get-m2.xml' ).text
+                                
+                                new File( outputDir, 'replace-6/fetch.xml'  ).size() == 7610
+                                new File( outputDir, 'replace-6/get-m2.xml' ).size() == 4303
+                                new File( outputDir, 'replace-6/fetch.xml'  ).text   != new File( antDir, 'fetch.xml'  ).text
+                                new File( outputDir, 'replace-6/fetch.xml'  ).text.contains( 'target $11' )
+                                new File( outputDir, 'replace-6/get-m2.xml' ).text   != new File( antDir, 'get-m2.xml' ).text
+                                new File( outputDir, 'replace-6/get-m2.xml' ).text.contains( 'target $11' )
+                              ! new File( outputDir, 'replace-6/get-m2.xml' ).text.contains( 'target $12' )
                             </assertGroovy>
                             <assertEqualNoChecksum>
                                 ${outputDir}/ant-includes-1|${outputDir}/ant-includes-3
@@ -232,6 +281,7 @@
                             </assertEqualNoChecksum>
                             <assertEqual>
                                 ${outputDir}/replace-3|${outputDir}/replace-4
+                                ${outputDir}/replace-5|${antDir}|*.xml
                             </assertEqual>
                         </configuration>
                     </execution>
