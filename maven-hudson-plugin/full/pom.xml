@@ -164,6 +164,7 @@
                                     <id>googlecode-google-guice-trunk</id>
                                     <parent>base-svn</parent>
                                     <useUpdate>true</useUpdate>
+                                    <daysToKeep>7</daysToKeep>
                                     <repository>
                                         <remote>http://google-guice.googlecode.com/svn/trunk/</remote>
                                     </repository>
@@ -180,6 +181,7 @@
                                 <job>
                                     <id>googlecode-google-guice-2.0-maven</id>
                                     <parent>base-svn</parent>
+                                    <daysToKeep>7</daysToKeep>
                                     <repository>
                                         <remote>http://google-guice.googlecode.com/svn/branches/2.0-maven/</remote>
                                     </repository>
@@ -197,6 +199,7 @@
                                 <job>
                                     <id>googlecode-facebook-java-api-trunk</id>
                                     <parent>base-svn</parent>
+                                    <daysToKeep>7</daysToKeep>
                                     <repository>
                                         <remote>http://facebook-java-api.googlecode.com/svn/trunk/</remote>
                                     </repository>
@@ -214,6 +217,7 @@
                                 <job>
                                     <id>googlecode-facebook-java-api-fbapi-2.0.0</id>
                                     <parent>base-svn</parent>
+                                    <daysToKeep>7</daysToKeep>
                                     <repository>
                                         <remote>http://facebook-java-api.googlecode.com/svn/branches/fbapi-2.0.0/</remote>
                                     </repository>
