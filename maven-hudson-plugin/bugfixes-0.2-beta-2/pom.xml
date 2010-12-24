@@ -50,8 +50,8 @@
                                     <id>base-git</id>
                                     <abstract>true</abstract>
                                     <scmType>git</scmType>
-                                    <mavenName>apache-maven-2.2.1</mavenName>
-                                    <jdkName>jdk1.6.0_21</jdkName>
+                                    <mavenName>apache-maven-3.0.1</mavenName>
+                                    <jdkName>jdk1.6.0</jdkName>
                                 </job>
 
                                 <job>
