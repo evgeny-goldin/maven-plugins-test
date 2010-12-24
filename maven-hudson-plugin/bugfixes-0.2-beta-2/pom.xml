@@ -120,6 +120,9 @@
                         </goals>
                         <configuration>
                             <endOfLine>windows</endOfLine>
+                            <assertEqual>
+                                ${project.basedir}/src/test/resources/configs/|${configs-outputDirectory}|**/*.xml
+                            </assertEqual>
                         </configuration>
                     </execution>
                 </executions>
