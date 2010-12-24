@@ -138,7 +138,7 @@
   <concurrentBuild>false</concurrentBuild>
   <rootPOM>pom.xml</rootPOM>
   <goals>-e clean install</goals>
-  <mavenName>apache-maven-3.0.1</mavenName>
+  <mavenName>apache-maven-2.2.1</mavenName>
   <jdk>jdk1.6.0</jdk>
   <mavenOpts></mavenOpts>
   <aggregatorStyleBuild>true</aggregatorStyleBuild>
