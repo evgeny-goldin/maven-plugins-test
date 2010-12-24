@@ -96,9 +96,9 @@
   </description>
   
   <keepDependencies>false</keepDependencies>
+  <properties>
   
-  <properties/>
-  
+  </properties>
   <scm class="hudson.scm.SubversionSCM">
   
     <!-- ~~~~~~~~~~~~~~ -->

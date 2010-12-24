@@ -83,9 +83,9 @@
   </description>
   
   <keepDependencies>false</keepDependencies>
+  <properties>
   
-  <properties/>
-  
+  </properties>
   <scm class="hudson.plugins.git.GitSCM">
   
     <!-- ~~~~~~~~~~~~~~ -->
