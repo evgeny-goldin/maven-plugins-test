@@ -70,6 +70,18 @@
                                         </hudson.plugins.jiraapi.JiraProjectKeyJobProperty>
                                     ]]>
                                     </properties>
+                                    <parameters>
+                                        <parameter>
+                                            <name>start</name>
+                                            <type>bool</type>
+                                            <value>true</value>
+                                        </parameter>
+                                        <parameter>
+                                            <name>stop</name>
+                                            <type>bool</type>
+                                            <value>false</value>
+                                        </parameter>
+                                    </parameters>
                                 </job>
 
                                 <job>
@@ -95,8 +107,24 @@
                                         </hudson.security.AuthorizationMatrixProperty>
                                     ]]>
                                     </properties>
+                                    <parameters>
+                                        <parameter>
+                                            <name>go</name>
+                                            <type>string</type>
+                                            <value>somewhere</value>
+                                        </parameter>
+                                        <parameter>
+                                            <name>find</name>
+                                            <type>string</type>
+                                            <value>something</value>
+                                        </parameter>
+                                        <parameter>
+                                            <name>bring</name>
+                                            <type>choice</type>
+                                            <value>a,b,c,d</value>
+                                        </parameter>
+                                    </parameters>
                                 </job>
-
                             </jobs>
                         </configuration>
                     </execution>
