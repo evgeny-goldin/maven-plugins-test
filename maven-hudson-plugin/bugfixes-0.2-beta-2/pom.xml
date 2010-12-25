@@ -23,6 +23,7 @@
     <properties>
         <configs-outputDirectory>${user.home}/.hudson/jobs</configs-outputDirectory>
         <maven-plugins-repo>git@github.com:evgeny-goldin/maven-plugins.git</maven-plugins-repo>
+        <maven-plugins-test-repo>git://github.com/evgeny-goldin/maven-plugins-test.git</maven-plugins-test-repo>
     </properties>
 
 
@@ -135,17 +136,6 @@
                                 </job>
 
                                 <job>
-                                    <id>github-maven-plugins-dev-pl-218</id>
-                                    <scmType>none</scmType>
-                                    <jobType>free</jobType>
-                                    <tasks>
-                                        <shell>
-                                            <command>id1</command>
-                                        </shell>
-                                    </tasks>
-                                </job>
-
-                                <job>
                                     <id>base-free</id>
                                     <abstract>true</abstract>
                                     <scmType>none</scmType>
@@ -153,18 +143,30 @@
                                 </job>
 
                                 <job>
-                                    <id>github-maven-plugins-dev-pl-218-2</id>
-                                    <parent>base-free</parent>
+                                    <id>pl-217-1</id>
+                                    <scmType>none</scmType>
+                                    <jobType>free</jobType>
                                     <tasks>
                                         <shell>
-                                            <command>id1</command>
+                                            <command>ls -al</command>
                                         </shell>
                                     </tasks>
                                 </job>
 
                                 <job>
-                                    <id>github-maven-plugins-dev-pl-218-3</id>
+                                    <id>pl-217-2</id>
                                     <parent>base-free</parent>
+                                    <tasks>
+                                        <shell>
+                                            <command>ls -al</command>
+                                        </shell>
+                                    </tasks>
+                                </job>
+
+                                <job>
+                                    <id>pl-217-3</id>
+                                    <parent>base-free</parent>
+                                    <disabled>true</disabled>
                                     <tasks>
                                         <shell>
                                             <command>ls -al</command>
@@ -186,6 +188,25 @@
                                                 c = d
                                             </properties>
                                         </ant>
+                                    </tasks>
+                                </job>
+                                <job>
+                                    <id>github-maven-plugins-master-pl-217</id>
+                                    <jobType>free</jobType>
+                                    <scmType>git</scmType>
+                                    <repository>
+                                        <remote>${maven-plugins-test-repo}</remote>
+                                        <gitBranch>master</gitBranch>
+                                    </repository>
+                                    <tasks>
+                                        <maven>
+                                            <mavenName>apache-maven-2.2.1</mavenName>
+                                            <properties>
+                                                maven-hudson-plugin-version = 0.1-beta-1
+                                                maven-assert-plugin-version = 0.1-beta-1
+                                                maven-copy-plugin-version   = 0.1-beta-1
+                                            </properties>
+                                        </maven>
                                     </tasks>
                                 </job>
                             </jobs>
