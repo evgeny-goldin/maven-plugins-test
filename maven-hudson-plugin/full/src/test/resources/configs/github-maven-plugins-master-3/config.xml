@@ -96,17 +96,16 @@
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers class="vector">
   </triggers>
+  <jdk>jdk1.6.0</jdk>
   <concurrentBuild>false</concurrentBuild>
   <rootPOM>pom.xml</rootPOM>
   <goals>-e clean install -Dmaven.repo.local="/.m2/repo/maven-plugins-master-3"</goals>
   <mavenName>apache-maven-2.2.1</mavenName>
-  <jdk>jdk1.6.0</jdk>
   <mavenOpts>-server -Xmx256m</mavenOpts>
   <aggregatorStyleBuild>true</aggregatorStyleBuild>
   <incrementalBuild>false</incrementalBuild>
   <usePrivateRepository>false</usePrivateRepository>
   <ignoreUpstremChanges>true</ignoreUpstremChanges>
-  <archivingDisabled>false</archivingDisabled>
   <reporters>
       <hudson.maven.reporters.MavenMailer>
         <recipients>evgenyg@gmail.com evgeny.goldin@gmail.com</recipients>
@@ -114,6 +113,7 @@
         <sendToIndividuals>true</sendToIndividuals>
       </hudson.maven.reporters.MavenMailer>
   </reporters>
+  <archivingDisabled>false</archivingDisabled>
   <publishers>
   </publishers>
   <buildWrappers>

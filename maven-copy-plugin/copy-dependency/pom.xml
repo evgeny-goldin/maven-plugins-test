@@ -330,7 +330,7 @@
                                 ${project.build.directory}/test-deps-no-transitive-no-compile/image-3-abc.zip
                                 ${project.build.directory}/test-deps-no-transitive-no-compile/image-4-def.tar.gz
                             </assertFiles>
-                            <assertEqual>
+                            <assertEqualNoChecksum>
                                 ${project.build.directory}/compile-deps-transitive-1                 | ${project.build.directory}/compile-deps-transitive-2
                                 ${project.build.directory}/compile-deps-transitive-GroupId-include-1 | ${project.build.directory}/compile-deps-transitive-GroupId-include-2
                                 ${project.build.directory}/compile-deps-classifiers-2                | ${project.build.directory}/compile-deps-classifiers-3
@@ -338,7 +338,7 @@
 
                                 ${project.build.directory}/test-deps-transitive-1                    | ${project.build.directory}/test-deps-transitive-2
                                 ${project.build.directory}/test-deps-transitive-GroupId-include-1    | ${project.build.directory}/test-deps-transitive-GroupId-include-2
-                            </assertEqual>
+                            </assertEqualNoChecksum>
                             <assertGroovy>
                                 new File( project.build.directory, 'compile-deps-transitive-1'                 ).listFiles().size() == 16
                                 new File( project.build.directory, 'compile-deps-transitive-2'                 ).listFiles().size() == 16

@@ -88,19 +88,19 @@
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers class="vector">
   </triggers>
+  <jdk>jdk1.6.0</jdk>
   <concurrentBuild>false</concurrentBuild>
   <rootPOM>pom.xml</rootPOM>
   <goals>-e clean install -Dmaven.repo.local="/.m2/repo/."</goals>
   <mavenName>apache-maven-2.2.1</mavenName>
-  <jdk>jdk1.6.0</jdk>
   <mavenOpts></mavenOpts>
   <aggregatorStyleBuild>true</aggregatorStyleBuild>
   <incrementalBuild>false</incrementalBuild>
   <usePrivateRepository>false</usePrivateRepository>
   <ignoreUpstremChanges>true</ignoreUpstremChanges>
-  <archivingDisabled>false</archivingDisabled>
   <reporters>
   </reporters>
+  <archivingDisabled>false</archivingDisabled>
   <publishers>
   </publishers>
   <buildWrappers>

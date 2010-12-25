@@ -136,7 +136,57 @@
 
                                 <job>
                                     <id>github-maven-plugins-dev-pl-218</id>
+                                    <scmType>none</scmType>
                                     <jobType>free</jobType>
+                                    <tasks>
+                                        <shell>
+                                            <command>id1</command>
+                                        </shell>
+                                    </tasks>
+                                </job>
+
+                                <job>
+                                    <id>base-free</id>
+                                    <abstract>true</abstract>
+                                    <scmType>none</scmType>
+                                    <jobType>free</jobType>
+                                </job>
+
+                                <job>
+                                    <id>github-maven-plugins-dev-pl-218-2</id>
+                                    <parent>base-free</parent>
+                                    <tasks>
+                                        <shell>
+                                            <command>id1</command>
+                                        </shell>
+                                    </tasks>
+                                </job>
+
+                                <job>
+                                    <id>github-maven-plugins-dev-pl-218-3</id>
+                                    <parent>base-free</parent>
+                                    <tasks>
+                                        <shell>
+                                            <command>ls -al</command>
+                                        </shell>
+                                        <maven>
+                                            <targets>clean</targets>
+                                            <mavenName>apache-maven-2.2.1</mavenName>
+                                            <usePrivateRepository>true</usePrivateRepository>
+                                        </maven>
+                                        <batchFile>
+                                            <command>dir</command>
+                                        </batchFile>
+                                        <ant>
+                                            <targets>clean</targets>
+                                            <antOpts>-Xmx128m</antOpts>
+                                            <buildFile>build file</buildFile>
+                                            <properties>
+                                                a = b
+                                                c = d
+                                            </properties>
+                                        </ant>
+                                    </tasks>
                                 </job>
                             </jobs>
                         </configuration>
