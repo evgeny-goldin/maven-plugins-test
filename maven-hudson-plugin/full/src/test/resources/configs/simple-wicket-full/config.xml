@@ -47,36 +47,28 @@
 </table>
        ]]>
   </description>
-  
   <keepDependencies>false</keepDependencies>
   <properties>
-  
   </properties>
   <scm class="hudson.scm.CVSSCM">
-  
       <!-- ~~~~~~~~~~~~~~ -->
       <!-- CVS repository -->
       <!-- ~~~~~~~~~~~~~~ -->
         <cvsroot>:pserver:anonymous@simple-wicket.cvs.sourceforge.net:/cvsroot/simple-wicket</cvsroot>
         <module>simple-wicket</module>
-        
-        
         <canUseUpdate>true</canUseUpdate>
         <flatten>true</flatten>
         <isTag>false</isTag>
         <excludedRegions></excludedRegions>
-  
         <repositoryBrowser class="hudson.scm.browsers.ViewCVS">
             <url>http://simple-wicket.cvs.sourceforge.net/viewvc/</url>
         </repositoryBrowser>
-  
   </scm>
   <assignedNode>master</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers class="vector">
-      
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <rootPOM>pom.xml</rootPOM>
@@ -90,12 +82,9 @@
   <ignoreUpstremChanges>true</ignoreUpstremChanges>
   <archivingDisabled>false</archivingDisabled>
   <reporters>
-  
   </reporters>
   <publishers>
-  
   </publishers>
   <buildWrappers>
-  
   </buildWrappers>
 </maven2-moduleset>

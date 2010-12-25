@@ -54,19 +54,15 @@
 </table>
        ]]>
   </description>
-  
   <keepDependencies>false</keepDependencies>
   <properties>
-  
   </properties>
   <scm class="hudson.plugins.git.GitSCM">
-  
     <!-- ~~~~~~~~~~~~~~ -->
     <!-- Git repository -->
     <!-- ~~~~~~~~~~~~~~ -->
     <configVersion>1</configVersion>
     <remoteRepositories>
-        
       <org.spearce.jgit.transport.RemoteConfig>
         <string>origin</string>
         <int>5</int>
@@ -81,7 +77,6 @@
         <string>tagopt</string>
         <string></string>
       </org.spearce.jgit.transport.RemoteConfig>
-        
     </remoteRepositories>
     <branches>
       <hudson.plugins.git.BranchSpec>
@@ -92,14 +87,12 @@
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
     <clean>false</clean>
     <submoduleCfg class="list"/>
-  
   </scm>
   <assignedNode>master</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers class="vector">
-      
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <rootPOM>pom.xml</rootPOM>
@@ -113,12 +106,9 @@
   <ignoreUpstremChanges>true</ignoreUpstremChanges>
   <archivingDisabled>false</archivingDisabled>
   <reporters>
-  
   </reporters>
   <publishers>
-  
   </publishers>
   <buildWrappers>
-  
   </buildWrappers>
 </maven2-moduleset>

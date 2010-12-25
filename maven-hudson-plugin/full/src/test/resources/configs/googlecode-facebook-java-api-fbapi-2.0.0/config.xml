@@ -72,44 +72,35 @@
 </table>
        ]]>
   </description>
-  
   <logRotator>
     <daysToKeep>7</daysToKeep>
     <numToKeep>-1</numToKeep>
   </logRotator>
-  
   <keepDependencies>false</keepDependencies>
   <properties>
-  
   </properties>
   <scm class="hudson.scm.SubversionSCM">
-  
     <!-- ~~~~~~~~~~~~~~ -->
     <!-- SVN repository -->
     <!-- ~~~~~~~~~~~~~~ -->
     <locations>
-        
       <hudson.scm.SubversionSCM_-ModuleLocation>
         <remote>http://facebook-java-api.googlecode.com/svn/branches/fbapi-2.0.0</remote>
         <local>svn/branches/fbapi-2.0.0</local>
       </hudson.scm.SubversionSCM_-ModuleLocation>
-        
     </locations>
     <useUpdate>false</useUpdate>
     <doRevert>false</doRevert>
-  
   </scm>
   <assignedNode>master</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers class="vector">
-      
         <hudson.triggers.SCMTrigger>
             <spec># Check SCM for changes every 10 minutes
 */10 * * * *</spec>
         </hudson.triggers.SCMTrigger>
-      
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <rootPOM>pom.xml</rootPOM>
@@ -123,10 +114,8 @@
   <ignoreUpstremChanges>true</ignoreUpstremChanges>
   <archivingDisabled>false</archivingDisabled>
   <reporters>
-  
   </reporters>
   <publishers>
-  
         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
         <!-- Requires "Parameterized Trigger Plugin"                               -->
         <!-- http://wiki.hudson-ci.org/display/HUDSON/Parameterized+Trigger+Plugin -->
@@ -145,9 +134,7 @@
                 </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
             </configs>
         </hudson.plugins.parameterizedtrigger.BuildTrigger>
-  
   </publishers>
   <buildWrappers>
-  
   </buildWrappers>
 </maven2-moduleset>
