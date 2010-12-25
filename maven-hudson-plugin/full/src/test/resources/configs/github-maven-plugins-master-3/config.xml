@@ -21,8 +21,16 @@
 <td><a href="http://evgeny-goldin.org/hudson/job/github-maven-plugins-master-3"><strong>github-maven-plugins-master-3</strong></a></td>
 </tr>
 <tr>
+<td valign="top">Job Type</td>
+<td>Maven2</td>
+</tr>
+<tr>
 <td valign="top">Maven goals</td>
 <td><strong><code>-e clean install -Dmaven.repo.local="/.m2/repo/maven-plugins-master-3"</code></strong></td>
+</tr>
+<tr>
+<td valign="top">Maven repository</td>
+<td><strong><code>"/.m2/repo/maven-plugins-master-3"</code></strong></td>
 </tr>
 <tr>
 <td valign="top">Maven options</td>
@@ -31,10 +39,6 @@
 <tr>
 <td valign="top">Mail recipients</td>
 <td><strong><code>evgenyg@gmail.com evgeny.goldin@gmail.com</code></strong></td>
-</tr>
-<tr>
-<td valign="top">Maven repository</td>
-<td><strong><code>"/.m2/repo/maven-plugins-master-3"</code></strong></td>
 </tr>
 <tr>
 <td valign="top">Node</td>

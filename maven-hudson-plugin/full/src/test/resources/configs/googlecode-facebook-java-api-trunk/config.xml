@@ -21,6 +21,10 @@
 <td><a href="http://evgeny-goldin.org/hudson/job/googlecode-facebook-java-api-trunk"><strong>googlecode-facebook-java-api-trunk</strong></a></td>
 </tr>
 <tr>
+<td valign="top">Job Type</td>
+<td>Maven2</td>
+</tr>
+<tr>
 <td valign="top">Maven goals</td>
 <td><strong><code>-e clean install</code></strong></td>
 </tr>
