@@ -194,7 +194,7 @@
                                     </tasks>
                                 </job>
                                 <job>
-                                    <id>github-maven-plugins-master-pl-217</id>
+                                    <id>github-maven-plugins-test-master-pl-217</id>
                                     <jobType>free</jobType>
                                     <scmType>git</scmType>
                                     <repository>
