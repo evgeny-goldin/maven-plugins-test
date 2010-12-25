@@ -157,9 +157,12 @@
                                     <id>pl-217-2</id>
                                     <parent>base-free</parent>
                                     <tasks>
-                                        <shell>
-                                            <command>ls -al</command>
-                                        </shell>
+                                        <batchFile>
+                                            <command>dir</command>
+                                        </batchFile>
+                                        <batchFile>
+                                            <command>set</command>
+                                        </batchFile>
                                     </tasks>
                                 </job>
 

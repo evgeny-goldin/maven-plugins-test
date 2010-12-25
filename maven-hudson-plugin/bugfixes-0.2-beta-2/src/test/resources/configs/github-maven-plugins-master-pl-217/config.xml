@@ -2,7 +2,7 @@
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <!-- Generated automatically by [http://github.com/evgeny-goldin/maven-plugins-test/blob/master/maven-hudson-plugin/bugfixes-0.2-beta-2/pom.xml]  -->
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-<maven2-moduleset>
+<project>
   <actions/>
   <description>
        <![CDATA[
@@ -65,10 +65,18 @@
         <name>master</name>
       </hudson.plugins.git.BranchSpec>
     </branches>
+    <localBranch></localBranch>
     <mergeOptions/>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <authorOrCommitter>false</authorOrCommitter>
     <clean>false</clean>
+    <wipeOutWorkspace>false</wipeOutWorkspace>
+    <buildChooser class="hudson.plugins.git.util.DefaultBuildChooser"/>
+    <gitTool>Default</gitTool>
     <submoduleCfg class="list"/>
+    <relativeTargetDir></relativeTargetDir>
+    <excludedRegions></excludedRegions>
+    <excludedUsers></excludedUsers>
   </scm>
   <assignedNode>master</assignedNode>
   <canRoam>false</canRoam>
@@ -94,4 +102,4 @@
   </publishers>
   <buildWrappers>
   </buildWrappers>
-</maven2-moduleset>
+</project>

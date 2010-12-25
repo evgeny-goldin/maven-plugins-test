@@ -2,7 +2,7 @@
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <!-- Generated automatically by [http://github.com/evgeny-goldin/maven-plugins-test/blob/master/maven-hudson-plugin/bugfixes-0.2-beta-2/pom.xml]  -->
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-<maven2-moduleset>
+<project>
   <actions/>
   <description>
        <![CDATA[
@@ -45,13 +45,16 @@
   <jdk>(Default)</jdk>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <hudson.tasks.Shell>
-        <command>ls -al</command>
-    </hudson.tasks.Shell>
+    <hudson.tasks.BatchFile>
+        <command>dir</command>
+    </hudson.tasks.BatchFile>
+    <hudson.tasks.BatchFile>
+        <command>set</command>
+    </hudson.tasks.BatchFile>
   </builders>
   <archivingDisabled>false</archivingDisabled>
   <publishers>
   </publishers>
   <buildWrappers>
   </buildWrappers>
-</maven2-moduleset>
+</project>
