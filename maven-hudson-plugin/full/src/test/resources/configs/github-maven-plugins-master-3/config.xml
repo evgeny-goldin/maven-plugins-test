@@ -118,6 +118,7 @@
   <incrementalBuild>false</incrementalBuild>
   <usePrivateRepository>false</usePrivateRepository>
   <ignoreUpstremChanges>true</ignoreUpstremChanges>
+  <archivingDisabled>false</archivingDisabled>
   <reporters>
       <hudson.maven.reporters.MavenMailer>
         <recipients>evgenyg@gmail.com evgeny.goldin@gmail.com</recipients>
@@ -125,7 +126,6 @@
         <sendToIndividuals>true</sendToIndividuals>
       </hudson.maven.reporters.MavenMailer>
   </reporters>
-  <archivingDisabled>false</archivingDisabled>
   <publishers>
   </publishers>
   <buildWrappers>

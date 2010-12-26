@@ -65,7 +65,6 @@
 c = d</properties>
     </hudson.tasks.Ant>
   </builders>
-  <archivingDisabled>false</archivingDisabled>
   <publishers>
   </publishers>
   <buildWrappers>

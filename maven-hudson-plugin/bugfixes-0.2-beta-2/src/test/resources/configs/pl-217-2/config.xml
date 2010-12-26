@@ -52,7 +52,6 @@
         <command>set</command>
     </hudson.tasks.BatchFile>
   </builders>
-  <archivingDisabled>false</archivingDisabled>
   <publishers>
   </publishers>
   <buildWrappers>

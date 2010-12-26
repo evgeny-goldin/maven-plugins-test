@@ -49,7 +49,6 @@
         <command>ls -al</command>
     </hudson.tasks.Shell>
   </builders>
-  <archivingDisabled>false</archivingDisabled>
   <publishers>
   </publishers>
   <buildWrappers>

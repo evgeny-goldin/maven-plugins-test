@@ -116,9 +116,9 @@
   <incrementalBuild>false</incrementalBuild>
   <usePrivateRepository>false</usePrivateRepository>
   <ignoreUpstremChanges>true</ignoreUpstremChanges>
+  <archivingDisabled>false</archivingDisabled>
   <reporters>
   </reporters>
-  <archivingDisabled>false</archivingDisabled>
   <publishers>
         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
         <!-- Requires "Parameterized Trigger Plugin"                               -->

@@ -97,7 +97,6 @@ maven-copy-plugin-version   = 0.2-SNAPSHOT</properties>
 <usePrivateRepository>false</usePrivateRepository>
     </hudson.tasks.Maven>
   </builders>
-  <archivingDisabled>false</archivingDisabled>
   <publishers>
   </publishers>
   <buildWrappers>
