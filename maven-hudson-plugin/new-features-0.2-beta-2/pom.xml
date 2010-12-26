@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns              = "http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi          = "http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0
+                               http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+    <artifactId>maven-hudson-plugin.new-features-0.2-beta-2</artifactId>
+    <packaging>pom</packaging>
+    <version>0.1-SNAPSHOT</version>
+    <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
+
+
+    <parent>
+        <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+        <artifactId>maven-hudson-plugin</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+
+    <properties>
+        <configs-outputDirectory>${user.home}/.hudson/jobs</configs-outputDirectory>
+        <maven-plugins-repo>git@github.com:evgeny-goldin/maven-plugins.git</maven-plugins-repo>
+        <maven-plugins-test-repo>git://github.com/evgeny-goldin/maven-plugins-test.git</maven-plugins-test-repo>
+    </properties>
+
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-hudson-plugin</artifactId>
+                <version>${maven-hudson-plugin-version}</version>
+                <executions>
+                    <execution>
+                        <id>generate-hudson-jobs</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${configs-outputDirectory}</outputDirectory>
+                            <generationPom>http://github.com/evgeny-goldin/maven-plugins-test/blob/master/maven-hudson-plugin/new-features-0.2-beta-2/pom.xml</generationPom>
+                            <hudsonUrl>http://evgeny-goldin.org/hudson</hudsonUrl>
+                            <timestamp>false</timestamp>
+                            <jobs>
+                                <job>
+                                    <id>base-git</id>
+                                    <abstract>true</abstract>
+                                    <scmType>git</scmType>
+                                    <mavenName>apache-maven-2.2.1</mavenName>
+                                    <jdkName>jdk1.6.0</jdkName>
+                                </job>
+
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- http://evgeny-goldin.org/youtrack/issue/pl-211 -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+                                <job>
+                                    <id>github-maven-plugins-master-pl-211</id>
+                                    <parent>base-git</parent>
+                                    <repository>
+                                        <remote>${maven-plugins-repo}</remote>
+                                    </repository>
+                                    <properties>
+                                    <![CDATA[
+                                        <hudson.queueSorter.PrioritySorterJobProperty>
+                                            <priority>100</priority>
+                                        </hudson.queueSorter.PrioritySorterJobProperty>
+                                        <hudson.plugins.jiraapi.JiraProjectKeyJobProperty>
+                                            <key>MS</key>
+                                        </hudson.plugins.jiraapi.JiraProjectKeyJobProperty>
+                                    ]]>
+                                    </properties>
+                                    <parameters>
+                                        <parameter>
+                                            <name>start</name>
+                                            <type>bool</type>
+                                            <value>true</value>
+                                        </parameter>
+                                        <parameter>
+                                            <name>stop</name>
+                                            <type>bool</type>
+                                            <value>false</value>
+                                        </parameter>
+                                    </parameters>
+                                </job>
+
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- http://evgeny-goldin.org/youtrack/issue/pl-231 -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+                                <job>
+                                    <id>github-maven-plugins-dev-pl-231</id>
+                                    <parent>base-git</parent>
+                                    <repository>
+                                        <remote>${maven-plugins-repo}</remote>
+                                        <gitBranch>dev</gitBranch>
+                                    </repository>
+                                    <properties>
+                                    <![CDATA[
+                                        <hudson.security.AuthorizationMatrixProperty>
+                                            <permission>hudson.model.Item.Read:bob</permission>
+                                            <permission>hudson.model.Item.Read:mark</permission>
+                                            <permission>hudson.model.Item.Build:ben</permission>
+                                            <permission>hudson.model.Item.Build:john</permission>
+                                            <permission>hudson.model.Run.Update:austin</permission>
+                                            <permission>hudson.model.Run.Update:franck</permission>
+                                            <permission>hudson.model.Item.Workspace:mike</permission>
+                                            <permission>hudson.model.Item.Workspace:milles</permission>
+                                            <permission>hudson.model.Item.Configure:stuart</permission>
+                                            <permission>hudson.model.Item.Configure:mary</permission>
+                                        </hudson.security.AuthorizationMatrixProperty>
+                                    ]]>
+                                    </properties>
+                                    <parameters>
+                                        <parameter>
+                                            <name>go</name>
+                                            <type>string</type>
+                                            <value>somewhere</value>
+                                        </parameter>
+                                        <parameter>
+                                            <name>find</name>
+                                            <type>string</type>
+                                            <value>something</value>
+                                        </parameter>
+                                        <parameter>
+                                            <name>bring</name>
+                                            <type>choice</type>
+                                            <value>a,b,c,d</value>
+                                        </parameter>
+                                    </parameters>
+                                </job>
+
+                                <job>
+                                    <id>base-free</id>
+                                    <abstract>true</abstract>
+                                    <scmType>none</scmType>
+                                    <jobType>free</jobType>
+                                </job>
+
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- http://evgeny-goldin.org/youtrack/issue/pl-217 -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+                                <job>
+                                    <id>pl-217-1</id>
+                                    <scmType>none</scmType>
+                                    <jobType>free</jobType>
+                                    <tasks>
+                                        <shell>
+                                            <command>ls -al</command>
+                                        </shell>
+                                    </tasks>
+                                </job>
+
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- http://evgeny-goldin.org/youtrack/issue/pl-217 -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+                                <job>
+                                    <id>pl-217-2</id>
+                                    <parent>base-free</parent>
+                                    <tasks>
+                                        <batchFile>
+                                            <command>dir</command>
+                                        </batchFile>
+                                        <batchFile>
+                                            <command>set</command>
+                                        </batchFile>
+                                    </tasks>
+                                </job>
+
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- http://evgeny-goldin.org/youtrack/issue/pl-217 -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+                                <job>
+                                    <id>pl-217-3</id>
+                                    <parent>base-free</parent>
+                                    <disabled>true</disabled>
+                                    <tasks>
+                                        <shell>
+                                            <command>ls -al</command>
+                                        </shell>
+                                        <maven>
+                                            <targets>clean</targets>
+                                            <mavenName>apache-maven-2.2.1</mavenName>
+                                            <usePrivateRepository>true</usePrivateRepository>
+                                        </maven>
+                                        <batchFile>
+                                            <command>dir</command>
+                                        </batchFile>
+                                        <ant>
+                                            <targets>clean</targets>
+                                            <antOpts>-Xmx128m</antOpts>
+                                            <buildFile>build file</buildFile>
+                                            <properties>
+                                                a = b
+                                                c = d
+                                            </properties>
+                                        </ant>
+                                    </tasks>
+                                </job>
+
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- http://evgeny-goldin.org/youtrack/issue/pl-217 -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+                                <job>
+                                    <id>github-maven-plugins-test-master-pl-217</id>
+                                    <jobType>free</jobType>
+                                    <scmType>git</scmType>
+                                    <repository>
+                                        <remote>${maven-plugins-test-repo}</remote>
+                                        <gitBranch>master</gitBranch>
+                                    </repository>
+                                    <tasks>
+                                        <maven>
+                                            <mavenName>apache-maven-2.2.1</mavenName>
+                                            <properties>
+                                                maven-hudson-plugin-version = 0.2-SNAPSHOT
+                                                maven-assert-plugin-version = 0.2-SNAPSHOT
+                                                maven-copy-plugin-version   = 0.2-SNAPSHOT
+                                            </properties>
+                                        </maven>
+                                    </tasks>
+                                </job>
+
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- http://evgeny-goldin.org/youtrack/issue/pl-232 -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+                                <job>
+                                    <id>github-maven-plugins-master-pl-232</id>
+                                    <parent>base-git</parent>
+                                    <repository>
+                                        <remote>${maven-plugins-repo}</remote>
+                                    </repository>
+                                    <authToken>AuthenticationToken</authToken>
+                                </job>
+                            </jobs>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- Verifying configs generated have not changed -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-assert-plugin</artifactId>
+                <version>${maven-assert-plugin-version}</version>
+                <executions>
+                    <execution>
+                        <id>verify-configs</id>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <configuration>
+                            <endOfLine>windows</endOfLine>
+                            <assertEqual>
+                                ${project.basedir}/src/test/resources/configs/|${configs-outputDirectory}|**/*.xml
+                            </assertEqual>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>

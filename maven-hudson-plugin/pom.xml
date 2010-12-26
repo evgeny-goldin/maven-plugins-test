@@ -23,6 +23,7 @@
 
     <modules>
         <module>bugfixes-0.2-beta-2</module>
+        <module>new-features-0.2-beta-2</module>
         <module>full</module>
         <module>google-guice</module>
         <module>standalone</module>
