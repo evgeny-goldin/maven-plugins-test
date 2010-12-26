@@ -62,7 +62,7 @@
 <buildFile>build file</buildFile>
 <antOpts>-Xmx128m</antOpts>
 <properties>a = b
-                                                c = d</properties>
+c = d</properties>
     </hudson.tasks.Ant>
   </builders>
   <archivingDisabled>false</archivingDisabled>

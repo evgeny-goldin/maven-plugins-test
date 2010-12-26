@@ -91,9 +91,9 @@
         <targets>-e clean install</targets>
 <mavenName>apache-maven-2.2.1</mavenName>
 <pom>pom.xml</pom>
-<properties>maven-hudson-plugin-version = 0.1-beta-1
-                                                maven-assert-plugin-version = 0.1-beta-1
-                                                maven-copy-plugin-version   = 0.1-beta-1</properties>
+<properties>maven-hudson-plugin-version = 0.2-SNAPSHOT
+maven-assert-plugin-version = 0.2-SNAPSHOT
+maven-copy-plugin-version   = 0.2-SNAPSHOT</properties>
 <usePrivateRepository>false</usePrivateRepository>
     </hudson.tasks.Maven>
   </builders>
