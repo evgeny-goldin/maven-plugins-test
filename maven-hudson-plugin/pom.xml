@@ -15,7 +15,7 @@
 
     <parent>
         <groupId>com.goldin.plugins.maven-plugins-test</groupId>
-        <artifactId>main</artifactId>
+        <artifactId>main.tests</artifactId>
         <version>0.1-SNAPSHOT</version>
     </parent>
 
