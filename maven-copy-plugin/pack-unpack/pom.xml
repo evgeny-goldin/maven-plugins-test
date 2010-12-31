@@ -106,16 +106,6 @@
                                         </dependency>
                                         <dependency>
                                             <groupId>org.apache.ant</groupId>
-                                            <artifactId>ant</artifactId>
-                                            <version>1.8.1</version>
-                                        </dependency>
-                                        <dependency>
-                                            <groupId>org.apache.ant</groupId>
-                                            <artifactId>ant-nodeps</artifactId>
-                                            <version>1.8.1</version>
-                                        </dependency>
-                                        <dependency>
-                                            <groupId>org.apache.ant</groupId>
                                             <artifactId>ant-commons-net</artifactId>
                                             <version>1.8.1</version>
                                         </dependency>
@@ -201,6 +191,42 @@
                                     </dependencies>
                                     <unpack>true</unpack>
                                 </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Packing files back -->
+                                <!-- ~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/1.zip</targetPath>
+                                    <directory>${outputDir}/unpack-1</directory>
+                                    <pack>true</pack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/2.tar.gz</targetPath>
+                                    <directory>${outputDir}/unpack-2</directory>
+                                    <pack>true</pack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/3.jar</targetPath>
+                                    <directory>${outputDir}/unpack-3</directory>
+                                    <pack>true</pack>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Unpacking them again -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/unpack-12</targetPath>
+                                    <file>${outputDir}/1.zip</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/unpack-22</targetPath>
+                                    <file>${outputDir}/2.tar.gz</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/unpack-32</targetPath>
+                                    <file>${outputDir}/3.jar</file>
+                                    <unpack>true</unpack>
+                                </resource>
                             </resources>
                         </configuration>
                     </execution>
@@ -219,13 +245,15 @@
                         </goals>
                         <phase>initialize</phase>
                         <configuration>
-                            <assertFiles>
-                            </assertFiles>
                             <assertGroovy>
+                                new File( outputDir, 'unpack-1' ).directorySize() == 1071434
+                                new File( outputDir, 'unpack-2' ).directorySize() == 19171616
+                                new File( outputDir, 'unpack-3' ).directorySize() == 77993397
                             </assertGroovy>
-                            <assertEqualNoChecksum>
-                            </assertEqualNoChecksum>
                             <assertEqual>
+                                ${outputDir}/unpack-1|${outputDir}/unpack-12
+                                ${outputDir}/unpack-2|${outputDir}/unpack-22
+                                ${outputDir}/unpack-3|${outputDir}/unpack-32
                             </assertEqual>
                         </configuration>
                     </execution>
