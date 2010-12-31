@@ -25,6 +25,7 @@
         <module>bugfixes-0.2-beta-2</module>
         <module>copy-dependency</module>
         <module>resource-replace</module>
+        <module>pack-unpack</module>
     </modules>
 
 </project>
