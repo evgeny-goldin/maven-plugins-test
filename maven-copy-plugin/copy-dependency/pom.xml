@@ -20,6 +20,16 @@
     </parent>
 
 
+    <repositories>
+        <repository>
+            <id>tests</id>
+            <url>${artifactory}/tests-local</url>
+            <releases><enabled>true</enabled></releases>
+            <snapshots><enabled>true</enabled></snapshots>
+        </repository>
+    </repositories>
+
+
     <build>
         <plugins>
 
