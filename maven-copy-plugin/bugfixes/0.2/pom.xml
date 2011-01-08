@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns              = "http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi          = "http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0
+                               http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+    <artifactId>maven-copy-plugin.bugfixes.0.2</artifactId>
+    <packaging>jar</packaging>
+    <version>0.1-SNAPSHOT</version>
+    <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
+
+
+    <parent>
+        <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+        <artifactId>maven-copy-plugin.bugfixes</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+
+    <properties>
+        <outputDir>${project.build.outputDirectory}</outputDir>
+        <resourcesDir>${project.basedir}/src/main/resources</resourcesDir>
+    </properties>
+
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-copy-plugin</artifactId>
+                <version>${maven-copy-plugin-version}</version>
+                <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-262: "TrueZip assertion failure" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-262</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>validate</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>
+                                        ${outputDir}/pl-262-zip
+                                    </targetPath>
+                                    <dependency>
+                                        <groupId>org.apache.maven</groupId>
+                                        <artifactId>apache-maven</artifactId>
+                                        <version>3.0.1</version>
+                                        <classifier>bin</classifier>
+                                        <type>zip</type>
+                                    </dependency>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>
+                                        ${outputDir}/pl-262-targz
+                                    </targetPath>
+                                    <dependency>
+                                        <groupId>org.apache.maven</groupId>
+                                        <artifactId>apache-maven</artifactId>
+                                        <version>3.0.1</version>
+                                        <classifier>bin</classifier>
+                                        <type>tar.gz</type>
+                                    </dependency>
+                                    <unpack>true</unpack>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-assert-plugin</artifactId>
+                <version>${maven-assert-plugin-version}</version>
+                <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-262 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-262</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-262-zip
+                                ${outputDir}/pl-262-zip/apache-maven-3.0.1
+                                ${outputDir}/pl-262-targz
+                                ${outputDir}/pl-262-targz/apache-maven-3.0.1
+                            </assertFiles>
+                            <assertEqual>
+                                ${outputDir}/pl-262-zip|${outputDir}/pl-262-targz
+                                ${outputDir}/pl-262-zip|${outputDir}/pl-262-targz|*.txt
+                                ${outputDir}/pl-262-zip|${outputDir}/pl-262-targz|**/*.txt
+                                ${outputDir}/pl-262-zip|${outputDir}/pl-262-targz|*.jar
+                                ${outputDir}/pl-262-zip|${outputDir}/pl-262-targz|**/*.jar
+                            </assertEqual>
+                            <assertGroovy>
+                                new File( outputDir, 'pl-262-zip'   ).directorySize() == 3353088
+                                new File( outputDir, 'pl-262-zip'   ).directorySize() == new File( outputDir, 'pl-262-targz' ).directorySize()
+                            </assertGroovy>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

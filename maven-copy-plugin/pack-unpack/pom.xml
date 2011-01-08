@@ -52,7 +52,7 @@
                                         <dependency>
                                             <groupId>com.goldin</groupId>
                                             <artifactId>gcommons</artifactId>
-                                            <version>0.1-SNAPSHOT</version>
+                                            <version>0.1</version>
                                         </dependency>
                                         <dependency>
                                             <groupId>commons-io</groupId>

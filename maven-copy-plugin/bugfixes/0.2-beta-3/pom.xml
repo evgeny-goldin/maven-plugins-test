@@ -7,7 +7,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.goldin.plugins.maven-plugins-test</groupId>
-    <artifactId>maven-copy-plugin.bugfixes-0.2-beta-3</artifactId>
+    <artifactId>maven-copy-plugin.bugfixes.0.2-beta-3</artifactId>
     <packaging>jar</packaging>
     <version>0.1-SNAPSHOT</version>
     <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
@@ -15,7 +15,7 @@
 
     <parent>
         <groupId>com.goldin.plugins.maven-plugins-test</groupId>
-        <artifactId>maven-copy-plugin</artifactId>
+        <artifactId>maven-copy-plugin.bugfixes</artifactId>
         <version>0.1-SNAPSHOT</version>
     </parent>
 
@@ -71,25 +71,51 @@
                             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                             <!-- <deploy> doesn't work yet in Maven 3 -->
                             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                            <runIf>{{ Boolean.valueOf( System.properties.containsKey( 'Maven2' )) }}</runIf>
                             <resources>
                                 <resource>
                                     <targetPath>${outputDir}/pl-258/pom.zip</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <pack>true</pack>
-                                    <deploy>${artifactory}/tests-local|${project.groupId}|${project.artifactId}|2</deploy>
+                                    <!--<deploy>${artifactory}/tests-local|${project.groupId}|${project.artifactId}|2</deploy>-->
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-258/pom.tar.gz</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <pack>true</pack>
-                                    <deploy>${artifactory}/tests-local|${project.groupId}|${project.artifactId}|3|windows</deploy>
+                                    <!--<deploy>${artifactory}/tests-local|${project.groupId}|${project.artifactId}|3|windows</deploy>-->
                                 </resource>
                             </resources>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-assert-plugin</artifactId>
+                <version>${maven-assert-plugin-version}</version>
+                <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-258 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-258</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-258
+                                ${outputDir}/pl-258/pom.tar
+                                ${outputDir}/pl-258/pom.zip
+                                ${outputDir}/pl-258/pom.tar.gz
+                            </assertFiles>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
         </plugins>
     </build>
 
