@@ -222,6 +222,7 @@ Groovy [$GroovySystem.version], [$date] - testing plugin versions:
                                 <configuration>
                                     <resource>
                                         <directory>${maven.repo.local}</directory>
+                                        <exclude>org/apache/maven/plugins/**</exclude>
                                         <clean>true</clean>
                                         <verbose>false</verbose>
                                     </resource>
