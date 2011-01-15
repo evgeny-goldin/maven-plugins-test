@@ -202,9 +202,9 @@ Groovy [$GroovySystem.version], [$date] - testing plugin versions:
                     <name>maven.repo.local</name>
                 </property>
             </activation>
-            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-            <!-- Deleting all previous plugins from local Maven repo to re-download them -->
-            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- Cleaning up local Maven repo to re-download all dependencies -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
             <build>
                 <plugins>
                     <plugin>
@@ -221,8 +221,9 @@ Groovy [$GroovySystem.version], [$date] - testing plugin versions:
                                 <phase>initialize</phase>
                                 <configuration>
                                     <resource>
-                                        <directory>${maven.repo.local}/com/goldin</directory>
+                                        <directory>${maven.repo.local}</directory>
                                         <clean>true</clean>
+                                        <verbose>false</verbose>
                                     </resource>
                                 </configuration>
                             </execution>
