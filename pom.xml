@@ -214,7 +214,7 @@ Groovy [$GroovySystem.version], [$date] - testing plugin versions:
                         <inherited>false</inherited>
                         <executions>
                             <execution>
-                                <id>delete-plugins</id>
+                                <id>maven3-repo-cleanup</id>
                                 <goals>
                                     <goal>copy</goal>
                                 </goals>
@@ -232,7 +232,7 @@ Groovy [$GroovySystem.version], [$date] - testing plugin versions:
                                 </configuration>
                             </execution>
                             <execution>
-                                <id>delete-plugins</id>
+                                <id>maven2-repo-cleanup</id>
                                 <goals>
                                     <goal>copy</goal>
                                 </goals>
