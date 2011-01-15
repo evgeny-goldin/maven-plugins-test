@@ -224,8 +224,8 @@ Groovy [$GroovySystem.version], [$date] - testing plugin versions:
                                         <directory>${maven.repo.local}</directory>
                                         <excludes>
                                             <!-- Maven 2 starts failing otherwise -->
-                                            <exclude>org/apache/maven/**</exclude>
-                                            <exclude>org/codehaus/plexus/**</exclude>
+                                            <exclude>org/apache/**</exclude>
+                                            <exclude>org/codehaus/**</exclude>
                                         </excludes>
                                         <clean>true</clean>
                                         <verbose>true</verbose>
