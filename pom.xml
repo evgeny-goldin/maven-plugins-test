@@ -221,7 +221,12 @@ Groovy [$GroovySystem.version], [$date] - testing plugin versions:
                                 <phase>initialize</phase>
                                 <configuration>
                                     <resource>
-                                        <directory>${maven.repo.local}/com/goldin</directory>
+                                        <directory>${maven.repo.local}</directory>
+                                        <excludes>
+                                            <!-- Maven 2 starts failing otherwise -->
+                                            <exclude>org/apache/maven/**</exclude>
+                                            <exclude>org/codehaus/plexus/**</exclude>
+                                        </excludes>
                                         <clean>true</clean>
                                         <verbose>false</verbose>
                                     </resource>
