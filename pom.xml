@@ -220,15 +220,26 @@ Groovy [$GroovySystem.version], [$date] - testing plugin versions:
                                 </goals>
                                 <phase>initialize</phase>
                                 <configuration>
+                                    <runIf>{{ mavenVersion.startsWith( '3' ) }}</runIf>
                                     <resource>
                                         <directory>${maven.repo.local}</directory>
-                                        <excludes>
-                                            <!-- Maven 2 starts failing otherwise -->
-                                            <exclude>org/apache/**</exclude>
-                                            <exclude>org/codehaus/**</exclude>
-                                        </excludes>
                                         <clean>true</clean>
-                                        <verbose>true</verbose>
+                                        <verbose>false</verbose>
+                                    </resource>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>delete-plugins</id>
+                                <goals>
+                                    <goal>copy</goal>
+                                </goals>
+                                <phase>initialize</phase>
+                                <configuration>
+                                    <runIf>{{ mavenVersion.startsWith( '2' ) }}</runIf>
+                                    <resource>
+                                        <directory>${maven.repo.local}/com/goldin</directory>
+                                        <clean>true</clean>
+                                        <verbose>false</verbose>
                                     </resource>
                                 </configuration>
                             </execution>
