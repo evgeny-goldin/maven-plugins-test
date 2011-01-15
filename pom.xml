@@ -221,6 +221,9 @@ Groovy [$GroovySystem.version], [$date] - testing plugin versions:
                                 <phase>initialize</phase>
                                 <configuration>
                                     <runIf>{{ mavenVersion.startsWith( '3' ) }}</runIf>
+                                    <groovyConfig>
+                                        <verboseBinding>true</verboseBinding>
+                                    </groovyConfig>
                                     <resource>
                                         <directory>${maven.repo.local}</directory>
                                         <clean>true</clean>
@@ -236,6 +239,9 @@ Groovy [$GroovySystem.version], [$date] - testing plugin versions:
                                 <phase>initialize</phase>
                                 <configuration>
                                     <runIf>{{ mavenVersion.startsWith( '2' ) }}</runIf>
+                                    <groovyConfig>
+                                        <verboseBinding>true</verboseBinding>
+                                    </groovyConfig>
                                     <resource>
                                         <directory>${maven.repo.local}/com/goldin</directory>
                                         <clean>true</clean>
