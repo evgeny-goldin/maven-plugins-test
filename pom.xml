@@ -228,7 +228,7 @@ Groovy [$GroovySystem.version], [$date] - testing plugin versions:
                                             <exclude>org/codehaus/plexus/**</exclude>
                                         </excludes>
                                         <clean>true</clean>
-                                        <verbose>false</verbose>
+                                        <verbose>true</verbose>
                                     </resource>
                                 </configuration>
                             </execution>
