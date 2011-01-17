@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns              = "http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi          = "http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0
+                               http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+    <artifactId>maven-copy-plugin.bugfixes.0.2-beta-4</artifactId>
+    <packaging>jar</packaging>
+    <version>0.1-SNAPSHOT</version>
+    <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
+
+
+    <parent>
+        <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+        <artifactId>maven-copy-plugin.bugfixes</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+
+    <properties>
+        <outputDir>${project.build.outputDirectory}</outputDir>
+        <resourcesDir>${project.basedir}/src/main/resources</resourcesDir>
+        <maven.repo.local>${user.home}/.m2/repository</maven.repo.local>
+        <repoSubFolder>com</repoSubFolder>
+    </properties>
+
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-copy-plugin</artifactId>
+                <version>${maven-copy-plugin-version}</version>
+                <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-272: "Pack of Maven repository - operation sets a future "last modified" date on *.jar files" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-272</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>validate</phase>
+                        <configuration>
+                            <runIf>{{ project.properties[ 'maven.repo.local' ] != null }}</runIf>
+                            <defaultExcludes>false</defaultExcludes>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-272/m2.zip</targetPath>
+                                    <directory>${maven.repo.local}/${repoSubFolder}</directory>
+                                    <preservePath>true</preservePath>
+                                    <pack>true</pack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-272/m2</targetPath>
+                                    <file>${outputDir}/pl-272/m2.zip</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-assert-plugin</artifactId>
+                <version>${maven-assert-plugin-version}</version>
+                <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-272 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-272</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <runIf>{{ project.properties[ 'maven.repo.local' ] != null }}</runIf>
+                            <assertFiles>
+                                ${outputDir}/pl-272/m2.zip
+                                ${outputDir}/pl-272/m2
+                            </assertFiles>
+                            <assertEqual>
+                                ${outputDir}/pl-272/m2|${maven.repo.local}/${repoSubFolder}
+                            </assertEqual>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.codehaus.gmaven</groupId>
+                <artifactId>gmaven-plugin</artifactId>
+                <version>${gmaven-version}</version>
+                <inherited>false</inherited>
+                <executions>
+                    <execution>
+                        <id>plugins-versions</id>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <source>
+                                def files = []
+                                new File( project.properties.outputDir, 'pl-272/m2' ).eachFileRecurse( groovy.io.FileType.FILES ){ files &lt;&lt; it }
+                                println files.size() + ' files'
+                                assert files &amp;&amp; files.every{ it.lastModified() &lt; System.currentTimeMillis() }
+                            </source>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

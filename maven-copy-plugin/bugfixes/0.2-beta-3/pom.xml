@@ -20,15 +20,6 @@
     </parent>
 
 
-    <distributionManagement>
-        <repository>
-            <id>tests-local</id>
-            <name>tests-local</name>
-            <url>${artifactory}/tests-local</url>
-        </repository>
-    </distributionManagement>
-
-
     <properties>
         <outputDir>${project.build.outputDirectory}</outputDir>
         <resourcesDir>${project.basedir}/src/main/resources</resourcesDir>
