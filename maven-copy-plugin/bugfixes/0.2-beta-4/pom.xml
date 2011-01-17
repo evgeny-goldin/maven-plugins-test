@@ -44,7 +44,7 @@
                         <goals>
                             <goal>copy</goal>
                         </goals>
-                        <phase>validate</phase>
+                        <phase>install</phase>
                         <configuration>
                             <runIf>{{ project.properties[ 'maven.repo.local' ] != null }}</runIf>
                             <defaultExcludes>false</defaultExcludes>
@@ -79,7 +79,7 @@
                         <goals>
                             <goal>assert</goal>
                         </goals>
-                        <phase>test</phase>
+                        <phase>install</phase>
                         <configuration>
                             <runIf>{{ project.properties[ 'maven.repo.local' ] != null }}</runIf>
                             <assertFiles>
@@ -101,17 +101,27 @@
                 <inherited>false</inherited>
                 <executions>
                     <execution>
-                        <id>plugins-versions</id>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-272</id>
                         <goals>
                             <goal>execute</goal>
                         </goals>
-                        <phase>test</phase>
+                        <phase>install</phase>
                         <configuration>
                             <source>
-                                def files = []
-                                new File( project.properties.outputDir, 'pl-272/m2' ).eachFileRecurse( groovy.io.FileType.FILES ){ files &lt;&lt; it }
-                                println files.size() + ' files'
-                                assert files &amp;&amp; files.every{ it.lastModified() &lt; System.currentTimeMillis() }
+                                import java.util.zip.ZipFile
+                                import java.util.zip.ZipEntry
+
+                                def now     = System.currentTimeMillis()
+                                def zipFile = new File( project.properties.outputDir, 'pl-272/m2.zip' )
+                                def zipDir  = new File( project.properties.outputDir, 'pl-272/m2' )
+
+                                assert new ZipFile( zipFile ).entries().each{ assert ( it.time &lt; now ), "[$it.name] - [" + new Date( it.time ) + "]" }
+
+                                def files   = []
+                                zipDir.eachFileRecurse( groovy.io.FileType.FILES ){ files &lt;&lt; it }
+                                println ( '[' + files.size() + '] files in [' + zipDir.canonicalPath + ']' )
+                                assert files
+                                files.each{ assert ( it.lastModified() &lt; now ), "[$it.canonicalPath] - [" + new Date( it.lastModified()) + "]" }
                             </source>
                         </configuration>
                     </execution>
