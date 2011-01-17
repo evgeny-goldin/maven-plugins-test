@@ -111,17 +111,20 @@
                                 import java.util.zip.ZipFile
                                 import java.util.zip.ZipEntry
 
-                                def now     = System.currentTimeMillis()
-                                def zipFile = new File( project.properties.outputDir, 'pl-272/m2.zip' )
-                                def zipDir  = new File( project.properties.outputDir, 'pl-272/m2' )
+                                if ( project.properties[ 'maven.repo.local' ] )
+                                {
+                                    def now     = System.currentTimeMillis()
+                                    def zipFile = new File( project.properties.outputDir, 'pl-272/m2.zip' )
+                                    def zipDir  = new File( project.properties.outputDir, 'pl-272/m2' )
 
-                                assert new ZipFile( zipFile ).entries().each{ assert ( it.time &lt; now ), "[$it.name] - [" + new Date( it.time ) + "]" }
+                                    assert new ZipFile( zipFile ).entries().each{ assert ( it.time &lt; now ), "[$it.name] - [" + new Date( it.time ) + "]" }
 
-                                def files   = []
-                                zipDir.eachFileRecurse( groovy.io.FileType.FILES ){ files &lt;&lt; it }
-                                println ( '[' + files.size() + '] files in [' + zipDir.canonicalPath + ']' )
-                                assert files
-                                files.each{ assert ( it.lastModified() &lt; now ), "[$it.canonicalPath] - [" + new Date( it.lastModified()) + "]" }
+                                    def files   = []
+                                    zipDir.eachFileRecurse( groovy.io.FileType.FILES ){ files &lt;&lt; it }
+                                    println ( '[' + files.size() + '] files in [' + zipDir.canonicalPath + ']' )
+                                    assert files
+                                    files.each{ assert ( it.lastModified() &lt; now ), "[$it.canonicalPath] - [" + new Date( it.lastModified()) + "]" }
+                                }
                             </source>
                         </configuration>
                     </execution>
