@@ -81,7 +81,8 @@
                         </goals>
                         <phase>install</phase>
                         <configuration>
-                            <runIf>{{ project.properties[ 'maven.repo.local' ] != null }}</runIf>
+                            <!-- Maven may run this plugin *before* archives are created, help us God -->
+                            <runIf>{{ ( project.properties[ 'maven.repo.local' ] != null ) &amp;&amp; ( new File( outputDir, 'pl-272/m2.zip' ).isFile()) }}</runIf>
                             <assertFiles>
                                 ${outputDir}/pl-272/m2.zip
                                 ${outputDir}/pl-272/m2
@@ -98,7 +99,6 @@
                 <groupId>org.codehaus.gmaven</groupId>
                 <artifactId>gmaven-plugin</artifactId>
                 <version>${gmaven-version}</version>
-                <inherited>false</inherited>
                 <executions>
                     <execution>
                         <id>http://evgeny-goldin.org/youtrack/issue/pl-272-3</id>
