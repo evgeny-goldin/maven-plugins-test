@@ -44,19 +44,32 @@
                         <goals>
                             <goal>copy</goal>
                         </goals>
-                        <phase>install</phase>
+                        <phase>initialize</phase>
                         <configuration>
                             <runIf>{{ project.properties[ 'maven.repo.local' ] != null }}</runIf>
                             <defaultExcludes>false</defaultExcludes>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-272/m2.zip</targetPath>
+                                    <targetPath>${outputDir}/pl-272/m2-source</targetPath>
+                                    <directory>${maven.repo.local}/${repoSubFolder}</directory>
+                                    <include>**</include>
+                                    <preservePath>true</preservePath>
+                                    <verbose>false</verbose>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-272/m2-source/m1.zip</targetPath>
                                     <directory>${maven.repo.local}/${repoSubFolder}</directory>
                                     <preservePath>true</preservePath>
                                     <pack>true</pack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-272/m2</targetPath>
+                                    <targetPath>${outputDir}/pl-272/m2.zip</targetPath>
+                                    <directory>${outputDir}/pl-272/m2-source</directory>
+                                    <preservePath>true</preservePath>
+                                    <pack>true</pack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-272/m2-unpack</targetPath>
                                     <file>${outputDir}/pl-272/m2.zip</file>
                                     <unpack>true</unpack>
                                 </resource>
@@ -79,16 +92,18 @@
                         <goals>
                             <goal>assert</goal>
                         </goals>
-                        <phase>install</phase>
+                        <phase>test</phase>
                         <configuration>
                             <!-- Maven may run this plugin *before* archives are created, help us God -->
-                            <runIf>{{ ( project.properties[ 'maven.repo.local' ] != null ) &amp;&amp; ( new File( outputDir, 'pl-272/m2.zip' ).isFile()) }}</runIf>
+                            <runIf>{{ project.properties[ 'maven.repo.local' ] != null }}</runIf>
                             <assertFiles>
                                 ${outputDir}/pl-272/m2.zip
-                                ${outputDir}/pl-272/m2
+                                ${outputDir}/pl-272/m2-source
+                                ${outputDir}/pl-272/m2-source/m1.zip
+                                ${outputDir}/pl-272/m2-unpack
                             </assertFiles>
                             <assertEqual>
-                                ${outputDir}/pl-272/m2|${maven.repo.local}/${repoSubFolder}
+                                ${outputDir}/pl-272/m2-source|${outputDir}/pl-272/m2-unpack
                             </assertEqual>
                         </configuration>
                     </execution>
@@ -105,7 +120,7 @@
                         <goals>
                             <goal>execute</goal>
                         </goals>
-                        <phase>install</phase>
+                        <phase>test</phase>
                         <configuration>
                             <source>
                                 import java.util.zip.ZipFile
@@ -114,8 +129,8 @@
                                 if ( project.properties[ 'maven.repo.local' ] )
                                 {
                                     def now     = System.currentTimeMillis()
-                                    def zipFile = new File( project.properties.outputDir, 'pl-272/m2.zip' )
-                                    def zipDir  = new File( project.properties.outputDir, 'pl-272/m2' )
+                                    def zipFile = new File( project.properties.outputDir, 'pl-272/m2.zip'    )
+                                    def zipDir  = new File( project.properties.outputDir, 'pl-272/m2-unpack' )
 
                                     new ZipFile( zipFile ).entries().each{
                                         assert ( it.time &lt; now ), "[$zipFile.canonicalPath]/[$it.name] - [" + new Date( it.time ) + "] >= [" + new Date( now ) + "]"
