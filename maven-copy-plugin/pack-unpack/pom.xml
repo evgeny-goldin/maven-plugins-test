@@ -22,9 +22,7 @@
 
     <properties>
         <outputDir>${project.build.outputDirectory}</outputDir>
-        <resourcesDir>${project.basedir}/src/main/resources</resourcesDir>
     </properties>
-
 
 
     <build>
@@ -243,18 +241,20 @@
                         <goals>
                             <goal>assert</goal>
                         </goals>
-                        <phase>initialize</phase>
+                        <phase>test</phase>
                         <configuration>
                             <assertGroovy>
                                 new File( outputDir, 'unpack-1' ).directorySize() == 1071434
-                                new File( outputDir, 'unpack-3' ).directorySize() == 77994549
 
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <!-- Directory size may differ on different platforms: when duplicate files override each other -->
                                 <!-- their order is different on Windows and Linux, thus final directory size may change        -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+                                ( new File( outputDir, 'unpack-3' ).directorySize() == 77994549 ) || ( new File( outputDir, 'unpack-3' ).directorySize() == 77993397 )
+                                                                                   <!-- Windows -->                                                    <!-- Linux -->
                                 ( new File( outputDir, 'unpack-2' ).directorySize() == 19171616 ) || ( new File( outputDir, 'unpack-2' ).directorySize() == 19172354 )
-                                                                              <!-- Windows -->                                                       <!-- Linux -->
+                                                                                   <!-- Windows -->                                                    <!-- Linux -->
                             </assertGroovy>
                             <assertEqual>
                                 ${outputDir}/unpack-1|${outputDir}/unpack-12

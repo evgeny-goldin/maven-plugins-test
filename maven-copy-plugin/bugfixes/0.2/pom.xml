@@ -22,7 +22,6 @@
 
     <properties>
         <outputDir>${project.build.outputDirectory}</outputDir>
-        <resourcesDir>${project.basedir}/src/main/resources</resourcesDir>
     </properties>
 
 

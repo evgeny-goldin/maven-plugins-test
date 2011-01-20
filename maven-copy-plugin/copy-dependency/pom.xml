@@ -247,7 +247,7 @@
                         <goals>
                             <goal>assert</goal>
                         </goals>
-                        <phase>initialize</phase>
+                        <phase>test</phase>
                         <configuration>
                             <assertFiles>
                                 ${project.build.directory}/compile-deps-transitive-1/commons-logging-1.1.1.jar

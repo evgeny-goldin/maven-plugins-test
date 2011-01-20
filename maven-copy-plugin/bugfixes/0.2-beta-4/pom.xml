@@ -22,7 +22,6 @@
 
     <properties>
         <outputDir>${project.build.outputDirectory}</outputDir>
-        <resourcesDir>${project.basedir}/src/main/resources</resourcesDir>
         <maven.repo.local>${user.home}/.m2/repository</maven.repo.local>
         <repoSubFolder>com</repoSubFolder>
     </properties>
@@ -94,7 +93,6 @@
                         </goals>
                         <phase>test</phase>
                         <configuration>
-                            <!-- Maven may run this plugin *before* archives are created, help us God -->
                             <runIf>{{ project.properties[ 'maven.repo.local' ] != null }}</runIf>
                             <assertFiles>
                                 ${outputDir}/pl-272/m2.zip

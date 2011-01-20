@@ -74,10 +74,10 @@
                 <executions>
                     <execution>
                         <id>verify-configs</id>
-                        <phase>integration-test</phase>
                         <goals>
                             <goal>assert</goal>
                         </goals>
+                        <phase>test</phase>
                         <configuration>
                             <endOfLine>windows</endOfLine>
                             <assertEqual>

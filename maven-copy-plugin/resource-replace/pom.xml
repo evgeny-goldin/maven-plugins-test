@@ -200,7 +200,7 @@
                         <goals>
                             <goal>assert</goal>
                         </goals>
-                        <phase>initialize</phase>
+                        <phase>test</phase>
                         <configuration>
                             <assertFiles>
                                 ${outputDir}/${antName}
@@ -261,7 +261,7 @@
                                 new File( outputDir, 'replace-5/get-m2.xml' ).size() == 4566
                                 new File( outputDir, 'replace-5/fetch.xml'  ).text   == new File( antDir, 'fetch.xml'  ).text
                                 new File( outputDir, 'replace-5/get-m2.xml' ).text   == new File( antDir, 'get-m2.xml' ).text
-                                
+
                                 new File( outputDir, 'replace-6/fetch.xml'  ).size() == 7610
                                 new File( outputDir, 'replace-6/get-m2.xml' ).size() == 4303
                                 new File( outputDir, 'replace-6/fetch.xml'  ).text   != new File( antDir, 'fetch.xml'  ).text
