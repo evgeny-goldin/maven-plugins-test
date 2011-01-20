@@ -48,6 +48,54 @@
                                 <resource>
                                     <targetPath>${outputDir}/pl-280/unpack-1</targetPath>
                                     <file>${resourcesDir}/apache-maven-3.0.1.zip</file>
+                                    <zipEntry>apache-maven-3.0.1/lib/maven-core-3.0.1.jar</zipEntry>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-280/unpack-2</targetPath>
+                                    <file>${resourcesDir}/apache-maven-3.0.1.zip</file>
+                                    <zipEntries>
+                                        <zipEntry>apache-maven-3.0.1/lib/maven-core-3.0.1.jar</zipEntry>
+                                        <zipEntry>apache-maven-3.0.1/LICENSE.txt</zipEntry>
+                                        <zipEntry>apache-maven-3.0.1/bin/mvnDebug.bat</zipEntry>
+                                        <zipEntry>apache-maven-3.0.1/lib/maven-compat-3.0.1.jar</zipEntry>
+                                    </zipEntries>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-280/unpack-3</targetPath>
+                                    <file>${resourcesDir}/apache-maven-3.0.1.zip</file>
+                                    <zipEntry>apache-maven-3.0.1/lib/maven-core-3.0.1.jar</zipEntry>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-280/unpack-3</targetPath>
+                                    <file>${resourcesDir}/apache-maven-3.0.1.zip</file>
+                                    <zipEntry>apache-maven-3.0.1/LICENSE.txt</zipEntry>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-280/unpack-3</targetPath>
+                                    <file>${resourcesDir}/apache-maven-3.0.1.zip</file>
+                                    <zipEntry>apache-maven-3.0.1/bin/mvnDebug.bat</zipEntry>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-280/unpack-3</targetPath>
+                                    <file>${resourcesDir}/apache-maven-3.0.1.zip</file>
+                                    <zipEntry>apache-maven-3.0.1/lib/maven-compat-3.0.1.jar</zipEntry>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-280/unpack-4</targetPath>
+                                    <file>${resourcesDir}/apache-maven-3.0.1.zip</file>
+                                    <zipEntries>
+                                        <zipEntry>apache-maven-3.0.1/lib/maven-core-3.0.1.jar</zipEntry>
+                                        <zipEntry>apache-maven-3.0.1/LICENSE.txt</zipEntry>
+                                        <zipEntry>apache-maven-3.0.1/bin/mvnDebug.bat</zipEntry>
+                                        <zipEntry>apache-maven-3.0.1/lib/maven-compat-3.0.1.jar</zipEntry>
+                                    </zipEntries>
+                                    <preservePath>true</preservePath>
                                     <unpack>true</unpack>
                                 </resource>
                             </resources>
@@ -72,9 +120,37 @@
                         <phase>test</phase>
                         <configuration>
                             <assertFiles>
+                                ${outputDir}/pl-280/unpack-1
+                                ${outputDir}/pl-280/unpack-2
+                                ${outputDir}/pl-280/unpack-3
+                                ${outputDir}/pl-280/unpack-4
+
+                                ${outputDir}/pl-280/unpack-1/maven-core-3.0.1.jar
+
+                                ${outputDir}/pl-280/unpack-2/maven-core-3.0.1.jar
+                                ${outputDir}/pl-280/unpack-2/LICENSE.txt
+                                ${outputDir}/pl-280/unpack-2/mvnDebug.bat
+                                ${outputDir}/pl-280/unpack-2/maven-compat-3.0.1.jar
+
+                                ${outputDir}/pl-280/unpack-3/maven-core-3.0.1.jar
+                                ${outputDir}/pl-280/unpack-3/LICENSE.txt
+                                ${outputDir}/pl-280/unpack-3/mvnDebug.bat
+                                ${outputDir}/pl-280/unpack-3/maven-compat-3.0.1.jar
+
+                                ${outputDir}/pl-280/unpack-4/apache-maven-3.0.1/lib/maven-core-3.0.1.jar
+                                ${outputDir}/pl-280/unpack-4/apache-maven-3.0.1/LICENSE.txt
+                                ${outputDir}/pl-280/unpack-4/apache-maven-3.0.1/bin/mvnDebug.bat
+                                ${outputDir}/pl-280/unpack-4/apache-maven-3.0.1/lib/maven-compat-3.0.1.jar
                             </assertFiles>
                             <assertEqual>
+                                ${outputDir}/pl-280/unpack-2|${outputDir}/pl-280/unpack-3
                             </assertEqual>
+                            <assertGroovy>
+                                new File( outputDir, 'pl-280/unpack-1' ).directorySize() == 530357
+                                new File( outputDir, 'pl-280/unpack-2' ).directorySize() == 833219
+                                new File( outputDir, 'pl-280/unpack-3' ).directorySize() == 833219
+                                new File( outputDir, 'pl-280/unpack-4' ).directorySize() == 833219
+                            </assertGroovy>
                         </configuration>
                     </execution>
                 </executions>
