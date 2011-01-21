@@ -289,13 +289,6 @@
                                 new File( outputDir, 'defaultExcludesSelect-4' ).list().size() == 2
                                 new File( outputDir, 'defaultExcludesSelect-5' ).list().size() == 1
                                 new File( outputDir, 'defaultExcludesSelect-6' ).list().size() == 3
-                                
-                                new File( outputDir, 'defaultExcludesSelect-1' ).directorySize() == 17521
-                                new File( outputDir, 'defaultExcludesSelect-2' ).directorySize() == 52563
-                                new File( outputDir, 'defaultExcludesSelect-3' ).directorySize() == 17521
-                                new File( outputDir, 'defaultExcludesSelect-4' ).directorySize() == 52563
-                                new File( outputDir, 'defaultExcludesSelect-5' ).directorySize() == 17521
-                                new File( outputDir, 'defaultExcludesSelect-6' ).directorySize() == 52563
                             </assertGroovy>
                         </configuration>
                     </execution>
