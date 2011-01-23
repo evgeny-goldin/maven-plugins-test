@@ -98,6 +98,34 @@
                                     <preservePath>true</preservePath>
                                     <unpack>true</unpack>
                                 </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-280/unpack-5</targetPath>
+                                    <file>${resourcesDir}/apache-maven-3.0.1.zip</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-280/unpack-6</targetPath>
+                                    <file>${resourcesDir}/apache-maven-3.0.1.zip</file>
+                                    <zipEntries>
+                                        <zipEntry>**/*.jar</zipEntry>
+                                        <zipEntry>**/*.txt</zipEntry>
+                                        <zipEntry>**/*.conf</zipEntry>
+                                        <zipEntry>**/*.bat</zipEntry>
+                                        <zipEntry>**/*.xml</zipEntry>
+                                        <zipEntry>apache-maven-3.0.1/bin/mvn</zipEntry>
+                                        <zipEntry>apache-maven-3.0.1/bin/mvnDebug</zipEntry>
+                                        <zipEntry>apache-maven-3.0.1/bin/mvnyjp</zipEntry>
+                                    </zipEntries>
+                                    <preservePath>true</preservePath>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-280/unpack-7</targetPath>
+                                    <file>${resourcesDir}/apache-maven-3.0.1.zip</file>
+                                    <zipEntry>**</zipEntry>
+                                    <preservePath>true</preservePath>
+                                    <unpack>true</unpack>
+                                </resource>
                             </resources>
                         </configuration>
                     </execution>
@@ -144,12 +172,18 @@
                             </assertFiles>
                             <assertEqual>
                                 ${outputDir}/pl-280/unpack-2|${outputDir}/pl-280/unpack-3
+                                ${outputDir}/pl-280/unpack-5|${outputDir}/pl-280/unpack-6
+                                ${outputDir}/pl-280/unpack-6|${outputDir}/pl-280/unpack-7
+                                ${outputDir}/pl-280/unpack-7|${outputDir}/pl-280/unpack-5
                             </assertEqual>
                             <assertGroovy>
                                 new File( outputDir, 'pl-280/unpack-1' ).directorySize() == 530357
                                 new File( outputDir, 'pl-280/unpack-2' ).directorySize() == 833219
                                 new File( outputDir, 'pl-280/unpack-3' ).directorySize() == 833219
                                 new File( outputDir, 'pl-280/unpack-4' ).directorySize() == 833219
+                                new File( outputDir, 'pl-280/unpack-5' ).directorySize() == 3344329
+                                new File( outputDir, 'pl-280/unpack-6' ).directorySize() == 3344329
+                                new File( outputDir, 'pl-280/unpack-7' ).directorySize() == 3344329
                             </assertGroovy>
                         </configuration>
                     </execution>
