@@ -169,25 +169,29 @@
                         <phase>test</phase>
                         <configuration>
                             <assertGroovy>
-                                propertyTrue                    == 'true'
-                                project.properties.propertyTrue == 'true'
-                                <!--session.executionProperties.propertyTrue-->
-                                <!--session.userProperties.propertyTrue-->
+                                propertyTrue                             == 'true'
+                                project.properties.propertyTrue          == 'true'
+                                session.executionProperties.propertyTrue == 'true'
+                                session.userProperties.propertyTrue      == 'true'
 
-                                propertyFalse                    == 'false'
-                                project.properties.propertyFalse == 'false'
-                                <!--session.executionProperties.propertyFalse-->
-                                <!--session.userProperties.propertyFalse-->
+                                propertyFalse                             == 'false'
+                                project.properties.propertyFalse          == 'false'
+                                session.executionProperties.propertyFalse == 'false'
+                                session.userProperties.propertyFalse      == 'false'
 
-                                propertyOne                     == 'one'
-                                project.properties.propertyOne  == 'one'
-                                <!--session.executionProperties.propertyOne-->
-                                <!--session.userProperties.propertyOne-->
+                                propertyOne                              == 'one'
+                                project.properties.propertyOne           == 'one'
+                                session.executionProperties.propertyOne  == 'one'
+                                session.userProperties.propertyOne       == 'one'
 
-                                project.properties.propertyTwo  != 'two'
+                                project.properties.propertyTwo           != 'two'
+                                session.executionProperties.propertyTwo  != 'two'
+                                session.userProperties.propertyTwo       != 'two'
 
-                                propertyDir                    == 'dirdir'
-                                project.properties.propertyDir == 'dirdir'
+                                propertyDir                             == 'dirdir'
+                                project.properties.propertyDir          == 'dirdir'
+                                session.executionProperties.propertyDir == 'dirdir'
+                                session.userProperties.propertyDir      == 'dirdir'
 
                               ! new File( outputDir, 'pl-290-1' ).isDirectory()
                                 new File( outputDir, 'pl-290-2' ).isDirectory()
