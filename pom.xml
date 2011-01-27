@@ -18,6 +18,7 @@
         <maven-hudson-plugin-version>0.2-SNAPSHOT</maven-hudson-plugin-version>
         <maven-assert-plugin-version>0.2-SNAPSHOT</maven-assert-plugin-version>
         <maven-copy-plugin-version>0.2-SNAPSHOT</maven-copy-plugin-version>
+        <maven-properties-plugin-version>0.2-SNAPSHOT</maven-properties-plugin-version>
         <spring-version>3.0.5.RELEASE</spring-version>
         <junit-version>4.8.2</junit-version>
         <log4j-version>1.2.16</log4j-version>
@@ -175,9 +176,10 @@
                                 println """
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Groovy [$GroovySystem.version], [$date] - testing plugin versions:
-* maven-copy-plugin-version   : "${maven-copy-plugin-version}"
-* maven-hudson-plugin-version : "${maven-hudson-plugin-version}"
-* maven-assert-plugin-version : "${maven-assert-plugin-version}"
+* maven-copy-plugin-version       : "${maven-copy-plugin-version}"
+* maven-hudson-plugin-version     : "${maven-hudson-plugin-version}"
+* maven-assert-plugin-version     : "${maven-assert-plugin-version}"
+* maven-properties-plugin-version : "${maven-properties-plugin-version}"
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"""
                             </source>
                         </configuration>
@@ -191,6 +193,7 @@ Groovy [$GroovySystem.version], [$date] - testing plugin versions:
     <modules>
         <module>maven-hudson-plugin</module>
         <module>maven-copy-plugin</module>
+        <module>maven-properties-plugin</module>
     </modules>
 
 

@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns              = "http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi          = "http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0
+                               http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+    <artifactId>maven-properties-plugin.bugfixes.0.2-beta-5</artifactId>
+    <packaging>jar</packaging>
+    <version>0.1-SNAPSHOT</version>
+    <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
+
+
+    <parent>
+        <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+        <artifactId>maven-properties-plugin.bugfixes</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+
+    <properties>
+        <outputDir>${project.build.outputDirectory}</outputDir>
+        <propertyTrue>false</propertyTrue>
+        <propertyFalse>true</propertyFalse>
+        <!-- If specified here, then expressions like "${outputDir}/pl-290-4/${propertyDir}/1" (below) -->
+        <!-- will still be resolved to "dir" even after ${propertyDir} is overridden (Maven 3.0.2)     -->
+        <!--<propertyDir>dir</propertyDir>-->
+    </properties>
+
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-properties-plugin</artifactId>
+                <version>${maven-properties-plugin-version}</version>
+                <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-290: "Properties set but are not seen in Maven 3" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-290-1</id>
+                        <goals>
+                            <goal>set-properties</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <properties>
+                                <property>
+                                    <name>propertyTrue</name>
+                                    <value>{{ 't' + 'r' + 'u' + 'e' }}</value>
+                                </property>
+                                <property>
+                                    <name>propertyFalse</name>
+                                    <value>{{ false }}</value>
+                                </property>
+                                <property>
+                                    <name>propertyDir</name>
+                                    <value>{{ 'dir' * 2 }}</value>
+                                </property>
+                            </properties>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-290-2</id>
+                        <goals>
+                            <goal>set-properties</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <runIf>{{ propertyTrue }}</runIf>
+                            <properties>
+                                <property>
+                                    <name>propertyOne</name>
+                                    <value>one</value>
+                                </property>
+                            </properties>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-290-3</id>
+                        <goals>
+                            <goal>set-properties</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <runIf>{{ propertyFalse }}</runIf>
+                            <properties>
+                                <property>
+                                    <name>propertyTwo</name>
+                                    <value>two</value>
+                                </property>
+                            </properties>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-copy-plugin</artifactId>
+                <version>${maven-copy-plugin-version}</version>
+                <executions>
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-290-1</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <runIf>{{ propertyTrue }}</runIf>
+                            <resources>
+                                <resource>
+                                    <runIf>{{ propertyFalse }}</runIf>
+                                    <targetPath>${outputDir}/pl-290-1</targetPath>
+                                    <mkdir>true</mkdir>
+                                </resource>
+                                <resource>
+                                    <runIf>{{ propertyTrue }}</runIf>
+                                    <targetPath>${outputDir}/pl-290-2</targetPath>
+                                    <mkdir>true</mkdir>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-290-3</targetPath>
+                                    <mkdir>true</mkdir>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-290-2</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <runIf>{{ propertyTrue }}</runIf>
+                                    <targetPath>${outputDir}/pl-290-4/${propertyDir}/1</targetPath>
+                                    <mkdir>true</mkdir>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-290-4/${propertyDir}/2</targetPath>
+                                    <mkdir>true</mkdir>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-assert-plugin</artifactId>
+                <version>${maven-assert-plugin-version}</version>
+                <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-290 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-290</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertGroovy>
+                                propertyTrue                    == 'true'
+                                project.properties.propertyTrue == 'true'
+                                <!--session.executionProperties.propertyTrue-->
+                                <!--session.userProperties.propertyTrue-->
+
+                                propertyFalse                    == 'false'
+                                project.properties.propertyFalse == 'false'
+                                <!--session.executionProperties.propertyFalse-->
+                                <!--session.userProperties.propertyFalse-->
+
+                                propertyOne                     == 'one'
+                                project.properties.propertyOne  == 'one'
+                                <!--session.executionProperties.propertyOne-->
+                                <!--session.userProperties.propertyOne-->
+
+                                project.properties.propertyTwo  != 'two'
+
+                                propertyDir                    == 'dirdir'
+                                project.properties.propertyDir == 'dirdir'
+
+                              ! new File( outputDir, 'pl-290-1' ).isDirectory()
+                                new File( outputDir, 'pl-290-2' ).isDirectory()
+                                new File( outputDir, 'pl-290-3' ).isDirectory()
+                              ! new File( outputDir, 'pl-290-4/dir/1' ).isDirectory()
+                              ! new File( outputDir, 'pl-290-4/dir/2' ).isDirectory()
+                                new File( outputDir, 'pl-290-4/dirdir/1' ).isDirectory()
+                                new File( outputDir, 'pl-290-4/dirdir/2' ).isDirectory()
+                            </assertGroovy>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>
