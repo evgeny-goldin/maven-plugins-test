@@ -186,33 +186,33 @@
                                     <destFileName>2.txt</destFileName>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/defaultExcludesSelect-1</targetPath>
+                                    <targetPath>${outputDir}/defaultExcludesSelect/1</targetPath>
                                     <directory>${outputDir}/defaultExcludes</directory>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/defaultExcludesSelect-2</targetPath>
+                                    <targetPath>${outputDir}/defaultExcludesSelect/2</targetPath>
                                     <directory>${outputDir}/defaultExcludes</directory>
                                     <defaultExcludes>false</defaultExcludes>
                                     <preservePath>true</preservePath>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/defaultExcludesSelect-3</targetPath>
+                                    <targetPath>${outputDir}/defaultExcludesSelect/3</targetPath>
                                     <directory>${outputDir}/defaultExcludes</directory>
                                     <defaultExcludes>**/.svn/**, **/.git/**</defaultExcludes>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/defaultExcludesSelect-4</targetPath>
+                                    <targetPath>${outputDir}/defaultExcludesSelect/4</targetPath>
                                     <directory>${outputDir}/defaultExcludes</directory>
                                     <defaultExcludes>**/.git/**</defaultExcludes>
                                     <preservePath>true</preservePath>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/defaultExcludesSelect-5</targetPath>
+                                    <targetPath>${outputDir}/defaultExcludesSelect/5</targetPath>
                                     <directory>${outputDir}/defaultExcludes</directory>
                                     <defaultExcludes>.svn/**</defaultExcludes>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/defaultExcludesSelect-6</targetPath>
+                                    <targetPath>${outputDir}/defaultExcludesSelect/6</targetPath>
                                     <directory>${outputDir}/defaultExcludes</directory>
                                     <defaultExcludes>**/.git/**</defaultExcludes>
                                 </resource>
@@ -392,6 +392,68 @@
                                     <unpack>true</unpack>
                                 </resource>
 
+                                <!-- ~~~~~~~~~~~~~~~ -->
+                                <!-- Testing <mkdir> -->
+                                <!-- ~~~~~~~~~~~~~~~ -->
+
+                                <resource>
+                                    <targetPath>${outputDir}/mkdir/1</targetPath>
+                                    <mkdir>true</mkdir>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/mkdir/2/5/7</targetPath>
+                                    <mkdir>true</mkdir>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/mkdir/3/9/qqq</targetPath>
+                                    <mkdir>true</mkdir>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/mkdir/qqq/ccc/vvv/bbb/ggg</targetPath>
+                                    <mkdir>true</mkdir>
+                                </resource>
+
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Testing patterns update -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+                                <resource>
+                                    <targetPath>${outputDir}/patternsUpdate/1</targetPath>
+                                    <dependency>
+                                        <groupId>org.jvnet.hudson.plugins</groupId>
+                                        <artifactId>artifactory</artifactId>
+                                        <version>1.4.2</version>
+                                        <optional>true</optional>
+                                        <type>hpi</type>
+                                    </dependency>
+                                    <dependenciesAtM2>true</dependenciesAtM2>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/patternsUpdate/2</targetPath>
+                                    <directory>${outputDir}/patternsUpdate/1</directory>
+                                    <preservePath>true</preservePath>
+                                    <verbose>false</verbose>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/patternsUpdate/3</targetPath>
+                                    <directory>${outputDir}/patternsUpdate/1</directory>
+                                    <preservePath>true</preservePath>
+                                    <includes>
+                                        <include>**/*.jelly,**/*.properties,**/*.png,**/*.Extension,**/*.html,**/*.MF,</include>
+                                        <include>**/*.stapler,**/*.stapler-beans,**/*.xml,,,**/*.conf,,</include>
+                                        <include>file:${project.basedir}/src/main/resources/1.txt</include>
+                                        <include>file:${project.basedir}/src/main/resources/2.txt</include>
+                                        <include>file:${project.basedir}/src/main/resources/3.txt</include>
+                                        <include>classpath:/1.txt</include>
+                                        <include>classpath:/2.txt</include>
+                                        <include>classpath:/3.txt</include>
+                                    </includes>
+                                    <excludes>
+                                        <exclude>classpath:/4.txt</exclude>
+                                    </excludes>
+                                    <verbose>false</verbose>
+                                </resource>
                             </resources>
                         </configuration>
                     </execution>
@@ -423,18 +485,18 @@
                                 ${outputDir}/runIf/1.txt
                                 ${outputDir}/runIf/3.txt
                                 
-                                ${outputDir}/defaultExcludesSelect-1/0.txt
-                                ${outputDir}/defaultExcludesSelect-2/0.txt
-                                ${outputDir}/defaultExcludesSelect-2/.svn/1.txt
-                                ${outputDir}/defaultExcludesSelect-2/.svn/2.txt
-                                ${outputDir}/defaultExcludesSelect-3/0.txt
-                                ${outputDir}/defaultExcludesSelect-4/0.txt
-                                ${outputDir}/defaultExcludesSelect-4/.svn/1.txt
-                                ${outputDir}/defaultExcludesSelect-4/.svn/2.txt
-                                ${outputDir}/defaultExcludesSelect-5/0.txt
-                                ${outputDir}/defaultExcludesSelect-6/0.txt
-                                ${outputDir}/defaultExcludesSelect-6/1.txt
-                                ${outputDir}/defaultExcludesSelect-6/2.txt
+                                ${outputDir}/defaultExcludesSelect/1/0.txt
+                                ${outputDir}/defaultExcludesSelect/2/0.txt
+                                ${outputDir}/defaultExcludesSelect/2/.svn/1.txt
+                                ${outputDir}/defaultExcludesSelect/2/.svn/2.txt
+                                ${outputDir}/defaultExcludesSelect/3/0.txt
+                                ${outputDir}/defaultExcludesSelect/4/0.txt
+                                ${outputDir}/defaultExcludesSelect/4/.svn/1.txt
+                                ${outputDir}/defaultExcludesSelect/4/.svn/2.txt
+                                ${outputDir}/defaultExcludesSelect/5/0.txt
+                                ${outputDir}/defaultExcludesSelect/6/0.txt
+                                ${outputDir}/defaultExcludesSelect/6/1.txt
+                                ${outputDir}/defaultExcludesSelect/6/2.txt
 
                                 ${outputDir}/cleanEmptyDirectories
                                 ${outputDir}/cleanEmptyDirectories/a
@@ -459,11 +521,25 @@
                                 ${outputDir}/optionalDependencies/WEB-INF/classes/org/jfrog/hudson
                                 ${outputDir}/optionalDependencies/WEB-INF/classes/org/jfrog/hudson/maven3/*.class
                                 ${outputDir}/optionalDependencies/WEB-INF/classes/org/jfrog/hudson/maven3/ArtifactoryMaven3Configurator$1.class
+
+                                ${outputDir}/mkdir
+                                ${outputDir}/mkdir/1
+                                ${outputDir}/mkdir/2
+                                ${outputDir}/mkdir/2/5
+                                ${outputDir}/mkdir/2/5/7
+                                ${outputDir}/mkdir/3
+                                ${outputDir}/mkdir/3/9
+                                ${outputDir}/mkdir/3/9/qqq
+                                ${outputDir}/mkdir/qqq
+                                ${outputDir}/mkdir/qqq/ccc
+                                ${outputDir}/mkdir/qqq/ccc/vvv
+                                ${outputDir}/mkdir/qqq/ccc/vvv/bbb
+                                ${outputDir}/mkdir/qqq/ccc/vvv/bbb/ggg
                             </assertFiles>
                             <assertEqual>
-                                ${outputDir}/defaultExcludesSelect-1|${outputDir}/defaultExcludesSelect-3
-                                ${outputDir}/defaultExcludesSelect-2|${outputDir}/defaultExcludesSelect-4
-                                ${outputDir}/defaultExcludesSelect-3|${outputDir}/defaultExcludesSelect-5
+                                ${outputDir}/defaultExcludesSelect/1|${outputDir}/defaultExcludesSelect/3
+                                ${outputDir}/defaultExcludesSelect/2|${outputDir}/defaultExcludesSelect/4
+                                ${outputDir}/defaultExcludesSelect/3|${outputDir}/defaultExcludesSelect/5
 
                                 ${outputDir}/cleanEmptyDirectories|${outputDir}/cleanEmptyDirectories2|**/*.pdf
                                 ${outputDir}/cleanEmptyDirectories|${outputDir}/cleanEmptyDirectories2|**/*.txt
@@ -476,6 +552,13 @@
                                 ${outputDir}/optionalDependencies|${outputDir}/optionalDependencies2|**/*.jar
                                 ${outputDir}/optionalDependencies|${outputDir}/optionalDependencies2|**/*.html
                                 ${outputDir}/optionalDependencies|${outputDir}/optionalDependencies2|**/*.gif
+
+                                ${outputDir}/patternsUpdate/1|${outputDir}/patternsUpdate/2
+                                ${outputDir}/patternsUpdate/2|${outputDir}/patternsUpdate/3
+                                ${outputDir}/patternsUpdate/1|${outputDir}/patternsUpdate/3
+                                ${outputDir}/patternsUpdate/1|${outputDir}/patternsUpdate/3|**
+                                ${outputDir}/patternsUpdate/1|${outputDir}/patternsUpdate/3|**/*
+                                ${outputDir}/patternsUpdate/1|${outputDir}/patternsUpdate/3|**/*.*
                             </assertEqual>
                             <shouldFailAssertEqual>
                                 ${outputDir}/cleanEmptyDirectories|${outputDir}/cleanEmptyDirectories2
@@ -500,12 +583,12 @@
                                 
                               ! new File( outputDir, 'failIfNotFound' ).isDirectory()
                                 
-                                new File( outputDir, 'defaultExcludesSelect-1' ).list().size() == 1
-                                new File( outputDir, 'defaultExcludesSelect-2' ).list().size() == 2
-                                new File( outputDir, 'defaultExcludesSelect-3' ).list().size() == 1
-                                new File( outputDir, 'defaultExcludesSelect-4' ).list().size() == 2
-                                new File( outputDir, 'defaultExcludesSelect-5' ).list().size() == 1
-                                new File( outputDir, 'defaultExcludesSelect-6' ).list().size() == 3
+                                new File( outputDir, 'defaultExcludesSelect/1' ).list().size() == 1
+                                new File( outputDir, 'defaultExcludesSelect/2' ).list().size() == 2
+                                new File( outputDir, 'defaultExcludesSelect/3' ).list().size() == 1
+                                new File( outputDir, 'defaultExcludesSelect/4' ).list().size() == 2
+                                new File( outputDir, 'defaultExcludesSelect/5' ).list().size() == 1
+                                new File( outputDir, 'defaultExcludesSelect/6' ).list().size() == 3
 
                                 new File( outputDir, 'mavenVersion/1.txt' ).text == new File( outputDir, 'mavenVersion/2.txt' ).text
                                 new File( outputDir, 'mavenVersion/1.txt' ).text.any{( it.startsWith( '2' )) || ( it.startsWith( '3' ))}
@@ -521,6 +604,13 @@
                                 <!-- Directories size depends on the order of processing <dependencies> -->
                                 new File( outputDir, 'optionalDependencies'  ).directorySize().any{( it == 5055913 ) || ( it == 5056072 )}
                                 new File( outputDir, 'optionalDependencies2' ).directorySize().any{( it == 5055913 ) || ( it == 5056072 )}
+
+                                new File( outputDir, 'mkdir' ).directorySize() == 0
+
+                                new File( outputDir, 'patternsUpdate' ).directorySize()   == ( 14945298 / 1 )
+                                new File( outputDir, 'patternsUpdate/1' ).directorySize() == ( 14945298 / 3 )
+                                new File( outputDir, 'patternsUpdate/2' ).directorySize() == ( 14945298 / 3 )
+                                new File( outputDir, 'patternsUpdate/3' ).directorySize() == ( 14945298 / 3 )
                             </assertGroovy>
                         </configuration>
                     </execution>
