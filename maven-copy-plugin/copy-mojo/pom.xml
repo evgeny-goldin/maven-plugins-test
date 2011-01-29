@@ -317,6 +317,38 @@
                                     <include>**/*.ppt</include>
                                 </resource>
 
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Testing optional <dependencies> -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+                                <resource>
+                                    <targetPath>${outputDir}/optionalDependencies</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>org.jvnet.hudson.plugins</groupId>
+                                            <artifactId>greenballs</artifactId>
+                                            <version>1.6</version>
+                                            <optional>false</optional>
+                                            <type>hpi</type>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.jvnet.hudson.plugins</groupId>
+                                            <artifactId>artifactory</artifactId>
+                                            <version>1.4.2</version>
+                                            <optional>false</optional>
+                                            <type>hpi</type>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.jvnet.hudson.plugins</groupId>
+                                            <artifactId>artifactory</artifactId>
+                                            <version>100.400.100</version>
+                                            <optional>true</optional>
+                                            <type>hpi</type>
+                                        </dependency>
+                                    </dependencies>
+                                    <unpack>true</unpack>
+                                </resource>
+
                             </resources>
                         </configuration>
                     </execution>
@@ -371,6 +403,19 @@
                                 ${outputDir}/cleanEmptyDirectories2
                                 ${outputDir}/cleanEmptyDirectories2/a
                                 ${outputDir}/cleanEmptyDirectories2/a/b
+
+                                ${outputDir}/optionalDependencies
+                                ${outputDir}/optionalDependencies/*.sh
+                                ${outputDir}/optionalDependencies/*.svg
+                                ${outputDir}/optionalDependencies/makeBalls.sh
+                                ${outputDir}/optionalDependencies/green.svg
+                                ${outputDir}/optionalDependencies/16x16
+                                ${outputDir}/optionalDependencies/24x24/*.gif
+                                ${outputDir}/optionalDependencies/32x32/green_anime.gif
+                                ${outputDir}/optionalDependencies/48x48/green.gif
+                                ${outputDir}/optionalDependencies/WEB-INF/classes/org/jfrog/hudson
+                                ${outputDir}/optionalDependencies/WEB-INF/classes/org/jfrog/hudson/maven3/*.class
+                                ${outputDir}/optionalDependencies/WEB-INF/classes/org/jfrog/hudson/maven3/ArtifactoryMaven3Configurator$1.class
                             </assertFiles>
                             <assertEqual>
                                 ${outputDir}/defaultExcludesSelect-1|${outputDir}/defaultExcludesSelect-3
@@ -387,11 +432,17 @@
                             <shouldFailAssertEqual>
                                 ${outputDir}/cleanEmptyDirectories|${outputDir}/cleanEmptyDirectories2
                             </shouldFailAssertEqual>
-                            <shouldFailFiles>
+                            <shouldFailAssertFiles>
                                 ${outputDir}/cleanEmptyDirectories2/a/e
                                 ${outputDir}/cleanEmptyDirectories2/a/e/m
                                 ${outputDir}/cleanEmptyDirectories2/a/e/f
-                            </shouldFailFiles>
+
+                                ${outputDir}/optionalDependencies/*.pdf
+                                ${outputDir}/optionalDependencies/*.png
+                                ${outputDir}/optionalDependencies2
+                                ${outputDir}/optionalDependencies2/*.pdf
+                                ${outputDir}/optionalDependencies2/*.png
+                            </shouldFailAssertFiles>
                             <assertGroovy>
                                 new File( outputDir, 'latestTestSelect/bb.txt' ).text
                               ! new File( outputDir, 'runIf/1.txt' ).text
@@ -417,6 +468,8 @@
                               ! new File( outputDir, 'cleanEmptyDirectories2/a/e/m' ).isDirectory()
                               ! new File( outputDir, 'cleanEmptyDirectories2/a/e/f' ).isDirectory()
                                 new File( outputDir, 'cleanEmptyDirectories' ).directorySize() == new File( outputDir, 'cleanEmptyDirectories2' ).directorySize()
+
+                                new File( outputDir, 'optionalDependencies' ).directorySize() == 5055913
                             </assertGroovy>
                         </configuration>
                     </execution>
