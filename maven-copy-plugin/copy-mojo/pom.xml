@@ -255,15 +255,67 @@
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
                                 <resource>
-                                    <targetPath>${outputDir}/mavenVersion</targetPath>
+                                    <targetPath>${outputDir}/cleanEmptyDirectories/a</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
-                                    <replace>
-                                        <to>{{ mavenVersion }}</to>
-                                        <groovy>true</groovy>
-                                    </replace>
                                     <destFileName>1.txt</destFileName>
                                 </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/cleanEmptyDirectories/a/b</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileName>2.pdf</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/cleanEmptyDirectories/a/e</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileName>3.ppt</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/cleanEmptyDirectories/a/e/m</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileName>4.ppt</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/cleanEmptyDirectories/a/e/f</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileName>5.ppt</destFileName>
+                                </resource>
+                                <resource>
+                                    <directory>${outputDir}/cleanEmptyDirectories</directory>
+                                    <clean>true</clean>
+                                    <include>**/*.ppt</include>
+                                </resource>
 
+                                <resource>
+                                    <targetPath>${outputDir}/cleanEmptyDirectories2/a</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileName>1.txt</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/cleanEmptyDirectories2/a/b</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileName>2.pdf</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/cleanEmptyDirectories2/a/e</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileName>3.ppt</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/cleanEmptyDirectories2/a/e/m</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileName>4.ppt</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/cleanEmptyDirectories2/a/e/f</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileName>5.ppt</destFileName>
+                                </resource>
+                                <resource>
+                                    <directory>${outputDir}/cleanEmptyDirectories2</directory>
+                                    <clean>true</clean>
+                                    <cleanEmptyDirectories>true</cleanEmptyDirectories>
+                                    <include>**/*.ppt</include>
+                                </resource>
 
                             </resources>
                         </configuration>
@@ -308,12 +360,38 @@
                                 ${outputDir}/defaultExcludesSelect-6/0.txt
                                 ${outputDir}/defaultExcludesSelect-6/1.txt
                                 ${outputDir}/defaultExcludesSelect-6/2.txt
+
+                                ${outputDir}/cleanEmptyDirectories
+                                ${outputDir}/cleanEmptyDirectories/a
+                                ${outputDir}/cleanEmptyDirectories/a/b
+                                ${outputDir}/cleanEmptyDirectories/a/e
+                                ${outputDir}/cleanEmptyDirectories/a/e/m
+                                ${outputDir}/cleanEmptyDirectories/a/e/f
+
+                                ${outputDir}/cleanEmptyDirectories2
+                                ${outputDir}/cleanEmptyDirectories2/a
+                                ${outputDir}/cleanEmptyDirectories2/a/b
                             </assertFiles>
                             <assertEqual>
                                 ${outputDir}/defaultExcludesSelect-1|${outputDir}/defaultExcludesSelect-3
                                 ${outputDir}/defaultExcludesSelect-2|${outputDir}/defaultExcludesSelect-4
                                 ${outputDir}/defaultExcludesSelect-3|${outputDir}/defaultExcludesSelect-5
+
+                                ${outputDir}/cleanEmptyDirectories|${outputDir}/cleanEmptyDirectories2|*.pdf
+                                ${outputDir}/cleanEmptyDirectories|${outputDir}/cleanEmptyDirectories2|*.txt
+                                ${outputDir}/cleanEmptyDirectories|${outputDir}/cleanEmptyDirectories2|*.exe
+                                ${outputDir}/cleanEmptyDirectories|${outputDir}/cleanEmptyDirectories2|*.dll
+                                ${outputDir}/cleanEmptyDirectories|${outputDir}/cleanEmptyDirectories2|*.*
+                                ${outputDir}/cleanEmptyDirectories|${outputDir}/cleanEmptyDirectories2|**
                             </assertEqual>
+                            <shouldFailAssertEqual>
+                                ${outputDir}/cleanEmptyDirectories|${outputDir}/cleanEmptyDirectories2
+                            </shouldFailAssertEqual>
+                            <shouldFailFiles>
+                                ${outputDir}/cleanEmptyDirectories2/a/e
+                                ${outputDir}/cleanEmptyDirectories2/a/e/m
+                                ${outputDir}/cleanEmptyDirectories2/a/e/f
+                            </shouldFailFiles>
                             <assertGroovy>
                                 new File( outputDir, 'latestTestSelect/bb.txt' ).text
                               ! new File( outputDir, 'runIf/1.txt' ).text
@@ -334,6 +412,11 @@
                                 new File( outputDir, 'mavenVersion/2.txt' ).text.any{( it.startsWith( '2' )) || ( it.startsWith( '3' ))}
                                 new File( outputDir, 'mavenVersion/1.txt' ).size() == 5 // '2.2.1' or '3.0.2'
                                 new File( outputDir, 'mavenVersion/2.txt' ).size() == 5
+
+                              ! new File( outputDir, 'cleanEmptyDirectories2/a/e' ).isDirectory()
+                              ! new File( outputDir, 'cleanEmptyDirectories2/a/e/m' ).isDirectory()
+                              ! new File( outputDir, 'cleanEmptyDirectories2/a/e/f' ).isDirectory()
+                                new File( outputDir, 'cleanEmptyDirectories' ).directorySize() == new File( outputDir, 'cleanEmptyDirectories2' ).directorySize()
                             </assertGroovy>
                         </configuration>
                     </execution>
