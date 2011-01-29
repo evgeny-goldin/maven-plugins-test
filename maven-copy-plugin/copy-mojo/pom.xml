@@ -345,6 +345,49 @@
                                             <optional>true</optional>
                                             <type>hpi</type>
                                         </dependency>
+                                        <dependency>
+                                            <groupId>org.jvnet.hudson.plugins</groupId>
+                                            <artifactId>artifactory</artifactId>
+                                            <version>100.500.100</version>
+                                            <optional>true</optional>
+                                            <type>hpi</type>
+                                        </dependency>
+                                    </dependencies>
+                                    <unpack>true</unpack>
+                                </resource>
+
+                                <resource>
+                                    <targetPath>${outputDir}/optionalDependencies2</targetPath>
+                                    <dependenciesAtM2>true</dependenciesAtM2>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>org.jvnet.hudson.plugins</groupId>
+                                            <artifactId>greenballs</artifactId>
+                                            <version>1.6</version>
+                                            <optional>false</optional>
+                                            <type>hpi</type>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.jvnet.hudson.plugins</groupId>
+                                            <artifactId>artifactory</artifactId>
+                                            <version>1.4.2</version>
+                                            <optional>false</optional>
+                                            <type>hpi</type>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.jvnet.hudson.plugins</groupId>
+                                            <artifactId>artifactory</artifactId>
+                                            <version>100.400.100</version>
+                                            <optional>true</optional>
+                                            <type>hpi</type>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.jvnet.hudson.plugins</groupId>
+                                            <artifactId>artifactory</artifactId>
+                                            <version>200.600.300</version>
+                                            <optional>true</optional>
+                                            <type>hpi</type>
+                                        </dependency>
                                     </dependencies>
                                     <unpack>true</unpack>
                                 </resource>
@@ -422,15 +465,21 @@
                                 ${outputDir}/defaultExcludesSelect-2|${outputDir}/defaultExcludesSelect-4
                                 ${outputDir}/defaultExcludesSelect-3|${outputDir}/defaultExcludesSelect-5
 
-                                ${outputDir}/cleanEmptyDirectories|${outputDir}/cleanEmptyDirectories2|*.pdf
-                                ${outputDir}/cleanEmptyDirectories|${outputDir}/cleanEmptyDirectories2|*.txt
-                                ${outputDir}/cleanEmptyDirectories|${outputDir}/cleanEmptyDirectories2|*.exe
-                                ${outputDir}/cleanEmptyDirectories|${outputDir}/cleanEmptyDirectories2|*.dll
-                                ${outputDir}/cleanEmptyDirectories|${outputDir}/cleanEmptyDirectories2|*.*
+                                ${outputDir}/cleanEmptyDirectories|${outputDir}/cleanEmptyDirectories2|**/*.pdf
+                                ${outputDir}/cleanEmptyDirectories|${outputDir}/cleanEmptyDirectories2|**/*.txt
+                                ${outputDir}/cleanEmptyDirectories|${outputDir}/cleanEmptyDirectories2|**/*.exe
+                                ${outputDir}/cleanEmptyDirectories|${outputDir}/cleanEmptyDirectories2|**/*.dll
+                                ${outputDir}/cleanEmptyDirectories|${outputDir}/cleanEmptyDirectories2|**/*.*
                                 ${outputDir}/cleanEmptyDirectories|${outputDir}/cleanEmptyDirectories2|**
+
+                                ${outputDir}/optionalDependencies|${outputDir}/optionalDependencies2|**/*.class
+                                ${outputDir}/optionalDependencies|${outputDir}/optionalDependencies2|**/*.jar
+                                ${outputDir}/optionalDependencies|${outputDir}/optionalDependencies2|**/*.html
+                                ${outputDir}/optionalDependencies|${outputDir}/optionalDependencies2|**/*.gif
                             </assertEqual>
                             <shouldFailAssertEqual>
                                 ${outputDir}/cleanEmptyDirectories|${outputDir}/cleanEmptyDirectories2
+                                ${outputDir}/optionalDependencies|${outputDir}/optionalDependencies3
                             </shouldFailAssertEqual>
                             <shouldFailAssertFiles>
                                 ${outputDir}/cleanEmptyDirectories2/a/e
@@ -439,9 +488,9 @@
 
                                 ${outputDir}/optionalDependencies/*.pdf
                                 ${outputDir}/optionalDependencies/*.png
-                                ${outputDir}/optionalDependencies2
-                                ${outputDir}/optionalDependencies2/*.pdf
-                                ${outputDir}/optionalDependencies2/*.png
+                                ${outputDir}/optionalDependencies3
+                                ${outputDir}/optionalDependencies3/*.pdf
+                                ${outputDir}/optionalDependencies3/*.png
                             </shouldFailAssertFiles>
                             <assertGroovy>
                                 new File( outputDir, 'latestTestSelect/bb.txt' ).text
@@ -469,7 +518,9 @@
                               ! new File( outputDir, 'cleanEmptyDirectories2/a/e/f' ).isDirectory()
                                 new File( outputDir, 'cleanEmptyDirectories' ).directorySize() == new File( outputDir, 'cleanEmptyDirectories2' ).directorySize()
 
-                                new File( outputDir, 'optionalDependencies' ).directorySize() == 5055913
+                                <!-- Directories size depends on the order of processing <dependencies> -->
+                                new File( outputDir, 'optionalDependencies'  ).directorySize().any{( it == 5055913 ) || ( it == 5056072 )}
+                                new File( outputDir, 'optionalDependencies2' ).directorySize().any{( it == 5055913 ) || ( it == 5056072 )}
                             </assertGroovy>
                         </configuration>
                     </execution>
