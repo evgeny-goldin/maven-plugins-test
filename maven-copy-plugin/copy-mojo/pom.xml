@@ -328,7 +328,7 @@
                                             <groupId>org.jvnet.hudson.plugins</groupId>
                                             <artifactId>greenballs</artifactId>
                                             <version>1.6</version>
-                                            <optional>false</optional>
+                                            <optional>true</optional>
                                             <type>hpi</type>
                                         </dependency>
                                         <dependency>
@@ -371,7 +371,7 @@
                                             <groupId>org.jvnet.hudson.plugins</groupId>
                                             <artifactId>artifactory</artifactId>
                                             <version>1.4.2</version>
-                                            <optional>false</optional>
+                                            <optional>true</optional>
                                             <type>hpi</type>
                                         </dependency>
                                         <dependency>
