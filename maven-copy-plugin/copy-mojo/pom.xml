@@ -159,9 +159,9 @@
                                     <exclude>classpath:/ftp-exclude.txt</exclude>
                                 </resource>
 
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                                <!-- Testing <defaultExcludes> -->
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Testing <defaultExcludes> (http://evgeny-goldin.org/youtrack/issue/pl-278) -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
                                 <resource>
                                     <targetPath>${outputDir}/defaultExcludes</targetPath>
@@ -208,6 +208,39 @@
                                     <targetPath>${outputDir}/defaultExcludesSelect-6</targetPath>
                                     <directory>${outputDir}/defaultExcludes</directory>
                                     <defaultExcludes>**/.git/**</defaultExcludes>
+                                </resource>
+
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Testing "mavenVersion" in Groovy context (http://evgeny-goldin.org/youtrack/issue/pl-266) -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                
+                                <resource>
+                                    <targetPath>${outputDir}/mavenVersion</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <replace>
+                                        <to>{{ mavenVersion }}</to>
+                                        <groovy>true</groovy>
+                                    </replace>
+                                    <destFileName>1.txt</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/mavenVersion/2.txt</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <filter>
+                                        {{
+                                            assert mavenVersion
+                                            assert mavenVersion.startsWith( '2' ) || mavenVersion.startsWith( '3' )
+                                            files
+                                        }}
+                                    </filter>
+                                    <process>
+                                        {{
+                                            assert mavenVersion
+                                            assert mavenVersion.startsWith( '2' ) || mavenVersion.startsWith( '3' )
+                                            files.first().write( mavenVersion )
+                                        }}
+                                    </process>
+                                    <destFileName>1.txt</destFileName>
                                 </resource>
                             </resources>
                         </configuration>
@@ -289,6 +322,12 @@
                                 new File( outputDir, 'defaultExcludesSelect-4' ).list().size() == 2
                                 new File( outputDir, 'defaultExcludesSelect-5' ).list().size() == 1
                                 new File( outputDir, 'defaultExcludesSelect-6' ).list().size() == 3
+
+                                new File( outputDir, 'mavenVersion/1.txt' ).text == new File( outputDir, 'mavenVersion/2.txt' )
+                                new File( outputDir, 'mavenVersion/1.txt' ).text.any{( it.startsWith( '2' )) || ( it.startsWith( '3' ))}
+                                new File( outputDir, 'mavenVersion/2.txt' ).text.any{( it.startsWith( '2' )) || ( it.startsWith( '3' ))}
+                                new File( outputDir, 'mavenVersion/1.txt' ).size() == 5 // '2.2.1' or '3.0.2'
+                                new File( outputDir, 'mavenVersion/2.txt' ).size() == 5
                             </assertGroovy>
                         </configuration>
                     </execution>
