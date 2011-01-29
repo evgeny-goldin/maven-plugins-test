@@ -13,17 +13,21 @@
     <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
 
 
+    <repositories>
+        <repository>
+            <id>libs-repo</id>
+            <url>http://evgeny-goldin.org/artifactory/repo</url>
+            <releases><enabled>true</enabled></releases>
+            <snapshots><enabled>true</enabled></snapshots>
+        </repository>
+    </repositories>
+
+
     <pluginRepositories>
         <pluginRepository>
-            <id>plugins-releases</id>
-            <url>http://evgeny-goldin.org/artifactory/plugins-releases</url>
+            <id>plugins-repo</id>
+            <url>http://evgeny-goldin.org/artifactory/repo</url>
             <releases><enabled>true</enabled></releases>
-            <snapshots><enabled>false</enabled></snapshots>
-        </pluginRepository>
-        <pluginRepository>
-            <id>plugins-snapshots</id>
-            <url>http://evgeny-goldin.org/artifactory/plugins-snapshots</url>
-            <releases><enabled>false</enabled></releases>
             <snapshots><enabled>true</enabled></snapshots>
         </pluginRepository>
     </pluginRepositories>

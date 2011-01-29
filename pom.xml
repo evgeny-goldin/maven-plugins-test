@@ -30,43 +30,22 @@
 
     <repositories>
         <repository>
-            <id>libs-snapshots</id>
-            <url>${artifactory}/libs-snapshots</url>
-            <releases><enabled>false</enabled></releases>
-            <snapshots><enabled>true</enabled></snapshots>
-        </repository>
-        <repository>
-            <id>libs-releases</id>
-            <url>${artifactory}/libs-releases</url>
+            <id>libs-repo</id>
+            <url>${artifactory}/repo</url>
             <releases><enabled>true</enabled></releases>
-            <snapshots><enabled>false</enabled></snapshots>
+            <snapshots><enabled>true</enabled></snapshots>
         </repository>
     </repositories>
 
 
     <pluginRepositories>
         <pluginRepository>
-            <id>plugins-snapshots</id>
-            <url>${artifactory}/plugins-snapshots</url>
-            <releases><enabled>false</enabled></releases>
+            <id>plugins-repo</id>
+            <url>${artifactory}/repo</url>
+            <releases><enabled>true</enabled></releases>
             <snapshots><enabled>true</enabled></snapshots>
         </pluginRepository>
-        <pluginRepository>
-            <id>plugins-releases</id>
-            <url>${artifactory}/plugins-releases</url>
-            <releases><enabled>true</enabled></releases>
-            <snapshots><enabled>false</enabled></snapshots>
-        </pluginRepository>
     </pluginRepositories>
-
-
-    <distributionManagement>
-        <repository>
-            <id>plugins-releases-local</id>
-            <name>plugins-releases-local</name>
-            <url>${artifactory}/plugins-releases-local</url>
-        </repository>
-    </distributionManagement>
 
 
     <build>
