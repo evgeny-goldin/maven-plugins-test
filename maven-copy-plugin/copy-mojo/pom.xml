@@ -23,6 +23,7 @@
     <properties>
         <outputDir>${project.build.outputDirectory}</outputDir>
         <zymicFtp>ftp://evgenyg_zxq:sdaed432e23@evgenyg.zxq.net</zymicFtp>
+        <slowTests>false</slowTests> <!-- Set to "true" in TeamCity project -->
     </properties>
 
 
@@ -128,31 +129,37 @@
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~ -->
 
                                 <resource>
+                                    <runIf>{{ slowTests }}</runIf>
                                     <targetPath>${outputDir}/net-http</targetPath>
                                     <file>http://dl.dropbox.com/u/4820835/search.png</file>
                                 </resource>
                                 <resource>
+                                    <runIf>{{ slowTests }}</runIf>
                                     <targetPath>${outputDir}/net-http</targetPath>
                                     <file>http://dl.dropbox.com/u/4820835/hudson-maven-git-NPE/debugger.png</file>
                                 </resource>
                                 <resource>
+                                    <runIf>{{ slowTests }}</runIf>
                                     <targetPath>${outputDir}/net-ftp/1</targetPath>
                                     <directory>${zymicFtp}:/</directory>
                                     <include>index.html</include>
                                 </resource>
                                 <resource>
+                                    <runIf>{{ slowTests }}</runIf>
                                     <targetPath>${outputDir}/net-ftp/2</targetPath>
                                     <directory>${zymicFtp}:/apache-maven-3.0.1</directory>
                                     <include>lib/no-such-file*.jar</include>
                                     <failIfNotFound>false</failIfNotFound>
                                 </resource>
                                 <resource>
+                                    <runIf>{{ slowTests }}</runIf>
                                     <targetPath>${outputDir}/net-ftp/3</targetPath>
                                     <directory>${zymicFtp}:/apache-maven-3.0.1/lib</directory>
                                     <include>wagon-*.jar</include>
                                     <exclude>wagon-http-*.jar</exclude>
                                 </resource>
                                 <resource>
+                                    <runIf>{{ slowTests }}</runIf>
                                     <targetPath>${outputDir}/net-ftp/4</targetPath>
                                     <directory>${zymicFtp}:/apache-maven-3.0.1</directory>
                                     <include>file:${project.basedir}/src/main/resources/ftp-include.txt</include>
@@ -242,6 +249,22 @@
                                     </process>
                                     <destFileName>2.txt</destFileName>
                                 </resource>
+
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Testing <cleanEmptyDirectories> (http://evgeny-goldin.org/youtrack/issue/pl-286) -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+                                <resource>
+                                    <targetPath>${outputDir}/mavenVersion</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <replace>
+                                        <to>{{ mavenVersion }}</to>
+                                        <groovy>true</groovy>
+                                    </replace>
+                                    <destFileName>1.txt</destFileName>
+                                </resource>
+
+
                             </resources>
                         </configuration>
                     </execution>
@@ -273,15 +296,6 @@
                                 ${outputDir}/runIf/1.txt
                                 ${outputDir}/runIf/3.txt
                                 
-                                ${outputDir}/net-http/search.png
-                                ${outputDir}/net-http/debugger.png
-                                ${outputDir}/net-ftp/1/index.html
-                                ${outputDir}/net-ftp/3/wagon-file-1.0-beta-7.jar
-                                ${outputDir}/net-ftp/3/wagon-provider-api-1.0-beta-7.jar
-                                ${outputDir}/net-ftp/4/mvn
-                                ${outputDir}/net-ftp/4/mvn.bat
-                                ${outputDir}/net-ftp/4/mvnyjp
-
                                 ${outputDir}/defaultExcludesSelect-1/0.txt
                                 ${outputDir}/defaultExcludesSelect-2/0.txt
                                 ${outputDir}/defaultExcludesSelect-2/.svn/1.txt
@@ -308,14 +322,6 @@
                                 
                               ! new File( outputDir, 'failIfNotFound' ).isDirectory()
                                 
-                                new File( outputDir, 'net-http/search.png'   ).size() == 987
-                                new File( outputDir, 'net-http/debugger.png' ).size() == 193080
-                              ! new File( outputDir, 'net-ftp/2' ).isDirectory()
-                                new File( outputDir, 'net-ftp/3' ).list().size()   == 2
-                                new File( outputDir, 'net-ftp/3' ).directorySize() == 64290
-                                new File( outputDir, 'net-ftp/4' ).list().size()   == 3
-                                new File( outputDir, 'net-ftp/4' ).directorySize() == 15438
-
                                 new File( outputDir, 'defaultExcludesSelect-1' ).list().size() == 1
                                 new File( outputDir, 'defaultExcludesSelect-2' ).list().size() == 2
                                 new File( outputDir, 'defaultExcludesSelect-3' ).list().size() == 1
@@ -328,6 +334,35 @@
                                 new File( outputDir, 'mavenVersion/2.txt' ).text.any{( it.startsWith( '2' )) || ( it.startsWith( '3' ))}
                                 new File( outputDir, 'mavenVersion/1.txt' ).size() == 5 // '2.2.1' or '3.0.2'
                                 new File( outputDir, 'mavenVersion/2.txt' ).size() == 5
+                            </assertGroovy>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>assert-copy-mojo-slowTests</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>install</phase>
+                        <configuration>
+                            <runIf>{{ slowTests }}</runIf>
+                            <assertFiles>
+                                ${outputDir}/net-http/search.png
+                                ${outputDir}/net-http/debugger.png
+                                ${outputDir}/net-ftp/1/index.html
+                                ${outputDir}/net-ftp/3/wagon-file-1.0-beta-7.jar
+                                ${outputDir}/net-ftp/3/wagon-provider-api-1.0-beta-7.jar
+                                ${outputDir}/net-ftp/4/mvn
+                                ${outputDir}/net-ftp/4/mvn.bat
+                                ${outputDir}/net-ftp/4/mvnyjp
+                            </assertFiles>
+                            <assertGroovy>
+                                new File( outputDir, 'net-http/search.png'   ).size() == 987
+                                new File( outputDir, 'net-http/debugger.png' ).size() == 193080
+                              ! new File( outputDir, 'net-ftp/2' ).isDirectory()
+                                new File( outputDir, 'net-ftp/3' ).list().size()   == 2
+                                new File( outputDir, 'net-ftp/3' ).directorySize() == 64290
+                                new File( outputDir, 'net-ftp/4' ).list().size()   == 3
+                                new File( outputDir, 'net-ftp/4' ).directorySize() == 15438
                             </assertGroovy>
                         </configuration>
                     </execution>
