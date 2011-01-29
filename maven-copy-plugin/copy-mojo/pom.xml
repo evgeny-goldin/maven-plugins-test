@@ -224,7 +224,7 @@
                                     <destFileName>1.txt</destFileName>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/mavenVersion/2.txt</targetPath>
+                                    <targetPath>${outputDir}/mavenVersion</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <filter>
                                         {{
@@ -240,7 +240,7 @@
                                             files.first().write( mavenVersion )
                                         }}
                                     </process>
-                                    <destFileName>1.txt</destFileName>
+                                    <destFileName>2.txt</destFileName>
                                 </resource>
                             </resources>
                         </configuration>
