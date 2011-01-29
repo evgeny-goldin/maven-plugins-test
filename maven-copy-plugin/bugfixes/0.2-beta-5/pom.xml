@@ -177,6 +177,12 @@
                                     <dependenciesAtM2>true</dependenciesAtM2>
                                     <unpack>true</unpack>
                                     <preservePath>true</preservePath>
+                                    <filter>
+                                        {{
+                                            assert files.every{ it.canonicalPath.contains( '.m2' ) }
+                                            files
+                                        }}
+                                    </filter>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-284/unpack-2</targetPath>
@@ -231,6 +237,12 @@
                                     <dependenciesAtM2>true</dependenciesAtM2>
                                     <unpack>true</unpack>
                                     <preservePath>true</preservePath>
+                                    <filter>
+                                        {{
+                                            assert files.every{ it.canonicalPath.contains( '.m2' ) }
+                                            files
+                                        }}
+                                    </filter>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-284/unpack-4</targetPath>
