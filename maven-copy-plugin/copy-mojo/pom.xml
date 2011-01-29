@@ -323,7 +323,7 @@
                                 new File( outputDir, 'defaultExcludesSelect-5' ).list().size() == 1
                                 new File( outputDir, 'defaultExcludesSelect-6' ).list().size() == 3
 
-                                new File( outputDir, 'mavenVersion/1.txt' ).text == new File( outputDir, 'mavenVersion/2.txt' )
+                                new File( outputDir, 'mavenVersion/1.txt' ).text == new File( outputDir, 'mavenVersion/2.txt' ).text
                                 new File( outputDir, 'mavenVersion/1.txt' ).text.any{( it.startsWith( '2' )) || ( it.startsWith( '3' ))}
                                 new File( outputDir, 'mavenVersion/2.txt' ).text.any{( it.startsWith( '2' )) || ( it.startsWith( '3' ))}
                                 new File( outputDir, 'mavenVersion/1.txt' ).size() == 5 // '2.2.1' or '3.0.2'
