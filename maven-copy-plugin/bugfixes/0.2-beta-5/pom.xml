@@ -263,6 +263,89 @@
                             </resources>
                         </configuration>
                     </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-260: "endOfLine" in <replace> - do nothing by default" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-260</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/endOfLine</targetPath>
+                                    <dependency>
+                                        <groupId>org.jvnet.hudson.plugins</groupId>
+                                        <artifactId>artifactory</artifactId>
+                                        <version>1.4.2</version>
+                                        <type>hpi</type>
+                                    </dependency>
+                                    <stripVersion>true</stripVersion>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/endOfLine</targetPath>
+                                    <dependency>
+                                        <groupId>org.jvnet.hudson.plugins</groupId>
+                                        <artifactId>artifactory</artifactId>
+                                        <version>1.4.1</version>
+                                        <type>hpi</type>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/endOfLine/unpack</targetPath>
+                                    <file>${outputDir}/endOfLine/artifactory-1.4.1.hpi</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/endOfLine/unpack</targetPath>
+                                    <file>${outputDir}/endOfLine/artifactory.hpi</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/endOfLine/staplers1</targetPath>
+                                    <directory>${outputDir}/endOfLine/unpack</directory>
+                                    <include>**/*.stapler</include>
+                                    <preservePath>true</preservePath>
+                                    <replace>
+                                        <from>constructor</from>
+                                        <to>{{ 'cons' + 'tructor' }}</to>
+                                        <failIfNotFound>false</failIfNotFound>
+                                        <groovy>true</groovy>
+                                    </replace>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/endOfLine/staplers2</targetPath>
+                                    <directory>${outputDir}/endOfLine/unpack</directory>
+                                    <includes>
+                                        <include>**/*.stapler</include>
+                                    </includes>
+                                    <preservePath>true</preservePath>
+                                    <replace>
+                                        <from>constructor</from>
+                                        <to>{{ "constructor" }}</to>
+                                        <failIfNotFound>false</failIfNotFound>
+                                        <groovy>true</groovy>
+                                        <endOfLine>windows</endOfLine>
+                                    </replace>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/endOfLine/staplers3</targetPath>
+                                    <directory>${outputDir}/endOfLine/unpack</directory>
+                                    <include>**/*.stapler</include>
+                                    <preservePath>true</preservePath>
+                                    <replace>
+                                        <from>constructor</from>
+                                        <to>{{ "con" + "struct" + "or" }}</to>
+                                        <failIfNotFound>false</failIfNotFound>
+                                        <groovy>true</groovy>
+                                        <endOfLine>unix</endOfLine>
+                                    </replace>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 
@@ -326,6 +409,41 @@
                                 new File( outputDir, 'pl-284/unpack-2' ).directorySize() == 68419140
                                 new File( outputDir, 'pl-284/unpack-3' ).directorySize() == 658403
                                 new File( outputDir, 'pl-284/unpack-4' ).directorySize() == 658403
+                            </assertGroovy>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-260 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-260</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/endOfLine/staplers1/WEB-INF/classes/org/jfrog/hudson/*.stapler
+                                ${outputDir}/endOfLine/staplers2/WEB-INF/classes/org/jfrog/hudson/*.stapler
+                                ${outputDir}/endOfLine/staplers3/WEB-INF/classes/org/jfrog/hudson/*.stapler
+                            </assertFiles>
+                            <assertEqual>
+                                ${outputDir}/endOfLine/unpack|${outputDir}/endOfLine/staplers1|**/*.stapler
+                                ${outputDir}/endOfLine/staplers1|${outputDir}/endOfLine/staplers2|**/*.stapler
+                            </assertEqual>
+                            <shouldFailAssertEqual>
+                                ${outputDir}/endOfLine/staplers2|${outputDir}/endOfLine/staplers3|**/*.stapler
+                            </shouldFailAssertEqual>
+                            <assertGroovy>
+                                new File( outputDir, 'endOfLine/staplers1/WEB-INF/classes/org/jfrog/hudson' ).listFiles().findAll{ it.isFile() }.every{ it.text.contains( '\r\n' ) }
+                                new File( outputDir, 'endOfLine/staplers2/WEB-INF/classes/org/jfrog/hudson' ).listFiles().findAll{ it.isFile() }.every{ it.text.contains( '\r\n' ) }
+                                new File( outputDir, 'endOfLine/staplers3/WEB-INF/classes/org/jfrog/hudson' ).listFiles().findAll{ it.isFile() }.every{ ! it.text.contains( '\r\n' ) }
+                                new File( outputDir, 'endOfLine/staplers3/WEB-INF/classes/org/jfrog/hudson' ).listFiles().findAll{ it.isFile() }.every{ it.text.contains( '\n' ) }
+
+                                new File( outputDir, 'endOfLine'           ).directorySize() == 13847886
+                                new File( outputDir, 'endOfLine/staplers1' ).directorySize() == 1752
+                                new File( outputDir, 'endOfLine/staplers2' ).directorySize() == 1752
+                                new File( outputDir, 'endOfLine/staplers3' ).directorySize() == 1732
                             </assertGroovy>
                         </configuration>
                     </execution>
