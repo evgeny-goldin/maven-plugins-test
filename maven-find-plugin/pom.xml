@@ -28,12 +28,26 @@
                 <version>${maven-find-plugin-version}</version>
                 <executions>
                     <execution>
-                        <id>find-maven-plugins-test</id>
+                        <id>find-maven-plugins-test-windows</id>
                         <goals>
                             <goal>find</goal>
                         </goals>
                         <phase>initialize</phase>
                         <configuration>
+                            <runIf>{{ osName.toLowerCase().contains( 'windows' ) }}</runIf>
+                            <file>maven-plugins-test</file>
+                            <propertyName>mavenPluginsTest</propertyName>
+                            <sysPropertyName>mavenPluginsTest</sysPropertyName>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>find-maven-plugins-test-unix</id>
+                        <goals>
+                            <goal>find</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <runIf>{{ osName.toLowerCase().contains( 'unix' ) }}</runIf>
                             <file>maven-plugins-test</file>
                             <propertyName>mavenPluginsTest</propertyName>
                             <sysPropertyName>mavenPluginsTest</sysPropertyName>
