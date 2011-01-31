@@ -15,16 +15,18 @@
 
     <properties>
         <artifactory>http://evgeny-goldin.org/artifactory</artifactory>
-        <maven-hudson-plugin-version>0.2-SNAPSHOT</maven-hudson-plugin-version>
-        <maven-assert-plugin-version>0.2-SNAPSHOT</maven-assert-plugin-version>
-        <maven-copy-plugin-version>0.2-SNAPSHOT</maven-copy-plugin-version>
-        <maven-properties-plugin-version>0.2-SNAPSHOT</maven-properties-plugin-version>
         <spring-version>3.0.5.RELEASE</spring-version>
         <junit-version>4.8.2</junit-version>
         <log4j-version>1.2.16</log4j-version>
         <jaxen-version>1.1.1</jaxen-version>
         <gmaven-version>1.3</gmaven-version>
         <groovy-version>1.8.0-beta-3</groovy-version>
+
+        <maven-hudson-plugin-version>0.2-SNAPSHOT</maven-hudson-plugin-version>
+        <maven-assert-plugin-version>0.2-SNAPSHOT</maven-assert-plugin-version>
+        <maven-copy-plugin-version>0.2-SNAPSHOT</maven-copy-plugin-version>
+        <maven-properties-plugin-version>0.2-SNAPSHOT</maven-properties-plugin-version>
+        <maven-find-plugin-version>0.2-SNAPSHOT</maven-find-plugin-version>
     </properties>
 
 
@@ -173,6 +175,7 @@ Groovy [$GroovySystem.version], [$date] - testing plugin versions:
         <module>maven-hudson-plugin</module>
         <module>maven-copy-plugin</module>
         <module>maven-properties-plugin</module>
+        <module>maven-find-plugin</module>
     </modules>
 
 </project>

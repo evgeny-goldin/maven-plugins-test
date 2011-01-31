@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns              = "http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi          = "http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0
+                               http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+    <artifactId>maven-find-plugin</artifactId>
+    <packaging>jar</packaging>
+    <version>0.1-SNAPSHOT</version>
+    <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
+
+
+    <parent>
+        <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+        <artifactId>main.tests</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-find-plugin</artifactId>
+                <version>${maven-find-plugin-version}</version>
+                <executions>
+                    <execution>
+                        <id>find-maven-plugins-test</id>
+                        <goals>
+                            <goal>find</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <file>maven-plugins-test</file>
+                            <propertyName>mavenPluginsTest</propertyName>
+                            <sysPropertyName>mavenPluginsTest</sysPropertyName>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>find-maven-plugins-test2</id>
+                        <goals>
+                            <goal>find</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <file>maven-plugins-test-aaaa</file>
+                            <propertyName>mavenPluginsTestAaaa</propertyName>
+                            <sysPropertyName>mavenPluginsTestAaaa</sysPropertyName>
+                            <failIfNotFound>false</failIfNotFound>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-assert-plugin</artifactId>
+                <version>${maven-assert-plugin-version}</version>
+                <executions>
+                    <execution>
+                        <id>check-maven-plugins-test</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${mavenPluginsTest}/pom.xml
+                                ${mavenPluginsTest}/README.txt
+                                ${mavenPluginsTest}/maven-copy-plugin
+                                ${mavenPluginsTest}/maven-copy-plugin/bugfixes/0.2-beta-5/pom.xml
+                                ${mavenPluginsTest}/maven-find-plugin
+                                ${mavenPluginsTest}/maven-find-plugin/pom.xml
+                                ${mavenPluginsTest}/maven-hudson-plugin
+                                ${mavenPluginsTest}/maven-hudson-plugin/bugfixes-0.2-beta-2/src/test/resources/configs/pl-18/config.xml
+                                ${mavenPluginsTest}/maven-properties-plugin
+                                ${mavenPluginsTest}/maven-properties-plugin/bugfixes/0.2-beta-5/pom.xml
+                            </assertFiles>
+                            <assertGroovy>
+                                mavenPluginsTest
+                                new File( mavenPluginsTest ).isDirectory()
+                                new File( mavenPluginsTest, 'maven-copy-plugin/bugfixes/0.2-beta-5/pom.xml' ).isFile()
+                                mavenPluginsTest == System.properties.mavenPluginsTest
+                            </assertGroovy>
+                            <shouldFailAssertFiles>
+                                ${mavenPluginsTest}/pom2.xml
+                                ${mavenPluginsTest}/pom3.xml
+                                ${mavenPluginsTest}/aaa
+                                ${mavenPluginsTest}/*.exe
+                            </shouldFailAssertFiles>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
