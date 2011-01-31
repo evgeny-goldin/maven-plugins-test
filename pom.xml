@@ -161,6 +161,7 @@ Groovy [$GroovySystem.version], [$date] - testing plugin versions:
 * maven-hudson-plugin-version     : "${maven-hudson-plugin-version}"
 * maven-assert-plugin-version     : "${maven-assert-plugin-version}"
 * maven-properties-plugin-version : "${maven-properties-plugin-version}"
+* maven-find-plugin-version       : "${maven-find-plugin-version}"
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"""
                             </source>
                         </configuration>
