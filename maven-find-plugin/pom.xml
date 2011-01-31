@@ -47,7 +47,7 @@
                         </goals>
                         <phase>initialize</phase>
                         <configuration>
-                            <runIf>{{ osName.toLowerCase().contains( 'unix' ) }}</runIf>
+                            <runIf>{{ osName.toLowerCase().contains( 'linux' ) }}</runIf>
                             <file>maven-plugins-test</file>
                             <propertyName>mavenPluginsTest</propertyName>
                             <sysPropertyName>mavenPluginsTest</sysPropertyName>
