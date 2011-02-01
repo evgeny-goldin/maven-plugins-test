@@ -476,6 +476,7 @@
                                                 files.first().append( message + lineSeparator )
                                             }
 
+                                            check( 'mavenVersion',               mavenVersion )
                                             check( 'javaVersion',                javaVersion )
                                             check( 'javaVendor',                 javaVendor )
                                             check( 'javaVendorUrl',              javaVendorUrl )
