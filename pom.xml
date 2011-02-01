@@ -27,6 +27,7 @@
         <maven-copy-plugin-version>0.2-SNAPSHOT</maven-copy-plugin-version>
         <maven-properties-plugin-version>0.2-SNAPSHOT</maven-properties-plugin-version>
         <maven-find-plugin-version>0.2-SNAPSHOT</maven-find-plugin-version>
+        <maven-timestamp-plugin-version>0.2-SNAPSHOT</maven-timestamp-plugin-version>
     </properties>
 
 
@@ -162,7 +163,8 @@ Groovy [$GroovySystem.version], [$date] - testing plugin versions:
 * maven-assert-plugin-version     : "${maven-assert-plugin-version}"
 * maven-properties-plugin-version : "${maven-properties-plugin-version}"
 * maven-find-plugin-version       : "${maven-find-plugin-version}"
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"""
+* maven-timestamp-plugin-version  : "${maven-timestamp-plugin-version}"
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"""
                             </source>
                         </configuration>
                     </execution>
@@ -177,6 +179,7 @@ Groovy [$GroovySystem.version], [$date] - testing plugin versions:
         <module>maven-copy-plugin</module>
         <module>maven-properties-plugin</module>
         <module>maven-find-plugin</module>
+        <module>maven-timestamp-plugin</module>
     </modules>
 
 </project>
