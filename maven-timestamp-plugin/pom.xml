@@ -56,6 +56,17 @@
                                     <timezone>GMT+2</timezone>
                                     <locale>US</locale>
                                 </timestamp>
+                                <timestamp>
+                                    <property>zeroMonthFr</property>
+                                    <pattern>MMMM</pattern>
+                                    <timezone>CET</timezone> <!-- "Central European Time" -->
+                                    <locale>fr</locale>
+                                </timestamp>
+                                <timestamp>
+                                    <property>zeroMonthHe</property>
+                                    <pattern>MMMM</pattern>
+                                    <locale>he</locale>
+                                </timestamp>
                             </timestamps>
                         </configuration>
                     </execution>
@@ -105,6 +116,8 @@
                                 zeroDateIsrael == '01-01-1970'
                                 zeroTime       == '00:00:00'
                                 zeroTimeIsrael == '02:00:00'
+                                zeroMonthFr    == 'janvier'
+                                zeroMonthHe    == 'ינואר'
                                 nowTimestamp   ==~ /^\d{2} \w+ \d{4}, \d{2}:\d{2}:\d{2}$/ /* "01 February 2011, 00:23:49" */
                                 ( nowYear4D as int ) >= 2011
                                 ( nowYear2D as int ) >= 11 /* This test will fail in year 3000 */
