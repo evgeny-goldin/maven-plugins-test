@@ -220,7 +220,7 @@
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <!-- Testing "mavenVersion" in Groovy context (http://evgeny-goldin.org/youtrack/issue/pl-266) -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                                
+
                                 <resource>
                                     <targetPath>${outputDir}/mavenVersion</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
@@ -454,6 +454,63 @@
                                     </excludes>
                                     <verbose>false</verbose>
                                 </resource>
+
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Testing System properties and some Environment variables -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+                                <resource>
+                                    <targetPath>${outputDir}/systemProperties</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <replace>
+                                        <to><!-- Nothing --></to>
+                                    </replace>
+                                    <destFileName>oppa.txt</destFileName>
+                                    <process>
+                                        {{
+                                            def check ( name, value )
+                                            {
+                                                assert value
+                                                def message = "[$name]".padRight( 30 ) + " = [$value]"
+                                                println message
+                                                files.first().append( message + lineSeparator )
+                                            }
+
+                                            check( 'javaVersion',                javaVersion )
+                                            check( 'javaVendor',                 javaVendor )
+                                            check( 'javaVendorUrl',              javaVendorUrl )
+                                            check( 'javaHome',                   javaHome )
+                                            check( 'javaVmSpecificationVersion', javaVmSpecificationVersion )
+                                            check( 'javaVmSpecificationVendor',  javaVmSpecificationVendor )
+                                            check( 'javaVmSpecificationName',    javaVmSpecificationName )
+                                            check( 'javaVmVersion',              javaVmVersion )
+                                            check( 'javaVmVendor',               javaVmVendor )
+                                            check( 'javaVmName',                 javaVmName )
+                                            check( 'javaSpecificationVersion',   javaSpecificationVersion )
+                                            check( 'javaSpecificationVendor',    javaSpecificationVendor )
+                                            check( 'javaSpecificationName',      javaSpecificationName )
+                                            check( 'javaClassVersion',           javaClassVersion )
+                                            check( 'javaClassPath',              javaClassPath )
+                                            check( 'javaLibraryPath',            javaLibraryPath )
+                                            check( 'javaIoTmpdir',               javaIoTmpdir )
+                                            <!--check( 'javaCompiler',               javaCompiler )-->
+                                            check( 'javaExtDirs',                javaExtDirs )
+                                            check( 'osName',                     osName )
+                                            check( 'osArch',                     osArch )
+                                            check( 'osVersion',                  osVersion )
+                                            check( 'fileSeparator',              fileSeparator )
+                                            check( 'pathSeparator',              pathSeparator )
+                                            check( 'lineSeparator',              lineSeparator )
+                                            check( 'userName',                   userName )
+                                            check( 'userHome',                   userHome )
+                                            check( 'userDir',                    userDir )
+
+                                            check( 'M2_HOME',                    envM2_HOME )
+                                            check( 'JAVA_HOME',                  envJAVA_HOME )
+                                            check( 'PATH',                       envPATH )
+                                        }}
+                                    </process>
+                                </resource>
                             </resources>
                         </configuration>
                     </execution>
@@ -481,10 +538,10 @@
                         <configuration>
                             <assertFiles>
                                 ${outputDir}/latestTestSelect/bb.txt
-                                
+
                                 ${outputDir}/runIf/1.txt
                                 ${outputDir}/runIf/3.txt
-                                
+
                                 ${outputDir}/defaultExcludesSelect/1/0.txt
                                 ${outputDir}/defaultExcludesSelect/2/0.txt
                                 ${outputDir}/defaultExcludesSelect/2/.svn/1.txt
@@ -535,6 +592,8 @@
                                 ${outputDir}/mkdir/qqq/ccc/vvv
                                 ${outputDir}/mkdir/qqq/ccc/vvv/bbb
                                 ${outputDir}/mkdir/qqq/ccc/vvv/bbb/ggg
+
+                                ${outputDir}/systemProperties/oppa.txt
                             </assertFiles>
                             <assertEqual>
                                 ${outputDir}/defaultExcludesSelect/1|${outputDir}/defaultExcludesSelect/3
@@ -574,15 +633,17 @@
                                 ${outputDir}/optionalDependencies3
                                 ${outputDir}/optionalDependencies3/*.pdf
                                 ${outputDir}/optionalDependencies3/*.png
+
+                                ${outputDir}/systemProperties/opa.txt
                             </shouldFailAssertFiles>
                             <assertGroovy>
                                 new File( outputDir, 'latestTestSelect/bb.txt' ).text
                               ! new File( outputDir, 'runIf/1.txt' ).text
                                 new File( outputDir, 'runIf/3.txt' ).text
                                 new File( outputDir, 'runIf' ).list().size() == 2
-                                
+
                               ! new File( outputDir, 'failIfNotFound' ).isDirectory()
-                                
+
                                 new File( outputDir, 'defaultExcludesSelect/1' ).list().size() == 1
                                 new File( outputDir, 'defaultExcludesSelect/2' ).list().size() == 2
                                 new File( outputDir, 'defaultExcludesSelect/3' ).list().size() == 1
@@ -611,6 +672,14 @@
                                 new File( outputDir, 'patternsUpdate/1' ).directorySize() == ( 14945298 / 3 )
                                 new File( outputDir, 'patternsUpdate/2' ).directorySize() == ( 14945298 / 3 )
                                 new File( outputDir, 'patternsUpdate/3' ).directorySize() == ( 14945298 / 3 )
+
+                                new File( outputDir, 'systemProperties/oppa.txt' ).isFile()
+                                new File( outputDir, 'systemProperties/oppa.txt' ).size() > 0
+                                new File( outputDir, 'systemProperties/oppa.txt' ).text.contains( 'M2_HOME' )
+                                new File( outputDir, 'systemProperties/oppa.txt' ).text.contains( 'JAVA_HOME' )
+                                new File( outputDir, 'systemProperties/oppa.txt' ).text.contains( 'userName' )
+                                new File( outputDir, 'systemProperties/oppa.txt' ).text.contains( 'javaVersion' )
+                                new File( outputDir, 'systemProperties/oppa.txt' ).text.contains( 'javaVmName' )
                             </assertGroovy>
                         </configuration>
                     </execution>
