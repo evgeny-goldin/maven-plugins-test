@@ -665,10 +665,6 @@
 
                                 new File( outputDir, 'mkdir' ).directorySize() == 0
 
-                                new File( outputDir, 'patternsUpdate' ).directorySize()   == ( 14945298 / 1 )
-                                new File( outputDir, 'patternsUpdate/1' ).directorySize() == ( 14945298 / 3 )
-                                new File( outputDir, 'patternsUpdate/2' ).directorySize() == ( 14945298 / 3 )
-
                                 new File( outputDir, 'systemProperties/oppa.txt' ).isFile()
                                 new File( outputDir, 'systemProperties/oppa.txt' ).size() > 0
                                 new File( outputDir, 'systemProperties/oppa.txt' ).text.contains( 'M2_HOME' )
@@ -724,6 +720,9 @@
                                 ${outputDir}/patternsUpdate/1|${outputDir}/patternsUpdate/3|**/*.*
                             </assertEqual>
                             <assertGroovy>
+                                new File( outputDir, 'patternsUpdate' ).directorySize()   == ( 14945298 / 1 )
+                                new File( outputDir, 'patternsUpdate/1' ).directorySize() == ( 14945298 / 3 )
+                                new File( outputDir, 'patternsUpdate/2' ).directorySize() == ( 14945298 / 3 )
                                 new File( outputDir, 'patternsUpdate/3' ).directorySize() == ( 14945298 / 3 )
                             </assertGroovy>
                         </configuration>
