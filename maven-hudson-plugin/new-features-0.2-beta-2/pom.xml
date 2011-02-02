@@ -222,9 +222,9 @@
                                         <maven>
                                             <mavenName>apache-maven-2.2.1</mavenName>
                                             <properties>
-                                                maven-hudson-plugin-version = 0.3-SNAPSHOT
-                                                maven-assert-plugin-version = 0.3-SNAPSHOT
-                                                maven-copy-plugin-version   = 0.3-SNAPSHOT
+                                                maven-hudson-plugin-version = 0.2
+                                                maven-assert-plugin-version = 0.2
+                                                maven-copy-plugin-version   = 0.2
                                             </properties>
                                         </maven>
                                     </tasks>
