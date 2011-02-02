@@ -22,12 +22,12 @@
         <gmaven-version>1.3</gmaven-version>
         <groovy-version>1.8.0-beta-3</groovy-version>
 
-        <maven-hudson-plugin-version>0.2-SNAPSHOT</maven-hudson-plugin-version>
-        <maven-assert-plugin-version>0.2-SNAPSHOT</maven-assert-plugin-version>
-        <maven-copy-plugin-version>0.2-SNAPSHOT</maven-copy-plugin-version>
-        <maven-properties-plugin-version>0.2-SNAPSHOT</maven-properties-plugin-version>
-        <maven-find-plugin-version>0.2-SNAPSHOT</maven-find-plugin-version>
-        <maven-timestamp-plugin-version>0.2-SNAPSHOT</maven-timestamp-plugin-version>
+        <maven-hudson-plugin-version>0.3-SNAPSHOT</maven-hudson-plugin-version>
+        <maven-assert-plugin-version>0.3-SNAPSHOT</maven-assert-plugin-version>
+        <maven-copy-plugin-version>0.3-SNAPSHOT</maven-copy-plugin-version>
+        <maven-properties-plugin-version>0.3-SNAPSHOT</maven-properties-plugin-version>
+        <maven-find-plugin-version>0.3-SNAPSHOT</maven-find-plugin-version>
+        <maven-timestamp-plugin-version>0.3-SNAPSHOT</maven-timestamp-plugin-version>
     </properties>
 
 
