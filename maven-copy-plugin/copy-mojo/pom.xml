@@ -159,7 +159,7 @@
                                     <exclude>wagon-http-*.jar</exclude>
                                 </resource>
                                 <resource>
-                                    <runIf>{{ slowTests }}</runIf>
+                                    <runIf>{{ slowTests &amp;&amp; mavenVersion.startsWith( '3' ) }}</runIf>
                                     <targetPath>${outputDir}/net-ftp/4</targetPath>
                                     <directory>${zymicFtp}:/apache-maven-3.0.1</directory>
                                     <include>file:${project.basedir}/src/main/resources/ftp-include.txt</include>
