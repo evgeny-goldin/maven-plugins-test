@@ -689,9 +689,6 @@
                                 ${outputDir}/net-ftp/1/index.html
                                 ${outputDir}/net-ftp/3/wagon-file-1.0-beta-7.jar
                                 ${outputDir}/net-ftp/3/wagon-provider-api-1.0-beta-7.jar
-                                ${outputDir}/net-ftp/4/mvn
-                                ${outputDir}/net-ftp/4/mvn.bat
-                                ${outputDir}/net-ftp/4/mvnyjp
                             </assertFiles>
                             <assertGroovy>
                                 new File( outputDir, 'net-http/search.png'   ).size() == 987
@@ -699,8 +696,6 @@
                               ! new File( outputDir, 'net-ftp/2' ).isDirectory()
                                 new File( outputDir, 'net-ftp/3' ).list().size()   == 2
                                 new File( outputDir, 'net-ftp/3' ).directorySize() == 64290
-                                new File( outputDir, 'net-ftp/4' ).list().size()   == 3
-                                new File( outputDir, 'net-ftp/4' ).directorySize() == 15438
                             </assertGroovy>
                         </configuration>
                     </execution>
@@ -712,6 +707,11 @@
                         <phase>install</phase>
                         <configuration>
                             <runIf>{{ mavenVersion.startsWith( '3' ) }}</runIf>
+                            <assertFiles>
+                                ${outputDir}/net-ftp/4/mvn
+                                ${outputDir}/net-ftp/4/mvn.bat
+                                ${outputDir}/net-ftp/4/mvnyjp
+                            </assertFiles>
                             <assertEqual>
                                 ${outputDir}/patternsUpdate/2|${outputDir}/patternsUpdate/3
                                 ${outputDir}/patternsUpdate/1|${outputDir}/patternsUpdate/3
@@ -720,6 +720,9 @@
                                 ${outputDir}/patternsUpdate/1|${outputDir}/patternsUpdate/3|**/*.*
                             </assertEqual>
                             <assertGroovy>
+                                new File( outputDir, 'net-ftp/4' ).list().size()   == 3
+                                new File( outputDir, 'net-ftp/4' ).directorySize() == 15438
+
                                 new File( outputDir, 'patternsUpdate' ).directorySize()   == ( 14945298 / 1 )
                                 new File( outputDir, 'patternsUpdate/1' ).directorySize() == ( 14945298 / 3 )
                                 new File( outputDir, 'patternsUpdate/2' ).directorySize() == ( 14945298 / 3 )
