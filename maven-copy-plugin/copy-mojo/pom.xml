@@ -436,6 +436,7 @@
                                     <verbose>false</verbose>
                                 </resource>
                                 <resource>
+                                    <runIf>{{ mavenVersion.startsWith( '3' ) }}</runIf>
                                     <targetPath>${outputDir}/patternsUpdate/3</targetPath>
                                     <directory>${outputDir}/patternsUpdate/1</directory>
                                     <preservePath>true</preservePath>
