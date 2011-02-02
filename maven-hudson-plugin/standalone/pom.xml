@@ -39,7 +39,7 @@
             <plugin>
                 <groupId>com.goldin.plugins</groupId>
                 <artifactId>maven-hudson-plugin</artifactId>
-                <version>0.2-SNAPSHOT</version>
+                <version>0.3-SNAPSHOT</version>
                 <executions>
                     <execution>
                         <id>generate-hudson-jobs</id>
