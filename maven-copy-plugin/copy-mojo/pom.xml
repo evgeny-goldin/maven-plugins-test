@@ -159,7 +159,7 @@
                                     <exclude>wagon-http-*.jar</exclude>
                                 </resource>
                                 <resource>
-                                    <runIf>{{ slowTests &amp;&amp; ( ! mavenVersion.startsWith( '2' )) }}</runIf>
+                                    <runIf>{{ Boolean.valueOf( slowTests ) &amp;&amp; mavenVersion.startsWith( '3' ) }}</runIf>
                                     <targetPath>${outputDir}/net-ftp/4</targetPath>
                                     <directory>${zymicFtp}:/apache-maven-3.0.1</directory>
                                     <include>file:${project.basedir}/src/main/resources/ftp-include.txt</include>
@@ -436,7 +436,7 @@
                                     <verbose>false</verbose>
                                 </resource>
                                 <resource>
-                                    <runIf>{{ ! mavenVersion.startsWith( '2' ) }}</runIf>
+                                    <runIf>{{ mavenVersion.startsWith( '3' ) }}</runIf>
                                     <targetPath>${outputDir}/patternsUpdate/3</targetPath>
                                     <directory>${outputDir}/patternsUpdate/1</directory>
                                     <preservePath>true</preservePath>
@@ -700,13 +700,13 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>assert-copy-mojo-not-maven2</id>
+                        <id>assert-copy-mojo-maven3</id>
                         <goals>
                             <goal>assert</goal>
                         </goals>
                         <phase>install</phase>
                         <configuration>
-                            <runIf>{{ ! mavenVersion.startsWith( '2' ) }}</runIf>
+                            <runIf>{{ mavenVersion.startsWith( '3' ) }}</runIf>
                             <assertFiles>
                                 ${outputDir}/net-ftp/4/mvn
                                 ${outputDir}/net-ftp/4/mvn.bat
