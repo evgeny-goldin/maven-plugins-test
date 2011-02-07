@@ -152,25 +152,6 @@
                                     <exclude>classpath:/ftp-exclude.txt</exclude>
                                 </resource>
 
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                                <!-- Testing "{{latest}}" filter - (2) -->
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-
-                                <resource>
-                                    <targetPath>${outputDir}/latestTest</targetPath>
-                                    <file>${project.basedir}/pom.xml</file>
-                                    <replace>
-                                        <to>{{ new Date() }}</to>
-                                        <groovy>true</groovy>
-                                    </replace>
-                                    <destFileName>bb.txt</destFileName>
-                                </resource>
-                                <resource>
-                                    <targetPath>${outputDir}/latestTestSelect</targetPath>
-                                    <directory>${outputDir}/latestTest</directory>
-                                    <filter>{{latest}}</filter>
-                                </resource>
-
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <!-- Testing <defaultExcludes> (http://evgeny-goldin.org/youtrack/issue/pl-278) -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -517,6 +498,25 @@
                                             check( 'PATH',                       envPATH )
                                         }}
                                     </process>
+                                </resource>
+
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Testing "{{latest}}" filter - (2) -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+                                <resource>
+                                    <targetPath>${outputDir}/latestTest</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <replace>
+                                        <to>{{ new Date() }}</to>
+                                        <groovy>true</groovy>
+                                    </replace>
+                                    <destFileName>bb.txt</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/latestTestSelect</targetPath>
+                                    <directory>${outputDir}/latestTest</directory>
+                                    <filter>{{latest}}</filter>
                                 </resource>
                             </resources>
                         </configuration>
