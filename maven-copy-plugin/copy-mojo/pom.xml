@@ -55,9 +55,9 @@
                         <configuration>
                             <resources>
 
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                                <!-- Testing "{{latest}}" filter -->
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Testing "{{latest}}" filter - (1) -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
                                 <resource>
                                     <targetPath>${outputDir}/latestTest</targetPath>
@@ -67,20 +67,6 @@
                                         <groovy>true</groovy>
                                     </replace>
                                     <destFileName>aa.txt</destFileName>
-                                </resource>
-                                <resource>
-                                    <targetPath>${outputDir}/latestTest</targetPath>
-                                    <file>${project.basedir}/pom.xml</file>
-                                    <replace>
-                                        <to>{{ new Date() }}</to>
-                                        <groovy>true</groovy>
-                                    </replace>
-                                    <destFileName>bb.txt</destFileName>
-                                </resource>
-                                <resource>
-                                    <targetPath>${outputDir}/latestTestSelect</targetPath>
-                                    <directory>${outputDir}/latestTest</directory>
-                                    <filter>{{latest}}</filter>
                                 </resource>
 
                                 <!-- ~~~~~~~~~~~~~~~~~ -->
@@ -164,6 +150,25 @@
                                     <directory>${zymicFtp}:/apache-maven-3.0.1</directory>
                                     <include>file:${project.basedir}/src/main/resources/ftp-include.txt</include>
                                     <exclude>classpath:/ftp-exclude.txt</exclude>
+                                </resource>
+
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Testing "{{latest}}" filter - (2) -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+                                <resource>
+                                    <targetPath>${outputDir}/latestTest</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <replace>
+                                        <to>{{ new Date() }}</to>
+                                        <groovy>true</groovy>
+                                    </replace>
+                                    <destFileName>bb.txt</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/latestTestSelect</targetPath>
+                                    <directory>${outputDir}/latestTest</directory>
+                                    <filter>{{latest}}</filter>
                                 </resource>
 
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
