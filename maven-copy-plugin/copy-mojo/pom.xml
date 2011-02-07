@@ -706,7 +706,7 @@
                         </goals>
                         <phase>install</phase>
                         <configuration>
-                            <runIf>{{ ! mavenVersion.startsWith( '2' ) }}</runIf>
+                            <runIf>{{ Boolean.valueOf( slowTests ) &amp;&amp; ( ! mavenVersion.startsWith( '2' )) }}</runIf>
                             <assertFiles>
                                 ${outputDir}/net-ftp/4/mvn
                                 ${outputDir}/net-ftp/4/mvn.bat
