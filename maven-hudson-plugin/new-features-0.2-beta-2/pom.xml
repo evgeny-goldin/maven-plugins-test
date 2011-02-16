@@ -44,7 +44,7 @@
                         <configuration>
                             <outputDirectory>${configs-outputDirectory}</outputDirectory>
                             <generationPom>http://github.com/evgeny-goldin/maven-plugins-test/blob/master/maven-hudson-plugin/new-features-0.2-beta-2/pom.xml</generationPom>
-                            <hudsonUrl>http://evgeny-goldin.org/hudson</hudsonUrl>
+                            <hudsonUrl>http://evgeny-goldin.org/jenkins</hudsonUrl>
                             <timestamp>false</timestamp>
                             <jobs>
                                 <job>

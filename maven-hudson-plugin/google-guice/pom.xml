@@ -50,7 +50,7 @@
                         <configuration>
                             <outputDirectory>${user.home}/.hudson/jobs</outputDirectory>
                             <generationPom>http://github.com/evgeny-goldin/maven-plugins-test/blob/master/maven-hudson-plugin/google-guice/pom.xml</generationPom>
-                            <hudsonUrl>http://evgeny-goldin.org/hudson</hudsonUrl>
+                            <hudsonUrl>http://evgeny-goldin.org/jenkins</hudsonUrl>
                             <jobs>
 
                                 <job>

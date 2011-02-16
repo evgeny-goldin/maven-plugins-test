@@ -7,6 +7,6 @@ Generating Hudson configs
 
 and deploying them to
 
-* http://evgeny-goldin.org/hudson
+* http://evgeny-goldin.org/jenkins
 
 
