@@ -124,6 +124,7 @@
                                     <targetPath>${outputDir}/net-http</targetPath>
                                     <file>http://dl.dropbox.com/u/4820835/hudson-maven-git-NPE/debugger.png</file>
                                 </resource>
+<!--
                                 <resource>
                                     <runIf>{{ slowTests }}</runIf>
                                     <targetPath>${outputDir}/net-ftp/1</targetPath>
@@ -151,6 +152,7 @@
                                     <include>file:${project.basedir}/src/main/resources/ftp-include.txt</include>
                                     <exclude>classpath:/ftp-exclude.txt</exclude>
                                 </resource>
+-->
 
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <!-- Testing <defaultExcludes> (http://evgeny-goldin.org/youtrack/issue/pl-278) -->
@@ -691,16 +693,20 @@
                             <assertFiles>
                                 ${outputDir}/net-http/search.png
                                 ${outputDir}/net-http/debugger.png
+<!--
                                 ${outputDir}/net-ftp/1/index.html
                                 ${outputDir}/net-ftp/3/wagon-file-1.0-beta-7.jar
                                 ${outputDir}/net-ftp/3/wagon-provider-api-1.0-beta-7.jar
+-->
                             </assertFiles>
                             <assertGroovy>
                                 new File( outputDir, 'net-http/search.png'   ).size() == 987
                                 new File( outputDir, 'net-http/debugger.png' ).size() == 193080
+<!--
                               ! new File( outputDir, 'net-ftp/2' ).isDirectory()
                                 new File( outputDir, 'net-ftp/3' ).list().size()   == 2
                                 new File( outputDir, 'net-ftp/3' ).directorySize() == 64290
+-->
                             </assertGroovy>
                         </configuration>
                     </execution>
@@ -713,9 +719,11 @@
                         <configuration>
                             <runIf>{{ Boolean.valueOf( slowTests ) &amp;&amp; ( ! mavenVersion.startsWith( '2' )) }}</runIf>
                             <assertFiles>
+<!--
                                 ${outputDir}/net-ftp/4/mvn
                                 ${outputDir}/net-ftp/4/mvn.bat
                                 ${outputDir}/net-ftp/4/mvnyjp
+-->
                             </assertFiles>
                             <assertEqual>
                                 ${outputDir}/patternsUpdate/2|${outputDir}/patternsUpdate/3
@@ -725,8 +733,10 @@
                                 ${outputDir}/patternsUpdate/1|${outputDir}/patternsUpdate/3|**/*.*
                             </assertEqual>
                             <assertGroovy>
+<!--
                                 new File( outputDir, 'net-ftp/4' ).list().size()   == 3
                                 new File( outputDir, 'net-ftp/4' ).directorySize() == 15438
+-->
 
                                 new File( outputDir, 'patternsUpdate' ).directorySize()   == ( 14945298 / 1 )
                                 new File( outputDir, 'patternsUpdate/1' ).directorySize() == ( 14945298 / 3 )
