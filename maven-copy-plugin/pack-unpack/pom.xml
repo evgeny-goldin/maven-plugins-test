@@ -244,7 +244,7 @@
                         <phase>test</phase>
                         <configuration>
                             <assertGroovy>
-                                new File( outputDir, 'unpack-1' ).directorySize() == 1288550
+                                new File( outputDir, 'unpack-1' ).directorySize() == 1288559
 
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <!-- Directory size may differ on different platforms: when duplicate files override each other -->
