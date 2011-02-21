@@ -23,7 +23,7 @@
     <properties>
         <outputDir>${project.build.outputDirectory}</outputDir>
         <maven.repo.local>${user.home}/.m2/repository</maven.repo.local>
-        <repoSubFolder>com</repoSubFolder>
+        <repoSubFolder>com/goldin</repoSubFolder>
     </properties>
 
 
