@@ -22,7 +22,7 @@
 
     <properties>
         <outputDir>${project.build.outputDirectory}</outputDir>
-        <resourcesDir>../0.2-beta-2/src/main/resources</resourcesDir>
+        <resourcesDir>${project.basedir}/../0.2-beta-2/src/main/resources</resourcesDir>
         <slowTests>false</slowTests> <!-- Set to "true" in TeamCity project -->
     </properties>
 
