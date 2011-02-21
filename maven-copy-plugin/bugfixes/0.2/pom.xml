@@ -135,9 +135,36 @@
                                     <wget>wget|${outputDir}/pl-27/ftp-5/list.txt|true|true</wget>
                                     <verbose>false</verbose>
                                 </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-27/ftp-7</targetPath>
+                                    <directory>${zymicFtp}:/apache-maven-3.0.1</directory>
+                                    <include>*.txt</include>
+                                    <wget>wget|${outputDir}/pl-27/ftp-5/list.txt|true|false</wget>
+                                    <verbose>true</verbose>
+                                    <!-- All files -->
+                                    <listFilter>{{ files.keySet() }}</listFilter>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-27/ftp-8</targetPath>
+                                    <directory>${zymicFtp}:/apache-maven-3.0.1</directory>
+                                    <include>*.txt</include>
+                                    <wget>wget|${outputDir}/pl-27/ftp-5/list.txt|true|true</wget>
+                                    <verbose>true</verbose>
+                                    <!-- All files -->
+                                    <listFilter>{{ files.keySet().findAll{ files[ it ] > 1024 }}}</listFilter>
+                                </resource>
+                                <!-- FTP Upload + Download -->
+                                <resource>
+                                    <targetPath>${zymicFtp}:/</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-27/ftp-9</targetPath>
+                                    <directory>${zymicFtp}:/</directory>
+                                    <include>pom.xml</include>
+                                </resource>
                                 <!-- SCP Download -->
-                                <!-- FTP Upload -->
-                                <!-- SCP Upload -->
+                                <!-- SCP Upload   -->
                             </resources>
                         </configuration>
                     </execution>
@@ -173,8 +200,8 @@
                                 ${outputDir}/pl-262-zip|${outputDir}/pl-262-targz|**/*.jar
                             </assertEqual>
                             <assertGroovy>
-                                new File( outputDir, 'pl-262-zip'   ).directorySize() == 3353088
-                                new File( outputDir, 'pl-262-zip'   ).directorySize() == new File( outputDir, 'pl-262-targz' ).directorySize()
+                                new File( outputDir, 'pl-262-zip' ).directorySize() == 3353088
+                                new File( outputDir, 'pl-262-zip' ).directorySize() == new File( outputDir, 'pl-262-targz' ).directorySize()
                             </assertGroovy>
                         </configuration>
                     </execution>
@@ -209,9 +236,17 @@
                                 ${outputDir}/pl-27/ftp-6/LICENSE.txt
                                 ${outputDir}/pl-27/ftp-6/NOTICE.txt
                                 ${outputDir}/pl-27/ftp-6/README.txt
+                                ${outputDir}/pl-27/ftp-7/*.txt
+                                ${outputDir}/pl-27/ftp-7/LICENSE.txt
+                                ${outputDir}/pl-27/ftp-7/NOTICE.txt
+                                ${outputDir}/pl-27/ftp-7/README.txt
+                                ${outputDir}/pl-27/ftp-8/*.txt
+                                ${outputDir}/pl-27/ftp-8/LICENSE.txt
+                                ${outputDir}/pl-27/ftp-8/NOTICE.txt
+                                ${outputDir}/pl-27/ftp-8/README.txt
+                                ${outputDir}/pl-27/ftp-9/pom.xml
                             </assertFiles>
                             <assertGroovy>
-                                new File( outputDir, 'pl-27'      ).directorySize()  == 144494
                                 new File( outputDir, 'pl-27/http' ).directorySize()  == 71026
                                 new File( outputDir, 'pl-27/ftp-1' ).directorySize() == 1809
                                 new File( outputDir, 'pl-27/ftp-2' ).directorySize() == 11063
@@ -219,7 +254,27 @@
                                 new File( outputDir, 'pl-27/ftp-4' ).directorySize() == 15149
                                 new File( outputDir, 'pl-27/ftp-5' ).directorySize() == 15149
                                 new File( outputDir, 'pl-27/ftp-6' ).directorySize() == 15149
+                                new File( outputDir, 'pl-27/ftp-7' ).directorySize() == 15149
+                                new File( outputDir, 'pl-27/ftp-8' ).directorySize() == 15149
+                                new File( outputDir, 'pl-27/ftp-9' ).directorySize() > ( 15 * 1024 )
                             </assertGroovy>
+                            <assertEqual>
+                                ${outputDir}/pl-27/ftp-4|${outputDir}/pl-27/ftp-5
+                                ${outputDir}/pl-27/ftp-4|${outputDir}/pl-27/ftp-5|*.txt
+                                ${outputDir}/pl-27/ftp-4|${outputDir}/pl-27/ftp-5|**/*.txt
+                                ${outputDir}/pl-27/ftp-5|${outputDir}/pl-27/ftp-6
+                                ${outputDir}/pl-27/ftp-5|${outputDir}/pl-27/ftp-6|*.txt
+                                ${outputDir}/pl-27/ftp-5|${outputDir}/pl-27/ftp-6|**/*.txt
+                                ${outputDir}/pl-27/ftp-6|${outputDir}/pl-27/ftp-7
+                                ${outputDir}/pl-27/ftp-6|${outputDir}/pl-27/ftp-7|*.txt
+                                ${outputDir}/pl-27/ftp-6|${outputDir}/pl-27/ftp-7|**/*.txt
+                                ${outputDir}/pl-27/ftp-7|${outputDir}/pl-27/ftp-8
+                                ${outputDir}/pl-27/ftp-7|${outputDir}/pl-27/ftp-8|*.txt
+                                ${outputDir}/pl-27/ftp-7|${outputDir}/pl-27/ftp-8|**/*.txt
+                                ${outputDir}/pl-27/ftp-8|${outputDir}/pl-27/ftp-4
+                                ${outputDir}/pl-27/ftp-8|${outputDir}/pl-27/ftp-4|*.txt
+                                ${outputDir}/pl-27/ftp-8|${outputDir}/pl-27/ftp-4|**/*.txt
+                            </assertEqual>
                         </configuration>
                     </execution>
                 </executions>
