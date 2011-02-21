@@ -22,13 +22,84 @@
 
     <properties>
         <outputDir>${project.build.outputDirectory}</outputDir>
-        <zymicFtp>ftp://evgenyg_zxq:sdaed432e23@evgenyg.zxq.net</zymicFtp>
+        <resourcesDir>../0.2-beta-2/src/main/resources</resourcesDir>
         <slowTests>false</slowTests> <!-- Set to "true" in TeamCity project -->
     </properties>
 
 
     <build>
         <plugins>
+
+            <!-- ~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- Setting the timestamp -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~ -->
+
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-timestamp-plugin</artifactId>
+                <version>${maven-timestamp-plugin-version}</version>
+                <executions>
+                    <execution>
+                        <id>set-timestamp</id>
+                        <goals>
+                            <goal>timestamp</goal>
+                        </goals>
+                        <phase>validate</phase>
+                        <configuration>
+                            <timestamp>
+                                <property>timestamp</property>
+                                <pattern>[dd-MM-yyyy][HH:mm:ss]'(GMT'Z')'</pattern>
+                            </timestamp>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- Setting SCP user/password -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-properties-plugin</artifactId>
+                <version>${maven-properties-plugin-version}</version>
+                <executions>
+                    <execution>
+                        <id>read-files</id>
+                        <goals>
+                            <goal>set-properties</goal>
+                        </goals>
+                        <configuration>
+                            <runIf>{{ slowTests }}</runIf>
+                            <verbose>false</verbose>
+                            <properties>
+                                <property>
+                                    <name>ftpPath</name>
+                                    <value>
+                                        {{
+                                            assert System.getProperty( 'filesDir' ), 'System property "filesDir" is not defined!'
+                                            def data = new File( System.getProperty( 'filesDir' ), 'ftp.txt' ).text.splitWith( 'eachLine' )
+                                            "ftp://" + data[ 0 ] + ":" + data[ 1 ] + "@" + data[ 2 ] + ":" + data[ 3 ]
+                                            <!--       username          password             host          directory -->
+                                        }}
+                                    </value>
+                                </property>
+                                <property>
+                                    <name>scpPath</name>
+                                    <value>
+                                        {{
+                                            assert System.getProperty( 'filesDir' ), 'System property "filesDir" is not defined!'
+                                            def data = new File( System.getProperty( 'filesDir' ), 'scp.txt' ).text.splitWith( 'eachLine' )
+                                            "scp://" + data[ 0 ] + ":" + data[ 1 ] + "@" + data[ 2 ] + ":" + data[ 3 ]
+                                            <!--       username          password             host          directory -->
+                                        }}
+                                    </value>
+                                </property>
+                            </properties>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 
             <plugin>
                 <groupId>com.goldin.plugins</groupId>
@@ -43,7 +114,7 @@
                         <goals>
                             <goal>copy</goal>
                         </goals>
-                        <phase>validate</phase>
+                        <phase>initialize</phase>
                         <configuration>
                             <resources>
                                 <resource>
@@ -84,24 +155,34 @@
                         <goals>
                             <goal>copy</goal>
                         </goals>
-                        <phase>validate</phase>
+                        <phase>initialize</phase>
                         <configuration>
                             <runIf>{{ slowTests }}</runIf>
                             <resources>
+                                <!-- ~~~~~~~~~~~~~ -->
                                 <!-- HTTP Download -->
+                                <!-- ~~~~~~~~~~~~~ -->
                                 <resource>
                                     <targetPath>${outputDir}/pl-27/http</targetPath>
                                     <file>http://dl.dropbox.com/u/4820835/audio.jpg</file>
                                 </resource>
+                                <!-- ~~~~~~~~~~~~ -->
                                 <!-- FTP Download -->
+                                <!-- ~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/pl-27/ftp-txt-base</targetPath>
+                                    <file>${resourcesDir}/apache-maven-3.0.1.zip</file>
+                                    <unpack>true</unpack>
+                                    <zipEntry>**/*.txt</zipEntry>
+                                </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-27/ftp-1</targetPath>
-                                    <directory>${zymicFtp}:/</directory>
+                                    <directory>${ftpPath}</directory>
                                     <include>index.html</include>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-27/ftp-2</targetPath>
-                                    <directory>${zymicFtp}:/apache-maven-3.0.1/lib/</directory>
+                                    <directory>${ftpPath}/apache-maven-3.0.1/lib/</directory>
                                     <include>wagon-*.jar</include>
                                     <excludes>
                                         <exclude>wagon-http-*.jar</exclude>
@@ -110,61 +191,90 @@
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-27/ftp-3</targetPath>
-                                    <directory>${zymicFtp}:/apache-maven-3.0.1</directory>
+                                    <directory>${ftpPath}/apache-maven-3.0.1</directory>
                                     <include>*.txt</include>
                                 </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~ -->
                                 <!-- FTP Download + "wget" -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
                                     <targetPath>${outputDir}/pl-27/ftp-4</targetPath>
-                                    <directory>${zymicFtp}:/apache-maven-3.0.1</directory>
+                                    <directory>${ftpPath}/apache-maven-3.0.1</directory>
                                     <include>*.txt</include>
                                     <wget>wget</wget>
                                     <verbose>false</verbose>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-27/ftp-5</targetPath>
-                                    <directory>${zymicFtp}:/apache-maven-3.0.1</directory>
+                                    <directory>${ftpPath}/apache-maven-3.0.1</directory>
                                     <include>*.txt</include>
                                     <wget>wget|${outputDir}/pl-27/ftp-5/list.txt|true|false</wget>
                                     <verbose>false</verbose>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-27/ftp-6</targetPath>
-                                    <directory>${zymicFtp}:/apache-maven-3.0.1</directory>
+                                    <directory>${ftpPath}/apache-maven-3.0.1</directory>
                                     <include>*.txt</include>
                                     <wget>wget|${outputDir}/pl-27/ftp-5/list.txt|true|true</wget>
                                     <verbose>false</verbose>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-27/ftp-7</targetPath>
-                                    <directory>${zymicFtp}:/apache-maven-3.0.1</directory>
+                                    <directory>${ftpPath}/apache-maven-3.0.1</directory>
                                     <include>*.txt</include>
                                     <wget>wget|${outputDir}/pl-27/ftp-5/list.txt|true|false</wget>
-                                    <verbose>true</verbose>
+                                    <verbose>false</verbose>
                                     <!-- All files -->
                                     <listFilter>{{ files.keySet() }}</listFilter>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-27/ftp-8</targetPath>
-                                    <directory>${zymicFtp}:/apache-maven-3.0.1</directory>
+                                    <directory>${ftpPath}/apache-maven-3.0.1</directory>
                                     <include>*.txt</include>
                                     <wget>wget|${outputDir}/pl-27/ftp-5/list.txt|true|true</wget>
-                                    <verbose>true</verbose>
-                                    <!-- All files -->
+                                    <verbose>false</verbose>
+                                    <!-- All files larger than 1K -->
                                     <listFilter>{{ files.keySet().findAll{ files[ it ] > 1024 }}}</listFilter>
                                 </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~ -->
                                 <!-- FTP Upload + Download -->
-                                <resource>
-                                    <targetPath>${zymicFtp}:/</targetPath>
-                                    <file>${project.basedir}/pom.xml</file>
-                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
                                     <targetPath>${outputDir}/pl-27/ftp-9</targetPath>
-                                    <directory>${zymicFtp}:/</directory>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <replace>
+                                        <to>${timestamp}</to>
+                                    </replace>
+                                </resource>
+                                <resource>
+                                    <targetPath>${ftpPath}</targetPath>
+                                    <file>${outputDir}/pl-27/ftp-9/pom.xml</file>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-27/ftp-10</targetPath>
+                                    <directory>${ftpPath}</directory>
                                     <include>pom.xml</include>
                                 </resource>
-                                <!-- SCP Download -->
-                                <!-- SCP Upload   -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- SCP Upload + Download -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/pl-27/scp-1</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <replace>
+                                        <to>${timestamp}</to>
+                                    </replace>
+                                </resource>
+                                <resource>
+                                    <targetPath>${scpPath}</targetPath>
+                                    <file>${outputDir}/pl-27/scp-1/pom.xml</file>
+                                    <verbose>false</verbose>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-27/scp-2</targetPath>
+                                    <file>${scpPath}/pom.xml</file>
+                                    <verbose>false</verbose>
+                                </resource>
                             </resources>
                         </configuration>
                     </execution>
@@ -220,6 +330,10 @@
                                 ${outputDir}/pl-27/http/audio.jpg
                                 ${outputDir}/pl-27/ftp-1/index.html
                                 ${outputDir}/pl-27/ftp-2/wagon-file-1.0-beta-7.jar
+                                ${outputDir}/pl-27/ftp-txt-base/*.txt
+                                ${outputDir}/pl-27/ftp-txt-base/LICENSE.txt
+                                ${outputDir}/pl-27/ftp-txt-base/NOTICE.txt
+                                ${outputDir}/pl-27/ftp-txt-base/README.txt
                                 ${outputDir}/pl-27/ftp-3/*.txt
                                 ${outputDir}/pl-27/ftp-3/LICENSE.txt
                                 ${outputDir}/pl-27/ftp-3/NOTICE.txt
@@ -256,24 +370,18 @@
                                 new File( outputDir, 'pl-27/ftp-6' ).directorySize() == 15149
                                 new File( outputDir, 'pl-27/ftp-7' ).directorySize() == 15149
                                 new File( outputDir, 'pl-27/ftp-8' ).directorySize() == 15149
-                                new File( outputDir, 'pl-27/ftp-9' ).directorySize() > ( 15 * 1024 )
                             </assertGroovy>
                             <assertEqual>
+                                ${outputDir}/pl-27/ftp-txt-base|${outputDir}/pl-27/ftp-3
+                                ${outputDir}/pl-27/ftp-3|${outputDir}/pl-27/ftp-4
                                 ${outputDir}/pl-27/ftp-4|${outputDir}/pl-27/ftp-5
-                                ${outputDir}/pl-27/ftp-4|${outputDir}/pl-27/ftp-5|*.txt
-                                ${outputDir}/pl-27/ftp-4|${outputDir}/pl-27/ftp-5|**/*.txt
                                 ${outputDir}/pl-27/ftp-5|${outputDir}/pl-27/ftp-6
-                                ${outputDir}/pl-27/ftp-5|${outputDir}/pl-27/ftp-6|*.txt
-                                ${outputDir}/pl-27/ftp-5|${outputDir}/pl-27/ftp-6|**/*.txt
                                 ${outputDir}/pl-27/ftp-6|${outputDir}/pl-27/ftp-7
-                                ${outputDir}/pl-27/ftp-6|${outputDir}/pl-27/ftp-7|*.txt
-                                ${outputDir}/pl-27/ftp-6|${outputDir}/pl-27/ftp-7|**/*.txt
                                 ${outputDir}/pl-27/ftp-7|${outputDir}/pl-27/ftp-8
-                                ${outputDir}/pl-27/ftp-7|${outputDir}/pl-27/ftp-8|*.txt
-                                ${outputDir}/pl-27/ftp-7|${outputDir}/pl-27/ftp-8|**/*.txt
-                                ${outputDir}/pl-27/ftp-8|${outputDir}/pl-27/ftp-4
-                                ${outputDir}/pl-27/ftp-8|${outputDir}/pl-27/ftp-4|*.txt
-                                ${outputDir}/pl-27/ftp-8|${outputDir}/pl-27/ftp-4|**/*.txt
+                                ${outputDir}/pl-27/ftp-8|${outputDir}/pl-27/ftp-txt-base
+
+                                ${outputDir}/pl-27/ftp-9|${outputDir}/pl-27/ftp-10
+                                ${outputDir}/pl-27/scp-1|${outputDir}/pl-27/scp-2
                             </assertEqual>
                         </configuration>
                     </execution>
