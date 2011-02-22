@@ -22,7 +22,7 @@
 
 
     <modules>
-        <module>bugfixes</module>
+        <module>issues</module>
         <module>copy-dependency</module>
         <module>copy-mojo</module>
         <module>resource-replace</module>
