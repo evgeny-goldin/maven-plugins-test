@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns              = "http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi          = "http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0
+                               http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+    <artifactId>maven-copy-plugin.issues.0.2-beta-5</artifactId>
+    <packaging>jar</packaging>
+    <version>0.1-SNAPSHOT</version>
+    <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
+
+
+    <parent>
+        <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+        <artifactId>maven-copy-plugin.issues</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+
+    <properties>
+        <outputDir>${project.build.outputDirectory}</outputDir>
+        <resourcesDir>${project.basedir}/../0.2-beta-2/src/main/resources</resourcesDir>
+    </properties>
+
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-copy-plugin</artifactId>
+                <version>${maven-copy-plugin-version}</version>
+                <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-280: "Allow to unpack selected ZIP entries instead of the whole ZIP" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-280</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-280/unpack-1</targetPath>
+                                    <file>${resourcesDir}/apache-maven-3.0.1.zip</file>
+                                    <zipEntry>apache-maven-3.0.1/lib/maven-core-3.0.1.jar</zipEntry>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-280/unpack-2</targetPath>
+                                    <file>${resourcesDir}/apache-maven-3.0.1.zip</file>
+                                    <zipEntries>
+                                        <zipEntry>apache-maven-3.0.1/lib/maven-core-3.0.1.jar</zipEntry>
+                                        <zipEntry>apache-maven-3.0.1/LICENSE.txt</zipEntry>
+                                        <zipEntry>apache-maven-3.0.1/bin/mvnDebug.bat</zipEntry>
+                                        <zipEntry>apache-maven-3.0.1/lib/maven-compat-3.0.1.jar</zipEntry>
+                                    </zipEntries>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-280/unpack-3</targetPath>
+                                    <file>${resourcesDir}/apache-maven-3.0.1.zip</file>
+                                    <zipEntry>apache-maven-3.0.1/lib/maven-core-3.0.1.jar</zipEntry>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-280/unpack-3</targetPath>
+                                    <file>${resourcesDir}/apache-maven-3.0.1.zip</file>
+                                    <zipEntry>apache-maven-3.0.1/LICENSE.txt</zipEntry>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-280/unpack-3</targetPath>
+                                    <file>${resourcesDir}/apache-maven-3.0.1.zip</file>
+                                    <zipEntry>apache-maven-3.0.1/bin/mvnDebug.bat</zipEntry>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-280/unpack-3</targetPath>
+                                    <file>${resourcesDir}/apache-maven-3.0.1.zip</file>
+                                    <zipEntry>apache-maven-3.0.1/lib/maven-compat-3.0.1.jar</zipEntry>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-280/unpack-4</targetPath>
+                                    <file>${resourcesDir}/apache-maven-3.0.1.zip</file>
+                                    <zipEntries>
+                                        <zipEntry>apache-maven-3.0.1/lib/maven-core-3.0.1.jar</zipEntry>
+                                        <zipEntry>apache-maven-3.0.1/LICENSE.txt</zipEntry>
+                                        <zipEntry>apache-maven-3.0.1/bin/mvnDebug.bat</zipEntry>
+                                        <zipEntry>apache-maven-3.0.1/lib/maven-compat-3.0.1.jar</zipEntry>
+                                    </zipEntries>
+                                    <preservePath>true</preservePath>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-280/unpack-5</targetPath>
+                                    <file>${resourcesDir}/apache-maven-3.0.1.zip</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-280/unpack-6</targetPath>
+                                    <file>${resourcesDir}/apache-maven-3.0.1.zip</file>
+                                    <zipEntries>
+                                        <zipEntry>**/*.jar</zipEntry>
+                                        <zipEntry>**/*.txt</zipEntry>
+                                        <zipEntry>**/*.conf</zipEntry>
+                                        <zipEntry>**/*.bat</zipEntry>
+                                        <zipEntry>**/*.xml</zipEntry>
+                                        <zipEntry>apache-maven-3.0.1/bin/mvn</zipEntry>
+                                        <zipEntry>apache-maven-3.0.1/bin/mvnDebug</zipEntry>
+                                        <zipEntry>apache-maven-3.0.1/bin/mvnyjp</zipEntry>
+                                    </zipEntries>
+                                    <preservePath>true</preservePath>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-280/unpack-7</targetPath>
+                                    <file>${resourcesDir}/apache-maven-3.0.1.zip</file>
+                                    <zipEntry>**</zipEntry>
+                                    <preservePath>true</preservePath>
+                                    <unpack>true</unpack>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-284: "Do not copy <dependencies> to temporal directory, serve them from local Maven repo" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-284</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-284/unpack-1</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>org.apache.maven</groupId>
+                                            <artifactId>apache-maven</artifactId>
+                                            <version>3.0.1</version>
+                                            <classifier>bin</classifier>
+                                            <type>zip</type>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.apache.maven</groupId>
+                                            <artifactId>apache-maven</artifactId>
+                                            <version>3.0.2</version>
+                                            <classifier>bin</classifier>
+                                            <type>zip</type>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.artifactory</groupId>
+                                            <artifactId>artifactory-web-war</artifactId>
+                                            <version>2.3.1</version>
+                                            <type>war</type>
+                                        </dependency>
+                                        <dependency>
+                                            <excludeTransitive>true</excludeTransitive>
+                                            <includeScope>test</includeScope>
+                                            <includeGroupIds>org.jvnet.hudson.main,org.jvnet.hudson.plugins</includeGroupIds>
+                                            <excludeArtifactIds>greenballs</excludeArtifactIds> <!-- Has no jars at all :) -->
+                                        </dependency>
+                                    </dependencies>
+                                    <zipEntries>
+                                        <zipEntry>**/*.jar</zipEntry>
+                                        <zipEntry>**/*.xml</zipEntry>
+                                    </zipEntries>
+                                    <dependenciesAtM2>true</dependenciesAtM2>
+                                    <unpack>true</unpack>
+                                    <preservePath>true</preservePath>
+                                    <filter>
+                                        {{
+                                            assert files.every{ it.canonicalPath.contains( '.m2' ) }
+                                            files
+                                        }}
+                                    </filter>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-284/unpack-2</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>org.apache.maven</groupId>
+                                            <artifactId>apache-maven</artifactId>
+                                            <version>3.0.1</version>
+                                            <classifier>bin</classifier>
+                                            <type>zip</type>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.apache.maven</groupId>
+                                            <artifactId>apache-maven</artifactId>
+                                            <version>3.0.2</version>
+                                            <classifier>bin</classifier>
+                                            <type>zip</type>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.artifactory</groupId>
+                                            <artifactId>artifactory-web-war</artifactId>
+                                            <version>2.3.1</version>
+                                            <type>war</type>
+                                        </dependency>
+                                        <dependency>
+                                            <excludeTransitive>true</excludeTransitive>
+                                            <includeScope>test</includeScope>
+                                            <includeGroupIds>org.jvnet.hudson.main,org.jvnet.hudson.plugins</includeGroupIds>
+                                            <excludeArtifactIds>greenballs</excludeArtifactIds> <!-- Has no jars at all :) -->
+                                        </dependency>
+                                    </dependencies>
+                                    <unpack>true</unpack>
+                                    <preservePath>true</preservePath>
+                                </resource>
+                                <resource>
+                                    <directory>${outputDir}/pl-284/unpack-2</directory>
+                                    <clean>true</clean>
+                                    <cleanEmptyDirectories>true</cleanEmptyDirectories>
+                                    <excludes>
+                                        <exclude>**/*.jar</exclude>
+                                        <exclude>**/*.xml</exclude>
+                                    </excludes>
+                                    <verbose>false</verbose>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-284/unpack-3</targetPath>
+                                    <dependency>
+                                        <excludeTransitive>false</excludeTransitive>
+                                        <includeGroupIds>org.jvnet.hudson.plugins,org.jfrog.buildinfo,junit</includeGroupIds>
+                                    </dependency>
+                                    <zipEntry>**/*.class</zipEntry>
+                                    <dependenciesAtM2>true</dependenciesAtM2>
+                                    <unpack>true</unpack>
+                                    <preservePath>true</preservePath>
+                                    <filter>
+                                        {{
+                                            assert files.every{ it.canonicalPath.contains( '.m2' ) }
+                                            files
+                                        }}
+                                    </filter>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-284/unpack-4</targetPath>
+                                    <dependency>
+                                        <excludeTransitive>false</excludeTransitive>
+                                        <includeGroupIds>org.jvnet.hudson.plugins,org.jfrog.buildinfo,junit</includeGroupIds>
+                                    </dependency>
+                                    <unpack>true</unpack>
+                                    <preservePath>true</preservePath>
+                                </resource>
+                                <resource>
+                                    <directory>${outputDir}/pl-284/unpack-4</directory>
+                                    <clean>true</clean>
+                                    <cleanEmptyDirectories>true</cleanEmptyDirectories>
+                                    <exclude>**/*.class</exclude>
+                                    <verbose>false</verbose>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-260: "endOfLine" in <replace> - do nothing by default" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-260</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/endOfLine</targetPath>
+                                    <dependency>
+                                        <groupId>org.jvnet.hudson.plugins</groupId>
+                                        <artifactId>artifactory</artifactId>
+                                        <version>1.4.2</version>
+                                        <type>hpi</type>
+                                    </dependency>
+                                    <stripVersion>true</stripVersion>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/endOfLine</targetPath>
+                                    <dependency>
+                                        <groupId>org.jvnet.hudson.plugins</groupId>
+                                        <artifactId>artifactory</artifactId>
+                                        <version>1.4.1</version>
+                                        <type>hpi</type>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/endOfLine/unpack</targetPath>
+                                    <file>${outputDir}/endOfLine/artifactory-1.4.1.hpi</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/endOfLine/unpack</targetPath>
+                                    <file>${outputDir}/endOfLine/artifactory.hpi</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/endOfLine/staplers1</targetPath>
+                                    <directory>${outputDir}/endOfLine/unpack</directory>
+                                    <include>**/*.stapler</include>
+                                    <preservePath>true</preservePath>
+                                    <replace>
+                                        <from>constructor</from>
+                                        <to>{{ 'cons' + 'tructor' }}</to>
+                                        <failIfNotFound>false</failIfNotFound>
+                                        <groovy>true</groovy>
+                                    </replace>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/endOfLine/staplers2</targetPath>
+                                    <directory>${outputDir}/endOfLine/unpack</directory>
+                                    <includes>
+                                        <include>**/*.stapler</include>
+                                    </includes>
+                                    <preservePath>true</preservePath>
+                                    <replace>
+                                        <from>constructor</from>
+                                        <to>{{ "constructor" }}</to>
+                                        <failIfNotFound>false</failIfNotFound>
+                                        <groovy>true</groovy>
+                                        <endOfLine>windows</endOfLine>
+                                    </replace>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/endOfLine/staplers3</targetPath>
+                                    <directory>${outputDir}/endOfLine/unpack</directory>
+                                    <include>**/*.stapler</include>
+                                    <preservePath>true</preservePath>
+                                    <replace>
+                                        <from>constructor</from>
+                                        <to>{{ "con" + "struct" + "or" }}</to>
+                                        <failIfNotFound>false</failIfNotFound>
+                                        <groovy>true</groovy>
+                                        <endOfLine>unix</endOfLine>
+                                    </replace>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-assert-plugin</artifactId>
+                <version>${maven-assert-plugin-version}</version>
+                <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-280 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-280</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-280/unpack-1
+                                ${outputDir}/pl-280/unpack-2
+                                ${outputDir}/pl-280/unpack-3
+                                ${outputDir}/pl-280/unpack-4
+
+                                ${outputDir}/pl-280/unpack-1/maven-core-3.0.1.jar
+
+                                ${outputDir}/pl-280/unpack-2/maven-core-3.0.1.jar
+                                ${outputDir}/pl-280/unpack-2/LICENSE.txt
+                                ${outputDir}/pl-280/unpack-2/mvnDebug.bat
+                                ${outputDir}/pl-280/unpack-2/maven-compat-3.0.1.jar
+
+                                ${outputDir}/pl-280/unpack-3/maven-core-3.0.1.jar
+                                ${outputDir}/pl-280/unpack-3/LICENSE.txt
+                                ${outputDir}/pl-280/unpack-3/mvnDebug.bat
+                                ${outputDir}/pl-280/unpack-3/maven-compat-3.0.1.jar
+
+                                ${outputDir}/pl-280/unpack-4/apache-maven-3.0.1/lib/maven-core-3.0.1.jar
+                                ${outputDir}/pl-280/unpack-4/apache-maven-3.0.1/LICENSE.txt
+                                ${outputDir}/pl-280/unpack-4/apache-maven-3.0.1/bin/mvnDebug.bat
+                                ${outputDir}/pl-280/unpack-4/apache-maven-3.0.1/lib/maven-compat-3.0.1.jar
+                            </assertFiles>
+                            <assertEqual>
+                                ${outputDir}/pl-280/unpack-2|${outputDir}/pl-280/unpack-3
+                                ${outputDir}/pl-280/unpack-5|${outputDir}/pl-280/unpack-6
+                                ${outputDir}/pl-280/unpack-6|${outputDir}/pl-280/unpack-7
+                                ${outputDir}/pl-280/unpack-7|${outputDir}/pl-280/unpack-5
+
+                                ${outputDir}/pl-284/unpack-1|${outputDir}/pl-284/unpack-2
+                                ${outputDir}/pl-284/unpack-3|${outputDir}/pl-284/unpack-4
+                            </assertEqual>
+                            <assertGroovy>
+                                new File( outputDir, 'pl-280/unpack-1' ).directorySize() == 530357
+                                new File( outputDir, 'pl-280/unpack-2' ).directorySize() == 833219
+                                new File( outputDir, 'pl-280/unpack-3' ).directorySize() == 833219
+                                new File( outputDir, 'pl-280/unpack-4' ).directorySize() == 833219
+                                new File( outputDir, 'pl-280/unpack-5' ).directorySize() == 3344329
+                                new File( outputDir, 'pl-280/unpack-6' ).directorySize() == 3344329
+                                new File( outputDir, 'pl-280/unpack-7' ).directorySize() == 3344329
+
+                                new File( outputDir, 'pl-284/unpack-1' ).directorySize() == 68419140
+                                new File( outputDir, 'pl-284/unpack-2' ).directorySize() == 68419140
+                                new File( outputDir, 'pl-284/unpack-3' ).directorySize() == 658403
+                                new File( outputDir, 'pl-284/unpack-4' ).directorySize() == 658403
+                            </assertGroovy>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-260 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-260</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/endOfLine/staplers1/WEB-INF/classes/org/jfrog/hudson/*.stapler
+                                ${outputDir}/endOfLine/staplers2/WEB-INF/classes/org/jfrog/hudson/*.stapler
+                                ${outputDir}/endOfLine/staplers3/WEB-INF/classes/org/jfrog/hudson/*.stapler
+                            </assertFiles>
+                            <assertEqual>
+                                ${outputDir}/endOfLine/unpack|${outputDir}/endOfLine/staplers1|**/*.stapler
+                                ${outputDir}/endOfLine/staplers1|${outputDir}/endOfLine/staplers2|**/*.stapler
+                            </assertEqual>
+                            <shouldFailAssertEqual>
+                                ${outputDir}/endOfLine/staplers2|${outputDir}/endOfLine/staplers3|**/*.stapler
+                            </shouldFailAssertEqual>
+                            <assertGroovy>
+                                new File( outputDir, 'endOfLine/staplers1/WEB-INF/classes/org/jfrog/hudson' ).listFiles().findAll{ it.isFile() }.every{ it.text.contains( '\r\n' ) }
+                                new File( outputDir, 'endOfLine/staplers2/WEB-INF/classes/org/jfrog/hudson' ).listFiles().findAll{ it.isFile() }.every{ it.text.contains( '\r\n' ) }
+                                new File( outputDir, 'endOfLine/staplers3/WEB-INF/classes/org/jfrog/hudson' ).listFiles().findAll{ it.isFile() }.every{ ! it.text.contains( '\r\n' ) }
+                                new File( outputDir, 'endOfLine/staplers3/WEB-INF/classes/org/jfrog/hudson' ).listFiles().findAll{ it.isFile() }.every{ it.text.contains( '\n' ) }
+
+                                new File( outputDir, 'endOfLine'           ).directorySize() == 13847886
+                                new File( outputDir, 'endOfLine/staplers1' ).directorySize() == 1752
+                                new File( outputDir, 'endOfLine/staplers2' ).directorySize() == 1752
+                                new File( outputDir, 'endOfLine/staplers3' ).directorySize() == 1732
+                            </assertGroovy>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>org.jvnet.hudson.main</groupId>
+            <artifactId>hudson-war</artifactId>
+            <version>1.394</version>
+            <type>war</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jvnet.hudson.plugins</groupId>
+            <artifactId>greenballs</artifactId>
+            <version>1.6</version>
+            <type>hpi</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jvnet.hudson.plugins</groupId>
+            <artifactId>artifactory</artifactId>
+            <version>1.4.1</version>
+            <type>hpi</type>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>
