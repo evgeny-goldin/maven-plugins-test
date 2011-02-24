@@ -122,6 +122,22 @@
                             <echoCommands>true</echoCommands>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-326-5</id>
+                        <goals>
+                            <goal>sshexec</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <location>${scpPath}</location>
+                            <commands>
+                                <command>uname -a</command>
+                                <command>free</command>
+                            </commands>
+                            <commandsShellSeparator>;</commandsShellSeparator>
+                            <echoCommands>true</echoCommands>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
         </plugins>
