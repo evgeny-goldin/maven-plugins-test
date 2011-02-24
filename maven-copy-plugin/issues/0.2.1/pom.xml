@@ -55,9 +55,9 @@
                 </executions>
             </plugin>
 
-            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-            <!-- Setting SCP user/password -->
-            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- Setting FTP and SCP path -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
             <plugin>
                 <groupId>com.goldin.plugins</groupId>

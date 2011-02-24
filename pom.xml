@@ -28,6 +28,7 @@
         <maven-properties-plugin-version>0.3-SNAPSHOT</maven-properties-plugin-version>
         <maven-find-plugin-version>0.3-SNAPSHOT</maven-find-plugin-version>
         <maven-timestamp-plugin-version>0.3-SNAPSHOT</maven-timestamp-plugin-version>
+        <maven-sshexec-plugin-version>0.3-SNAPSHOT</maven-sshexec-plugin-version>
     </properties>
 
 
@@ -180,6 +181,7 @@ Groovy [$GroovySystem.version], [$date] - testing plugin versions:
         <module>maven-properties-plugin</module>
         <module>maven-find-plugin</module>
         <module>maven-timestamp-plugin</module>
+        <module>maven-sshexec-plugin</module>
     </modules>
 
 </project>
