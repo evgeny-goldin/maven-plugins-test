@@ -65,6 +65,7 @@
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-328 - "Provide a way to echo current directory"                  -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-329 - "Add <verbose>"                                            -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-330 - "Provide an option to echo commands executed"              -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-334 - "Multiple executions - if one is "<verbose>true</verbose>" all following are verbose as well" -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <execution>
                         <id>http://evgeny-goldin.org/youtrack/issue/pl-326-1</id>
