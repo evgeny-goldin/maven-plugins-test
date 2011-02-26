@@ -107,9 +107,9 @@
                         <configuration>
                             <resources>
 
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                                <!-- Download unpacked files from SCP -->
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Downloading unpacked files from SCP -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
                                 <resource>
                                     <targetPath>${outputDir}/scp/lib</targetPath>
@@ -132,9 +132,9 @@
                                     <file>${scpPath}/apache-maven-3.0.1/README.txt</file>
                                 </resource>
 
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                                <!-- Download archives back from FTP and unpack -->
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Downloading archives back from FTP and unpack -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
                                 <resource>
                                     <targetPath>${outputDir}/ftp-zip</targetPath>
