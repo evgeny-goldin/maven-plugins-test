@@ -190,6 +190,7 @@ Groovy [$GroovySystem.version], [$date] - testing plugin versions:
                         <goals>
                             <goal>set-properties</goal>
                         </goals>
+                        <phase>generate-sources</phase>
                         <inherited>false</inherited>
                         <configuration>
                             <runIf>{{ slowTests }}</runIf>
