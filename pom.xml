@@ -30,7 +30,7 @@
         <maven-timestamp-plugin-version>0.2.2-SNAPSHOT</maven-timestamp-plugin-version>
         <maven-sshexec-plugin-version>0.2.2-SNAPSHOT</maven-sshexec-plugin-version>
 
-        <slowTests>false</slowTests> <!-- Set to "true" in TeamCity test project -->
+        <slowTests>false</slowTests>
     </properties>
 
 
@@ -186,13 +186,13 @@ Groovy [$GroovySystem.version], [$date] - testing plugin versions:
                 <version>${maven-properties-plugin-version}</version>
                 <executions>
                     <execution>
-                        <id>read-files</id>
+                        <id>set-ftp-scp-paths</id>
                         <goals>
                             <goal>set-properties</goal>
                         </goals>
                         <phase>generate-sources</phase>
                         <configuration>
-                            <runIf>{{ slowTests &amp;&amp; ( ! System.getProperty( 'ftpPath' )) }}</runIf>
+                            <runIf>{{ Boolean.valueOf( slowTests ) &amp;&amp; ( session.executionProperties.ftpPath == null ) }}</runIf>
                             <verbose>false</verbose>
                             <properties>
                                 <property>
