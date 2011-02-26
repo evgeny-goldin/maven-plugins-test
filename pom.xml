@@ -191,9 +191,8 @@ Groovy [$GroovySystem.version], [$date] - testing plugin versions:
                             <goal>set-properties</goal>
                         </goals>
                         <phase>generate-sources</phase>
-                        <inherited>false</inherited>
                         <configuration>
-                            <runIf>{{ slowTests }}</runIf>
+                            <runIf>{{ slowTests &amp;&amp; ( ! System.getProperty( 'ftpPath' )) }}</runIf>
                             <verbose>false</verbose>
                             <properties>
                                 <property>
