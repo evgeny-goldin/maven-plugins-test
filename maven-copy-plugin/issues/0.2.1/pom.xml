@@ -23,7 +23,6 @@
     <properties>
         <outputDir>${project.build.outputDirectory}</outputDir>
         <resourcesDir>${project.basedir}/../0.2-beta-2/src/main/resources</resourcesDir>
-        <slowTests>false</slowTests> <!-- Set to "true" in TeamCity project -->
     </properties>
 
 
@@ -55,51 +54,6 @@
                 </executions>
             </plugin>
 
-            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
-            <!-- Setting FTP and SCP path -->
-            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
-
-            <plugin>
-                <groupId>com.goldin.plugins</groupId>
-                <artifactId>maven-properties-plugin</artifactId>
-                <version>${maven-properties-plugin-version}</version>
-                <executions>
-                    <execution>
-                        <id>read-files</id>
-                        <goals>
-                            <goal>set-properties</goal>
-                        </goals>
-                        <configuration>
-                            <runIf>{{ slowTests }}</runIf>
-                            <verbose>false</verbose>
-                            <properties>
-                                <property>
-                                    <name>ftpPath</name>
-                                    <value>
-                                        {{
-                                            assert System.getProperty( 'filesDir' ), 'System property "filesDir" is not defined!'
-                                            def data = new File( System.getProperty( 'filesDir' ), 'ftp.txt' ).text.splitWith( 'eachLine' )
-                                            "ftp://" + data[ 0 ] + ":" + data[ 1 ] + "@" + data[ 2 ] + ":" + data[ 3 ]
-                                            <!--       username          password             host          directory -->
-                                        }}
-                                    </value>
-                                </property>
-                                <property>
-                                    <name>scpPath</name>
-                                    <value>
-                                        {{
-                                            assert System.getProperty( 'filesDir' ), 'System property "filesDir" is not defined!'
-                                            def data = new File( System.getProperty( 'filesDir' ), 'scp.txt' ).text.splitWith( 'eachLine' )
-                                            "scp://" + data[ 0 ] + ":" + data[ 1 ] + "@" + data[ 2 ] + ":" + data[ 3 ]
-                                            <!--       username          password             host          directory -->
-                                        }}
-                                    </value>
-                                </property>
-                            </properties>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
 
             <plugin>
                 <groupId>com.goldin.plugins</groupId>

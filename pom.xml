@@ -29,6 +29,8 @@
         <maven-find-plugin-version>0.2.2-SNAPSHOT</maven-find-plugin-version>
         <maven-timestamp-plugin-version>0.2.2-SNAPSHOT</maven-timestamp-plugin-version>
         <maven-sshexec-plugin-version>0.2.2-SNAPSHOT</maven-sshexec-plugin-version>
+
+        <slowTests>false</slowTests> <!-- Set to "true" in TeamCity test project -->
     </properties>
 
 
@@ -172,6 +174,55 @@ Groovy [$GroovySystem.version], [$date] - testing plugin versions:
                     </execution>
                 </executions>
             </plugin>
+
+
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- Setting FTP and SCP paths -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-properties-plugin</artifactId>
+                <version>${maven-properties-plugin-version}</version>
+                <executions>
+                    <execution>
+                        <id>read-files</id>
+                        <goals>
+                            <goal>set-properties</goal>
+                        </goals>
+                        <inherited>false</inherited>
+                        <configuration>
+                            <runIf>{{ slowTests }}</runIf>
+                            <verbose>false</verbose>
+                            <properties>
+                                <property>
+                                    <name>ftpPath</name>
+                                    <value>
+                                        {{
+                                            assert System.getProperty( 'filesDir' ), 'System property "filesDir" is not defined!'
+                                            def data = new File( System.getProperty( 'filesDir' ), 'ftp.txt' ).text.splitWith( 'eachLine' )
+                                            "ftp://" + data[ 0 ] + ":" + data[ 1 ] + "@" + data[ 2 ] + ":" + data[ 3 ]
+                                            <!--       username          password             host          directory -->
+                                        }}
+                                    </value>
+                                </property>
+                                <property>
+                                    <name>scpPath</name>
+                                    <value>
+                                        {{
+                                            assert System.getProperty( 'filesDir' ), 'System property "filesDir" is not defined!'
+                                            def data = new File( System.getProperty( 'filesDir' ), 'scp.txt' ).text.splitWith( 'eachLine' )
+                                            "scp://" + data[ 0 ] + ":" + data[ 1 ] + "@" + data[ 2 ] + ":" + data[ 3 ]
+                                            <!--       username          password             host          directory -->
+                                        }}
+                                    </value>
+                                </property>
+                            </properties>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
         </plugins>
     </build>
 

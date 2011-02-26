@@ -23,7 +23,6 @@
     <properties>
         <outputDir>${project.build.outputDirectory}</outputDir>
         <zymicFtp>ftp://evgenyg_zxq:sdaed432e23@evgenyg.zxq.net</zymicFtp>
-        <slowTests>false</slowTests> <!-- Set to "true" in TeamCity project -->
     </properties>
 
 
