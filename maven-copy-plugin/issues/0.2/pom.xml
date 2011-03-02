@@ -7,7 +7,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.goldin.plugins.maven-plugins-test</groupId>
-    <artifactId>maven-copy-plugin.bugfixes.0.2</artifactId>
+    <artifactId>maven-copy-plugin.issues.0.2</artifactId>
     <packaging>jar</packaging>
     <version>0.1-SNAPSHOT</version>
     <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
@@ -15,7 +15,7 @@
 
     <parent>
         <groupId>com.goldin.plugins.maven-plugins-test</groupId>
-        <artifactId>maven-copy-plugin.bugfixes</artifactId>
+        <artifactId>maven-copy-plugin.issues</artifactId>
         <version>0.1-SNAPSHOT</version>
     </parent>
 
@@ -41,7 +41,7 @@
                         <goals>
                             <goal>copy</goal>
                         </goals>
-                        <phase>validate</phase>
+                        <phase>initialize</phase>
                         <configuration>
                             <resources>
                                 <resource>
@@ -105,8 +105,8 @@
                                 ${outputDir}/pl-262-zip|${outputDir}/pl-262-targz|**/*.jar
                             </assertEqual>
                             <assertGroovy>
-                                new File( outputDir, 'pl-262-zip'   ).directorySize() == 3353088
-                                new File( outputDir, 'pl-262-zip'   ).directorySize() == new File( outputDir, 'pl-262-targz' ).directorySize()
+                                new File( outputDir, 'pl-262-zip' ).directorySize() == 3353088
+                                new File( outputDir, 'pl-262-zip' ).directorySize() == new File( outputDir, 'pl-262-targz' ).directorySize()
                             </assertGroovy>
                         </configuration>
                     </execution>

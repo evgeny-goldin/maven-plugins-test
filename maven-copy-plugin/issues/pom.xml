@@ -7,7 +7,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.goldin.plugins.maven-plugins-test</groupId>
-    <artifactId>maven-properties-plugin.bugfixes</artifactId>
+    <artifactId>maven-copy-plugin.issues</artifactId>
     <packaging>pom</packaging>
     <version>0.1-SNAPSHOT</version>
     <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
@@ -15,14 +15,19 @@
 
     <parent>
         <groupId>com.goldin.plugins.maven-plugins-test</groupId>
-        <artifactId>maven-properties-plugin</artifactId>
+        <artifactId>maven-copy-plugin</artifactId>
         <version>0.1-SNAPSHOT</version>
     </parent>
 
 
 
     <modules>
+        <module>0.2-beta-2</module>
+        <module>0.2-beta-3</module>
+        <module>0.2-beta-4</module>
         <module>0.2-beta-5</module>
+        <module>0.2</module>
+        <module>0.2.1</module>
     </modules>
 
 </project>

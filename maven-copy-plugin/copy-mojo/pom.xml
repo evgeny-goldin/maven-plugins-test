@@ -23,7 +23,6 @@
     <properties>
         <outputDir>${project.build.outputDirectory}</outputDir>
         <zymicFtp>ftp://evgenyg_zxq:sdaed432e23@evgenyg.zxq.net</zymicFtp>
-        <slowTests>false</slowTests> <!-- Set to "true" in TeamCity project -->
     </properties>
 
 
@@ -60,6 +59,7 @@
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
                                 <resource>
+                                    <description>Testing "{{latest}}" filter - (1)</description>
                                     <targetPath>${outputDir}/latestTest</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <replace>
@@ -82,12 +82,14 @@
                                     <destFileName>1.txt</destFileName>
                                 </resource>
                                 <resource>
+                                    <description>{{ '"3 == 5" test: [' + new Date() +']' }}</description>
                                     <runIf>{{ 3 == 5 }}</runIf>
                                     <targetPath>${outputDir}/runIf</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <destFileName>2.txt</destFileName>
                                 </resource>
                                 <resource>
+                                    <description>{{ '"true" test: [' + new Date() +']' }}</description>
                                     <runIf>{{ "true" }}</runIf>
                                     <targetPath>${outputDir}/runIf</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
@@ -505,6 +507,7 @@
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
                                 <resource>
+                                    <description>Testing "{{latest}}" filter - (2)</description>
                                     <targetPath>${outputDir}/latestTest</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <replace>
@@ -514,6 +517,7 @@
                                     <destFileName>bb.txt</destFileName>
                                 </resource>
                                 <resource>
+                                    <description>Testing "{{latest}}" filter - selection</description>
                                     <targetPath>${outputDir}/latestTestSelect</targetPath>
                                     <directory>${outputDir}/latestTest</directory>
                                     <filter>{{latest}}</filter>

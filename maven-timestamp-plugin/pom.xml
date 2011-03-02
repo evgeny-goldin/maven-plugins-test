@@ -109,8 +109,6 @@
                         </goals>
                         <phase>test</phase>
                         <configuration>
-                            <assertFiles>
-                            </assertFiles>
                             <assertGroovy>
                                 zeroDate       == '01-01-1970'
                                 zeroDateIsrael == '01-01-1970'

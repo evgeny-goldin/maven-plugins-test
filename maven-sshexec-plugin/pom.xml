@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns              = "http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi          = "http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0
+                               http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+    <artifactId>maven-sshexec-plugin</artifactId>
+    <packaging>jar</packaging>
+    <version>0.1-SNAPSHOT</version>
+    <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
+
+
+    <parent>
+        <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+        <artifactId>main.tests</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+
+    <build>
+        <plugins>
+
+            <!-- ~~~~~~~~~~~~~~~~ -->
+            <!-- Setting SCP path -->
+            <!-- ~~~~~~~~~~~~~~~~ -->
+
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-properties-plugin</artifactId>
+                <version>${maven-properties-plugin-version}</version>
+                <executions>
+                    <execution>
+                        <id>read-files</id>
+                        <goals>
+                            <goal>set-properties</goal>
+                        </goals>
+                        <configuration>
+                            <verbose>false</verbose>
+                            <property>
+                                <name>scpPath</name>
+                                <value>
+                                    {{
+                                        assert System.getProperty( 'filesDir' ), 'System property "filesDir" is not defined!'
+                                        def data = new File( System.getProperty( 'filesDir' ), 'scp.txt' ).text.splitWith( 'eachLine' )
+                                        "scp://" + data[ 0 ] + ":" + data[ 1 ] + "@" + data[ 2 ] + ":" + data[ 3 ]
+                                        <!--       username          password             host          directory -->
+                                    }}
+                                </value>
+                            </property>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-sshexec-plugin</artifactId>
+                <version>${maven-sshexec-plugin-version}</version>
+                <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-326 - "Provide a number of commands instead of a single command" -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-328 - "Provide a way to echo current directory"                  -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-329 - "Add <verbose>"                                            -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-330 - "Provide an option to echo commands executed"              -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-334 - "Multiple executions - if one is "<verbose>true</verbose>" all following are verbose as well" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-326-1</id>
+                        <goals>
+                            <goal>sshexec</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <location>${scpPath}</location>
+                            <command>ls -al</command>
+                            <echoCommands>true</echoCommands>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-326-2</id>
+                        <goals>
+                            <goal>sshexec</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <location>${scpPath}</location>
+                            <command>ls -al; cd .svn; ls -al; cd ..; cat pom.xml; echo Current date is [`date -u`]</command>
+                            <echoPwd>false</echoPwd>
+                            <verbose>false</verbose>
+                            <echoCommands>false</echoCommands>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-326-3</id>
+                        <goals>
+                            <goal>sshexec</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <location>${scpPath}</location>
+                            <command>ls -al, cd .svn, ls -al, cd .., cat pom.xml, echo Current date is [`date -u`]</command>
+                            <verbose>false</verbose>
+                            <echoCommands>true</echoCommands>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-326-4</id>
+                        <goals>
+                            <goal>sshexec</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <location>${scpPath}</location>
+                            <commands>
+                                <command>ls -al, cd .svn, ls -al, cd ..</command>
+                                <command>cat pom.xml; echo Current date is [`date -u`]</command>
+                                <command>echo Bye-bye!</command>
+                            </commands>
+                            <verbose>true</verbose>
+                            <echoCommands>true</echoCommands>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-326-5</id>
+                        <goals>
+                            <goal>sshexec</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <location>${scpPath}</location>
+                            <commands>
+                                <command>uname -a</command>
+                                <command>free</command>
+                            </commands>
+                            <commandsShellSeparator>;</commandsShellSeparator>
+                            <echoCommands>true</echoCommands>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

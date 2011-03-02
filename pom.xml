@@ -22,12 +22,15 @@
         <gmaven-version>1.3</gmaven-version>
         <groovy-version>1.8.0-beta-4</groovy-version>
 
-        <maven-hudson-plugin-version>0.3-SNAPSHOT</maven-hudson-plugin-version>
-        <maven-assert-plugin-version>0.3-SNAPSHOT</maven-assert-plugin-version>
-        <maven-copy-plugin-version>0.3-SNAPSHOT</maven-copy-plugin-version>
-        <maven-properties-plugin-version>0.3-SNAPSHOT</maven-properties-plugin-version>
-        <maven-find-plugin-version>0.3-SNAPSHOT</maven-find-plugin-version>
-        <maven-timestamp-plugin-version>0.3-SNAPSHOT</maven-timestamp-plugin-version>
+        <maven-hudson-plugin-version>0.2.2-SNAPSHOT</maven-hudson-plugin-version>
+        <maven-assert-plugin-version>0.2.2-SNAPSHOT</maven-assert-plugin-version>
+        <maven-copy-plugin-version>0.2.2-SNAPSHOT</maven-copy-plugin-version>
+        <maven-properties-plugin-version>0.2.2-SNAPSHOT</maven-properties-plugin-version>
+        <maven-find-plugin-version>0.2.2-SNAPSHOT</maven-find-plugin-version>
+        <maven-timestamp-plugin-version>0.2.2-SNAPSHOT</maven-timestamp-plugin-version>
+        <maven-sshexec-plugin-version>0.2.2-SNAPSHOT</maven-sshexec-plugin-version>
+
+        <slowTests>false</slowTests>
     </properties>
 
 
@@ -164,12 +167,62 @@ Groovy [$GroovySystem.version], [$date] - testing plugin versions:
 * maven-properties-plugin-version : "${maven-properties-plugin-version}"
 * maven-find-plugin-version       : "${maven-find-plugin-version}"
 * maven-timestamp-plugin-version  : "${maven-timestamp-plugin-version}"
+* maven-sshexec-plugin-version    : "${maven-sshexec-plugin-version}"
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"""
                             </source>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
+
+
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- Setting FTP and SCP paths -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-properties-plugin</artifactId>
+                <version>${maven-properties-plugin-version}</version>
+                <executions>
+                    <execution>
+                        <id>set-ftp-scp-paths</id>
+                        <goals>
+                            <goal>set-properties</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <runIf>{{ Boolean.valueOf( slowTests ) &amp;&amp; ( session.executionProperties.ftpPath == null ) }}</runIf>
+                            <verbose>false</verbose>
+                            <properties>
+                                <property>
+                                    <name>ftpPath</name>
+                                    <value>
+                                        {{
+                                            assert System.getProperty( 'filesDir' ), 'System property "filesDir" is not defined!'
+                                            def data = new File( System.getProperty( 'filesDir' ), 'ftp.txt' ).text.splitWith( 'eachLine' )
+                                            "ftp://" + data[ 0 ] + ":" + data[ 1 ] + "@" + data[ 2 ] + ":" + data[ 3 ]
+                                            <!--       username          password             host          directory -->
+                                        }}
+                                    </value>
+                                </property>
+                                <property>
+                                    <name>scpPath</name>
+                                    <value>
+                                        {{
+                                            assert System.getProperty( 'filesDir' ), 'System property "filesDir" is not defined!'
+                                            def data = new File( System.getProperty( 'filesDir' ), 'scp.txt' ).text.splitWith( 'eachLine' )
+                                            "scp://" + data[ 0 ] + ":" + data[ 1 ] + "@" + data[ 2 ] + ":" + data[ 3 ]
+                                            <!--       username          password             host          directory -->
+                                        }}
+                                    </value>
+                                </property>
+                            </properties>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
         </plugins>
     </build>
 
@@ -180,6 +233,7 @@ Groovy [$GroovySystem.version], [$date] - testing plugin versions:
         <module>maven-properties-plugin</module>
         <module>maven-find-plugin</module>
         <module>maven-timestamp-plugin</module>
+        <module>maven-sshexec-plugin</module>
     </modules>
 
 </project>

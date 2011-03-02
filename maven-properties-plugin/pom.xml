@@ -22,7 +22,7 @@
 
 
     <modules>
-        <module>bugfixes</module>
+        <module>issues</module>
     </modules>
 
 </project>
