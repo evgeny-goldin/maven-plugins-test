@@ -38,6 +38,7 @@
                             <goal>set-properties</goal>
                         </goals>
                         <configuration>
+                            <runIf>{{ slowTests }}</runIf>
                             <verbose>false</verbose>
                             <property>
                                 <name>scpPath</name>
@@ -74,6 +75,7 @@
                         </goals>
                         <phase>initialize</phase>
                         <configuration>
+                            <runIf>{{ slowTests }}</runIf>
                             <location>${scpPath}</location>
                             <command>ls -al</command>
                             <echoCommands>true</echoCommands>
@@ -86,6 +88,7 @@
                         </goals>
                         <phase>initialize</phase>
                         <configuration>
+                            <runIf>{{ slowTests }}</runIf>
                             <location>${scpPath}</location>
                             <command>ls -al; cd .svn; ls -al; cd ..; cat pom.xml; echo Current date is [`date -u`]</command>
                             <echoPwd>false</echoPwd>
@@ -100,6 +103,7 @@
                         </goals>
                         <phase>initialize</phase>
                         <configuration>
+                            <runIf>{{ slowTests }}</runIf>
                             <location>${scpPath}</location>
                             <command>ls -al, cd .svn, ls -al, cd .., cat pom.xml, echo Current date is [`date -u`]</command>
                             <verbose>false</verbose>
@@ -113,6 +117,7 @@
                         </goals>
                         <phase>initialize</phase>
                         <configuration>
+                            <runIf>{{ slowTests }}</runIf>
                             <location>${scpPath}</location>
                             <commands>
                                 <command>ls -al, cd .svn, ls -al, cd ..</command>
@@ -130,6 +135,7 @@
                         </goals>
                         <phase>initialize</phase>
                         <configuration>
+                            <runIf>{{ slowTests }}</runIf>
                             <location>${scpPath}</location>
                             <commands>
                                 <command>uname -a</command>
