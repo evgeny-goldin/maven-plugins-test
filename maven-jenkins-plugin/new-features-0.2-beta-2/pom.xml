@@ -221,11 +221,7 @@
                                     <tasks>
                                         <maven>
                                             <mavenName>apache-maven-2.2.1</mavenName>
-                                            <properties>
-                                                plugins-version = 0.2
-                                                plugins-version = 0.2
-                                                plugins-version   = 0.2
-                                            </properties>
+                                            <properties>plugins-version = 0.2.1</properties>
                                         </maven>
                                     </tasks>
                                 </job>

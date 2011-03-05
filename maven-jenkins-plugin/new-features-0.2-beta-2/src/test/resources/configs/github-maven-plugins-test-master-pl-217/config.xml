@@ -91,9 +91,7 @@
         <targets>-e clean install</targets>
 <mavenName>apache-maven-2.2.1</mavenName>
 <pom>pom.xml</pom>
-<properties>plugins-version = 0.2
-plugins-version = 0.2
-plugins-version   = 0.2</properties>
+<properties>plugins-version = 0.2.1</properties>
 <usePrivateRepository>false</usePrivateRepository>
     </hudson.tasks.Maven>
   </builders>
