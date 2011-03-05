@@ -171,7 +171,7 @@ Groovy [$GroovySystem.version], [$date] - testing plugins version [${plugins-ver
                 <version>${plugins-version}</version>
                 <executions>
                     <execution>
-                        <id>set-ftp-scp-paths</id>
+                        <id>set-ftp-scp-paths-slowTests</id>
                         <goals>
                             <goal>set-properties</goal>
                         </goals>
@@ -201,6 +201,29 @@ Groovy [$GroovySystem.version], [$date] - testing plugins version [${plugins-ver
                                             <!--       username          password             host          directory -->
                                         }}
                                     </value>
+                                </property>
+                            </properties>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>set-ftp-scp-paths-noTests</id>
+                        <goals>
+                            <goal>set-properties</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <runIf>{{ ! Boolean.valueOf( slowTests ) }}</runIf>
+                            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                            <!-- Setting paths to dummy values if "slow tests" are not running -->
+                            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                            <properties>
+                                <property>
+                                    <name>ftpPath</name>
+                                    <value>{{'dummy'}}</value>
+                                </property>
+                                <property>
+                                    <name>scpPath</name>
+                                    <value>{{'dummy'}}</value>
                                 </property>
                             </properties>
                         </configuration>
