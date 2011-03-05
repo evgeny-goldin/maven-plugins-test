@@ -142,7 +142,7 @@
                 <inherited>false</inherited>
                 <executions>
                     <execution>
-                        <id>plugins-versions</id>
+                        <id>display-plugins-version</id>
                         <goals>
                             <goal>execute</goal>
                         </goals>
@@ -230,7 +230,7 @@ Groovy [$GroovySystem.version], [$date] - testing plugins version [${plugins-ver
                     </execution>
                 </executions>
             </plugin>
-            
+
         </plugins>
     </build>
 
