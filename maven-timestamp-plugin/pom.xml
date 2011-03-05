@@ -25,7 +25,7 @@
             <plugin>
                 <groupId>com.goldin.plugins</groupId>
                 <artifactId>maven-timestamp-plugin</artifactId>
-                <version>${maven-timestamp-plugin-version}</version>
+                <version>${plugins-version}</version>
                 <executions>
                     <execution>
                         <id>set-zero-timestamp</id>
@@ -100,7 +100,7 @@
             <plugin>
                 <groupId>com.goldin.plugins</groupId>
                 <artifactId>maven-assert-plugin</artifactId>
-                <version>${maven-assert-plugin-version}</version>
+                <version>${plugins-version}</version>
                 <executions>
                     <execution>
                         <id>check-timestamps</id>

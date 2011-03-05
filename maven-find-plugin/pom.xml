@@ -25,7 +25,7 @@
             <plugin>
                 <groupId>com.goldin.plugins</groupId>
                 <artifactId>maven-find-plugin</artifactId>
-                <version>${maven-find-plugin-version}</version>
+                <version>${plugins-version}</version>
                 <executions>
                     <execution>
                         <id>find-maven-plugins-test-windows</id>
@@ -73,7 +73,7 @@
             <plugin>
                 <groupId>com.goldin.plugins</groupId>
                 <artifactId>maven-assert-plugin</artifactId>
-                <version>${maven-assert-plugin-version}</version>
+                <version>${plugins-version}</version>
                 <executions>
                     <execution>
                         <id>check-maven-plugins-test</id>
@@ -89,8 +89,8 @@
                                 ${mavenPluginsTest}/maven-copy-plugin/issues/0.2-beta-5/pom.xml
                                 ${mavenPluginsTest}/maven-find-plugin
                                 ${mavenPluginsTest}/maven-find-plugin/pom.xml
-                                ${mavenPluginsTest}/maven-hudson-plugin
-                                ${mavenPluginsTest}/maven-hudson-plugin/issues-0.2-beta-2/src/test/resources/configs/pl-18/config.xml
+                                ${mavenPluginsTest}/maven-jenkins-plugin
+                                ${mavenPluginsTest}/maven-jenkins-plugin/issues-0.2-beta-2/src/test/resources/configs/pl-18/config.xml
                                 ${mavenPluginsTest}/maven-properties-plugin
                                 ${mavenPluginsTest}/maven-properties-plugin/issues/0.2-beta-5/pom.xml
                             </assertFiles>

@@ -30,7 +30,7 @@
             <plugin>
                 <groupId>com.goldin.plugins</groupId>
                 <artifactId>maven-properties-plugin</artifactId>
-                <version>${maven-properties-plugin-version}</version>
+                <version>${plugins-version}</version>
                 <executions>
                     <execution>
                         <id>read-files</id>
@@ -58,7 +58,7 @@
             <plugin>
                 <groupId>com.goldin.plugins</groupId>
                 <artifactId>maven-sshexec-plugin</artifactId>
-                <version>${maven-sshexec-plugin-version}</version>
+                <version>${plugins-version}</version>
                 <executions>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-326 - "Provide a number of commands instead of a single command" -->
