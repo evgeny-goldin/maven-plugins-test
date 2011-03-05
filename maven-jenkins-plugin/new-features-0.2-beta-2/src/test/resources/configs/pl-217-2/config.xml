@@ -45,12 +45,12 @@
   <jdk>(Default)</jdk>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <hudson.tasks.BatchFile>
-        <command>dir</command>
-    </hudson.tasks.BatchFile>
-    <hudson.tasks.BatchFile>
-        <command>set</command>
-    </hudson.tasks.BatchFile>
+    <hudson.tasks.Shell>
+        <command>pwd</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+        <command>ls -al</command>
+    </hudson.tasks.Shell>
   </builders>
   <publishers>
   </publishers>
