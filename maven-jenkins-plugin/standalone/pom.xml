@@ -64,7 +64,7 @@
 
                                 <job>
                                     <id>google-guice</id>
-                                    <mavenName>apache-maven-2.2.1</mavenName>
+                                    <mavenName>apache-maven-3</mavenName>
                                     <jdkName>jdk1.6.0</jdkName>
                                     <repository>
                                         <remote>http://google-guice.googlecode.com/svn/trunk/</remote>

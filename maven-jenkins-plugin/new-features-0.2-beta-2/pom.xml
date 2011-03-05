@@ -165,12 +165,12 @@
                                     <id>pl-217-2</id>
                                     <parent>base-free</parent>
                                     <tasks>
-                                        <batchFile>
-                                            <command>dir</command>
-                                        </batchFile>
-                                        <batchFile>
-                                            <command>set</command>
-                                        </batchFile>
+                                        <shell>
+                                            <command>pwd</command>
+                                        </shell>
+                                        <shell>
+                                            <command>ls -al</command>
+                                        </shell>
                                     </tasks>
                                 </job>
 
@@ -221,6 +221,8 @@
                                     <tasks>
                                         <maven>
                                             <mavenName>apache-maven-2.2.1</mavenName>
+                                            <jvmOptions>-Xmx256m -XX:MaxPermSize=250m</jvmOptions>
+                                            <targets>-e -B -U clean install</targets>
                                             <properties>plugins-version = 0.2.1</properties>
                                         </maven>
                                     </tasks>

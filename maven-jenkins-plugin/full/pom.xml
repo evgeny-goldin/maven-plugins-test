@@ -165,6 +165,7 @@
                                     <parent>base-svn</parent>
                                     <useUpdate>true</useUpdate>
                                     <daysToKeep>7</daysToKeep>
+                                    <mavenName>apache-maven-3</mavenName>
                                     <repository>
                                         <remote>http://google-guice.googlecode.com/svn/trunk/</remote>
                                     </repository>
