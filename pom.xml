@@ -146,7 +146,7 @@
                         <goals>
                             <goal>execute</goal>
                         </goals>
-                        <phase>initialize</phase>
+                        <phase>validate</phase>
                         <configuration>
                             <source>
                                 def date = new Date()
@@ -175,9 +175,9 @@ Groovy [$GroovySystem.version], [$date] - testing plugins version [${plugins-ver
                         <goals>
                             <goal>set-properties</goal>
                         </goals>
-                        <phase>generate-sources</phase>
+                        <phase>validate</phase>
                         <configuration>
-                            <runIf>{{ Boolean.valueOf( slowTests ) &amp;&amp; ( session.executionProperties.ftpPath == null ) }}</runIf>
+                            <runIf>{{ ( session.executionProperties.ftpPath == null ) &amp;&amp; Boolean.valueOf( slowTests ) }}</runIf>
                             <verbose>false</verbose>
                             <properties>
                                 <property>
@@ -210,9 +210,9 @@ Groovy [$GroovySystem.version], [$date] - testing plugins version [${plugins-ver
                         <goals>
                             <goal>set-properties</goal>
                         </goals>
-                        <phase>generate-sources</phase>
+                        <phase>validate</phase>
                         <configuration>
-                            <runIf>{{ ! Boolean.valueOf( slowTests ) }}</runIf>
+                            <runIf>{{ ( session.executionProperties.ftpPath == null ) &amp;&amp; ( ! Boolean.valueOf( slowTests )) }}</runIf>
                             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                             <!-- Setting paths to dummy values if "slow tests" are not running -->
                             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
