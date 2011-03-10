@@ -34,7 +34,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${configs-outputDirectory}</outputDirectory>
+                            <outputDirectory>${user.home}/.jenkins/jobs</outputDirectory>
                             <generationPom>http://github.com/evgeny-goldin/maven-plugins-test/blob/master/maven-jenkins-plugin/jenkins-book/pom.xml</generationPom>
                             <jenkinsUrl>http://evgeny-goldin.org/jenkins</jenkinsUrl>
                             <timestamp>false</timestamp>
