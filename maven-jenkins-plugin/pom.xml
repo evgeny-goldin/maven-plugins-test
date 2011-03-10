@@ -27,6 +27,7 @@
         <module>full</module>
         <module>google-guice</module>
         <module>standalone</module>
+        <module>jenkins-book</module>
     </modules>
 
 </project>
