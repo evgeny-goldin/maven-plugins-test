@@ -28,14 +28,16 @@
                 <version>0.2.2</version>
                 <executions>
                     <execution>
-                        <id>gcommons-job</id>
+                        <id>generate-maven-plugins-job</id>
                         <phase>compile</phase>
                         <goals>
                             <goal>generate</goal>
                         </goals>
                         <configuration>
                             <outputDirectory>${user.home}/.jenkins/jobs</outputDirectory>
-                            <generationPom>http://github.com/evgeny-goldin/maven-plugins-test/blob/master/maven-jenkins-plugin/jenkins-book/pom.xml</generationPom>
+                            <generationPom>
+                                http://github.com/evgeny-goldin/maven-plugins-test/blob/master/maven-jenkins-plugin/jenkins-book/pom.xml
+                            </generationPom>
                             <jenkinsUrl>http://evgeny-goldin.org/jenkins</jenkinsUrl>
                             <timestamp>false</timestamp>
                             <job>
