@@ -30,7 +30,7 @@
 </tr>
 <tr>
 <td valign="top">Maven repository</td>
-<td><strong><code>"&lt;hudson-user-home&gt;/.hudson/jobs/github-maven-plugins-master-4/workspace/.repository"</code></strong></td>
+<td><strong><code>"&lt;user-home&gt;/.jenkins/jobs/github-maven-plugins-master-4/workspace/.repository"</code></strong></td>
 </tr>
 <tr>
 <td valign="top">Node</td>

@@ -30,7 +30,7 @@
 </tr>
 <tr>
 <td valign="top">Maven repository</td>
-<td><strong><code>"&lt;hudson-user-home&gt;/.m2/repository"</code></strong></td>
+<td><strong><code>"&lt;user-home&gt;/.m2/repository"</code></strong></td>
 </tr>
 <tr>
 <td valign="top">Node</td>
@@ -127,10 +127,10 @@
   <reporters>
   </reporters>
   <publishers>
-        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-        <!-- Requires "Parameterized Trigger Plugin"                               -->
-        <!-- http://wiki.hudson-ci.org/display/HUDSON/Parameterized+Trigger+Plugin -->
-        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <!-- Requires "Parameterized Trigger Plugin"                                 -->
+        <!-- http://wiki.jenkins-ci.org/display/JENKINS/Parameterized+Trigger+Plugin -->
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
         <hudson.plugins.parameterizedtrigger.BuildTrigger>
             <configs>
                 <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>

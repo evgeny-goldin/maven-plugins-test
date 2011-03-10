@@ -39,7 +39,7 @@
             <plugin>
                 <groupId>com.goldin.plugins</groupId>
                 <artifactId>maven-jenkins-plugin</artifactId>
-                <version>0.2.1</version>
+                <version>0.2.2</version>
                 <executions>
                     <execution>
                         <id>generate-jenkins-jobs</id>
@@ -50,7 +50,7 @@
                         <configuration>
                             <outputDirectory>${user.home}/.jenkins/jobs</outputDirectory>
                             <generationPom>http://github.com/evgeny-goldin/maven-plugins-test/blob/master/maven-jenkins-plugin/google-guice/pom.xml</generationPom>
-                            <hudsonUrl>http://evgeny-goldin.org/jenkins</hudsonUrl>
+                            <jenkinsUrl>http://evgeny-goldin.org/jenkins</jenkinsUrl>
                             <jobs>
 
                                 <job>
