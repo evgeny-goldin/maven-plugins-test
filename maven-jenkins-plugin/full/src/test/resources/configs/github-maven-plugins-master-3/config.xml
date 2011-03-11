@@ -26,11 +26,11 @@
 </tr>
 <tr>
 <td valign="top">Maven goals</td>
-<td><strong><code>-e clean install -Dmaven.repo.local="/.m2/repo/maven-plugins-master-3"</code></strong></td>
+<td><strong><code>-e clean install -Dmaven.repo.local="/home/evgenyg/.m2/repo/maven-plugins-master-3"</code></strong></td>
 </tr>
 <tr>
 <td valign="top">Maven repository</td>
-<td><strong><code>"/.m2/repo/maven-plugins-master-3"</code></strong></td>
+<td><strong><code>"/home/evgenyg/.m2/repo/maven-plugins-master-3"</code></strong></td>
 </tr>
 <tr>
 <td valign="top">Maven options</td>
@@ -111,7 +111,7 @@
   <jdk>jdk1.6.0</jdk>
   <concurrentBuild>false</concurrentBuild>
   <rootPOM>pom.xml</rootPOM>
-  <goals>-e clean install -Dmaven.repo.local="/.m2/repo/maven-plugins-master-3"</goals>
+  <goals>-e clean install -Dmaven.repo.local="/home/evgenyg/.m2/repo/maven-plugins-master-3"</goals>
   <mavenName>apache-maven-2.2.1</mavenName>
   <mavenOpts>-server -Xmx256m</mavenOpts>
   <aggregatorStyleBuild>true</aggregatorStyleBuild>
