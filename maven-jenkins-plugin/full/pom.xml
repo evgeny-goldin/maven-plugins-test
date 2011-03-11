@@ -84,7 +84,7 @@
                                     <repository>
                                         <remote>${maven-plugins-repo}</remote>
                                     </repository>
-                                    <localRepoBase>/.m2/repo</localRepoBase>
+                                    <localRepoBase>/home/evgenyg/.m2/repo</localRepoBase>
                                     <localRepo>maven-plugins-master-1</localRepo>
                                 </job>
 
@@ -94,7 +94,7 @@
                                     <repository>
                                         <remote>${maven-plugins-repo}</remote>
                                     </repository>
-                                    <localRepoBase>/.m2/repo</localRepoBase>
+                                    <localRepoBase>/home/evgenyg/.m2/repo</localRepoBase>
                                 </job>
 
                                 <job>
@@ -103,7 +103,7 @@
                                     <repository>
                                         <remote>${maven-plugins-repo}</remote>
                                     </repository>
-                                    <localRepoBase>/.m2/repo</localRepoBase>
+                                    <localRepoBase>/home/evgenyg/.m2/repo</localRepoBase>
                                     <localRepo>maven-plugins-master-3</localRepo>
                                     <mavenOpts>-server -Xmx256m</mavenOpts>
                                     <mail>
