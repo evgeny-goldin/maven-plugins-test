@@ -37,7 +37,7 @@
             <plugin>
                 <groupId>com.goldin.plugins</groupId>
                 <artifactId>maven-copy-plugin</artifactId>
-                <version>${maven-copy-plugin-version}</version>
+                <version>${plugins-version}</version>
                 <executions>
                     <execution>
                         <id>net-scenario-upload</id>
@@ -46,8 +46,8 @@
                         </goals>
                         <phase>process-resources</phase>
                         <configuration>
+                            <runIf>{{ slowTests }}</runIf>
                             <resources>
-
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <!-- Creating distribution archive -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -105,6 +105,7 @@
                         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                         <phase>package</phase>
                         <configuration>
+                            <runIf>{{ slowTests }}</runIf>
                             <resources>
 
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -163,7 +164,7 @@
             <plugin>
                 <groupId>com.goldin.plugins</groupId>
                 <artifactId>maven-sshexec-plugin</artifactId>
-                <version>${maven-sshexec-plugin-version}</version>
+                <version>${plugins-version}</version>
                 <executions>
                     <execution>
                         <id>unpack-net-scp</id>
@@ -172,6 +173,7 @@
                         </goals>
                         <phase>compile</phase>
                         <configuration>
+                            <runIf>{{ slowTests }}</runIf>
                             <location>${scpPath}</location>
                             <commands>
                                 <command>rm -rf apache-maven-3.0.1</command>
@@ -192,7 +194,7 @@
             <plugin>
                 <groupId>com.goldin.plugins</groupId>
                 <artifactId>maven-assert-plugin</artifactId>
-                <version>${maven-assert-plugin-version}</version>
+                <version>${plugins-version}</version>
                 <executions>
                     <execution>
                         <id>assert-net-scenario</id>
@@ -201,6 +203,7 @@
                         </goals>
                         <phase>integration-test</phase>
                         <configuration>
+                            <runIf>{{ slowTests }}</runIf>
                             <assertFiles>
                                 ${outputDir}/scp
                                 ${outputDir}/scp/lib/aether-connector-wagon-1.8.jar

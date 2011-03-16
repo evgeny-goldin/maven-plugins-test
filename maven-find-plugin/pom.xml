@@ -20,12 +20,47 @@
     </parent>
 
 
+    <properties>
+        <outputDir>${project.build.outputDirectory}</outputDir>
+        <targetPath>${outputDir}/1/2/3/4/5/6/78/910</targetPath>
+    </properties>
+
     <build>
         <plugins>
+
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- Creating deeply nested directory -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-copy-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <execution>
+                        <id>create-directory</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <resource>
+                                <targetPath>${targetPath}</targetPath>
+                                <mkdir>true</mkdir>
+                            </resource>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- Finding "pom.xml" file -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
+
             <plugin>
                 <groupId>com.goldin.plugins</groupId>
                 <artifactId>maven-find-plugin</artifactId>
-                <version>${maven-find-plugin-version}</version>
+                <version>${plugins-version}</version>
                 <executions>
                     <execution>
                         <id>find-maven-plugins-test-windows</id>
@@ -35,9 +70,9 @@
                         <phase>initialize</phase>
                         <configuration>
                             <runIf>{{ osName.toLowerCase().contains( 'windows' ) }}</runIf>
-                            <file>maven-plugins-test</file>
-                            <propertyName>mavenPluginsTest</propertyName>
-                            <sysPropertyName>mavenPluginsTest</sysPropertyName>
+                            <file>pom.xml</file>
+                            <startDir>${targetPath}</startDir>
+                            <propertyName>pomPath</propertyName>
                         </configuration>
                     </execution>
                     <execution>
@@ -48,9 +83,9 @@
                         <phase>initialize</phase>
                         <configuration>
                             <runIf>{{ osName.toLowerCase().contains( 'linux' ) }}</runIf>
-                            <file>maven-plugins-test</file>
-                            <propertyName>mavenPluginsTest</propertyName>
-                            <sysPropertyName>mavenPluginsTest</sysPropertyName>
+                            <file>pom.xml</file>
+                            <startDir>${targetPath}</startDir>
+                            <propertyName>pomPath</propertyName>
                         </configuration>
                     </execution>
                     <execution>
@@ -61,19 +96,46 @@
                         <phase>initialize</phase>
                         <configuration>
                             <file>maven-plugins-test-aaaa</file>
-                            <propertyName>mavenPluginsTestAaaa</propertyName>
-                            <sysPropertyName>mavenPluginsTestAaaa</sysPropertyName>
+                            <propertyName>pomPathAaaa</propertyName>
                             <failIfNotFound>false</failIfNotFound>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
 
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- Setting project root path property -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-properties-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <execution>
+                        <id>set-root-path</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>set-properties</goal>
+                        </goals>
+                        <configuration>
+                            <property>
+                                <name>rootPath</name>
+                                <value>{{ new File( pomPath ).parentFile.parentFile.canonicalPath }}</value>
+                            </property>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- Verifying project root path property -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
             <plugin>
                 <groupId>com.goldin.plugins</groupId>
                 <artifactId>maven-assert-plugin</artifactId>
-                <version>${maven-assert-plugin-version}</version>
+                <version>${plugins-version}</version>
                 <executions>
                     <execution>
                         <id>check-maven-plugins-test</id>
@@ -83,28 +145,31 @@
                         <phase>test</phase>
                         <configuration>
                             <assertFiles>
-                                ${mavenPluginsTest}/pom.xml
-                                ${mavenPluginsTest}/README.txt
-                                ${mavenPluginsTest}/maven-copy-plugin
-                                ${mavenPluginsTest}/maven-copy-plugin/issues/0.2-beta-5/pom.xml
-                                ${mavenPluginsTest}/maven-find-plugin
-                                ${mavenPluginsTest}/maven-find-plugin/pom.xml
-                                ${mavenPluginsTest}/maven-hudson-plugin
-                                ${mavenPluginsTest}/maven-hudson-plugin/issues-0.2-beta-2/src/test/resources/configs/pl-18/config.xml
-                                ${mavenPluginsTest}/maven-properties-plugin
-                                ${mavenPluginsTest}/maven-properties-plugin/issues/0.2-beta-5/pom.xml
+                                ${rootPath}/pom.xml
+                                ${rootPath}/README.txt
+                                ${rootPath}/maven-copy-plugin
+                                ${rootPath}/maven-copy-plugin/issues/0.2-beta-5/pom.xml
+                                ${rootPath}/maven-find-plugin
+                                ${rootPath}/maven-find-plugin/pom.xml
+                                ${rootPath}/maven-jenkins-plugin
+                                ${rootPath}/maven-jenkins-plugin/issues-0.2-beta-2/src/test/resources/configs/pl-18/config.xml
+                                ${rootPath}/maven-properties-plugin
+                                ${rootPath}/maven-properties-plugin/issues/0.2-beta-5/pom.xml
+                                ${outputDir}
+                                ${targetPath}
                             </assertFiles>
                             <assertGroovy>
-                                mavenPluginsTest
-                                new File( mavenPluginsTest ).isDirectory()
-                                new File( mavenPluginsTest, 'maven-copy-plugin/issues/0.2-beta-5/pom.xml' ).isFile()
-                                mavenPluginsTest == System.properties.mavenPluginsTest
+                                rootPath
+                                new File( rootPath ).isDirectory()
+                                new File( rootPath ).directorySize() > 0
+                                new File( rootPath, 'maven-copy-plugin/issues/0.2-beta-5/pom.xml' ).isFile()
+                                rootPath == project.properties.rootPath
                             </assertGroovy>
                             <shouldFailAssertFiles>
-                                ${mavenPluginsTest}/pom2.xml
-                                ${mavenPluginsTest}/pom3.xml
-                                ${mavenPluginsTest}/aaa
-                                ${mavenPluginsTest}/*.exe
+                                ${rootPath}/pom2.xml
+                                ${rootPath}/pom3.xml
+                                ${rootPath}/aaa
+                                ${rootPath}/*.exe
                             </shouldFailAssertFiles>
                         </configuration>
                     </execution>

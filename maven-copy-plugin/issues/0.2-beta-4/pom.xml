@@ -33,7 +33,7 @@
             <plugin>
                 <groupId>com.goldin.plugins</groupId>
                 <artifactId>maven-copy-plugin</artifactId>
-                <version>${maven-copy-plugin-version}</version>
+                <version>${plugins-version}</version>
                 <executions>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-272: "Pack of Maven repository - operation sets a future "last modified" date on *.jar files" -->
@@ -81,7 +81,7 @@
             <plugin>
                 <groupId>com.goldin.plugins</groupId>
                 <artifactId>maven-assert-plugin</artifactId>
-                <version>${maven-assert-plugin-version}</version>
+                <version>${plugins-version}</version>
                 <executions>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-272 -->
@@ -131,7 +131,7 @@
                                     def zipDir  = new File( project.properties.outputDir, 'pl-272/m2-unpack' )
 
                                     new ZipFile( zipFile ).entries().each{
-                                        assert ( it.time &lt; now ), "[$zipFile.canonicalPath]/[$it.name] - [" + new Date( it.time ) + "] >= [" + new Date( now ) + "]"
+                                        assert (( it.time - now ) &lt; 2000 ), "[$zipFile.canonicalPath]/[$it.name]: [" + new Date( it.time ) + "] > [" + new Date( now ) + "]"
                                     }
 
                                     def files   = []

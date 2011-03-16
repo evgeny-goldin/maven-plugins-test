@@ -36,7 +36,7 @@
             <plugin>
                 <groupId>com.goldin.plugins</groupId>
                 <artifactId>maven-properties-plugin</artifactId>
-                <version>${maven-properties-plugin-version}</version>
+                <version>${plugins-version}</version>
                 <executions>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-290: "Properties set but are not seen in Maven 3" -->
@@ -102,7 +102,7 @@
             <plugin>
                 <groupId>com.goldin.plugins</groupId>
                 <artifactId>maven-copy-plugin</artifactId>
-                <version>${maven-copy-plugin-version}</version>
+                <version>${plugins-version}</version>
                 <executions>
                     <execution>
                         <id>http://evgeny-goldin.org/youtrack/issue/pl-290-1</id>
@@ -156,7 +156,7 @@
             <plugin>
                 <groupId>com.goldin.plugins</groupId>
                 <artifactId>maven-assert-plugin</artifactId>
-                <version>${maven-assert-plugin-version}</version>
+                <version>${plugins-version}</version>
                 <executions>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-290 -->

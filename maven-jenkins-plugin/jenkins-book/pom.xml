@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns              = "http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi          = "http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0
+                               http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+    <artifactId>maven-jenkins-plugin.jenkins-book</artifactId>
+    <packaging>pom</packaging>
+    <version>0.1-SNAPSHOT</version>
+    <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
+
+
+    <properties>
+        <configs-outputDirectory>${user.home}/.jenkins/jobs</configs-outputDirectory>
+        <maven-plugins-repo>git@github.com:evgeny-goldin/maven-plugins.git</maven-plugins-repo>
+    </properties>
+
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-jenkins-plugin</artifactId>
+                <version>0.2.2</version>
+                <executions>
+                    <execution>
+                        <id>generate-maven-plugins-job</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${user.home}/.jenkins/jobs</outputDirectory>
+                            <generationPom>
+                                http://github.com/evgeny-goldin/maven-plugins-test/blob/master/maven-jenkins-plugin/jenkins-book/pom.xml
+                            </generationPom>
+                            <jenkinsUrl>http://evgeny-goldin.org/jenkins</jenkinsUrl>
+                            <timestamp>false</timestamp>
+                            <job>
+                                <id>maven-plugins</id>
+                                <scmType>git</scmType>
+                                <mavenName>apache-maven-3</mavenName>
+                                <jdkName>jdk1.6.0</jdkName>
+                                <repository>
+                                    <remote>git://github.com/evgeny-goldin/maven-plugins.git</remote>
+                                </repository>
+                            </job>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- Verifying configs generated have not changed -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-assert-plugin</artifactId>
+                <version>0.2.2</version>
+                <executions>
+                    <execution>
+                        <id>verify-configs</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <endOfLine>windows</endOfLine>
+                            <assertEqual>
+                                ${project.basedir}/src/test/resources/configs|${configs-outputDirectory}|**/*.xml
+                            </assertEqual>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>

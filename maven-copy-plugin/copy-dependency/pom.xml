@@ -26,7 +26,7 @@
             <plugin>
                 <groupId>com.goldin.plugins</groupId>
                 <artifactId>maven-copy-plugin</artifactId>
-                <version>${maven-copy-plugin-version}</version>
+                <version>${plugins-version}</version>
                 <executions>
                     <execution>
                         <id>test-dependency-copy</id>
@@ -230,7 +230,7 @@
             <plugin>
                 <groupId>com.goldin.plugins</groupId>
                 <artifactId>maven-assert-plugin</artifactId>
-                <version>${maven-assert-plugin-version}</version>
+                <version>${plugins-version}</version>
                 <executions>
                     <execution>
                         <id>assert-dependency-copy</id>
