@@ -85,7 +85,7 @@
                                     <mavenGoals>-e clean install</mavenGoals>
                                     <trigger>
                                         <type>timer</type>
-                                        <expression>0 0 * * ?</expression>
+                                        <expression>0 0 * * *</expression>
                                     </trigger>
                                     <repository>
                                         <remote>http://google-guice.googlecode.com/svn/trunk/</remote>
@@ -102,7 +102,7 @@
                                     <mavenName>apache-maven-3</mavenName>
                                     <trigger>
                                         <type>timer</type>
-                                        <expression>0 1 * * ?</expression>
+                                        <expression>0 1 * * *</expression>
                                     </trigger>
                                     <scmType>git</scmType>
                                     <repository>
