@@ -18,7 +18,9 @@ Building Google Guice trunk
 <table border="1" width="100%" cellpadding="3" cellspacing="3">
 <tr>
 <td  width="15%" valign="top">Project Page</td>
-<td><a href="http://code.google.com/p/google-guice/"><b><code>code.google.com/p/google-guice</code></b></a></td>
+<td><a href="http://code.google.com/p/google-guice/">
+<b><code>code.google.com/p/google-guice</code></b>
+</a></td>
 </tr>
 <tr>
 <td  width="15%" valign="top">Job</td>

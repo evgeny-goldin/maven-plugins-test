@@ -72,7 +72,13 @@
                                     <descriptionTable>
                                         <row>
                                             <key>Project Page</key>
-                                            <value><![CDATA[<a href="http://code.google.com/p/google-guice/"><b><code>code.google.com/p/google-guice</code></b></a>]]></value>
+                                            <value>
+                                                <![CDATA[
+                                                <a href="http://code.google.com/p/google-guice/">
+                                                    <b><code>code.google.com/p/google-guice</code></b>
+                                                </a>
+                                                ]]>
+                                            </value>
                                             <escapeHTML>false</escapeHTML>
                                             <bottom>false</bottom>
                                         </row>
