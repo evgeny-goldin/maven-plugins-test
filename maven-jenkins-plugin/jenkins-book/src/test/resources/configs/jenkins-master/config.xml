@@ -131,7 +131,7 @@
   <reporters>
       <hudson.maven.reporters.MavenMailer>
         <recipients>jenkins@evgeny-goldin.org</recipients>
-        <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
+        <dontNotifyEveryUnstableBuild>true</dontNotifyEveryUnstableBuild>
         <sendToIndividuals>true</sendToIndividuals>
       </hudson.maven.reporters.MavenMailer>
   </reporters>
