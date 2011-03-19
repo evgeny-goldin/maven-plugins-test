@@ -28,7 +28,7 @@
                 <version>0.2.2</version>
                 <executions>
                     <execution>
-                        <id>generate-maven-plugins-job</id>
+                        <id>example-job</id>
                         <phase>compile</phase>
                         <goals>
                             <goal>generate</goal>
@@ -53,7 +53,7 @@
                     </execution>
 
                     <execution>
-                        <id>generate-guice-jenkins-jobs</id>
+                        <id>standalone-jobs</id>
                         <phase>compile</phase>
                         <goals>
                             <goal>generate</goal>
@@ -118,6 +118,61 @@
                                         <recipients>jenkins@evgeny-goldin.org</recipients>
                                         <sendForUnstable>false</sendForUnstable>
                                     </mail>
+                                </job>
+                            </jobs>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>inheritance-jobs</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${user.home}/.jenkins/jobs</outputDirectory>
+                            <generationPom>
+                                http://github.com/evgeny-goldin/maven-plugins-test/blob/master/maven-jenkins-plugin/jenkins-book/pom.xml
+                            </generationPom>
+                            <jenkinsUrl>http://evgeny-goldin.org/jenkins</jenkinsUrl>
+                            <timestamp>false</timestamp>
+                            <jobs>
+                                
+                                <job>
+                                    <id>google-guice-inheritance-base</id>
+                                    <abstract>true</abstract>
+                                    <jdkName>jdk1.6.0</jdkName>
+                                    <mavenName>apache-maven-3</mavenName>
+                                    <daysToKeep>5</daysToKeep>
+                                    <useUpdate>true</useUpdate>
+                                    <mavenGoals>-B -e -U clean install</mavenGoals>
+                                    <mail>
+                                        <recipients>jenkins@evgeny-goldin.org</recipients>
+                                    </mail>
+                                </job>
+
+                                <job>
+                                    <id>google-guice-inheritance-trunk</id>
+                                    <parent>google-guice-inheritance-base</parent>
+                                    <repository>
+                                        <remote>http://google-guice.googlecode.com/svn/trunk/</remote>
+                                    </repository>
+                                </job>
+
+                                <job>
+                                    <id>google-guice-inheritance-3.0-rc3</id>
+                                    <parent>google-guice-inheritance-base</parent>
+                                    <repository>
+                                        <remote>http://google-guice.googlecode.com/svn/tags/3.0-rc3/</remote>
+                                    </repository>
+                                </job>
+                                
+                                <job>
+                                    <id>google-guice-inheritance-2.0-maven</id>
+                                    <parent>google-guice-inheritance-base</parent>
+                                    <repository>
+                                        <remote>http://google-guice.googlecode.com/svn/branches/2.0-maven/</remote>
+                                    </repository>
                                 </job>
                             </jobs>
                         </configuration>
