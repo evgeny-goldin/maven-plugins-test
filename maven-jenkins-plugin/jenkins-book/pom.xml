@@ -155,6 +155,9 @@
                                     <repository>
                                         <remote>http://google-guice.googlecode.com/svn/trunk/</remote>
                                     </repository>
+                                    <invoke>
+                                        <jobs>google-guice-inheritance-3.0-rc3, google-guice-inheritance-2.0-maven</jobs>
+                                    </invoke>
                                 </job>
 
                                 <job>

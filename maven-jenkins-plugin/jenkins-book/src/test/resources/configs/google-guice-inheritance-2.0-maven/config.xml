@@ -56,6 +56,12 @@
 <li><a href="http://google-guice.googlecode.com/svn/branches/2.0-maven/pom.xml"><strong><code>http://google-guice.googlecode.com/svn/branches/2.0-maven/pom.xml</code></strong></a>
 </td>
 </tr>
+<tr>
+<td valign="top">Invoked by</td>
+<td>
+<li><a href="http://evgeny-goldin.org/jenkins/job/google-guice-inheritance-trunk"><strong>google-guice-inheritance-trunk</strong></a> when it is <strong>stable</strong>
+</td>
+</tr>
 </table>
        ]]>
   </description>

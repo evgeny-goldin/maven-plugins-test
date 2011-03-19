@@ -56,6 +56,13 @@
 <li><a href="http://google-guice.googlecode.com/svn/trunk/pom.xml"><strong><code>http://google-guice.googlecode.com/svn/trunk/pom.xml</code></strong></a>
 </td>
 </tr>
+<tr>
+<td valign="top">Invokes</td>
+<td>
+<li><a href="http://evgeny-goldin.org/jenkins/job/google-guice-inheritance-2.0-maven"><strong>google-guice-inheritance-2.0-maven</strong></a> when this job is <strong>stable</strong>
+<li><a href="http://evgeny-goldin.org/jenkins/job/google-guice-inheritance-3.0-rc3"><strong>google-guice-inheritance-3.0-rc3</strong></a> when this job is <strong>stable</strong>
+</td>
+</tr>
 </table>
        ]]>
   </description>
@@ -104,6 +111,24 @@
       </hudson.maven.reporters.MavenMailer>
   </reporters>
   <publishers>
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <!-- Requires "Parameterized Trigger Plugin"                                 -->
+        <!-- http://wiki.jenkins-ci.org/display/JENKINS/Parameterized+Trigger+Plugin -->
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <hudson.plugins.parameterizedtrigger.BuildTrigger>
+            <configs>
+                <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+                <configs>
+                    <!-- http://issues.hudson-ci.org/browse/HUDSON-7377 -->
+                    <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+                        <properties>dummyRequiredParam</properties>
+                    </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+                </configs>
+                <projects>google-guice-inheritance-3.0-rc3, google-guice-inheritance-2.0-maven</projects>
+                <condition>SUCCESS</condition>
+                </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+            </configs>
+        </hudson.plugins.parameterizedtrigger.BuildTrigger>
   </publishers>
   <buildWrappers>
   </buildWrappers>
