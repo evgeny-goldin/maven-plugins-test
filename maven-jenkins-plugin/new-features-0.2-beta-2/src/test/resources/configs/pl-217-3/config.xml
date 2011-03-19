@@ -50,7 +50,7 @@
     </hudson.tasks.Shell>
     <hudson.tasks.Maven>
         <targets>clean</targets>
-<mavenName>apache-maven-2.2.1</mavenName>
+<mavenName>apache-maven-2</mavenName>
 <pom>pom.xml</pom>
 <usePrivateRepository>true</usePrivateRepository>
     </hudson.tasks.Maven>
