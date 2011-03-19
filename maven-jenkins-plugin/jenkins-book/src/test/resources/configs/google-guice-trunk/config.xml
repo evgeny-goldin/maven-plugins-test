@@ -44,7 +44,7 @@ Building Google Guice trunk
 </tr>
 <tr>
 <td valign="top">Mail recipients</td>
-<td><strong><code>evgenyg@gmail.com jenkins@evgeny-goldin.org</code></strong></td>
+<td><strong><code>jenkins@evgeny-goldin.org</code></strong></td>
 </tr>
 <tr>
 <td valign="top">SVN update policy</td>
@@ -117,7 +117,7 @@ Building Google Guice trunk
   <archivingDisabled>false</archivingDisabled>
   <reporters>
       <hudson.maven.reporters.MavenMailer>
-        <recipients>evgenyg@gmail.com jenkins@evgeny-goldin.org</recipients>
+        <recipients>jenkins@evgeny-goldin.org</recipients>
         <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
         <sendToIndividuals>true</sendToIndividuals>
       </hudson.maven.reporters.MavenMailer>
