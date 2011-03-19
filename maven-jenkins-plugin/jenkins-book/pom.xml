@@ -97,7 +97,7 @@
                                         <remote>http://google-guice.googlecode.com/svn/trunk/</remote>
                                     </repository>
                                     <mail>
-                                        <recipients>evgenyg@gmail.com jenkins@evgeny-goldin.org</recipients>
+                                        <recipients>jenkins@evgeny-goldin.org</recipients>
                                     </mail>
                                 </job>
 
@@ -115,7 +115,7 @@
                                         <remote>git://github.com/jenkinsci/jenkins.git</remote>
                                     </repository>
                                     <mail>
-                                        <recipients>evgenyg@gmail.com jenkins@evgeny-goldin.org</recipients>
+                                        <recipients>jenkins@evgeny-goldin.org</recipients>
                                     </mail>
                                 </job>
                             </jobs>
