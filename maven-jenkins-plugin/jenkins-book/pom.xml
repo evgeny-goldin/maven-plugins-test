@@ -146,9 +146,7 @@
                                     <daysToKeep>5</daysToKeep>
                                     <useUpdate>true</useUpdate>
                                     <mavenGoals>-B -e -U clean install</mavenGoals>
-                                    <mail>
-                                        <recipients>jenkins@evgeny-goldin.org</recipients>
-                                    </mail>
+                                    <mail><recipients>jenkins@evgeny-goldin.org</recipients></mail>
                                 </job>
 
                                 <job>
