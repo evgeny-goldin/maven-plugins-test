@@ -170,7 +170,7 @@
                                 <job>
                                     <id>google-guice-inheritance-2.0-maven</id>
                                     <parent>google-guice-inheritance-base</parent>
-                                    <mavenName>apache-maven-2</mavenName>
+                                    <mavenName>apache-maven-2.2.1</mavenName>
                                     <repository>
                                         <remote>http://google-guice.googlecode.com/svn/branches/2.0-maven/</remote>
                                     </repository>

@@ -89,7 +89,7 @@
   <concurrentBuild>false</concurrentBuild>
   <rootPOM>pom.xml</rootPOM>
   <goals>-B -e -U clean install</goals>
-  <mavenName>apache-maven-2</mavenName>
+  <mavenName>apache-maven-2.2.1</mavenName>
   <mavenOpts></mavenOpts>
   <aggregatorStyleBuild>true</aggregatorStyleBuild>
   <incrementalBuild>false</incrementalBuild>
