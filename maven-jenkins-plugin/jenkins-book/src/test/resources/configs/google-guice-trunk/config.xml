@@ -55,7 +55,7 @@ Building Google Guice trunk
 <tr>
 <td valign="top">Triggers</td>
 <td>
-<li> <strong><code>timer:</code></strong> <a href="http://linuxmanpages.com/man5/crontab.5.php"><strong><code>&quot;0 0 * * ?&quot;</code></strong></a>
+<li> <strong><code>timer:</code></strong> <a href="http://linuxmanpages.com/man5/crontab.5.php"><strong><code>&quot;0 0 * * *&quot;</code></strong></a>
 </td>
 </tr>
 <tr>
@@ -99,7 +99,7 @@ Building Google Guice trunk
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers class="vector">
         <hudson.triggers.TimerTrigger>
-            <spec>0 0 * * ?</spec>
+            <spec>0 0 * * *</spec>
         </hudson.triggers.TimerTrigger>
   </triggers>
   <jdk>jdk1.6.0</jdk>
