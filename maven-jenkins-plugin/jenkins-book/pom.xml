@@ -116,6 +116,7 @@
                                     </repository>
                                     <mail>
                                         <recipients>jenkins@evgeny-goldin.org</recipients>
+                                        <sendForUnstable>false</sendForUnstable>
                                     </mail>
                                 </job>
                             </jobs>
