@@ -96,10 +96,7 @@
 <usePrivateRepository>false</usePrivateRepository>
     </hudson.tasks.Maven>
     <hudson.tasks.Shell>
-        <command>ls -al</command>
-    </hudson.tasks.Shell>
-    <hudson.tasks.Shell>
-        <command>du -hs .</command>
+        <command>pwd; ls -al; du -hs .</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>

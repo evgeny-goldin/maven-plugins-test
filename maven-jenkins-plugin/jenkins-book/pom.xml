@@ -206,8 +206,7 @@
                                         <jvmOptions>-Xmx128m -XX:MaxPermSize=128m -ea</jvmOptions>
                                         <properties>plugins-version = 0.2.2</properties>
                                     </maven>
-                                    <shell><command>ls -al</command></shell>
-                                    <shell><command>du -hs .</command></shell>
+                                    <shell><command>pwd; ls -al; du -hs .</command></shell>
                                 </tasks>
                             </job>
                         </configuration>
