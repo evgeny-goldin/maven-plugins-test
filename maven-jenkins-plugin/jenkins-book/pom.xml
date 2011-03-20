@@ -179,6 +179,39 @@
                             </jobs>
                         </configuration>
                     </execution>
+
+                    <execution>
+                        <id>free-style-jobs</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${user.home}/.jenkins/jobs</outputDirectory>
+                            <generationPom>
+                                http://github.com/evgeny-goldin/maven-plugins-test/blob/master/maven-jenkins-plugin/jenkins-book/pom.xml
+                            </generationPom>
+                            <jenkinsUrl>http://evgeny-goldin.org/jenkins</jenkinsUrl>
+                            <timestamp>false</timestamp>
+                            <job>
+                                <id>free-style</id>
+                                <jobType>free</jobType>
+                                <scmType>git</scmType>
+                                <repository>
+                                    <remote>git://github.com/evgeny-goldin/maven-plugins-test.git</remote>
+                                </repository>
+                                <tasks>
+                                    <maven>
+                                        <mavenName>apache-maven-3</mavenName>
+                                        <jvmOptions>-Xmx128m -XX:MaxPermSize=128m -ea</jvmOptions>
+                                        <properties>plugins-version = 0.2.2</properties>
+                                    </maven>
+                                    <shell><command>ls -al</command></shell>
+                                    <shell><command>du -hs .</command></shell>
+                                </tasks>
+                            </job>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 
