@@ -55,7 +55,7 @@
                                 <job>
                                     <id>JBoss EJB 3</id>
                                     <scmType>git</scmType>
-                                    <mavenName>apache-maven-2.2.1</mavenName>
+                                    <mavenName>apache-maven-2</mavenName>
                                     <jdkName>jdk1.6.0</jdkName>
                                     <repository>
                                         <remote>git://gitorious.org/jboss-ejb3/jboss-ejb3-context.git</remote>
@@ -74,7 +74,7 @@
                                 <job>
                                     <id>simple-wicket</id>
                                     <scmType>cvs</scmType>
-                                    <mavenName>apache-maven-2.2.1</mavenName>
+                                    <mavenName>apache-maven-2</mavenName>
                                     <jdkName>jdk1.6.0</jdkName>
                                     <repository>
                                         <remote>:pserver:anonymous@simple-wicket.cvs.sourceforge.net:/cvsroot/simple-wicket</remote>

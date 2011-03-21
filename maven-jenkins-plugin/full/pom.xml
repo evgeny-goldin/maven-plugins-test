@@ -50,7 +50,7 @@
                                     <id>base-git</id>
                                     <abstract>true</abstract>
                                     <scmType>git</scmType>
-                                    <mavenName>apache-maven-2.2.1</mavenName>
+                                    <mavenName>apache-maven-2</mavenName>
                                     <jdkName>jdk1.6.0</jdkName>
                                 </job>
 
@@ -237,7 +237,7 @@
                                 <job>
                                     <id>simple-wicket-full</id>
                                     <scmType>cvs</scmType>
-                                    <mavenName>apache-maven-2.2.1</mavenName>
+                                    <mavenName>apache-maven-2</mavenName>
                                     <jdkName>jdk1.6.0</jdkName>
                                     <repository>
                                         <remote>:pserver:anonymous@simple-wicket.cvs.sourceforge.net:/cvsroot/simple-wicket</remote>
