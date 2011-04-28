@@ -69,6 +69,22 @@
                                     <destFileName>aa.txt</destFileName>
                                 </resource>
 
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Testing pack + exclude scenario -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                
+                                <resource>
+                                    <targetPath>${outputDir}/pack-exclude/pack-exclude.zip</targetPath>
+                                    <directory>${project.basedir}/src/main/resources</directory>
+                                    <exclude>2.txt, 4.txt</exclude>
+                                    <pack>true</pack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pack-exclude/unpack</targetPath>
+                                    <file>${outputDir}/pack-exclude/pack-exclude.zip</file>
+                                    <unpack>true</unpack>
+                                </resource>
+
                                 <!-- ~~~~~~~~~~~~~~~~~ -->
                                 <!-- Testing "<runIf>" -->
                                 <!-- ~~~~~~~~~~~~~~~~~ -->
@@ -550,6 +566,11 @@
                             <assertFiles>
                                 ${outputDir}/latestTestSelect/bb.txt
 
+                                ${outputDir}/pack-exclude/unpack/1.txt
+                                ${outputDir}/pack-exclude/unpack/3.txt
+                                ${outputDir}/pack-exclude/unpack/ftp-exclude.txt
+                                ${outputDir}/pack-exclude/unpack/ftp-include.txt
+
                                 ${outputDir}/runIf/1.txt
                                 ${outputDir}/runIf/3.txt
 
@@ -630,6 +651,9 @@
                                 ${outputDir}/optionalDependencies|${outputDir}/optionalDependencies3
                             </shouldFailAssertEqual>
                             <shouldFailAssertFiles>
+                                ${outputDir}/pack-exclude/unpack/2.txt
+                                ${outputDir}/pack-exclude/unpack/4.txt
+
                                 ${outputDir}/cleanEmptyDirectories2/a/e
                                 ${outputDir}/cleanEmptyDirectories2/a/e/m
                                 ${outputDir}/cleanEmptyDirectories2/a/e/f
@@ -643,6 +667,9 @@
                                 ${outputDir}/systemProperties/opa.txt
                             </shouldFailAssertFiles>
                             <assertGroovy>
+                                new File( outputDir, 'pack-exclude/unpack' ).listFiles().size() == 4
+                                new File( outputDir, 'pack-exclude/unpack' ).directorySize()    == 41
+
                                 new File( outputDir, 'latestTestSelect/bb.txt' ).text
                               ! new File( outputDir, 'runIf/1.txt' ).text
                                 new File( outputDir, 'runIf/3.txt' ).text
