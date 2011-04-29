@@ -44,18 +44,39 @@
                         </goals>
                         <phase>initialize</phase>
                         <configuration>
+                            <resource>
+                                <targetPath>${outputDir}/gc-66</targetPath>
+                                <dependency>
+                                    <groupId>org.apache.maven</groupId>
+                                    <artifactId>apache-maven</artifactId>
+                                    <version>3.0.3</version>
+                                    <classifier>bin</classifier>
+                                    <type>zip</type>
+                                </dependency>
+                                <unpack>true</unpack>
+                                <zipEntry>apache-maven-3.0.3/LICENSE.txt</zipEntry>
+                            </resource>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-396: "<mkdir> for existing folder fails the build" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-396</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/gc-66</targetPath>
-                                    <dependency>
-                                        <groupId>org.apache.maven</groupId>
-                                        <artifactId>apache-maven</artifactId>
-                                        <version>3.0.3</version>
-                                        <classifier>bin</classifier>
-                                        <type>zip</type>
-                                    </dependency>
-                                    <unpack>true</unpack>
-                                    <zipEntry>apache-maven-3.0.3/LICENSE.txt</zipEntry>
+                                    <targetPath>${outputDir}/pl-396</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-396</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <mkdir>true</mkdir>
                                 </resource>
                             </resources>
                         </configuration>
@@ -81,6 +102,8 @@
                             <assertFiles>
                                 ${outputDir}/gc-66
                                 ${outputDir}/gc-66/LICENSE.txt
+                                ${outputDir}/pl-396
+                                ${outputDir}/pl-396/pom.xml
                             </assertFiles>
                             <assertEqual>
                                 ${outputDir}/gc-66/LICENSE.txt|${outputDir}/gc-66/LICENSE.txt
