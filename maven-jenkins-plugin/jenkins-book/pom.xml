@@ -117,6 +117,7 @@
                                     <mail>
                                         <recipients>jenkins@evgeny-goldin.org</recipients>
                                         <sendForUnstable>false</sendForUnstable>
+                                        <sendToIndividuals>false</sendToIndividuals>
                                     </mail>
                                 </job>
                             </jobs>
@@ -137,7 +138,7 @@
                             <jenkinsUrl>http://evgeny-goldin.org/jenkins</jenkinsUrl>
                             <timestamp>false</timestamp>
                             <jobs>
-                                
+
                                 <job>
                                     <id>google-guice-inheritance-base</id>
                                     <abstract>true</abstract>
@@ -167,7 +168,7 @@
                                         <remote>http://google-guice.googlecode.com/svn/tags/3.0-rc3/</remote>
                                     </repository>
                                 </job>
-                                
+
                                 <job>
                                     <id>google-guice-inheritance-2.0-maven</id>
                                     <parent>google-guice-inheritance-base</parent>
