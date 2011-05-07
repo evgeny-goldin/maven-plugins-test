@@ -236,6 +236,7 @@ Groovy [$GroovySystem.version], [$date] - testing plugins version [${plugins-ver
 
 
     <modules>
+        <module>maven-about-plugin</module>
         <module>maven-jenkins-plugin</module>
         <module>maven-copy-plugin</module>
         <module>maven-properties-plugin</module>
