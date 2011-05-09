@@ -38,10 +38,6 @@
                         <goals>
                             <goal>create-about</goal>
                         </goals>
-                        <configuration>
-                            <directory>${project.build.directory}</directory>
-                            <scm>git</scm>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
