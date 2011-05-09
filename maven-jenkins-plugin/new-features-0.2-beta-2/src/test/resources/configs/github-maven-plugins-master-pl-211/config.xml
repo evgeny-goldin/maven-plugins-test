@@ -116,7 +116,7 @@
   </scm>
   <assignedNode>master</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers class="vector">
   </triggers>
