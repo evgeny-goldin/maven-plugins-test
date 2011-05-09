@@ -56,41 +56,6 @@
                                 </job>
 
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                                <!-- http://evgeny-goldin.org/youtrack/issue/pl-211 -->
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-
-                                <job>
-                                    <id>github-maven-plugins-master-pl-211</id>
-                                    <parent>base-git</parent>
-                                    <repository>
-                                        <remote>${maven-plugins-repo}</remote>
-                                    </repository>
-                                    <disabled>true</disabled>
-                                    <properties>
-                                    <![CDATA[
-                                        <hudson.queueSorter.PrioritySorterJobProperty>
-                                            <priority>100</priority>
-                                        </hudson.queueSorter.PrioritySorterJobProperty>
-                                        <hudson.plugins.jiraapi.JiraProjectKeyJobProperty>
-                                            <key>MS</key>
-                                        </hudson.plugins.jiraapi.JiraProjectKeyJobProperty>
-                                    ]]>
-                                    </properties>
-                                    <parameters>
-                                        <parameter>
-                                            <name>start</name>
-                                            <type>bool</type>
-                                            <value>true</value>
-                                        </parameter>
-                                        <parameter>
-                                            <name>stop</name>
-                                            <type>bool</type>
-                                            <value>false</value>
-                                        </parameter>
-                                    </parameters>
-                                </job>
-
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <!-- http://evgeny-goldin.org/youtrack/issue/pl-231 -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
