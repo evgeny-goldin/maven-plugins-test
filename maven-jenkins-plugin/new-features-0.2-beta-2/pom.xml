@@ -65,6 +65,7 @@
                                     <repository>
                                         <remote>${maven-plugins-repo}</remote>
                                     </repository>
+                                    <disabled>true</disabled>
                                     <properties>
                                     <![CDATA[
                                         <hudson.queueSorter.PrioritySorterJobProperty>
