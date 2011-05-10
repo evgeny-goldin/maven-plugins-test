@@ -22,7 +22,7 @@
 </tr>
 <tr>
 <td valign="top">Job type</td>
-<td>Maven2</td>
+<td>Maven</td>
 </tr>
 <tr>
 <td valign="top">Maven goals</td>
@@ -127,14 +127,14 @@
         <hudson.plugins.parameterizedtrigger.BuildTrigger>
             <configs>
                 <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
-                <configs>
-                    <!-- http://issues.hudson-ci.org/browse/HUDSON-7377 -->
-                    <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-                        <properties>dummyRequiredParam</properties>
-                    </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-                </configs>
-                <projects>github-maven-plugins-master</projects>
-                <condition>UNSTABLE</condition>
+                    <configs>
+                        <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+                            <properties></properties>
+                        </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+                    </configs>
+                    <projects>github-maven-plugins-master</projects>
+                    <condition>UNSTABLE</condition>
+                    <triggerWithNoParameters>true</triggerWithNoParameters>
                 </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
             </configs>
         </hudson.plugins.parameterizedtrigger.BuildTrigger>
