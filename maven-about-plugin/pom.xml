@@ -39,6 +39,46 @@
                             <goal>create-about</goal>
                         </goals>
                     </execution>
+                    <execution>
+                        <id>create-about-2</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>create-about</goal>
+                        </goals>
+                        <configuration>
+                            <dumpDependencies>true</dumpDependencies>
+                            <prefix>About</prefix>
+                            <fileName>fff.txt</fileName>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-copy-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <execution>
+                        <id>unpack-archive</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>verify</phase>
+                        <configuration>
+                            <resource>
+                                <targetPath>${outputDir}/unpack</targetPath>
+                                <directory>${project.build.directory}</directory>
+                                <include>*.jar</include>
+                                <unpack>true</unpack>
+                                <process>
+                                    assert new File( project.build.outputDirectory, 'unpack/META-INF/about-${project.groupId}-${project.artifactId}-${project.version}.txt' ).isFile()
+                                    assert new File( project.build.outputDirectory, 'unpack/About/fff.txt' ).isFile()
+                                </process>
+                            </resource>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
         </plugins>
