@@ -25,6 +25,14 @@
 <td>Maven</td>
 </tr>
 <tr>
+<td valign="top">Java</td>
+<td>jdk1.6.0</td>
+</tr>
+<tr>
+<td valign="top">Maven</td>
+<td><strong><code>apache-maven-2</code></strong></td>
+</tr>
+<tr>
 <td valign="top">Maven goals</td>
 <td><strong><code>-e clean install</code></strong></td>
 </tr>
