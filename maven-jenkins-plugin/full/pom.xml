@@ -145,6 +145,7 @@
                                     <invoke>
                                         <jobs>gitorious-wsarena3-version1</jobs>
                                         <always>true</always>
+                                        <triggerWithoutParameters>true</triggerWithoutParameters>
                                     </invoke>
                                 </job>
 
@@ -157,6 +158,14 @@
                                     </repository>
                                     <invoke>
                                         <jobs>googlecode-google-guice-trunk, googlecode-google-guice-2.0-maven</jobs>
+                                        <triggerWithoutParameters>false</triggerWithoutParameters>
+                                        <currentBuildParams>true</currentBuildParams>
+                                        <gitCommitParam>true</gitCommitParam>
+                                        <params>
+                                            a = b
+                                            c = d
+                                        </params>
+                                        <propertiesFileParams>file.properties</propertiesFileParams>
                                     </invoke>
                                 </job>
 
@@ -172,6 +181,8 @@
                                     <invoke>
                                         <jobs>googlecode-facebook-java-api-trunk, googlecode-facebook-java-api-fbapi-2.0.0</jobs>
                                         <failed>true</failed>
+                                        <currentBuildParams>true</currentBuildParams>
+                                        <subversionRevisionParam>true</subversionRevisionParam>
                                     </invoke>
                                     <trigger>
                                         <type>timer</type>

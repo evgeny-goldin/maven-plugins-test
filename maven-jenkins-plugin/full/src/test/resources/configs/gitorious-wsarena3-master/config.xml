@@ -30,7 +30,7 @@
 </tr>
 <tr>
 <td valign="top">Maven</td>
-<td><strong><code>apache-maven-2</code></strong></td>
+<td>apache-maven-2</td>
 </tr>
 <tr>
 <td valign="top">Maven goals</td>
@@ -129,17 +129,13 @@
   </reporters>
   <publishers>
         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-        <!-- Requires "Parameterized Trigger Plugin"                                 -->
+        <!-- Requires "Parameterized Trigger Plugin" v2.8                            -->
         <!-- http://wiki.jenkins-ci.org/display/JENKINS/Parameterized+Trigger+Plugin -->
         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
         <hudson.plugins.parameterizedtrigger.BuildTrigger>
             <configs>
                 <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
-                    <configs>
-                        <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-                            <properties></properties>
-                        </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-                    </configs>
+                    <configs class="java.util.Collections$EmptyList"/>
                     <projects>gitorious-wsarena3-version1</projects>
                     <condition>ALWAYS</condition>
                     <triggerWithNoParameters>true</triggerWithNoParameters>

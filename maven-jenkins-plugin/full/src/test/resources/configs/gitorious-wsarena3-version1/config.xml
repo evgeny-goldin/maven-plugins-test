@@ -30,7 +30,7 @@
 </tr>
 <tr>
 <td valign="top">Maven</td>
-<td><strong><code>apache-maven-2</code></strong></td>
+<td>apache-maven-2</td>
 </tr>
 <tr>
 <td valign="top">Maven goals</td>
@@ -136,20 +136,26 @@
   </reporters>
   <publishers>
         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-        <!-- Requires "Parameterized Trigger Plugin"                                 -->
+        <!-- Requires "Parameterized Trigger Plugin" v2.8                            -->
         <!-- http://wiki.jenkins-ci.org/display/JENKINS/Parameterized+Trigger+Plugin -->
         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
         <hudson.plugins.parameterizedtrigger.BuildTrigger>
             <configs>
                 <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
                     <configs>
-                        <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-                            <properties></properties>
-                        </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+                        <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
+                        <hudson.plugins.git.GitRevisionBuildParameters/>
+                            <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+                                <properties>a = b
+c = d</properties>
+                            </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+                            <hudson.plugins.parameterizedtrigger.FileBuildParameters>
+                                <propertiesFile>file.properties</propertiesFile>
+                            </hudson.plugins.parameterizedtrigger.FileBuildParameters>
                     </configs>
                     <projects>googlecode-google-guice-trunk, googlecode-google-guice-2.0-maven</projects>
                     <condition>SUCCESS</condition>
-                    <triggerWithNoParameters>true</triggerWithNoParameters>
+                    <triggerWithNoParameters>false</triggerWithNoParameters>
                 </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
             </configs>
         </hudson.plugins.parameterizedtrigger.BuildTrigger>

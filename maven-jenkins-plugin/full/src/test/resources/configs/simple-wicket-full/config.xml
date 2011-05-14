@@ -30,7 +30,7 @@
 </tr>
 <tr>
 <td valign="top">Maven</td>
-<td><strong><code>apache-maven-2</code></strong></td>
+<td>apache-maven-2</td>
 </tr>
 <tr>
 <td valign="top">Maven goals</td>
