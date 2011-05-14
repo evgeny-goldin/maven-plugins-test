@@ -23,6 +23,7 @@
 
     <modules>
         <module>0.2-beta-5</module>
+        <module>0.2.3</module>
     </modules>
 
 </project>
