@@ -25,7 +25,7 @@
             <plugin>
                 <groupId>com.goldin.plugins</groupId>
                 <artifactId>maven-jenkins-plugin</artifactId>
-                <version>0.2.2</version>
+                <version>0.2.3</version>
                 <executions>
                     <execution>
                         <id>example-job</id>
