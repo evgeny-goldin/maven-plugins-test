@@ -40,10 +40,18 @@
                         <phase>initialize</phase>
                         <configuration>
                             <rawProperties>
-                                a = {b}
-                                b = {c}
-                                c = {d}
-                                d = 5
+                                a        = {b}
+                                b        = {c}
+                                c        = {d}
+                                d        = 5
+                                cp1      = ${env.CLASSPATH}
+                                cp2      =  {env.CLASSPATH}
+                                home1    = ${env.HOME}
+                                home2    =  {env.HOME}
+                                version1 = ${java.version}
+                                version2 =  {java.version}
+                                home3    = ${user.home}
+                                home4    =  {user.home}
                             </rawProperties>
                             <addDollar>true</addDollar>
                         </configuration>
@@ -85,26 +93,25 @@
                         <phase>test</phase>
                         <configuration>
                             <assertProperties>
-                                a
-                                b
-                                c
-                                d
-                                f
-                                g
-                                h
-                                i
-                                j
+                                a b c d f g h i j
+                                cp1 cp2 version1 version2
+                                home1 home2 home3 home4
                             </assertProperties>
                             <assertGroovy>
-                                a == '5'
-                                b == '5'
-                                c == '5'
-                                d == '5'
-                                f == '3'
-                                g == '3/3'
-                                h == '3'
-                                i == '3/3/3/3'
-                                j == '3-3/3/3/3-3-3/3-3'
+                                a        == '5'
+                                b        == '5'
+                                c        == '5'
+                                d        == '5'
+                                f        == '3'
+                                g        == '3/3'
+                                h        == '3'
+                                i        == '3/3/3/3'
+                                j        == '3-3/3/3/3-3-3/3-3'
+                                cp1      == cp2
+                                home1    == home2
+                                home3    == home4
+                                version1 == version2
+                                version1.startsWith( '1.6.0' )
                             </assertGroovy>
                         </configuration>
                     </execution>
