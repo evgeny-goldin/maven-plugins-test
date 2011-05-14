@@ -105,7 +105,7 @@
 <mavenName>apache-maven-3</mavenName>
 <pom>pom.xml</pom>
 <jvmOptions>-Xmx256m -XX:MaxPermSize=250m</jvmOptions>
-<properties>plugins-version = 0.2.2</properties>
+<properties>plugins-version = 0.2.3</properties>
 <usePrivateRepository>false</usePrivateRepository>
     </hudson.tasks.Maven>
   </builders>
