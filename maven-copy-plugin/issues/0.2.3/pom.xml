@@ -51,6 +51,26 @@
                             </resource>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-395</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-395</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-395</targetPath>
+                                    <file>${outputDir}/pl-395/pom.xml</file>
+                                    <process>println ( "POM size is [" + file.size() + "] bytes" )</process>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 
@@ -72,6 +92,8 @@
                             <assertFiles>
                                 ${outputDir}/pl-397
                                 ${outputDir}/pl-397/pom.xml
+                                ${outputDir}/pl-395
+                                ${outputDir}/pl-395/pom.xml
                             </assertFiles>
                         </configuration>
                     </execution>
