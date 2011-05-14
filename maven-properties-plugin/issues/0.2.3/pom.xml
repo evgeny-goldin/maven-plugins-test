@@ -44,10 +44,10 @@
                                 b        = {c}
                                 c        = {d}
                                 d        = 5
-                                cp1      = ${env.CLASSPATH}
-                                cp2      =  {env.CLASSPATH}
                                 home1    = ${env.HOME}
                                 home2    =  {env.HOME}
+                                mhome1   = ${env.M2_HOME}
+                                mhome2   =  {env.M2_HOME}
                                 version1 = ${java.version}
                                 version2 =  {java.version}
                                 home3    = ${user.home}
@@ -94,7 +94,7 @@
                         <configuration>
                             <assertProperties>
                                 a b c d f g h i j
-                                cp1 cp2 version1 version2
+                                mhome1 mhome2 version1 version2
                                 home1 home2 home3 home4
                             </assertProperties>
                             <assertGroovy>
@@ -107,7 +107,7 @@
                                 h        == '3'
                                 i        == '3/3/3/3'
                                 j        == '3-3/3/3/3-3-3/3-3'
-                                cp1      == cp2
+                                mhome1   == mhome2
                                 home1    == home2
                                 home3    == home4
                                 version1 == version2
