@@ -51,6 +51,17 @@
                             <fileName>fff.txt</fileName>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>create-about-3</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>create-about</goal>
+                        </goals>
+                        <configuration>
+                            <prefix>/</prefix>
+                            <fileName>about-root.txt</fileName>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 
@@ -72,11 +83,30 @@
                                 <directory>${project.build.directory}</directory>
                                 <include>*.jar</include>
                                 <unpack>true</unpack>
-                                <process>
-                                    assert new File( project.build.outputDirectory, 'unpack/META-INF/about-${project.groupId}-${project.artifactId}-${project.version}.txt' ).isFile()
-                                    assert new File( project.build.outputDirectory, 'unpack/About/fff.txt' ).isFile()
-                                </process>
                             </resource>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-assert-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <execution>
+                        <id>verify-files</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>verify</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/unpack/META-INF/about-${project.groupId}-${project.artifactId}-${project.version}.txt
+                                ${outputDir}/unpack/About/fff.txt
+                                ${outputDir}/unpack/about-root.txt
+                            </assertFiles>
                         </configuration>
                     </execution>
                 </executions>
