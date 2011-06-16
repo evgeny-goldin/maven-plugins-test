@@ -62,6 +62,17 @@
                             <fileName>about-root.txt</fileName>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>create-about-4</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>create-about</goal>
+                        </goals>
+                        <configuration>
+                            <include>no-such-file.zip</include>
+                            <failIfNotFound>false</failIfNotFound>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 
