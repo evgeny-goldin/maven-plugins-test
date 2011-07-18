@@ -22,6 +22,7 @@
 
     <properties>
         <outputDir>${project.build.outputDirectory}</outputDir>
+        <targetRoots>${outputDir}/tr1, ${outputDir}/tr2, ${outputDir}/tr3</targetRoots>
     </properties>
 
 
@@ -71,6 +72,38 @@
                             </resources>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-434</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetRoots>${targetRoots}</targetRoots>
+                                    <targetPath>pl-434-1</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                </resource>
+                                <resource>
+                                    <targetRoots>${targetRoots}</targetRoots>
+                                    <targetPaths>
+                                        <targetPath>pl-434-2</targetPath>
+                                        <targetPath>pl-434-3</targetPath>
+                                        <targetPath>pl-434-4</targetPath>
+                                    </targetPaths>
+                                    <dependency>
+                                        <groupId>org.jvnet.hudson.plugins</groupId>
+                                        <artifactId>greenballs</artifactId>
+                                        <version>1.6</version>
+                                        <optional>true</optional>
+                                        <type>hpi</type>
+                                    </dependency>
+                                    <unpack>true</unpack>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 
@@ -95,6 +128,40 @@
                                 ${outputDir}/pl-395
                                 ${outputDir}/pl-395/pom.xml
                             </assertFiles>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-434 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-434</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/tr1
+                                ${outputDir}/tr1/pl-434-1
+                                ${outputDir}/tr1/pl-434-2
+                                ${outputDir}/tr1/pl-434-3
+                                ${outputDir}/tr1/pl-434-4
+                                ${outputDir}/tr2
+                                ${outputDir}/tr2/pl-434-1
+                                ${outputDir}/tr2/pl-434-2
+                                ${outputDir}/tr2/pl-434-3
+                                ${outputDir}/tr2/pl-434-4
+                                ${outputDir}/tr3
+                                ${outputDir}/tr3/pl-434-1
+                                ${outputDir}/tr3/pl-434-2
+                                ${outputDir}/tr3/pl-434-3
+                                ${outputDir}/tr3/pl-434-4
+                            </assertFiles>
+                            <assertEqual>
+                                ${outputDir}/tr1|${outputDir}/tr2
+                                ${outputDir}/tr2|${outputDir}/tr3
+                                ${outputDir}/tr3|${outputDir}/tr1
+                            </assertEqual>
                         </configuration>
                     </execution>
                 </executions>
