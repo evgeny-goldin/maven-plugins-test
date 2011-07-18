@@ -73,6 +73,22 @@
                             <failIfNotFound>false</failIfNotFound>
                         </configuration>
                     </execution>
+
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-433 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+                    <execution>
+                        <id>create-about-fail</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>create-about</goal>
+                        </goals>
+                        <configuration>
+                            <fileName>....</fileName> <!-- Triggers an error -->
+                            <failOnError>false</failOnError>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 
