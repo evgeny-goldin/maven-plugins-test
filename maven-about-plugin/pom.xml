@@ -73,6 +73,17 @@
                             <failIfNotFound>false</failIfNotFound>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>create-about-5</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>create-about</goal>
+                        </goals>
+                        <configuration>
+                            <directory>/aaaaaa</directory>
+                            <failIfNotFound>false</failIfNotFound>
+                        </configuration>
+                    </execution>
 
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-433 -->
