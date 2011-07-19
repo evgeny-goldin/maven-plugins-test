@@ -101,6 +101,26 @@
                                     </dependency>
                                     <unpack>true</unpack>
                                 </resource>
+                                <resource>
+                                    <targetRoots><!-- Nothing --></targetRoots>
+                                    <targetPath>${outputDir}/pl-434-5</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                </resource>
+                                <resource>
+                                    <targetRoots> , </targetRoots>
+                                    <targetPath>${outputDir}/pl-434-6</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                </resource>
+                                <resource>
+                                    <targetRoots> ${outputDir}/aa , </targetRoots>
+                                    <targetPath>pl-434-7</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                </resource>
+                                <resource>
+                                    <targetRoots> , ${outputDir}/bb , </targetRoots>
+                                    <targetPath>pl-434-8</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                </resource>
                             </resources>
                         </configuration>
                     </execution>
@@ -156,11 +176,22 @@
                                 ${outputDir}/tr3/pl-434-2
                                 ${outputDir}/tr3/pl-434-3
                                 ${outputDir}/tr3/pl-434-4
+                                ${outputDir}/pl-434-5
+                                ${outputDir}/pl-434-6
+                                ${outputDir}/aa
+                                ${outputDir}/aa/pl-434-7
+                                ${outputDir}/bb
+                                ${outputDir}/bb/pl-434-8
                             </assertFiles>
                             <assertEqual>
                                 ${outputDir}/tr1|${outputDir}/tr2
                                 ${outputDir}/tr2|${outputDir}/tr3
                                 ${outputDir}/tr3|${outputDir}/tr1
+
+                                ${outputDir}/pl-434-5|${outputDir}/pl-434-6
+                                ${outputDir}/pl-434-6|${outputDir}/aa/pl-434-7
+                                ${outputDir}/aa/pl-434-7|${outputDir}/bb/pl-434-8
+                                ${outputDir}/bb/pl-434-8|${outputDir}/pl-434-5
                             </assertEqual>
                         </configuration>
                     </execution>
