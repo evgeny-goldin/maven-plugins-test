@@ -31,7 +31,7 @@
             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
             <!-- Creating deeply nested directory -->
             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-            
+
             <plugin>
                 <groupId>com.goldin.plugins</groupId>
                 <artifactId>maven-copy-plugin</artifactId>
@@ -83,6 +83,19 @@
                         <phase>initialize</phase>
                         <configuration>
                             <runIf>{{ osName.toLowerCase().contains( 'linux' ) }}</runIf>
+                            <file>pom.xml</file>
+                            <startDir>${targetPath}</startDir>
+                            <propertyName>pomPath</propertyName>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>find-maven-plugins-test-mac</id>
+                        <goals>
+                            <goal>find</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <runIf>{{ osName.toLowerCase().contains( 'mac os x' ) }}</runIf>
                             <file>pom.xml</file>
                             <startDir>${targetPath}</startDir>
                             <propertyName>pomPath</propertyName>
