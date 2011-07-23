@@ -132,9 +132,9 @@
                 <artifactId>maven-assert-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-397 -->
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <execution>
                         <id>http://evgeny-goldin.org/youtrack/issue/pl-397</id>
                         <goals>
