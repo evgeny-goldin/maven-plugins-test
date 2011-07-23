@@ -73,6 +73,140 @@
                             </resources>
                         </configuration>
                     </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-441: -->
+                    <!-- Support <dependency> "destFileName"             -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-441</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-441/1</targetPath>
+                                    <dependency>
+                                        <groupId>org.codehaus.groovy</groupId>
+                                        <artifactId>groovy-all</artifactId>
+                                        <version>1.9.0-beta-2</version>
+                                        <destFileName>groovy-1.jar</destFileName>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-441/2</targetPath>
+                                    <dependency>
+                                        <groupId>org.codehaus.groovy</groupId>
+                                        <artifactId>groovy-all</artifactId>
+                                        <version>1.9.0-beta-2</version>
+                                    </dependency>
+                                    <destFileName>groovy-1.jar</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-441/3</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>org.codehaus.groovy</groupId>
+                                            <artifactId>groovy-all</artifactId>
+                                            <version>1.9.0-beta-2</version>
+                                            <destFileName>groovy-3.jar</destFileName>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.codehaus.groovy</groupId>
+                                            <artifactId>groovy-all</artifactId>
+                                            <version>1.8.1</version>
+                                            <destFileName>groovy-4.jar</destFileName>
+                                        </dependency>
+                                    </dependencies>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-441/4</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>org.codehaus.groovy</groupId>
+                                            <artifactId>groovy-all</artifactId>
+                                            <version>1.9.0-beta-2</version>
+                                            <destFileName>groovy-3.jar</destFileName>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.codehaus.groovy</groupId>
+                                            <artifactId>groovy-all</artifactId>
+                                            <version>1.8.1</version>
+                                            <destFileName>groovy-4.jar</destFileName>
+                                        </dependency>
+                                    </dependencies>
+                                    <dependenciesAtM2>false</dependenciesAtM2>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-441/5</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>org.codehaus.groovy</groupId>
+                                            <artifactId>groovy-all</artifactId>
+                                            <version>1.9.0-beta-2</version>
+                                            <destFileName>groovy-3.jar</destFileName>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.codehaus.groovy</groupId>
+                                            <artifactId>groovy-all</artifactId>
+                                            <version>1.8.1</version>
+                                        </dependency>
+                                    </dependencies>
+                                    <destFileName>groovy-4.jar</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-441/6</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>org.codehaus.groovy</groupId>
+                                            <artifactId>groovy-all</artifactId>
+                                            <version>1.9.0-beta-2</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.codehaus.groovy</groupId>
+                                            <artifactId>groovy-all</artifactId>
+                                            <version>1.8.1</version>
+                                            <destFileName>groovy-4.jar</destFileName>
+                                        </dependency>
+                                    </dependencies>
+                                    <destFileName>groovy-3.jar</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-441/7</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>org.codehaus.groovy</groupId>
+                                            <artifactId>groovy-all</artifactId>
+                                            <version>1.9.0-beta-2</version>
+                                            <destFileName>groovy-3.jar</destFileName>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.codehaus.groovy</groupId>
+                                            <artifactId>groovy-all</artifactId>
+                                            <version>1.8.1</version>
+                                        </dependency>
+                                    </dependencies>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-441/8</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>org.codehaus.groovy</groupId>
+                                            <artifactId>groovy-all</artifactId>
+                                            <version>1.9.0-beta-2</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.codehaus.groovy</groupId>
+                                            <artifactId>groovy-all</artifactId>
+                                            <version>1.8.1</version>
+                                            <destFileName>groovy-4.jar</destFileName>
+                                        </dependency>
+                                    </dependencies>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 
@@ -103,6 +237,41 @@
                                 new File( outputDir, 'pl-350/pom3.xml' ).text ==~ /!+/
                                 new File( outputDir, 'pl-350/pom2.xml' ).text.size() == new File( outputDir, 'pl-350/pom3.xml' ).text.size()
                             </assertGroovy>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-441 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-441</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-441/1/groovy-1.jar
+                                ${outputDir}/pl-441/2/groovy-1.jar
+                                ${outputDir}/pl-441/3/groovy-3.jar
+                                ${outputDir}/pl-441/3/groovy-4.jar
+                                ${outputDir}/pl-441/4/groovy-3.jar
+                                ${outputDir}/pl-441/4/groovy-4.jar
+                                ${outputDir}/pl-441/5/groovy-3.jar
+                                ${outputDir}/pl-441/5/groovy-4.jar
+                                ${outputDir}/pl-441/6/groovy-3.jar
+                                ${outputDir}/pl-441/6/groovy-4.jar
+                                ${outputDir}/pl-441/7/groovy-3.jar
+                                ${outputDir}/pl-441/7/groovy-all-1.8.1.jar
+                                ${outputDir}/pl-441/8/groovy-all-1.9.0-beta-2.jar
+                                ${outputDir}/pl-441/8/groovy-4.jar
+                            </assertFiles>
+                            <assertEqual>
+                                ${outputDir}/pl-441/1|${outputDir}/pl-441/2
+                                ${outputDir}/pl-441/3|${outputDir}/pl-441/4
+                                ${outputDir}/pl-441/4|${outputDir}/pl-441/5
+                                ${outputDir}/pl-441/5|${outputDir}/pl-441/6
+                                ${outputDir}/pl-441/6|${outputDir}/pl-441/3
+                            </assertEqual>
                         </configuration>
                     </execution>
                 </executions>
