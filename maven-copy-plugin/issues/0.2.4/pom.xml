@@ -22,6 +22,7 @@
 
     <properties>
         <outputDir>${project.build.outputDirectory}</outputDir>
+        <resourcesDir>${project.basedir}/../../copy-mojo/src/main/resources</resourcesDir>
     </properties>
 
 
@@ -207,6 +208,57 @@
                             </resources>
                         </configuration>
                     </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-429:                          -->
+                    <!-- Support "prefix" and "destFileName" when archives are updated or created -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-429</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-429</targetPath>
+                                    <dependency>
+                                        <groupId>org.codehaus.groovy</groupId>
+                                        <artifactId>groovy-all</artifactId>
+                                        <version>1.8.1</version>
+                                        <destFileName>g.jar</destFileName>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-429/g.jar</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <pack>true</pack>
+                                    <update>true</update>
+                                    <destFileName>p/o/m/1.xml</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-429/g.jar</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <pack>true</pack>
+                                    <update>true</update>
+                                    <prefix>pp/oo/mm</prefix>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-429/g.jar</targetPath>
+                                    <directory>${resourcesDir}</directory>
+                                    <include>*.txt</include>
+                                    <pack>true</pack>
+                                    <update>true</update>
+                                    <prefix>txt/s</prefix>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-429/unpack</targetPath>
+                                    <file>${outputDir}/pl-429/g.jar</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 
@@ -264,6 +316,11 @@
                                 ${outputDir}/pl-441/7/groovy-all-1.8.1.jar
                                 ${outputDir}/pl-441/8/groovy-all-1.9.0-beta-2.jar
                                 ${outputDir}/pl-441/8/groovy-4.jar
+
+                                ${outputDir}/pl-429/g.jar
+                                ${outputDir}/pl-429/unpack/p/o/m/1.xml
+                                ${outputDir}/pl-429/unpack/pp/oo/mm/pom.xml
+                                ${outputDir}/pl-429/unpack/txt/s/*.txt
                             </assertFiles>
                             <assertEqual>
                                 ${outputDir}/pl-441/1|${outputDir}/pl-441/2
@@ -272,6 +329,9 @@
                                 ${outputDir}/pl-441/5|${outputDir}/pl-441/6
                                 ${outputDir}/pl-441/6|${outputDir}/pl-441/3
                             </assertEqual>
+                            <assertGroovy>
+                                new File( outputDir, 'pl-429/unpack/txt/s' ).listFiles().size() == 6
+                            </assertGroovy>
                         </configuration>
                     </execution>
                 </executions>
