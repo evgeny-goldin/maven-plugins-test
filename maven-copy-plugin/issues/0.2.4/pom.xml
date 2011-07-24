@@ -292,6 +292,114 @@
                             </resources>
                         </configuration>
                     </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-444:                  -->
+                    <!-- When archive is unpacked <process> should contain files unpacked -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-444</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-444</targetPath>
+                                    <dependency>
+                                        <groupId>org.codehaus.groovy</groupId>
+                                        <artifactId>groovy-all</artifactId>
+                                        <version>1.8.1</version>
+                                    </dependency>
+                                    <unpack>true</unpack>
+                                    <process>{{ assert files.size() == 3657 }}</process>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-442:                     -->
+                    <!-- Support <replace> and <filtering> when files are packed or unpacked -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-442</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-442/1</targetPath>
+                                    <dependency>
+                                        <groupId>org.codehaus.groovy</groupId>
+                                        <artifactId>groovy-all</artifactId>
+                                        <version>1.8.1</version>
+                                    </dependency>
+                                    <unpack>true</unpack>
+                                    <zipEntry>**/*.txt</zipEntry>
+                                    <replace>
+                                        <from>(?s).</from>
+                                        <to>@</to>
+                                    </replace>
+                                    <process>{{ assert files.size() == 6 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-442/2</targetPath>
+                                    <dependency>
+                                        <groupId>org.jenkins-ci.main</groupId>
+                                        <artifactId>jenkins-war</artifactId>
+                                        <version>1.421</version>
+                                        <type>war</type>
+                                    </dependency>
+                                    <unpack>true</unpack>
+                                    <zipEntry>**/*.html</zipEntry>
+                                    <replace>
+                                        <from>(?s).</from>
+                                        <to>!</to>
+                                    </replace>
+                                    <preservePath>false</preservePath>
+                                    <process>{{ assert files.size() == 554 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-442/pom.zip</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <filtering>true</filtering>
+                                    <replaces>
+                                        <replace>
+                                            <from>(?i)a</from>
+                                            <to>b</to>
+                                        </replace>
+                                        <replace>
+                                            <from>(?i)c</from>
+                                            <to>d</to>
+                                        </replace>
+                                    </replaces>
+                                    <pack>true</pack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-442/3</targetPath>
+                                    <file>${outputDir}/pl-442/pom.zip</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-442/4</targetPath>
+                                    <file>${outputDir}/pl-442/pom.zip</file>
+                                    <unpack>true</unpack>
+                                    <replaces>
+                                        <replace>
+                                            <from>(?i)b</from>
+                                            <to>a</to>
+                                        </replace>
+                                        <replace>
+                                            <from>(?i)d</from>
+                                            <to>c</to>
+                                        </replace>
+                                    </replaces>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 
@@ -362,6 +470,11 @@
                                 ${outputDir}/pl-429/unpack2/pom2.xml
                                 ${outputDir}/pl-429/unpack3/3/2/1/pom3.xml
                                 ${outputDir}/pl-429/unpack4/txts/*.txt
+
+                                ${outputDir}/pl-442/1/*.txt
+                                ${outputDir}/pl-442/2/*.html
+                                ${outputDir}/pl-442/3/pom.xml
+                                ${outputDir}/pl-442/4/pom.xml
                             </assertFiles>
                             <assertEqual>
                                 ${outputDir}/pl-441/1|${outputDir}/pl-441/2
@@ -372,7 +485,21 @@
                             </assertEqual>
                             <assertGroovy>
                                 new File( outputDir, 'pl-429/unpack/txt/s' ).listFiles().size() == 6
+
+                                new File( outputDir, 'pl-442/1' ).listFiles().size() == 6
+                                new File( outputDir, 'pl-442/1' ).directorySize()    == 16781
+                                new File( outputDir, 'pl-442/2' ).listFiles().size() == 554
+                                new File( outputDir, 'pl-442/2' ).directorySize()    == 309805
+
+                                new File( outputDir, 'pl-442/1' ).listFiles().every{ it.text ==~ /@+/ &amp;&amp; it.name.endsWith( '.txt' ) }
+                                new File( outputDir, 'pl-442/2' ).listFiles().every{ it.text ==~ /!+/ &amp;&amp; it.name.endsWith( '.html' ) }
+
+                                ! new File( outputDir, 'pl-442/3/pom.xml' ).text.toLowerCase().with{ contains( 'a' ) || contains( 'c' ) }
+                                ! new File( outputDir, 'pl-442/4/pom.xml' ).text.toLowerCase().with{ contains( 'b' ) || contains( 'd' ) }
                             </assertGroovy>
+                            <shouldFailAssertEqual>
+                                ${outputDir}/pl-442/3|${outputDir}/pl-442/4
+                            </shouldFailAssertEqual>
                             <assertEqual>
                                 ${outputDir}/pl-429/unpack/txt/s|${outputDir}/pl-429/unpack4/txts
                             </assertEqual>
