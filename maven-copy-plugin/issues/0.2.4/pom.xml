@@ -46,6 +46,9 @@
                         <phase>initialize</phase>
                         <configuration>
                             <resources>
+
+                                <!-- "move" for copy -->
+
                                 <resource>
                                     <targetPath>${outputDir}/pl-350</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
@@ -70,6 +73,45 @@
                                         <from>(?s).</from>
                                         <to>!</to>
                                     </replace>
+                                </resource>
+
+                                <!-- "move" for pack -->
+
+                                <resource>
+                                    <targetPath>${outputDir}/pl-350/copy</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileName>p1.xml</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-350/pom1.zip</targetPath>
+                                    <file>${outputDir}/pl-350/copy/p1.xml</file>
+                                    <pack>true</pack>
+                                    <move>true</move>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-350/pom1-zip-unpack</targetPath>
+                                    <file>${outputDir}/pl-350/pom1.zip</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-350/copy</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileName>p2.xml</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-350/pom2.zip</targetPath>
+                                    <file>${outputDir}/pl-350/copy/p2.xml</file>
+                                    <pack>true</pack>
+                                    <move>true</move>
+                                    <filtering>true</filtering>
+                                    <replace>
+                                        <to>aaaaa</to>
+                                    </replace>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-350/pom2-zip-unpack</targetPath>
+                                    <file>${outputDir}/pl-350/pom2.zip</file>
+                                    <unpack>true</unpack>
                                 </resource>
                             </resources>
                         </configuration>
@@ -312,15 +354,21 @@
                         <configuration>
                             <shouldFailAssertFiles>
                                 ${outputDir}/pl-350/pom.xml
+                                ${outputDir}/pl-350/copy/*.xml
                             </shouldFailAssertFiles>
                             <assertFiles>
                                 ${outputDir}/pl-350/pom2.xml
                                 ${outputDir}/pl-350/pom3.xml
+                                ${outputDir}/pl-350/pom1-zip-unpack/p1.xml
+                                ${outputDir}/pl-350/pom2-zip-unpack/p2.xml
                             </assertFiles>
                             <assertGroovy>
                                 new File( outputDir, 'pl-350/pom2.xml' ).text ==~ /(?s).+/
                                 new File( outputDir, 'pl-350/pom3.xml' ).text ==~ /!+/
-                                new File( outputDir, 'pl-350/pom2.xml' ).text.size() == new File( outputDir, 'pl-350/pom3.xml' ).text.size()
+                                new File( outputDir, 'pl-350/pom2.xml' ).text.size()    == new File( outputDir, 'pl-350/pom3.xml' ).text.size()
+                                new File( outputDir, 'pl-350/copy' ).listFiles().size() == 0
+                                new File( outputDir, 'pl-350/pom1-zip-unpack/p1.xml' ).text == new File( project.basedir, 'pom.xml' ).text
+                                new File( outputDir, 'pl-350/pom2-zip-unpack/p2.xml' ).text == 'aaaaa'
                             </assertGroovy>
                         </configuration>
                     </execution>
