@@ -84,6 +84,32 @@
                             <failIfNotFound>false</failIfNotFound>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>create-about-6</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>create-about</goal>
+                        </goals>
+                        <configuration>
+                            <dumpEnv>true</dumpEnv>
+                            <dumpSystem>true</dumpSystem>
+                            <dumpMaven>true</dumpMaven>
+                            <fileName>about-maven.txt</fileName>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>create-about-7</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>create-about</goal>
+                        </goals>
+                        <configuration>
+                            <addContent>
+[Coordinates] : [${project.groupId}:${project.artifactId}:${project.version}]
+                            </addContent>
+                            <fileName>about-content.txt</fileName>
+                        </configuration>
+                    </execution>
 
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-433 -->
@@ -142,9 +168,16 @@
                         <configuration>
                             <assertFiles>
                                 ${outputDir}/unpack/META-INF/about-${project.groupId}-${project.artifactId}-${project.version}.txt
+                                ${outputDir}/unpack/META-INF/about-content.txt
+                                ${outputDir}/unpack/META-INF/about-maven.txt
                                 ${outputDir}/unpack/About/fff.txt
                                 ${outputDir}/unpack/about-root.txt
                             </assertFiles>
+                            <assertGroovy>
+                                new File( outputDir, 'unpack/META-INF/about-content.txt' ).text.contains( '[Coordinates] : [' )
+                                new File( outputDir, 'unpack/META-INF/about-maven.txt' ).text.contains( '[spring-version]  :[' )
+                                new File( outputDir, 'unpack/META-INF/about-maven.txt' ).text.contains( '[outputDir]       :[' )
+                            </assertGroovy>
                         </configuration>
                     </execution>
                 </executions>
