@@ -238,14 +238,14 @@
                             </assertFiles>
                             <assertGroovy>
                                 new File( outputDir, 'unpack/META-INF/about-content.txt' ).text.contains( '[Coordinates] : [' )
-                                new File( outputDir, 'unpack/META-INF/about-maven.txt' ).text.contains( ' [spring-version]  :[${spring-version}]' )
-                                new File( outputDir, 'unpack/META-INF/about-maven.txt' ).text.contains( ' [outputDir]       :[' )
+                                new File( outputDir, 'unpack/META-INF/about-maven.txt' ).text.contains( ' [spring-version]' )
+                                new File( outputDir, 'unpack/META-INF/about-maven.txt' ).text.contains( ' [outputDir]' )
 
                                 new File( outputDir, 'unpack/META-INF/about-content-groovy.txt' ).text.contains( ' [Date] : [' )
                                 new File( outputDir, 'unpack/META-INF/about-content-groovy.txt' ).text.contains( ' [Sum]  : [156]' )
                                 new File( outputDir, 'unpack/META-INF/about-content-groovy.txt' ).text.contains( ' [Ver]  : [' + mavenVersion + ']' )
 
-                                new File( project.build.outputDirectory, 'about-standalone-1.txt' ).text.contains( ' [outputDir]       :[' )
+                                new File( project.build.outputDirectory, 'about-standalone-1.txt' ).text.contains( ' [outputDir]' )
                                 new File( project.build.directory,       'about-standalone-2.txt' ).text.contains( ' [MavenProject: ${project.groupId}:${project.artifactId}:${project.version}' )
                             </assertGroovy>
                         </configuration>
