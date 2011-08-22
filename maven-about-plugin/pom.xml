@@ -110,6 +110,23 @@
                             <fileName>about-content.txt</fileName>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>create-about-8</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>create-about</goal>
+                        </goals>
+                        <configuration>
+                            <addContent>
+                                {{
+'[Date] : [' + new Date()   + ']' + '\n' +
+'[Sum]  : [' + ( 12 * 13 )  + ']' + '\n' +
+'[Ver]  : [' + mavenVersion + ']'
+                                }}
+                            </addContent>
+                            <fileName>about-content-groovy.txt</fileName>
+                        </configuration>
+                    </execution>
 
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-433 -->
@@ -177,6 +194,9 @@
                                 new File( outputDir, 'unpack/META-INF/about-content.txt' ).text.contains( '[Coordinates] : [' )
                                 new File( outputDir, 'unpack/META-INF/about-maven.txt' ).text.contains( '[spring-version]  :[' )
                                 new File( outputDir, 'unpack/META-INF/about-maven.txt' ).text.contains( '[outputDir]       :[' )
+                                new File( outputDir, 'unpack/META-INF/about-content-groovy.txt' ).text.contains( '[Date] : [' )
+                                new File( outputDir, 'unpack/META-INF/about-content-groovy.txt' ).text.contains( '[Sum]  : [156]' )
+                                new File( outputDir, 'unpack/META-INF/about-content-groovy.txt' ).text.contains( '[Ver]  : [' + mavenVersion + ']' )
                             </assertGroovy>
                         </configuration>
                     </execution>
