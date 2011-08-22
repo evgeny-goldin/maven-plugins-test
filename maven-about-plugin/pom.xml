@@ -84,6 +84,12 @@
                             <failIfNotFound>false</failIfNotFound>
                         </configuration>
                     </execution>
+
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-443             -->
+                    <!-- Add option to dump Maven runtime/user/execution properties -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
                     <execution>
                         <id>create-about-6</id>
                         <phase>package</phase>
@@ -97,6 +103,12 @@
                             <fileName>about-maven.txt</fileName>
                         </configuration>
                     </execution>
+
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-452                      -->
+                    <!-- Allow user to provide "raw content" to be written into "about" file -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
                     <execution>
                         <id>create-about-7</id>
                         <phase>package</phase>
@@ -128,9 +140,10 @@
                         </configuration>
                     </execution>
 
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-433 -->
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-433                       -->
+                    <!-- Add "failOnError" option to not fail the build if any error occurred -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
                     <execution>
                         <id>create-about-fail</id>
@@ -141,6 +154,36 @@
                         <configuration>
                             <fileName>....</fileName> <!-- Triggers an error -->
                             <failOnError>false</failOnError>
+                        </configuration>
+                    </execution>
+
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-439                                -->
+                    <!-- Provide an option to create "about" file on disk without updating any archive -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+                    <execution>
+                        <id>create-about-9</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>create-about</goal>
+                        </goals>
+                        <configuration>
+                            <fileName>about-standalone-1.txt</fileName>
+                            <updateArchives>false</updateArchives>
+                            <dumpMaven>true</dumpMaven>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>create-about-10</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>create-about</goal>
+                        </goals>
+                        <configuration>
+                            <fileName>${project.build.directory}/about-standalone-2.txt</fileName>
+                            <updateArchives>false</updateArchives>
+                            <addContent>{{ '[' + project + '][' + session + ']' }}</addContent>
                         </configuration>
                     </execution>
                 </executions>
@@ -189,6 +232,9 @@
                                 ${outputDir}/unpack/META-INF/about-maven.txt
                                 ${outputDir}/unpack/About/fff.txt
                                 ${outputDir}/unpack/about-root.txt
+
+                                ${project.build.outputDirectory}/about-standalone-1.txt
+                                ${project.build.directory}/about-standalone-2.txt
                             </assertFiles>
                             <assertGroovy>
                                 new File( outputDir, 'unpack/META-INF/about-content.txt' ).text.contains( '[Coordinates] : [' )
@@ -197,6 +243,10 @@
                                 new File( outputDir, 'unpack/META-INF/about-content-groovy.txt' ).text.contains( '[Date] : [' )
                                 new File( outputDir, 'unpack/META-INF/about-content-groovy.txt' ).text.contains( '[Sum]  : [156]' )
                                 new File( outputDir, 'unpack/META-INF/about-content-groovy.txt' ).text.contains( '[Ver]  : [' + mavenVersion + ']' )
+
+
+                                new File( project.build.outputDirectory, 'about-standalone-1.txt' ).text.contains( '[outputDir]       :[' )
+                                new File( project.build.directory,       'about-standalone-2.txt' ).text.contains( '[MavenProject: ${project.groupId}:${project.artifactId}:${project.version}' )
                             </assertGroovy>
                         </configuration>
                     </execution>
