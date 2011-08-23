@@ -69,14 +69,14 @@
                                     <pack>true</pack>
                                 </resource>
 
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                                <!-- Creating identical *.jar archive (copying *.zip and renaming) -->
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Creating identical *.zip archive -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
                                 <resource>
                                     <targetPath>${outputDir}/pack</targetPath>
                                     <file>${outputDir}/pack/net.zip</file>
-                                    <destFileName>net.jar</destFileName>
+                                    <destFileName>net2.zip</destFileName>
                                 </resource>
 
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -86,7 +86,7 @@
                                 <resource>
                                     <targetPath>${ftpPath}</targetPath>
                                     <directory>${outputDir}/pack</directory>
-                                    <include>net.*</include>
+                                    <include>net*.*</include>
                                 </resource>
                                 <resource>
                                     <targetPath>${scpPath}</targetPath>
@@ -138,16 +138,18 @@
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
                                 <resource>
-                                    <targetPath>${outputDir}/ftp-zip</targetPath>
+                                    <targetPath>${outputDir}/ftp-zip/1</targetPath>
                                     <directory>${ftpPath}</directory>
-                                    <include>*.zip</include>
+                                    <!-- "net.zip" -->
+                                    <include>net.*</include>
                                     <unpack>true</unpack>
                                 </resource>
 
                                 <resource>
-                                    <targetPath>${outputDir}/ftp-jar</targetPath>
+                                    <targetPath>${outputDir}/ftp-zip/2</targetPath>
                                     <directory>${ftpPath}</directory>
-                                    <include>*.jar</include>
+                                    <!-- "net2.zip" -->
+                                    <include>*2.*</include>
                                     <unpack>true</unpack>
                                 </resource>
 
@@ -212,13 +214,13 @@
                                 ${outputDir}/scp/NOTICE.txt
                                 ${outputDir}/scp/README.txt
 
-                                ${outputDir}/ftp-zip
-                                ${outputDir}/ftp-jar
+                                ${outputDir}/ftp-zip/1
+                                ${outputDir}/ftp-zip/2
                             </assertFiles>
                             <assertEqual>
-                                ${outputDir}/unpack|${outputDir}/ftp-zip
-                                ${outputDir}/unpack|${outputDir}/ftp-jar
-                                ${outputDir}/ftp-zip|${outputDir}/ftp-jar
+                                ${outputDir}/unpack|${outputDir}/ftp-zip/1
+                                ${outputDir}/unpack|${outputDir}/ftp-zip/2
+                                ${outputDir}/ftp-zip/1|${outputDir}/ftp-zip/2
                             </assertEqual>
                         </configuration>
                     </execution>
