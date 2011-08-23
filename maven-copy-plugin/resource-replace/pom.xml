@@ -150,6 +150,7 @@
                                     <file>${resourcesDir}/pom.xml</file>
                                     <replace>
                                         <addDollar>projectGroupId,projectArtifactId,projectVersion</addDollar>
+                                        <endOfLine>windows</endOfLine>
                                     </replace>
                                 </resource>
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
