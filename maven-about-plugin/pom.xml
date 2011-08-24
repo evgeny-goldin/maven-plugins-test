@@ -47,6 +47,7 @@
                         </goals>
                         <configuration>
                             <dumpDependencies>true</dumpDependencies>
+                            <dumpPaths>true</dumpPaths>
                             <prefix>About</prefix>
                             <fileName>fff.txt</fileName>
                         </configuration>
@@ -187,10 +188,10 @@
                         </configuration>
                     </execution>
 
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-456                                                          -->
-                    <!-- "<updateArchives>false</updateArchives>: "about" file is not created if parent directory doesn't exist" -->
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-456                                                        -->
+                    <!-- <updateArchives>false</updateArchives>: "about" file is not created if parent directory doesn't exist -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
                     <execution>
                         <id>create-about-11</id>
