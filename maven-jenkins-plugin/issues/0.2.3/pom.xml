@@ -47,11 +47,12 @@
                             <jenkinsUrl>http://evgeny-goldin.org/jenkins</jenkinsUrl>
                             <timestamp>false</timestamp>
                             <jobs>
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                                <!-- http://evgeny-goldin.org/youtrack/issue/pl-18 -->
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- http://evgeny-goldin.org/youtrack/issue/pl-460                 -->
+                                <!-- "Empty <pom> element in freestyle job maven task uses pom.xml" -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <job>
-                                    <id>pl-18</id>
+                                    <id>pl-460</id>
                                     <archivingDisabled>false</archivingDisabled>
                                     <mavenName>apache-maven-2</mavenName>
                                     <jdkName>jdk1.6.0</jdkName>
