@@ -7,7 +7,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.goldin.plugins.maven-plugins-test</groupId>
-    <artifactId>maven-jenkins-plugin</artifactId>
+    <artifactId>maven-jenkins-plugin.issues</artifactId>
     <packaging>pom</packaging>
     <version>0.1-SNAPSHOT</version>
     <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
@@ -15,18 +15,16 @@
 
     <parent>
         <groupId>com.goldin.plugins.maven-plugins-test</groupId>
-        <artifactId>main.tests</artifactId>
+        <artifactId>maven-jenkins-plugin</artifactId>
         <version>0.1-SNAPSHOT</version>
     </parent>
 
 
-
     <modules>
-        <module>issues</module>
-        <module>full</module>
-        <module>google-guice</module>
-        <module>standalone</module>
-        <module>jenkins-book</module>
+        <module>0.2-beta-2</module>
+        <module>0.2-beta-3</module>
+        <module>0.2.3</module>
     </modules>
+
 
 </project>
