@@ -20,12 +20,6 @@
     </parent>
 
 
-    <properties>
-        <configs-outputDirectory>${user.home}/.jenkins/jobs</configs-outputDirectory>
-        <maven-plugins-repo>git@github.com:evgeny-goldin/maven-plugins.git</maven-plugins-repo>
-        <maven-plugins-test-repo>git://github.com/evgeny-goldin/maven-plugins-test.git</maven-plugins-test-repo>
-    </properties>
-
 
     <build>
         <plugins>
