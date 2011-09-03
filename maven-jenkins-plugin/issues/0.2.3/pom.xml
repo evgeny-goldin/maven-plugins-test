@@ -47,41 +47,18 @@
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <job>
                                     <id>pl-460</id>
-                                    <archivingDisabled>false</archivingDisabled>
-                                    <mavenName>apache-maven-2</mavenName>
-                                    <jdkName>jdk1.6.0</jdkName>
-                                    <privateRepository>false</privateRepository>
-                                    <scmType>git</scmType>
-                                    <repository>
-                                        <remote>git://github.com/evgeny-goldin/maven-plugins.git</remote>
-                                    </repository>
+                                    <jobType>free</jobType>
+                                    <tasks>
+                                        <maven>
+                                            <mavenName>apache-maven-3</mavenName>
+                                            <targets>
+org.apache.maven.plugins:maven-archetype-plugin:2.0:generate -DinteractiveMode=false -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-webapp -DarchetypeVersion=1.0 -DgroupId=com.test -DartifactId=something -Dpackage=jar
+                                            </targets>
+                                            <pom>false</pom>
+                                        </maven>
+                                    </tasks>
                                 </job>
                             </jobs>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-            <!-- Verifying configs generated have not changed -->
-            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-
-            <plugin>
-                <groupId>com.goldin.plugins</groupId>
-                <artifactId>maven-assert-plugin</artifactId>
-                <version>${plugins-version}</version>
-                <executions>
-                    <execution>
-                        <id>verify-configs</id>
-                        <goals>
-                            <goal>assert</goal>
-                        </goals>
-                        <phase>test</phase>
-                        <configuration>
-                            <endOfLine>windows</endOfLine>
-                            <assertEqual>
-                                ${project.basedir}/src/test/resources/configs/|${configs-outputDirectory}|**/*.xml
-                            </assertEqual>
                         </configuration>
                     </execution>
                 </executions>

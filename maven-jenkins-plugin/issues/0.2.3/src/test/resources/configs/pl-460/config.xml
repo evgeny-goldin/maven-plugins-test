@@ -2,7 +2,7 @@
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <!-- Generated automatically by [https://github.com/evgeny-goldin/maven-plugins-test/blob/master/maven-jenkins-plugin/issues/0.2.3/pom.xml]  -->
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-<maven2-moduleset>
+<project>
   <actions/>
   <description>
        <![CDATA[
@@ -22,40 +22,19 @@
 </tr>
 <tr>
 <td valign="top">Job type</td>
-<td>Maven</td>
+<td>Free-Style</td>
 </tr>
 <tr>
 <td valign="top">Java</td>
-<td>jdk1.6.0</td>
+<td>(Default)</td>
 </tr>
 <tr>
-<td valign="top">Maven</td>
-<td>apache-maven-2</td>
-</tr>
-<tr>
-<td valign="top">Maven goals</td>
-<td><strong><code>-e clean install</code></strong></td>
-</tr>
-<tr>
-<td valign="top">Maven repository</td>
-<td><strong><code>"&lt;user-home&gt;/.m2/repository"</code></strong></td>
+<td valign="top">SVN update policy</td>
+<td>Revert - [false], update - [false], checkout - [true]</td>
 </tr>
 <tr>
 <td valign="top">Node</td>
 <td><a href="http://evgeny-goldin.org/jenkins/label/master/"><strong>master</strong></a></td>
-</tr>
-<tr>
-<td valign="top">Repositories</td>
-<td>
-<li><a href="http://github.com/evgeny-goldin/maven-plugins/"><strong><code>git://github.com/evgeny-goldin/maven-plugins.git</code></strong></a>
-: <a href="http://github.com/evgeny-goldin/maven-plugins/tree/master/"><strong><code>master</code></strong></a>
-</td>
-</tr>
-<tr>
-<td valign="top">POM</td>
-<td>
-<li><a href="http://github.com/evgeny-goldin/maven-plugins/blob/master/pom.xml"><strong><code>http://github.com/evgeny-goldin/maven-plugins/blob/master/pom.xml</code></strong></a>
-</td>
 </tr>
 </table>
        ]]>
@@ -63,44 +42,14 @@
   <keepDependencies>false</keepDependencies>
   <properties>
   </properties>
-  <scm class="hudson.plugins.git.GitSCM">
+  <scm class="hudson.scm.SubversionSCM">
     <!-- ~~~~~~~~~~~~~~ -->
-    <!-- Git repository -->
+    <!-- SVN repository -->
     <!-- ~~~~~~~~~~~~~~ -->
-    <configVersion>1</configVersion>
-    <remoteRepositories>
-      <org.spearce.jgit.transport.RemoteConfig>
-        <string>origin</string>
-        <int>5</int>
-        <string>fetch</string>
-        <string>+refs/heads/*:refs/remotes/origin/*</string>
-        <string>receivepack</string>
-        <string>git-upload-pack</string>
-        <string>uploadpack</string>
-        <string>git-upload-pack</string>
-        <string>url</string>
-        <string>git://github.com/evgeny-goldin/maven-plugins.git</string>
-        <string>tagopt</string>
-        <string></string>
-      </org.spearce.jgit.transport.RemoteConfig>
-    </remoteRepositories>
-    <branches>
-      <hudson.plugins.git.BranchSpec>
-        <name>master</name>
-      </hudson.plugins.git.BranchSpec>
-    </branches>
-    <localBranch></localBranch>
-    <mergeOptions/>
-    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
-    <authorOrCommitter>false</authorOrCommitter>
-    <clean>false</clean>
-    <wipeOutWorkspace>false</wipeOutWorkspace>
-    <buildChooser class="hudson.plugins.git.util.DefaultBuildChooser"/>
-    <gitTool>Default</gitTool>
-    <submoduleCfg class="list"/>
-    <relativeTargetDir></relativeTargetDir>
-    <excludedRegions></excludedRegions>
-    <excludedUsers></excludedUsers>
+    <locations>
+    </locations>
+    <useUpdate>false</useUpdate>
+    <doRevert>false</doRevert>
   </scm>
   <assignedNode>master</assignedNode>
   <canRoam>false</canRoam>
@@ -108,21 +57,17 @@
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers class="vector">
   </triggers>
-  <jdk>jdk1.6.0</jdk>
+  <jdk>(Default)</jdk>
   <concurrentBuild>false</concurrentBuild>
-  <rootPOM>pom.xml</rootPOM>
-  <goals>-e clean install</goals>
-  <mavenName>apache-maven-2</mavenName>
-  <mavenOpts></mavenOpts>
-  <aggregatorStyleBuild>true</aggregatorStyleBuild>
-  <incrementalBuild>false</incrementalBuild>
-  <usePrivateRepository>false</usePrivateRepository>
-  <ignoreUpstremChanges>true</ignoreUpstremChanges>
-  <archivingDisabled>false</archivingDisabled>
-  <reporters>
-  </reporters>
+  <builders>
+    <hudson.tasks.Maven>
+        <targets>org.apache.maven.plugins:maven-archetype-plugin:2.0:generate -DinteractiveMode=false -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-webapp -DarchetypeVersion=1.0 -DgroupId=com.test -DartifactId=something -Dpackage=jar</targets>
+        <mavenName>apache-maven-3</mavenName>
+        <usePrivateRepository>false</usePrivateRepository>
+    </hudson.tasks.Maven>
+  </builders>
   <publishers>
   </publishers>
   <buildWrappers>
   </buildWrappers>
-</maven2-moduleset>
+</project>

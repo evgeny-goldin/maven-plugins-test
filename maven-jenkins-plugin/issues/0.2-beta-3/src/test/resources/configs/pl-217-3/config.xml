@@ -54,19 +54,19 @@
     </hudson.tasks.Shell>
     <hudson.tasks.Maven>
         <targets>clean</targets>
-<mavenName>apache-maven-2</mavenName>
-<pom>pom.xml</pom>
-<usePrivateRepository>true</usePrivateRepository>
+        <mavenName>apache-maven-2</mavenName>
+        <pom>pom.xml</pom>
+        <usePrivateRepository>true</usePrivateRepository>
     </hudson.tasks.Maven>
     <hudson.tasks.BatchFile>
         <command>dir</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.Ant>
         <targets>clean</targets>
-<buildFile>build file</buildFile>
-<antOpts>-Xmx128m</antOpts>
-<properties>a = b
-c = d</properties>
+        <buildFile>build file</buildFile>
+        <antOpts>-Xmx128m</antOpts>
+        <properties>a = b
+                                                c = d</properties>
     </hudson.tasks.Ant>
   </builders>
   <publishers>

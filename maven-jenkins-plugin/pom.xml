@@ -35,4 +35,35 @@
         <module>jenkins-book</module>
     </modules>
 
+
+    <build>
+        <plugins>
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- Verifying configs generated have not changed -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-assert-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <execution>
+                        <id>verify-configs</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <runIf>{{ new File( project.basedir, 'src/test/resources/configs' ).directory }}</runIf>
+                            <endOfLine>windows</endOfLine>
+                            <assertEqual>
+                                ${project.basedir}/src/test/resources/configs/|${configs-outputDirectory}|**/*.xml
+                            </assertEqual>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
