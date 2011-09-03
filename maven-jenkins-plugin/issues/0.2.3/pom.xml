@@ -43,7 +43,7 @@
                         </goals>
                         <configuration>
                             <outputDirectory>${configs-outputDirectory}</outputDirectory>
-                            <generationPom>http://github.com/evgeny-goldin/maven-plugins-test/blob/master/maven-jenkins-plugin/issues-0.2-beta-2/pom.xml</generationPom>
+                            <generationPom>https://github.com/evgeny-goldin/maven-plugins-test/blob/master/maven-jenkins-plugin/issues/0.2.3/pom.xml</generationPom>
                             <jenkinsUrl>http://evgeny-goldin.org/jenkins</jenkinsUrl>
                             <timestamp>false</timestamp>
                             <jobs>
