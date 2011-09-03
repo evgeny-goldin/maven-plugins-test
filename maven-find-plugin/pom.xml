@@ -165,7 +165,7 @@
                                 ${rootPath}/maven-find-plugin
                                 ${rootPath}/maven-find-plugin/pom.xml
                                 ${rootPath}/maven-jenkins-plugin
-                                ${rootPath}/maven-jenkins-plugin/issues-0.2-beta-2/src/test/resources/configs/pl-18/config.xml
+                                ${rootPath}/maven-jenkins-plugin/issues/0.2-beta-2/src/test/resources/configs/pl-18/config.xml
                                 ${rootPath}/maven-properties-plugin
                                 ${rootPath}/maven-properties-plugin/issues/0.2-beta-5/pom.xml
                                 ${outputDir}
