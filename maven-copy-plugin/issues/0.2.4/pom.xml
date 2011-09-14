@@ -575,26 +575,20 @@ echo {{ '[' + project.basedir + '] - [' + project.groupId + ':' + project.artifa
                                         </to>
                                         <groovy>true</groovy>
                                     </replace>
-                                    <destFileName>test1.sh</destFileName>
+                                    <destFileName>test.sh</destFileName>
                                     <process>
                                         ${chmodTest}
                                     </process>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-463/pack.tar.gz</targetPath>
-                                    <file>${outputDir}/pl-463/1/test1.sh</file>
+                                    <directory>${outputDir}/pl-463/1</directory>
                                     <pack>true</pack>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-463/2</targetPath>
                                     <file>${outputDir}/pl-463/pack.tar.gz</file>
                                     <unpack>true</unpack>
-                                </resource>
-                                <resource>
-                                    <targetPath>${outputDir}/pl-463/2</targetPath>
-                                    <file>${outputDir}/pl-463/2/test1.sh</file>
-                                    <destFileName>test2.sh</destFileName>
-                                    <move>true</move>
                                     <process>
                                         ${chmodTest}
                                     </process>
@@ -777,11 +771,11 @@ echo {{ '[' + project.basedir + '] - [' + project.groupId + ':' + project.artifa
                         <configuration>
                             <runIf>{{ ${ifLinux} || ${ifMac} }}</runIf>
                             <assertFiles>
-                                ${outputDir}/pl-463/1/test1.sh
-                                ${outputDir}/pl-463/2/test2.sh
+                                ${outputDir}/pl-463/1/test.sh
+                                ${outputDir}/pl-463/2/test.sh
                             </assertFiles>
                             <assertGroovy>
-                                "${outputDir}/pl-463/1/test1.sh".execute().text == "${outputDir}/pl-463/2/test2.sh".execute().text
+                                "${outputDir}/pl-463/1/test.sh".execute().text == "${outputDir}/pl-463/2/test.sh".execute().text
                             </assertGroovy>
                         </configuration>
                     </execution>
