@@ -69,7 +69,7 @@
                         </goals>
                         <phase>initialize</phase>
                         <configuration>
-                            <runIf>{{ osName.toLowerCase().contains( 'windows' ) }}</runIf>
+                            <runIf>{{ ${ifWindows} }}</runIf>
                             <file>pom.xml</file>
                             <startDir>${targetPath}</startDir>
                             <propertyName>pomPath</propertyName>
@@ -82,7 +82,7 @@
                         </goals>
                         <phase>initialize</phase>
                         <configuration>
-                            <runIf>{{ osName.toLowerCase().contains( 'linux' ) }}</runIf>
+                            <runIf>{{ ${ifLinux} }}</runIf>
                             <file>pom.xml</file>
                             <startDir>${targetPath}</startDir>
                             <propertyName>pomPath</propertyName>
@@ -95,7 +95,7 @@
                         </goals>
                         <phase>initialize</phase>
                         <configuration>
-                            <runIf>{{ osName.toLowerCase().contains( 'mac os x' ) }}</runIf>
+                            <runIf>{{ ${ifMac} }}</runIf>
                             <file>pom.xml</file>
                             <startDir>${targetPath}</startDir>
                             <propertyName>pomPath</propertyName>
