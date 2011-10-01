@@ -20,11 +20,6 @@
     </parent>
 
 
-    <properties>
-        <outputDir>${project.build.outputDirectory}</outputDir>
-    </properties>
-
-
     <build>
         <plugins>
 

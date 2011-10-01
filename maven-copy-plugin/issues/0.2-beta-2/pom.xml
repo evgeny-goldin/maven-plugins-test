@@ -21,7 +21,6 @@
 
 
     <properties>
-        <outputDir>${project.build.outputDirectory}</outputDir>
         <resourcesDir>${project.basedir}/src/main/resources</resourcesDir>
         <testProperty>testContent</testProperty>
         <anotherTestProperty>anotherTestContent</anotherTestProperty>
@@ -233,7 +232,7 @@
                                 new File( outputDir, 'pl-214/text-ASCII/text-Windows-1251.txt'        ).size() == 32
                                 new File( outputDir, 'pl-214/text-ISO-8859-1/text-Windows-1251.txt'   ).size() == 32
                                 new File( outputDir, 'pl-214/text-Windows-1251/text-Windows-1251.txt' ).size() == 32
-                                
+
                                 new File( outputDir, 'pl-214/text-Windows-1251/text-Windows-1251.txt' ).getText( 'Windows-1251' ).contains( "Что-то, зачем-то"  )
                               ! new File( outputDir, 'pl-214/text-Windows-1251/text-Windows-1251.txt' ).getText( 'Windows-1251' ).contains( "Что-то, зачем-то?" )
                                 new File( outputDir, 'pl-214/text-ISO-8859-1/text-Windows-1251.txt'   ).getText( 'Windows-1251' ).contains( "Что-то, зачем-то"  )

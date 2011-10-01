@@ -8,7 +8,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.goldin.plugins.maven-plugins-test</groupId>
     <artifactId>maven-copy-plugin.issues.0.2.3.4</artifactId>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     <version>0.1-SNAPSHOT</version>
     <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
 
@@ -20,84 +20,9 @@
     </parent>
 
 
-    <properties>
-        <outputDir>${project.build.outputDirectory}</outputDir>
-    </properties>
-
-
-    <build>
-        <plugins>
-
-            <plugin>
-                <groupId>com.goldin.plugins</groupId>
-                <artifactId>maven-copy-plugin</artifactId>
-                <version>${plugins-version}</version>
-                <executions>
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-467: -->
-                    <!-- "Treat "sar" extension as zip archive"          -->
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                    <execution>
-                        <id>http://evgeny-goldin.org/youtrack/issue/pl-467</id>
-                        <goals>
-                            <goal>copy</goal>
-                        </goals>
-                        <phase>initialize</phase>
-                        <configuration>
-                            <resources>
-                                <resource>
-                                    <targetPaths>
-                                        <targetPath>${outputDir}/pl-467/pom.zip</targetPath>
-                                        <targetPath>${outputDir}/pl-467/pom.sar</targetPath>
-                                    </targetPaths>
-                                    <file>${project.basedir}/pom.xml</file>
-                                    <pack>true</pack>
-                                </resource>
-                                <resource>
-                                    <targetPath>${outputDir}/pl-467/zip</targetPath>
-                                    <file>${outputDir}/pl-467/pom.zip</file>
-                                    <unpack>true</unpack>
-                                </resource>
-                                <resource>
-                                    <targetPath>${outputDir}/pl-467/sar</targetPath>
-                                    <file>${outputDir}/pl-467/pom.sar</file>
-                                    <unpack>true</unpack>
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>com.goldin.plugins</groupId>
-                <artifactId>maven-assert-plugin</artifactId>
-                <version>${plugins-version}</version>
-                <executions>
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-467 -->
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                    <execution>
-                        <id>http://evgeny-goldin.org/youtrack/issue/pl-467</id>
-                        <goals>
-                            <goal>assert</goal>
-                        </goals>
-                        <phase>test</phase>
-                        <configuration>
-                            <assertFiles>
-                                ${outputDir}/pl-467/pom.zip
-                                ${outputDir}/pl-467/pom.sar
-                                ${outputDir}/pl-467/zip
-                                ${outputDir}/pl-467/sar
-                            </assertFiles>
-                            <assertEqual>
-                                ${outputDir}/pl-467/zip|${outputDir}/pl-467/sar
-                            </assertEqual>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+    <modules>
+        <module>a</module>
+        <module>b</module>
+    </modules>
 
 </project>

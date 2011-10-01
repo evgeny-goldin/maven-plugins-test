@@ -21,7 +21,6 @@
 
 
     <properties>
-        <outputDir>${project.build.outputDirectory}</outputDir>
         <targetRoots>${outputDir}/tr1, ${outputDir}/tr2, ${outputDir}/tr3</targetRoots>
     </properties>
 

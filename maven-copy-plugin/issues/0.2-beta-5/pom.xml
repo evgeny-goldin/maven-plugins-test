@@ -21,7 +21,6 @@
 
 
     <properties>
-        <outputDir>${project.build.outputDirectory}</outputDir>
         <resourcesDir>${project.basedir}/../0.2-beta-2/src/main/resources</resourcesDir>
     </properties>
 
@@ -178,10 +177,9 @@
                                     <unpack>true</unpack>
                                     <preservePath>true</preservePath>
                                     <filter>
-                                        {{
-                                            assert files.every{ it.canonicalPath.contains( '.m2' ) }
-                                            files
-                                        }}
+                                    {{
+                                        files.collect{ assert it.canonicalPath.contains( '.m2/repository' ); it }
+                                    }}
                                     </filter>
                                 </resource>
                                 <resource>
@@ -238,10 +236,9 @@
                                     <unpack>true</unpack>
                                     <preservePath>true</preservePath>
                                     <filter>
-                                        {{
-                                            assert files.every{ it.canonicalPath.contains( '.m2' ) }
-                                            files
-                                        }}
+                                    {{
+                                        files.collect{ assert it.canonicalPath.contains( '.m2/repository' ); it }
+                                    }}
                                     </filter>
                                 </resource>
                                 <resource>

@@ -21,7 +21,6 @@
 
 
     <properties>
-        <outputDir>${project.build.outputDirectory}</outputDir>
         <targetPath>${outputDir}/1/2/3/4/5/6/78/910</targetPath>
     </properties>
 

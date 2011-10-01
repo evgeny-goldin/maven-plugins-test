@@ -21,7 +21,6 @@
 
 
     <properties>
-        <outputDir>${project.build.outputDirectory}</outputDir>
         <resourcesDir>${project.basedir}/../issues/0.2-beta-2/src/main/resources</resourcesDir>
     </properties>
 
