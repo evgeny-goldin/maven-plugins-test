@@ -47,7 +47,7 @@
                                         <artifactId>maven-copy-plugin.issues.0.2.3.4-a</artifactId>
                                         <version>0.1-SNAPSHOT</version>
                                     </dependency>
-                                    <filter>{{ assert ! file.canonicalPath.contains( '.m2/repository' ); file }}</filter>
+                                    <filter>{{ assert ! file.canonicalPath.contains( '/.m2/' ); file }}</filter>
                                     <dependenciesAtM2>true</dependenciesAtM2>
                                 </resource>
                                 <resource>
@@ -55,7 +55,7 @@
                                     <dependency>
                                         <includeScope>compile</includeScope>
                                     </dependency>
-                                    <filter>{{ assert ! file.canonicalPath.contains( '.m2/repository' ); file }}</filter>
+                                    <filter>{{ assert ! file.canonicalPath.contains( '/.m2/' ); file }}</filter>
                                     <dependenciesAtM2>true</dependenciesAtM2>
                                 </resource>
                             </resources>
