@@ -178,7 +178,7 @@
                                     <preservePath>true</preservePath>
                                     <filter>
                                     {{
-                                        files.collect{ assert it.canonicalPath.contains( '/.m2/' ); it }
+                                        files.collect{ assert it.canonicalPath.replace( '\\', '/' ).contains( '/.m2/' ); it }
                                     }}
                                     </filter>
                                 </resource>
@@ -237,7 +237,7 @@
                                     <preservePath>true</preservePath>
                                     <filter>
                                     {{
-                                        files.collect{ assert it.canonicalPath.contains( '/.m2/' ); it }
+                                        files.collect{ assert it.canonicalPath.replace( '\\', '/' ).contains( '/.m2/' ); it }
                                     }}
                                     </filter>
                                 </resource>
