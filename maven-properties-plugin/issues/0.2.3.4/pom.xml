@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns              = "http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi          = "http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0
+                               http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+    <artifactId>maven-properties-plugin.issues.0.2.3.4</artifactId>
+    <packaging>jar</packaging>
+    <version>0.1-SNAPSHOT</version>
+    <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
+
+
+    <parent>
+        <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+        <artifactId>maven-properties-plugin.issues</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+
+    <properties>
+        <emptyValue1></emptyValue1>
+        <emptyValue2><!-- Empty value --></emptyValue2>
+        <dataValue1>1</dataValue1>
+        <dataValue2>22</dataValue2>
+        <dataValue3>333</dataValue3>
+    </properties>
+
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-properties-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-422:                       -->
+                    <!-- "Properties plugin doesn't allow to set property that is empty String -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-422</id>
+                        <goals>
+                            <goal>set-properties</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <properties>
+                                <property>
+                                    <name>e1</name>
+                                    <value></value>
+                                </property>
+                                <property>
+                                    <name>e2</name>
+                                    <value><!-- Empty value --></value>
+                                </property>
+                                <property>
+                                    <name>e3</name>
+                                    <value>${emptyValue1}</value>
+                                </property>
+                                <property>
+                                    <name>e4</name>
+                                    <value>${emptyValue2}</value>
+                                </property>
+                                <property>
+                                    <name>e5</name>
+                                    <value>{emptyValue1}{emptyValue2}</value>
+                                </property>
+                                <property>
+                                    <name>e6</name>
+                                    <value>{emptyValue2}{emptyValue1}</value>
+                                </property>
+                            </properties>
+                            <rawProperties>
+                                e7  =
+                                e8  = <!-- Empty value -->
+                                e9  = ${emptyValue1}{emptyValue2}
+                                e10 = ${emptyValue2}{emptyValue1}
+                                e11 = {emptyValue1}${emptyValue2}
+                                e12 = {emptyValue2}${emptyValue1}
+                            </rawProperties>
+                            <addDollar>true</addDollar>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-422-2</id>
+                        <goals>
+                            <goal>set-properties</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <properties>
+                                <property>
+                                    <name>p1</name>
+                                    <value>[${dataValue1}-${dataValue2}-${dataValue3}-${emptyValue1}-${emptyValue2}]</value>
+                                </property>
+                                <property>
+                                    <name>p2</name>
+                                    <value>[{dataValue1}-{dataValue2}-{dataValue3}-{emptyValue1}-{emptyValue2}]</value>
+                                </property>
+                            </properties>
+                            <rawProperties>
+                                p3  = [${dataValue1}-${dataValue2}-${dataValue3}-${emptyValue1}-${emptyValue2}]
+                                p4  = [{dataValue1}-{dataValue2}-{dataValue3}-{emptyValue1}-{emptyValue2}]
+                            </rawProperties>
+                            <addDollar>true</addDollar>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-422-3</id>
+                        <goals>
+                            <goal>set-properties</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <properties>
+                                <property>
+                                    <name>p5</name>
+                                    <value>[${dataValue1}-${dataValue2}-${dataValue3}-${emptyValue1}-${emptyValue2}]</value>
+                                </property>
+                                <property>
+                                    <name>p6</name>
+                                    <value>[{dataValue1}-{dataValue2}-{dataValue3}-{emptyValue1}-{emptyValue2}]</value>
+                                </property>
+                            </properties>
+                            <rawProperties>
+                                p7  = [${dataValue1}-${dataValue2}-${dataValue3}-${emptyValue1}-${emptyValue2}]
+                                p8  = [{dataValue1}-{dataValue2}-{dataValue3}-{emptyValue1}-{emptyValue2}]
+                            </rawProperties>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-assert-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-422 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-422</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertGroovy>
+                                [ e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12 ].every{ it == '' }
+                            </assertGroovy>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-422-2</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertGroovy>
+                                [ p1, p2, p3, p4, p5, p7 ].every{ it == '[1-22-333--]' }
+                                [ p6, p8 ].every{ it == '[{dataValue1}-{dataValue2}-{dataValue3}-{emptyValue1}-{emptyValue2}]' }
+                            </assertGroovy>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
