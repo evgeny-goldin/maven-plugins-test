@@ -228,6 +228,83 @@
                             </resources>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>test-pack-unpack</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>validate</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPaths>
+                                        <targetPath>${outputDir}/pack/pom.jar</targetPath>
+                                        <targetPath>${outputDir}/pack/pom.war</targetPath>
+                                        <targetPath>${outputDir}/pack/pom.ear</targetPath>
+                                        <targetPath>${outputDir}/pack/pom.sar</targetPath>
+                                        <targetPath>${outputDir}/pack/pom.zip</targetPath>
+                                        <targetPath>${outputDir}/pack/pom.hpi</targetPath>
+                                        <targetPath>${outputDir}/pack/pom.sima</targetPath>
+                                        <targetPath>${outputDir}/pack/pom.tar</targetPath>
+                                        <targetPath>${outputDir}/pack/pom.tgz</targetPath>
+                                        <targetPath>${outputDir}/pack/pom.tar.gz</targetPath>
+                                    </targetPaths>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <pack>true</pack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/unpack/jar</targetPath>
+                                    <file>${outputDir}/pack/pom.jar</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/unpack/war</targetPath>
+                                    <file>${outputDir}/pack/pom.war</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/unpack/ear</targetPath>
+                                    <file>${outputDir}/pack/pom.ear</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/unpack/sar</targetPath>
+                                    <file>${outputDir}/pack/pom.sar</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/unpack/zip</targetPath>
+                                    <file>${outputDir}/pack/pom.zip</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/unpack/hpi</targetPath>
+                                    <file>${outputDir}/pack/pom.hpi</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/unpack/sima</targetPath>
+                                    <file>${outputDir}/pack/pom.sima</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/unpack/tar</targetPath>
+                                    <file>${outputDir}/pack/pom.tar</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/unpack/tgz</targetPath>
+                                    <file>${outputDir}/pack/pom.tgz</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/unpack/tar.gz</targetPath>
+                                    <file>${outputDir}/pack/pom.tar.gz</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 
@@ -251,10 +328,44 @@
                                 new File( outputDir, 'unpack-3'  ).directorySize() == 87484262
                                 new File( outputDir, 'unpack-32' ).directorySize() == 87484262
                             </assertGroovy>
+                            <assertFiles>
+                                ${outputDir}/pack/pom.jar
+                                ${outputDir}/pack/pom.war
+                                ${outputDir}/pack/pom.ear
+                                ${outputDir}/pack/pom.sar
+                                ${outputDir}/pack/pom.zip
+                                ${outputDir}/pack/pom.hpi
+                                ${outputDir}/pack/pom.sima
+                                ${outputDir}/pack/pom.tar
+                                ${outputDir}/pack/pom.tgz
+                                ${outputDir}/pack/pom.tar.gz
+
+                                ${outputDir}/unpack/jar/pom.xml
+                                ${outputDir}/unpack/war/pom.xml
+                                ${outputDir}/unpack/ear/pom.xml
+                                ${outputDir}/unpack/sar/pom.xml
+                                ${outputDir}/unpack/zip/pom.xml
+                                ${outputDir}/unpack/hpi/pom.xml
+                                ${outputDir}/unpack/sima/pom.xml
+                                ${outputDir}/unpack/tar/pom.xml
+                                ${outputDir}/unpack/tgz/pom.xml
+                                ${outputDir}/unpack/tar.gz/pom.xml
+                            </assertFiles>
                             <assertEqual>
                                 ${outputDir}/unpack-1|${outputDir}/unpack-12
                                 ${outputDir}/unpack-2|${outputDir}/unpack-22
                                 ${outputDir}/unpack-3|${outputDir}/unpack-32
+
+                                ${outputDir}/unpack/jar   |${outputDir}/unpack/war
+                                ${outputDir}/unpack/war   |${outputDir}/unpack/ear
+                                ${outputDir}/unpack/ear   |${outputDir}/unpack/sar
+                                ${outputDir}/unpack/sar   |${outputDir}/unpack/zip
+                                ${outputDir}/unpack/zip   |${outputDir}/unpack/hpi
+                                ${outputDir}/unpack/hpi   |${outputDir}/unpack/sima
+                                ${outputDir}/unpack/sima  |${outputDir}/unpack/tar
+                                ${outputDir}/unpack/tar   |${outputDir}/unpack/tgz
+                                ${outputDir}/unpack/tgz   |${outputDir}/unpack/tar.gz
+                                ${outputDir}/unpack/tar.gz|${outputDir}/unpack/jar
                             </assertEqual>
                         </configuration>
                     </execution>
