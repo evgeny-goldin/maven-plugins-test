@@ -41,6 +41,7 @@
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
                                     <targetPath>${outputDir}/unpack-1</targetPath>
+                                    <useTrueZipForUnpack>true</useTrueZipForUnpack>
                                     <dependencies>
                                         <dependency>
                                             <groupId>com.goldin</groupId>
@@ -81,6 +82,7 @@
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/unpack-2</targetPath>
+                                    <useTrueZipForUnpack>false</useTrueZipForUnpack>
                                     <dependencies>
                                         <dependency>
                                             <groupId>junit</groupId>
@@ -95,7 +97,7 @@
                                         <dependency>
                                             <groupId>org.slf4j</groupId>
                                             <artifactId>slf4j-api</artifactId>
-                                            <version>1.6.1</version>
+                                            <version>1.6.2</version>
                                         </dependency>
                                         <dependency>
                                             <groupId>org.apache.ant</groupId>
@@ -110,32 +112,32 @@
                                         <dependency>
                                             <groupId>org.codehaus.groovy</groupId>
                                             <artifactId>groovy-all</artifactId>
-                                            <version>1.8.1</version>
+                                            <version>1.8.2</version>
                                         </dependency>
                                         <dependency>
                                             <groupId>org.codehaus.groovy</groupId>
                                             <artifactId>groovy-all</artifactId>
-                                            <version>1.7.6</version>
+                                            <version>1.7.10</version>
                                         </dependency>
                                         <dependency>
                                             <groupId>org.springframework</groupId>
                                             <artifactId>spring-context</artifactId>
-                                            <version>3.0.5.RELEASE</version>
+                                            <version>3.0.6.RELEASE</version>
                                         </dependency>
                                         <dependency>
                                             <groupId>org.springframework</groupId>
                                             <artifactId>spring-core</artifactId>
-                                            <version>3.0.5.RELEASE</version>
+                                            <version>3.0.6.RELEASE</version>
                                         </dependency>
                                         <dependency>
                                             <groupId>org.springframework</groupId>
                                             <artifactId>spring-beans</artifactId>
-                                            <version>3.0.5.RELEASE</version>
+                                            <version>3.0.6.RELEASE</version>
                                         </dependency>
                                         <dependency>
                                             <groupId>org.springframework</groupId>
                                             <artifactId>spring-test</artifactId>
-                                            <version>3.0.5.RELEASE</version>
+                                            <version>3.0.6.RELEASE</version>
                                         </dependency>
                                         <dependency>
                                             <groupId>de.schlichtherle</groupId>
@@ -147,6 +149,7 @@
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/unpack-3</targetPath>
+                                    <useTrueZipForUnpack>true</useTrueZipForUnpack>
                                     <dependencies>
                                         <dependency>
                                             <groupId>org.jenkins-ci.main</groupId>
@@ -193,16 +196,19 @@
                                 <!-- Packing files back -->
                                 <!-- ~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
+                                    <useTrueZipForPack>false</useTrueZipForPack>
                                     <targetPath>${outputDir}/1.zip</targetPath>
                                     <directory>${outputDir}/unpack-1</directory>
                                     <pack>true</pack>
                                 </resource>
                                 <resource>
+                                    <useTrueZipForPack>true</useTrueZipForPack>
                                     <targetPath>${outputDir}/2.tar.gz</targetPath>
                                     <directory>${outputDir}/unpack-2</directory>
                                     <pack>true</pack>
                                 </resource>
                                 <resource>
+                                    <useTrueZipForPack>false</useTrueZipForPack>
                                     <targetPath>${outputDir}/3.jar</targetPath>
                                     <directory>${outputDir}/unpack-3</directory>
                                     <pack>true</pack>
@@ -211,16 +217,19 @@
                                 <!-- Unpacking them again -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
+                                    <useTrueZipForUnpack>false</useTrueZipForUnpack>
                                     <targetPath>${outputDir}/unpack-12</targetPath>
                                     <file>${outputDir}/1.zip</file>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
+                                    <useTrueZipForUnpack>true</useTrueZipForUnpack>
                                     <targetPath>${outputDir}/unpack-22</targetPath>
                                     <file>${outputDir}/2.tar.gz</file>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
+                                    <useTrueZipForUnpack>false</useTrueZipForUnpack>
                                     <targetPath>${outputDir}/unpack-32</targetPath>
                                     <file>${outputDir}/3.jar</file>
                                     <unpack>true</unpack>
@@ -305,6 +314,124 @@
                             </resources>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>test-fullpath-prefix-TrueZip</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>validate</phase>
+                        <configuration>
+                            <useTrueZipForPack>true</useTrueZipForPack>
+                            <useTrueZipForUnpack>true</useTrueZipForUnpack>
+                            <resources>
+                                <!-- Packing -->
+                                <resource>
+                                    <targetPath>${outputDir}/fullpath-prefix-TrueZip/fullpath.zip</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileName>1/2/3/4.txt</destFileName>
+                                    <pack>true</pack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/fullpath-prefix-TrueZip/fullpath.tar.gz</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileName>1/2/3/4.txt</destFileName>
+                                    <pack>true</pack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/fullpath-prefix-TrueZip/prefix.zip</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <prefix>a/bb/ccc/dddd</prefix>
+                                    <pack>true</pack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/fullpath-prefix-TrueZip/prefix.tar.gz</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <prefix>a/bb/ccc/dddd</prefix>
+                                    <pack>true</pack>
+                                </resource>
+                                <!-- Unpacking -->
+                                <resource>
+                                    <targetPath>${outputDir}/fullpath-prefix-TrueZip/unpack/fullpath-zip</targetPath>
+                                    <file>${outputDir}/fullpath-prefix-TrueZip/fullpath.zip</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/fullpath-prefix-TrueZip/unpack/fullpath-tar.gz</targetPath>
+                                    <file>${outputDir}/fullpath-prefix-TrueZip/fullpath.tar.gz</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/fullpath-prefix-TrueZip/unpack/prefix-zip</targetPath>
+                                    <file>${outputDir}/fullpath-prefix-TrueZip/prefix.zip</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/fullpath-prefix-TrueZip/unpack/prefix-tar.gz</targetPath>
+                                    <file>${outputDir}/fullpath-prefix-TrueZip/prefix.tar.gz</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>test-fullpath-prefix-Ant</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>validate</phase>
+                        <configuration>
+                            <useTrueZipForPack>false</useTrueZipForPack>
+                            <useTrueZipForUnpack>false</useTrueZipForUnpack>
+                            <resources>
+                                <!-- Packing -->
+                                <resource>
+                                    <targetPath>${outputDir}/fullpath-prefix-Ant/fullpath.zip</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileName>1/2/3/4.txt</destFileName>
+                                    <pack>true</pack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/fullpath-prefix-Ant/fullpath.tar.gz</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileName>1/2/3/4.txt</destFileName>
+                                    <pack>true</pack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/fullpath-prefix-Ant/prefix.zip</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <prefix>a/bb/ccc/dddd</prefix>
+                                    <pack>true</pack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/fullpath-prefix-Ant/prefix.tar.gz</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <prefix>a/bb/ccc/dddd</prefix>
+                                    <pack>true</pack>
+                                </resource>
+                                <!-- Unpacking -->
+                                <resource>
+                                    <targetPath>${outputDir}/fullpath-prefix-Ant/unpack/fullpath-zip</targetPath>
+                                    <file>${outputDir}/fullpath-prefix-Ant/fullpath.zip</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/fullpath-prefix-Ant/unpack/fullpath-tar.gz</targetPath>
+                                    <file>${outputDir}/fullpath-prefix-Ant/fullpath.tar.gz</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/fullpath-prefix-Ant/unpack/prefix-zip</targetPath>
+                                    <file>${outputDir}/fullpath-prefix-Ant/prefix.zip</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/fullpath-prefix-Ant/unpack/prefix-tar.gz</targetPath>
+                                    <file>${outputDir}/fullpath-prefix-Ant/prefix.tar.gz</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 
@@ -323,11 +450,25 @@
                             <assertGroovy>
                                 new File( outputDir, 'unpack-1'  ).directorySize() == 1556644
                                 new File( outputDir, 'unpack-12' ).directorySize() == 1556644
-                                new File( outputDir, 'unpack-2'  ).directorySize() == 20014438
-                                new File( outputDir, 'unpack-22' ).directorySize() == 20014438
+                                new File( outputDir, 'unpack-2'  ).directorySize() == 19921721
+                                new File( outputDir, 'unpack-22' ).directorySize() == 19921721
                                 new File( outputDir, 'unpack-3'  ).directorySize() == 87484262
                                 new File( outputDir, 'unpack-32' ).directorySize() == 87484262
                             </assertGroovy>
+                            <assertEqual>
+                                ${outputDir}/unpack-1|${outputDir}/unpack-12
+                                ${outputDir}/unpack-2|${outputDir}/unpack-22
+                                ${outputDir}/unpack-3|${outputDir}/unpack-32
+                            </assertEqual>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>assert-pack-unpack</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
                             <assertFiles>
                                 ${outputDir}/pack/pom.jar
                                 ${outputDir}/pack/pom.war
@@ -352,10 +493,6 @@
                                 ${outputDir}/unpack/tar.gz/pom.xml
                             </assertFiles>
                             <assertEqual>
-                                ${outputDir}/unpack-1|${outputDir}/unpack-12
-                                ${outputDir}/unpack-2|${outputDir}/unpack-22
-                                ${outputDir}/unpack-3|${outputDir}/unpack-32
-
                                 ${outputDir}/unpack/jar   |${outputDir}/unpack/war
                                 ${outputDir}/unpack/war   |${outputDir}/unpack/ear
                                 ${outputDir}/unpack/ear   |${outputDir}/unpack/sar
@@ -366,6 +503,40 @@
                                 ${outputDir}/unpack/tar   |${outputDir}/unpack/tgz
                                 ${outputDir}/unpack/tgz   |${outputDir}/unpack/tar.gz
                                 ${outputDir}/unpack/tar.gz|${outputDir}/unpack/jar
+                            </assertEqual>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>assert-fullpath-prefix</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/fullpath-prefix-TrueZip/unpack/fullpath-zip/1/2/3/4.txt
+                                ${outputDir}/fullpath-prefix-TrueZip/unpack/fullpath-tar.gz/1/2/3/4.txt
+                                ${outputDir}/fullpath-prefix-TrueZip/unpack/prefix-zip/a/bb/ccc/dddd/pom.xml
+                                ${outputDir}/fullpath-prefix-TrueZip/unpack/prefix-tar.gz/a/bb/ccc/dddd/pom.xml
+
+                                ${outputDir}/fullpath-prefix-Ant/unpack/fullpath-zip/1/2/3/4.txt
+                                ${outputDir}/fullpath-prefix-Ant/unpack/fullpath-tar.gz/1/2/3/4.txt
+                                ${outputDir}/fullpath-prefix-Ant/unpack/prefix-zip/a/bb/ccc/dddd/pom.xml
+                                ${outputDir}/fullpath-prefix-Ant/unpack/prefix-tar.gz/a/bb/ccc/dddd/pom.xml
+                            </assertFiles>
+                            <assertEqual>
+                                ${outputDir}/fullpath-prefix-TrueZip/unpack/fullpath-zip/1/2/3/4.txt|${outputDir}/fullpath-prefix-TrueZip/unpack/fullpath-tar.gz/1/2/3/4.txt
+                                ${outputDir}/fullpath-prefix-TrueZip/unpack/fullpath-tar.gz/1/2/3/4.txt|${outputDir}/fullpath-prefix-TrueZip/unpack/prefix-zip/a/bb/ccc/dddd/pom.xml
+                                ${outputDir}/fullpath-prefix-TrueZip/unpack/prefix-zip/a/bb/ccc/dddd/pom.xml|${outputDir}/fullpath-prefix-TrueZip/unpack/prefix-tar.gz/a/bb/ccc/dddd/pom.xml
+                                ${outputDir}/fullpath-prefix-TrueZip/unpack/prefix-tar.gz/a/bb/ccc/dddd/pom.xml|${outputDir}/fullpath-prefix-Ant/unpack/fullpath-zip/1/2/3/4.txt
+
+                                ${outputDir}/fullpath-prefix-Ant/unpack/fullpath-zip/1/2/3/4.txt|${outputDir}/fullpath-prefix-Ant/unpack/fullpath-tar.gz/1/2/3/4.txt
+                                ${outputDir}/fullpath-prefix-Ant/unpack/fullpath-tar.gz/1/2/3/4.txt|${outputDir}/fullpath-prefix-Ant/unpack/prefix-zip/a/bb/ccc/dddd/pom.xml
+                                ${outputDir}/fullpath-prefix-Ant/unpack/prefix-zip/a/bb/ccc/dddd/pom.xml|${outputDir}/fullpath-prefix-Ant/unpack/prefix-tar.gz/a/bb/ccc/dddd/pom.xml
+                                ${outputDir}/fullpath-prefix-Ant/unpack/prefix-tar.gz/a/bb/ccc/dddd/pom.xml|${outputDir}/fullpath-prefix-TrueZip/unpack/fullpath-zip/1/2/3/4.txt
+
+                                ${outputDir}/fullpath-prefix-TrueZip|${outputDir}/fullpath-prefix-Ant|*.txt
+                                ${outputDir}/fullpath-prefix-TrueZip|${outputDir}/fullpath-prefix-Ant|*.xml
                             </assertEqual>
                         </configuration>
                     </execution>
