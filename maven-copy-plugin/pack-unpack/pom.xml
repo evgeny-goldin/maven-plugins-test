@@ -597,9 +597,6 @@
                                 ${outputDir}/filemode/1.tar.gz
                                 ${outputDir}/filemode/2.tar.gz
                             </assertFiles>
-                            <assertEqual>
-                                ${outputDir}/filemode/1|${outputDir}/filemode/2
-                            </assertEqual>
                             <assertGroovy>
                                 "ls -l ${outputDir}/filemode/1/*.xml".execute().text.readLines().every{ it.startsWith( '-rwx-wx--x' ) } <!-- 731 -->
                                 "ls -l ${outputDir}/filemode/1/*.bat".execute().text.readLines().every{ it.startsWith( '-rwxr-xr-x' ) } <!-- 755 -->
