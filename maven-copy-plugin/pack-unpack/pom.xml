@@ -589,10 +589,10 @@
                                 ${outputDir}/filemode/1
                                 ${outputDir}/filemode/2
                                 ${outputDir}/filemode/1/pom-UTF-8.xml
-                                ${outputDir}/filemode/1/start-gmi-?.bat
+                                ${outputDir}/filemode/1/start-gmi-*.bat
                                 ${outputDir}/filemode/1/text-Windows-1251.txt
                                 ${outputDir}/filemode/2/pom-UTF-8.xml
-                                ${outputDir}/filemode/2/start-gmi-?.bat
+                                ${outputDir}/filemode/2/start-gmi-*.bat
                                 ${outputDir}/filemode/2/text-Windows-1251.txt
                                 ${outputDir}/filemode/1.tar.gz
                                 ${outputDir}/filemode/2.tar.gz
