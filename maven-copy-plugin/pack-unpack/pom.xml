@@ -432,6 +432,43 @@
                             </resources>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>test-filemode</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>validate</phase>
+                        <configuration>
+                            <runIf>{{ ${ifLinux} || ${ifMac} }}</runIf>
+                            <resources>
+                                <resource>
+                                    <targetPaths>
+                                        <targetPath>${outputDir}/filemode/1</targetPath>
+                                        <targetPath>${outputDir}/filemode/2</targetPath>
+                                    </targetPaths>
+                                    <mkdir>true</mkdir>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/filemode/1.tar.gz</targetPath>
+                                    <directory>${project.basedir}/../issues/0.2-beta-2/src/main/resources</directory>
+                                    <include>*.xml|777, *.bat|755, *.txt|700</include>
+                                    <pack>true</pack>
+                                    <process>{{ "tar -xzf ${outputDir}/filemode/1.tar.gz -C ${outputDir}/filemode/1".execute().text }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/filemode/2.tar.gz</targetPath>
+                                    <directory>${project.basedir}/../issues/0.2-beta-2/src/main/resources</directory>
+                                    <includes>
+                                        <include>*.xml|777</include>
+                                        <include>*.bat|755</include>
+                                        <include>*.txt|700</include>
+                                    </includes>
+                                    <pack>true</pack>
+                                    <process>{{ "tar -xzf ${outputDir}/filemode/2.tar.gz -C ${outputDir}/filemode/2".execute().text }}</process>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 
