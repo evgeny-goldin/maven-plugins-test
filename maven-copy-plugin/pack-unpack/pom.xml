@@ -451,7 +451,7 @@
                                 <resource>
                                     <targetPath>${outputDir}/filemode/1.tar.gz</targetPath>
                                     <directory>${project.basedir}/../issues/0.2-beta-2/src/main/resources</directory>
-                                    <include>*.xml|777, *.bat|755, *.txt|700</include>
+                                    <include>*.xml|733, *.bat|755, *.txt|700</include>
                                     <pack>true</pack>
                                     <process>{{ "tar -xzf ${outputDir}/filemode/1.tar.gz -C ${outputDir}/filemode/1".execute().text }}</process>
                                 </resource>
@@ -459,9 +459,9 @@
                                     <targetPath>${outputDir}/filemode/2.tar.gz</targetPath>
                                     <directory>${project.basedir}/../issues/0.2-beta-2/src/main/resources</directory>
                                     <includes>
-                                        <include>*.xml|777</include>
-                                        <include>*.bat|755</include>
-                                        <include>*.txt|700</include>
+                                        <include>*.xml|555</include>
+                                        <include>*.bat|333</include>
+                                        <include>*.txt|111</include>
                                     </includes>
                                     <pack>true</pack>
                                     <process>{{ "tar -xzf ${outputDir}/filemode/2.tar.gz -C ${outputDir}/filemode/2".execute().text }}</process>
