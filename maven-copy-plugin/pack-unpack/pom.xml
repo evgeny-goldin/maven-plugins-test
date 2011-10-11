@@ -451,7 +451,7 @@
                                 <resource>
                                     <targetPath>${outputDir}/filemode/1.tar.gz</targetPath>
                                     <directory>${project.basedir}/../issues/0.2-beta-2/src/main/resources</directory>
-                                    <include>*.xml|733, *.bat|755, *.txt|700</include>
+                                    <include>*.xml|731, *.bat|755, *.txt|700</include>
                                     <pack>true</pack>
                                     <process>{{ "tar -xzf ${outputDir}/filemode/1.tar.gz -C ${outputDir}/filemode/1".execute().text }}</process>
                                 </resource>
@@ -460,7 +460,7 @@
                                     <directory>${project.basedir}/../issues/0.2-beta-2/src/main/resources</directory>
                                     <includes>
                                         <include>*.xml|555</include>
-                                        <include>*.bat|333</include>
+                                        <include>*.bat|331</include>
                                         <include>*.txt|111</include>
                                     </includes>
                                     <pack>true</pack>
@@ -575,6 +575,39 @@
                                 ${outputDir}/fullpath-prefix-TrueZip|${outputDir}/fullpath-prefix-Ant|*.txt
                                 ${outputDir}/fullpath-prefix-TrueZip|${outputDir}/fullpath-prefix-Ant|*.xml
                             </assertEqual>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>assert-filemode</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/filemode/
+                                ${outputDir}/filemode/1
+                                ${outputDir}/filemode/2
+                                ${outputDir}/filemode/1/*.xml
+                                ${outputDir}/filemode/1/*.bat
+                                ${outputDir}/filemode/1/*.txt
+                                ${outputDir}/filemode/2/*.xml
+                                ${outputDir}/filemode/2/*.bat
+                                ${outputDir}/filemode/2/*.txt
+                                ${outputDir}/filemode/1.tar.gz
+                                ${outputDir}/filemode/2.tar.gz
+                            </assertFiles>
+                            <assertEqual>
+                                ${outputDir}/filemode/1|${outputDir}/filemode/2
+                            </assertEqual>
+                            <assertGroovy>
+                                "ls -l ${outputDir}/filemode/1/*.xml".execute().text.readLines().every{ it.startsWith( '-rwx-wx--x' ) } <!-- 731 -->
+                                "ls -l ${outputDir}/filemode/1/*.bat".execute().text.readLines().every{ it.startsWith( '-rwxr-xr-x' ) } <!-- 755 -->
+                                "ls -l ${outputDir}/filemode/1/*.txt".execute().text.readLines().every{ it.startsWith( '-rwx------' ) } <!-- 700 -->
+                                "ls -l ${outputDir}/filemode/2/*.xml".execute().text.readLines().every{ it.startsWith( '-r-xr-xr-x' ) } <!-- 555 -->
+                                "ls -l ${outputDir}/filemode/2/*.bat".execute().text.readLines().every{ it.startsWith( '--wx-wx--x' ) } <!-- 331 -->
+                                "ls -l ${outputDir}/filemode/2/*.txt".execute().text.readLines().every{ it.startsWith( '---x--x--x' ) } <!-- 111 -->
+                            </assertGroovy>
                         </configuration>
                     </execution>
                 </executions>
