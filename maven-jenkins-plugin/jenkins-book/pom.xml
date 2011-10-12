@@ -89,18 +89,18 @@
                                     <daysToKeep>5</daysToKeep>
                                     <useUpdate>false</useUpdate>
                                     <mavenGoals>-e clean install</mavenGoals>
+<!--
                                     <trigger>
                                         <type>timer</type>
                                         <expression>0 0 * * *</expression>
                                     </trigger>
+-->
                                     <repository>
                                         <remote>http://google-guice.googlecode.com/svn/trunk/</remote>
                                     </repository>
-<!--
                                     <mail>
                                         <recipients>jenkins@evgeny-goldin.org</recipients>
                                     </mail>
--->
                                 </job>
 
                                 <job>
