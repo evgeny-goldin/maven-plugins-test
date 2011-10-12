@@ -96,9 +96,11 @@
                                     <repository>
                                         <remote>http://google-guice.googlecode.com/svn/trunk/</remote>
                                     </repository>
+<!--
                                     <mail>
                                         <recipients>jenkins@evgeny-goldin.org</recipients>
                                     </mail>
+-->
                                 </job>
 
                                 <job>
