@@ -103,8 +103,10 @@
                             <assertEqual>
                                 ${outputDir}/gc-66/LICENSE.txt|${outputDir}/gc-66/LICENSE.txt
                                 ${outputDir}/gc-66/LICENSE.txt|${outputDir}/gc-66/LICENSE.txt|**/*.txt
-                                ${outputDir}/gc-66/LICENSE.txt|${outputDir}/gc-66/LICENSE.txt|*.txt
                             </assertEqual>
+                            <shouldFailAssertEqual>
+                                ${outputDir}/gc-66/LICENSE.txt|${outputDir}/gc-66/LICENSE.txt|*.txt
+                            </shouldFailAssertEqual>
                             <assertGroovy>
                                 new File( outputDir, 'gc-66/LICENSE.txt' ).size() == 11560
                             </assertGroovy>

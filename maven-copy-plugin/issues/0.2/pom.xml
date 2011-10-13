@@ -92,11 +92,13 @@
                                 ${outputDir}/pl-262-targz
                                 ${outputDir}/pl-262-targz/apache-maven-3.0.1
                             </assertFiles>
+                            <shouldFailAssertEqual>
+                                ${outputDir}/pl-262-zip|${outputDir}/pl-262-targz|*.txt
+                                ${outputDir}/pl-262-zip|${outputDir}/pl-262-targz|*.jar
+                            </shouldFailAssertEqual>
                             <assertEqual>
                                 ${outputDir}/pl-262-zip|${outputDir}/pl-262-targz
-                                ${outputDir}/pl-262-zip|${outputDir}/pl-262-targz|*.txt
                                 ${outputDir}/pl-262-zip|${outputDir}/pl-262-targz|**/*.txt
-                                ${outputDir}/pl-262-zip|${outputDir}/pl-262-targz|*.jar
                                 ${outputDir}/pl-262-zip|${outputDir}/pl-262-targz|**/*.jar
                             </assertEqual>
                             <assertGroovy>

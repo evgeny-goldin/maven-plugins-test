@@ -634,8 +634,6 @@
 
                                 ${outputDir}/cleanEmptyDirectories|${outputDir}/cleanEmptyDirectories2|**/*.pdf
                                 ${outputDir}/cleanEmptyDirectories|${outputDir}/cleanEmptyDirectories2|**/*.txt
-                                ${outputDir}/cleanEmptyDirectories|${outputDir}/cleanEmptyDirectories2|**/*.exe
-                                ${outputDir}/cleanEmptyDirectories|${outputDir}/cleanEmptyDirectories2|**/*.dll
                                 ${outputDir}/cleanEmptyDirectories|${outputDir}/cleanEmptyDirectories2|**/*.*
                                 ${outputDir}/cleanEmptyDirectories|${outputDir}/cleanEmptyDirectories2|**
 
@@ -647,6 +645,8 @@
                                 ${outputDir}/patternsUpdate/1|${outputDir}/patternsUpdate/2
                             </assertEqual>
                             <shouldFailAssertEqual>
+                                ${outputDir}/cleanEmptyDirectories|${outputDir}/cleanEmptyDirectories2|**/*.exe
+                                ${outputDir}/cleanEmptyDirectories|${outputDir}/cleanEmptyDirectories2|**/*.dll
                                 ${outputDir}/cleanEmptyDirectories|${outputDir}/cleanEmptyDirectories2
                                 ${outputDir}/optionalDependencies|${outputDir}/optionalDependencies3
                             </shouldFailAssertEqual>

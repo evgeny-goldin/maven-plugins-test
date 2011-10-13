@@ -572,9 +572,13 @@
                                 ${outputDir}/fullpath-prefix-Ant/unpack/prefix-zip/a/bb/ccc/dddd/pom.xml|${outputDir}/fullpath-prefix-Ant/unpack/prefix-tar.gz/a/bb/ccc/dddd/pom.xml
                                 ${outputDir}/fullpath-prefix-Ant/unpack/prefix-tar.gz/a/bb/ccc/dddd/pom.xml|${outputDir}/fullpath-prefix-TrueZip/unpack/fullpath-zip/1/2/3/4.txt
 
+                                ${outputDir}/fullpath-prefix-TrueZip|${outputDir}/fullpath-prefix-Ant|**/*.txt
+                                ${outputDir}/fullpath-prefix-TrueZip|${outputDir}/fullpath-prefix-Ant|**/*.xml
+                            </assertEqual>
+                            <shouldFailAssertEqual>
                                 ${outputDir}/fullpath-prefix-TrueZip|${outputDir}/fullpath-prefix-Ant|*.txt
                                 ${outputDir}/fullpath-prefix-TrueZip|${outputDir}/fullpath-prefix-Ant|*.xml
-                            </assertEqual>
+                            </shouldFailAssertEqual>
                         </configuration>
                     </execution>
                     <execution>
