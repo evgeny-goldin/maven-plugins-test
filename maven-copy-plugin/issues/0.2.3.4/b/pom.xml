@@ -114,6 +114,35 @@
                             </resource>
                         </configuration>
                     </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-446:                                      -->
+                    <!-- "If some <include>s have no files matched - do not fail if others had files matched" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-446</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-446/1</targetPath>
+                                    <directory>${project.basedir}</directory>
+                                    <include>*.xml, *.pdf, *.ppt</include>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-446/2</targetPath>
+                                    <directory>${project.basedir}</directory>
+                                    <includes>
+                                        <include>*.xml</include>
+                                        <include>*.pdf</include>
+                                        <include>*.ppt</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 
@@ -159,6 +188,24 @@
                                 new File ( outputDir, 'nonFilteredExtensions/4/1.txt' ).text.contains( '${project.artifactId' )
                                 new File ( outputDir, 'nonFilteredExtensions/5/1.txt' ).text.contains( '${project.version' )
                             </assertGroovy>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-446 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-446</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-446/1/pom.xml
+                                ${outputDir}/pl-446/1/*.xml
+                                ${outputDir}/pl-446/2/pom.xml
+                                ${outputDir}/pl-446/2/*.xml
+                            </assertFiles>
                         </configuration>
                     </execution>
                 </executions>
