@@ -143,6 +143,50 @@
                             </resources>
                         </configuration>
                     </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-473:           -->
+                    <!-- Add "/**" to folder <include> if pattern is not specified -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-473</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-473/1</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-473/2</targetPath>
+                                    <directory>${outputDir}/pl-473/1</directory>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-473/3</targetPath>
+                                    <directory>${outputDir}/pl-473</directory>
+                                    <include>2</include>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-473/4</targetPath>
+                                    <directory>${outputDir}/pl-473</directory>
+                                    <include>1, 2, 3, ha-ha-ha</include>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-473/5</targetPath>
+                                    <directory>${outputDir}/pl-473</directory>
+                                    <includes>
+                                        <include>1</include>
+                                        <include>2</include>
+                                        <include>3</include>
+                                        <include>4</include>
+                                        <include>noSuchDir</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 
@@ -206,6 +250,34 @@
                                 ${outputDir}/pl-446/2/pom.xml
                                 ${outputDir}/pl-446/2/*.xml
                             </assertFiles>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-473 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-473</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-473/1/pom.xml
+                                ${outputDir}/pl-473/2/pom.xml
+                                ${outputDir}/pl-473/3/pom.xml
+                                ${outputDir}/pl-473/4/pom.xml
+                                ${outputDir}/pl-473/5/pom.xml
+                            </assertFiles>
+                            <assertEqual>
+                                ${outputDir}/pl-473/1|${outputDir}/pl-473/2
+                                ${outputDir}/pl-473/1|${outputDir}/pl-473/2|*.xml
+                                ${outputDir}/pl-473/1|${outputDir}/pl-473/2|**/*.xml
+                                ${outputDir}/pl-473/2|${outputDir}/pl-473/3
+                                ${outputDir}/pl-473/3|${outputDir}/pl-473/4
+                                ${outputDir}/pl-473/4|${outputDir}/pl-473/5
+                                ${outputDir}/pl-473/5|${outputDir}/pl-473/1
+                            </assertEqual>
                         </configuration>
                     </execution>
                 </executions>
