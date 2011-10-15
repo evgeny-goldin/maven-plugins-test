@@ -187,6 +187,26 @@
                             </resources>
                         </configuration>
                     </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-233:       -->
+                    <!-- <filtering>true</filtering> doesn't filter *.bat file -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-233</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-233</targetPath>
+                                    <file>${project.basedir}/src/main/resources/2.bat</file>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 
@@ -278,6 +298,26 @@
                                 ${outputDir}/pl-473/4|${outputDir}/pl-473/5
                                 ${outputDir}/pl-473/5|${outputDir}/pl-473/1
                             </assertEqual>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-233 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-233</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-233/2.bat
+                            </assertFiles>
+                            <assertGroovy>
+                                new File( outputDir, 'pl-233/2.bat' ).text.readLines()[ 0 ] == '@echo off'
+                              ! new File( outputDir, 'pl-233/2.bat' ).text.readLines()[ 1 ].contains( '$' )
+                                new File( outputDir, 'pl-233/2.bat' ).text.readLines()[ 1 ] == "echo '${project.groupId}:${project.artifactId}:${project.version}'"
+                            </assertGroovy>
                         </configuration>
                     </execution>
                 </executions>
