@@ -192,7 +192,7 @@
                     <!-- <filtering>true</filtering> doesn't filter *.bat file -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <execution>
-                        <id>http://evgeny-goldin.org/youtrack/issue/pl-233</id>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-233-1</id>
                         <goals>
                             <goal>copy</goal>
                         </goals>
@@ -200,8 +200,31 @@
                         <configuration>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-233</targetPath>
-                                    <file>${project.basedir}/src/main/resources/2.bat</file>
+                                    <targetPath>${outputDir}/pl-233/1</targetPath>
+                                    <file>${project.basedir}/src/main/resources/go.bat</file>
+                                    <filtering>true</filtering>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-233/2</targetPath>
+                                    <file>${project.basedir}/src/main/resources/go.bat</file>
+                                    <filtering>true</filtering>
+                                    <filterWithDollarOnly>true</filterWithDollarOnly>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-233-2</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <filterWithDollarOnly>true</filterWithDollarOnly>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-233/3</targetPath>
+                                    <file>${project.basedir}/src/main/resources/go.bat</file>
                                     <filtering>true</filtering>
                                 </resource>
                             </resources>
@@ -311,13 +334,24 @@
                         <phase>test</phase>
                         <configuration>
                             <assertFiles>
-                                ${outputDir}/pl-233/2.bat
+                                ${outputDir}/pl-233/1/go.bat
+                                ${outputDir}/pl-233/1/*.bat
+                                ${outputDir}/pl-233/2/go.bat
+                                ${outputDir}/pl-233/2/*.bat
+                                ${outputDir}/pl-233/3/go.bat
+                                ${outputDir}/pl-233/3/*.bat
                             </assertFiles>
                             <assertGroovy>
-                                new File( outputDir, 'pl-233/2.bat' ).text.readLines()[ 0 ] == '@echo off'
-                              ! new File( outputDir, 'pl-233/2.bat' ).text.readLines()[ 1 ].contains( '$' )
-                                new File( outputDir, 'pl-233/2.bat' ).text.readLines()[ 1 ] == "echo '${project.groupId}:${project.artifactId}:${project.version}'"
+                                [ 1, 2, 3 ].every{   new File( outputDir, "pl-233/$it/go.bat" ).text.readLines()[ 0 ] == '@echo off' }
+                                [ 1       ].every{   new File( outputDir, "pl-233/$it/go.bat" ).text.readLines()[ 1 ].contains( '$' ) }
+                                [ 2, 3    ].every{ ! new File( outputDir, "pl-233/$it/go.bat" ).text.readLines()[ 1 ].contains( '$' ) }
+                                [ 2, 3    ].every{   new File( outputDir, "pl-233/$it/go.bat" ).text.readLines()[ 1 ] == "echo '${project.groupId}:${project.artifactId}:${project.version}'" }
                             </assertGroovy>
+                            <assertEqual>
+                                ${outputDir}/pl-233/2|${outputDir}/pl-233/3
+                                ${outputDir}/pl-233/2|${outputDir}/pl-233/3|*.bat
+                                ${outputDir}/pl-233/2|${outputDir}/pl-233/3|**/*.bat
+                            </assertEqual>
                         </configuration>
                     </execution>
                 </executions>
