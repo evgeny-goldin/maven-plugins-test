@@ -55,8 +55,8 @@
     <hudson.tasks.Maven>
         <targets>clean</targets>
         <mavenName>apache-maven-2</mavenName>
-        <pom>pom.xml</pom>
         <usePrivateRepository>true</usePrivateRepository>
+        <pom>pom.xml</pom>
     </hudson.tasks.Maven>
     <hudson.tasks.BatchFile>
         <command>dir</command>
