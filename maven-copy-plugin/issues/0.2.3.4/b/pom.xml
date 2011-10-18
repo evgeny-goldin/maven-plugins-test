@@ -230,6 +230,76 @@
                             </resources>
                         </configuration>
                     </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~s~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-488:                                                       -->
+                    <!-- When copying <dependency> - <destFileName> can be ignored if dependency is built in the same reactor -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-488</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-488/1</targetPath>
+                                    <dependency>
+                                        <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+                                        <artifactId>maven-copy-plugin.issues.0.2.3.4-a</artifactId>
+                                        <version>0.1-SNAPSHOT</version>
+                                    </dependency>
+                                    <destFileName>something.jar</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-488/2</targetPath>
+                                    <dependency>
+                                        <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+                                        <artifactId>maven-copy-plugin.issues.0.2.3.4-a</artifactId>
+                                        <version>0.1-SNAPSHOT</version>
+                                    </dependency>
+                                    <dependenciesAtM2>false</dependenciesAtM2>
+                                    <destFileName>something.jar</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-488/3</targetPath>
+                                    <dependency>
+                                        <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+                                        <artifactId>maven-copy-plugin.issues.0.2.3.4-a</artifactId>
+                                        <version>0.1-SNAPSHOT</version>
+                                    </dependency>
+                                    <dependenciesAtM2>true</dependenciesAtM2>
+                                    <destFileName>something.jar</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-488/4</targetPath>
+                                    <dependency>
+                                        <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+                                        <artifactId>maven-copy-plugin.issues.0.2.3.4-a</artifactId>
+                                        <version>0.1-SNAPSHOT</version>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-488/5</targetPath>
+                                    <dependency>
+                                        <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+                                        <artifactId>maven-copy-plugin.issues.0.2.3.4-a</artifactId>
+                                        <version>0.1-SNAPSHOT</version>
+                                    </dependency>
+                                    <dependenciesAtM2>false</dependenciesAtM2>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-488/6</targetPath>
+                                    <dependency>
+                                        <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+                                        <artifactId>maven-copy-plugin.issues.0.2.3.4-a</artifactId>
+                                        <version>0.1-SNAPSHOT</version>
+                                    </dependency>
+                                    <dependenciesAtM2>true</dependenciesAtM2>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 
@@ -351,6 +421,39 @@
                                 ${outputDir}/pl-233/2|${outputDir}/pl-233/3
                                 ${outputDir}/pl-233/2|${outputDir}/pl-233/3|*.bat
                                 ${outputDir}/pl-233/2|${outputDir}/pl-233/3|**/*.bat
+                            </assertEqual>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-488 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-488</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-488/1/something.jar
+                                ${outputDir}/pl-488/2/something.jar
+                                ${outputDir}/pl-488/3/something.jar
+                                ${outputDir}/pl-488/4/maven-copy-plugin.issues.0.2.3.4-a-0.1-SNAPSHOT.jar
+                                ${outputDir}/pl-488/5/maven-copy-plugin.issues.0.2.3.4-a-0.1-SNAPSHOT.jar
+                                ${outputDir}/pl-488/6/maven-copy-plugin.issues.0.2.3.4-a-0.1-SNAPSHOT.jar
+                            </assertFiles>
+                            <assertEqual>
+                                ${outputDir}/pl-488/1|${outputDir}/pl-488/2
+                                ${outputDir}/pl-488/2|${outputDir}/pl-488/3
+
+                                ${outputDir}/pl-488/1|${outputDir}/pl-488/2|*.jar
+                                ${outputDir}/pl-488/1|${outputDir}/pl-488/2|**/*.jar
+
+                                ${outputDir}/pl-488/2|${outputDir}/pl-488/3|*.jar
+                                ${outputDir}/pl-488/2|${outputDir}/pl-488/3|**/*.jar
+
+                                ${outputDir}/pl-488/4|${outputDir}/pl-488/5
+                                ${outputDir}/pl-488/5|${outputDir}/pl-488/6
                             </assertEqual>
                         </configuration>
                     </execution>
