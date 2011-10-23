@@ -359,7 +359,7 @@
                                 new File( project.build.directory, 'test-deps-transitive-GroupId-include-1'    ).listFiles().size() == 3
                                 new File( project.build.directory, 'test-deps-transitive-GroupId-include-2'    ).listFiles().size() == 3
                                 new File( project.build.directory, 'test-deps-transitive-GroupId-include-3'    ).listFiles().size() == 4
-                                new File( project.build.directory, 'test-deps-transitive-GroupId-exclude'      ).listFiles().size() == 19
+                                new File( project.build.directory, 'test-deps-transitive-GroupId-exclude'      ).listFiles().size() == 20
                                 new File( project.build.directory, 'test-deps-no-transitive'                   ).listFiles().size() == 11
                                 new File( project.build.directory, 'test-deps-no-transitive-no-compile'        ).listFiles().size() == 6
                             </assertGroovy>
