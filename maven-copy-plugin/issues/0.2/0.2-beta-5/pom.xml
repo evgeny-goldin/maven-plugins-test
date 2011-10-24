@@ -15,7 +15,7 @@
 
     <parent>
         <groupId>com.goldin.plugins.maven-plugins-test</groupId>
-        <artifactId>maven-copy-plugin.issues</artifactId>
+        <artifactId>maven-copy-plugin.issues.0.2</artifactId>
         <version>0.1-SNAPSHOT</version>
     </parent>
 
@@ -343,6 +343,46 @@
                             </resources>
                         </configuration>
                     </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-262: "TrueZip assertion failure" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-262</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>
+                                        ${outputDir}/pl-262-zip
+                                    </targetPath>
+                                    <dependency>
+                                        <groupId>org.apache.maven</groupId>
+                                        <artifactId>apache-maven</artifactId>
+                                        <version>3.0.1</version>
+                                        <classifier>bin</classifier>
+                                        <type>zip</type>
+                                    </dependency>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>
+                                        ${outputDir}/pl-262-targz
+                                    </targetPath>
+                                    <dependency>
+                                        <groupId>org.apache.maven</groupId>
+                                        <artifactId>apache-maven</artifactId>
+                                        <version>3.0.1</version>
+                                        <classifier>bin</classifier>
+                                        <type>tar.gz</type>
+                                    </dependency>
+                                    <unpack>true</unpack>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 
@@ -441,6 +481,37 @@
                                 new File( outputDir, 'endOfLine/staplers1' ).directorySize() == 1752
                                 new File( outputDir, 'endOfLine/staplers2' ).directorySize() == 1752
                                 new File( outputDir, 'endOfLine/staplers3' ).directorySize() == 1732
+                            </assertGroovy>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-262 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-262</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-262-zip
+                                ${outputDir}/pl-262-zip/apache-maven-3.0.1
+                                ${outputDir}/pl-262-targz
+                                ${outputDir}/pl-262-targz/apache-maven-3.0.1
+                            </assertFiles>
+                            <shouldFailAssertEqual>
+                                ${outputDir}/pl-262-zip|${outputDir}/pl-262-targz|*.txt
+                                ${outputDir}/pl-262-zip|${outputDir}/pl-262-targz|*.jar
+                            </shouldFailAssertEqual>
+                            <assertEqual>
+                                ${outputDir}/pl-262-zip|${outputDir}/pl-262-targz
+                                ${outputDir}/pl-262-zip|${outputDir}/pl-262-targz|**/*.txt
+                                ${outputDir}/pl-262-zip|${outputDir}/pl-262-targz|**/*.jar
+                            </assertEqual>
+                            <assertGroovy>
+                                new File( outputDir, 'pl-262-zip' ).directorySize() == 3353088
+                                new File( outputDir, 'pl-262-zip' ).directorySize() == new File( outputDir, 'pl-262-targz' ).directorySize()
                             </assertGroovy>
                         </configuration>
                     </execution>

@@ -23,9 +23,6 @@
     <properties>
         <propertyTrue>false</propertyTrue>
         <propertyFalse>true</propertyFalse>
-        <!-- If specified here, then expressions like "${outputDir}/pl-290-4/${propertyDir}/1" (below) -->
-        <!-- will still be resolved to "dir" even after ${propertyDir} is overridden (Maven 3.0.2)     -->
-        <!--<propertyDir>dir</propertyDir>-->
     </properties>
 
 
