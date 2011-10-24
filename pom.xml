@@ -153,10 +153,15 @@
                         <phase>validate</phase>
                         <configuration>
                             <source>
-                                def date = new Date()
+                                def props = new Properties()
+                                props.load( org.apache.maven.Maven.class.getResourceAsStream( '/META-INF/maven/org.apache.maven/maven-core/pom.properties' ))
+
+                                def mavenVersion = props.getProperty( 'version', 'Unknown' ).trim()
+                                def date         = new Date()
+
                                 println """
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Groovy [$GroovySystem.version], [$date] - testing plugins version [${plugins-version}]
+Groovy [$GroovySystem.version], Maven [$mavenVersion], [$date] - testing plugins version [${plugins-version}]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"""
                             </source>
                         </configuration>
