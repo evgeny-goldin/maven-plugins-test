@@ -75,7 +75,7 @@
                                         <from>.</from>
                                         <to>!</to>
                                     </replace>
-                                    <nonFilteredExtensions>class</nonFilteredExtensions>
+                                    <nonFilteredExtensions>class, xml</nonFilteredExtensions>
                                 </resource>
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <!-- Unpacking with and without replaces -->
@@ -97,7 +97,7 @@
                                         <from>.</from>
                                         <to>!</to>
                                     </replace>
-                                    <nonFilteredExtensions>class</nonFilteredExtensions>
+                                    <nonFilteredExtensions>class, xml</nonFilteredExtensions>
                                 </resource>
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <!-- Packing with and without replaces -->
@@ -124,7 +124,7 @@
                                         <from>.</from>
                                         <to>!</to>
                                     </replace>
-                                    <nonFilteredExtensions>class</nonFilteredExtensions>
+                                    <nonFilteredExtensions>class, xml</nonFilteredExtensions>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-502/pack-2/unpack</targetPath>
@@ -142,6 +142,45 @@
                 <artifactId>maven-assert-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-502 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-502</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertEqual>
+                                <!-- No replaces -->
+                                ${outputDir}/pl-502/1|${outputDir}/pl-502/copy-2|**/*.class
+                                ${outputDir}/pl-502/1|${outputDir}/pl-502/copy-2|**/*.xml
+                                ${outputDir}/pl-502/copy-2|${outputDir}/pl-502/unpack-2|**/*.class
+                                ${outputDir}/pl-502/copy-2|${outputDir}/pl-502/unpack-2|**/*.xml
+                                ${outputDir}/pl-502/unpack-2|${outputDir}/pl-502/pack-2/unpack|**/*.class
+                                ${outputDir}/pl-502/unpack-2|${outputDir}/pl-502/pack-2/unpack|**/*.xml
+                                ${outputDir}/pl-502/pack-2/unpack|${outputDir}/pl-502/1|**/*.class
+                                ${outputDir}/pl-502/pack-2/unpack|${outputDir}/pl-502/1|**/*.xml
+                                <!-- Replaces -->
+                                ${outputDir}/pl-502/copy-1|${outputDir}/pl-502/unpack-1
+                                ${outputDir}/pl-502/unpack-1|${outputDir}/pl-502/pack-1/unpack
+                                ${outputDir}/pl-502/pack-1/unpack|${outputDir}/pl-502/copy-1
+                            </assertEqual>
+                            <shouldFailAssertEqual>
+                                <!-- Non-matching patterns -->
+                                ${outputDir}/pl-502/1|${outputDir}/pl-502/copy-2|*.class
+                                ${outputDir}/pl-502/1|${outputDir}/pl-502/copy-2|**/*.ppt
+                                <!-- Replaced vs. non-replaced files -->
+                                ${outputDir}/pl-502/copy-1|${outputDir}/pl-502/copy-2
+                                ${outputDir}/pl-502/copy-1|${outputDir}/pl-502/copy-2|**/*.class
+                                ${outputDir}/pl-502/unpack-1|${outputDir}/pl-502/unpack-2
+                                ${outputDir}/pl-502/unpack-1|${outputDir}/pl-502/unpack-2|**/*.class
+                                ${outputDir}/pl-502/pack-1/unpack|${outputDir}/pl-502/pack-2/unpack
+                                ${outputDir}/pl-502/pack-1/unpack|${outputDir}/pl-502/pack-2/unpack|**/*.class
+                            </shouldFailAssertEqual>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
         </plugins>
