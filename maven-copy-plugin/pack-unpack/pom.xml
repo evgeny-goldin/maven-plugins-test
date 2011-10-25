@@ -588,6 +588,7 @@
                         </goals>
                         <phase>test</phase>
                         <configuration>
+                            <runIf>{{ ${ifLinux} || ${ifMac} }}</runIf>
                             <assertFiles>
                                 ${outputDir}/filemode/
                                 ${outputDir}/filemode/1
