@@ -134,6 +134,62 @@
                             </resources>
                         </configuration>
                     </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-493                    -->
+                    <!-- "Avoid unpacking files that have been unpacked by a previous run" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-493-1</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <skipUnpacked>true</skipUnpacked>
+                            <resources>
+                                <resource>
+                                    <description>unpack-groovy-1</description>
+                                    <targetPath>${outputDir}/pl-493/unpack</targetPath>
+                                    <dependency>
+                                        <groupId>org.codehaus.groovy</groupId>
+                                        <artifactId>groovy-all</artifactId>
+                                        <version>1.9.0-beta-4</version>
+                                    </dependency>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <description>unpack-groovy-2</description>
+                                    <targetPath>${outputDir}/pl-493/unpack</targetPath>
+                                    <dependency>
+                                        <groupId>org.codehaus.groovy</groupId>
+                                        <artifactId>groovy-all</artifactId>
+                                        <version>1.9.0-beta-4</version>
+                                    </dependency>
+                                    <unpack>true</unpack>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-493-2</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resource>
+                                <description>unpack-groovy-3</description>
+                                <targetPath>${outputDir}/pl-493/unpack</targetPath>
+                                <dependency>
+                                    <groupId>org.codehaus.groovy</groupId>
+                                    <artifactId>groovy-all</artifactId>
+                                    <version>1.9.0-beta-4</version>
+                                </dependency>
+                                <skipUnpacked>true</skipUnpacked>
+                                <unpack>true</unpack>
+                            </resource>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 
