@@ -48,6 +48,7 @@
                                         <artifactId>groovy-all</artifactId>
                                         <version>1.9.0-beta-4</version>
                                     </dependency>
+                                    <dependenciesAtM2>true</dependenciesAtM2>
                                     <unpack>true</unpack>
                                     <process>{{ assert files.size() == 3759 }}</process>
                                 </resource>
@@ -59,6 +60,7 @@
                                         <artifactId>groovy-all</artifactId>
                                         <version>1.9.0-beta-4</version>
                                     </dependency>
+                                    <dependenciesAtM2>true</dependenciesAtM2>
                                     <unpack>true</unpack>
                                     <process>{{ assert (( files.size() == 0 ) &amp;&amp; ( file == null )) }}</process>
                                 </resource>
@@ -80,6 +82,7 @@
                                     <artifactId>groovy-all</artifactId>
                                     <version>1.9.0-beta-4</version>
                                 </dependency>
+                                <dependenciesAtM2>true</dependenciesAtM2>
                                 <skipUnpacked>true</skipUnpacked>
                                 <unpack>true</unpack>
                                 <process>{{ assert (( files.size() == 0 ) &amp;&amp; ( file == null )) }}</process>
