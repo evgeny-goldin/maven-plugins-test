@@ -230,6 +230,28 @@
                             </resource>
                         </configuration>
                     </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-483          -->
+                    <!-- "Getting Git commit fails when Maven plugins are built" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-483</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>verify</phase>
+                        <configuration>
+                            <resource>
+                                <targetPath>${outputDir}/pl-483</targetPath>
+                                <dependency>
+                                    <includeScope>compile</includeScope>
+                                    <includeGroupIds>com.goldin.plugins</includeGroupIds>
+                                </dependency>
+                                <zipEntry>META-INF/about*.txt</zipEntry>
+                                <unpack>true</unpack>
+                            </resource>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 
@@ -273,13 +295,48 @@
                                 new File( project.build.outputDirectory, 'about-standalone-1.txt' ).text.contains( ' [outputDir]' )
                                 new File( project.build.directory,       'about-standalone-2.txt' ).text.contains( ' [MavenProject: ${project.groupId}:${project.artifactId}:${project.version}' )
 
-                                new File( project.build.outputDirectory, '1/2/3/4/5/6/7.txt' ).text.contains( '|  |  |  +- jdom:jdom:jar:1.0:runtime' )
-                                new File( project.build.outputDirectory, '1/2/3/4/5/6/7.txt' ).text.contains( /|  |  |  \- jtidy:jtidy:jar:4aug2000r7-dev:runtime/ )
+                                new File( project.build.outputDirectory, '1/2/3/4/5/6/7.txt' ).text.contains( '|  |  |     +- jdom:jdom:jar:1.0:runtime' )
+                                new File( project.build.outputDirectory, '1/2/3/4/5/6/7.txt' ).text.contains( /|  |  |     \- jtidy:jtidy:jar:4aug2000r7-dev:runtime/ )
                                 new File( project.build.outputDirectory, '1/2/3/4/5/6/7.txt' ).text.contains( 'Maven Properties' )
                                 new File( project.build.outputDirectory, '1/2/3/4/5/6/7.txt' ).text.contains( '[${groovy-version}]' )
                                 new File( project.build.outputDirectory, '1/2/3/4/5/6/7.txt' ).text.contains( '[' + groovyVersion + ']' )
                                 new File( project.build.outputDirectory, '1/2/3/4/5/6/7.txt' ).text.contains( '[${spring-version}]' )
                                 new File( project.build.outputDirectory, '1/2/3/4/5/6/7.txt' ).text.contains( '[' + springVersion + ']' )
+                            </assertGroovy>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-483</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>verify</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-483/about~com.goldin.plugins~duplicates-finder-plugin~${plugins-version}.txt
+                                ${outputDir}/pl-483/about~com.goldin.plugins~maven-about-plugin~${plugins-version}.txt
+                                ${outputDir}/pl-483/about~com.goldin.plugins~maven-assert-plugin~${plugins-version}.txt
+                                ${outputDir}/pl-483/about~com.goldin.plugins~maven-common~${plugins-version}.txt
+                                ${outputDir}/pl-483/about~com.goldin.plugins~maven-copy-plugin~${plugins-version}.txt
+                                ${outputDir}/pl-483/about~com.goldin.plugins~maven-find-plugin~${plugins-version}.txt
+                                ${outputDir}/pl-483/about~com.goldin.plugins~maven-jenkins-plugin~${plugins-version}.txt
+                                ${outputDir}/pl-483/about~com.goldin.plugins~maven-mail-plugin~${plugins-version}.txt
+                                ${outputDir}/pl-483/about~com.goldin.plugins~maven-properties-plugin~${plugins-version}.txt
+                                ${outputDir}/pl-483/about~com.goldin.plugins~maven-spring-batch-plugin~${plugins-version}.txt
+                                ${outputDir}/pl-483/about~com.goldin.plugins~maven-sshexec-plugin~${plugins-version}.txt
+                                ${outputDir}/pl-483/about~com.goldin.plugins~maven-timestamp-plugin~${plugins-version}.txt
+                            </assertFiles>
+                            <assertGroovy>
+                                new File( outputDir, 'pl-483' ).listFiles().size() == 12
+                                new File( outputDir, 'pl-483' ).listFiles().every{ File f -> f.file }
+                                new File( outputDir, 'pl-483' ).listFiles().every{ File f -> f.text.readLines().any{ it.trim() ==~ /^Commit\s+:\s+\[[a-z0-9]{7}\]\[[a-z0-9]{40}\]$/ }}
+                                new File( outputDir, 'pl-483' ).listFiles().every{ File f -> f.text.readLines().any{ it.trim() ==~ /^Commit Date\s+:\s+\[\w+, \d+ \w+ \d{4} \d{2}:\d{2}:\d{2} \+\d{4}\]$/ }}
+                                new File( outputDir, 'pl-483' ).listFiles().every{ File f -> f.text.readLines().any{ it.trim() ==~ /^Commit Author\s+:\s+\[Evgeny Goldin &lt;evgenyg@gmail.com&gt;\]$/ }}
+                                new File( outputDir, 'pl-483' ).listFiles().every{ File f -> f.text.readLines().any{ it.trim() ==~ /^Commit Message\s+:\s+\[.+?\]$/ }}
+                                new File( outputDir, 'pl-483' ).listFiles().every{ File f -> f.text.readLines().any{ it.trim() ==~ /^.+?\Qorg.apache.maven:maven-core:jar\E.+?$/ }}
+                                new File( outputDir, 'pl-483' ).listFiles().every{ File f -> f.text.readLines().any{ it.trim() ==~ /^.+?\Qcom.goldin:gcommons:jar\E.+?$/ }}
+                                new File( outputDir, 'pl-483' ).listFiles().every{ File f -> f.text.readLines().any{ it.trim() ==~ /^.+?\Qjunit:junit:jar\E.+?$/ }}
+                                new File( outputDir, 'pl-483' ).listFiles().every{ File f -> f.text.readLines().any{ it.trim() ==~ /^.+?\Qorg.codehaus.plexus:plexus-utils:jar\E.+?$/ }}
                             </assertGroovy>
                         </configuration>
                     </execution>
@@ -306,6 +363,66 @@
             <artifactId>mojo-executor</artifactId>
             <version>0.1</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.goldin.plugins</groupId>
+            <artifactId>maven-common</artifactId>
+            <version>${plugins-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.goldin.plugins</groupId>
+            <artifactId>duplicates-finder-plugin</artifactId>
+            <version>${plugins-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.goldin.plugins</groupId>
+            <artifactId>maven-about-plugin</artifactId>
+            <version>${plugins-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.goldin.plugins</groupId>
+            <artifactId>maven-assert-plugin</artifactId>
+            <version>${plugins-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.goldin.plugins</groupId>
+            <artifactId>maven-copy-plugin</artifactId>
+            <version>${plugins-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.goldin.plugins</groupId>
+            <artifactId>maven-find-plugin</artifactId>
+            <version>${plugins-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.goldin.plugins</groupId>
+            <artifactId>maven-jenkins-plugin</artifactId>
+            <version>${plugins-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.goldin.plugins</groupId>
+            <artifactId>maven-mail-plugin</artifactId>
+            <version>${plugins-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.goldin.plugins</groupId>
+            <artifactId>maven-properties-plugin</artifactId>
+            <version>${plugins-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.goldin.plugins</groupId>
+            <artifactId>maven-spring-batch-plugin</artifactId>
+            <version>${plugins-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.goldin.plugins</groupId>
+            <artifactId>maven-sshexec-plugin</artifactId>
+            <version>${plugins-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.goldin.plugins</groupId>
+            <artifactId>maven-timestamp-plugin</artifactId>
+            <version>${plugins-version}</version>
         </dependency>
     </dependencies>
 </project>
