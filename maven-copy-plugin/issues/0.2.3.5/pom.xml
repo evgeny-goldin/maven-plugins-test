@@ -20,6 +20,11 @@
     </parent>
 
 
+    <properties>
+        <resourcesDir>${project.basedir}/../../copy-mojo/src/main/resources</resourcesDir>
+    </properties>
+
+
     <build>
         <plugins>
             <plugin>
@@ -27,6 +32,77 @@
                 <artifactId>maven-copy-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-513                        -->
+                    <!-- "Support <destFilePrefix>, <destFileSuffix>, and <destFileExtension>" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-513</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513/1</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileName>1-pom-1.xml</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513/2</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFilePrefix>2-</destFilePrefix>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513/3</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileSuffix>-3</destFileSuffix>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513/4</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileExtension>4</destFileExtension>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513/5</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFilePrefix>5-</destFilePrefix>
+                                    <destFileSuffix>-5</destFileSuffix>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513/6</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileSuffix>-6</destFileSuffix>
+                                    <destFileExtension>6</destFileExtension>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513/7</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFilePrefix>7-</destFilePrefix>
+                                    <destFileSuffix>-7</destFileSuffix>
+                                    <destFileExtension>7</destFileExtension>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513/8</targetPath>
+                                    <directory>${resourcesDir}</directory>
+                                    <preservePath>true</preservePath>
+                                    <filter>{{ files.findAll{ it.name.endsWith( '.txt' ) }}}</filter>
+                                    <destFilePrefix>8-</destFilePrefix>
+                                    <destFileSuffix>-8</destFileSuffix>
+                                    <destFileExtension>8</destFileExtension>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513/9</targetPath>
+                                    <directory>${resourcesDir}</directory>
+                                    <preservePath>true</preservePath>
+                                    <filter>{{ files.findAll{ ! it.name.endsWith( '.txt' ) }}}</filter>
+                                    <destFilePrefix>9-</destFilePrefix>
+                                    <destFileSuffix>-9</destFileSuffix>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-493                    -->
                     <!-- "Avoid unpacking files that have been unpacked by a previous run" -->
@@ -240,6 +316,45 @@
                                 ${outputDir}/pl-502/unpack-1|${outputDir}/pl-502/unpack-2|**/*.class
                                 ${outputDir}/pl-502/pack-1/unpack|${outputDir}/pl-502/pack-2/unpack
                                 ${outputDir}/pl-502/pack-1/unpack|${outputDir}/pl-502/pack-2/unpack|**/*.class
+                            </shouldFailAssertEqual>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-513 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-513</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-513/1/1-pom-1.xml
+                                ${outputDir}/pl-513/2/2-pom.xml
+                                ${outputDir}/pl-513/3/pom-3.xml
+                                ${outputDir}/pl-513/4/pom.4
+                                ${outputDir}/pl-513/5/5-pom-5.xml
+                                ${outputDir}/pl-513/6/pom-6.6
+                                ${outputDir}/pl-513/7/7-pom-7.7
+                                ${outputDir}/pl-513/8/8-1-8.8
+                                ${outputDir}/pl-513/8/8-2-8.8
+                                ${outputDir}/pl-513/8/8-3-8.8
+                                ${outputDir}/pl-513/8/8-4-8.8
+                                ${outputDir}/pl-513/8/8-ftp-exclude-8.8
+                                ${outputDir}/pl-513/8/8-ftp-include-8.8
+                                ${outputDir}/pl-513/9/9-1-9
+                                ${outputDir}/pl-513/9/9-2-9
+                                ${outputDir}/pl-513/9/9-3-9
+                                ${outputDir}/pl-513/9/9-4-9
+                                ${outputDir}/pl-513/9/9-ftp-exclude-9
+                                ${outputDir}/pl-513/9/9-ftp-include-9
+                            </assertFiles>
+                            <assertGroovy>
+                                new File( outputDir, 'pl-513/8' ).directorySize() == new File( outputDir, 'pl-513/8' ).directorySize()
+                            </assertGroovy>
+                            <shouldFailAssertEqual>
+                                ${outputDir}/pl-513/8|${outputDir}/pl-513/9
                             </shouldFailAssertEqual>
                         </configuration>
                     </execution>
