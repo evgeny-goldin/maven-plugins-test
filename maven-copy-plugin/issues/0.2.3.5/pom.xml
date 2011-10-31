@@ -44,6 +44,9 @@
                         <phase>initialize</phase>
                         <configuration>
                             <resources>
+                                <!-- ~~~~~~~~~~~~~ -->
+                                <!-- Copying files -->
+                                <!-- ~~~~~~~~~~~~~ -->
                                 <resource>
                                     <targetPath>${outputDir}/pl-513/1</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
@@ -99,6 +102,58 @@
                                     <filter>{{ files.findAll{ ! it.name.endsWith( '.txt' ) }}}</filter>
                                     <destFilePrefix>9-</destFilePrefix>
                                     <destFileSuffix>-9</destFileSuffix>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Copying files with structure -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513/10</targetPath>
+                                    <dependency>
+                                        <groupId>com.jcraft</groupId>
+                                        <artifactId>jsch</artifactId>
+                                        <version>0.1.38</version>
+                                    </dependency>
+                                    <unpack>true</unpack>
+                                    <process>{{ files.findAll{ it.name.endsWith( '.MF' ) }*.delete() }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513/11</targetPath>
+                                    <directory>${outputDir}/pl-513/10</directory>
+                                    <verbose>false</verbose>
+                                    <preservePath>true</preservePath>
+                                    <destFilePrefix>11-</destFilePrefix>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513/12</targetPath>
+                                    <directory>${outputDir}/pl-513/10</directory>
+                                    <verbose>false</verbose>
+                                    <preservePath>true</preservePath>
+                                    <destFileSuffix>-12</destFileSuffix>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513/13</targetPath>
+                                    <directory>${outputDir}/pl-513/10</directory>
+                                    <verbose>false</verbose>
+                                    <preservePath>true</preservePath>
+                                    <destFilePrefix>13-</destFilePrefix>
+                                    <destFileSuffix>-13</destFileSuffix>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513/14</targetPath>
+                                    <directory>${outputDir}/pl-513/10</directory>
+                                    <verbose>false</verbose>
+                                    <preservePath>true</preservePath>
+                                    <destFilePrefix>14-</destFilePrefix>
+                                    <destFileSuffix>-14</destFileSuffix>
+                                    <destFileExtension>14</destFileExtension>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513/15</targetPath>
+                                    <directory>${outputDir}/pl-513/10</directory>
+                                    <verbose>false</verbose>
+                                    <destFilePrefix>15-</destFilePrefix>
+                                    <destFileSuffix>-15</destFileSuffix>
+                                    <destFileExtension>15</destFileExtension>
                                 </resource>
                             </resources>
                         </configuration>
@@ -281,6 +336,62 @@
                 <version>${plugins-version}</version>
                 <executions>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-513 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-513</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-513/1/1-pom-1.xml
+                                ${outputDir}/pl-513/2/2-pom.xml
+                                ${outputDir}/pl-513/3/pom-3.xml
+                                ${outputDir}/pl-513/4/pom.4
+                                ${outputDir}/pl-513/5/5-pom-5.xml
+                                ${outputDir}/pl-513/6/pom-6.6
+                                ${outputDir}/pl-513/7/7-pom-7.7
+                                ${outputDir}/pl-513/8/8-1-8.8
+                                ${outputDir}/pl-513/8/8-2-8.8
+                                ${outputDir}/pl-513/8/8-3-8.8
+                                ${outputDir}/pl-513/8/8-4-8.8
+                                ${outputDir}/pl-513/8/8-ftp-exclude-8.8
+                                ${outputDir}/pl-513/8/8-ftp-include-8.8
+                                ${outputDir}/pl-513/9/9-1-9
+                                ${outputDir}/pl-513/9/9-2-9
+                                ${outputDir}/pl-513/9/9-3-9
+                                ${outputDir}/pl-513/9/9-4-9
+                                ${outputDir}/pl-513/9/9-ftp-exclude-9
+                                ${outputDir}/pl-513/9/9-ftp-include-9
+                            </assertFiles>
+                            <assertGroovy>
+                                new File( outputDir, 'pl-513/8' ).directorySize() == 69
+                                new File( outputDir, 'pl-513/9' ).directorySize() == 69
+                                new File( outputDir, 'pl-513/8' ).directorySize() == new File( outputDir, 'pl-513/9'  ).directorySize()
+
+                                [ 10, 11, 12, 13, 14 ].every{ new File( outputDir, "pl-513/$it" ).directorySize() == 302093 }
+                                new File( outputDir, 'pl-513/15' ).directorySize() == 294372
+
+                                null == new File( outputDir, 'pl-513/10' ).eachFileRecurse{ assert it.with{ directory || ( file &amp;&amp; name.endsWith( '.class'    )) }}
+                                null == new File( outputDir, 'pl-513/11' ).eachFileRecurse{ assert it.with{ directory || ( file &amp;&amp; name.startsWith( '11-'     )) }}
+                                null == new File( outputDir, 'pl-513/12' ).eachFileRecurse{ assert it.with{ directory || ( file &amp;&amp; name.endsWith( '-12.class' )) }}
+                                null == new File( outputDir, 'pl-513/13' ).eachFileRecurse{ assert it.with{ directory || ( file &amp;&amp; name.with{ startsWith( '13-' ) &amp;&amp; endsWith( '-13.class' ) } ) }}
+                                null == new File( outputDir, 'pl-513/14' ).eachFileRecurse{ assert it.with{ directory || ( file &amp;&amp; name.with{ startsWith( '14-' ) &amp;&amp; endsWith( '-14.14'    ) } ) }}
+
+                                new File( outputDir, 'pl-513/15' ).listFiles().size() == 99
+                                new File( outputDir, 'pl-513/15' ).listFiles().every{ it.with{ file &amp;&amp; name.with{ startsWith( '15-' ) &amp;&amp; endsWith( '-15.15' ) }}}
+                            </assertGroovy>
+                            <shouldFailAssertEqual>
+                                ${outputDir}/pl-513/8|${outputDir}/pl-513/9
+                                ${outputDir}/pl-513/10|${outputDir}/pl-513/11
+                                ${outputDir}/pl-513/11|${outputDir}/pl-513/12
+                                ${outputDir}/pl-513/10|${outputDir}/pl-513/12
+                            </shouldFailAssertEqual>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-502 -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <execution>
@@ -316,45 +427,6 @@
                                 ${outputDir}/pl-502/unpack-1|${outputDir}/pl-502/unpack-2|**/*.class
                                 ${outputDir}/pl-502/pack-1/unpack|${outputDir}/pl-502/pack-2/unpack
                                 ${outputDir}/pl-502/pack-1/unpack|${outputDir}/pl-502/pack-2/unpack|**/*.class
-                            </shouldFailAssertEqual>
-                        </configuration>
-                    </execution>
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-513 -->
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                    <execution>
-                        <id>http://evgeny-goldin.org/youtrack/issue/pl-513</id>
-                        <goals>
-                            <goal>assert</goal>
-                        </goals>
-                        <phase>test</phase>
-                        <configuration>
-                            <assertFiles>
-                                ${outputDir}/pl-513/1/1-pom-1.xml
-                                ${outputDir}/pl-513/2/2-pom.xml
-                                ${outputDir}/pl-513/3/pom-3.xml
-                                ${outputDir}/pl-513/4/pom.4
-                                ${outputDir}/pl-513/5/5-pom-5.xml
-                                ${outputDir}/pl-513/6/pom-6.6
-                                ${outputDir}/pl-513/7/7-pom-7.7
-                                ${outputDir}/pl-513/8/8-1-8.8
-                                ${outputDir}/pl-513/8/8-2-8.8
-                                ${outputDir}/pl-513/8/8-3-8.8
-                                ${outputDir}/pl-513/8/8-4-8.8
-                                ${outputDir}/pl-513/8/8-ftp-exclude-8.8
-                                ${outputDir}/pl-513/8/8-ftp-include-8.8
-                                ${outputDir}/pl-513/9/9-1-9
-                                ${outputDir}/pl-513/9/9-2-9
-                                ${outputDir}/pl-513/9/9-3-9
-                                ${outputDir}/pl-513/9/9-4-9
-                                ${outputDir}/pl-513/9/9-ftp-exclude-9
-                                ${outputDir}/pl-513/9/9-ftp-include-9
-                            </assertFiles>
-                            <assertGroovy>
-                                new File( outputDir, 'pl-513/8' ).directorySize() == new File( outputDir, 'pl-513/8' ).directorySize()
-                            </assertGroovy>
-                            <shouldFailAssertEqual>
-                                ${outputDir}/pl-513/8|${outputDir}/pl-513/9
                             </shouldFailAssertEqual>
                         </configuration>
                     </execution>
