@@ -22,6 +22,19 @@
 
     <properties>
         <resourcesDir>${project.basedir}/../../copy-mojo/src/main/resources</resourcesDir>
+
+        <!-- http://evgeny-goldin.org/youtrack/issue/pl-516 -->
+        <processAssert>
+        {{
+            assert files.size()    == 4
+            assert file            == files.first()
+            assert file.name       == '0.txt'
+            assert files[ 0 ].name == '0.txt'
+            assert files[ 1 ].name == '1.txt'
+            assert files[ 2 ].name == '2.txt'
+            assert files[ 3 ].name == '3.txt'
+        }}
+        </processAssert>
     </properties>
 
 
@@ -32,6 +45,92 @@
                 <artifactId>maven-copy-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-516                        -->
+                    <!-- "Order of files is not kept when "files" list is passed to <process>" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-516</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-516/1</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileName>0.txt</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-516/1</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileName>1.txt</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-516/1</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileName>2.txt</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-516/1</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileName>3.txt</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-516/2</targetPath>
+                                    <directory>${outputDir}/pl-516/1</directory>
+                                    <includes>
+                                        <include>0.txt</include>
+                                        <include>1.txt</include>
+                                        <include>2.txt</include>
+                                        <include>3.txt</include>
+                                    </includes>
+                                    <process>${processAssert}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-516/2</targetPath>
+                                    <directory>${outputDir}/pl-516/1</directory>
+                                    <includes>
+                                        <include>3.txt</include>
+                                        <include>1.txt</include>
+                                        <include>0.txt</include>
+                                        <include>2.txt</include>
+                                    </includes>
+                                    <process>${processAssert}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-516/2</targetPath>
+                                    <directory>${outputDir}/pl-516/1</directory>
+                                    <includes>
+                                        <include>3.txt</include>
+                                        <include>2.txt</include>
+                                        <include>1.txt</include>
+                                        <include>0.txt</include>
+                                    </includes>
+                                    <process>${processAssert}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-516/3</targetPath>
+                                    <directory>${outputDir}/pl-516/1</directory>
+                                    <include>0.txt, 1.txt, 2.txt, 3.txt</include>
+                                    <process>${processAssert}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-516/3</targetPath>
+                                    <directory>${outputDir}/pl-516/1</directory>
+                                    <include>3.txt, 1.txt, 2.txt, 0.txt</include>
+                                    <process>${processAssert}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-516/3</targetPath>
+                                    <directory>${outputDir}/pl-516/1</directory>
+                                    <include>3.txt, 2.txt, 1.txt, 0.txt</include>
+                                    <process>${processAssert}</process>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-513                        -->
                     <!-- "Support <destFilePrefix>, <destFileSuffix>, and <destFileExtension>" -->
@@ -114,7 +213,7 @@
                                         <version>0.1.38</version>
                                     </dependency>
                                     <unpack>true</unpack>
-                                    <process>{{ files.findAll{ it.name.endsWith( '.MF' ) }*.delete() }}</process>
+                                    <process>{{ files.findAll{ it.name.endsWith( '.MF' ) }.first().delete() }}</process>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-513/11</targetPath>
@@ -335,6 +434,45 @@
                 <artifactId>maven-assert-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-516 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-516</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-516/1/*.txt
+                                ${outputDir}/pl-516/1/**/*.txt
+                                ${outputDir}/pl-516/1/0.txt
+                                ${outputDir}/pl-516/1/1.txt
+                                ${outputDir}/pl-516/1/2.txt
+                                ${outputDir}/pl-516/1/3.txt
+
+                                ${outputDir}/pl-516/2/*.txt
+                                ${outputDir}/pl-516/2/**/*.txt
+                                ${outputDir}/pl-516/2/0.txt
+                                ${outputDir}/pl-516/2/1.txt
+                                ${outputDir}/pl-516/2/2.txt
+                                ${outputDir}/pl-516/2/3.txt
+
+                                ${outputDir}/pl-516/3/*.txt
+                                ${outputDir}/pl-516/3/**/*.txt
+                                ${outputDir}/pl-516/3/0.txt
+                                ${outputDir}/pl-516/3/1.txt
+                                ${outputDir}/pl-516/3/2.txt
+                                ${outputDir}/pl-516/3/3.txt
+                            </assertFiles>
+                            <assertEqual>
+                                ${outputDir}/pl-516/1|${outputDir}/pl-516/2
+                                ${outputDir}/pl-516/2|${outputDir}/pl-516/3
+                                ${outputDir}/pl-516/3|${outputDir}/pl-516/1
+                            </assertEqual>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-513 -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
