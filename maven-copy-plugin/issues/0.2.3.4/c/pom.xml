@@ -308,6 +308,7 @@
                                 <resource>
                                     <targetPath>${outputDir}/pl-429/txts.zip</targetPath>
                                     <directory>${resourcesDir}</directory>
+                                    <include>*.txt</include>
                                     <pack>true</pack>
                                     <prefix>txts</prefix>
                                 </resource>
@@ -484,8 +485,8 @@
                                 <resource>
                                     <targetPaths>
                                         <targetPath>${outputDir}/pl-442/5</targetPath>
-                                        <targetPath>${outputDir}/pl-442/5/1</targetPath>
-                                        <targetPath>${outputDir}/pl-442/5/1/2</targetPath>
+                                        <targetPath>${outputDir}/pl-442/5/one</targetPath>
+                                        <targetPath>${outputDir}/pl-442/5/one/two</targetPath>
                                     </targetPaths>
                                     <directory>${resourcesDir}</directory>
                                     <preservePath>true</preservePath>
@@ -501,7 +502,7 @@
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-442/6/g.jar</targetPath>
-                                    <file>${outputDir}/pl-442/5/1/2/4.txt</file>
+                                    <file>${outputDir}/pl-442/5/one/two/4.txt</file>
                                     <pack>true</pack>
                                     <update>true</update>
                                     <destFileName>aaa/AAA/bbb.txt</destFileName>
@@ -722,20 +723,20 @@ echo {{ '[' + project.basedir + '] - [' + project.groupId + ':' + project.artifa
                                 ${outputDir}/pl-442/4/pom.xml
 
                                 ${outputDir}/pl-442/5
-                                ${outputDir}/pl-442/5/1
-                                ${outputDir}/pl-442/5/1/2
-                                ${outputDir}/pl-442/5/1/2/**
-                                ${outputDir}/pl-442/5/1/2/*.*
-                                ${outputDir}/pl-442/5/1/2/*.txt
+                                ${outputDir}/pl-442/5/one
+                                ${outputDir}/pl-442/5/one/two
+                                ${outputDir}/pl-442/5/one/two/**
+                                ${outputDir}/pl-442/5/one/two/*.*
+                                ${outputDir}/pl-442/5/one/two/*.txt
                                 ${outputDir}/pl-442/6/g.jar
                                 ${outputDir}/pl-442/7
                                 ${outputDir}/pl-442/7/aaa/AAA/bbb.txt
                                 ${outputDir}/pl-442/7/resources-5
                                 ${outputDir}/pl-442/7/resources-5/
                                 ${outputDir}/pl-442/7/resources-5/**
-                                ${outputDir}/pl-442/7/resources-5/1
-                                ${outputDir}/pl-442/7/resources-5/1/2
-                                ${outputDir}/pl-442/7/resources-5/1/2/*.txt
+                                ${outputDir}/pl-442/7/resources-5/one
+                                ${outputDir}/pl-442/7/resources-5/one/two
+                                ${outputDir}/pl-442/7/resources-5/one/two/*.txt
                             </assertFiles>
                             <assertGroovy>
                                 new File( outputDir, 'pl-442/1' ).listFiles().size() == 6
@@ -750,10 +751,10 @@ echo {{ '[' + project.basedir + '] - [' + project.groupId + ':' + project.artifa
                                 ! new File( outputDir, 'pl-442/4/pom.xml' ).text.toLowerCase().with{ contains( 'b' ) || contains( 'd' ) }
 
                                 new File( outputDir, 'pl-442/7/aaa/AAA/bbb.txt' ).text.trim()       == '**/*.fgh'
-                                new File( outputDir, 'pl-442/7/resources-5/1/2/1.txt' ).text        == '**/*.@class@'
-                                new File( outputDir, 'pl-442/7/resources-5/1/2/2.txt' ).text        == '**/*.!jar!'
-                                new File( outputDir, 'pl-442/7/resources-5/1/2/3.txt' ).text        == '**/*.@class@'
-                                new File( outputDir, 'pl-442/7/resources-5/1/2/4.txt' ).text.trim() == '**/*.pdf'
+                                new File( outputDir, 'pl-442/7/resources-5/one/two/1.txt' ).text        == '**/*.@class@'
+                                new File( outputDir, 'pl-442/7/resources-5/one/two/2.txt' ).text        == '**/*.!jar!'
+                                new File( outputDir, 'pl-442/7/resources-5/one/two/3.txt' ).text        == '**/*.@class@'
+                                new File( outputDir, 'pl-442/7/resources-5/one/two/4.txt' ).text.trim() == '**/*.pdf'
                             </assertGroovy>
                             <shouldFailAssertEqual>
                                 ${outputDir}/pl-442/3|${outputDir}/pl-442/4
