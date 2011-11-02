@@ -540,8 +540,8 @@
                         <configuration>
                             <assertEqual>
                                 ${outputDir}/pl-510/1|${outputDir}/pl-510/2
-                                ${outputDir}/pl-510/1|${outputDir}/pl-510/2|*.class
-                                ${outputDir}/pl-510/1|${outputDir}/pl-510/2|*.xml
+                                ${outputDir}/pl-510/1|${outputDir}/pl-510/2|**/*.class
+                                ${outputDir}/pl-510/1|${outputDir}/pl-510/2|**/*.xml
                             </assertEqual>
                             <assertGroovy>
                                 new File( outputDir, 'pl-510/1' ).directorySize() == 13550506
