@@ -45,6 +45,91 @@
                 <artifactId>maven-copy-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-510                      -->
+                    <!-- "Provide an option to exclude ZIP entries when archive is unpacked" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-510</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-510/1</targetPath>
+                                    <dependency>
+                                        <groupId>org.codehaus.groovy</groupId>
+                                        <artifactId>groovy-all</artifactId>
+                                        <version>1.8.3</version>
+                                    </dependency>
+                                    <unpack>true</unpack>
+                                    <preservePath>true</preservePath>
+                                    <zipEntryExclude>**/*Abstract*, **/beans/**</zipEntryExclude>
+                                    <process>{{ assert files.size() == 3705 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-510/2</targetPath>
+                                    <dependency>
+                                        <groupId>org.codehaus.groovy</groupId>
+                                        <artifactId>groovy-all</artifactId>
+                                        <version>1.8.3</version>
+                                    </dependency>
+                                    <unpack>true</unpack>
+                                    <preservePath>true</preservePath>
+                                    <zipEntriesExclude>
+                                        <zipEntryExclude>**/*Abstract*</zipEntryExclude>
+                                        <zipEntryExclude>**/beans/**</zipEntryExclude>
+                                    </zipEntriesExclude>
+                                    <process>{{ assert files.size() == 3705 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-510/3</targetPath>
+                                    <dependency>
+                                        <groupId>org.codehaus.groovy</groupId>
+                                        <artifactId>groovy-all</artifactId>
+                                        <version>1.8.3</version>
+                                    </dependency>
+                                    <unpack>true</unpack>
+                                    <preservePath>true</preservePath>
+                                    <zipEntry>**/*.class</zipEntry>
+                                    <zipEntriesExclude>
+                                        <zipEntryExclude>**/*Abstract*.class</zipEntryExclude>
+                                        <zipEntryExclude>**/beans/**</zipEntryExclude>
+                                    </zipEntriesExclude>
+                                    <process>{{ assert files.size() == 3631 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-510/4</targetPath>
+                                    <dependency>
+                                        <groupId>org.jenkins-ci.main</groupId>
+                                        <artifactId>jenkins-war</artifactId>
+                                        <version>1.421</version>
+                                        <type>war</type>
+                                    </dependency>
+                                    <unpack>true</unpack>
+                                    <preservePath>true</preservePath>
+                                    <zipEntryExclude>**/*.html, **/*.png</zipEntryExclude>
+                                    <process>{{ assert files.size() == 437 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-510/5</targetPath>
+                                    <dependency>
+                                        <groupId>org.jenkins-ci.main</groupId>
+                                        <artifactId>jenkins-war</artifactId>
+                                        <version>1.421</version>
+                                        <type>war</type>
+                                    </dependency>
+                                    <unpack>true</unpack>
+                                    <preservePath>true</preservePath>
+                                    <zipEntry>**/*.html, **/*.jar, **/*.png</zipEntry>
+                                    <zipEntryExclude>**/ant-*.html, **/commons-*.jar, **/empty.png, **/grey.png</zipEntryExclude>
+                                    <process>{{ assert files.size() == 842 }}</process>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-516                        -->
                     <!-- "Order of files is not kept when "files" list is passed to <process>" -->
@@ -443,6 +528,30 @@
                 <artifactId>maven-assert-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-510 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-510</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertEqual>
+                                ${outputDir}/pl-510/1|${outputDir}/pl-510/2
+                                ${outputDir}/pl-510/1|${outputDir}/pl-510/2|*.class
+                                ${outputDir}/pl-510/1|${outputDir}/pl-510/2|*.xml
+                            </assertEqual>
+                            <assertGroovy>
+                                new File( outputDir, 'pl-510/1' ).directorySize() == 13550506
+                                new File( outputDir, 'pl-510/2' ).directorySize() == 13550506
+                                new File( outputDir, 'pl-510/3' ).directorySize() == 13324310
+                                new File( outputDir, 'pl-510/4' ).directorySize() == 44272143
+                                new File( outputDir, 'pl-510/5' ).directorySize() == 28547406
+                            </assertGroovy>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-516 -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
