@@ -391,7 +391,7 @@
                                     <process>
                                     {{
                                         def ( body, extension ) = file.name.${splitName}
-                                        assert file.file &amp;&amp; file.renameTo( new File( file.parentFile, "$body-3.$extension" ))
+                                        assert file.file &amp;&amp; file.renameTo( new File( file.parentFile, "$body-3" + ( extension ? '.' + extension : '' )))
                                     }}
                                     </process>
                                 </resource>
@@ -414,7 +414,7 @@
                                     <process>
                                     {{
                                         def ( body, extension ) = file.name.${splitName}
-                                        assert file.file &amp;&amp; file.renameTo( new File( file.parentFile, "5-$body-5.$extension" ))
+                                        assert file.file &amp;&amp; file.renameTo( new File( file.parentFile, "5-$body-5" + ( extension ? '.' + extension : '' )))
                                     }}
                                     </process>
                                 </resource>
@@ -473,7 +473,7 @@
                                         files.each { File f ->
                                             assert f.file
                                             def ( body, extension ) = f.name.${splitName}
-                                            assert f.renameTo( new File( f.parentFile, "9-$body-9.$extension" ))
+                                            assert f.renameTo( new File( f.parentFile, "9-$body-9" + ( extension ? '.' + extension : '' )))
                                         }
                                     }}
                                     </process>
@@ -518,7 +518,7 @@
                                         files.each { File f ->
                                             assert f.file
                                             def ( body, extension ) = f.name.${splitName}
-                                            assert f.renameTo( new File( f.parentFile, "$body-12.$extension" ))
+                                            assert f.renameTo( new File( f.parentFile, "$body-12" + ( extension ? '.' + extension : '' )))
                                         }
                                     }}
                                     </process>
@@ -535,7 +535,7 @@
                                         files.each { File f ->
                                             assert f.file
                                             def ( body, extension ) = f.name.${splitName}
-                                            assert f.renameTo( new File( f.parentFile, "13-$body-13.$extension" ))
+                                            assert f.renameTo( new File( f.parentFile, "13-$body-13" + ( extension ? '.' + extension : '' )))
                                         }
                                     }}
                                     </process>
