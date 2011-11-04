@@ -50,6 +50,61 @@
                 <artifactId>maven-copy-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-522                                   -->
+                    <!-- "<process> gets list of files with duplicate entries if <preservePath> is false" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-522</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetRoots>${outputDir}/pl-522/1</targetRoots>
+                                    <targetPaths>
+                                        <targetPath>0/0/09</targetPath>
+                                        <targetPath>1/1</targetPath>
+                                        <targetPath>2/2</targetPath>
+                                        <targetPath>3</targetPath>
+                                        <targetPath>6/7</targetPath>
+                                        <targetPath>9</targetPath>
+                                        <targetPath>12</targetPath>
+                                        <targetPath>aaa/bbb/ccc</targetPath>
+                                    </targetPaths>
+                                    <file>${project.basedir}/pom.xml</file>
+                                </resource>
+                                <resource>
+                                    <targetRoots>${outputDir}/pl-522/1</targetRoots>
+                                    <targetPaths>
+                                        <targetPath>0/0/09</targetPath>
+                                        <targetPath>1/1</targetPath>
+                                        <targetPath>2/2</targetPath>
+                                        <targetPath>3</targetPath>
+                                        <targetPath>6/7</targetPath>
+                                        <targetPath>9</targetPath>
+                                        <targetPath>12</targetPath>
+                                        <targetPath>aaa/bbb/ccc</targetPath>
+                                    </targetPaths>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileName>1.txt</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-522/2</targetPath>
+                                    <directory>${outputDir}/pl-522/1</directory>
+                                    <process>{{ assert ( files.size() == 2 ) &amp;&amp; files.every{ ( it.name == 'pom.xml' ) || ( it.name == '1.txt' ) } }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-522/3</targetPath>
+                                    <directory>${outputDir}/pl-522/1</directory>
+                                    <preservePath>true</preservePath>
+                                    <process>{{ assert ( files.size() == ( 2 * 8 )) &amp;&amp; files.every{ ( it.name == 'pom.xml' ) || ( it.name == '1.txt' ) } }}</process>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-510                      -->
                     <!-- "Provide an option to exclude ZIP entries when archive is unpacked" -->
@@ -772,6 +827,27 @@
                 <artifactId>maven-assert-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-522 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-522</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <shouldFailAssertEqual>
+                                ${outputDir}/pl-522/2|${outputDir}/pl-522/3
+                            </shouldFailAssertEqual>
+                            <assertGroovy>
+                                new File( outputDir, 'pl-522/2' ).listFiles().size() == 2
+                                new File( outputDir, 'pl-522/2' ).recurse([ type: groovy.io.FileType.FILES ], { assert it.file }).size() == 2
+                                new File( outputDir, 'pl-522/3' ).recurse([ type: groovy.io.FileType.FILES ], { assert it.file }).size() == 16
+                                new File( outputDir, 'pl-522/3' ).recurse([ type: groovy.io.FileType.FILES, returnList: false ], { assert it.file }).size() == 0
+                            </assertGroovy>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-510 -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
