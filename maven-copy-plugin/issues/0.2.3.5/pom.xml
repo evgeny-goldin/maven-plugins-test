@@ -50,6 +50,41 @@
                 <artifactId>maven-copy-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-511                                                         -->
+                    <!-- "Do not filter files if they don't contain ${..} expressions when <filterWithDollarOnly> is activated" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-511</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-511/1</targetPath>
+                                    <file>${project.basedir}/../../../pom.xml</file>
+                                    <filtering>true</filtering>
+                                    <destFileName>1.xml</destFileName>
+                                    <process>{{ assert file.with{ ( name == '1.xml' ) &amp;&amp; ( ! text.contains( '${' )) } }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-511/2</targetPath>
+                                    <file>${outputDir}/pl-511/1/1.xml</file>
+                                    <filtering>true</filtering>
+                                    <filterWithDollarOnly>true</filterWithDollarOnly>
+                                    <!-- No filtering was made - no "${ .. }" expressions in the file and "filterWithDollarOnly" is used  -->
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-511/3</targetPath>
+                                    <file>${outputDir}/pl-511/1/1.xml</file>
+                                    <filtering>true</filtering>
+                                    <!-- Filtering was made - no "${ .. }" expressions in the file but "filterWithDollarOnly" isn't used -->
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-522                                   -->
                     <!-- "<process> gets list of files with duplicate entries if <preservePath> is false" -->
@@ -827,6 +862,51 @@
                 <artifactId>maven-assert-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-511 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-511</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertEqual>
+                                ${outputDir}/pl-511/1|${outputDir}/pl-511/2
+                                ${outputDir}/pl-511/2|${outputDir}/pl-511/3
+                                ${outputDir}/pl-511/3|${outputDir}/pl-511/1
+
+                                ${outputDir}/pl-511/1|${outputDir}/pl-511/2|1.xml
+                                ${outputDir}/pl-511/2|${outputDir}/pl-511/3|1.xml
+                                ${outputDir}/pl-511/3|${outputDir}/pl-511/1|1.xml
+
+                                ${outputDir}/pl-511/1|${outputDir}/pl-511/2|*.xml
+                                ${outputDir}/pl-511/2|${outputDir}/pl-511/3|*.xml
+                                ${outputDir}/pl-511/3|${outputDir}/pl-511/1|*.xml
+
+                                ${outputDir}/pl-511/1|${outputDir}/pl-511/2|**/*.xml
+                                ${outputDir}/pl-511/2|${outputDir}/pl-511/3|**/*.xml
+                                ${outputDir}/pl-511/3|${outputDir}/pl-511/1|**/*.xml
+                            </assertEqual>
+                            <shouldFailAssertEqual>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Non-matching patterns should fail -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                ${outputDir}/pl-511/1|${outputDir}/pl-511/2|2.xml
+                                ${outputDir}/pl-511/2|${outputDir}/pl-511/3|2.xml
+                                ${outputDir}/pl-511/3|${outputDir}/pl-511/1|2.xml
+
+                                ${outputDir}/pl-511/1|${outputDir}/pl-511/2|*.ppt
+                                ${outputDir}/pl-511/2|${outputDir}/pl-511/3|*.ppt
+                                ${outputDir}/pl-511/3|${outputDir}/pl-511/1|*.ppt
+
+                                ${outputDir}/pl-511/1|${outputDir}/pl-511/2|**/*.exe
+                                ${outputDir}/pl-511/2|${outputDir}/pl-511/3|**/*.exe
+                                ${outputDir}/pl-511/3|${outputDir}/pl-511/1|**/*.exe
+                            </shouldFailAssertEqual>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-522 -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
