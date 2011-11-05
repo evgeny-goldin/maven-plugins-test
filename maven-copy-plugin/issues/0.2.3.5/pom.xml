@@ -36,7 +36,12 @@
             assert files[ 3 ].name == '3.txt'
         }}
         </processAssert>
-
+        <assert12>
+        {{
+            assert files.size() == 12
+            assert files.every{ File f -> f.lastModified() > new File( resourcesDir, f.name ).lastModified() }
+        }}
+        </assert12>
         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
         <!-- Splits file name to "body" and "extension" -->
         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -272,6 +277,65 @@
                                         assert ! new File( outputDir, 'pl-514/9/pom.xml' ).file
                                     }}
                                     </process>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Skipping identical files -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/pl-514/13</targetPath>
+                                    <directory>${resourcesDir}</directory>
+                                    <process>
+                                    {{
+                                        assert files.size() == 12
+                                        assert files.every{ File f -> f.lastModified() == new File( resourcesDir, f.name ).lastModified() }
+                                    }}
+                                    </process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-514/13</targetPath>
+                                    <directory>${resourcesDir}</directory>
+                                    <process>
+                                    {{
+                                        assert files.size() == 12
+                                        assert files.every{ File f -> f.lastModified() == new File( resourcesDir, f.name ).lastModified() }
+                                    }}
+                                    </process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-514/13</targetPath>
+                                    <directory>${resourcesDir}</directory>
+                                    <skipIdentical>true</skipIdentical>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-514/13</targetPath>
+                                    <directory>${outputDir}/pl-514/13</directory>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-514/13</targetPath>
+                                    <directory>${outputDir}/pl-514/13</directory>
+                                    <filtering>true</filtering>
+                                    <process>${assert12}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-514/13</targetPath>
+                                    <directory>${outputDir}/pl-514/13</directory>
+                                    <replace>
+                                        <from>.</from>
+                                        <to>..</to>
+                                    </replace>
+                                    <process>${assert12}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-514/13</targetPath>
+                                    <directory>${outputDir}/pl-514/13</directory>
+                                    <filtering>true</filtering>
+                                    <replace>
+                                        <from>.</from>
+                                        <to>..</to>
+                                    </replace>
+                                    <process>${assert12}</process>
                                 </resource>
                             </resources>
                         </configuration>
