@@ -51,6 +51,62 @@
                 <artifactId>maven-copy-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-515 -->
+                    <!-- "<nonFilteredExtensions> is case-sensitive"    -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-515</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-515/1</targetPath>
+                                    <file>${project.basedir}/src/main/resources/1.bat</file>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert file.text.contains( '$' + '{' ) }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-515/2</targetPath>
+                                    <file>${project.basedir}/src/main/resources/1.bat</file>
+                                    <filtering>true</filtering>
+                                    <filterWithDollarOnly>true</filterWithDollarOnly>
+                                    <process>{{ assert ! file.text.contains( '$' + '{' ) }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-515/3</targetPath>
+                                    <file>${project.basedir}/src/main/resources/1.bat</file>
+                                    <filtering>true</filtering>
+                                    <filterWithDollarOnly>true</filterWithDollarOnly>
+                                    <nonFilteredExtensions>bat</nonFilteredExtensions>
+                                    <process>{{ assert file.text.contains( '$' + '{' ) }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-515/4</targetPath>
+                                    <file>${project.basedir}/src/main/resources/1.bat</file>
+                                    <filtering>true</filtering>
+                                    <filterWithDollarOnly>true</filterWithDollarOnly>
+                                    <destFileExtension>BaT</destFileExtension>
+                                    <nonFilteredExtensions>bat</nonFilteredExtensions>
+                                    <process>{{ assert file.text.contains( '$' + '{' ) }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-515/5</targetPath>
+                                    <file>${project.basedir}/src/main/resources/1.bat</file>
+                                    <filtering>true</filtering>
+                                    <filterWithDollarOnly>true</filterWithDollarOnly>
+                                    <destFilePrefix>opa-</destFilePrefix>
+                                    <destFileSuffix>-apo</destFileSuffix>
+                                    <destFileExtension>bAt</destFileExtension>
+                                    <nonFilteredExtensions>batt</nonFilteredExtensions>
+                                    <process>{{ assert ! file.text.contains( '$' + '{' ) }}</process>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-514                      -->
                     <!-- "Eliminate temp files usage when <filtering> or <replace> are used" -->
@@ -1034,6 +1090,46 @@
                 <artifactId>maven-assert-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-515 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-515</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-515/4/1.BaT
+                                ${outputDir}/pl-515/5/opa-1-apo.bAt
+                            </assertFiles>
+                            <assertGroovy>
+                                new File( outputDir, 'pl-515/1/1.bat' ).text.contains( '@echo off' )
+                                new File( outputDir, 'pl-515/1/1.bat' ).text.contains( '$' + '{' )
+
+                              ! new File( outputDir, 'pl-515/2/1.bat' ).text.contains( '$' + '{' )
+                                new File( outputDir, 'pl-515/2/1.bat' ).text.contains( '[${project.groupId}:${project.artifactId}:${project.version}]' )
+                                new File( outputDir, 'pl-515/2/1.bat' ).text.contains( '[' + project.groupId + ':' + project.artifactId + ':' + project.version + ']' )
+
+                                new File( outputDir, 'pl-515/3/1.bat' ).text.contains( '$' + '{' )
+                                new File( outputDir, 'pl-515/4/1.BaT' ).text.contains( '$' + '{' )
+
+                              ! new File( outputDir, 'pl-515/5/opa-1-apo.bAt' ).text.contains( '$' + '{' )
+                                new File( outputDir, 'pl-515/5/opa-1-apo.bAt' ).text.contains( '[${project.groupId}:${project.artifactId}:${project.version}]' )
+                                new File( outputDir, 'pl-515/5/opa-1-apo.bAt' ).text.contains( '[' + project.groupId + ':' + project.artifactId + ':' + project.version + ']' )
+                            </assertGroovy>
+                            <assertEqual>
+                                ${outputDir}/pl-515/1|${outputDir}/pl-515/3
+                                ${outputDir}/pl-515/3|${outputDir}/pl-515/4
+                            </assertEqual>
+                            <shouldFailAssertEqual>
+                                ${outputDir}/pl-515/2|${outputDir}/pl-515/5
+                                <!-- http://evgeny-goldin.org/youtrack/issue/pl-525 -->
+                                <!-- ${outputDir}/pl-515/3|${outputDir}/pl-515/4    -->
+                            </shouldFailAssertEqual>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-514 -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
