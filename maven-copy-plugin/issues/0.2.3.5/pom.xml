@@ -67,7 +67,7 @@
                                     <file>${project.basedir}/../../../pom.xml</file>
                                     <filtering>true</filtering>
                                     <destFileName>1.xml</destFileName>
-                                    <process>{{ assert file.with{ ( name == '1.xml' ) &amp;&amp; ( ! text.contains( '${' )) } }}</process>
+                                    <process>{{ assert file.with{ ( name == '1.xml' ) &amp;&amp; ( ! text.contains( '$' + '{' )) } }}</process>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-511/2</targetPath>
