@@ -42,8 +42,11 @@
                             <goal>create-about</goal>
                         </goals>
                         <configuration>
-                            <dumpDependencies>true</dumpDependencies>
+                            <dumpMaven>true</dumpMaven>
+                            <dumpEnv>true</dumpEnv>
+                            <dumpSystem>true</dumpSystem>
                             <dumpPaths>true</dumpPaths>
+                            <dumpDependencies>true</dumpDependencies>
                             <prefix>About</prefix>
                             <fileName>fff.txt</fileName>
                         </configuration>
@@ -281,8 +284,6 @@
                                 ${project.build.outputDirectory}/1/2/3/4/5/6/7.txt
                             </assertFiles>
                             <assertGroovy>
-                                new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '|  +- org.apache.maven.reporting:maven-reporting-api:jar:2.0.9:compile' )
-                                new File( outputDir, 'unpack/About/fff.txt' ).text.contains( /|  |  \- org.apache.maven.wagon:wagon-ssh-common:jar:1.0-beta-2:runtime/ )
 
                                 new File( outputDir, 'unpack/META-INF/about-content.txt' ).text.contains( '[Coordinates] : [' )
                                 new File( outputDir, 'unpack/META-INF/about-maven.txt' ).text.contains( ' [spring-version]' )
@@ -302,6 +303,31 @@
                                 new File( project.build.outputDirectory, '1/2/3/4/5/6/7.txt' ).text.contains( '[' + groovyVersion + ']' )
                                 new File( project.build.outputDirectory, '1/2/3/4/5/6/7.txt' ).text.contains( '[${spring-version}]' )
                                 new File( project.build.outputDirectory, '1/2/3/4/5/6/7.txt' ).text.contains( '[' + springVersion + ']' )
+
+                                new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '[plugins-version]:[${plugins-version}]' )
+                                new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '[java.vm.version]' )
+                                new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '[os.name]' )
+                                new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '[os.version]' )
+
+                                new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '[M2_HOME]' )
+                                new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '[PATH]' )
+
+                                new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '+- log4j:log4j:jar:1.2.16:compile' )
+                                new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '+- com.jcraft:jsch:jar:0.1.44-1:compile' )
+                                new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '+- org.twdata.maven:mojo-executor:jar:0.1:compile' )
+                                new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '+- com.goldin.plugins:maven-common:jar:${plugins-version}:compile' )
+                                new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '+- com.goldin.plugins:duplicates-finder-plugin:jar:${plugins-version}:compile' )
+                                new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '+- com.goldin.plugins:maven-about-plugin:jar:${plugins-version}:compile' )
+                                new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '+- com.goldin.plugins:maven-assert-plugin:jar:${plugins-version}:compile' )
+                                new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '+- com.goldin.plugins:maven-copy-plugin:jar:${plugins-version}:compile' )
+                                new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '+- com.goldin.plugins:maven-find-plugin:jar:${plugins-version}:compile' )
+                                new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '+- com.goldin.plugins:maven-mail-plugin:jar:${plugins-version}:compile' )
+                                new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '+- com.goldin.plugins:maven-jenkins-plugin:jar:${plugins-version}:compile' )
+                                new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '+- com.goldin.plugins:maven-properties-plugin:jar:${plugins-version}:compile' )
+                                new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '+- com.goldin.plugins:maven-spring-batch-plugin:jar:${plugins-version}:compile' )
+                                new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '+- com.goldin.plugins:maven-sshexec-plugin:jar:${plugins-version}:compile' )
+                                new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '|  +- org.apache.maven.reporting:maven-reporting-api:jar:2.0.9:compile' )
+                                new File( outputDir, 'unpack/About/fff.txt' ).text.contains( /|  |  \- org.apache.maven.wagon:wagon-ssh-common:jar:1.0-beta-2:runtime/ )
                             </assertGroovy>
                         </configuration>
                     </execution>
