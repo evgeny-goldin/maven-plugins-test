@@ -22,6 +22,7 @@
 
     <properties>
         <resourcesDir>${project.basedir}/../../copy-mojo/src/main/resources</resourcesDir>
+        <mainPom>${project.basedir}/../../../pom.xml</mainPom>
 
         <!-- http://evgeny-goldin.org/youtrack/issue/pl-516 -->
         <processAssert>
@@ -50,6 +51,106 @@
                 <artifactId>maven-copy-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-514                      -->
+                    <!-- "Eliminate temp files usage when <filtering> or <replace> are used" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-514</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-514/1</targetPath>
+                                    <file>${mainPom}</file>
+                                    <filtering>true</filtering>
+                                    <filter>{{ files }}</filter>
+                                    <process>
+                                    {{
+                                        assert ! file.text.contains( '$' + '{' )
+                                        assert   file.text.find( /\d|\w/ )
+                                    }}
+                                    </process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-514/2</targetPath>
+                                    <file>${mainPom}</file>
+                                    <replace>
+                                        <from>(?s).</from>
+                                        <to>a</to>
+                                    </replace>
+                                    <filter>{{ files }}</filter>
+                                    <process>{{ assert file.text ==~ /^a+$/ }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-514/3</targetPath>
+                                    <file>${mainPom}</file>
+                                    <filtering>true</filtering>
+                                    <replaces>
+                                        <replace>
+                                            <from>\d+</from>
+                                            <to>*</to>
+                                        </replace>
+                                        <replace>
+                                            <from>\w+</from>
+                                            <to>!</to>
+                                        </replace>
+                                    </replaces>
+                                    <filter>{{ files }}</filter>
+                                    <process>{{ assert file.text.with{ ! ( contains( '$' + '{' ) || find( /\d|\w/ )) }}}</process>
+                                </resource>
+                                <resource>
+                                    <targetRoots>${outputDir}/pl-514</targetRoots>
+                                    <targetPath>4, 5, 6</targetPath>
+                                    <file>${mainPom}</file>
+                                    <filter>{{ files }}</filter>
+                                    <process>{{ assert files.size() == 3 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-514/4</targetPath>
+                                    <file>${outputDir}/pl-514/4/pom.xml</file>
+                                    <filtering>true</filtering>
+                                    <filter>{{ files }}</filter>
+                                    <process>
+                                    {{
+                                        assert ! file.text.contains( '$' + '{' )
+                                        assert   file.text.find( /\d|\w/ )
+                                    }}
+                                    </process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-514/5</targetPath>
+                                    <file>${outputDir}/pl-514/5/pom.xml</file>
+                                    <replace>
+                                        <from>(?s).</from>
+                                        <to>a</to>
+                                    </replace>
+                                    <filter>{{ files }}</filter>
+                                    <process>{{ assert file.text ==~ /^a+$/ }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-514/6</targetPath>
+                                    <file>${outputDir}/pl-514/6/pom.xml</file>
+                                    <filtering>true</filtering>
+                                    <replaces>
+                                        <replace>
+                                            <from>\d+</from>
+                                            <to>*</to>
+                                        </replace>
+                                        <replace>
+                                            <from>\w+</from>
+                                            <to>!</to>
+                                        </replace>
+                                    </replaces>
+                                    <filter>{{ files }}</filter>
+                                    <process>{{ assert file.text.with{ ! ( contains( '$' + '{' ) || find( /\d|\w/ )) }}}</process>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-511                                                         -->
                     <!-- "Do not filter files if they don't contain ${..} expressions when <filterWithDollarOnly> is activated" -->
@@ -64,7 +165,7 @@
                             <resources>
                                 <resource>
                                     <targetPath>${outputDir}/pl-511/1</targetPath>
-                                    <file>${project.basedir}/../../../pom.xml</file>
+                                    <file>${mainPom}</file>
                                     <filtering>true</filtering>
                                     <destFileName>1.xml</destFileName>
                                     <process>{{ assert file.with{ ( name == '1.xml' ) &amp;&amp; ( ! text.contains( '$' + '{' )) } }}</process>
@@ -862,6 +963,33 @@
                 <artifactId>maven-assert-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-514 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-514</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertGroovy>
+                              ! new File( outputDir, 'pl-514/1/pom.xml' ).text.contains( '$' + '{' )
+                                new File( outputDir, 'pl-514/1/pom.xml' ).text.find( /\d|\w/ )
+                                new File( outputDir, 'pl-514/2/pom.xml' ).text ==~ /^a+$/
+                                new File( outputDir, 'pl-514/3/pom.xml' ).text.with{ ! ( contains( '$' + '{' ) || find( /\d|\w/ )) }
+                              ! new File( outputDir, 'pl-514/4/pom.xml' ).text.contains( '$' + '{' )
+                                new File( outputDir, 'pl-514/4/pom.xml' ).text.find( /\d|\w/ )
+                                new File( outputDir, 'pl-514/5/pom.xml' ).text ==~ /^a+$/
+                                new File( outputDir, 'pl-514/6/pom.xml' ).text.with{ ! ( contains( '$' + '{' ) || find( /\d|\w/ )) }
+                            </assertGroovy>
+                            <assertEqual>
+                                ${outputDir}/pl-514/1|${outputDir}/pl-514/4
+                                ${outputDir}/pl-514/2|${outputDir}/pl-514/5
+                                ${outputDir}/pl-514/3|${outputDir}/pl-514/6
+                            </assertEqual>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-511 -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
