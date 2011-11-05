@@ -66,7 +66,7 @@
                                 <resource>
                                     <targetPath>${outputDir}/pl-395</targetPath>
                                     <file>${outputDir}/pl-395/pom.xml</file>
-                                    <process>println ( "POM size is [" + file.size() + "] bytes" )</process>
+                                    <process>{{ assert ( files.size() == 0 ) &amp;&amp; ( file == null ) }}</process>
                                 </resource>
                             </resources>
                         </configuration>
