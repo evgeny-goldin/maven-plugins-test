@@ -1185,7 +1185,6 @@
                             </assertGroovy>
                             <assertEqual>
                                 ${outputDir}/pl-515/1|${outputDir}/pl-515/3
-                                ${outputDir}/pl-515/3|${outputDir}/pl-515/4
                             </assertEqual>
                             <shouldFailAssertEqual>
                                 ${outputDir}/pl-515/2|${outputDir}/pl-515/5
