@@ -244,13 +244,15 @@
                                     <file>${outputDir}/pl-511/1/1.xml</file>
                                     <filtering>true</filtering>
                                     <filterWithDollarOnly>true</filterWithDollarOnly>
-                                    <!-- No filtering was made - no "${ .. }" expressions in the file and "filterWithDollarOnly" is used  -->
+                                    <!-- No filtering was made - there's no "${ .. }" expressions in the file and "filterWithDollarOnly" is used  -->
+                                    <process>{{ assert file.lastModified() == new File( outputDir, 'pl-511/1/1.xml' ).lastModified(); sleep ( 1000 ) }}</process>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-511/3</targetPath>
                                     <file>${outputDir}/pl-511/1/1.xml</file>
                                     <filtering>true</filtering>
-                                    <!-- Filtering was made - no "${ .. }" expressions in the file but "filterWithDollarOnly" isn't used -->
+                                    <!-- Filtering was made - there's no "${ .. }" expressions in the file but "filterWithDollarOnly" isn't used -->
+                                    <process>{{ assert ( file.lastModified() - 1000 ) == new File( outputDir, 'pl-511/1/1.xml' ).lastModified() }}</process>
                                 </resource>
                             </resources>
                         </configuration>
