@@ -1,7 +1,7 @@
 import com.goldin.gcommons.GCommons
 
 def fileBean        = GCommons.file()
-def tempDir         = fileBean.delete( fileBean.tempDirectory()).parentFile
+def tempDir         = fileBean.delete( fileBean.tempDirectory()).parentFile.canonicalFile
 def findCleanupDirs = { tempDir.listFiles().findAll{ it.directory && it.name.contains( 'com.goldin' ) }}
 
 if ( project.artifactId == 'cleanup-temp' )
@@ -16,4 +16,4 @@ if ( project.artifactId == 'cleanup-temp' )
 }
 
 assert ! findCleanupDirs()
-println "No temp directories left out"
+println "No temp directories left in [$tempDir]"
