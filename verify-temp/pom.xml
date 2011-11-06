@@ -31,28 +31,16 @@
                 <version>${gmaven-version}</version>
                 <executions>
                     <execution>
-                        <id>display-plugins-version</id>
+                        <id>verify-temp</id>
                         <goals>
                             <goal>execute</goal>
                         </goals>
                         <phase>validate</phase>
                         <configuration>
-                            <source>
-                                def fileBean        = com.goldin.gcommons.GCommons.file()
-                                def tempDir         = fileBean.tempDirectory().parentFile
-                                def findCleanupDirs = { tempDir.listFiles().findAll{ it.directory &amp;&amp; it.name.contains( 'com.goldin' ) }}
-                                assert ! findCleanupDirs()
-                            </source>
+                            <source>${project.basedir}/../src/main/groovy/cleanup.groovy</source>
                         </configuration>
                     </execution>
                 </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>com.goldin</groupId>
-                        <artifactId>gcommons</artifactId>
-                        <version>${gcommons-version}</version>
-                    </dependency>
-                </dependencies>
             </plugin>
         </plugins>
     </build>

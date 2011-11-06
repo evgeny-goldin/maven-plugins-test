@@ -19,11 +19,9 @@
         <version>0.1-SNAPSHOT</version>
     </parent>
 
-
     <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
     <!-- Deletes all temp files -->
     <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
-
 
     <build>
         <plugins>
@@ -33,34 +31,16 @@
                 <version>${gmaven-version}</version>
                 <executions>
                     <execution>
-                        <id>display-plugins-version</id>
+                        <id>cleanup-temp</id>
                         <goals>
                             <goal>execute</goal>
                         </goals>
                         <phase>validate</phase>
                         <configuration>
-                            <source>
-                                def fileBean        = com.goldin.gcommons.GCommons.file()
-                                def tempDir         = fileBean.tempDirectory().parentFile
-                                def findCleanupDirs = { tempDir.listFiles().findAll{ it.directory &amp;&amp; it.name.contains( 'com.goldin' ) }}
-
-                                findCleanupDirs().each { File dir ->
-                                                         println "Deleting [$dir]"
-                                                         fileBean.delete( dir )
-                                                         println "Deleting [$dir] - done" }
-
-                                assert ! findCleanupDirs()
-                            </source>
+                            <source>${project.basedir}/../src/main/groovy/cleanup.groovy</source>
                         </configuration>
                     </execution>
                 </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>com.goldin</groupId>
-                        <artifactId>gcommons</artifactId>
-                        <version>${gcommons-version}</version>
-                    </dependency>
-                </dependencies>
             </plugin>
         </plugins>
     </build>
