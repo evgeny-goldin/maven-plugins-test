@@ -304,7 +304,7 @@
                                 new File( project.build.outputDirectory, '1/2/3/4/5/6/7.txt' ).text.contains( '[${spring-version}]' )
                                 new File( project.build.outputDirectory, '1/2/3/4/5/6/7.txt' ).text.contains( '[' + springVersion + ']' )
 
-                                new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '[plugins-version]:[${plugins-version}]' )
+                                new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '[plugins-version] :[${plugins-version}]' )
                                 new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '[java.vm.version]' )
                                 new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '[os.name]' )
                                 new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '[os.version]' )
