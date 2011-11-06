@@ -16,6 +16,8 @@
     <properties>
         <outputDir>${project.build.outputDirectory}</outputDir>
         <artifactory>http://evgeny-goldin.org/artifactory</artifactory>
+        <maven-version>3.0.3</maven-version>
+        <java-version>1.6</java-version>
         <spring-version>3.1.0.RC1</spring-version>
         <junit-version>4.10</junit-version>
         <log4j-version>1.2.16</log4j-version>
@@ -73,6 +75,32 @@
                             <include>nothing</include>
                         </includes>
                     </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>1.0.1</version>
+                    <executions>
+                        <execution>
+                            <id>maven-enforcer</id>
+                            <goals>
+                                <goal>display-info</goal>
+                                <goal>enforce</goal>
+                            </goals>
+                            <phase>initialize</phase>
+                            <configuration>
+                                <rules>
+                                    <requireMavenVersion>
+                                        <version>${maven-version}</version>
+                                    </requireMavenVersion>
+                                    <requireJavaVersion>
+                                        <version>${java-version}</version>
+                                    </requireJavaVersion>
+                                </rules>
+                            </configuration>
+                        </execution>
+                    </executions>
                 </plugin>
 
                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
