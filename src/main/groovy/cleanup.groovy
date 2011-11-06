@@ -6,11 +6,14 @@ def findCleanupDirs = { tempDir.listFiles().findAll{ it.directory && it.name.con
 
 if ( project.artifactId == 'cleanup-temp' )
 {
-    findCleanupDirs().each { File dir ->
-                             println "Deleting [$dir]"
-                             fileBean.delete( dir )
-                             println "Deleting [$dir] - done"
-    }
+    Collection<File> cleanupDirs = findCleanupDirs()
+
+    cleanupDirs.each { File dir -> println "Deleting [$dir]"
+                                   fileBean.delete( dir )
+                                   println "Deleting [$dir] - done" }
+
+    println "[${ cleanupDirs.size() }] directories cleaned up"
 }
 
 assert ! findCleanupDirs()
+println "No temp directories left out"
