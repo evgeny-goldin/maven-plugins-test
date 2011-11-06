@@ -56,6 +56,126 @@
                 <artifactId>maven-copy-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-506                                    -->
+                    <!-- "Set <dependenciesAtM2> to "true" when there's a single dependency to operate on" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-506</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <description>1</description>
+                                    <targetPath>${outputDir}/pl-506/1</targetPath>
+                                    <dependency>
+                                        <groupId>com.jcraft</groupId>
+                                        <artifactId>jsch</artifactId>
+                                        <version>0.1.38</version>
+                                    </dependency>
+                                    <dependenciesAtM2>true</dependenciesAtM2>
+                                    <filter>{{  assert ( files.size() == 1 ) &amp;&amp; ( file.canonicalPath.contains( '.m2' )); files }}</filter>
+                                    <process>{{ assert ( files.size() == 1 ) }}</process>
+                                </resource>
+                                <resource>
+                                    <description>2</description>
+                                    <targetPath>${outputDir}/pl-506/2</targetPath>
+                                    <dependency>
+                                        <groupId>com.jcraft</groupId>
+                                        <artifactId>jsch</artifactId>
+                                        <version>0.1.38</version>
+                                    </dependency>
+                                    <filter>{{  assert ( files.size() == 1 ) &amp;&amp; ( file.canonicalPath.contains( '.m2' )); files }}</filter>
+                                    <process>{{ assert ( files.size() == 1 ) }}</process>
+                                </resource>
+                                <resource>
+                                    <description>3</description>
+                                    <targetPath>${outputDir}/pl-506/3</targetPath>
+                                    <dependency>
+                                        <groupId>com.jcraft</groupId>
+                                        <artifactId>jsch</artifactId>
+                                        <version>0.1.38</version>
+                                    </dependency>
+                                    <dependenciesAtM2>false</dependenciesAtM2>
+                                    <filter>{{  assert ( files.size() == 1 ) &amp;&amp; ( ! file.canonicalPath.contains( '.m2' )); files }}</filter>
+                                    <process>{{ assert ( files.size() == 1 ) }}</process>
+                                </resource>
+                                <resource>
+                                    <description>4</description>
+                                    <targetPath>${outputDir}/pl-506/4</targetPath>
+                                    <dependency>
+                                        <groupId>com.jcraft</groupId>
+                                        <artifactId>jsch</artifactId>
+                                        <version>0.1.38</version>
+                                    </dependency>
+                                    <stripVersion>true</stripVersion>
+                                    <filter>{{  assert ( files.size() == 1 ) &amp;&amp; ( ! file.canonicalPath.contains( '.m2' )); files }}</filter>
+                                    <process>{{ assert ( files.size() == 1 ) }}</process>
+                                </resource>
+                                <resource>
+                                    <description>5</description>
+                                    <targetPath>${outputDir}/pl-506/5</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>com.jcraft</groupId>
+                                            <artifactId>jsch</artifactId>
+                                            <version>0.1.38</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>com.jcraft</groupId>
+                                            <artifactId>jsch</artifactId>
+                                            <version>0.1.45</version>
+                                        </dependency>
+                                    </dependencies>
+                                    <filter>{{  assert ( files.size() == 2 ) &amp;&amp; ( files.every{ ! it.canonicalPath.contains( '.m2' ) } ); files }}</filter>
+                                    <process>{{ assert ( files.size() == 2 ) }}</process>
+                                </resource>
+                                <resource>
+                                    <description>6</description>
+                                    <targetPath>${outputDir}/pl-506/6</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>com.jcraft</groupId>
+                                            <artifactId>jsch</artifactId>
+                                            <version>0.1.38</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>com.jcraft</groupId>
+                                            <artifactId>jsch</artifactId>
+                                            <version>0.1.45</version>
+                                        </dependency>
+                                    </dependencies>
+                                    <dependenciesAtM2>true</dependenciesAtM2>
+                                    <!-- Each dependency reported separately -->
+                                    <filter>{{  assert ( files.size() == 1 ) &amp;&amp; ( files.every{ it.canonicalPath.contains( '.m2' ) } ); files }}</filter>
+                                    <process>{{ assert ( files.size() == 1 ) }}</process>
+                                </resource>
+                                <resource>
+                                    <description>7</description>
+                                    <targetPath>${outputDir}/pl-506/7</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>com.jcraft</groupId>
+                                            <artifactId>jsch</artifactId>
+                                            <version>0.1.38</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>com.jcraft</groupId>
+                                            <artifactId>jsch</artifactId>
+                                            <version>0.1.45</version>
+                                        </dependency>
+                                    </dependencies>
+                                    <stripVersion>true</stripVersion>
+                                    <!-- Dependencies overwrite each other -->
+                                    <filter>{{  assert ( files.size() == 1 ) &amp;&amp; ( files.every{ ! it.canonicalPath.contains( '.m2' ) } ); files }}</filter>
+                                    <process>{{ assert ( files.size() == 1 ) }}</process>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-523  -->
                     <!-- "Allow to specify comma-separated <targetPath>" -->
@@ -1091,9 +1211,9 @@
                                         <artifactId>groovy-all</artifactId>
                                         <version>1.9.0-beta-4</version>
                                     </dependency>
-                                    <dependenciesAtM2>true</dependenciesAtM2>
                                     <unpack>true</unpack>
-                                    <process>{{ assert files.size() == 3759 }}</process>
+                                    <filter>{{  assert ( files.size() == 1    ) &amp;&amp; ( file.canonicalPath.contains( '.m2' )); files }}</filter>
+                                    <process>{{ assert ( files.size() == 3759 ) }}</process>
                                 </resource>
                                 <resource>
                                     <description>unpack-groovy-2</description>
@@ -1103,8 +1223,8 @@
                                         <artifactId>groovy-all</artifactId>
                                         <version>1.9.0-beta-4</version>
                                     </dependency>
-                                    <dependenciesAtM2>true</dependenciesAtM2>
                                     <unpack>true</unpack>
+                                    <filter>{{  assert ( files.size()  == 1 ) &amp;&amp; ( file.canonicalPath.contains( '.m2' )); files }}</filter>
                                     <process>{{ assert (( files.size() == 0 ) &amp;&amp; ( file == null )) }}</process>
                                 </resource>
                             </resources>
@@ -1247,6 +1367,49 @@
                 <artifactId>maven-assert-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-506 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-506</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-506/1/jsch-0.1.38.jar
+                                ${outputDir}/pl-506/2/jsch-0.1.38.jar
+                                ${outputDir}/pl-506/3/jsch-0.1.38.jar
+                                ${outputDir}/pl-506/4/jsch.jar
+                                ${outputDir}/pl-506/5/jsch-0.1.38.jar
+                                ${outputDir}/pl-506/5/jsch-0.1.45.jar
+                                ${outputDir}/pl-506/6/jsch-0.1.38.jar
+                                ${outputDir}/pl-506/6/jsch-0.1.45.jar
+                                ${outputDir}/pl-506/7/jsch.jar
+                            </assertFiles>
+                            <assertEqual>
+                                ${outputDir}/pl-506/1|${outputDir}/pl-506/2
+                                ${outputDir}/pl-506/2|${outputDir}/pl-506/3
+                                ${outputDir}/pl-506/5|${outputDir}/pl-506/6
+                            </assertEqual>
+                            <assertGroovy>
+                                new File( outputDir, 'pl-506/1' ).directorySize() == 177748
+                                new File( outputDir, 'pl-506/2' ).directorySize() == 177748
+                                new File( outputDir, 'pl-506/3' ).directorySize() == 177748
+                                new File( outputDir, 'pl-506/4' ).directorySize() == 177748
+                                new File( outputDir, 'pl-506/5' ).directorySize() == 400951
+                                new File( outputDir, 'pl-506/6' ).directorySize() == 400951
+                                new File( outputDir, 'pl-506/7' ).directorySize() == 223203
+                            </assertGroovy>
+                            <shouldFailAssertEqual>
+                                ${outputDir}/pl-506/1|${outputDir}/pl-506/4
+                                ${outputDir}/pl-506/2|${outputDir}/pl-506/4
+                                ${outputDir}/pl-506/3|${outputDir}/pl-506/4
+                                ${outputDir}/pl-506/4|${outputDir}/pl-506/7
+                            </shouldFailAssertEqual>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-523 -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
