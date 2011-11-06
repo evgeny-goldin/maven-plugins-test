@@ -142,6 +142,12 @@
                             <groupId>com.goldin</groupId>
                             <artifactId>gcommons</artifactId>
                             <version>${gcommons-version}</version>
+                            <exclusions>
+                                <exclusion>
+                                    <groupId>org.slf4j</groupId>
+                                    <artifactId>slf4j-log4j12</artifactId>
+                                </exclusion>
+                            </exclusions>
                         </dependency>
                     </dependencies>
                 </plugin>
