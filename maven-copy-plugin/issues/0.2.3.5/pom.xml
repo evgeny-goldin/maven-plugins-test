@@ -56,6 +56,99 @@
                 <artifactId>maven-copy-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-523  -->
+                    <!-- "Allow to specify comma-separated <targetPath>" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-523</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetRoots>${outputDir}/pl-523</targetRoots>
+                                    <targetPath>1, 2, 3</targetPath>
+                                    <file>${mainPom}</file>
+                                    <process>{{ assert ( files.size() == 3 ) &amp;&amp; files.every{ it.lastModified() == new File( mainPom ).lastModified() }}}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-523/11, ${outputDir}/pl-523/22, ${outputDir}/pl-523/33</targetPath>
+                                    <file>${mainPom}</file>
+                                    <process>{{ assert ( files.size() == 3 ) &amp;&amp; files.every{ it.lastModified() == new File( mainPom ).lastModified() }}}</process>
+                                </resource>
+                                <resource>
+                                    <targetPaths>
+                                        <targetPath>${outputDir}/pl-523/111</targetPath>
+                                        <targetPath>${outputDir}/pl-523/222</targetPath>
+                                        <targetPath>${outputDir}/pl-523/333</targetPath>
+                                    </targetPaths>
+                                    <file>${mainPom}</file>
+                                    <process>{{ assert ( files.size() == 3 ) &amp;&amp; files.every{ it.lastModified() == new File( mainPom ).lastModified() }}}</process>
+                                </resource>
+                                <resource>
+                                    <targetRoots>${outputDir}/pl-523</targetRoots>
+                                    <targetPath>1111, 2222, 3333</targetPath>
+                                    <filtering>true</filtering>
+                                    <filterWithDollarOnly>true</filterWithDollarOnly>
+                                    <file>${mainPom}</file>
+                                    <!-- Files were filtered and their timestamp is set to "now" -->
+                                    <process>{{ assert ( files.size() == 3 ) &amp;&amp; files.every{ it.lastModified() > new File( mainPom ).lastModified() }}}</process>
+                                </resource>
+                                <resource>
+                                    <targetRoots>${outputDir}/pl-523</targetRoots>
+                                    <targetPath>a, b, c</targetPath>
+                                    <directory>${resourcesDir}</directory>
+                                    <process>
+                                    {{
+                                        assert ( files.size() == 36 ) &amp;&amp;
+                                               files.every{ File f -> f.lastModified() == new File( resourcesDir, f.name ).lastModified() }
+                                    }}
+                                    </process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-523/aa, ${outputDir}/pl-523/bb, ${outputDir}/pl-523/cc</targetPath>
+                                    <directory>${resourcesDir}</directory>
+                                    <process>
+                                    {{
+                                        assert ( files.size() == 36 ) &amp;&amp;
+                                               files.every{ File f -> f.lastModified() == new File( resourcesDir, f.name ).lastModified() }
+                                    }}
+                                    </process>
+                                </resource>
+                                <resource>
+                                    <targetPaths>
+                                        <targetPath>${outputDir}/pl-523/aaa</targetPath>
+                                        <targetPath>${outputDir}/pl-523/bbb</targetPath>
+                                        <targetPath>${outputDir}/pl-523/ccc</targetPath>
+                                    </targetPaths>
+                                    <directory>${resourcesDir}</directory>
+                                    <process>
+                                    {{
+                                        assert ( files.size() == 36 ) &amp;&amp;
+                                               files.every{ File f -> f.lastModified() == new File( resourcesDir, f.name ).lastModified() }
+                                    }}
+                                    </process>
+                                </resource>
+                                <resource>
+                                    <targetRoots>${outputDir}/pl-523</targetRoots>
+                                    <targetPath>aaaa, bbbb, cccc</targetPath>
+                                    <directory>${resourcesDir}</directory>
+                                    <filtering>true</filtering>
+                                    <filterWithDollarOnly>true</filterWithDollarOnly>
+                                    <!-- Files were not filtered (no ${ .. } expressions) and their timestamp is not modified -->
+                                    <process>
+                                    {{
+                                        assert ( files.size() == 36 ) &amp;&amp;
+                                               files.every{ File f -> f.lastModified() == new File( resourcesDir, f.name ).lastModified() }
+                                    }}
+                                    </process>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-515 -->
                     <!-- "<nonFilteredExtensions> is case-sensitive"    -->
@@ -1154,6 +1247,44 @@
                 <artifactId>maven-assert-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-523 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-523</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertEqual>
+                                ${outputDir}/pl-523/1|${outputDir}/pl-523/11
+                                ${outputDir}/pl-523/2|${outputDir}/pl-523/22
+                                ${outputDir}/pl-523/3|${outputDir}/pl-523/33
+
+                                ${outputDir}/pl-523/1|${outputDir}/pl-523/111
+                                ${outputDir}/pl-523/2|${outputDir}/pl-523/222
+                                ${outputDir}/pl-523/3|${outputDir}/pl-523/333
+
+                                ${outputDir}/pl-523/a|${outputDir}/pl-523/aa
+                                ${outputDir}/pl-523/b|${outputDir}/pl-523/bb
+                                ${outputDir}/pl-523/c|${outputDir}/pl-523/cc
+
+                                ${outputDir}/pl-523/a|${outputDir}/pl-523/aaa
+                                ${outputDir}/pl-523/b|${outputDir}/pl-523/bbb
+                                ${outputDir}/pl-523/c|${outputDir}/pl-523/ccc
+
+                                ${outputDir}/pl-523/a|${outputDir}/pl-523/aaaa
+                                ${outputDir}/pl-523/b|${outputDir}/pl-523/bbbb
+                                ${outputDir}/pl-523/c|${outputDir}/pl-523/cccc
+                            </assertEqual>
+                            <shouldFailAssertEqual>
+                                ${outputDir}/pl-523/1|${outputDir}/pl-523/1111
+                                ${outputDir}/pl-523/2|${outputDir}/pl-523/2222
+                                ${outputDir}/pl-523/3|${outputDir}/pl-523/3333
+                            </shouldFailAssertEqual>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-515 -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
