@@ -56,6 +56,44 @@
                 <artifactId>maven-copy-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-430        -->
+                    <!-- "Add "ant" and "startTime" variables to Groovy scope" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-430</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-430</targetPath>
+                                    <file>${mainPom}</file>
+                                    <process>
+                                    {{
+                                        assert project
+                                        assert session
+                                        assert mavenVersion
+                                        assert startTime
+                                        assert ant
+
+                                        def newFile = new File( file.parentFile, '111.xml' )
+                                        println "[$project][$session][$mavenVersion][$startTime][$ant]"
+                                        ant.move( file: file, tofile: newFile )
+                                        ant.echo( message: "[$project][$session][$mavenVersion][$startTime][$ant]" )
+                                        ant.script( language: 'groovy' ){
+                                            assert startTime.time > 0
+                                            assert newFile.renameTo( new File( file.parentFile, '222.xml' ))
+                                            println "[$project][$session][$mavenVersion][$startTime][$ant]"
+                                        }
+                                    }}
+                                    </process>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-506                                    -->
                     <!-- "Set <dependenciesAtM2> to "true" when there's a single dependency to operate on" -->
@@ -1367,6 +1405,21 @@
                 <artifactId>maven-assert-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-430 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-430</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-430/222.xml
+                            </assertFiles>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-506 -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
