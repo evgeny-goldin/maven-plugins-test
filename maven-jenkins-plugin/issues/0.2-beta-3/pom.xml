@@ -20,6 +20,11 @@
     </parent>
 
 
+    <properties>
+        <jobsToTest>7</jobsToTest>
+    </properties>
+
+
     <build>
         <plugins>
 
