@@ -308,7 +308,7 @@
                                         <version>${plugins-version}</version>
                                     </dependency>
                                 </dependencies>
-                                <zipEntry>META-INF/about*.txt</zipEntry>
+                                <zipEntry>META-INF/about~com.goldin.plugins~*~${plugins-version}.txt</zipEntry>
                                 <unpack>true</unpack>
                             </resource>
                         </configuration>
