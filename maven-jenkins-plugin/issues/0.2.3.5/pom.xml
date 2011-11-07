@@ -21,7 +21,7 @@
 
 
     <properties>
-        <jobsToTest>1</jobsToTest>
+        <jobsToTest>3</jobsToTest>
     </properties>
 
 
@@ -75,6 +75,20 @@
                                     <parent>pl-498-1</parent>
                                     <repository>
                                         <remote>http://google-guice.googlecode.com/svn/trunk</remote>
+                                    </repository>
+                                </job>
+                                <job>
+                                    <id>pl-498-3</id>
+                                    <parent>pl-498-1</parent>
+                                    <repository>
+                                        <remote>http://google-guice.googlecode.com/svn/tags/3.0-rc3</remote>
+                                    </repository>
+                                </job>
+                                <job>
+                                    <id>pl-498-4</id>
+                                    <parent>pl-498-1</parent>
+                                    <repository>
+                                        <remote>http://google-guice.googlecode.com/svn/tags/3.0</remote>
                                     </repository>
                                 </job>
                             </jobs>
