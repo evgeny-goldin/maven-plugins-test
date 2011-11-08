@@ -51,7 +51,7 @@
                                 <job>
                                     <id>pl-18</id>
                                     <archivingDisabled>false</archivingDisabled>
-                                    <mavenName>apache-maven-2</mavenName>
+                                    <mavenName>apache-maven-3</mavenName>
                                     <jdkName>jdk1.6.0</jdkName>
                                     <privateRepository>false</privateRepository>
                                     <scmType>git</scmType>

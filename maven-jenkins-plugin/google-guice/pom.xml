@@ -57,7 +57,7 @@
                                     <id>base</id>
                                     <abstract>true</abstract>
                                     <jdkName>jdk1.6.0</jdkName>
-                                    <mavenName>apache-maven-2</mavenName>
+                                    <mavenName>apache-maven-3</mavenName>
                                     <mavenOpts>-Xmx256m -XX:MaxPermSize=128m</mavenOpts>
                                     <daysToKeep>3</daysToKeep>
                                     <numToKeep>7</numToKeep>
