@@ -56,6 +56,80 @@
                 <artifactId>maven-copy-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-533                                           -->
+                    <!-- "Execution fails when <file> specified doesn't exist even if <failIfNotFound> is "false" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-533</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <groovyConfig>
+                                <verbose>true</verbose>
+                            </groovyConfig>
+                            <resources>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <file>no-such-file.txt</file>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <file>1/2/3/4/5/6/7/no-such-file.txt</file>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <file>${project.basedir}/no-such-file.txt</file>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <file>${project.basedir}/1/2/3/4/5/6/7/no-such-file.txt</file>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <file>user.properties</file>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <file>src/main/db/environments/user/user.properties</file>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <file>${project.basedir}/user.properties</file>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <file>${project.basedir}/src/main/db/environments/user/user.properties</file>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-509 -->
                     <!-- "Dependency filtering"                         -->
