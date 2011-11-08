@@ -20,7 +20,9 @@
 <table border="1" width="100%" cellpadding="3" cellspacing="3">
 <tr>
 <td  width="15%" valign="top">Job</td>
-<td><a href="http://evgeny-goldin.org/jenkins/job/googlecode-google-guice-2.0-maven"><strong>googlecode-google-guice-2.0-maven</strong></a></td>
+<td><a href="http://evgeny-goldin.org/jenkins/job/googlecode-google-guice-2.0-maven">
+<strong>googlecode-google-guice-2.0-maven</strong>
+</a></td>
 </tr>
 <tr>
 <td valign="top">Job type</td>
@@ -81,14 +83,20 @@
 <tr>
 <td valign="top">Invokes</td>
 <td>
-<li><a href="http://evgeny-goldin.org/jenkins/job/googlecode-facebook-java-api-trunk"><strong>googlecode-facebook-java-api-trunk</strong></a> when this job is <strong>stable</strong> or <strong>unstable</strong> but not failed
-<li><a href="http://evgeny-goldin.org/jenkins/job/googlecode-facebook-java-api-fbapi-2.0.0"><strong>googlecode-facebook-java-api-fbapi-2.0.0</strong></a> when this job is <strong>stable</strong> or <strong>unstable</strong> but not failed
+<li><a href="http://evgeny-goldin.org/jenkins/job/googlecode-facebook-java-api-trunk">
+<strong>googlecode-facebook-java-api-trunk</strong>
+</a> when this job is <strong>stable</strong> or <strong>unstable</strong> but not failed
+<li><a href="http://evgeny-goldin.org/jenkins/job/googlecode-facebook-java-api-fbapi-2.0.0">
+<strong>googlecode-facebook-java-api-fbapi-2.0.0</strong>
+</a> when this job is <strong>stable</strong> or <strong>unstable</strong> but not failed
 </td>
 </tr>
 <tr>
 <td valign="top">Invoked by</td>
 <td>
-<li><a href="http://evgeny-goldin.org/jenkins/job/gitorious-wsarena3-version1"><strong>gitorious-wsarena3-version1</strong></a> when it is <strong>stable</strong>
+<li><a href="http://evgeny-goldin.org/jenkins/job/gitorious-wsarena3-version1">
+<strong>gitorious-wsarena3-version1</strong>
+</a> when it is <strong>stable</strong>
 </td>
 </tr>
 </table>

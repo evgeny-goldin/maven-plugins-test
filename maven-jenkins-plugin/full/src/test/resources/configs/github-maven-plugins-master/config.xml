@@ -20,7 +20,9 @@
 <table border="1" width="100%" cellpadding="3" cellspacing="3">
 <tr>
 <td  width="15%" valign="top">Job</td>
-<td><a href="http://evgeny-goldin.org/jenkins/job/github-maven-plugins-master"><strong>github-maven-plugins-master</strong></a></td>
+<td><a href="http://evgeny-goldin.org/jenkins/job/github-maven-plugins-master">
+<strong>github-maven-plugins-master</strong>
+</a></td>
 </tr>
 <tr>
 <td valign="top">Job type</td>
@@ -70,7 +72,9 @@
 <tr>
 <td valign="top">Invoked by</td>
 <td>
-<li><a href="http://evgeny-goldin.org/jenkins/job/googlecode-facebook-java-api-fbapi-2.0.0"><strong>googlecode-facebook-java-api-fbapi-2.0.0</strong></a> when it is <strong>unstable</strong>
+<li><a href="http://evgeny-goldin.org/jenkins/job/googlecode-facebook-java-api-fbapi-2.0.0">
+<strong>googlecode-facebook-java-api-fbapi-2.0.0</strong>
+</a> when it is <strong>unstable</strong>
 </td>
 </tr>
 </table>

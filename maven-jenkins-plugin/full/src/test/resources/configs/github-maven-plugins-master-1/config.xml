@@ -20,7 +20,9 @@
 <table border="1" width="100%" cellpadding="3" cellspacing="3">
 <tr>
 <td  width="15%" valign="top">Job</td>
-<td><a href="http://evgeny-goldin.org/jenkins/job/github-maven-plugins-master-1"><strong>github-maven-plugins-master-1</strong></a></td>
+<td><a href="http://evgeny-goldin.org/jenkins/job/github-maven-plugins-master-1">
+<strong>github-maven-plugins-master-1</strong>
+</a></td>
 </tr>
 <tr>
 <td valign="top">Job type</td>
