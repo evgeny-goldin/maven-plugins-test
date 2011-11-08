@@ -56,6 +56,64 @@
                 <artifactId>maven-copy-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-509 -->
+                    <!-- "Dependency filtering"                         -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-509</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-509/1</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>3.1.0.RC1</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                    </dependency>
+                                    <process>{{ assert files.size() == 21 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-509/2</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>3.1.0.RC1</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                        <includeGroupIds>org.springframework</includeGroupIds>
+                                    </dependency>
+                                    <process>{{ assert files.size() == 6 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-509/3</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>3.1.0.RC1</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                        <includeArtifactIds>commons-pool, commons-logging, easymock</includeArtifactIds>
+                                    </dependency>
+                                    <process>{{ assert files.size() == 3 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-509/4</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>3.1.0.RC1</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                        <excludeArtifactIds>commons-logging, commons-pool, easymock</excludeArtifactIds>
+                                    </dependency>
+                                    <process>{{ assert files.size() == ( 21 - 3 ) }}</process>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-430        -->
                     <!-- "Add "ant" and "startTime" variables to Groovy scope" -->
@@ -1405,6 +1463,34 @@
                 <artifactId>maven-assert-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-509 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-509</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-509/1/*.jar
+                                ${outputDir}/pl-509/2/*.jar
+                                ${outputDir}/pl-509/3/*.jar
+                                ${outputDir}/pl-509/4/*.jar
+                            </assertFiles>
+                            <assertGroovy>
+                                new File( outputDir, 'pl-509/1' ).listFiles().size() == 21
+                                new File( outputDir, 'pl-509/1' ).directorySize()    == 4499219
+                                new File( outputDir, 'pl-509/2' ).listFiles().size() == 6
+                                new File( outputDir, 'pl-509/2' ).directorySize()    == 2394151
+                                new File( outputDir, 'pl-509/3' ).listFiles().size() == 3
+                                new File( outputDir, 'pl-509/3' ).directorySize()    == 250164
+                                new File( outputDir, 'pl-509/4' ).listFiles().size() == 18
+                                new File( outputDir, 'pl-509/4' ).directorySize()    == 4249055
+                            </assertGroovy>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-430 -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->

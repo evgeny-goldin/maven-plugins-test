@@ -20,6 +20,11 @@
     </parent>
 
 
+    <properties>
+        <jobsToTest>3</jobsToTest>
+    </properties>
+
+
     <build>
         <plugins>
 
@@ -55,14 +60,13 @@
                                     <doRevert>false</doRevert>
                                     <daysToKeep>10</daysToKeep>
                                     <numToKeep>10</numToKeep>
-                                    <node>ci</node>
-                                    <mavenGoals>-B -e clean deploy</mavenGoals>
+                                    <mavenGoals>-B -e clean install</mavenGoals>
                                     <buildOnSNAPSHOT>true</buildOnSNAPSHOT>
                                     <triggers>
                                         <trigger>
                                             <type>scm</type>
-                                            <description>Scheduled to run every 10 minutes on SCM changes.</description>
-                                            <expression>*/10 * * * *</expression>
+                                            <description>Scheduled to run at 1 AM nightly</description>
+                                            <expression>0 1 * * *</expression>
                                         </trigger>
                                     </triggers>
                                 </job>
@@ -70,7 +74,21 @@
                                     <id>pl-498-2</id>
                                     <parent>pl-498-1</parent>
                                     <repository>
-                                        <remote>http://google-guice.googlecode.com/svn/branches/2.0-maven/</remote>
+                                        <remote>http://google-guice.googlecode.com/svn/trunk</remote>
+                                    </repository>
+                                </job>
+                                <job>
+                                    <id>pl-498-3</id>
+                                    <parent>pl-498-1</parent>
+                                    <repository>
+                                        <remote>http://google-guice.googlecode.com/svn/tags/3.0-rc3</remote>
+                                    </repository>
+                                </job>
+                                <job>
+                                    <id>pl-498-4</id>
+                                    <parent>pl-498-1</parent>
+                                    <repository>
+                                        <remote>http://google-guice.googlecode.com/svn/tags/3.0</remote>
                                     </repository>
                                 </job>
                             </jobs>
@@ -78,7 +96,6 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
 
