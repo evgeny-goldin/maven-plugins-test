@@ -102,14 +102,15 @@
   <assignedNode>master</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <jdk>jdk1.6.0</jdk>
   <triggers class="vector">
         <hudson.triggers.SCMTrigger>
             <spec># Scheduled to run at 1 AM nightly
 0 1 * * *</spec>
         </hudson.triggers.SCMTrigger>
   </triggers>
-  <jdk>jdk1.6.0</jdk>
   <concurrentBuild>false</concurrentBuild>
   <rootPOM>pom.xml</rootPOM>
   <goals>-B -e clean install</goals>
@@ -120,6 +121,10 @@
   <usePrivateRepository>false</usePrivateRepository>
   <ignoreUpstremChanges>false</ignoreUpstremChanges>
   <archivingDisabled>false</archivingDisabled>
+  <resolveDependencies>false</resolveDependencies>
+  <processPlugins>false</processPlugins>
+  <mavenValidationLevel>0</mavenValidationLevel>
+  <runHeadless>false</runHeadless>
   <reporters>
   </reporters>
   <publishers>

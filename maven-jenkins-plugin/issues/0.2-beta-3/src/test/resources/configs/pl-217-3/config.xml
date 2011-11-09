@@ -45,10 +45,11 @@
   <assignedNode>master</assignedNode>
   <canRoam>false</canRoam>
   <disabled>true</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <jdk>(Default)</jdk>
   <triggers class="vector">
   </triggers>
-  <jdk>(Default)</jdk>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
@@ -57,16 +58,16 @@
     <hudson.tasks.Maven>
         <targets>clean</targets>
         <mavenName>apache-maven-3</mavenName>
-        <usePrivateRepository>true</usePrivateRepository>
         <pom>pom.xml</pom>
+        <usePrivateRepository>true</usePrivateRepository>
     </hudson.tasks.Maven>
     <hudson.tasks.BatchFile>
         <command>dir</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.Ant>
         <targets>clean</targets>
-        <buildFile>build file</buildFile>
         <antOpts>-Xmx128m</antOpts>
+        <buildFile>build file</buildFile>
         <properties>a = b
                                                 c = d</properties>
     </hudson.tasks.Ant>

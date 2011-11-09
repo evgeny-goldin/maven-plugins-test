@@ -121,14 +121,15 @@
   <assignedNode>master</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <jdk>jdk1.6.0</jdk>
   <triggers class="vector">
         <hudson.triggers.TimerTrigger>
             <spec># [12:00] - daily build
 0 12 * * *</spec>
         </hudson.triggers.TimerTrigger>
   </triggers>
-  <jdk>jdk1.6.0</jdk>
   <concurrentBuild>false</concurrentBuild>
   <rootPOM>pom.xml</rootPOM>
   <goals>-e clean install</goals>
@@ -139,6 +140,10 @@
   <usePrivateRepository>false</usePrivateRepository>
   <ignoreUpstremChanges>true</ignoreUpstremChanges>
   <archivingDisabled>false</archivingDisabled>
+  <resolveDependencies>false</resolveDependencies>
+  <processPlugins>false</processPlugins>
+  <mavenValidationLevel>0</mavenValidationLevel>
+  <runHeadless>false</runHeadless>
   <reporters>
   </reporters>
   <publishers>

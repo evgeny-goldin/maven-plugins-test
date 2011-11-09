@@ -56,10 +56,11 @@
   <assignedNode>master</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <jdk>(Default)</jdk>
   <triggers class="vector">
   </triggers>
-  <jdk>(Default)</jdk>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Maven>

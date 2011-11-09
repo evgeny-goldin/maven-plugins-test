@@ -62,57 +62,54 @@
     <!-- ~~~~~~~~~~~~~~ -->
     <!-- Git repository -->
     <!-- ~~~~~~~~~~~~~~ -->
-    <configVersion>1</configVersion>
-    <remoteRepositories>
-      <org.spearce.jgit.transport.RemoteConfig>
-        <string>origin</string>
-        <int>5</int>
-        <string>fetch</string>
-        <string>+refs/heads/*:refs/remotes/origin/*</string>
-        <string>receivepack</string>
-        <string>git-upload-pack</string>
-        <string>uploadpack</string>
-        <string>git-upload-pack</string>
-        <string>url</string>
-        <string>git://github.com/evgeny-goldin/maven-plugins-test.git</string>
-        <string>tagopt</string>
-        <string></string>
-      </org.spearce.jgit.transport.RemoteConfig>
-    </remoteRepositories>
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+        <hudson.plugins.git.UserRemoteConfig>
+            <name>origin</name>
+            <refspec>+refs/heads/*:refs/remotes/origin/*</refspec>
+            <url>git://github.com/evgeny-goldin/maven-plugins-test.git</url>
+        </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
     <branches>
-      <hudson.plugins.git.BranchSpec>
-        <name>master</name>
-      </hudson.plugins.git.BranchSpec>
+        <hudson.plugins.git.BranchSpec>
+            <name>master</name>
+        </hudson.plugins.git.BranchSpec>
     </branches>
-    <localBranch></localBranch>
-    <mergeOptions/>
+    <recursiveSubmodules>false</recursiveSubmodules>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
     <authorOrCommitter>false</authorOrCommitter>
     <clean>false</clean>
     <wipeOutWorkspace>false</wipeOutWorkspace>
+    <pruneBranches>false</pruneBranches>
+    <remotePoll>false</remotePoll>
     <buildChooser class="hudson.plugins.git.util.DefaultBuildChooser"/>
     <gitTool>Default</gitTool>
     <submoduleCfg class="list"/>
     <relativeTargetDir></relativeTargetDir>
     <excludedRegions></excludedRegions>
     <excludedUsers></excludedUsers>
+    <gitConfigName></gitConfigName>
+    <gitConfigEmail></gitConfigEmail>
+    <skipTag>false</skipTag>
+    <scmName></scmName>
   </scm>
   <assignedNode>master</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <jdk>(Default)</jdk>
   <triggers class="vector">
   </triggers>
-  <jdk>(Default)</jdk>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Maven>
         <targets>-e -B -U clean install</targets>
         <mavenName>apache-maven-3</mavenName>
         <jvmOptions>-Xmx256m -XX:MaxPermSize=250m</jvmOptions>
+        <pom>pom.xml</pom>
         <properties>plugins-version = 0.2.3.5-SNAPSHOT</properties>
         <usePrivateRepository>false</usePrivateRepository>
-        <pom>pom.xml</pom>
     </hudson.tasks.Maven>
   </builders>
   <publishers>
