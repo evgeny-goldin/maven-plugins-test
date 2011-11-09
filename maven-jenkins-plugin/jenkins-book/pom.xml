@@ -19,13 +19,20 @@
     </properties>
 
 
+    <parent>
+        <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+        <artifactId>maven-jenkins-plugin</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+
     <build>
         <plugins>
 
             <plugin>
                 <groupId>com.goldin.plugins</groupId>
                 <artifactId>maven-jenkins-plugin</artifactId>
-                <version>0.2.3.4</version>
+                <version>${plugins-version}</version>
                 <executions>
                     <execution>
                         <id>example-job</id>
@@ -89,12 +96,6 @@
                                     <daysToKeep>5</daysToKeep>
                                     <useUpdate>false</useUpdate>
                                     <mavenGoals>-e clean install</mavenGoals>
-<!--
-                                    <trigger>
-                                        <type>timer</type>
-                                        <expression>0 0 * * *</expression>
-                                    </trigger>
--->
                                     <repository>
                                         <remote>http://google-guice.googlecode.com/svn/trunk/</remote>
                                     </repository>
@@ -203,7 +204,7 @@
                                     <maven>
                                         <mavenName>apache-maven-3</mavenName>
                                         <jvmOptions>-Xmx128m -XX:MaxPermSize=128m -ea</jvmOptions>
-                                        <properties>plugins-version = 0.2.3</properties>
+                                        <properties>plugins-version = ${plugins-version}</properties>
                                     </maven>
                                     <shell><command>pwd; ls -al; du -hs .</command></shell>
                                 </tasks>
@@ -220,7 +221,7 @@
             <plugin>
                 <groupId>com.goldin.plugins</groupId>
                 <artifactId>maven-assert-plugin</artifactId>
-                <version>0.2.3.4</version>
+                <version>${plugins-version}</version>
                 <executions>
                     <execution>
                         <id>verify-configs</id>

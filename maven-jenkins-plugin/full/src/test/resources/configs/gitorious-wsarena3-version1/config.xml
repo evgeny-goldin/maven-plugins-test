@@ -32,7 +32,7 @@
 </tr>
 <tr>
 <td valign="top">Maven</td>
-<td>apache-maven-2</td>
+<td>apache-maven-3</td>
 </tr>
 <tr>
 <td valign="top">Maven goals</td>
@@ -139,7 +139,7 @@
   <concurrentBuild>false</concurrentBuild>
   <rootPOM>pom.xml</rootPOM>
   <goals>-e clean install</goals>
-  <mavenName>apache-maven-2</mavenName>
+  <mavenName>apache-maven-3</mavenName>
   <mavenOpts></mavenOpts>
   <aggregatorStyleBuild>true</aggregatorStyleBuild>
   <incrementalBuild>false</incrementalBuild>

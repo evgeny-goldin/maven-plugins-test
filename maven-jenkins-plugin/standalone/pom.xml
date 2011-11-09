@@ -33,13 +33,20 @@
     </pluginRepositories>
 
 
+    <parent>
+        <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+        <artifactId>maven-jenkins-plugin</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+
     <build>
         <plugins>
 
             <plugin>
                 <groupId>com.goldin.plugins</groupId>
                 <artifactId>maven-jenkins-plugin</artifactId>
-                <version>0.2.3.4</version>
+                <version>${plugins-version}</version>
                 <executions>
                     <execution>
                         <id>generate-jenkins-jobs</id>
