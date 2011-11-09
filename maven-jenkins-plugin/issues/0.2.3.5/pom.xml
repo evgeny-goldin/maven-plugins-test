@@ -121,6 +121,8 @@
                                         <remote>${maven-plugins-repo}</remote>
                                         <gitBranch>dev</gitBranch>
                                         <gitLocalBranch>dev</gitLocalBranch>
+                                        <gitLocalSubdirectory>dir</gitLocalSubdirectory>
+                                        <gitRemotePolling>true</gitRemotePolling>
                                         <gitConfigName>Evgeny Goldin</gitConfigName>
                                         <gitConfigEmail>evgenyg@gmail.com</gitConfigEmail>
                                         <gitMergeRepo>origin</gitMergeRepo>

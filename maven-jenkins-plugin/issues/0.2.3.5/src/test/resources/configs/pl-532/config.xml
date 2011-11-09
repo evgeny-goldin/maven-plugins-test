@@ -103,14 +103,14 @@
     <clean>true</clean>
     <wipeOutWorkspace>true</wipeOutWorkspace>
     <pruneBranches>false</pruneBranches>
-    <remotePoll>false</remotePoll>
+    <remotePoll>true</remotePoll>
     <buildChooser class="hudson.plugins.git.util.DefaultBuildChooser"/>
     <gitTool>Default</gitTool>
     <browser class="hudson.plugins.git.browser.GithubWeb">
       <url>https://github.com/evgeny-goldin/maven-plugins</url>
     </browser>
     <submoduleCfg class="list"/>
-    <relativeTargetDir></relativeTargetDir>
+    <relativeTargetDir>dir</relativeTargetDir>
     <excludedRegions></excludedRegions>
     <excludedUsers></excludedUsers>
     <gitConfigName>Evgeny Goldin</gitConfigName>
