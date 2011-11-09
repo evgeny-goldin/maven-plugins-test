@@ -212,7 +212,6 @@ du -hs .
                                     </shell>
                                     <maven>
                                         <mavenName>apache-maven-3</mavenName>
-                                        <targets>-B -e clean install</targets>
                                         <jvmOptions>-Xmx256m -XX:MaxPermSize=128m -Dmaven.repo.local=${localM2Repo}</jvmOptions>
                                         <properties>plugins-version = ${plugins-version-for-jobs}</properties>
                                     </maven>
