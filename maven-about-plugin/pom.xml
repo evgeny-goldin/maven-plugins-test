@@ -244,6 +244,7 @@
                         </goals>
                         <phase>verify</phase>
                         <configuration>
+                            <runIf>{{ slowTests }}</runIf>
                             <resource>
                                 <targetPath>${outputDir}/pl-483</targetPath>
                                 <dependencies>
@@ -384,6 +385,7 @@
                         </goals>
                         <phase>verify</phase>
                         <configuration>
+                            <runIf>{{ slowTests }}</runIf>
                             <assertFiles>
                                 ${outputDir}/pl-483/about~com.goldin.plugins~duplicates-finder-plugin~${plugins-version}.txt
                                 ${outputDir}/pl-483/about~com.goldin.plugins~maven-about-plugin~${plugins-version}.txt
