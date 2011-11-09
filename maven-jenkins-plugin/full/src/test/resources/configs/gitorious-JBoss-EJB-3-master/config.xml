@@ -68,6 +68,10 @@
 </td>
 </tr>
 </table>]]></description>
+  <logRotator>
+    <daysToKeep>3</daysToKeep>
+    <numToKeep>3</numToKeep>
+  </logRotator>
   <keepDependencies>false</keepDependencies>
   <properties>
   </properties>

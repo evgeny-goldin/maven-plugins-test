@@ -100,7 +100,7 @@
 </table>]]></description>
   <logRotator>
     <daysToKeep>7</daysToKeep>
-    <numToKeep>-1</numToKeep>
+    <numToKeep>3</numToKeep>
   </logRotator>
   <keepDependencies>false</keepDependencies>
   <properties>
