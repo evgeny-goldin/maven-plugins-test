@@ -16,6 +16,7 @@
     <properties>
         <configs-outputDirectory>${user.home}/.jenkins/jobs</configs-outputDirectory>
         <maven-plugins-repo>git@github.com:evgeny-goldin/maven-plugins.git</maven-plugins-repo>
+        <jobsToTest>7</jobsToTest>
     </properties>
 
 
@@ -209,31 +210,6 @@
                                     <shell><command>pwd; ls -al; du -hs .</command></shell>
                                 </tasks>
                             </job>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-            <!-- Verifying configs generated have not changed -->
-            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-
-            <plugin>
-                <groupId>com.goldin.plugins</groupId>
-                <artifactId>maven-assert-plugin</artifactId>
-                <version>${plugins-version}</version>
-                <executions>
-                    <execution>
-                        <id>verify-configs</id>
-                        <goals>
-                            <goal>assert</goal>
-                        </goals>
-                        <phase>test</phase>
-                        <configuration>
-                            <endOfLine>windows</endOfLine>
-                            <assertEqual>
-                                ${project.basedir}/src/test/resources/configs|${configs-outputDirectory}|**/*.xml
-                            </assertEqual>
                         </configuration>
                     </execution>
                 </executions>
