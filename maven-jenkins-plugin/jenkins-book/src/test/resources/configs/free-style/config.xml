@@ -97,13 +97,16 @@
     <hudson.tasks.Maven>
         <targets>-e clean install</targets>
         <mavenName>apache-maven-3</mavenName>
-        <jvmOptions>-Xmx256m -XX:MaxPermSize=128m -ea</jvmOptions>
+        <jvmOptions>-Xmx256m -XX:MaxPermSize=128m -Dmaven.repo.local=/home/evgenyg/.m2/repo</jvmOptions>
         <pom>pom.xml</pom>
         <properties>plugins-version = 0.2.3.5-SNAPSHOT</properties>
         <usePrivateRepository>false</usePrivateRepository>
     </hudson.tasks.Maven>
     <hudson.tasks.Shell>
-        <command>pwd; ls -al; du -hs .</command>
+        <command>pwd
+                                            rm -rf /home/evgenyg/.m2/repo/com/goldin
+                                            ls -al
+                                            du -hs .</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>

@@ -26,6 +26,7 @@
         <maven-plugins-test-repo>git://github.com/evgeny-goldin/maven-plugins-test.git</maven-plugins-test-repo>
         <jobsToTest>0</jobsToTest>
         <plugins-version-for-jobs>0.2.3.5-SNAPSHOT</plugins-version-for-jobs>
+        <localM2Repo>/home/evgenyg/.m2/repo</localM2Repo>
     </properties>
 
 
