@@ -21,7 +21,7 @@
 
 
     <properties>
-        <jobsToTest>3</jobsToTest>
+        <jobsToTest>4</jobsToTest>
     </properties>
 
 
