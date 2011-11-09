@@ -173,6 +173,7 @@
                                     <parent>pl-474-1</parent>
                                     <process>
                                     {{
+                                        <!-- http://groovy.codehaus.org/gapi/groovy/util/Node.html -->
                                         def scm = node.scm[0]
                                         scm.appendNode( 'localBranch', 'dev'  )
                                         assert scm.remove( scm.clean[0] )

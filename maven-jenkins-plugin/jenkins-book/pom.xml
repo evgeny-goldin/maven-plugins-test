@@ -203,7 +203,7 @@
                                     <shell>
                                         <command>
 pwd
-rm -rf ${localM2Repo}/com/goldin
+${pluginsRepoCleanup}
 ls -al
 du -hs .
                                         </command>
