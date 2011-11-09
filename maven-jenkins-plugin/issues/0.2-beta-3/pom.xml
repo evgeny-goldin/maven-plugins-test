@@ -186,7 +186,7 @@
                                         <parameter>
                                             <type>string</type>
                                             <name>plugins-version</name>
-                                            <value>${plugins-version}</value>
+                                            <value>${plugins-version-for-jobs}</value>
                                             <description>Plugins version to test</description>
                                         </parameter>
                                     </parameters>
@@ -195,7 +195,7 @@
                                             <mavenName>apache-maven-3</mavenName>
                                             <jvmOptions>-Xmx256m -XX:MaxPermSize=250m</jvmOptions>
                                             <targets>-e -B -U clean install</targets>
-                                            <properties>plugins-version = ${plugins-version}</properties>
+                                            <properties>plugins-version = ${plugins-version-for-jobs}</properties>
                                         </maven>
                                     </tasks>
                                 </job>
@@ -212,7 +212,7 @@
                                         <parameter>
                                             <type>string</type>
                                             <name>plugins-version</name>
-                                            <value>${plugins-version}</value>
+                                            <value>${plugins-version-for-jobs}</value>
                                             <description>Plugins version to test</description>
                                         </parameter>
                                     </parameters>
@@ -221,7 +221,7 @@
                                             <mavenName>apache-maven-3</mavenName>
                                             <jvmOptions>-Xmx256m -XX:MaxPermSize=250m</jvmOptions>
                                             <targets>-e -B -U clean install</targets>
-                                            <properties>plugins-version = ${plugins-version}</properties>
+                                            <properties>plugins-version = ${plugins-version-for-jobs}</properties>
                                         </maven>
                                     </tasks>
                                 </job>
