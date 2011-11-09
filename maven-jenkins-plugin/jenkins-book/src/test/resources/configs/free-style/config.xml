@@ -100,7 +100,7 @@
     <hudson.tasks.Maven>
         <targets>-e clean install</targets>
         <mavenName>apache-maven-3</mavenName>
-        <jvmOptions>-Xmx128m -XX:MaxPermSize=128m -ea</jvmOptions>
+        <jvmOptions>-Xmx256m -XX:MaxPermSize=128m -ea</jvmOptions>
         <properties>plugins-version = 0.2.3.5-SNAPSHOT</properties>
         <usePrivateRepository>false</usePrivateRepository>
         <pom>pom.xml</pom>
