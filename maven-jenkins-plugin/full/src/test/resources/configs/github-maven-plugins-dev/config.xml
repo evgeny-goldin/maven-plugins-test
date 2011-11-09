@@ -52,7 +52,7 @@
 <td valign="top">Repositories</td>
 <td>
 <li><a href="http://github.com/evgeny-goldin/maven-plugins/">
-<strong><code>git@github.com:evgeny-goldin/maven-plugins.git</code></strong>
+<strong><code>git://github.com/evgeny-goldin/maven-plugins.git</code></strong>
 </a>
 : <a href="http://github.com/evgeny-goldin/maven-plugins/tree/dev/">
 <strong><code>dev</code></strong>
@@ -80,7 +80,7 @@
         <hudson.plugins.git.UserRemoteConfig>
             <name>origin</name>
             <refspec>+refs/heads/*:refs/remotes/origin/*</refspec>
-            <url>git@github.com:evgeny-goldin/maven-plugins.git</url>
+            <url>git://github.com/evgeny-goldin/maven-plugins.git</url>
         </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>

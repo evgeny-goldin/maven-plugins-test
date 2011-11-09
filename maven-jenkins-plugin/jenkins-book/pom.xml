@@ -14,8 +14,6 @@
 
 
     <properties>
-        <configs-outputDirectory>${user.home}/.jenkins/jobs</configs-outputDirectory>
-        <maven-plugins-repo>git@github.com:evgeny-goldin/maven-plugins.git</maven-plugins-repo>
         <jobsToTest>7</jobsToTest>
     </properties>
 
@@ -54,7 +52,7 @@
                                 <mavenName>apache-maven-3</mavenName>
                                 <jdkName>jdk1.6.0</jdkName>
                                 <repository>
-                                    <remote>git://github.com/evgeny-goldin/maven-plugins.git</remote>
+                                    <remote>${maven-plugins-repo}</remote>
                                 </repository>
                             </job>
                         </configuration>
@@ -199,7 +197,7 @@
                                 <jobType>free</jobType>
                                 <scmType>git</scmType>
                                 <repository>
-                                    <remote>git://github.com/evgeny-goldin/maven-plugins-test.git</remote>
+                                    <remote>${maven-plugins-test-repo}</remote>
                                 </repository>
                                 <tasks>
                                     <shell>
@@ -212,7 +210,7 @@ du -hs .
                                     </shell>
                                     <maven>
                                         <mavenName>apache-maven-3</mavenName>
-                                        <jvmOptions>-Xmx256m -XX:MaxPermSize=128m -Dmaven.repo.local=${localM2Repo}</jvmOptions>
+                                        <jvmOptions>-Xmx512m -XX:MaxPermSize=512m -Dmaven.repo.local=${localM2Repo}</jvmOptions>
                                         <properties>plugins-version = ${plugins-version-for-jobs}</properties>
                                     </maven>
                                     <shell>

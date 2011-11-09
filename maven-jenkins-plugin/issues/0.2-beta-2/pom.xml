@@ -56,7 +56,7 @@
                                     <privateRepository>false</privateRepository>
                                     <scmType>git</scmType>
                                     <repository>
-                                        <remote>git://github.com/evgeny-goldin/maven-plugins.git</remote>
+                                        <remote>${maven-plugins-repo}</remote>
                                     </repository>
                                 </job>
                             </jobs>
