@@ -66,7 +66,7 @@
 &lt;/table&gt;</description>
   <logRotator>
     <daysToKeep>3</daysToKeep>
-    <numToKeep>3</numToKeep>
+    <numToKeep>1</numToKeep>
   </logRotator>
   <keepDependencies>false</keepDependencies>
   <properties/>

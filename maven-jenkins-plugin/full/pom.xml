@@ -274,6 +274,7 @@
                                 <job>
                                     <id>generate-jobs</id>
                                     <parent>base-git</parent>
+                                    <numToKeep>1</numToKeep>
                                     <repository>
                                         <remote>${maven-plugins-test-repo}</remote>
                                     </repository>
