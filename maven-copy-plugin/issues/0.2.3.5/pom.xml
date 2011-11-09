@@ -127,6 +127,37 @@
                                     <filtering>true</filtering>
                                     <process>{{ assert files.size() == 0 }}</process>
                                 </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <directory>no-such-directory</directory>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <directory>no-such-directory</directory>
+                                    <include>no-such-file.txt</include>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <directory>${project.basedir}</directory>
+                                    <include>no-such-file.txt</include>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <directory>${project.basedir}</directory>
+                                    <include>**/*.nothing</include>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
                             </resources>
                         </configuration>
                     </execution>
