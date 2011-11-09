@@ -202,18 +202,22 @@
                                     <remote>git://github.com/evgeny-goldin/maven-plugins-test.git</remote>
                                 </repository>
                                 <tasks>
+                                    <shell>
+                                        <command>
+pwd
+rm -rf ${localM2Repo}/com/goldin
+ls -al
+du -hs .
+                                        </command>
+                                    </shell>
                                     <maven>
                                         <mavenName>apache-maven-3</mavenName>
+                                        <targets>-B -e clean install</targets>
                                         <jvmOptions>-Xmx256m -XX:MaxPermSize=128m -Dmaven.repo.local=${localM2Repo}</jvmOptions>
                                         <properties>plugins-version = ${plugins-version-for-jobs}</properties>
                                     </maven>
                                     <shell>
-                                        <command>
-                                            pwd
-                                            rm -rf ${localM2Repo}/com/goldin
-                                            ls -al
-                                            du -hs .
-                                        </command>
+                                        <command>du -hs .</command>
                                     </shell>
                                 </tasks>
                             </job>
