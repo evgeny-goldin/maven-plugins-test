@@ -286,7 +286,6 @@
                                         def prebuilders = new Node( node,        'prebuilders' )
                                         def shell       = new Node( prebuilders, 'hudson.tasks.Shell' )
                                         def command     = new Node( shell,       'command' , pluginsRepoCleanup )
-                                        node
                                     }}
                                     </process>
                                 </job>
