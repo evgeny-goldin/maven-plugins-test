@@ -369,7 +369,7 @@
                                 new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '[os.version]' )
 
                                 new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '[M2_HOME]' )
-                                new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '[PATH]' )
+                                new File( outputDir, 'unpack/About/fff.txt' ).text.toLowerCase().contains( '[path]' )
 
                                 new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '+- log4j:log4j:jar:1.2.16:compile' )
                                 new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '+- com.jcraft:jsch:jar:0.1.44-1:compile' )
