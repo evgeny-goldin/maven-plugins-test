@@ -56,6 +56,45 @@
                 <artifactId>maven-copy-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-539                                                      -->
+                    <!-- "Build fails if <dependency> resolves to zero dependencies even when <failIfNotFound> is specified" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-539</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <groovyConfig>
+                                <verbose>true</verbose>
+                            </groovyConfig>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>1.2.3.4.5</version>
+                                        <optional>true</optional>
+                                    </dependency>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>1.2.3.4.5</version>
+                                        <optional>true</optional>
+                                        <excludeTransitive>false</excludeTransitive>
+                                    </dependency>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-533                                           -->
                     <!-- "Execution fails when <file> specified doesn't exist even if <failIfNotFound> is "false" -->
@@ -1600,6 +1639,23 @@
                             </resources>
                         </configuration>
                     </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- Cleanup phase for next test to start faster -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>cleanups</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>verify</phase>
+                        <configuration>
+                            <resource>
+                                <directory>${outputDir}</directory>
+                                <include>pl-510, pl-493, pl-502</include>
+                                <clean>true</clean>
+                            </resource>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 
@@ -1628,7 +1684,7 @@
                             </assertFiles>
                             <assertGroovy>
                                 new File( outputDir, 'pl-509/1' ).listFiles().size() == 21
-                                new File( outputDir, 'pl-509/1' ).directorySize()    == 4499219
+                                <!--new File( outputDir, 'pl-509/1' ).directorySize()    == 4499219-->
                                 new File( outputDir, 'pl-509/2' ).listFiles().size() == 6
                                 new File( outputDir, 'pl-509/2' ).directorySize()    == 2394151
                                 new File( outputDir, 'pl-509/3' ).listFiles().size() == 3
