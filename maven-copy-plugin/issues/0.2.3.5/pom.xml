@@ -172,6 +172,9 @@
                         </goals>
                         <phase>initialize</phase>
                         <configuration>
+                            <groovyConfig>
+                                <verbose>true</verbose>
+                            </groovyConfig>
                             <resources>
                                 <resource>
                                     <targetPath>${outputDir}/pl-509/1</targetPath>
@@ -215,6 +218,43 @@
                                         <excludeArtifactIds>commons-logging, commons-pool, easymock</excludeArtifactIds>
                                     </dependency>
                                     <process>{{ assert files.size() == ( 21 - 3 ) }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-509/5</targetPath>
+                                    <dependency>
+                                        <groupId>ch.qos.logback</groupId>
+                                        <artifactId>logback-core</artifactId>
+                                        <version>1.0.0</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                    </dependency>
+                                    <process>{{ assert files.size() == 6 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-509/6</targetPath>
+                                    <dependency>
+                                        <groupId>ch.qos.logback</groupId>
+                                        <artifactId>logback-core</artifactId>
+                                        <version>1.0.0</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                        <!-- "org.easytesting:fest-assert, org.easytesting:fest-util" -->
+                                        <excludeGroupIds>org.easytesting</excludeGroupIds>
+                                        <!-- "org.easymock:easymock" -->
+                                        <excludeArtifactIds>easymock</excludeArtifactIds>
+                                        <excludeTypes>zip</excludeTypes>
+                                    </dependency>
+                                    <process>{{ assert files.size() == 3 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-509/7</targetPath>
+                                    <dependency>
+                                        <groupId>ch.qos.logback</groupId>
+                                        <artifactId>logback-core</artifactId>
+                                        <version>1.0.0</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                        <excludeTypes>jar</excludeTypes>
+                                    </dependency>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <process>{{ assert files.size() == 0 }}</process>
                                 </resource>
                             </resources>
                         </configuration>
@@ -1583,6 +1623,8 @@
                                 ${outputDir}/pl-509/2/*.jar
                                 ${outputDir}/pl-509/3/*.jar
                                 ${outputDir}/pl-509/4/*.jar
+                                ${outputDir}/pl-509/5/*.jar
+                                ${outputDir}/pl-509/6/*.jar
                             </assertFiles>
                             <assertGroovy>
                                 new File( outputDir, 'pl-509/1' ).listFiles().size() == 21
@@ -1593,6 +1635,11 @@
                                 new File( outputDir, 'pl-509/3' ).directorySize()    == 250164
                                 new File( outputDir, 'pl-509/4' ).listFiles().size() == 18
                                 new File( outputDir, 'pl-509/4' ).directorySize()    == 4249055
+                                new File( outputDir, 'pl-509/5' ).listFiles().size() == 6
+                                new File( outputDir, 'pl-509/5' ).directorySize()    == 9595383
+                                new File( outputDir, 'pl-509/6' ).listFiles().size() == 3
+                                new File( outputDir, 'pl-509/6' ).directorySize()    == 9408245
+                              ! new File( outputDir, 'pl-509/7' ).directory
                             </assertGroovy>
                         </configuration>
                     </execution>
