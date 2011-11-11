@@ -2101,7 +2101,7 @@
                         <configuration>
                             <resource>
                                 <directory>${outputDir}</directory>
-                                <include>pl-510, pl-493, pl-502, pl-539, pl-522, pl-509, pl-430</include>
+                                <include>pl-430, pl-493, pl-502, pl-509, pl-510, pl-522, pl-539</include>
                                 <verbose>false</verbose>
                                 <clean>true</clean>
                                 <cleanEmptyDirectories>true</cleanEmptyDirectories>
@@ -2642,23 +2642,23 @@
                         <phase>verify</phase>
                         <configuration>
                             <shouldFailAssertFiles>
-                                <!-- pl-510, pl-493, pl-502, pl-539, pl-522, pl-509, pl-430 -->
-                                ${outputDir}/pl-510
+                                <!-- pl-430, pl-493, pl-502, pl-509, pl-510, pl-522, pl-539 -->
+                                ${outputDir}/pl-430
                                 ${outputDir}/pl-493
                                 ${outputDir}/pl-502
-                                ${outputDir}/pl-539
-                                ${outputDir}/pl-522
                                 ${outputDir}/pl-509
-                                ${outputDir}/pl-430
+                                ${outputDir}/pl-510
+                                ${outputDir}/pl-522
+                                ${outputDir}/pl-539
                             </shouldFailAssertFiles>
                             <assertGroovy>
-                              ! new File( outputDir, 'pl-510' ).directory
+                              ! new File( outputDir, 'pl-430' ).directory
                               ! new File( outputDir, 'pl-493' ).directory
                               ! new File( outputDir, 'pl-502' ).directory
-                              ! new File( outputDir, 'pl-539' ).directory
-                              ! new File( outputDir, 'pl-522' ).directory
                               ! new File( outputDir, 'pl-509' ).directory
-                              ! new File( outputDir, 'pl-430' ).directory
+                              ! new File( outputDir, 'pl-510' ).directory
+                              ! new File( outputDir, 'pl-522' ).directory
+                              ! new File( outputDir, 'pl-539' ).directory
                             </assertGroovy>
                         </configuration>
                     </execution>
