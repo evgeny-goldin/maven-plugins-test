@@ -71,6 +71,9 @@
                                 <verbose>true</verbose>
                             </groovyConfig>
                             <resources>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Retrieving optional non-existing dependency -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
                                     <targetPath>${outputDir}/pl-539</targetPath>
                                     <dependency>
@@ -78,17 +81,6 @@
                                         <artifactId>spring-context</artifactId>
                                         <version>1.2.3.4.5</version>
                                         <optional>true</optional>
-                                    </dependency>
-                                    <process>{{ assert files.size() == 0 }}</process>
-                                </resource>
-                                <resource>
-                                    <targetPath>${outputDir}/pl-539</targetPath>
-                                    <dependency>
-                                        <groupId>org.springframework</groupId>
-                                        <artifactId>spring-context</artifactId>
-                                        <version>1.2.3.4.5</version>
-                                        <optional>true</optional>
-                                        <excludeTransitive>false</excludeTransitive>
                                     </dependency>
                                     <process>{{ assert files.size() == 0 }}</process>
                                 </resource>
@@ -109,11 +101,113 @@
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
                                         <version>1.2.3.4.5</version>
+                                    </dependency>
+                                    <shouldFailWith>MojoExecutionException</shouldFailWith>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Retrieving optional non-existing dependency transitively -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>1.2.3.4.5</version>
+                                        <optional>true</optional>
+                                        <excludeTransitive>false</excludeTransitive>
+                                    </dependency>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>1.2.3.4.5</version>
                                         <optional>true</optional>
                                         <excludeTransitive>false</excludeTransitive>
                                     </dependency>
                                     <process>{{ assert files.size() > 0 }}</process>
                                     <shouldFailWith>AssertionError</shouldFailWith>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>1.2.3.4.5</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                    </dependency>
+                                    <shouldFailWith>MojoExecutionException</shouldFailWith>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Retrieving non-existing dependency with <failIfNotFound> set to false -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>1.2.3.4.5</version>
+                                    </dependency>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>1.2.3.4.5</version>
+                                    </dependency>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <process>{{ assert files.size() > 0 }}</process>
+                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>1.2.3.4.5</version>
+                                    </dependency>
+                                    <shouldFailWith>MojoExecutionException</shouldFailWith>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Retrieving non-existing dependency transitively with <failIfNotFound> set to false -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>1.2.3.4.5</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                    </dependency>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>1.2.3.4.5</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                    </dependency>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <process>{{ assert files.size() > 0 }}</process>
+                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>1.2.3.4.5</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                    </dependency>
+                                    <shouldFailWith>MojoExecutionException</shouldFailWith>
                                 </resource>
                             </resources>
                         </configuration>
@@ -143,9 +237,25 @@
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
                                     <targetPath>${outputDir}</targetPath>
+                                    <file>no-such-file.txt</file>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() > 0 }}</process>
+                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
                                     <file>1/2/3/4/5/6/7/no-such-file.txt</file>
                                     <filtering>true</filtering>
                                     <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <file>1/2/3/4/5/6/7/no-such-file.txt</file>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() > 0 }}</process>
+                                    <shouldFailWith>AssertionError</shouldFailWith>
                                 </resource>
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
@@ -157,9 +267,25 @@
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
                                     <targetPath>${outputDir}</targetPath>
+                                    <file>${project.basedir}/no-such-file.txt</file>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() > 0 }}</process>
+                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
                                     <file>${project.basedir}/1/2/3/4/5/6/7/no-such-file.txt</file>
                                     <filtering>true</filtering>
                                     <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <file>${project.basedir}/1/2/3/4/5/6/7/no-such-file.txt</file>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() > 0 }}</process>
+                                    <shouldFailWith>AssertionError</shouldFailWith>
                                 </resource>
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
@@ -171,9 +297,25 @@
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
                                     <targetPath>${outputDir}</targetPath>
+                                    <file>user.properties</file>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() > 0 }}</process>
+                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
                                     <file>src/main/db/environments/user/user.properties</file>
                                     <filtering>true</filtering>
                                     <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <file>src/main/db/environments/user/user.properties</file>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() > 0 }}</process>
+                                    <shouldFailWith>AssertionError</shouldFailWith>
                                 </resource>
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
@@ -185,6 +327,14 @@
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
                                     <targetPath>${outputDir}</targetPath>
+                                    <file>${project.basedir}/user.properties</file>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() > 0 }}</process>
+                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
                                     <file>${project.basedir}/src/main/db/environments/user/user.properties</file>
                                     <filtering>true</filtering>
                                     <process>{{ assert files.size() == 0 }}</process>
@@ -192,6 +342,14 @@
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
                                     <targetPath>${outputDir}</targetPath>
+                                    <file>${project.basedir}/src/main/db/environments/user/user.properties</file>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() > 0 }}</process>
+                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
                                     <directory>no-such-directory</directory>
                                     <filtering>true</filtering>
                                     <process>{{ assert files.size() == 0 }}</process>
@@ -200,6 +358,31 @@
                                     <failIfNotFound>false</failIfNotFound>
                                     <targetPath>${outputDir}</targetPath>
                                     <directory>no-such-directory</directory>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() > 0 }}</process>
+                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <directory>no-such-directory</directory>
+                                    <include>no-such-file.txt</include>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <directory>no-such-directory</directory>
+                                    <include>no-such-file.txt</include>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() > 0 }}</process>
+                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <directory>${project.basedir}</directory>
                                     <include>no-such-file.txt</include>
                                     <filtering>true</filtering>
                                     <process>{{ assert files.size() == 0 }}</process>
@@ -209,6 +392,15 @@
                                     <targetPath>${outputDir}</targetPath>
                                     <directory>${project.basedir}</directory>
                                     <include>no-such-file.txt</include>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() > 0 }}</process>
+                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <directory>${project.basedir}</directory>
+                                    <include>**/*.nothing</include>
                                     <filtering>true</filtering>
                                     <process>{{ assert files.size() == 0 }}</process>
                                 </resource>
@@ -218,7 +410,8 @@
                                     <directory>${project.basedir}</directory>
                                     <include>**/*.nothing</include>
                                     <filtering>true</filtering>
-                                    <process>{{ assert files.size() == 0 }}</process>
+                                    <process>{{ assert files.size() > 0 }}</process>
+                                    <shouldFailWith>AssertionError</shouldFailWith>
                                 </resource>
                             </resources>
                         </configuration>
@@ -1530,6 +1723,19 @@
                                     <filter>{{  assert ( files.size()  == 1 ) &amp;&amp; ( file.canonicalPath.contains( '.m2' )); files }}</filter>
                                     <process>{{ assert (( files.size() == 0 ) &amp;&amp; ( file == null )) }}</process>
                                 </resource>
+                                <resource>
+                                    <description>unpack-groovy-3</description>
+                                    <targetPath>${outputDir}/pl-493/unpack</targetPath>
+                                    <dependency>
+                                        <groupId>org.codehaus.groovy</groupId>
+                                        <artifactId>groovy-all</artifactId>
+                                        <version>1.9.0-beta-4</version>
+                                    </dependency>
+                                    <unpack>true</unpack>
+                                    <filter>{{  assert ( files.size()  == 1 ) &amp;&amp; ( file.canonicalPath.contains( '.m2' )); files }}</filter>
+                                    <process>{{ assert ( files.size() > 0 ) }}</process>
+                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                </resource>
                             </resources>
                         </configuration>
                     </execution>
@@ -1540,19 +1746,35 @@
                         </goals>
                         <phase>initialize</phase>
                         <configuration>
-                            <resource>
-                                <description>unpack-groovy-3</description>
-                                <targetPath>${outputDir}/pl-493/unpack</targetPath>
-                                <dependency>
-                                    <groupId>org.codehaus.groovy</groupId>
-                                    <artifactId>groovy-all</artifactId>
-                                    <version>1.9.0-beta-4</version>
-                                </dependency>
-                                <dependenciesAtM2>true</dependenciesAtM2>
-                                <skipUnpacked>true</skipUnpacked>
-                                <unpack>true</unpack>
-                                <process>{{ assert (( files.size() == 0 ) &amp;&amp; ( file == null )) }}</process>
-                            </resource>
+                            <resources>
+                                <resource>
+                                    <description>unpack-groovy-4</description>
+                                    <targetPath>${outputDir}/pl-493/unpack</targetPath>
+                                    <dependency>
+                                        <groupId>org.codehaus.groovy</groupId>
+                                        <artifactId>groovy-all</artifactId>
+                                        <version>1.9.0-beta-4</version>
+                                    </dependency>
+                                    <skipUnpacked>true</skipUnpacked>
+                                    <unpack>true</unpack>
+                                    <filter>{{  assert ( files.size()  == 1 ) &amp;&amp; ( file.canonicalPath.contains( '.m2' )); files }}</filter>
+                                    <process>{{ assert (( files.size() == 0 ) &amp;&amp; ( file == null )) }}</process>
+                                </resource>
+                                <resource>
+                                    <description>unpack-groovy-5</description>
+                                    <targetPath>${outputDir}/pl-493/unpack</targetPath>
+                                    <dependency>
+                                        <groupId>org.codehaus.groovy</groupId>
+                                        <artifactId>groovy-all</artifactId>
+                                        <version>1.9.0-beta-4</version>
+                                    </dependency>
+                                    <skipUnpacked>true</skipUnpacked>
+                                    <unpack>true</unpack>
+                                    <filter>{{  assert ( files.size()  == 1 ) &amp;&amp; ( file.canonicalPath.contains( '.m2' )); files }}</filter>
+                                    <process>{{ assert ( files.size() > 0 ) }}</process>
+                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                </resource>
+                            </resources>
                         </configuration>
                     </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -1677,6 +1899,8 @@
                                 <include>pl-510, pl-493, pl-502</include>
                                 <verbose>false</verbose>
                                 <clean>true</clean>
+                                <cleanEmptyDirectories>true</cleanEmptyDirectories>
+                                <process>{{ assert ! files.any{ it.exists() } }}</process>
                             </resource>
                         </configuration>
                     </execution>
@@ -1688,6 +1912,24 @@
                 <artifactId>maven-assert-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-539 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-539</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertGroovy>
+                              ! new File( outputDir, 'pl-539' ).directory
+                            </assertGroovy>
+                            <shouldFailAssertFiles>
+                                ${outputDir}/pl-539
+                            </shouldFailAssertFiles>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-509 -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -2146,6 +2388,25 @@
                                 ${outputDir}/pl-502/pack-1/unpack|${outputDir}/pl-502/pack-2/unpack
                                 ${outputDir}/pl-502/pack-1/unpack|${outputDir}/pl-502/pack-2/unpack|**/*.class
                             </shouldFailAssertEqual>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>cleanups</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>verify</phase>
+                        <configuration>
+                            <shouldFailAssertFiles>
+                                ${outputDir}/pl-510
+                                ${outputDir}/pl-493
+                                ${outputDir}/pl-502
+                            </shouldFailAssertFiles>
+                            <assertGroovy>
+                              ! new File( outputDir, 'pl-510' ).directory
+                              ! new File( outputDir, 'pl-493' ).directory
+                              ! new File( outputDir, 'pl-502' ).directory
+                            </assertGroovy>
                         </configuration>
                     </execution>
                 </executions>
