@@ -92,6 +92,29 @@
                                     </dependency>
                                     <process>{{ assert files.size() == 0 }}</process>
                                 </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>1.2.3.4.5</version>
+                                        <optional>true</optional>
+                                    </dependency>
+                                    <process>{{ assert files.size() > 0 }}</process>
+                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>1.2.3.4.5</version>
+                                        <optional>true</optional>
+                                        <excludeTransitive>false</excludeTransitive>
+                                    </dependency>
+                                    <process>{{ assert files.size() > 0 }}</process>
+                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                </resource>
                             </resources>
                         </configuration>
                     </execution>
@@ -1652,6 +1675,7 @@
                             <resource>
                                 <directory>${outputDir}</directory>
                                 <include>pl-510, pl-493, pl-502</include>
+                                <verbose>false</verbose>
                                 <clean>true</clean>
                             </resource>
                         </configuration>
