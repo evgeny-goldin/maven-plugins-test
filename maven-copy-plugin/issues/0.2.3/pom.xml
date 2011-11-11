@@ -21,7 +21,7 @@
 
 
     <properties>
-        <targetRoots>${outputDir}/tr1, ${outputDir}/tr2, ${outputDir}/tr3</targetRoots>
+        <targetRoot>${outputDir}/tr1, ${outputDir}/tr2, ${outputDir}/tr3</targetRoot>
     </properties>
 
 
@@ -80,12 +80,12 @@
                         <configuration>
                             <resources>
                                 <resource>
-                                    <targetRoots>${targetRoots}</targetRoots>
+                                    <targetRoot>${targetRoot}</targetRoot>
                                     <targetPath>pl-434-1</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                 </resource>
                                 <resource>
-                                    <targetRoots>${targetRoots}</targetRoots>
+                                    <targetRoot>${targetRoot}</targetRoot>
                                     <targetPaths>
                                         <targetPath>pl-434-2</targetPath>
                                         <targetPath>pl-434-3</targetPath>
@@ -101,22 +101,22 @@
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetRoots><!-- Nothing --></targetRoots>
+                                    <targetRoot><!-- Nothing --></targetRoot>
                                     <targetPath>${outputDir}/pl-434-5</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                 </resource>
                                 <resource>
-                                    <targetRoots> , </targetRoots>
+                                    <targetRoot> , </targetRoot>
                                     <targetPath>${outputDir}/pl-434-6</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                 </resource>
                                 <resource>
-                                    <targetRoots> ${outputDir}/aa , </targetRoots>
+                                    <targetRoot> ${outputDir}/aa , </targetRoot>
                                     <targetPath>pl-434-7</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                 </resource>
                                 <resource>
-                                    <targetRoots> , ${outputDir}/bb , </targetRoots>
+                                    <targetRoot> , ${outputDir}/bb , </targetRoot>
                                     <targetPath>pl-434-8</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                 </resource>

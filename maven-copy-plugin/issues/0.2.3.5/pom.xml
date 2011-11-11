@@ -56,6 +56,53 @@
                 <artifactId>maven-copy-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-541                 -->
+                    <!-- "Support <process> for <clean> operation - send deleted files" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-541</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetRoot>${outputDir}/pl-541</targetRoot>
+                                    <targetPath>1, 2, 3</targetPath>
+                                    <dependency>
+                                        <groupId>org.codehaus.groovy</groupId>
+                                        <artifactId>groovy-all</artifactId>
+                                        <version>2.0.0-beta-1</version>
+                                    </dependency>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <directory>${outputDir}/pl-541/1</directory>
+                                    <clean>true</clean>
+                                    <verbose>false</verbose>
+                                    <process>{{ assert files.size() == 3775 }}</process>
+                                </resource>
+                                <resource>
+                                    <directory>${outputDir}/pl-541/2</directory>
+                                    <clean>true</clean>
+                                    <cleanEmptyDirectories>true</cleanEmptyDirectories>
+                                    <verbose>false</verbose>
+                                    <process>{{ assert files.size() == 3891 }}</process>
+                                </resource>
+                                <resource>
+                                    <directory>${outputDir}/pl-541/3</directory>
+                                    <clean>true</clean>
+                                    <cleanEmptyDirectories>true</cleanEmptyDirectories>
+                                    <include>**/*.class, **/*.txt</include>
+                                    <exclude>groovy/servlet, **/groovy/text/**</exclude>
+                                    <verbose>false</verbose>
+                                    <process>{{ assert files.size() == 3773 }}</process>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-539                                                      -->
                     <!-- "Build fails if <dependency> resolves to zero dependencies even when <failIfNotFound> is specified" -->
@@ -890,7 +937,7 @@
                         <configuration>
                             <resources>
                                 <resource>
-                                    <targetRoots>${outputDir}/pl-523</targetRoots>
+                                    <targetRoot>${outputDir}/pl-523</targetRoot>
                                     <targetPath>1, 2, 3</targetPath>
                                     <file>${mainPom}</file>
                                     <process>{{ assert ( files.size() == 3 ) &amp;&amp; files.every{ it.lastModified() == new File( mainPom ).lastModified() }}}</process>
@@ -910,7 +957,7 @@
                                     <process>{{ assert ( files.size() == 3 ) &amp;&amp; files.every{ it.lastModified() == new File( mainPom ).lastModified() }}}</process>
                                 </resource>
                                 <resource>
-                                    <targetRoots>${outputDir}/pl-523</targetRoots>
+                                    <targetRoot>${outputDir}/pl-523</targetRoot>
                                     <targetPath>1111, 2222, 3333</targetPath>
                                     <filtering>true</filtering>
                                     <filterWithDollarOnly>true</filterWithDollarOnly>
@@ -919,7 +966,7 @@
                                     <process>{{ assert ( files.size() == 3 ) &amp;&amp; files.every{ it.lastModified() > new File( mainPom ).lastModified() }}}</process>
                                 </resource>
                                 <resource>
-                                    <targetRoots>${outputDir}/pl-523</targetRoots>
+                                    <targetRoot>${outputDir}/pl-523</targetRoot>
                                     <targetPath>a, b, c</targetPath>
                                     <directory>${resourcesDir}</directory>
                                     <process>
@@ -954,7 +1001,7 @@
                                     </process>
                                 </resource>
                                 <resource>
-                                    <targetRoots>${outputDir}/pl-523</targetRoots>
+                                    <targetRoot>${outputDir}/pl-523</targetRoot>
                                     <targetPath>aaaa, bbbb, cccc</targetPath>
                                     <directory>${resourcesDir}</directory>
                                     <filtering>true</filtering>
@@ -1084,7 +1131,7 @@
                                 <!-- Copying file to itself -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetRoots>${outputDir}/pl-514</targetRoots>
+                                    <targetRoot>${outputDir}/pl-514</targetRoot>
                                     <targetPath>4, 5, 6</targetPath>
                                     <file>${mainPom}</file>
                                     <filter>{{ files }}</filter>
@@ -1133,7 +1180,7 @@
                                 <!-- Moving file -->
                                 <!-- ~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetRoots>${outputDir}/pl-514</targetRoots>
+                                    <targetRoot>${outputDir}/pl-514</targetRoot>
                                     <targetPath>7, 8, 9</targetPath>
                                     <file>${mainPom}</file>
                                     <filter>{{ files }}</filter>
@@ -1304,7 +1351,7 @@
                         <configuration>
                             <resources>
                                 <resource>
-                                    <targetRoots>${outputDir}/pl-522/1</targetRoots>
+                                    <targetRoot>${outputDir}/pl-522/1</targetRoot>
                                     <targetPaths>
                                         <targetPath>0/0/09</targetPath>
                                         <targetPath>1/1</targetPath>
@@ -1318,7 +1365,7 @@
                                     <file>${project.basedir}/pom.xml</file>
                                 </resource>
                                 <resource>
-                                    <targetRoots>${outputDir}/pl-522/1</targetRoots>
+                                    <targetRoot>${outputDir}/pl-522/1</targetRoot>
                                     <targetPaths>
                                         <targetPath>0/0/09</targetPath>
                                         <targetPath>1/1</targetPath>
@@ -2117,6 +2164,34 @@
                 <artifactId>maven-assert-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-541 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-541</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertGroovy>
+                                new File( outputDir, 'pl-541/1' ).directory
+                              ! new File( outputDir, 'pl-541/2' ).directory
+                                new File( outputDir, 'pl-541/3' ).directory
+                                new File( outputDir, 'pl-541/1' ).directorySize()       == 0
+                                new File( outputDir, 'pl-541/1' ).recurse([:], {}).size == 115
+                                new File( outputDir, 'pl-541/3' ).directorySize()       == 274188
+                                new File( outputDir, 'pl-541/3' ).recurse([:], {}).size == 117
+                            </assertGroovy>
+                            <assertFiles>
+                                ${outputDir}/pl-541/1
+                                ${outputDir}/pl-541/3
+                            </assertFiles>
+                            <shouldFailAssertFiles>
+                                ${outputDir}/pl-541/2
+                            </shouldFailAssertFiles>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-539 -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
