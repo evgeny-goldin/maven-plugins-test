@@ -75,7 +75,7 @@
                                 <!-- Retrieving optional non-existing dependency -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/pl-539</targetPath>
+                                    <targetPath>${outputDir}/pl-539/1</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -85,7 +85,16 @@
                                     <process>{{ assert files.size() == 0 }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-539</targetPath>
+                                    <targetPath>${outputDir}/pl-539/2</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>1.2.3.4.5</version>
+                                    </dependency>
+                                    <failOnError>false</failOnError>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539/3</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -96,7 +105,18 @@
                                     <shouldFailWith>AssertionError</shouldFailWith>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-539</targetPath>
+                                    <targetPath>${outputDir}/pl-539/4</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>1.2.3.4.5</version>
+                                        <optional>true</optional>
+                                    </dependency>
+                                    <process>{{ assert files.size() > 0 }}</process>
+                                    <failOnError>false</failOnError>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539/5</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -104,11 +124,115 @@
                                     </dependency>
                                     <shouldFailWith>MojoExecutionException</shouldFailWith>
                                 </resource>
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                                <!-- Retrieving optional non-existing dependency transitively -->
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Retrieving optional non-existing dependencies -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/pl-539</targetPath>
+                                    <targetPath>${outputDir}/pl-539/6</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>ch.qos.logback</groupId>
+                                            <artifactId>logback-core</artifactId>
+                                            <version>1.0.0</version>
+                                            <optional>true</optional>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.springframework</groupId>
+                                            <artifactId>spring-context</artifactId>
+                                            <version>1.2.3.4.5</version>
+                                            <optional>true</optional>
+                                        </dependency>
+                                    </dependencies>
+                                    <process>{{ assert files.size() == 1 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539/7</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>ch.qos.logback</groupId>
+                                            <artifactId>logback-core</artifactId>
+                                            <version>1.0.0</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.springframework</groupId>
+                                            <artifactId>spring-context</artifactId>
+                                            <version>1.2.3.4.5</version>
+                                        </dependency>
+                                    </dependencies>
+                                    <failOnError>false</failOnError>
+                                    <process>{{ assert files.size() == 1 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539/8</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>ch.qos.logback</groupId>
+                                            <artifactId>logback-core</artifactId>
+                                            <version>1.0.0</version>
+                                            <optional>true</optional>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.springframework</groupId>
+                                            <artifactId>spring-context</artifactId>
+                                            <version>1.2.3.4.5</version>
+                                            <optional>true</optional>
+                                        </dependency>
+                                    </dependencies>
+                                    <process>{{ assert files.size() > 1 }}</process>
+                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539/9</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>ch.qos.logback</groupId>
+                                            <artifactId>logback-core</artifactId>
+                                            <version>1.0.0</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.springframework</groupId>
+                                            <artifactId>spring-context</artifactId>
+                                            <version>1.2.3.4.5</version>
+                                        </dependency>
+                                    </dependencies>
+                                    <shouldFailWith>MojoExecutionException</shouldFailWith>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Retrieving optional non-existing dependencies transitively -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539/10</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>ch.qos.logback</groupId>
+                                            <artifactId>logback-core</artifactId>
+                                            <version>1.0.0</version>
+                                            <optional>true</optional>
+                                            <excludeTransitive>false</excludeTransitive>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.springframework</groupId>
+                                            <artifactId>spring-context</artifactId>
+                                            <version>1.2.3.4.5</version>
+                                            <optional>true</optional>
+                                            <excludeTransitive>false</excludeTransitive>
+                                        </dependency>
+                                    </dependencies>
+                                    <process>{{ assert files.size() == 6 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539/11</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>1.2.3.4.5</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                    </dependency>
+                                    <failOnError>false</failOnError>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539/12</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -116,35 +240,32 @@
                                         <optional>true</optional>
                                         <excludeTransitive>false</excludeTransitive>
                                     </dependency>
-                                    <process>{{ assert files.size() == 0 }}</process>
-                                </resource>
-                                <resource>
-                                    <targetPath>${outputDir}/pl-539</targetPath>
-                                    <dependency>
-                                        <groupId>org.springframework</groupId>
-                                        <artifactId>spring-context</artifactId>
-                                        <version>1.2.3.4.5</version>
-                                        <optional>true</optional>
-                                        <excludeTransitive>false</excludeTransitive>
-                                    </dependency>
                                     <process>{{ assert files.size() > 0 }}</process>
                                     <shouldFailWith>AssertionError</shouldFailWith>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-539</targetPath>
-                                    <dependency>
-                                        <groupId>org.springframework</groupId>
-                                        <artifactId>spring-context</artifactId>
-                                        <version>1.2.3.4.5</version>
-                                        <excludeTransitive>false</excludeTransitive>
-                                    </dependency>
+                                    <targetPath>${outputDir}/pl-539/13</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>ch.qos.logback</groupId>
+                                            <artifactId>logback-core</artifactId>
+                                            <version>1.0.0</version>
+                                            <excludeTransitive>false</excludeTransitive>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.springframework</groupId>
+                                            <artifactId>spring-context</artifactId>
+                                            <version>1.2.3.4.5</version>
+                                            <excludeTransitive>false</excludeTransitive>
+                                        </dependency>
+                                    </dependencies>
                                     <shouldFailWith>MojoExecutionException</shouldFailWith>
                                 </resource>
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                                <!-- Retrieving non-existing dependency with <failIfNotFound> set to false -->
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Retrieving non-existing dependency with <failIfNotFound>/<failOnError> set to false -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/pl-539</targetPath>
+                                    <targetPath>${outputDir}/pl-539/14</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -154,7 +275,51 @@
                                     <process>{{ assert files.size() == 0 }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-539</targetPath>
+                                    <targetPath>${outputDir}/pl-539/15</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>1.2.3.4.5</version>
+                                    </dependency>
+                                    <failOnError>false</failOnError>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539/16</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>ch.qos.logback</groupId>
+                                            <artifactId>logback-core</artifactId>
+                                            <version>1.0.0</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.springframework</groupId>
+                                            <artifactId>spring-context</artifactId>
+                                            <version>1.2.3.4.5</version>
+                                        </dependency>
+                                    </dependencies>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <process>{{ assert files.size() == 1 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539/17</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>ch.qos.logback</groupId>
+                                            <artifactId>logback-core</artifactId>
+                                            <version>1.0.0</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.springframework</groupId>
+                                            <artifactId>spring-context</artifactId>
+                                            <version>1.2.3.4.5</version>
+                                        </dependency>
+                                    </dependencies>
+                                    <failOnError>false</failOnError>
+                                    <process>{{ assert files.size() == 1 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539/18</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -164,20 +329,11 @@
                                     <process>{{ assert files.size() > 0 }}</process>
                                     <shouldFailWith>AssertionError</shouldFailWith>
                                 </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Retrieving non-existing dependency transitively with <failIfNotFound>/<failOnError> set to false -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/pl-539</targetPath>
-                                    <dependency>
-                                        <groupId>org.springframework</groupId>
-                                        <artifactId>spring-context</artifactId>
-                                        <version>1.2.3.4.5</version>
-                                    </dependency>
-                                    <shouldFailWith>MojoExecutionException</shouldFailWith>
-                                </resource>
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                                <!-- Retrieving non-existing dependency transitively with <failIfNotFound> set to false -->
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                                <resource>
-                                    <targetPath>${outputDir}/pl-539</targetPath>
+                                    <targetPath>${outputDir}/pl-539/19</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -188,7 +344,56 @@
                                     <process>{{ assert files.size() == 0 }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-539</targetPath>
+                                    <targetPath>${outputDir}/pl-539/20</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>1.2.3.4.5</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                    </dependency>
+                                    <failOnError>false</failOnError>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539/21</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>ch.qos.logback</groupId>
+                                            <artifactId>logback-core</artifactId>
+                                            <version>1.0.0</version>
+                                            <excludeTransitive>false</excludeTransitive>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.springframework</groupId>
+                                            <artifactId>spring-context</artifactId>
+                                            <version>1.2.3.4.5</version>
+                                            <excludeTransitive>false</excludeTransitive>
+                                        </dependency>
+                                    </dependencies>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <process>{{ assert files.size() == 6 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539/22</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>ch.qos.logback</groupId>
+                                            <artifactId>logback-core</artifactId>
+                                            <version>1.0.0</version>
+                                            <excludeTransitive>false</excludeTransitive>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.springframework</groupId>
+                                            <artifactId>spring-context</artifactId>
+                                            <version>1.2.3.4.5</version>
+                                            <excludeTransitive>false</excludeTransitive>
+                                        </dependency>
+                                    </dependencies>
+                                    <failOnError>false</failOnError>
+                                    <process>{{ assert files.size() == 1 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539/23</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -200,7 +405,7 @@
                                     <shouldFailWith>AssertionError</shouldFailWith>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-539</targetPath>
+                                    <targetPath>${outputDir}/pl-539/24</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -1896,7 +2101,7 @@
                         <configuration>
                             <resource>
                                 <directory>${outputDir}</directory>
-                                <include>pl-510, pl-493, pl-502</include>
+                                <include>pl-510, pl-493, pl-502, pl-539, pl-522, pl-509, pl-430</include>
                                 <verbose>false</verbose>
                                 <clean>true</clean>
                                 <cleanEmptyDirectories>true</cleanEmptyDirectories>
@@ -1923,10 +2128,49 @@
                         <phase>test</phase>
                         <configuration>
                             <assertGroovy>
-                              ! new File( outputDir, 'pl-539' ).directory
+                                [ 6, 8, 10, 16, 21 ].every{ new File( outputDir, "pl-539/$it" ).directory }
+                                (( 1 .. 24 ) - [ 6, 8, 10, 16, 21 ]).every{ ! new File( outputDir, "pl-539/$it" ).directory }
+
+                                [ 6, 8, 16 ].every{ new File( outputDir, "pl-539/$it" ).listFiles().size() == 1 }
+                                [ 6, 8, 16 ].every{ new File( outputDir, "pl-539/$it" ).directorySize()    == 327911 }
+                                [ 10, 21   ].every{ new File( outputDir, "pl-539/$it" ).listFiles().size() == 6 }
+                                [ 10, 21   ].every{ new File( outputDir, "pl-539/$it" ).directorySize()    == 9595383 }
                             </assertGroovy>
+                            <assertFiles>
+                                ${outputDir}/pl-539/6
+                                ${outputDir}/pl-539/6/*.jar
+                                ${outputDir}/pl-539/6/logback-core-1.0.0.jar
+                                ${outputDir}/pl-539/8
+                                ${outputDir}/pl-539/8/*.jar
+                                ${outputDir}/pl-539/8/logback-core-1.0.0.jar
+                                ${outputDir}/pl-539/10
+                                ${outputDir}/pl-539/10/*.jar
+                                ${outputDir}/pl-539/16
+                                ${outputDir}/pl-539/16/*.jar
+                                ${outputDir}/pl-539/16/logback-core-1.0.0.jar
+                                ${outputDir}/pl-539/21
+                                ${outputDir}/pl-539/21/*.jar
+                            </assertFiles>
                             <shouldFailAssertFiles>
-                                ${outputDir}/pl-539
+                                ${outputDir}/pl-539/1
+                                ${outputDir}/pl-539/2
+                                ${outputDir}/pl-539/3
+                                ${outputDir}/pl-539/4
+                                ${outputDir}/pl-539/5
+                                ${outputDir}/pl-539/7
+                                ${outputDir}/pl-539/9
+                                ${outputDir}/pl-539/11
+                                ${outputDir}/pl-539/12
+                                ${outputDir}/pl-539/13
+                                ${outputDir}/pl-539/14
+                                ${outputDir}/pl-539/15
+                                ${outputDir}/pl-539/17
+                                ${outputDir}/pl-539/18
+                                ${outputDir}/pl-539/19
+                                ${outputDir}/pl-539/20
+                                ${outputDir}/pl-539/22
+                                ${outputDir}/pl-539/23
+                                ${outputDir}/pl-539/24
                             </shouldFailAssertFiles>
                         </configuration>
                     </execution>
@@ -2398,14 +2642,23 @@
                         <phase>verify</phase>
                         <configuration>
                             <shouldFailAssertFiles>
+                                <!-- pl-510, pl-493, pl-502, pl-539, pl-522, pl-509, pl-430 -->
                                 ${outputDir}/pl-510
                                 ${outputDir}/pl-493
                                 ${outputDir}/pl-502
+                                ${outputDir}/pl-539
+                                ${outputDir}/pl-522
+                                ${outputDir}/pl-509
+                                ${outputDir}/pl-430
                             </shouldFailAssertFiles>
                             <assertGroovy>
                               ! new File( outputDir, 'pl-510' ).directory
                               ! new File( outputDir, 'pl-493' ).directory
                               ! new File( outputDir, 'pl-502' ).directory
+                              ! new File( outputDir, 'pl-539' ).directory
+                              ! new File( outputDir, 'pl-522' ).directory
+                              ! new File( outputDir, 'pl-509' ).directory
+                              ! new File( outputDir, 'pl-430' ).directory
                             </assertGroovy>
                         </configuration>
                     </execution>
