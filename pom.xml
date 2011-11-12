@@ -26,7 +26,7 @@
         <groovy-version>1.8.2</groovy-version>
         <plugins-version>0.2.3.5-SNAPSHOT</plugins-version>
         <plugins-version-for-jenkins-jobs>0.2.3.5-SNAPSHOT</plugins-version-for-jenkins-jobs>
-        <gcommons-version>0.5.3.5-SNAPSHOT</gcommons-version>
+        <gcommons-version>0.5.3.5-beta-7</gcommons-version>
         <slowTests>false</slowTests>
 
         <!-- ~~~~~~~~~~~~~~~~~ -->
