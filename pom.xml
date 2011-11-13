@@ -208,12 +208,10 @@
                                 props.load( org.apache.maven.Maven.class.getResourceAsStream( '/META-INF/maven/org.apache.maven/maven-core/pom.properties' ))
 
                                 def mavenVersion = props.getProperty( 'version', 'Unknown' ).trim()
-                                def date         = new Date()
-
                                 println """
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Groovy [$GroovySystem.version], Maven [$mavenVersion], [$date] - testing plugins version [${plugins-version}]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~""".trim()
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Groovy [$GroovySystem.version], Maven [$mavenVersion] - testing plugins version [${plugins-version}], slow tests - [${slowTests}]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~""".trim()
                             </source>
                         </configuration>
                     </execution>
