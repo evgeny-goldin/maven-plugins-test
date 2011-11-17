@@ -56,6 +56,30 @@
                 <artifactId>maven-copy-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-548                           -->
+                    <!-- "File filtering fails on Windows if destination directory doesn't exist" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-548</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <filterWithDollarOnly>true</filterWithDollarOnly>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-548/1/2/3/4/5/6/7/8/9</targetPath>
+                                    <directory>${basedir}/src/test/resources</directory>
+                                    <include>**/*</include>
+                                    <filtering>true</filtering>
+                                    <preservePath>true</preservePath>
+                                    <process>{{ assert files.size() == 3 }}</process>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-541                 -->
                     <!-- "Support <process> for <clean> operation - send deleted files" -->
@@ -2164,6 +2188,24 @@
                 <artifactId>maven-assert-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-548 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-548</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-548/1/2/3/4/5/6/7/8/9/META-INF
+                                ${outputDir}/pl-548/1/2/3/4/5/6/7/8/9/META-INF/jboss-service.xml
+                                ${outputDir}/pl-548/1/2/3/4/5/6/7/8/9/META-INF/jbosss-service.xml
+                                ${outputDir}/pl-548/1/2/3/4/5/6/7/8/9/META-INF/MANIFEST.MF
+                            </assertFiles>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-541 -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->

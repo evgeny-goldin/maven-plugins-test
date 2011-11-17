@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Created-By: Apache Maven
+Specification-Title: ${project.name.prefix}-${project.version.major}.${project.version.minor}.${project.version.revision}${project.version.tag}
+Specification-Version: ${project.version.major}.${project.version.minor}.${project.version.revision}${project.version.tag}
+Specification-Vendor: ${project.vendor}
+Implementation-Title: ${project.name.prefix}-${project.version.major}.${project.version.minor}.${project.version.revision}${project.version.tag} SCMTag=${version.name}
+Implementation-Version: ${project.version.major}.${project.version.minor}.${project.version.revision}${project.version.tag} Date: ${BUILD_ID} 
+Implementation-Vendor: ${project.vendor}
