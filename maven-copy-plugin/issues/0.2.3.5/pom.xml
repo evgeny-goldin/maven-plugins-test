@@ -46,6 +46,17 @@
         <!-- Splits file name to "body" and "extension" -->
         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
         <splitName>findAll( /^([^\.]+)(\.(.+))?$/ ){ [ it[1], it[3] ?: '' ] }[ 0 ]</splitName>
+
+
+        <!-- "pl-548" properties -->
+        <project.name.prefix>my-prefix</project.name.prefix>
+        <project.version.major>1</project.version.major>
+        <project.version.minor>2</project.version.minor>
+        <project.version.revision>rev</project.version.revision>
+        <project.version.tag>tag</project.version.tag>
+        <project.vendor>vendor</project.vendor>
+        <version.name>name</version.name>
+        <BUILD_ID>23</BUILD_ID>
     </properties>
 
 
@@ -2204,6 +2215,9 @@
                                 ${outputDir}/pl-548/1/2/3/4/5/6/7/8/9/META-INF/jbosss-service.xml
                                 ${outputDir}/pl-548/1/2/3/4/5/6/7/8/9/META-INF/MANIFEST.MF
                             </assertFiles>
+                            <assertGroovy>
+                              ! [ 'jboss-service.xml', 'jbosss-service.xml', 'MANIFEST.MF' ].any{ new File( outputDir, "pl-548/1/2/3/4/5/6/7/8/9/META-INF/$it"  ).text.contains( '$' ) }
+                            </assertGroovy>
                         </configuration>
                     </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
