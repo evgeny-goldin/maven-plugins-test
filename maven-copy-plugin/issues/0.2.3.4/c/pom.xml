@@ -25,11 +25,19 @@
         <bash>/bin/bash</bash>
         <chmodTest>
             "chmod +x $file".execute().text
-            def out = file.canonicalPath.execute().text.readLines()
+
+            def text = file.canonicalPath.execute().text
+            def out  = text.readLines()
 
             assert out.size() == 2
-            def first  = out[0]
-            def second = out[1]
+
+            def first  = out[ 0 ]
+            def second = out[ 1 ]
+
+            println "[$file][$text]"
+            println "out    = $out"
+            println "first  = \"$first\""
+            println "second = \"$second\""
 
             assert first  == second
             assert first  == "[${project.basedir}] - [${project.groupId}:${project.artifactId}:${project.version}]"
@@ -53,6 +61,87 @@
                 <artifactId>maven-copy-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <execution>
+                        <id>destFileNameTest</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <!-- "destFileName" + "dependency" (built in the same reactor) + "dependenciesAtM2" (true) -->
+                                <resource>
+                                	<targetPath>${outputDir}/destFileNameTest-1</targetPath>
+                                	<destFileName>aaaa.jar</destFileName>
+                                    <dependency>
+                                        <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+                                        <artifactId>maven-copy-plugin.issues.0.2.3.4-a</artifactId>
+                                        <version>${project.version}</version>
+                                    </dependency>
+                                    <dependenciesAtM2>true</dependenciesAtM2>
+                                    <process>{{ assert file.name == 'aaaa.jar' }}</process>
+                                </resource>
+                                <!-- "destFileName" + "dependency" (built in the same reactor) + "dependenciesAtM2" (false) -->
+                                <resource>
+                                	<targetPath>${outputDir}/destFileNameTest-2</targetPath>
+                                	<destFileName>aaaa.jar</destFileName>
+                                    <dependency>
+                                        <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+                                        <artifactId>maven-copy-plugin.issues.0.2.3.4-a</artifactId>
+                                        <version>${project.version}</version>
+                                    </dependency>
+                                    <dependenciesAtM2>false</dependenciesAtM2>
+                                    <process>{{ assert file.name == 'aaaa.jar' }}</process>
+                                </resource>
+                                <!-- "destFileName" + "dependency" (built in the same reactor) -->
+                                <resource>
+                                	<targetPath>${outputDir}/destFileNameTest-3</targetPath>
+                                	<destFileName>aaaa.jar</destFileName>
+                                    <dependency>
+                                        <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+                                        <artifactId>maven-copy-plugin.issues.0.2.3.4-a</artifactId>
+                                        <version>${project.version}</version>
+                                    </dependency>
+                                    <process>{{ assert file.name == 'aaaa.jar' }}</process>
+                                </resource>
+                                <!-- "destFileName" + "dependency" (third-party) + "dependenciesAtM2" -->
+                                <resource>
+                                	<targetPath>${outputDir}/destFileNameTest-4</targetPath>
+                                	<destFileName>my-spring.jar</destFileName>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-core</artifactId>
+                                        <version>3.1.0.RELEASE</version>
+                                    </dependency>
+                                    <dependenciesAtM2>true</dependenciesAtM2>
+                                    <process>{{ assert file.name == 'my-spring.jar' }}</process>
+                                </resource>
+                                <!-- "destFileName" + "dependency" (third-party) + "dependenciesAtM2" (false) -->
+                                <resource>
+                                	<targetPath>${outputDir}/destFileNameTest-5</targetPath>
+                                	<destFileName>my-spring.jar</destFileName>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-core</artifactId>
+                                        <version>3.1.0.RELEASE</version>
+                                    </dependency>
+                                    <dependenciesAtM2>false</dependenciesAtM2>
+                                    <process>{{ assert file.name == 'my-spring.jar' }}</process>
+                                </resource>
+                                <!-- "destFileName" + "dependency" (third-party) -->
+                                <resource>
+                                	<targetPath>${outputDir}/destFileNameTest-6</targetPath>
+                                	<destFileName>my-spring.jar</destFileName>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-core</artifactId>
+                                        <version>3.1.0.RELEASE</version>
+                                    </dependency>
+                                    <process>{{ assert file.name == 'my-spring.jar' }}</process>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-350: -->
                     <!-- <move>true/false</move>                         -->
@@ -572,8 +661,8 @@
                                     <replace>
                                         <to>
 #!${bash}
-echo [${project.basedir}] - [${project.groupId}:${project.artifactId}:${project.version}]
-echo {{ '[' + project.basedir + '] - [' + project.groupId + ':' + project.artifactId + ':' + project.version + ']' }}
+echo "[${project.basedir}] - [${project.groupId}:${project.artifactId}:${project.version}]"
+echo {{ '"[' + project.basedir + '] - [' + project.groupId + ':' + project.artifactId + ':' + project.version + ']"' }}
                                         </to>
                                         <groovy>true</groovy>
                                     </replace>
@@ -606,6 +695,33 @@ echo {{ '[' + project.basedir + '] - [' + project.groupId + ':' + project.artifa
                 <artifactId>maven-assert-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <execution>
+                        <id>destFileNameTest</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/destFileNameTest-1/aaaa.jar
+                                ${outputDir}/destFileNameTest-2/aaaa.jar
+                                ${outputDir}/destFileNameTest-3/aaaa.jar
+
+                                ${outputDir}/destFileNameTest-4/my-spring.jar
+                                ${outputDir}/destFileNameTest-5/my-spring.jar
+                                ${outputDir}/destFileNameTest-6/my-spring.jar
+                            </assertFiles>
+                            <assertEqual>
+                                ${outputDir}/destFileNameTest-1|${outputDir}/destFileNameTest-2
+                                ${outputDir}/destFileNameTest-2|${outputDir}/destFileNameTest-3
+                                ${outputDir}/destFileNameTest-3|${outputDir}/destFileNameTest-1
+
+                                ${outputDir}/destFileNameTest-4|${outputDir}/destFileNameTest-5
+                                ${outputDir}/destFileNameTest-5|${outputDir}/destFileNameTest-6
+                                ${outputDir}/destFileNameTest-6|${outputDir}/destFileNameTest-4
+                            </assertEqual>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-350 -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
