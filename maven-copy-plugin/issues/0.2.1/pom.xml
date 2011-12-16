@@ -77,7 +77,7 @@
                                 <!-- ~~~~~~~~~~~~~ -->
                                 <resource>
                                     <targetPath>${outputDir}/pl-27/http</targetPath>
-                                    <file>http://dl.dropbox.com/u/4820835/audio.jpg</file>
+                                    <file>http://dl.dropbox.com/s/lzf918znlv75u2g/search.png</file>
                                 </resource>
                                 <!-- ~~~~~~~~~~~~ -->
                                 <!-- FTP Download -->
