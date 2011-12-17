@@ -27,6 +27,114 @@
                 <artifactId>maven-copy-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-562                             -->
+                    <!-- "Incremental build support - add <skipPacked> and improve <skipIdentical>" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-569                             -->
+                    <!-- "Pass execution time as "time" to <process>"                               -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-568                             -->
+                    <!-- "Add <stripVersion> per <configuration>"                                   -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-562</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <verbose>false</verbose>
+                            <skipPacked>true</skipPacked>
+                            <skipIdentical>true</skipIdentical>
+                            <stripVersion>true</stripVersion>
+                            <resources>
+                                <resource>
+                                    <description>pl-562/unpack</description>
+                                    <targetPath>${outputDir}/pl-562/unpack</targetPath>
+                                    <dependency>
+                                        <groupId>org.jenkins-ci.main</groupId>
+                                        <artifactId>jenkins-war</artifactId>
+                                        <version>1.421</version>
+                                        <type>war</type>
+                                    </dependency>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <description>pl-562/pack</description>
+                                    <targetPath>${outputDir}/pl-562/pack/1.zip</targetPath>
+                                    <directory>${outputDir}/pl-562/unpack</directory>
+                                    <pack>true</pack>
+                                </resource>
+                                <resource>
+                                    <description>pl-562/skip pack</description>
+                                    <targetPath>${outputDir}/pl-562/pack/1.zip</targetPath>
+                                    <directory>${outputDir}/pl-562/unpack</directory>
+                                    <pack>true</pack>
+                                </resource>
+                                <resource>
+                                    <description>pl-562/1 - copy</description>
+                                    <targetPath>${outputDir}/pl-562/1</targetPath>
+                                    <dependency>
+                                        <includeScope>compile</includeScope>
+                                    </dependency>
+                                    <process>{{ assert time &gt; 100 }}</process>
+                                </resource>
+                                <resource>
+                                    <description>pl-562/1 - skip</description>
+                                    <targetPath>${outputDir}/pl-562/1</targetPath>
+                                    <dependency>
+                                        <includeScope>compile</includeScope>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <description>pl-562/2 - copy</description>
+                                    <targetPath>${outputDir}/pl-562/2</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>org.slf4j</groupId>
+                                            <artifactId>slf4j-api</artifactId>
+                                            <version>1.6.2</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.slf4j</groupId>
+                                            <artifactId>jcl-over-slf4j</artifactId>
+                                            <version>1.6.2</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.jenkins-ci.main</groupId>
+                                            <artifactId>jenkins-war</artifactId>
+                                            <version>1.421</version>
+                                            <type>war</type>
+                                        </dependency>
+                                    </dependencies>
+                                    <process>{{ assert time &gt; 100 }}</process>
+                                </resource>
+                                <resource>
+                                    <description>pl-562/2 - skip</description>
+                                    <targetPath>${outputDir}/pl-562/2</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>org.slf4j</groupId>
+                                            <artifactId>slf4j-api</artifactId>
+                                            <version>1.6.2</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.slf4j</groupId>
+                                            <artifactId>jcl-over-slf4j</artifactId>
+                                            <version>1.6.2</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.jenkins-ci.main</groupId>
+                                            <artifactId>jenkins-war</artifactId>
+                                            <version>1.421</version>
+                                            <type>war</type>
+                                        </dependency>
+                                    </dependencies>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-567                                     -->
                     <!-- "CopyResource.dependenciesAtM2() - return "true" even when "stripVersion" is used" -->
