@@ -251,7 +251,7 @@
                         <configuration>
                             <runIf>{{ slowTests }}</runIf>
                             <assertFiles>
-                                ${outputDir}/pl-27/http/audio.jpg
+                                ${outputDir}/pl-27/http/search.png
                                 ${outputDir}/pl-27/ftp-1/index.html
                                 ${outputDir}/pl-27/ftp-2/wagon-file-1.0-beta-7.jar
                                 ${outputDir}/pl-27/ftp-txt-base/*.txt
