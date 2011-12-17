@@ -47,7 +47,7 @@
                                         <artifactId>maven-copy-plugin.issues.0.2.3.4-a</artifactId>
                                         <version>0.1-SNAPSHOT</version>
                                     </dependency>
-                                    <filter>${filterM2}</filter>
+                                    <filter>${filterNotM2}</filter>
                                     <dependenciesAtM2>true</dependenciesAtM2>
                                 </resource>
                                 <resource>
@@ -55,7 +55,7 @@
                                     <dependency>
                                         <includeScope>compile</includeScope>
                                     </dependency>
-                                    <filter>${filterM2}</filter>
+                                    <filter>${filterNotM2}</filter>
                                     <dependenciesAtM2>true</dependenciesAtM2>
                                 </resource>
                             </resources>
