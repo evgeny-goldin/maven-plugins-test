@@ -918,7 +918,7 @@
                                         <version>0.1.38</version>
                                     </dependency>
                                     <stripVersion>true</stripVersion>
-                                    <filter>{{  assert ( files.size() == 1 ) &amp;&amp; ( ! file.canonicalPath.contains( '.m2' )); files }}</filter>
+                                    <filter>{{  assert ( files.size() == 1 ) &amp;&amp; ( file.canonicalPath.contains( '.m2' )); files }}</filter>
                                     <process>{{ assert ( files.size() == 1 ) }}</process>
                                 </resource>
                                 <resource>
