@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns              = "http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi          = "http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0
+                               http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+    <artifactId>maven-copy-plugin.issues.0.2.3.8</artifactId>
+    <packaging>jar</packaging>
+    <version>0.1-SNAPSHOT</version>
+    <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
+
+
+    <parent>
+        <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+        <artifactId>maven-copy-plugin.issues</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-copy-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-567                                     -->
+                    <!-- "CopyResource.dependenciesAtM2() - return "true" even when "stripVersion" is used" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-567</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <!-- ~~~~~~~~~~~~~~ -->
+                                <!-- "stripVersion" -->
+                                <!-- ~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/pl-567/1</targetPath>
+                                    <stripVersion>true</stripVersion>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-beans</artifactId>
+                                        <version>3.1.0.RELEASE</version>
+                                    </dependency>
+                                    <filter>${filterM2}</filter>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-567/2</targetPath>
+                                    <stripVersion>true</stripVersion>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-beans</artifactId>
+                                        <version>3.1.0.RELEASE</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                    </dependency>
+                                    <filter>${filterNotM2}</filter>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-567/3</targetPath>
+                                    <stripVersion>true</stripVersion>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>org.slf4j</groupId>
+                                            <artifactId>slf4j-api</artifactId>
+                                            <version>1.6.2</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.slf4j</groupId>
+                                            <artifactId>jcl-over-slf4j</artifactId>
+                                            <version>1.6.2</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>commons-httpclient</groupId>
+                                            <artifactId>commons-httpclient</artifactId>
+                                            <version>3.1</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>javax.servlet</groupId>
+                                            <artifactId>servlet-api</artifactId>
+                                            <version>2.3</version>
+                                        </dependency>
+                                    </dependencies>
+                                    <filter>${filterNotM2}</filter>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-567/4</targetPath>
+                                    <stripVersion>true</stripVersion>
+                                    <dependency>
+                                        <includeScope>compile</includeScope>
+                                    </dependency>
+                                    <filter>${filterNotM2}</filter>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~ -->
+                                <!-- No "stripVersion" -->
+                                <!-- ~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/pl-567/11</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-beans</artifactId>
+                                        <version>3.1.0.RELEASE</version>
+                                    </dependency>
+                                    <filter>${filterM2}</filter>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-567/22</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-beans</artifactId>
+                                        <version>3.1.0.RELEASE</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                    </dependency>
+                                    <filter>${filterNotM2}</filter>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-567/33</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>org.slf4j</groupId>
+                                            <artifactId>slf4j-api</artifactId>
+                                            <version>1.6.2</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.slf4j</groupId>
+                                            <artifactId>jcl-over-slf4j</artifactId>
+                                            <version>1.6.2</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>commons-httpclient</groupId>
+                                            <artifactId>commons-httpclient</artifactId>
+                                            <version>3.1</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>javax.servlet</groupId>
+                                            <artifactId>servlet-api</artifactId>
+                                            <version>2.3</version>
+                                        </dependency>
+                                    </dependencies>
+                                    <filter>${filterNotM2}</filter>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-567/44</targetPath>
+                                    <dependency>
+                                        <includeScope>compile</includeScope>
+                                    </dependency>
+                                    <filter>${filterNotM2}</filter>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- "stripVersion" + "dependenciesAtM2" (true) -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/pl-567/111</targetPath>
+                                    <stripVersion>true</stripVersion>
+                                    <dependenciesAtM2>true</dependenciesAtM2>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-beans</artifactId>
+                                        <version>3.1.0.RELEASE</version>
+                                    </dependency>
+                                    <filter>${filterM2}</filter>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-567/222</targetPath>
+                                    <stripVersion>true</stripVersion>
+                                    <dependenciesAtM2>true</dependenciesAtM2>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-beans</artifactId>
+                                        <version>3.1.0.RELEASE</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                    </dependency>
+                                    <filter>${filterM2}</filter>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-567/333</targetPath>
+                                    <stripVersion>true</stripVersion>
+                                    <dependenciesAtM2>true</dependenciesAtM2>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>org.slf4j</groupId>
+                                            <artifactId>slf4j-api</artifactId>
+                                            <version>1.6.2</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.slf4j</groupId>
+                                            <artifactId>jcl-over-slf4j</artifactId>
+                                            <version>1.6.2</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>commons-httpclient</groupId>
+                                            <artifactId>commons-httpclient</artifactId>
+                                            <version>3.1</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>javax.servlet</groupId>
+                                            <artifactId>servlet-api</artifactId>
+                                            <version>2.3</version>
+                                        </dependency>
+                                    </dependencies>
+                                    <filter>${filterM2}</filter>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-567/444</targetPath>
+                                    <stripVersion>true</stripVersion>
+                                    <dependenciesAtM2>true</dependenciesAtM2>
+                                    <dependency>
+                                        <includeScope>compile</includeScope>
+                                    </dependency>
+                                    <filter>${filterM2}</filter>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- "stripVersion" + "dependenciesAtM2" (false) -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/pl-567/1111</targetPath>
+                                    <stripVersion>true</stripVersion>
+                                    <dependenciesAtM2>false</dependenciesAtM2>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-beans</artifactId>
+                                        <version>3.1.0.RELEASE</version>
+                                    </dependency>
+                                    <filter>${filterNotM2}</filter>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-567/2222</targetPath>
+                                    <stripVersion>true</stripVersion>
+                                    <dependenciesAtM2>false</dependenciesAtM2>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-beans</artifactId>
+                                        <version>3.1.0.RELEASE</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                    </dependency>
+                                    <filter>${filterNotM2}</filter>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-567/3333</targetPath>
+                                    <stripVersion>true</stripVersion>
+                                    <dependenciesAtM2>false</dependenciesAtM2>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>org.slf4j</groupId>
+                                            <artifactId>slf4j-api</artifactId>
+                                            <version>1.6.2</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.slf4j</groupId>
+                                            <artifactId>jcl-over-slf4j</artifactId>
+                                            <version>1.6.2</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>commons-httpclient</groupId>
+                                            <artifactId>commons-httpclient</artifactId>
+                                            <version>3.1</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>javax.servlet</groupId>
+                                            <artifactId>servlet-api</artifactId>
+                                            <version>2.3</version>
+                                        </dependency>
+                                    </dependencies>
+                                    <filter>${filterNotM2}</filter>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-567/4444</targetPath>
+                                    <stripVersion>true</stripVersion>
+                                    <dependenciesAtM2>false</dependenciesAtM2>
+                                    <dependency>
+                                        <includeScope>compile</includeScope>
+                                    </dependency>
+                                    <filter>${filterNotM2}</filter>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-assert-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-567 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-567</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-567/1/spring-beans.jar
+                                ${outputDir}/pl-567/2/spring-asm.jar
+                                ${outputDir}/pl-567/3/servlet-api.jar
+                                ${outputDir}/pl-567/4/slf4j-api.jar
+                                ${outputDir}/pl-567/11/spring-beans-3.1.0.RELEASE.jar
+                                ${outputDir}/pl-567/22/spring-asm-3.1.0.RELEASE.jar
+                                ${outputDir}/pl-567/33/servlet-api-2.3.jar
+                                ${outputDir}/pl-567/44/slf4j-api-1.6.2.jar
+                            </assertFiles>
+                            <assertGroovy>
+                                new File( outputDir, 'pl-567/1' ).directorySize()    == 589253
+                                new File( outputDir, 'pl-567/1' ).listFiles().size() == 1
+
+                                new File( outputDir, 'pl-567/2' ).directorySize()    == 2524932
+                                new File( outputDir, 'pl-567/2' ).listFiles().size() == 11
+
+                                new File( outputDir, 'pl-567/3' ).directorySize()    == 425977
+                                new File( outputDir, 'pl-567/3' ).listFiles().size() == 4
+
+                                new File( outputDir, 'pl-567/4' ).directorySize()    == 494077
+                                new File( outputDir, 'pl-567/4' ).listFiles().size() == 6
+                            </assertGroovy>
+                            <assertEqual>
+                                ${outputDir}/pl-567/1|${outputDir}/pl-567/111
+                                ${outputDir}/pl-567/111|${outputDir}/pl-567/1111
+                                ${outputDir}/pl-567/1111|${outputDir}/pl-567/1
+
+                                ${outputDir}/pl-567/2|${outputDir}/pl-567/222
+                                ${outputDir}/pl-567/222|${outputDir}/pl-567/2222
+                                ${outputDir}/pl-567/2222|${outputDir}/pl-567/2
+
+                                ${outputDir}/pl-567/3|${outputDir}/pl-567/333
+                                ${outputDir}/pl-567/333|${outputDir}/pl-567/3333
+                                ${outputDir}/pl-567/3333|${outputDir}/pl-567/3
+
+                                ${outputDir}/pl-567/4|${outputDir}/pl-567/444
+                                ${outputDir}/pl-567/444|${outputDir}/pl-567/4444
+                                ${outputDir}/pl-567/4444|${outputDir}/pl-567/4
+                            </assertEqual>
+                            <shouldFailAssertEqual>
+                                ${outputDir}/pl-567/1|${outputDir}/pl-567/11
+                                ${outputDir}/pl-567/2|${outputDir}/pl-567/22
+                                ${outputDir}/pl-567/3|${outputDir}/pl-567/33
+                                ${outputDir}/pl-567/4|${outputDir}/pl-567/44
+                            </shouldFailAssertEqual>
+                        </configuration>
+                    </execution>
+
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+
+    <dependencies>
+        <!-- http://evgeny-goldin.org/youtrack/issue/pl-567 -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.3</version>
+        </dependency>
+    </dependencies>
+</project>

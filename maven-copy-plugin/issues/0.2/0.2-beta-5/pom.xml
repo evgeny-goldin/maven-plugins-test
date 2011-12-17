@@ -176,11 +176,7 @@
                                     <dependenciesAtM2>true</dependenciesAtM2>
                                     <unpack>true</unpack>
                                     <preservePath>true</preservePath>
-                                    <filter>
-                                    {{
-                                        files.collect{ assert it.canonicalPath.replace( '\\', '/' ).contains( '/.m2/' ); it }
-                                    }}
-                                    </filter>
+                                    <filter>${filterM2}</filter>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-284/unpack-2</targetPath>
@@ -235,11 +231,7 @@
                                     <dependenciesAtM2>true</dependenciesAtM2>
                                     <unpack>true</unpack>
                                     <preservePath>true</preservePath>
-                                    <filter>
-                                    {{
-                                        files.collect{ assert it.canonicalPath.replace( '\\', '/' ).contains( '/.m2/' ); it }
-                                    }}
-                                    </filter>
+                                    <filter>${filterM2}</filter>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-284/unpack-4</targetPath>
