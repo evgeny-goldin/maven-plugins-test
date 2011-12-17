@@ -71,8 +71,8 @@
                             <resources>
                                 <!-- "destFileName" + "dependency" (built in the same reactor) + "dependenciesAtM2" (true) -->
                                 <resource>
-                                	<targetPath>${outputDir}/destFileNameTest-1</targetPath>
-                                	<destFileName>aaaa.jar</destFileName>
+                                    <targetPath>${outputDir}/destFileNameTest-1</targetPath>
+                                    <destFileName>aaaa.jar</destFileName>
                                     <dependency>
                                         <groupId>com.goldin.plugins.maven-plugins-test</groupId>
                                         <artifactId>maven-copy-plugin.issues.0.2.3.4-a</artifactId>
@@ -83,8 +83,8 @@
                                 </resource>
                                 <!-- "destFileName" + "dependency" (built in the same reactor) + "dependenciesAtM2" (false) -->
                                 <resource>
-                                	<targetPath>${outputDir}/destFileNameTest-2</targetPath>
-                                	<destFileName>aaaa.jar</destFileName>
+                                    <targetPath>${outputDir}/destFileNameTest-2</targetPath>
+                                    <destFileName>aaaa.jar</destFileName>
                                     <dependency>
                                         <groupId>com.goldin.plugins.maven-plugins-test</groupId>
                                         <artifactId>maven-copy-plugin.issues.0.2.3.4-a</artifactId>
@@ -95,8 +95,8 @@
                                 </resource>
                                 <!-- "destFileName" + "dependency" (built in the same reactor) -->
                                 <resource>
-                                	<targetPath>${outputDir}/destFileNameTest-3</targetPath>
-                                	<destFileName>aaaa.jar</destFileName>
+                                    <targetPath>${outputDir}/destFileNameTest-3</targetPath>
+                                    <destFileName>aaaa.jar</destFileName>
                                     <dependency>
                                         <groupId>com.goldin.plugins.maven-plugins-test</groupId>
                                         <artifactId>maven-copy-plugin.issues.0.2.3.4-a</artifactId>
@@ -106,8 +106,8 @@
                                 </resource>
                                 <!-- "destFileName" + "dependency" (third-party) + "dependenciesAtM2" -->
                                 <resource>
-                                	<targetPath>${outputDir}/destFileNameTest-4</targetPath>
-                                	<destFileName>my-spring.jar</destFileName>
+                                    <targetPath>${outputDir}/destFileNameTest-4</targetPath>
+                                    <destFileName>my-spring.jar</destFileName>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-core</artifactId>
@@ -118,8 +118,8 @@
                                 </resource>
                                 <!-- "destFileName" + "dependency" (third-party) + "dependenciesAtM2" (false) -->
                                 <resource>
-                                	<targetPath>${outputDir}/destFileNameTest-5</targetPath>
-                                	<destFileName>my-spring.jar</destFileName>
+                                    <targetPath>${outputDir}/destFileNameTest-5</targetPath>
+                                    <destFileName>my-spring.jar</destFileName>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-core</artifactId>
@@ -130,8 +130,8 @@
                                 </resource>
                                 <!-- "destFileName" + "dependency" (third-party) -->
                                 <resource>
-                                	<targetPath>${outputDir}/destFileNameTest-6</targetPath>
-                                	<destFileName>my-spring.jar</destFileName>
+                                    <targetPath>${outputDir}/destFileNameTest-6</targetPath>
+                                    <destFileName>my-spring.jar</destFileName>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-core</artifactId>
