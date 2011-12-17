@@ -78,7 +78,7 @@
                                     <dependency>
                                         <includeScope>compile</includeScope>
                                     </dependency>
-                                    <process>{{ assert time &gt; 100 }}</process>
+                                    <process>{{ assert time &gt; 10 }}</process>
                                 </resource>
                                 <resource>
                                     <description>pl-562/1 - skip</description>
@@ -108,7 +108,7 @@
                                             <type>war</type>
                                         </dependency>
                                     </dependencies>
-                                    <process>{{ assert time &gt; 100 }}</process>
+                                    <process>{{ assert time &gt; 30 }}</process>
                                 </resource>
                                 <resource>
                                     <description>pl-562/2 - skip</description>
