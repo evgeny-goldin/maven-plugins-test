@@ -285,7 +285,7 @@
                                 ${outputDir}/pl-27/ftp-9/pom.xml
                             </assertFiles>
                             <assertGroovy>
-                                new File( outputDir, 'pl-27/http' ).directorySize()  == 71026
+                                new File( outputDir, 'pl-27/http' ).directorySize()  == 987
                                 new File( outputDir, 'pl-27/ftp-1' ).directorySize() == 1809
                                 new File( outputDir, 'pl-27/ftp-2' ).directorySize() == 11063
                                 new File( outputDir, 'pl-27/ftp-3' ).directorySize() == 15149
