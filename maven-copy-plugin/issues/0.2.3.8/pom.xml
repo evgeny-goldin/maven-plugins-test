@@ -27,6 +27,370 @@
                 <artifactId>maven-copy-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-571                                    -->
+                    <!-- "Using <stripVersion> - copying dependencies with classifier uses the wrong name" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-571-1</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <stripVersion>true</stripVersion>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-571/1</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>commons-validator</groupId>
+                                            <artifactId>commons-validator</artifactId>
+                                            <version>1.2.0</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>commons-validator</groupId>
+                                            <artifactId>commons-validator</artifactId>
+                                            <version>1.2.0</version>
+                                            <classifier>javadoc</classifier>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>commons-validator</groupId>
+                                            <artifactId>commons-validator</artifactId>
+                                            <version>1.2.0</version>
+                                            <classifier>sources</classifier>
+                                        </dependency>
+                                    </dependencies>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-571-2</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <stripVersion>false</stripVersion>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-571/2</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>commons-validator</groupId>
+                                            <artifactId>commons-validator</artifactId>
+                                            <version>1.2.0</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>commons-validator</groupId>
+                                            <artifactId>commons-validator</artifactId>
+                                            <version>1.2.0</version>
+                                            <classifier>javadoc</classifier>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>commons-validator</groupId>
+                                            <artifactId>commons-validator</artifactId>
+                                            <version>1.2.0</version>
+                                            <classifier>sources</classifier>
+                                        </dependency>
+                                    </dependencies>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-571-3</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <stripVersion>true</stripVersion>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-571/3</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>commons-validator</groupId>
+                                            <artifactId>commons-validator</artifactId>
+                                            <version>1.2.0</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>commons-validator</groupId>
+                                            <artifactId>commons-validator</artifactId>
+                                            <version>1.2.0</version>
+                                            <classifier>javadoc</classifier>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>commons-validator</groupId>
+                                            <artifactId>commons-validator</artifactId>
+                                            <version>1.2.0</version>
+                                            <classifier>sources</classifier>
+                                        </dependency>
+                                    </dependencies>
+                                    <filter>${filterNotM2}</filter>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-571-4</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <stripVersion>false</stripVersion>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-571/4</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>commons-validator</groupId>
+                                            <artifactId>commons-validator</artifactId>
+                                            <version>1.2.0</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>commons-validator</groupId>
+                                            <artifactId>commons-validator</artifactId>
+                                            <version>1.2.0</version>
+                                            <classifier>javadoc</classifier>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>commons-validator</groupId>
+                                            <artifactId>commons-validator</artifactId>
+                                            <version>1.2.0</version>
+                                            <classifier>sources</classifier>
+                                        </dependency>
+                                    </dependencies>
+                                    <filter>${filterNotM2}</filter>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-571-5</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-571/5-1</targetPath>
+                                    <stripVersion>true</stripVersion>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>commons-validator</groupId>
+                                            <artifactId>commons-validator</artifactId>
+                                            <version>1.2.0</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>commons-validator</groupId>
+                                            <artifactId>commons-validator</artifactId>
+                                            <version>1.2.0</version>
+                                            <classifier>javadoc</classifier>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>commons-validator</groupId>
+                                            <artifactId>commons-validator</artifactId>
+                                            <version>1.2.0</version>
+                                            <classifier>sources</classifier>
+                                        </dependency>
+                                    </dependencies>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-571/5-2</targetPath>
+                                    <stripVersion>false</stripVersion>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>commons-validator</groupId>
+                                            <artifactId>commons-validator</artifactId>
+                                            <version>1.2.0</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>commons-validator</groupId>
+                                            <artifactId>commons-validator</artifactId>
+                                            <version>1.2.0</version>
+                                            <classifier>javadoc</classifier>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>commons-validator</groupId>
+                                            <artifactId>commons-validator</artifactId>
+                                            <version>1.2.0</version>
+                                            <classifier>sources</classifier>
+                                        </dependency>
+                                    </dependencies>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-571/5-3</targetPath>
+                                    <stripVersion>true</stripVersion>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>commons-validator</groupId>
+                                            <artifactId>commons-validator</artifactId>
+                                            <version>1.2.0</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>commons-validator</groupId>
+                                            <artifactId>commons-validator</artifactId>
+                                            <version>1.2.0</version>
+                                            <classifier>javadoc</classifier>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>commons-validator</groupId>
+                                            <artifactId>commons-validator</artifactId>
+                                            <version>1.2.0</version>
+                                            <classifier>sources</classifier>
+                                        </dependency>
+                                    </dependencies>
+                                    <filter>${filterNotM2}</filter>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-571/5-4</targetPath>
+                                    <stripVersion>false</stripVersion>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>commons-validator</groupId>
+                                            <artifactId>commons-validator</artifactId>
+                                            <version>1.2.0</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>commons-validator</groupId>
+                                            <artifactId>commons-validator</artifactId>
+                                            <version>1.2.0</version>
+                                            <classifier>javadoc</classifier>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>commons-validator</groupId>
+                                            <artifactId>commons-validator</artifactId>
+                                            <version>1.2.0</version>
+                                            <classifier>sources</classifier>
+                                        </dependency>
+                                    </dependencies>
+                                    <filter>${filterNotM2}</filter>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-572 -->
+                    <!-- "Provide <stripVersion> per <dependency>"      -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-572</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-572/1</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <stripVersion>true</stripVersion>
+                                            <groupId>commons-validator</groupId>
+                                            <artifactId>commons-validator</artifactId>
+                                            <version>1.2.0</version>
+                                        </dependency>
+                                        <dependency>
+                                            <stripVersion>false</stripVersion>
+                                            <groupId>commons-validator</groupId>
+                                            <artifactId>commons-validator</artifactId>
+                                            <version>1.2.0</version>
+                                            <classifier>javadoc</classifier>
+                                        </dependency>
+                                        <dependency>
+                                            <stripVersion>true</stripVersion>
+                                            <groupId>commons-validator</groupId>
+                                            <artifactId>commons-validator</artifactId>
+                                            <version>1.2.0</version>
+                                            <classifier>sources</classifier>
+                                        </dependency>
+                                    </dependencies>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-572/2</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <stripVersion>false</stripVersion>
+                                            <groupId>commons-validator</groupId>
+                                            <artifactId>commons-validator</artifactId>
+                                            <version>1.2.0</version>
+                                        </dependency>
+                                        <dependency>
+                                            <stripVersion>true</stripVersion>
+                                            <groupId>commons-validator</groupId>
+                                            <artifactId>commons-validator</artifactId>
+                                            <version>1.2.0</version>
+                                            <classifier>javadoc</classifier>
+                                        </dependency>
+                                        <dependency>
+                                            <stripVersion>false</stripVersion>
+                                            <groupId>commons-validator</groupId>
+                                            <artifactId>commons-validator</artifactId>
+                                            <version>1.2.0</version>
+                                            <classifier>sources</classifier>
+                                        </dependency>
+                                    </dependencies>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-572/3</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <stripVersion>true</stripVersion>
+                                            <groupId>commons-validator</groupId>
+                                            <artifactId>commons-validator</artifactId>
+                                            <version>1.2.0</version>
+                                        </dependency>
+                                        <dependency>
+                                            <stripVersion>false</stripVersion>
+                                            <groupId>commons-validator</groupId>
+                                            <artifactId>commons-validator</artifactId>
+                                            <version>1.2.0</version>
+                                            <classifier>javadoc</classifier>
+                                        </dependency>
+                                        <dependency>
+                                            <stripVersion>true</stripVersion>
+                                            <groupId>commons-validator</groupId>
+                                            <artifactId>commons-validator</artifactId>
+                                            <version>1.2.0</version>
+                                            <classifier>sources</classifier>
+                                        </dependency>
+                                    </dependencies>
+                                    <filter>${filterNotM2}</filter>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-572/4</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <stripVersion>false</stripVersion>
+                                            <groupId>commons-validator</groupId>
+                                            <artifactId>commons-validator</artifactId>
+                                            <version>1.2.0</version>
+                                        </dependency>
+                                        <dependency>
+                                            <stripVersion>true</stripVersion>
+                                            <groupId>commons-validator</groupId>
+                                            <artifactId>commons-validator</artifactId>
+                                            <version>1.2.0</version>
+                                            <classifier>javadoc</classifier>
+                                        </dependency>
+                                        <dependency>
+                                            <stripVersion>false</stripVersion>
+                                            <groupId>commons-validator</groupId>
+                                            <artifactId>commons-validator</artifactId>
+                                            <version>1.2.0</version>
+                                            <classifier>sources</classifier>
+                                        </dependency>
+                                    </dependencies>
+                                    <filter>${filterNotM2}</filter>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-562                             -->
                     <!-- "Incremental build support - add <skipPacked> and improve <skipIdentical>" -->
@@ -399,6 +763,94 @@
                 <version>${plugins-version}</version>
                 <executions>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-571 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-571</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-571/1/commons-validator.jar
+                                ${outputDir}/pl-571/1/commons-validator-javadoc.jar
+                                ${outputDir}/pl-571/1/commons-validator-sources.jar
+
+                                ${outputDir}/pl-571/2/commons-validator-1.2.0.jar
+                                ${outputDir}/pl-571/2/commons-validator-1.2.0-javadoc.jar
+                                ${outputDir}/pl-571/2/commons-validator-1.2.0-sources.jar
+                            </assertFiles>
+                            <assertEqual>
+                                ${outputDir}/pl-571/1|${outputDir}/pl-571/1
+                                ${outputDir}/pl-571/2|${outputDir}/pl-571/2
+
+                                ${outputDir}/pl-571/1|${outputDir}/pl-571/3
+                                ${outputDir}/pl-571/3|${outputDir}/pl-571/5-1
+                                ${outputDir}/pl-571/5-1|${outputDir}/pl-571/5-3
+                                ${outputDir}/pl-571/5-3|${outputDir}/pl-571/1
+
+                                ${outputDir}/pl-571/2|${outputDir}/pl-571/4
+                                ${outputDir}/pl-571/4|${outputDir}/pl-571/5-2
+                                ${outputDir}/pl-571/5-2|${outputDir}/pl-571/5-4
+                                ${outputDir}/pl-571/5-4|${outputDir}/pl-571/2
+                            </assertEqual>
+                            <shouldFailAssertEqual>
+                                ${outputDir}/pl-571/1|${outputDir}/pl-571/2
+                                ${outputDir}/pl-571/2|${outputDir}/pl-571/3
+                                ${outputDir}/pl-571/3|${outputDir}/pl-571/4
+                                ${outputDir}/pl-571/4|${outputDir}/pl-571/5-1
+                                ${outputDir}/pl-571/5-1|${outputDir}/pl-571/5-2
+                                ${outputDir}/pl-571/5-2|${outputDir}/pl-571/5-3
+                                ${outputDir}/pl-571/5-3|${outputDir}/pl-571/5-4
+                                ${outputDir}/pl-571/5-4|${outputDir}/pl-571/1
+                            </shouldFailAssertEqual>
+                            <assertGroovy>
+                                new File( outputDir, 'pl-571'     ).directorySize() == 2550944
+                                new File( outputDir, 'pl-571'     ).directorySize() == new File( outputDir, 'pl-571/1' ).directorySize() * 8
+                                new File( outputDir, 'pl-571/1'   ).directorySize() == 318868
+                                new File( outputDir, 'pl-571/2'   ).directorySize() == 318868
+                                new File( outputDir, 'pl-571/3'   ).directorySize() == 318868
+                                new File( outputDir, 'pl-571/4'   ).directorySize() == 318868
+                                new File( outputDir, 'pl-571/5-1' ).directorySize() == 318868
+                                new File( outputDir, 'pl-571/5-2' ).directorySize() == 318868
+                                new File( outputDir, 'pl-571/5-3' ).directorySize() == 318868
+                                new File( outputDir, 'pl-571/5-4' ).directorySize() == 318868
+                            </assertGroovy>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-572 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-572</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-572/1/commons-validator.jar
+                                ${outputDir}/pl-572/1/commons-validator-1.2.0-javadoc.jar
+                                ${outputDir}/pl-572/1/commons-validator-sources.jar
+
+                                ${outputDir}/pl-572/2/commons-validator-1.2.0.jar
+                                ${outputDir}/pl-572/2/commons-validator-javadoc.jar
+                                ${outputDir}/pl-572/2/commons-validator-1.2.0-sources.jar
+                            </assertFiles>
+                            <assertEqual>
+                                ${outputDir}/pl-572/1|${outputDir}/pl-572/3
+                                ${outputDir}/pl-572/2|${outputDir}/pl-572/4
+                            </assertEqual>
+                            <shouldFailAssertEqual>
+                                ${outputDir}/pl-572/1|${outputDir}/pl-572/2
+                                ${outputDir}/pl-572/2|${outputDir}/pl-572/3
+                                ${outputDir}/pl-572/3|${outputDir}/pl-572/4
+                                ${outputDir}/pl-572/4|${outputDir}/pl-572/1
+                            </shouldFailAssertEqual>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-567 -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <execution>
@@ -456,7 +908,6 @@
                             </shouldFailAssertEqual>
                         </configuration>
                     </execution>
-
                 </executions>
             </plugin>
         </plugins>
