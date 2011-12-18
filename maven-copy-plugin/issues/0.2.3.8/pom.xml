@@ -27,6 +27,241 @@
                 <artifactId>maven-copy-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-564                       -->
+                    <!-- "Allow to provide static manifest content when archives are created" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-564-1</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-564/1/1.jar</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <pack>true</pack>
+                                    <manifest>
+                                        <entries>
+                                            <Specification-Title>${project.groupId}-${project.artifactId}</Specification-Title>
+                                            <Specification-Version>${project.version}</Specification-Version>
+                                            <OS-Version>${os.version}</OS-Version>
+                                            <a1>b1</a1>
+                                        </entries>
+                                    </manifest>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-564/1/1-jar</targetPath>
+                                    <file>${outputDir}/pl-564/1/1.jar</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-564/1/2.zip</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <pack>true</pack>
+                                    <manifest>
+                                        <location>a/b/manifest.txt</location>
+                                        <entries>
+                                            <Specification-Title>${project.groupId}-${project.artifactId}</Specification-Title>
+                                            <Specification-Version>${project.version}</Specification-Version>
+                                            <OS-Version>${os.version}</OS-Version>
+                                            <a2>b2</a2>
+                                        </entries>
+                                    </manifest>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-564/1/2-zip</targetPath>
+                                    <file>${outputDir}/pl-564/1/2.zip</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-564/1/3.tar.gz</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <pack>true</pack>
+                                    <manifest>
+                                        <location>manifest.txt</location>
+                                        <entries>
+                                            <Specification-Title>${project.groupId}-${project.artifactId}</Specification-Title>
+                                            <Specification-Version>${project.version}</Specification-Version>
+                                            <OS-Version>${os.version}</OS-Version>
+                                            <a3>b3</a3>
+                                        </entries>
+                                    </manifest>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-564/1/3-tar.gz</targetPath>
+                                    <file>${outputDir}/pl-564/1/3.tar.gz</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-564-2</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <manifest>
+                                <entries>
+                                    <Specification-Title>${project.groupId}-${project.artifactId}</Specification-Title>
+                                    <Specification-Version>${project.version}</Specification-Version>
+                                    <OS-Version>${os.version}</OS-Version>
+                                    <a4>b4</a4>
+                                </entries>
+                            </manifest>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-564/2/1.jar</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <pack>true</pack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-564/2/1-jar</targetPath>
+                                    <file>${outputDir}/pl-564/2/1.jar</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-564/2/2.zip</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <pack>true</pack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-564/2/2-zip</targetPath>
+                                    <file>${outputDir}/pl-564/2/2.zip</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-564/2/3.tar.gz</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <pack>true</pack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-564/2/3-tar.gz</targetPath>
+                                    <file>${outputDir}/pl-564/2/3.tar.gz</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-564-3</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <manifest>
+                                <location>/m.txt</location>
+                                <entries>
+                                    <Specification-Title>${project.groupId}-${project.artifactId}</Specification-Title>
+                                    <Specification-Version>${project.version}</Specification-Version>
+                                    <OS-Version>${os.version}</OS-Version>
+                                    <a5>b5</a5>
+                                </entries>
+                            </manifest>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-564/3/1.jar</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <pack>true</pack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-564/3/1-jar</targetPath>
+                                    <file>${outputDir}/pl-564/3/1.jar</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-564/3/2.zip</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <pack>true</pack>
+                                    <manifest>
+                                        <entries>
+                                            <a5>zzzzz</a5>
+                                            <a7>b7</a7>
+                                            <basedir>${project.basedir}</basedir>
+                                        </entries>
+                                    </manifest>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-564/3/2-zip</targetPath>
+                                    <file>${outputDir}/pl-564/3/2.zip</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-564/3/3.tar.gz</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <pack>true</pack>
+                                    <manifest>
+                                        <location>/m2.txt</location>
+                                        <entries>
+                                            <a5>xxxxx</a5>
+                                            <a6>b6</a6>
+                                            <project>${project.baseUri}</project>
+                                        </entries>
+                                    </manifest>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-564/3/3-tar.gz</targetPath>
+                                    <file>${outputDir}/pl-564/3/3.tar.gz</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-564-4</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <useTrueZipForPack>true</useTrueZipForPack>
+                            <manifest>
+                                <entries>
+                                    <Specification-Title>${project.groupId}-${project.artifactId}</Specification-Title>
+                                    <Specification-Version>${project.version}</Specification-Version>
+                                    <OS-Version>${os.version}</OS-Version>
+                                    <a4>b4</a4>
+                                </entries>
+                            </manifest>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-564/4/1.jar</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <pack>true</pack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-564/4/1-jar</targetPath>
+                                    <file>${outputDir}/pl-564/4/1.jar</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-564/4/2.zip</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <pack>true</pack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-564/4/2-zip</targetPath>
+                                    <file>${outputDir}/pl-564/4/2.zip</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-564/4/3.tar.gz</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <pack>true</pack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-564/4/3-tar.gz</targetPath>
+                                    <file>${outputDir}/pl-564/4/3.tar.gz</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-571                                    -->
                     <!-- "Using <stripVersion> - copying dependencies with classifier uses the wrong name" -->
@@ -762,6 +997,75 @@
                 <artifactId>maven-assert-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-564 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-564</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-564/1/1-jar/META-INF/MANIFEST.MF
+                                ${outputDir}/pl-564/1/2-zip/a/b/manifest.txt
+                                ${outputDir}/pl-564/1/3-tar.gz/manifest.txt
+
+                                ${outputDir}/pl-564/2/1-jar/META-INF/MANIFEST.MF
+                                ${outputDir}/pl-564/2/2-zip/META-INF/MANIFEST.MF
+                                ${outputDir}/pl-564/2/3-tar.gz/META-INF/MANIFEST.MF
+
+                                ${outputDir}/pl-564/3/1-jar/m.txt
+                                ${outputDir}/pl-564/3/2-zip/m.txt
+                                ${outputDir}/pl-564/3/3-tar.gz/m2.txt
+
+                                ${outputDir}/pl-564/4/1-jar/META-INF/MANIFEST.MF
+                                ${outputDir}/pl-564/4/2-zip/META-INF/MANIFEST.MF
+                                ${outputDir}/pl-564/4/3-tar.gz/META-INF/MANIFEST.MF
+                            </assertFiles>
+                            <assertEqual>
+                                ${outputDir}/pl-564/2/1-jar|${outputDir}/pl-564/2/2-zip
+                                ${outputDir}/pl-564/2/2-zip|${outputDir}/pl-564/2/3-tar.gz
+                                ${outputDir}/pl-564/2/3-tar.gz|${outputDir}/pl-564/2/1-jar
+
+                                ${outputDir}/pl-564/2|${outputDir}/pl-564/4|**/*.MF
+                            </assertEqual>
+                            <shouldFailAssertEqual>
+                                ${outputDir}/pl-564/1/2-zip/a/b|${outputDir}/pl-564/1/3-tar.gz
+                                ${outputDir}/pl-564/1/2-zip/a/b|${outputDir}/pl-564/1/3-tar.gz|*.txt
+
+                                ${outputDir}/pl-564/3/1-jar|${outputDir}/pl-564/3/2-zip
+                                ${outputDir}/pl-564/3/1-jar|${outputDir}/pl-564/3/2-zip|*.txt
+                            </shouldFailAssertEqual>
+                            <assertGroovy>
+                                new File( outputDir, 'pl-564/1/1-jar/META-INF/MANIFEST.MF' ).text.contains( 'a1: b1' )
+                                new File( outputDir, 'pl-564/1/2-zip/a/b/manifest.txt' ).text.contains( 'a2: b2' )
+                                new File( outputDir, 'pl-564/1/3-tar.gz/manifest.txt' ).text.contains( 'a3: b3' )
+
+                                new File( outputDir, 'pl-564/2/1-jar/META-INF/MANIFEST.MF' ).text.contains( 'a4: b4' )
+                                new File( outputDir, 'pl-564/2/2-zip/META-INF/MANIFEST.MF' ).text.contains( 'a4: b4' )
+                                new File( outputDir, 'pl-564/2/3-tar.gz/META-INF/MANIFEST.MF' ).text.contains( 'a4: b4' )
+
+                                new File( outputDir, 'pl-564/3/1-jar/m.txt' ).text.contains( 'a5: b5' )
+                                new File( outputDir, 'pl-564/3/2-zip/m.txt' ).text.contains( 'a5: zzzzz' )
+                                new File( outputDir, 'pl-564/3/2-zip/m.txt' ).text.contains( 'a7: b7' )
+                                new File( outputDir, 'pl-564/3/2-zip/m.txt' ).text.contains( 'basedir: ' )
+                                new File( outputDir, 'pl-564/3/3-tar.gz/m2.txt' ).text.contains( 'a5: xxxxx' )
+                                new File( outputDir, 'pl-564/3/3-tar.gz/m2.txt' ).text.contains( 'a6: b6' )
+                                new File( outputDir, 'pl-564/3/3-tar.gz/m2.txt' ).text.contains( 'project: ' )
+
+                                new File( outputDir, 'pl-564/4/1-jar/META-INF/MANIFEST.MF' ).text.contains( 'a4: b4' )
+                                new File( outputDir, 'pl-564/4/2-zip/META-INF/MANIFEST.MF' ).text.contains( 'a4: b4' )
+                                new File( outputDir, 'pl-564/4/3-tar.gz/META-INF/MANIFEST.MF' ).text.contains( 'a4: b4' )
+
+                                new File( outputDir, 'pl-564' ).recurse([:], {}).findAll{ it.name.with{ endsWith( '.txt' ) || endsWith( '.MF' ) }}.every{ it.text.contains( 'OS-Version: ' ) }
+                                new File( outputDir, 'pl-564' ).recurse([:], {}).findAll{ it.name.with{ endsWith( '.txt' ) || endsWith( '.MF' ) }}.every{ it.text.contains( 'Specification-Title: ' ) }
+                                new File( outputDir, 'pl-564' ).recurse([:], {}).findAll{ it.name.with{ endsWith( '.txt' ) || endsWith( '.MF' ) }}.every{ it.text.contains( 'Manifest-Version: 1.0' ) }
+                                new File( outputDir, 'pl-564' ).recurse([:], {}).findAll{ it.name.with{ endsWith( '.txt' ) || endsWith( '.MF' ) }}.every{ it.text.contains( 'Specification-Version: ${project.version}' ) }
+                            </assertGroovy>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-571 -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
