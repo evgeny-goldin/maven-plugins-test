@@ -45,7 +45,7 @@
                         </goals>
                         <phase>process-resources</phase>
                         <configuration>
-                            <runIf>{{ slowTests }}</runIf>
+                            <runIf>{{ ftpTests }}</runIf>
                             <resources>
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <!-- Creating distribution archive -->
@@ -104,7 +104,7 @@
                         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                         <phase>package</phase>
                         <configuration>
-                            <runIf>{{ slowTests }}</runIf>
+                            <runIf>{{ ftpTests }}</runIf>
                             <resources>
 
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -174,7 +174,7 @@
                         </goals>
                         <phase>compile</phase>
                         <configuration>
-                            <runIf>{{ slowTests }}</runIf>
+                            <runIf>{{ ftpTests }}</runIf>
                             <location>${scpPath}</location>
                             <commands>
                                 <command>rm -rf apache-maven-3.0.1</command>
@@ -204,7 +204,7 @@
                         </goals>
                         <phase>integration-test</phase>
                         <configuration>
-                            <runIf>{{ slowTests }}</runIf>
+                            <runIf>{{ ftpTests }}</runIf>
                             <assertFiles>
                                 ${outputDir}/scp
                                 ${outputDir}/scp/lib/aether-connector-wagon-1.8.jar

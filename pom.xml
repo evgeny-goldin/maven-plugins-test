@@ -16,17 +16,18 @@
     <properties>
         <outputDir>${project.build.outputDirectory}</outputDir>
         <artifactory>http://evgeny-goldin.org/artifactory</artifactory>
-        <maven-version>3.0.3</maven-version>
+        <maven-version>3.0.4</maven-version>
         <java-version>1.6</java-version>
         <spring-version>3.1.0.RELEASE</spring-version>
         <junit-version>4.10</junit-version>
         <log4j-version>1.2.16</log4j-version>
         <jaxen-version>1.1.1</jaxen-version>
         <gmaven-version>1.3</gmaven-version>
-        <groovy-version>1.8.2</groovy-version>
-        <plugins-version>0.3-SNAPSHOT</plugins-version>
-        <plugins-version-for-jenkins-jobs>0.2.3.6</plugins-version-for-jenkins-jobs>
-        <gcommons-version>0.5.3.6</gcommons-version>
+        <groovy-version>1.8.5</groovy-version>
+        <plugins-version>0.2.3.8-SNAPSHOT</plugins-version>
+        <plugins-version-for-jenkins-jobs>0.2.3.8-beta-2</plugins-version-for-jenkins-jobs>
+        <gcommons-version>0.5.3.8-beta-2</gcommons-version>
+        <ftpTests>false</ftpTests>
         <slowTests>false</slowTests>
 
         <!-- ~~~~~~~~~~~~~~~~~ -->

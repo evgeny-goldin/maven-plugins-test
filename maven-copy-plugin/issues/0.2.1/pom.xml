@@ -70,7 +70,7 @@
                         </goals>
                         <phase>initialize</phase>
                         <configuration>
-                            <runIf>{{ slowTests }}</runIf>
+                            <runIf>{{ ftpTests }}</runIf>
                             <resources>
                                 <!-- ~~~~~~~~~~~~~ -->
                                 <!-- HTTP Download -->
@@ -249,7 +249,7 @@
                         </goals>
                         <phase>test</phase>
                         <configuration>
-                            <runIf>{{ slowTests }}</runIf>
+                            <runIf>{{ ftpTests }}</runIf>
                             <assertFiles>
                                 ${outputDir}/pl-27/http/search.png
                                 ${outputDir}/pl-27/ftp-1/index.html

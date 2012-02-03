@@ -143,27 +143,27 @@
                                     <file>http://dl.dropbox.com/u/4820835/hudson-maven-git-NPE/debugger.png</file>
                                 </resource>
                                 <resource>
-                                    <runIf>{{ slowTests }}</runIf>
+                                    <runIf>{{ ftpTests }}</runIf>
                                     <targetPath>${outputDir}/net-ftp/1</targetPath>
                                     <directory>${zymicFtp}:/</directory>
                                     <include>index.html</include>
                                 </resource>
                                 <resource>
-                                    <runIf>{{ slowTests }}</runIf>
+                                    <runIf>{{ ftpTests }}</runIf>
                                     <targetPath>${outputDir}/net-ftp/2</targetPath>
                                     <directory>${zymicFtp}:/apache-maven-3.0.1</directory>
                                     <include>lib/no-such-file*.jar</include>
                                     <failIfNotFound>false</failIfNotFound>
                                 </resource>
                                 <resource>
-                                    <runIf>{{ slowTests }}</runIf>
+                                    <runIf>{{ ftpTests }}</runIf>
                                     <targetPath>${outputDir}/net-ftp/3</targetPath>
                                     <directory>${zymicFtp}:/apache-maven-3.0.1/lib</directory>
                                     <include>wagon-*.jar</include>
                                     <exclude>wagon-http-*.jar</exclude>
                                 </resource>
                                 <resource>
-                                    <runIf>{{ Boolean.valueOf( slowTests ) &amp;&amp; ( ! mavenVersion.startsWith( '2' )) }}</runIf>
+                                    <runIf>{{ Boolean.valueOf( ftpTests ) &amp;&amp; ( ! mavenVersion.startsWith( '2' )) }}</runIf>
                                     <targetPath>${outputDir}/net-ftp/4</targetPath>
                                     <directory>${zymicFtp}:/apache-maven-3.0.1</directory>
                                     <include>file:${project.basedir}/src/main/resources/ftp-include.txt</include>
@@ -718,7 +718,7 @@
                         </goals>
                         <phase>install</phase>
                         <configuration>
-                            <runIf>{{ slowTests }}</runIf>
+                            <runIf>{{ ftpTests }}</runIf>
                             <assertFiles>
                                 ${outputDir}/net-http/search.png
                                 ${outputDir}/net-http/debugger.png
@@ -742,7 +742,7 @@
                         </goals>
                         <phase>install</phase>
                         <configuration>
-                            <runIf>{{ Boolean.valueOf( slowTests ) &amp;&amp; ( ! mavenVersion.startsWith( '2' )) }}</runIf>
+                            <runIf>{{ Boolean.valueOf( ftpTests ) &amp;&amp; ( ! mavenVersion.startsWith( '2' )) }}</runIf>
                             <assertFiles>
                                 ${outputDir}/net-ftp/4/mvn
                                 ${outputDir}/net-ftp/4/mvn.bat
