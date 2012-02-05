@@ -298,6 +298,7 @@ Groovy [$GroovySystem.version], Maven [$mavenVersion] - testing plugins version 
         <module>cleanup-temp</module>
         <module>maven-about-plugin</module>
         <module>maven-jenkins-plugin</module>
+        <module>maven-ivy-plugin</module>
         <module>maven-copy-plugin</module>
         <module>maven-properties-plugin</module>
         <module>maven-find-plugin</module>
