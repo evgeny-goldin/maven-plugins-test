@@ -297,6 +297,7 @@ Groovy [$GroovySystem.version], Maven [$mavenVersion] - testing plugins version 
     <modules>
         <module>cleanup-temp</module>
         <module>maven-about-plugin</module>
+        <module>maven-ivy-plugin</module>
         <module>maven-jenkins-plugin</module>
         <module>maven-copy-plugin</module>
         <module>maven-properties-plugin</module>
@@ -305,21 +306,5 @@ Groovy [$GroovySystem.version], Maven [$mavenVersion] - testing plugins version 
         <module>maven-sshexec-plugin</module>
         <module>verify-temp</module>
     </modules>
-
-
-    <profiles>
-        <profile>
-            <id>maven3</id>
-            <activation>
-                <property>
-                    <name>maven3</name>
-                    <value>true</value>
-                </property>
-            </activation>
-            <modules>
-                <module>maven-ivy-plugin</module>
-            </modules>
-        </profile>
-    </profiles>
 
 </project>
