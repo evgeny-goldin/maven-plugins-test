@@ -1091,7 +1091,7 @@
                                     <targetPath>${outputDir}/pl-515/1</targetPath>
                                     <file>${project.basedir}/src/main/resources/1.bat</file>
                                     <filtering>true</filtering>
-                                    <process>{{ assert file.text.contains( '$' + '{' ) }}</process>
+                                    <process>{{ assert ! file.text.contains( '$' + '{' ) }}</process>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-515/2</targetPath>
@@ -2497,7 +2497,7 @@
                             </assertFiles>
                             <assertGroovy>
                                 new File( outputDir, 'pl-515/1/1.bat' ).text.contains( '@echo off' )
-                                new File( outputDir, 'pl-515/1/1.bat' ).text.contains( '$' + '{' )
+                              ! new File( outputDir, 'pl-515/1/1.bat' ).text.contains( '$' + '{' )
 
                               ! new File( outputDir, 'pl-515/2/1.bat' ).text.contains( '$' + '{' )
                                 new File( outputDir, 'pl-515/2/1.bat' ).text.contains( '[${project.groupId}:${project.artifactId}:${project.version}]' )
@@ -2510,10 +2510,8 @@
                                 new File( outputDir, 'pl-515/5/opa-1-apo.bAt' ).text.contains( '[${project.groupId}:${project.artifactId}:${project.version}]' )
                                 new File( outputDir, 'pl-515/5/opa-1-apo.bAt' ).text.contains( '[' + project.groupId + ':' + project.artifactId + ':' + project.version + ']' )
                             </assertGroovy>
-                            <assertEqual>
-                                ${outputDir}/pl-515/1|${outputDir}/pl-515/3
-                            </assertEqual>
                             <shouldFailAssertEqual>
+                                ${outputDir}/pl-515/1|${outputDir}/pl-515/3
                                 ${outputDir}/pl-515/2|${outputDir}/pl-515/5
                                 <!-- http://evgeny-goldin.org/youtrack/issue/pl-525 -->
                                 <!-- ${outputDir}/pl-515/3|${outputDir}/pl-515/4    -->
