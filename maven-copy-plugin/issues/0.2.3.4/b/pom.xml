@@ -413,7 +413,7 @@
                             </assertFiles>
                             <assertGroovy>
                                 [ 1, 2, 3 ].every{   new File( outputDir, "pl-233/$it/go.bat" ).text.readLines()[ 0 ] == '@echo off' }
-                                [ 1       ].every{   new File( outputDir, "pl-233/$it/go.bat" ).text.readLines()[ 1 ].contains( '$' ) }
+                                [ 1       ].every{ ! new File( outputDir, "pl-233/$it/go.bat" ).text.readLines()[ 1 ].contains( '$' ) }
                                 [ 2, 3    ].every{ ! new File( outputDir, "pl-233/$it/go.bat" ).text.readLines()[ 1 ].contains( '$' ) }
                                 [ 2, 3    ].every{   new File( outputDir, "pl-233/$it/go.bat" ).text.readLines()[ 1 ] == "echo '${project.groupId}:${project.artifactId}:${project.version}'" }
                             </assertGroovy>
