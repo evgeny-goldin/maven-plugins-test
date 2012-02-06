@@ -46,6 +46,13 @@
                             <ivy>${project.basedir}/src/main/resources/ivy.xml</ivy>
                             <scope>compile</scope>
                             <dir>${outputDir}/dir</dir>
+                            <dependencies>
+                                <dependency>
+                                    <groupId>log4j</groupId>
+                                    <artifactId>log4j</artifactId>
+                                    <version>1.2.16</version>
+                                </dependency>
+                            </dependencies>
                         </configuration>
                     </execution>
                 </executions>
@@ -158,14 +165,5 @@
             </plugin>
         </plugins>
     </build>
-
-
-    <dependencies>
-        <dependency>
-            <groupId>org.apache.ant</groupId>
-            <artifactId>ant</artifactId>
-            <version>1.8.2</version>
-        </dependency>
-    </dependencies>
 </project>
 

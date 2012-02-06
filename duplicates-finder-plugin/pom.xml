@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns              = "http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi          = "http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0
+                               http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+    <artifactId>duplicates-finder-plugin</artifactId>
+    <packaging>jar</packaging>
+    <version>0.1-SNAPSHOT</version>
+    <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
+
+
+    <parent>
+        <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+        <artifactId>main.tests</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>duplicates-finder-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <execution>
+                        <id>spring-duplicate</id>
+                        <goals>
+                            <goal>find-duplicates</goal>
+                        </goals>
+                        <phase>compile</phase>
+                        <configuration>
+                            <fail>false</fail>
+                            <scopes>compile, runtime</scopes>
+                            <verbose>true</verbose>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+
+    <dependencies>
+        <!-- ~~~~~~~~~~~~~~~ -->
+        <!-- First duplicate -->
+        <!-- ~~~~~~~~~~~~~~~ -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>3.1.0.RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring</artifactId>
+            <version>2.5.6</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- ~~~~~~~~~~~~~~~~ -->
+        <!-- Second duplicate -->
+        <!-- ~~~~~~~~~~~~~~~~ -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-email</artifactId>
+            <version>1.2</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>commons-email</groupId>
+            <artifactId>commons-email</artifactId>
+            <version>1.0</version>
+            <scope>runtime</scope>
+        </dependency>
+    </dependencies>
+
+</project>
