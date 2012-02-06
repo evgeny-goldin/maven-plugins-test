@@ -135,6 +135,16 @@
                 </executions>
             </plugin>
 
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <verbose>true</verbose>
+                    <compilerArgument>-Xlint:all</compilerArgument>
+                </configuration>
+            </plugin>
+
             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
             <!-- Verifying files copied and unpacked -->
             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -158,6 +168,13 @@
 
                                 ${outputDir}/MyAntTask.class
                                 ${outputDir}/MyLog4jAppender.class
+
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Dependencies were copied -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+                                ${outputDir}/dir/ant-1.8.2.jar
+                                ${outputDir}/dir/log4j-1.2.16.jar
 
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <!-- IDEA jars were resolved -->
