@@ -32,21 +32,28 @@
                 <artifactId>maven-ivy-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- Adding Ivy resolver + adding Ivy dependencies to the "compile" scope -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <execution>
-                        <id>add-ivy-resolver</id>
+                        <id>add-ivy-dependencies</id>
                         <goals>
-                            <goal>add-ivy-resolver</goal>
+                            <goal>ivy</goal>
                         </goals>
+                        <phase>generate-resources</phase>
                         <configuration>
                             <ivyconf>${project.basedir}/src/main/resources/ivyconf.xml</ivyconf>
+                            <ivy>${project.basedir}/src/main/resources/ivy.xml</ivy>
+                            <scope>compile</scope>
+                            <dir>${outputDir}/dir</dir>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
 
-            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-            <!-- Resolving two IDEA dependencies -->
-            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- Resolving two IDEA dependencies as if they were Maven dependencies using "maven-copy-plugin" -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
             <plugin>
                 <groupId>com.goldin.plugins</groupId>
@@ -58,7 +65,7 @@
                         <goals>
                             <goal>copy</goal>
                         </goals>
-                        <phase>compile</phase>
+                        <phase>test-compile</phase>
                         <configuration>
                             <resources>
                                 <resource>
@@ -151,5 +158,14 @@
             </plugin>
         </plugins>
     </build>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.ant</groupId>
+            <artifactId>ant</artifactId>
+            <version>1.8.2</version>
+        </dependency>
+    </dependencies>
 </project>
 
