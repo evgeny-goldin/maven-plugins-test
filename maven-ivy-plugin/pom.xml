@@ -32,20 +32,51 @@
                 <artifactId>maven-ivy-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                    <!-- Adding Ivy resolver + adding Ivy dependencies to the "compile" scope -->
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- Adding Ivy IDEA artifacts to "compile" scope                                                       -->
+                    <!-- Similar to Ivy <cachepath> : http://ant.apache.org/ivy/history/latest-milestone/use/cachepath.html -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <execution>
-                        <id>add-ivy-dependencies</id>
+                        <id>idea-artifacts-compile-scope</id>
                         <goals>
                             <goal>ivy</goal>
                         </goals>
                         <phase>generate-resources</phase>
                         <configuration>
-                            <ivyconf>${project.basedir}/src/main/resources/ivyconf.xml</ivyconf>
-                            <ivy>${project.basedir}/src/main/resources/ivy.xml</ivy>
+                            <ivyconf>${project.basedir}/src/main/resources/idea-ivyconf.xml</ivyconf>
+                            <ivy>${project.basedir}/src/main/resources/idea-ivy.xml</ivy>
                             <scope>compile</scope>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- Copying Ivy IDEA artifacts to local directory                                                   -->
+                    <!-- Similar to Ivy <retrieve>: http://ant.apache.org/ivy/history/latest-milestone/use/retrieve.html -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>idea-artifacts-local-dir</id>
+                        <goals>
+                            <goal>ivy</goal>
+                        </goals>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <ivyconf>${project.basedir}/src/main/resources/idea-ivyconf.xml</ivyconf>
+                            <ivy>${project.basedir}/src/main/resources/idea-ivy.xml</ivy>
+                            <dir>${outputDir}/idea</dir>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- Copying mix of Ivy/Maven artifacts to local directory + adding them to "compile" scope          -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>dependencies-mix</id>
+                        <goals>
+                            <goal>ivy</goal>
+                        </goals>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <ivyconf>${project.basedir}/src/main/resources/idea-ivyconf.xml</ivyconf>
                             <dir>${outputDir}/dir</dir>
+                            <scope>compile</scope>
                             <dependencies>
                                 <dependency>
                                     <groupId>log4j</groupId>
@@ -57,15 +88,22 @@
                                     <artifactId>ant</artifactId>
                                     <version>1.8.2</version>
                                 </dependency>
+                                <dependency>
+                                    <groupId>ivy.org</groupId>
+                                    <artifactId>bt343</artifactId>
+                                    <version>latest.lastSuccessful</version>
+                                    <classifier>core/annotations</classifier>
+                                </dependency>
                             </dependencies>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
 
-            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-            <!-- Resolving two IDEA dependencies as if they were Maven dependencies using "maven-copy-plugin" -->
-            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- Resolving IDEA Ivy dependencies as if they were regular Maven dependencies using "maven-copy-plugin" -->
+            <!-- Note! <groupId> should start with "ivy." to mark a dependency as Ivy artifact                        -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
             <plugin>
                 <groupId>com.goldin.plugins</groupId>
@@ -84,14 +122,14 @@
                                     <targetPath>${outputDir}/idea</targetPath>
                                     <dependencies>
                                         <dependency>
-                                            <groupId>ivy:org</groupId>
+                                            <groupId>ivy.org</groupId>
                                             <artifactId>bt343</artifactId>
                                             <version>latest.lastSuccessful</version>
                                             <classifier>core/annotations</classifier>
                                             <destFileName>annotations.jar</destFileName>
                                         </dependency>
                                         <dependency>
-                                            <groupId>ivy:org</groupId>
+                                            <groupId>ivy.org</groupId>
                                             <artifactId>bt343</artifactId>
                                             <version>latest.lastSuccessful</version>
                                             <classifier>core/intellij-core</classifier>
@@ -102,7 +140,7 @@
                                 <resource>
                                     <targetPath>${outputDir}/idea-unpacked-1</targetPath>
                                     <dependency>
-                                        <groupId>ivy:org</groupId>
+                                        <groupId>ivy.org</groupId>
                                         <artifactId>bt343</artifactId>
                                         <version>23</version>
                                         <classifier>core/intellij-core</classifier>
@@ -112,7 +150,7 @@
                                 <resource>
                                     <targetPath>${outputDir}/idea-unpacked-2</targetPath>
                                     <dependency>
-                                        <groupId>ivy:org</groupId>
+                                        <groupId>ivy.org</groupId>
                                         <artifactId>bt343</artifactId>
                                         <version>latest.lastSuccessful</version>
                                         <classifier>core/intellij-core</classifier>
@@ -122,7 +160,7 @@
                                 <resource>
                                     <targetPath>${outputDir}/idea-unpacked-3</targetPath>
                                     <dependency>
-                                        <groupId>ivy:org</groupId>
+                                        <groupId>ivy.org</groupId>
                                         <artifactId>bt343</artifactId>
                                         <version>latest.lastFinished</version>
                                         <classifier>core/intellij-core</classifier>
@@ -166,6 +204,7 @@
                                 <!-- Classes were compiled -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~ -->
 
+                                ${outputDir}/IdeaClass.class
                                 ${outputDir}/MyAntTask.class
                                 ${outputDir}/MyLog4jAppender.class
 
@@ -192,6 +231,11 @@
                                 ${outputDir}/idea-unpacked-3/com/intellij/ide/presentation/VirtualFilePresentation.class
                                 ${outputDir}/idea-unpacked-3/com/intellij/core/CoreBundle.class
                             </assertFiles>
+                            <assertGroovy>
+                                new File( outputDir, 'dir'  ).listFiles().size == 3
+                                new File( outputDir, 'idea' ).listFiles().size == 8
+                                new File( outputDir, 'idea' ).listFiles().every{ File f -> [ 'annotations', 'asm', 'asm-commons', 'cli-10', 'guava-11.0.1', 'intellij-core', 'picocontainer', 'trove4j' ].any{ f.name ==~ /$it-\d+\.lastSuccessful\.jar/ }}
+                            </assertGroovy>
                         </configuration>
                     </execution>
                 </executions>
