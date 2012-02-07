@@ -61,7 +61,7 @@
                         <configuration>
                             <ivyconf>${project.basedir}/src/main/resources/idea-ivyconf.xml</ivyconf>
                             <ivy>${project.basedir}/src/main/resources/idea-ivy.xml</ivy>
-                            <dir>${outputDir}/idea</dir>
+                            <dir>${outputDir}/idea-artifacts</dir>
                         </configuration>
                     </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -98,6 +98,9 @@
                         </configuration>
                     </execution>
                 </executions>
+                <configuration>
+                    <verbose>true</verbose>
+                </configuration>
             </plugin>
 
             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -232,9 +235,10 @@
                                 ${outputDir}/idea-unpacked-3/com/intellij/core/CoreBundle.class
                             </assertFiles>
                             <assertGroovy>
-                                new File( outputDir, 'dir'  ).listFiles().size == 3
-                                new File( outputDir, 'idea' ).listFiles().size == 8
-                                new File( outputDir, 'idea' ).listFiles().every{ File f -> [ 'annotations', 'asm', 'asm-commons', 'cli-10', 'guava-11.0.1', 'intellij-core', 'picocontainer', 'trove4j' ].any{ f.name ==~ /$it-\d+\.lastSuccessful\.jar/ }}
+                                new File( outputDir, 'idea' ).listFiles().size()           == 2
+                                new File( outputDir, 'dir'  ).listFiles().size()           == 3
+                                new File( outputDir, 'idea-artifacts' ).listFiles().size() == 8
+                                new File( outputDir, 'idea-artifacts' ).listFiles().every{ File f -> [ 'annotations', 'asm', 'asm-commons', 'cli-10', 'guava-11.0.1', 'intellij-core', 'picocontainer', 'trove4j' ].any{ f.name ==~ /$it-\d+\.lastSuccessful\.jar/ }}
                             </assertGroovy>
                         </configuration>
                     </execution>
