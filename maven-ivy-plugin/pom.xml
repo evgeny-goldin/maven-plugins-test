@@ -186,9 +186,9 @@
                 </configuration>
             </plugin>
 
-            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-            <!-- Verifying files copied and unpacked -->
-            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- Verifying files were compiled, copied and unpacked -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
             <plugin>
                 <groupId>com.goldin.plugins</groupId>
@@ -203,8 +203,9 @@
                         <phase>test</phase>
                         <configuration>
                             <assertFiles>
+
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~ -->
-                                <!-- Classes were compiled -->
+                                <!-- Sources were compiled -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~ -->
 
                                 ${outputDir}/IdeaClass.class
@@ -219,7 +220,7 @@
                                 ${outputDir}/dir/log4j-1.2.16.jar
 
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~ -->
-                                <!-- IDEA jars were resolved -->
+                                <!-- IDEA jars were unpacked -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~ -->
 
                                 ${outputDir}/idea/annotations.jar
