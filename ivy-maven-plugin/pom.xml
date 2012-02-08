@@ -7,7 +7,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.goldin.plugins.maven-plugins-test</groupId>
-    <artifactId>maven-ivy-plugin</artifactId>
+    <artifactId>ivy-maven-plugin</artifactId>
     <packaging>jar</packaging>
     <version>0.1-SNAPSHOT</version>
     <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
@@ -29,7 +29,7 @@
 
             <plugin>
                 <groupId>com.goldin.plugins</groupId>
-                <artifactId>maven-ivy-plugin</artifactId>
+                <artifactId>ivy-maven-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -114,7 +114,7 @@
                 <version>${plugins-version}</version>
                 <executions>
                     <execution>
-                        <id>resolve-idea-artifacts</id>
+                        <id>resolve-idea-artifacts-1</id>
                         <goals>
                             <goal>copy</goal>
                         </goals>
@@ -176,14 +176,43 @@
                 </executions>
             </plugin>
 
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- Resolving IDEA Ivy dependencies as if they were regular Maven dependencies using "maven-dependency-plugin" -->
+            <!-- Note! <groupId> should start with "ivy." to mark a dependency as Ivy artifact                              -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
-                <configuration>
-                    <verbose>true</verbose>
-                    <compilerArgument>-Xlint:all</compilerArgument>
-                </configuration>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.4</version>
+                <executions>
+                    <execution>
+                        <id>resolve-idea-artifacts-2</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>test-compile</phase>
+                        <configuration>
+                            <outputDirectory>${outputDir}/idea2</outputDirectory>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>ivy.org</groupId>
+                                    <artifactId>bt343</artifactId>
+                                    <version>latest.lastSuccessful</version>
+                                    <classifier>core/annotations</classifier>
+                                    <destFileName>annotations.jar</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>ivy.org</groupId>
+                                    <artifactId>bt343</artifactId>
+                                    <version>latest.lastSuccessful</version>
+                                    <classifier>core/intellij-core</classifier>
+                                    <destFileName>intellij-core.jar</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
 
             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -225,6 +254,8 @@
 
                                 ${outputDir}/idea/annotations.jar
                                 ${outputDir}/idea/intellij-core.jar
+                                ${outputDir}/idea2/annotations.jar
+                                ${outputDir}/idea2/intellij-core.jar
                                 ${outputDir}/idea-unpacked-1
                                 ${outputDir}/idea-unpacked-1/com/intellij/ide/presentation/VirtualFilePresentation.class
                                 ${outputDir}/idea-unpacked-1/com/intellij/core/CoreBundle.class
