@@ -298,6 +298,8 @@ Groovy [$GroovySystem.version], Maven [$mavenVersion] - testing plugins version 
         <module>cleanup-temp</module>
         <module>maven-about-plugin</module>
         <module>ivy-maven-plugin</module>
+        <!-- Only when Kotlin TeamCity build becomes publicly available -->
+        <!--<module>kotlin-maven-plugin</module>-->
         <module>duplicates-finder-plugin</module>
         <module>maven-jenkins-plugin</module>
         <module>maven-copy-plugin</module>

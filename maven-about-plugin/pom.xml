@@ -265,6 +265,11 @@
                                     </dependency>
                                     <dependency>
                                         <groupId>com.goldin.plugins</groupId>
+                                        <artifactId>kotlin-maven-plugin</artifactId>
+                                        <version>${plugins-version}</version>
+                                    </dependency>
+                                    <dependency>
+                                        <groupId>com.goldin.plugins</groupId>
                                         <artifactId>maven-about-plugin</artifactId>
                                         <version>${plugins-version}</version>
                                     </dependency>
