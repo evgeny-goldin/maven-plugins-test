@@ -260,7 +260,7 @@
                                     </dependency>
                                     <dependency>
                                         <groupId>com.goldin.plugins</groupId>
-                                        <artifactId>maven-ivy-plugin</artifactId>
+                                        <artifactId>ivy-maven-plugin</artifactId>
                                         <version>${plugins-version}</version>
                                     </dependency>
                                     <dependency>
