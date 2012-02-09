@@ -407,6 +407,8 @@
                                 ${outputDir}/pl-483/about~com.goldin.plugins~maven-assert-plugin~${plugins-version}.txt
                                 ${outputDir}/pl-483/about~com.goldin.plugins~maven2-common~${plugins-version}.txt
                                 ${outputDir}/pl-483/about~com.goldin.plugins~maven3-common~${plugins-version}.txt
+                                ${outputDir}/pl-483/about~com.goldin.plugins~ivy-maven-plugin~${plugins-version}.txt
+                                ${outputDir}/pl-483/about~com.goldin.plugins~kotlin-maven-plugin~${plugins-version}.txt
                                 ${outputDir}/pl-483/about~com.goldin.plugins~maven-copy-plugin~${plugins-version}.txt
                                 ${outputDir}/pl-483/about~com.goldin.plugins~maven-find-plugin~${plugins-version}.txt
                                 ${outputDir}/pl-483/about~com.goldin.plugins~maven-jenkins-plugin~${plugins-version}.txt
