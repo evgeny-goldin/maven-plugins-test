@@ -250,7 +250,12 @@
                                 <dependencies>
                                     <dependency>
                                         <groupId>com.goldin.plugins</groupId>
-                                        <artifactId>maven-common</artifactId>
+                                        <artifactId>maven2-common</artifactId>
+                                        <version>${plugins-version}</version>
+                                    </dependency>
+                                    <dependency>
+                                        <groupId>com.goldin.plugins</groupId>
+                                        <artifactId>maven3-common</artifactId>
                                         <version>${plugins-version}</version>
                                     </dependency>
                                     <dependency>
@@ -402,7 +407,8 @@
                                 ${outputDir}/pl-483/about~com.goldin.plugins~duplicates-finder-plugin~${plugins-version}.txt
                                 ${outputDir}/pl-483/about~com.goldin.plugins~maven-about-plugin~${plugins-version}.txt
                                 ${outputDir}/pl-483/about~com.goldin.plugins~maven-assert-plugin~${plugins-version}.txt
-                                ${outputDir}/pl-483/about~com.goldin.plugins~maven-common~${plugins-version}.txt
+                                ${outputDir}/pl-483/about~com.goldin.plugins~maven2-common~${plugins-version}.txt
+                                ${outputDir}/pl-483/about~com.goldin.plugins~maven3-common~${plugins-version}.txt
                                 ${outputDir}/pl-483/about~com.goldin.plugins~maven-copy-plugin~${plugins-version}.txt
                                 ${outputDir}/pl-483/about~com.goldin.plugins~maven-find-plugin~${plugins-version}.txt
                                 ${outputDir}/pl-483/about~com.goldin.plugins~maven-jenkins-plugin~${plugins-version}.txt
@@ -413,7 +419,7 @@
                                 ${outputDir}/pl-483/about~com.goldin.plugins~maven-timestamp-plugin~${plugins-version}.txt
                             </assertFiles>
                             <assertGroovy>
-                                new File( outputDir, 'pl-483' ).listFiles().size() == 13
+                                new File( outputDir, 'pl-483' ).listFiles().size() == 14
                                 new File( outputDir, 'pl-483' ).listFiles().every{ File f -> f.file }
                                 new File( outputDir, 'pl-483' ).listFiles().every{ File f -> f.text.readLines().any{ it.trim() ==~ /^Commit\s+:\s+\[[a-z0-9]{7}\]\[[a-z0-9]{40}\]$/ }}
                                 new File( outputDir, 'pl-483' ).listFiles().every{ File f -> f.text.readLines().any{ it.trim() ==~ /^Commit Date\s+:\s+\[\w+, \d+ \w+ \d{4} \d{2}:\d{2}:\d{2} \+\d{4}\]$/ }}
