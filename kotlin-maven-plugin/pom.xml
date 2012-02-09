@@ -20,6 +20,12 @@
     </parent>
 
 
+    <properties>
+        <!-- Whether Ivy activity is logged verbosely -->
+        <verboseIvy>false</verboseIvy>
+    </properties>
+
+
     <build>
         <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
         <plugins>
@@ -107,6 +113,9 @@
                     </execution>
 -->
                 </executions>
+                <configuration>
+                    <verboseIvy>${verboseIvy}</verboseIvy>
+                </configuration>
             </plugin>
 
 
