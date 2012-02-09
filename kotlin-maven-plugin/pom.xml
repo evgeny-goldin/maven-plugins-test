@@ -42,15 +42,27 @@
                     <!-- Sources compilation, "src" and "output" specified -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <execution>
-                        <id>kotlinc-src-output</id>
+                        <id>kotlinc-src-output-1</id>
                         <goals>
                             <goal>kotlinc</goal>
                         </goals>
                         <configuration>
                             <src>${project.basedir}/src/main/kotlin/Hello.kt</src>
-                            <output>${outputDir}/2</output>
+                            <output>${outputDir}/Hello</output>
                         </configuration>
                     </execution>
+<!--
+                    <execution>
+                        <id>kotlinc-src-output-2</id>
+                        <goals>
+                            <goal>kotlinc</goal>
+                        </goals>
+                        <configuration>
+                            <src>${project.basedir}/src/main/testlib</src>
+                            <output>${outputDir}/testlib</output>
+                        </configuration>
+                    </execution>
+-->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- Sources compilation, "jar" and "includeRuntime" specified -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -81,6 +93,7 @@
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- Module compilation, JUnit tests module -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<!--
                     <execution>
                         <id>kotlinc-module-jar-dependencies</id>
                         <goals>
@@ -92,6 +105,7 @@
                             <includeRuntime>true</includeRuntime>
                         </configuration>
                     </execution>
+-->
                 </executions>
             </plugin>
 
@@ -110,10 +124,14 @@
                         <configuration>
                             <assertFiles>
                                 ${outputDir}/namespace.class
-                                ${outputDir}/2/namespace.class
+                                ${outputDir}/TestSupport.class
+                                ${outputDir}/Hello/namespace.class
+                                ${outputDir}/Smoke/namespace.class
+                                <!--${outputDir}/testlib-->
+
                                 ${outputDir}/out.jar
                                 ${outputDir}/out-module1.jar
-                                ${outputDir}/out-module2.jar
+                                <!--${outputDir}/out-module2.jar-->
                             </assertFiles>
                         </configuration>
                     </execution>
@@ -128,6 +146,7 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.10</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 
