@@ -29,12 +29,18 @@
                 <artifactId>kotlin-maven-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- Sources compilation, all defaults -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <execution>
-                        <id>kotlinc-no-args</id>
+                        <id>kotlinc-defaults</id>
                         <goals>
                             <goal>kotlinc</goal>
                         </goals>
                     </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- Sources compilation, "src" and "output" specified -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <execution>
                         <id>kotlinc-src-output</id>
                         <goals>
@@ -43,6 +49,47 @@
                         <configuration>
                             <src>${project.basedir}/src/main/kotlin/Hello.kt</src>
                             <output>${outputDir}/2</output>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- Sources compilation, "jar" and "includeRuntime" specified -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>kotlinc-jar</id>
+                        <goals>
+                            <goal>kotlinc</goal>
+                        </goals>
+                        <configuration>
+                            <jar>${outputDir}/out.jar</jar>
+                            <includeRuntime>true</includeRuntime>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- Module compilation, simple module -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>kotlinc-module-jar</id>
+                        <goals>
+                            <goal>kotlinc</goal>
+                        </goals>
+                        <configuration>
+                            <module>${project.basedir}/src/main/modules/Smoke.kts</module>
+                            <jar>${outputDir}/out-module1.jar</jar>
+                            <includeRuntime>true</includeRuntime>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- Module compilation, JUnit tests module -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>kotlinc-module-jar-dependencies</id>
+                        <goals>
+                            <goal>kotlinc</goal>
+                        </goals>
+                        <configuration>
+                            <module>${project.basedir}/src/main/modules/Testlib.kts</module>
+                            <jar>${outputDir}/out-module2.jar</jar>
+                            <includeRuntime>true</includeRuntime>
                         </configuration>
                     </execution>
                 </executions>
@@ -64,6 +111,9 @@
                             <assertFiles>
                                 ${outputDir}/namespace.class
                                 ${outputDir}/2/namespace.class
+                                ${outputDir}/out.jar
+                                ${outputDir}/out-module1.jar
+                                ${outputDir}/out-module2.jar
                             </assertFiles>
                         </configuration>
                     </execution>
@@ -71,5 +121,15 @@
             </plugin>
         </plugins>
     </build>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.10</version>
+        </dependency>
+    </dependencies>
+
 </project>
 
