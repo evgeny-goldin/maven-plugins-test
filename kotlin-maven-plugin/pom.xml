@@ -30,11 +30,20 @@
                 <version>${plugins-version}</version>
                 <executions>
                     <execution>
-                        <id>kotlin-compile</id>
+                        <id>kotlinc-no-args</id>
                         <goals>
                             <goal>kotlinc</goal>
                         </goals>
-                        <phase>compile</phase>
+                    </execution>
+                    <execution>
+                        <id>kotlinc-src-output</id>
+                        <goals>
+                            <goal>kotlinc</goal>
+                        </goals>
+                        <configuration>
+                            <src>${project.basedir}/src/main/kotlin/Hello.kt</src>
+                            <output>${outputDir}/2</output>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -53,9 +62,9 @@
                         <phase>test</phase>
                         <configuration>
                             <assertFiles>
+                                ${outputDir}/namespace.class
+                                ${outputDir}/2/namespace.class
                             </assertFiles>
-                            <assertGroovy>
-                            </assertGroovy>
                         </configuration>
                     </execution>
                 </executions>
