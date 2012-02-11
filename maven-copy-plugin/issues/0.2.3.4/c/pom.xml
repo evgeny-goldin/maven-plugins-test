@@ -858,7 +858,7 @@ echo {{ '"[' + project.basedir + '] - [' + project.groupId + ':' + project.artif
                                 new File( outputDir, 'pl-442/1' ).listFiles().size() == 6
                                 new File( outputDir, 'pl-442/1' ).directorySize()    == 16781
                                 new File( outputDir, 'pl-442/2' ).listFiles().size() == 554
-                                new File( outputDir, 'pl-442/2' ).directorySize()    == 310154
+                                new File( outputDir, 'pl-442/2' ).directorySize().with{( delegate == 309805 ) || ( delegate == 310154 )}
 
                                 new File( outputDir, 'pl-442/1' ).listFiles().every{ it.text ==~ /@+/ &amp;&amp; it.name.endsWith( '.txt' ) }
                                 new File( outputDir, 'pl-442/2' ).listFiles().every{ it.text ==~ /!+/ &amp;&amp; it.name.endsWith( '.html' ) }
