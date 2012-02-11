@@ -23,10 +23,10 @@
         <log4j-version>1.2.16</log4j-version>
         <jaxen-version>1.1.1</jaxen-version>
         <gmaven-version>1.4</gmaven-version>
-        <groovy-version>1.8.5</groovy-version>
+        <groovy-version>1.8.6</groovy-version>
         <plugins-version>0.2.3.8-SNAPSHOT</plugins-version>
-        <plugins-version-for-jenkins-jobs>0.2.3.8-beta-2</plugins-version-for-jenkins-jobs>
-        <gcommons-version>0.5.3.8-beta-2</gcommons-version>
+        <plugins-version-for-jenkins-jobs>0.2.3.8-beta-3</plugins-version-for-jenkins-jobs>
+        <gcommons-version>0.5.3.8-beta-3</gcommons-version>
         <ftpTests>false</ftpTests>
         <slowTests>false</slowTests>
 
