@@ -20,12 +20,6 @@
     </parent>
 
 
-    <properties>
-        <!-- Whether Ivy activity is logged verbosely -->
-        <verboseIvy>false</verboseIvy>
-    </properties>
-
-
     <build>
         <plugins>
 
@@ -38,7 +32,7 @@
                 <artifactId>ivy-maven-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- Adding Ivy IDEA artifacts to "compile" scope                                                       -->
                     <!-- Similar to Ivy <cachepath> : http://ant.apache.org/ivy/history/latest-milestone/use/cachepath.html -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -49,7 +43,6 @@
                         </goals>
                         <phase>generate-resources</phase>
                         <configuration>
-                            <ivyconf>${project.basedir}/src/main/resources/idea-ivyconf.xml</ivyconf>
                             <ivy>${project.basedir}/src/main/resources/idea-ivy.xml</ivy>
                             <scope>compile</scope>
                         </configuration>
@@ -65,7 +58,6 @@
                         </goals>
                         <phase>generate-resources</phase>
                         <configuration>
-                            <ivyconf>${project.basedir}/src/main/resources/idea-ivyconf.xml</ivyconf>
                             <ivy>${project.basedir}/src/main/resources/idea-ivy.xml</ivy>
                             <dir>${outputDir}/idea-artifacts</dir>
                         </configuration>
@@ -80,7 +72,6 @@
                         </goals>
                         <phase>generate-resources</phase>
                         <configuration>
-                            <ivyconf>${project.basedir}/src/main/resources/idea-ivyconf.xml</ivyconf>
                             <dir>${outputDir}/dir</dir>
                             <scope>compile</scope>
                             <dependencies>
@@ -103,9 +94,33 @@
                             </dependencies>
                         </configuration>
                     </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- Resolving non-existing artifacts -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>get-non-existing-artifacts</id>
+                        <goals>
+                            <goal>ivy</goal>
+                        </goals>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <dir>${outputDir}/no-such-dir</dir>
+                            <scope>compile</scope>
+                            <failOnError>false</failOnError>
+                            <dependencies>
+                                <dependency>
+                                    <groupId>ivy.org</groupId>
+                                    <artifactId>bt343</artifactId>
+                                    <version>latest.lastSuccessful</version>
+                                    <classifier>core-annotations-no-such-file</classifier>
+                                </dependency>
+                            </dependencies>
+                        </configuration>
+                    </execution>
                 </executions>
                 <configuration>
-                    <verbose>${verboseIvy}</verbose>
+                    <ivyconf>${project.basedir}/src/main/resources/idea-ivyconf.xml</ivyconf>
+                    <!--<verbose>true</verbose>-->
                 </configuration>
             </plugin>
 
@@ -272,6 +287,9 @@
                                 ${outputDir}/idea-unpacked-3/com/intellij/ide/presentation/VirtualFilePresentation.class
                                 ${outputDir}/idea-unpacked-3/com/intellij/core/CoreBundle.class
                             </assertFiles>
+                            <shouldFailAssertFiles>
+                                ${outputDir}/no-such-dir
+                            </shouldFailAssertFiles>
                             <assertGroovy>
                                 new File( outputDir, 'idea' ).listFiles().size()           == 2
                                 new File( outputDir, 'dir'  ).listFiles().size()           == 3
