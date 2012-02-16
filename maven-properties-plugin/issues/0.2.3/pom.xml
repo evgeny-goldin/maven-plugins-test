@@ -111,7 +111,7 @@
                                 home1    == home2
                                 home3    == home4
                                 version1 == version2
-                                version1.startsWith( '1.6.0' )
+                                version1.startsWith( '1.6.0' ) || version1.startsWith( '1.7.0' )
                             </assertGroovy>
                         </configuration>
                     </execution>
