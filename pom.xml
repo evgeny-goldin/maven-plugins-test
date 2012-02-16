@@ -212,7 +212,7 @@
                                 println """
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                                               -=-=-= Running tests =-=-=-
-Java       [${java.version}][${java.vendor}][${ System.getProperty( 'java.home' )}]
+Java       [${java.version}]
 Groovy     [$GroovySystem.version]
 Maven      [$mavenVersion]
 Plugins    [${plugins-version}]
