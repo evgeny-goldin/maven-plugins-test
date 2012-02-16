@@ -211,7 +211,13 @@
                                 def mavenVersion = props.getProperty( 'version', 'Unknown' ).trim()
                                 println """
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Groovy [$GroovySystem.version], Maven [$mavenVersion] - testing plugins version [${plugins-version}], slow tests - [${slowTests}], ftp tests - [${ftpTests}].
+                                              -=-=-= Running tests =-=-=-
+Java       [${java.version}][${java.vendor}][${java.home}]
+Groovy     [$GroovySystem.version]
+Maven      [$mavenVersion]
+Plugins    [${plugins-version}]
+Slow tests [${slowTests}]
+FTP  tests [${ftpTests}]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~""".trim()
                             </source>
                         </configuration>
