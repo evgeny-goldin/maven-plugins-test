@@ -30,21 +30,21 @@
                 <artifactId>kotlin-maven-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                    <!-- Sources compilation, all defaults -->
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- Sources/Tests compilation, all defaults -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <execution>
-                        <id>kotlinc-defaults</id>
+                        <id>compile-default</id>
                         <goals>
                             <goal>compile</goal>
                             <goal>testCompile</goal>
                         </goals>
                     </execution>
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                    <!-- Sources compilation, "src" and "output" specified -->
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- Sources compilation, "src" specified -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <execution>
-                        <id>kotlinc-src-output-1</id>
+                        <id>compile-src</id>
                         <goals>
                             <goal>compile</goal>
                         </goals>
@@ -53,23 +53,26 @@
                             <output>${outputDir}/Hello</output>
                         </configuration>
                     </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- Tests compilation, "src" specified -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 <!--
                     <execution>
-                        <id>kotlinc-src-output-2</id>
+                        <id>compile-test-src</id>
                         <goals>
-                            <goal>compile</goal>
+                            <goal>testCompile</goal>
                         </goals>
                         <configuration>
-                            <src>${project.basedir}/src/main/testlib</src>
-                            <output>${outputDir}/testlib</output>
+                            <src>${project.basedir}/src/test/testlib</src>
+                            <output>${outputDir}/tests-out</output>
                         </configuration>
                     </execution>
 -->
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                    <!-- Sources compilation, "jar" and "includeRuntime" specified -->
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- Sources compilation, "jar" specified -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <execution>
-                        <id>kotlinc-jar</id>
+                        <id>compile-jar</id>
                         <goals>
                             <goal>compile</goal>
                         </goals>
@@ -78,32 +81,45 @@
                             <includeRuntime>true</includeRuntime>
                         </configuration>
                     </execution>
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                    <!-- Module compilation, simple module -->
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- Tests compilation, "jar" specified -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <execution>
-                        <id>kotlinc-module-jar</id>
+                        <id>compile-test-jar</id>
+                        <goals>
+                            <goal>testCompile</goal>
+                        </goals>
+                        <configuration>
+                            <jar>${outputDir}/out-tests.jar</jar>
+                            <includeRuntime>true</includeRuntime>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~ -->
+                    <!-- Module compilation -->
+                    <!-- ~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>compile-module</id>
                         <goals>
                             <goal>compile</goal>
                         </goals>
                         <configuration>
                             <module>${project.basedir}/src/main/modules/Smoke.kts</module>
-                            <jar>${outputDir}/out-module1.jar</jar>
+                            <jar>${outputDir}/out-module.jar</jar>
                             <includeRuntime>true</includeRuntime>
                         </configuration>
                     </execution>
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                    <!-- Module compilation, JUnit tests module -->
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- Tests module compilation -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
 <!--
                     <execution>
-                        <id>kotlinc-module-jar-dependencies</id>
+                        <id>compile-test-module</id>
                         <goals>
-                            <goal>compile</goal>
+                            <goal>testCompile</goal>
                         </goals>
                         <configuration>
-                            <module>${project.basedir}/src/main/modules/Testlib.kts</module>
-                            <jar>${outputDir}/out-module2.jar</jar>
+                            <module>${project.basedir}/src/test/module.kt</module>
+                            <jar>${outputDir}/out-tests-module.jar</jar>
                             <includeRuntime>true</includeRuntime>
                         </configuration>
                     </execution>
@@ -137,11 +153,11 @@
                                 ${project.build.testOutputDirectory}/Smoke/namespace.class
 
                                 ${outputDir}/Hello/namespace.class
-                                <!--${outputDir}/testlib-->
+                                <!--${outputDir}/tests-out-->
 
                                 ${outputDir}/out.jar
-                                ${outputDir}/out-module1.jar
-                                <!--${outputDir}/out-module2.jar-->
+                                ${outputDir}/out-module.jar
+                                <!--${outputDir}/out-tests-module.jar-->
                             </assertFiles>
                         </configuration>
                     </execution>
