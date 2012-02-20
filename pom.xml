@@ -212,12 +212,12 @@
                                 println """
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                                               -=-=-= Running tests =-=-=-
-Java       [${java.version}]
-Maven      [$mavenVersion]
-Groovy     [$GroovySystem.version]
-Plugins    [${plugins-version}]
-Slow tests [${slowTests}]
-FTP  tests [${ftpTests}]
+Java       - [${java.version}]
+Maven      - [$mavenVersion]
+Groovy     - [$GroovySystem.version]
+Plugins    - [${plugins-version}]
+Slow tests - [${slowTests}]
+FTP  tests - [${ftpTests}]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~""".trim()
                             </source>
                         </configuration>

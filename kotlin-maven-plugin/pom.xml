@@ -20,14 +20,9 @@
     </parent>
 
 
-    <properties>
-        <!-- Whether Ivy activity is logged verbosely -->
-        <verboseIvy>false</verboseIvy>
-    </properties>
-
-
     <build>
         <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
+        <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
         <plugins>
 
             <plugin>
@@ -41,7 +36,8 @@
                     <execution>
                         <id>kotlinc-defaults</id>
                         <goals>
-                            <goal>kotlinc</goal>
+                            <goal>compile</goal>
+                            <goal>testCompile</goal>
                         </goals>
                     </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -50,7 +46,7 @@
                     <execution>
                         <id>kotlinc-src-output-1</id>
                         <goals>
-                            <goal>kotlinc</goal>
+                            <goal>compile</goal>
                         </goals>
                         <configuration>
                             <src>${project.basedir}/src/main/kotlin/Hello.kt</src>
@@ -61,7 +57,7 @@
                     <execution>
                         <id>kotlinc-src-output-2</id>
                         <goals>
-                            <goal>kotlinc</goal>
+                            <goal>compile</goal>
                         </goals>
                         <configuration>
                             <src>${project.basedir}/src/main/testlib</src>
@@ -75,7 +71,7 @@
                     <execution>
                         <id>kotlinc-jar</id>
                         <goals>
-                            <goal>kotlinc</goal>
+                            <goal>compile</goal>
                         </goals>
                         <configuration>
                             <jar>${outputDir}/out.jar</jar>
@@ -88,7 +84,7 @@
                     <execution>
                         <id>kotlinc-module-jar</id>
                         <goals>
-                            <goal>kotlinc</goal>
+                            <goal>compile</goal>
                         </goals>
                         <configuration>
                             <module>${project.basedir}/src/main/modules/Smoke.kts</module>
@@ -103,7 +99,7 @@
                     <execution>
                         <id>kotlinc-module-jar-dependencies</id>
                         <goals>
-                            <goal>kotlinc</goal>
+                            <goal>compile</goal>
                         </goals>
                         <configuration>
                             <module>${project.basedir}/src/main/modules/Testlib.kts</module>
@@ -113,9 +109,11 @@
                     </execution>
 -->
                 </executions>
+<!--
                 <configuration>
-                    <verboseIvy>${verboseIvy}</verboseIvy>
+                    <verboseIvy>true</verboseIvy>
                 </configuration>
+-->
             </plugin>
 
 
@@ -134,8 +132,13 @@
                             <assertFiles>
                                 ${outputDir}/namespace.class
                                 ${outputDir}/TestSupport.class
-                                ${outputDir}/Hello/namespace.class
                                 ${outputDir}/Smoke/namespace.class
+
+                                ${project.build.testOutputDirectory}/namespace.class
+                                ${project.build.testOutputDirectory}/TestSupport.class
+                                ${project.build.testOutputDirectory}/Smoke/namespace.class
+
+                                ${outputDir}/Hello/namespace.class
                                 <!--${outputDir}/testlib-->
 
                                 ${outputDir}/out.jar
