@@ -120,7 +120,7 @@
                 </executions>
                 <configuration>
                     <ivyconf>${project.basedir}/src/main/resources/idea-ivyconf.xml</ivyconf>
-                    <!--<verbose>true</verbose>-->
+                    <verbose>false</verbose>
                 </configuration>
             </plugin>
 

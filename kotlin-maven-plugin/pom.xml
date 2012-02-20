@@ -109,11 +109,9 @@
                     </execution>
 -->
                 </executions>
-<!--
                 <configuration>
-                    <verboseIvy>true</verboseIvy>
+                    <verboseIvy>false</verboseIvy>
                 </configuration>
--->
             </plugin>
 
 
