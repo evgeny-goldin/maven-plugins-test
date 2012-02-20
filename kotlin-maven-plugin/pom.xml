@@ -56,7 +56,6 @@
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- Tests compilation, "src" specified -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-<!--
                     <execution>
                         <id>compile-test-src</id>
                         <goals>
@@ -67,7 +66,6 @@
                             <output>${outputDir}/tests-out</output>
                         </configuration>
                     </execution>
--->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- Sources compilation, "jar" specified -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -111,7 +109,6 @@
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- Tests module compilation -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
-<!--
                     <execution>
                         <id>compile-test-module</id>
                         <goals>
@@ -123,7 +120,6 @@
                             <includeRuntime>true</includeRuntime>
                         </configuration>
                     </execution>
--->
                 </executions>
                 <configuration>
                     <verboseIvy>false</verboseIvy>
@@ -153,11 +149,11 @@
                                 ${project.build.testOutputDirectory}/Smoke/namespace.class
 
                                 ${outputDir}/Hello/namespace.class
-                                <!--${outputDir}/tests-out-->
+                                ${outputDir}/tests-out
 
                                 ${outputDir}/out.jar
                                 ${outputDir}/out-module.jar
-                                <!--${outputDir}/out-tests-module.jar-->
+                                ${outputDir}/out-tests-module.jar
                             </assertFiles>
                         </configuration>
                     </execution>
