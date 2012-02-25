@@ -11,6 +11,10 @@ class DomBuilderTest() : TestSupport() {
     fun testBuildDocument() {
         var doc = createDocument()
 
+        assert {
+            doc["grandchild"].isEmpty()
+        }
+
         doc.addElement("foo") {
             id = "id1"
             style = "bold"
@@ -27,11 +31,11 @@ class DomBuilderTest() : TestSupport() {
         }
         println("builder document: ${doc.toXmlString()}")
 
-
-        val grandChild = doc.elementsByTagName("grandChild").first
+        val grandChild = doc["grandChild"].first
         if (grandChild != null) {
             println("got element ${grandChild.toXmlString()} with text '${grandChild.text}`")
             assertEquals("Hello World!", grandChild.text)
+            assertEquals("tiny", grandChild.attribute("class") ?: "")
         } else {
             fail("Not an Element $grandChild")
         }
