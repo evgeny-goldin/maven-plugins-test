@@ -1,15 +1,16 @@
 package test.collections
 
-import stdhack.test.*
+import kotlin.test.*
 
 // TODO can we avoid importing all this stuff by default I wonder?
 // e.g. making println and the collection builder methods public by default?
-import std.*
-import std.io.*
-import std.util.*
+import kotlin.*
+import kotlin.io.*
+import kotlin.util.*
 import java.util.*
+import junit.framework.TestCase
 
-class ListTest() : TestSupport() {
+class ListTest() : TestCase() {
   val data = arrayList("foo", "bar")
 
   fun testHeadAndTail() {
@@ -26,5 +27,16 @@ class ListTest() : TestSupport() {
 
     val t = data.last
     assertEquals("bar", t)
+  }
+
+  fun testWithIndices() {
+    val withIndices = data.withIndices()
+    var index = 0
+    for (withIndex in withIndices) {
+      assertEquals(withIndex._1, index)
+      assertEquals(withIndex._2, data[index])
+      index++
+    }
+    assertEquals(data.size(), index)
   }
 }

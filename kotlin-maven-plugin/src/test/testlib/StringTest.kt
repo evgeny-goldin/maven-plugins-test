@@ -1,7 +1,7 @@
-package testString
+package test.string
 
-import std.io.*
-import stdhack.test.*
+import kotlin.io.*
+import kotlin.test.*
 
 import junit.framework.*
 
@@ -24,5 +24,13 @@ class StringTest() : TestCase() {
         for(c in sb)
             sum += (c.toInt() - '0'.toInt())
         assertTrue(sum == 14)
+    }
+
+    fun testOrEmpty() {
+        val s: String? = "hey"
+        val ns: String? = null
+
+        assertEquals("hey", s.orEmpty())
+        assertEquals("", ns.orEmpty())
     }
 }

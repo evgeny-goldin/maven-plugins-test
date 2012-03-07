@@ -1,11 +1,12 @@
 package test.dom
 
-import std.*
-import std.dom.*
-import stdhack.test.*
+import kotlin.*
+import kotlin.dom.*
+import kotlin.test.*
 import org.w3c.dom.*
+import junit.framework.TestCase
 
-class DomTest() : TestSupport() {
+class DomTest() : TestCase() {
 
     fun testCreateDocument() {
         var doc = createDocument()
@@ -15,7 +16,7 @@ class DomTest() : TestSupport() {
         assertCssClass(e, "")
 
         // now lets update the cssClass property
-        e.cssClass = "foo"
+        e.classes = "foo"
         assertCssClass(e, "foo")
 
         // now using the attribute directly
@@ -28,7 +29,7 @@ class DomTest() : TestSupport() {
 
 
     fun assertCssClass(e: Element, value: String?): Unit {
-        val cl = e.cssClass
+        val cl = e.classes
         val cl2 = e.getAttribute("class")
         println("element ${e.toXmlString()} has cssClass `${cl}` class attr `${cl2}`")
 

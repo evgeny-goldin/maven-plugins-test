@@ -1,13 +1,14 @@
 package test.collections
 
-import stdhack.test.*
+import kotlin.test.*
 
-import std.io.*
-import std.util.*
+import kotlin.io.*
+import kotlin.util.*
 import java.io.*
 import java.util.*
+import junit.framework.TestCase
 
-class IoTest() : TestSupport() {
+class IoTest() : TestCase() {
   fun testLineIteratorWithManualClose() {
     val reader = sample().buffered()
     try {
@@ -36,7 +37,7 @@ class IoTest() : TestSupport() {
     val list = ArrayList<String>()
     val reader = sample().buffered()
 
-    reader.foreach{
+    reader.use{
       while (true) {
         val line = it.readLine()
         if (line != null)

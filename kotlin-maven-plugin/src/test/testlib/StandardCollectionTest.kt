@@ -1,9 +1,10 @@
 package test.collections
 
-import std.*
-import stdhack.test.*
+import kotlin.*
+import kotlin.test.*
+import junit.framework.TestCase
 
-class StandardCollectionTest() : TestSupport() {
+class StandardCollectionTest() : TestCase() {
 
   fun testDisabled() {
   }
@@ -11,9 +12,9 @@ class StandardCollectionTest() : TestSupport() {
   /*
   fun testAny() {
     // TODO requires KT-924 to be implemented
-    val data: Iterable<String> = std.util.arrayList("foo", "bar")
+    val data: Iterable<String> = kotlin.util.arrayList("foo", "bar")
 
-    assert {
+    assertTrue {
       data.any{it.startsWith("f")}
     }
     assertNot {
