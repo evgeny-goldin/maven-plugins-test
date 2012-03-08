@@ -123,6 +123,16 @@
                 </executions>
                 <configuration>
                     <verboseIvy>false</verboseIvy>
+<!--
+                    <kotlinJars>
+                        <jar>/Users/evgenyg/Projects/Kotlin/dist/kotlinc/lib/intellij-core.jar</jar>
+                        <jar>/Users/evgenyg/Projects/Kotlin/dist/kotlinc/lib/kotlin-build-tools.jar</jar>
+                        <jar>/Users/evgenyg/Projects/Kotlin/dist/kotlinc/lib/kotlin-compiler.jar</jar>
+                        <jar>/Users/evgenyg/Projects/Kotlin/dist/kotlinc/lib/kotlin-runtime.jar</jar>
+                        <jar>/Users/evgenyg/Projects/Kotlin/dist/kotlinc/lib/picocontainer.jar</jar>
+                        <jar>/Users/evgenyg/Projects/Kotlin/dist/kotlinc/lib/trove4j.jar</jar>
+                    </kotlinJars>
+-->
                 </configuration>
             </plugin>
 
