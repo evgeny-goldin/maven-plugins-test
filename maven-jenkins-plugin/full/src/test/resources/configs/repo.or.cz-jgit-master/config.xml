@@ -51,9 +51,7 @@
 <tr>
 <td valign="top">Repositories</td>
 <td>
-<li><a href="http://repo.or.cz/w/jgit.git/">
-<strong><code>git://repo.or.cz/jgit.git</code></strong>
-</a>
+- <a href="http://repo.or.cz/w/jgit.git/"><strong><code>git://repo.or.cz/jgit.git</code></strong></a>
 : <a href="http://repo.or.cz/w/jgit.git/tree/master/">
 <strong><code>master</code></strong>
 </a>
@@ -62,9 +60,7 @@
 <tr>
 <td valign="top">POM</td>
 <td>
-<li><a href="http://repo.or.cz/w/jgit.git/blob/master/pom.xml">
-<strong><code>http://repo.or.cz/w/jgit.git/blob/master/pom.xml</code></strong>
-</a>
+- <a href="http://repo.or.cz/w/jgit.git/blob/master/pom.xml"><strong><code>http://repo.or.cz/w/jgit.git/blob/master/pom.xml</code></strong></a>
 </td>
 </tr>
 </table>]]></description>

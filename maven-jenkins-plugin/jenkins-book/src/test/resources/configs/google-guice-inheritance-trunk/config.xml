@@ -59,26 +59,22 @@
 <tr>
 <td valign="top">Repositories</td>
 <td>
-<li><a href="http://google-guice.googlecode.com/svn/trunk/">
-<strong><code>http://google-guice.googlecode.com/svn/trunk</code></strong>
-</a>
+- <a href="http://google-guice.googlecode.com/svn/trunk/"><strong><code>http://google-guice.googlecode.com/svn/trunk</code></strong></a>
 </td>
 </tr>
 <tr>
 <td valign="top">POM</td>
 <td>
-<li><a href="http://google-guice.googlecode.com/svn/trunk/pom.xml">
-<strong><code>http://google-guice.googlecode.com/svn/trunk/pom.xml</code></strong>
-</a>
+- <a href="http://google-guice.googlecode.com/svn/trunk/pom.xml"><strong><code>http://google-guice.googlecode.com/svn/trunk/pom.xml</code></strong></a>
 </td>
 </tr>
 <tr>
 <td valign="top">Invokes</td>
 <td>
-<li><a href="http://evgeny-goldin.org/jenkins/job/google-guice-inheritance-3.0-rc3">
+- <a href="http://evgeny-goldin.org/jenkins/job/google-guice-inheritance-3.0-rc3">
 <strong>google-guice-inheritance-3.0-rc3</strong>
 </a> when this job is <strong>stable</strong>
-<li><a href="http://evgeny-goldin.org/jenkins/job/google-guice-inheritance-2.0-maven">
+- <a href="http://evgeny-goldin.org/jenkins/job/google-guice-inheritance-2.0-maven">
 <strong>google-guice-inheritance-2.0-maven</strong>
 </a> when this job is <strong>stable</strong>
 </td>

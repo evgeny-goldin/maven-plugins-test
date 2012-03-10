@@ -47,9 +47,7 @@
 &lt;tr&gt;
 &lt;td valign=&quot;top&quot;&gt;Repositories&lt;/td&gt;
 &lt;td&gt;
-&lt;li&gt;&lt;a href=&quot;http://github.com/evgeny-goldin/maven-plugins-test/&quot;&gt;
-&lt;strong&gt;&lt;code&gt;git://github.com/evgeny-goldin/maven-plugins-test.git&lt;/code&gt;&lt;/strong&gt;
-&lt;/a&gt;
+- &lt;a href=&quot;http://github.com/evgeny-goldin/maven-plugins-test/&quot;&gt;&lt;strong&gt;&lt;code&gt;git://github.com/evgeny-goldin/maven-plugins-test.git&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;
 : &lt;a href=&quot;http://github.com/evgeny-goldin/maven-plugins-test/tree/master/&quot;&gt;
 &lt;strong&gt;&lt;code&gt;master&lt;/code&gt;&lt;/strong&gt;
 &lt;/a&gt;
@@ -58,9 +56,7 @@
 &lt;tr&gt;
 &lt;td valign=&quot;top&quot;&gt;POM&lt;/td&gt;
 &lt;td&gt;
-&lt;li&gt;&lt;a href=&quot;http://github.com/evgeny-goldin/maven-plugins-test/blob/master/maven-jenkins-plugin/pom.xml&quot;&gt;
-&lt;strong&gt;&lt;code&gt;http://github.com/evgeny-goldin/maven-plugins-test/blob/master/maven-jenkins-plugin/pom.xml&lt;/code&gt;&lt;/strong&gt;
-&lt;/a&gt;
+- &lt;a href=&quot;http://github.com/evgeny-goldin/maven-plugins-test/blob/master/maven-jenkins-plugin/pom.xml&quot;&gt;&lt;strong&gt;&lt;code&gt;http://github.com/evgeny-goldin/maven-plugins-test/blob/master/maven-jenkins-plugin/pom.xml&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;</description>

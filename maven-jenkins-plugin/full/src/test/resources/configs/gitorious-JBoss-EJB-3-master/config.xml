@@ -51,9 +51,7 @@
 <tr>
 <td valign="top">Repositories</td>
 <td>
-<li><a href="http://gitorious.org/jboss-ejb3/jboss-ejb3-context/">
-<strong><code>git://gitorious.org/jboss-ejb3/jboss-ejb3-context.git</code></strong>
-</a>
+- <a href="http://gitorious.org/jboss-ejb3/jboss-ejb3-context/"><strong><code>git://gitorious.org/jboss-ejb3/jboss-ejb3-context.git</code></strong></a>
 : <a href="http://gitorious.org/jboss-ejb3/jboss-ejb3-context/trees/master/">
 <strong><code>master</code></strong>
 </a>
@@ -62,9 +60,7 @@
 <tr>
 <td valign="top">POM</td>
 <td>
-<li><a href="http://gitorious.org/jboss-ejb3/jboss-ejb3-context/blobs/master/pom.xml">
-<strong><code>http://gitorious.org/jboss-ejb3/jboss-ejb3-context/blobs/master/pom.xml</code></strong>
-</a>
+- <a href="http://gitorious.org/jboss-ejb3/jboss-ejb3-context/blobs/master/pom.xml"><strong><code>http://gitorious.org/jboss-ejb3/jboss-ejb3-context/blobs/master/pom.xml</code></strong></a>
 </td>
 </tr>
 </table>]]></description>

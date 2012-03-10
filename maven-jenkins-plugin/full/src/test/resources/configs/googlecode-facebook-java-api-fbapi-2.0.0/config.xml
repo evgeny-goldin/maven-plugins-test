@@ -55,7 +55,7 @@
 <tr>
 <td valign="top">Triggers</td>
 <td>
-<li> <strong><code>scm:</code></strong>
+- <strong><code>scm:</code></strong>
 <a href="http://www.manpagez.com/man/5/crontab/">
 <strong><code>&quot;*/10 * * * *&quot;</code></strong>
 </a>
@@ -65,23 +65,19 @@
 <tr>
 <td valign="top">Repositories</td>
 <td>
-<li><a href="http://facebook-java-api.googlecode.com/svn/branches/fbapi-2.0.0/">
-<strong><code>http://facebook-java-api.googlecode.com/svn/branches/fbapi-2.0.0</code></strong>
-</a>
+- <a href="http://facebook-java-api.googlecode.com/svn/branches/fbapi-2.0.0/"><strong><code>http://facebook-java-api.googlecode.com/svn/branches/fbapi-2.0.0</code></strong></a>
 </td>
 </tr>
 <tr>
 <td valign="top">POM</td>
 <td>
-<li><a href="http://facebook-java-api.googlecode.com/svn/branches/fbapi-2.0.0/pom.xml">
-<strong><code>http://facebook-java-api.googlecode.com/svn/branches/fbapi-2.0.0/pom.xml</code></strong>
-</a>
+- <a href="http://facebook-java-api.googlecode.com/svn/branches/fbapi-2.0.0/pom.xml"><strong><code>http://facebook-java-api.googlecode.com/svn/branches/fbapi-2.0.0/pom.xml</code></strong></a>
 </td>
 </tr>
 <tr>
 <td valign="top">Invokes</td>
 <td>
-<li><a href="http://evgeny-goldin.org/jenkins/job/github-maven-plugins-master">
+- <a href="http://evgeny-goldin.org/jenkins/job/github-maven-plugins-master">
 <strong>github-maven-plugins-master</strong>
 </a> when this job is <strong>unstable</strong>
 </td>
@@ -89,13 +85,13 @@
 <tr>
 <td valign="top">Invoked by</td>
 <td>
-<li><a href="http://evgeny-goldin.org/jenkins/job/googlecode-google-guice-trunk">
+- <a href="http://evgeny-goldin.org/jenkins/job/googlecode-google-guice-trunk">
 <strong>googlecode-google-guice-trunk</strong>
 </a> when it has <strong>failed</strong>
-<li><a href="http://evgeny-goldin.org/jenkins/job/googlecode-google-guice-2.0-maven">
+- <a href="http://evgeny-goldin.org/jenkins/job/googlecode-google-guice-2.0-maven">
 <strong>googlecode-google-guice-2.0-maven</strong>
 </a> when it is <strong>stable</strong> or <strong>unstable</strong> but not failed
-<li><a href="http://evgeny-goldin.org/jenkins/job/googlecode-facebook-java-api-trunk">
+- <a href="http://evgeny-goldin.org/jenkins/job/googlecode-facebook-java-api-trunk">
 <strong>googlecode-facebook-java-api-trunk</strong>
 </a> when it is <strong>complete</strong> (always trigger)
 </td>

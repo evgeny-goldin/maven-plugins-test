@@ -51,9 +51,7 @@
 <tr>
 <td valign="top">Repositories</td>
 <td>
-<li><a href="http://gitorious.org/esp-home/wsarena3/">
-<strong><code>git://gitorious.org/esp-home/wsarena3.git</code></strong>
-</a>
+- <a href="http://gitorious.org/esp-home/wsarena3/"><strong><code>git://gitorious.org/esp-home/wsarena3.git</code></strong></a>
 : <a href="http://gitorious.org/esp-home/wsarena3/trees/version1/">
 <strong><code>version1</code></strong>
 </a>
@@ -62,18 +60,16 @@
 <tr>
 <td valign="top">POM</td>
 <td>
-<li><a href="http://gitorious.org/esp-home/wsarena3/blobs/version1/pom.xml">
-<strong><code>http://gitorious.org/esp-home/wsarena3/blobs/version1/pom.xml</code></strong>
-</a>
+- <a href="http://gitorious.org/esp-home/wsarena3/blobs/version1/pom.xml"><strong><code>http://gitorious.org/esp-home/wsarena3/blobs/version1/pom.xml</code></strong></a>
 </td>
 </tr>
 <tr>
 <td valign="top">Invokes</td>
 <td>
-<li><a href="http://evgeny-goldin.org/jenkins/job/googlecode-google-guice-trunk">
+- <a href="http://evgeny-goldin.org/jenkins/job/googlecode-google-guice-trunk">
 <strong>googlecode-google-guice-trunk</strong>
 </a> when this job is <strong>stable</strong>
-<li><a href="http://evgeny-goldin.org/jenkins/job/googlecode-google-guice-2.0-maven">
+- <a href="http://evgeny-goldin.org/jenkins/job/googlecode-google-guice-2.0-maven">
 <strong>googlecode-google-guice-2.0-maven</strong>
 </a> when this job is <strong>stable</strong>
 </td>
@@ -81,7 +77,7 @@
 <tr>
 <td valign="top">Invoked by</td>
 <td>
-<li><a href="http://evgeny-goldin.org/jenkins/job/gitorious-wsarena3-master">
+- <a href="http://evgeny-goldin.org/jenkins/job/gitorious-wsarena3-master">
 <strong>gitorious-wsarena3-master</strong>
 </a> when it is <strong>complete</strong> (always trigger)
 </td>

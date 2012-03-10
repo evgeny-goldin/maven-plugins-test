@@ -55,9 +55,7 @@
 <tr>
 <td valign="top">Repositories</td>
 <td>
-<li><a href="http://github.com/jenkinsci/jenkins/">
-<strong><code>git://github.com/jenkinsci/jenkins.git</code></strong>
-</a>
+- <a href="http://github.com/jenkinsci/jenkins/"><strong><code>git://github.com/jenkinsci/jenkins.git</code></strong></a>
 : <a href="http://github.com/jenkinsci/jenkins/tree/master/">
 <strong><code>master</code></strong>
 </a>
@@ -66,9 +64,7 @@
 <tr>
 <td valign="top">POM</td>
 <td>
-<li><a href="http://github.com/jenkinsci/jenkins/blob/master/pom.xml">
-<strong><code>http://github.com/jenkinsci/jenkins/blob/master/pom.xml</code></strong>
-</a>
+- <a href="http://github.com/jenkinsci/jenkins/blob/master/pom.xml"><strong><code>http://github.com/jenkinsci/jenkins/blob/master/pom.xml</code></strong></a>
 </td>
 </tr>
 </table>]]></description>

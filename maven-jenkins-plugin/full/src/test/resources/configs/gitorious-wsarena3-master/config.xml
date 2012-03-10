@@ -51,9 +51,7 @@
 <tr>
 <td valign="top">Repositories</td>
 <td>
-<li><a href="http://gitorious.org/esp-home/wsarena3/">
-<strong><code>git://gitorious.org/esp-home/wsarena3.git</code></strong>
-</a>
+- <a href="http://gitorious.org/esp-home/wsarena3/"><strong><code>git://gitorious.org/esp-home/wsarena3.git</code></strong></a>
 : <a href="http://gitorious.org/esp-home/wsarena3/trees/master/">
 <strong><code>master</code></strong>
 </a>
@@ -62,15 +60,13 @@
 <tr>
 <td valign="top">POM</td>
 <td>
-<li><a href="http://gitorious.org/esp-home/wsarena3/blobs/master/pom.xml">
-<strong><code>http://gitorious.org/esp-home/wsarena3/blobs/master/pom.xml</code></strong>
-</a>
+- <a href="http://gitorious.org/esp-home/wsarena3/blobs/master/pom.xml"><strong><code>http://gitorious.org/esp-home/wsarena3/blobs/master/pom.xml</code></strong></a>
 </td>
 </tr>
 <tr>
 <td valign="top">Invokes</td>
 <td>
-<li><a href="http://evgeny-goldin.org/jenkins/job/gitorious-wsarena3-version1">
+- <a href="http://evgeny-goldin.org/jenkins/job/gitorious-wsarena3-version1">
 <strong>gitorious-wsarena3-version1</strong>
 </a> when this job is <strong>complete</strong> (always trigger)
 </td>
