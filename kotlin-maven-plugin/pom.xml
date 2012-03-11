@@ -109,13 +109,16 @@
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- Tests module compilation -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
                     <execution>
                         <id>compile-test-module</id>
                         <goals>
                             <goal>testCompile</goal>
                         </goals>
                         <configuration>
-                            <module>${project.basedir}/src/test/module.kt</module>
+                            <!-- http://youtrack.jetbrains.com/issue/KT-1539 -->
+                            <!--<module>${project.basedir}/src/test/module.kt</module>-->
+                            <src>${project.basedir}/src/test/testlib</src>
                             <jar>${outputDir}/out-tests-module.jar</jar>
                             <includeRuntime>true</includeRuntime>
                         </configuration>
