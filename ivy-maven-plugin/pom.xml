@@ -32,7 +32,66 @@
                 <artifactId>ivy-maven-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
-                   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- Resolving non-existing artifacts with "<failOnError>false</failOnError>" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>get-non-existing-artifacts</id>
+                        <goals>
+                            <goal>ivy</goal>
+                        </goals>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <dir>${outputDir}/no-such-dir</dir>
+                            <failOnError>false</failOnError>
+                            <dependencies>
+                                <!-- Wrong groupId -->
+                                <dependency>
+                                    <groupId>ivy.orgGGG</groupId>
+                                    <artifactId>bt343</artifactId>
+                                    <version>latest.lastSuccessful</version>
+                                    <classifier>core/annotations</classifier>
+                                </dependency>
+                                <!-- Wrong artifactId -->
+                                <dependency>
+                                    <groupId>ivy.org</groupId>
+                                    <artifactId>bt</artifactId>
+                                    <version>latest.lastSuccessful</version>
+                                    <classifier>core/annotations</classifier>
+                                </dependency>
+                                <!-- Wrong version -->
+                                <dependency>
+                                    <groupId>ivy.org</groupId>
+                                    <artifactId>bt343</artifactId>
+                                    <version>123456789</version>
+                                    <classifier>core/annotations</classifier>
+                                </dependency>
+                                <!-- Wrong version -->
+                                <dependency>
+                                    <groupId>ivy.org</groupId>
+                                    <artifactId>bt343</artifactId>
+                                    <version>latest------lastSuccessful</version>
+                                    <classifier>core/annotations</classifier>
+                                </dependency>
+                                <!-- Wrong classifier -->
+                                <dependency>
+                                    <groupId>ivy.org</groupId>
+                                    <artifactId>bt343</artifactId>
+                                    <version>latest.lastSuccessful</version>
+                                    <classifier>core-annotations-no-such-file</classifier>
+                                </dependency>
+                                <!-- Wrong type -->
+                                <dependency>
+                                    <groupId>ivy.org</groupId>
+                                    <artifactId>bt343</artifactId>
+                                    <version>latest.lastSuccessful</version>
+                                    <classifier>core/annotations</classifier>
+                                    <type>zip</type>
+                                </dependency>
+                            </dependencies>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- Adding Ivy IDEA artifacts to "compile" scope                                                       -->
                     <!-- Similar to Ivy <cachepath> : http://ant.apache.org/ivy/history/latest-milestone/use/cachepath.html -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -94,33 +153,23 @@
                             </dependencies>
                         </configuration>
                     </execution>
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                    <!-- Resolving non-existing artifacts -->
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- Adding Ivy resolver for plugins that follow, so they can resolve Ivy artifacts -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <execution>
-                        <id>get-non-existing-artifacts</id>
+                        <id>add-ivy-resolver</id>
                         <goals>
                             <goal>ivy</goal>
                         </goals>
                         <phase>generate-resources</phase>
                         <configuration>
-                            <dir>${outputDir}/no-such-dir</dir>
-                            <scope>compile</scope>
-                            <failOnError>false</failOnError>
-                            <dependencies>
-                                <dependency>
-                                    <groupId>ivy.org</groupId>
-                                    <artifactId>bt343</artifactId>
-                                    <version>latest.lastSuccessful</version>
-                                    <classifier>core-annotations-no-such-file</classifier>
-                                </dependency>
-                            </dependencies>
+                            <addIvyResolver>true</addIvyResolver>
                         </configuration>
                     </execution>
                 </executions>
                 <configuration>
                     <ivyconf>${project.basedir}/src/main/resources/idea-ivyconf.xml</ivyconf>
-                    <verbose>false</verbose>
+                    <verbose>true</verbose>
                 </configuration>
             </plugin>
 
