@@ -166,7 +166,7 @@
                                     <dependency>
                                         <groupId>ivy.org</groupId>
                                         <artifactId>bt343</artifactId>
-                                        <version>45</version>
+                                        <version>64</version>
                                         <classifier>core/intellij-core</classifier>
                                     </dependency>
                                     <unpack>true</unpack>
