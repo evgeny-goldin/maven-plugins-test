@@ -27,6 +27,145 @@
                 <artifactId>maven-copy-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-600 -->
+                    <!-- stripVersion does not work with maven 3        -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-600</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-600/strip</targetPath>
+                                    <stripVersion>true</stripVersion>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>org.jfrog.buildinfo</groupId>
+                                            <artifactId>build-info-api</artifactId>
+                                            <version>2.0.x-SNAPSHOT</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.jfrog.teamcity</groupId>
+                                            <artifactId>teamcity-artifactory-plugin</artifactId>
+                                            <version>2.1.x-SNAPSHOT</version>
+                                            <type>pom</type>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.jfrog.teamcity</groupId>
+                                            <artifactId>teamcity-artifactory-plugin-agent</artifactId>
+                                            <version>2.1.x-SNAPSHOT</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.jfrog.teamcity</groupId>
+                                            <artifactId>teamcity-artifactory-plugin-agent</artifactId>
+                                            <version>2.1.x-SNAPSHOT</version>
+                                            <type>pom</type>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.jfrog.teamcity</groupId>
+                                            <artifactId>teamcity-artifactory-plugin-agent</artifactId>
+                                            <classifier>sources</classifier>
+                                            <version>2.1.x-SNAPSHOT</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.jfrog.teamcity</groupId>
+                                            <artifactId>teamcity-artifactory-plugin-agent</artifactId>
+                                            <version>2.1.x-SNAPSHOT</version>
+                                            <type>zip</type>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.jfrog</groupId>
+                                            <artifactId>build-info-client</artifactId>
+                                            <version>1.3.1</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.jfrog</groupId>
+                                            <artifactId>build-info-client</artifactId>
+                                            <classifier>sources</classifier>
+                                            <version>1.3.1</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.jfrog</groupId>
+                                            <artifactId>build-info-extractor</artifactId>
+                                            <version>1.3.1</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.jfrog</groupId>
+                                            <artifactId>build-info-extractor</artifactId>
+                                            <classifier>sources</classifier>
+                                            <version>1.3.1</version>
+                                        </dependency>
+                                    </dependencies>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-600/no-strip</targetPath>
+                                    <stripVersion>false</stripVersion>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>org.jfrog.buildinfo</groupId>
+                                            <artifactId>build-info-api</artifactId>
+                                            <version>2.0.x-SNAPSHOT</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.jfrog.teamcity</groupId>
+                                            <artifactId>teamcity-artifactory-plugin</artifactId>
+                                            <version>2.1.x-SNAPSHOT</version>
+                                            <type>pom</type>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.jfrog.teamcity</groupId>
+                                            <artifactId>teamcity-artifactory-plugin-agent</artifactId>
+                                            <version>2.1.x-SNAPSHOT</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.jfrog.teamcity</groupId>
+                                            <artifactId>teamcity-artifactory-plugin-agent</artifactId>
+                                            <version>2.1.x-SNAPSHOT</version>
+                                            <type>pom</type>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.jfrog.teamcity</groupId>
+                                            <artifactId>teamcity-artifactory-plugin-agent</artifactId>
+                                            <classifier>sources</classifier>
+                                            <version>2.1.x-SNAPSHOT</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.jfrog.teamcity</groupId>
+                                            <artifactId>teamcity-artifactory-plugin-agent</artifactId>
+                                            <version>2.1.x-SNAPSHOT</version>
+                                            <type>zip</type>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.jfrog</groupId>
+                                            <artifactId>build-info-client</artifactId>
+                                            <version>1.3.1</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.jfrog</groupId>
+                                            <artifactId>build-info-client</artifactId>
+                                            <classifier>sources</classifier>
+                                            <version>1.3.1</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.jfrog</groupId>
+                                            <artifactId>build-info-extractor</artifactId>
+                                            <version>1.3.1</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.jfrog</groupId>
+                                            <artifactId>build-info-extractor</artifactId>
+                                            <classifier>sources</classifier>
+                                            <version>1.3.1</version>
+                                        </dependency>
+                                    </dependencies>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-564                       -->
                     <!-- "Allow to provide static manifest content when archives are created" -->
@@ -997,6 +1136,54 @@
                 <artifactId>maven-assert-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-600 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-600</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-600/strip/build-info-api.jar
+                                ${outputDir}/pl-600/strip/build-info-client-sources.jar
+                                ${outputDir}/pl-600/strip/build-info-client.jar
+                                ${outputDir}/pl-600/strip/build-info-extractor-sources.jar
+                                ${outputDir}/pl-600/strip/build-info-extractor.jar
+                                ${outputDir}/pl-600/strip/teamcity-artifactory-plugin-agent-sources.jar
+                                ${outputDir}/pl-600/strip/teamcity-artifactory-plugin-agent.jar
+                                ${outputDir}/pl-600/strip/teamcity-artifactory-plugin-agent.pom
+                                ${outputDir}/pl-600/strip/teamcity-artifactory-plugin-agent.zip
+                                ${outputDir}/pl-600/strip/teamcity-artifactory-plugin.pom
+
+                                ${outputDir}/pl-600/no-strip/build-info-client-1.3.1-sources.jar
+                                ${outputDir}/pl-600/no-strip/build-info-client-1.3.1.jar
+                                ${outputDir}/pl-600/no-strip/build-info-extractor-1.3.1-sources.jar
+                                ${outputDir}/pl-600/no-strip/build-info-extractor-1.3.1.jar
+                            </assertFiles>
+                            <shouldFailAssertFiles>
+                                ${outputDir}/pl-600/no-strip/build-info-api.jar
+                                ${outputDir}/pl-600/no-strip/build-info-client-sources.jar
+                                ${outputDir}/pl-600/no-strip/build-info-client.jar
+                                ${outputDir}/pl-600/no-strip/build-info-extractor-sources.jar
+                                ${outputDir}/pl-600/no-strip/build-info-extractor.jar
+                                ${outputDir}/pl-600/no-strip/teamcity-artifactory-plugin-agent-sources.jar
+                                ${outputDir}/pl-600/no-strip/teamcity-artifactory-plugin-agent.jar
+                                ${outputDir}/pl-600/no-strip/teamcity-artifactory-plugin-agent.pom
+                                ${outputDir}/pl-600/no-strip/teamcity-artifactory-plugin-agent.zip
+                                ${outputDir}/pl-600/no-strip/teamcity-artifactory-plugin.pom
+                            </shouldFailAssertFiles>
+                            <assertGroovy>
+                                new File( outputDir, 'pl-600/strip'    ).listFiles().size() == 10
+                                new File( outputDir, 'pl-600/no-strip' ).listFiles().size() == 10
+                            </assertGroovy>
+                            <shouldFailAssertEqual>
+                                ${outputDir}/pl-600/strip|${outputDir}/pl-600/no-strip
+                            </shouldFailAssertEqual>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-564 -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
