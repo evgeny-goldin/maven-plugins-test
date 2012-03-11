@@ -171,7 +171,6 @@
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- Tests module compilation -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
-
                     <execution>
                         <id>compile-test-module</id>
                         <goals>
