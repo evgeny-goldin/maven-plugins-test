@@ -25,6 +25,60 @@
         <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
         <plugins>
 
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- Adding Ivy resolver to Kotlin distribution in TeamCity -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>ivy-maven-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <execution>
+                        <id>add-kotlin-distribution-resolver</id>
+                        <goals>
+                            <goal>ivy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <ivyconf>${project.basedir}/src/test/resources/ivyconf.xml</ivyconf>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- Downloading and unpacking Kotlin distribution -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+            <plugin>
+                <groupId>com.goldin.plugins</groupId>
+                <artifactId>maven-copy-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <execution>
+                        <id>unpack-kotlin-distribution</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <resource>
+                                <targetPath>${outputDir}</targetPath>
+                                <dependency>
+                                    <groupId>ivy.org</groupId>
+                                    <artifactId>bt344</artifactId>
+                                    <version>0.1.564</version>
+                                    <classifier>kotlin-0.1.564</classifier>
+                                    <type>zip</type>
+                                </dependency>
+                                <unpack>true</unpack>
+                            </resource>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <groupId>com.goldin.plugins</groupId>
                 <artifactId>kotlin-maven-plugin</artifactId>
@@ -104,6 +158,14 @@
                             <module>${project.basedir}/src/main/modules/Smoke.kts</module>
                             <jar>${outputDir}/out-module.jar</jar>
                             <includeRuntime>true</includeRuntime>
+                            <kotlinJars>
+                                <jar>${outputDir}/kotlinc/lib/intellij-core.jar</jar>
+                                <jar>${outputDir}/kotlinc/lib/kotlin-build-tools.jar</jar>
+                                <jar>${outputDir}/kotlinc/lib/kotlin-compiler.jar</jar>
+                                <jar>${outputDir}/kotlinc/lib/kotlin-runtime.jar</jar>
+                                <jar>${outputDir}/kotlinc/lib/picocontainer.jar</jar>
+                                <jar>${outputDir}/kotlinc/lib/trove4j.jar</jar>
+                            </kotlinJars>
                         </configuration>
                     </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -121,23 +183,22 @@
                             <src>${project.basedir}/src/test/testlib</src>
                             <jar>${outputDir}/out-tests-module.jar</jar>
                             <includeRuntime>true</includeRuntime>
+                            <kotlinJars>
+                                <jar>${outputDir}/kotlinc/lib/intellij-core.jar</jar>
+                                <jar>${outputDir}/kotlinc/lib/kotlin-build-tools.jar</jar>
+                                <jar>${outputDir}/kotlinc/lib/kotlin-compiler.jar</jar>
+                                <jar>${outputDir}/kotlinc/lib/kotlin-runtime.jar</jar>
+                                <jar>${outputDir}/kotlinc/lib/picocontainer.jar</jar>
+                                <jar>${outputDir}/kotlinc/lib/trove4j.jar</jar>
+                            </kotlinJars>
                         </configuration>
                     </execution>
                 </executions>
                 <configuration>
                     <verboseIvy>false</verboseIvy>
-<!--
-                    <kotlinJars>
-                        <jar>/Users/evgenyg/Projects/Kotlin/dist/kotlinc/lib/intellij-core.jar</jar>
-                        <jar>/Users/evgenyg/Projects/Kotlin/dist/kotlinc/lib/kotlin-build-tools.jar</jar>
-                        <jar>/Users/evgenyg/Projects/Kotlin/dist/kotlinc/lib/kotlin-compiler.jar</jar>
-                        <jar>/Users/evgenyg/Projects/Kotlin/dist/kotlinc/lib/kotlin-runtime.jar</jar>
-                        <jar>/Users/evgenyg/Projects/Kotlin/dist/kotlinc/lib/picocontainer.jar</jar>
-                        <jar>/Users/evgenyg/Projects/Kotlin/dist/kotlinc/lib/trove4j.jar</jar>
-                    </kotlinJars>
--->
                 </configuration>
             </plugin>
+
 
             <plugin>
                 <groupId>com.goldin.plugins</groupId>
