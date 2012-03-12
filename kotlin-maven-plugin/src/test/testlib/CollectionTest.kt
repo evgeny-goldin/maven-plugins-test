@@ -66,22 +66,6 @@ class CollectionTest() : TestCase() {
         assertEquals(arrayList("foo"), foo)
     }
 
-    /*
-    fun testFilterIntoLinkedList() {
-        // TODO would be nice to avoid the <String>
-        val foo = data.filterTo(linkedList<String>()){it.startsWith("f")}
-
-        assertTrue {
-            foo.all{it.startsWith("f")}
-        }
-        assertEquals(1, foo.size)
-        assertEquals(linkedList("foo"), foo)
-
-        assertTrue {
-            foo is LinkedList<String>
-        }
-    }
-    */
 
     fun testFilterIntoSortedSet() {
         // TODO would be nice to avoid the <String>
@@ -127,7 +111,7 @@ class CollectionTest() : TestCase() {
 
     fun testForeach() {
         var count = 0
-        data.foreach{ count += it.length }
+        data.forEach{ count += it.length }
         assertEquals(6, count)
     }
 
