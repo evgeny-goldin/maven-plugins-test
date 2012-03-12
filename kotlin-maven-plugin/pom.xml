@@ -42,6 +42,7 @@
                         <phase>initialize</phase>
                         <configuration>
                             <ivyconf>${project.basedir}/src/test/resources/ivyconf.xml</ivyconf>
+                            <addIvyResolver>true</addIvyResolver>
                         </configuration>
                     </execution>
                 </executions>
@@ -68,8 +69,7 @@
                                 <dependency>
                                     <groupId>ivy.org</groupId>
                                     <artifactId>bt344</artifactId>
-                                    <version>0.1.564</version>
-                                    <classifier>kotlin-0.1.564</classifier>
+                                    <version>latest.lastSuccessful</version>
                                     <type>zip</type>
                                 </dependency>
                                 <unpack>true</unpack>
