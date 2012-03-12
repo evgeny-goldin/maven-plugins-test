@@ -70,7 +70,7 @@
                                 <dependency>
                                     <groupId>ivy.org</groupId>
                                     <artifactId>bt343</artifactId>
-                                    <version>latest------lastSuccessful</version>
+                                    <version>latest~~~~~lastSuccessful</version>
                                     <classifier>core/annotations</classifier>
                                 </dependency>
                                 <!-- Wrong classifier -->
@@ -91,21 +91,6 @@
                             </dependencies>
                         </configuration>
                     </execution>
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                    <!-- Adding Ivy IDEA artifacts to "compile" scope                                                       -->
-                    <!-- Similar to Ivy <cachepath> : http://ant.apache.org/ivy/history/latest-milestone/use/cachepath.html -->
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                    <execution>
-                        <id>idea-artifacts-compile-scope</id>
-                        <goals>
-                            <goal>ivy</goal>
-                        </goals>
-                        <phase>generate-resources</phase>
-                        <configuration>
-                            <ivy>${project.basedir}/src/main/resources/idea-ivy.xml</ivy>
-                            <scope>compile</scope>
-                        </configuration>
-                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- Copying Ivy IDEA artifacts to local directory                                                   -->
                     <!-- Similar to Ivy <retrieve>: http://ant.apache.org/ivy/history/latest-milestone/use/retrieve.html -->
@@ -123,15 +108,17 @@
                     </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- Copying mix of Ivy/Maven artifacts to local directory + adding them to "compile" scope          -->
+                    <!-- Similar to Ivy <cachepath> : http://ant.apache.org/ivy/history/latest-milestone/use/cachepath.html          -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <execution>
-                        <id>dependencies-mix</id>
+                        <id>compile-dependencies-mix</id>
                         <goals>
                             <goal>ivy</goal>
                         </goals>
                         <phase>generate-resources</phase>
                         <configuration>
-                            <dir>${outputDir}/dir</dir>
+                            <ivy>${project.basedir}/src/main/resources/idea-ivy.xml</ivy>
+                            <dir>${outputDir}/compile</dir>
                             <scope>compile</scope>
                             <dependencies>
                                 <dependency>
@@ -143,12 +130,6 @@
                                     <groupId>org.apache.ant</groupId>
                                     <artifactId>ant</artifactId>
                                     <version>1.8.2</version>
-                                </dependency>
-                                <dependency>
-                                    <groupId>ivy.org</groupId>
-                                    <artifactId>bt343</artifactId>
-                                    <version>latest.lastSuccessful</version>
-                                    <classifier>core/annotations</classifier>
                                 </dependency>
                             </dependencies>
                         </configuration>
@@ -168,7 +149,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <ivyconf>${project.basedir}/src/main/resources/idea-ivyconf.xml</ivyconf>
+                    <ivyconf>${project.basedir}/src/main/resources/jetbrains-ivyconf.xml</ivyconf>
                     <verbose>true</verbose>
                 </configuration>
             </plugin>
@@ -238,6 +219,46 @@
                                         <version>latest.lastFinished</version>
                                         <classifier>core/intellij-core</classifier>
                                     </dependency>
+                                    <unpack>true</unpack>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>resolve-kotlin-artifacts</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>test-compile</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/kotlin-1</targetPath>
+                                    <dependency>
+                                        <groupId>ivy.org</groupId>
+                                        <artifactId>bt344</artifactId>
+                                        <version>latest.lastSuccessful</version>
+                                        <classifier>kotlin-.*</classifier>
+                                        <type>zip</type>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/kotlin-2</targetPath>
+                                    <dependency>
+                                        <groupId>ivy.org</groupId>
+                                        <artifactId>bt344</artifactId>
+                                        <version>latest.lastSuccessful</version>
+                                        <type>zip</type>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/kotlin-1-unpack</targetPath>
+                                    <directory>${outputDir}/kotlin-1</directory>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/kotlin-2-unpack</targetPath>
+                                    <directory>${outputDir}/kotlin-2</directory>
                                     <unpack>true</unpack>
                                 </resource>
                             </resources>
@@ -315,8 +336,8 @@
                                 <!-- Dependencies were copied -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-                                ${outputDir}/dir/ant-1.8.2.jar
-                                ${outputDir}/dir/log4j-1.2.16.jar
+                                ${outputDir}/compile/ant-1.8.2.jar
+                                ${outputDir}/compile/log4j-1.2.16.jar
 
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <!-- IDEA jars were unpacked -->
@@ -335,13 +356,28 @@
                                 ${outputDir}/idea-unpacked-3
                                 ${outputDir}/idea-unpacked-3/com/intellij/ide/presentation/VirtualFilePresentation.class
                                 ${outputDir}/idea-unpacked-3/com/intellij/core/CoreBundle.class
+
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Kotlin artifacts were downloaded -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+                                ${outputDir}/kotlin-1
+                                ${outputDir}/kotlin-2
+                                ${outputDir}/kotlin-1-unpack/kotlinc/bin/kotlinc
+                                ${outputDir}/kotlin-2-unpack/kotlinc/bin/kotlinc
+                                ${outputDir}/kotlin-1-unpack/kotlinc/lib/kotlin-runtime.jar
+                                ${outputDir}/kotlin-2-unpack/kotlinc/lib/kotlin-runtime.jar
                             </assertFiles>
+                            <assertEqual>
+                                ${outputDir}/kotlin-1|${outputDir}/kotlin-2
+                                ${outputDir}/kotlin-1-unpack|${outputDir}/kotlin-2-unpack
+                            </assertEqual>
                             <shouldFailAssertFiles>
                                 ${outputDir}/no-such-dir
                             </shouldFailAssertFiles>
                             <assertGroovy>
-                                new File( outputDir, 'idea' ).listFiles().size()           == 2
-                                new File( outputDir, 'dir'  ).listFiles().size()           == 3
+                                new File( outputDir, 'idea'    ).listFiles().size()        == 2
+                                new File( outputDir, 'compile' ).listFiles().size()        == 10
                                 new File( outputDir, 'idea-artifacts' ).listFiles().size() == 8
                                 new File( outputDir, 'idea-artifacts' ).listFiles().every{ File f -> [ 'annotations', 'asm', 'asm-commons', 'cli-10', 'guava-11.0.1', 'intellij-core', 'picocontainer', 'trove4j' ].any{ f.name ==~ /$it-\d+\.lastSuccessful\.jar/ }}
                             </assertGroovy>
