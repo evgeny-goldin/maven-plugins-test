@@ -232,9 +232,9 @@
                         <phase>test-compile</phase>
                         <configuration>
                             <resources>
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                                <!-- Making sure default file name is that given by Ivy -->
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Making sure default file name is the one given by Ivy -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
                                     <targetPath>${outputDir}/kotlin-1</targetPath>
                                     <dependency>
@@ -275,7 +275,7 @@
                                         <version>latest.lastSuccessful</version>
                                         <classifier>kotlin-.*</classifier>
                                         <type>zip</type>
-                                        <destFileName>kotlin.zip</destFileName>
+                                        <destFileName>kotlin-3.zip</destFileName>
                                     </dependency>
                                 </resource>
                                 <resource>
@@ -285,7 +285,7 @@
                                         <artifactId>bt344</artifactId>
                                         <version>latest.lastSuccessful</version>
                                         <type>zip</type>
-                                        <destFileName>kotlin.zip</destFileName>
+                                        <destFileName>kotlin-4.zip</destFileName>
                                     </dependency>
                                 </resource>
                                 <resource>
@@ -297,7 +297,7 @@
                                         <classifier>kotlin-.*</classifier>
                                         <type>zip</type>
                                     </dependency>
-                                    <destFileName>kotlin.zip</destFileName>
+                                    <destFileName>kotlin-5.zip</destFileName>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/kotlin-6</targetPath>
@@ -307,7 +307,7 @@
                                         <version>latest.lastSuccessful</version>
                                         <type>zip</type>
                                     </dependency>
-                                    <destFileName>kotlin.zip</destFileName>
+                                    <destFileName>kotlin-6.zip</destFileName>
                                 </resource>
                             </resources>
                         </configuration>
@@ -415,23 +415,25 @@
                                 ${outputDir}/kotlin-2-unpack/kotlinc/bin/kotlinc
                                 ${outputDir}/kotlin-1-unpack/kotlinc/lib/kotlin-runtime.jar
                                 ${outputDir}/kotlin-2-unpack/kotlinc/lib/kotlin-runtime.jar
-                                ${outputDir}/kotlin-3/kotlin.zip
-                                ${outputDir}/kotlin-4/kotlin.zip
-                                ${outputDir}/kotlin-5/kotlin.zip
-                                ${outputDir}/kotlin-6/kotlin.zip
+
+                                ${outputDir}/kotlin-3/kotlin-3.zip
+                                ${outputDir}/kotlin-4/kotlin-4.zip
+                                ${outputDir}/kotlin-5/kotlin-5.zip
+                                ${outputDir}/kotlin-6/kotlin-6.zip
                             </assertFiles>
                             <assertEqual>
                                 ${outputDir}/kotlin-1|${outputDir}/kotlin-2
-                                ${outputDir}/kotlin-3|${outputDir}/kotlin-4
-                                ${outputDir}/kotlin-4|${outputDir}/kotlin-5
-                                ${outputDir}/kotlin-5|${outputDir}/kotlin-6
-                                ${outputDir}/kotlin-6|${outputDir}/kotlin-3
-
                                 ${outputDir}/kotlin-1-unpack|${outputDir}/kotlin-2-unpack
                             </assertEqual>
                             <shouldFailAssertFiles>
                                 ${outputDir}/no-such-dir
                             </shouldFailAssertFiles>
+                            <shouldFailAssertEqual>
+                                ${outputDir}/kotlin-3|${outputDir}/kotlin-4
+                                ${outputDir}/kotlin-4|${outputDir}/kotlin-5
+                                ${outputDir}/kotlin-5|${outputDir}/kotlin-6
+                                ${outputDir}/kotlin-6|${outputDir}/kotlin-3
+                            </shouldFailAssertEqual>
                             <assertGroovy>
                                 new File( outputDir, 'idea'    ).listFiles().size()        == 2
                                 new File( outputDir, 'compile' ).listFiles().size()        == 10
