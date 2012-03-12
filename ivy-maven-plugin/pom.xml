@@ -232,6 +232,9 @@
                         <phase>test-compile</phase>
                         <configuration>
                             <resources>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Making sure default file name is that given by Ivy -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
                                     <targetPath>${outputDir}/kotlin-1</targetPath>
                                     <dependency>
@@ -260,6 +263,51 @@
                                     <targetPath>${outputDir}/kotlin-2-unpack</targetPath>
                                     <directory>${outputDir}/kotlin-2</directory>
                                     <unpack>true</unpack>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Making sure <destFileName> is applied correctly -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/kotlin-3</targetPath>
+                                    <dependency>
+                                        <groupId>ivy.org</groupId>
+                                        <artifactId>bt344</artifactId>
+                                        <version>latest.lastSuccessful</version>
+                                        <classifier>kotlin-.*</classifier>
+                                        <type>zip</type>
+                                        <destFileName>kotlin.zip</destFileName>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/kotlin-4</targetPath>
+                                    <dependency>
+                                        <groupId>ivy.org</groupId>
+                                        <artifactId>bt344</artifactId>
+                                        <version>latest.lastSuccessful</version>
+                                        <type>zip</type>
+                                        <destFileName>kotlin.zip</destFileName>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/kotlin-5</targetPath>
+                                    <dependency>
+                                        <groupId>ivy.org</groupId>
+                                        <artifactId>bt344</artifactId>
+                                        <version>latest.lastSuccessful</version>
+                                        <classifier>kotlin-.*</classifier>
+                                        <type>zip</type>
+                                    </dependency>
+                                    <destFileName>kotlin.zip</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/kotlin-6</targetPath>
+                                    <dependency>
+                                        <groupId>ivy.org</groupId>
+                                        <artifactId>bt344</artifactId>
+                                        <version>latest.lastSuccessful</version>
+                                        <type>zip</type>
+                                    </dependency>
+                                    <destFileName>kotlin.zip</destFileName>
                                 </resource>
                             </resources>
                         </configuration>
@@ -367,9 +415,18 @@
                                 ${outputDir}/kotlin-2-unpack/kotlinc/bin/kotlinc
                                 ${outputDir}/kotlin-1-unpack/kotlinc/lib/kotlin-runtime.jar
                                 ${outputDir}/kotlin-2-unpack/kotlinc/lib/kotlin-runtime.jar
+                                ${outputDir}/kotlin-3/kotlin.zip
+                                ${outputDir}/kotlin-4/kotlin.zip
+                                ${outputDir}/kotlin-5/kotlin.zip
+                                ${outputDir}/kotlin-6/kotlin.zip
                             </assertFiles>
                             <assertEqual>
                                 ${outputDir}/kotlin-1|${outputDir}/kotlin-2
+                                ${outputDir}/kotlin-3|${outputDir}/kotlin-4
+                                ${outputDir}/kotlin-4|${outputDir}/kotlin-5
+                                ${outputDir}/kotlin-5|${outputDir}/kotlin-6
+                                ${outputDir}/kotlin-6|${outputDir}/kotlin-3
+
                                 ${outputDir}/kotlin-1-unpack|${outputDir}/kotlin-2-unpack
                             </assertEqual>
                             <shouldFailAssertFiles>
