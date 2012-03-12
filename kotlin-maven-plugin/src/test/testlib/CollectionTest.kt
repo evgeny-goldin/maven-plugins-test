@@ -66,7 +66,6 @@ class CollectionTest() : TestCase() {
         assertEquals(arrayList("foo"), foo)
     }
 
-
     fun testFilterIntoSortedSet() {
         // TODO would be nice to avoid the <String>
         val foo = data.filterTo(hashSet<String>()){it.startsWith("f")}
