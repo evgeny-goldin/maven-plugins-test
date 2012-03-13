@@ -1,0 +1,904 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns              = "http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi          = "http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0
+                               http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.github.goldin.maven-plugins-test</groupId>
+    <artifactId>copy-maven-plugin.issues.0.2.3.4-c</artifactId>
+    <packaging>jar</packaging>
+    <version>0.1-SNAPSHOT</version>
+    <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
+
+
+    <parent>
+        <groupId>com.github.goldin.maven-plugins-test</groupId>
+        <artifactId>copy-maven-plugin.issues.0.2.3.4</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+
+    <properties>
+        <resourcesDir>${project.basedir}/../../../copy-mojo/src/main/resources</resourcesDir>
+        <bash>/bin/bash</bash>
+        <chmodTest>
+            "chmod +x $file".execute().text
+
+            def text = file.canonicalPath.execute().text
+            def out  = text.readLines()
+
+            assert out.size() == 2
+
+            def first  = out[ 0 ]
+            def second = out[ 1 ]
+
+            println "[$file][$text]"
+            println "out    = $out"
+            println "first  = \"$first\""
+            println "second = \"$second\""
+
+            assert first  == second
+            assert first  == "[${project.basedir}] - [${project.groupId}:${project.artifactId}:${project.version}]"
+            assert second == '[' + project.basedir + '] - [' + project.groupId + ':' + project.artifactId + ':' + project.version + ']'
+
+            println """
+            | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            |Out:
+            |* $first
+            |* $second
+            | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~""".stripMargin().trim()
+        </chmodTest>
+    </properties>
+
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>com.github.goldin</groupId>
+                <artifactId>copy-maven-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <execution>
+                        <id>destFileNameTest</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <!-- "destFileName" + "dependency" (built in the same reactor) + "dependenciesAtM2" (true) -->
+                                <resource>
+                                    <targetPath>${outputDir}/destFileNameTest-1</targetPath>
+                                    <destFileName>aaaa.jar</destFileName>
+                                    <dependency>
+                                        <groupId>com.github.goldin.maven-plugins-test</groupId>
+                                        <artifactId>copy-maven-plugin.issues.0.2.3.4-a</artifactId>
+                                        <version>${project.version}</version>
+                                    </dependency>
+                                    <dependenciesAtM2>true</dependenciesAtM2>
+                                    <process>{{ assert file.name == 'aaaa.jar' }}</process>
+                                </resource>
+                                <!-- "destFileName" + "dependency" (built in the same reactor) + "dependenciesAtM2" (false) -->
+                                <resource>
+                                    <targetPath>${outputDir}/destFileNameTest-2</targetPath>
+                                    <destFileName>aaaa.jar</destFileName>
+                                    <dependency>
+                                        <groupId>com.github.goldin.maven-plugins-test</groupId>
+                                        <artifactId>copy-maven-plugin.issues.0.2.3.4-a</artifactId>
+                                        <version>${project.version}</version>
+                                    </dependency>
+                                    <dependenciesAtM2>false</dependenciesAtM2>
+                                    <process>{{ assert file.name == 'aaaa.jar' }}</process>
+                                </resource>
+                                <!-- "destFileName" + "dependency" (built in the same reactor) -->
+                                <resource>
+                                    <targetPath>${outputDir}/destFileNameTest-3</targetPath>
+                                    <destFileName>aaaa.jar</destFileName>
+                                    <dependency>
+                                        <groupId>com.github.goldin.maven-plugins-test</groupId>
+                                        <artifactId>copy-maven-plugin.issues.0.2.3.4-a</artifactId>
+                                        <version>${project.version}</version>
+                                    </dependency>
+                                    <process>{{ assert file.name == 'aaaa.jar' }}</process>
+                                </resource>
+                                <!-- "destFileName" + "dependency" (third-party) + "dependenciesAtM2" -->
+                                <resource>
+                                    <targetPath>${outputDir}/destFileNameTest-4</targetPath>
+                                    <destFileName>my-spring.jar</destFileName>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-core</artifactId>
+                                        <version>3.1.0.RELEASE</version>
+                                    </dependency>
+                                    <dependenciesAtM2>true</dependenciesAtM2>
+                                    <process>{{ assert file.name == 'my-spring.jar' }}</process>
+                                </resource>
+                                <!-- "destFileName" + "dependency" (third-party) + "dependenciesAtM2" (false) -->
+                                <resource>
+                                    <targetPath>${outputDir}/destFileNameTest-5</targetPath>
+                                    <destFileName>my-spring.jar</destFileName>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-core</artifactId>
+                                        <version>3.1.0.RELEASE</version>
+                                    </dependency>
+                                    <dependenciesAtM2>false</dependenciesAtM2>
+                                    <process>{{ assert file.name == 'my-spring.jar' }}</process>
+                                </resource>
+                                <!-- "destFileName" + "dependency" (third-party) -->
+                                <resource>
+                                    <targetPath>${outputDir}/destFileNameTest-6</targetPath>
+                                    <destFileName>my-spring.jar</destFileName>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-core</artifactId>
+                                        <version>3.1.0.RELEASE</version>
+                                    </dependency>
+                                    <process>{{ assert file.name == 'my-spring.jar' }}</process>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-350: -->
+                    <!-- <move>true/false</move>                         -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-350</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+
+                                <!-- "move" for copy -->
+
+                                <resource>
+                                    <targetPath>${outputDir}/pl-350</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <move>false</move>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-350</targetPath>
+                                    <file>${outputDir}/pl-350/pom.xml</file>
+                                    <destFileName>pom2.xml</destFileName>
+                                    <move>true</move>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-350</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-350</targetPath>
+                                    <file>${outputDir}/pl-350/pom.xml</file>
+                                    <destFileName>pom3.xml</destFileName>
+                                    <move>true</move>
+                                    <replace>
+                                        <from>(?s).</from>
+                                        <to>!</to>
+                                    </replace>
+                                </resource>
+
+                                <!-- "move" for pack -->
+
+                                <resource>
+                                    <targetPath>${outputDir}/pl-350/copy</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileName>p1.xml</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-350/pom1.zip</targetPath>
+                                    <file>${outputDir}/pl-350/copy/p1.xml</file>
+                                    <pack>true</pack>
+                                    <move>true</move>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-350/pom1-zip-unpack</targetPath>
+                                    <file>${outputDir}/pl-350/pom1.zip</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-350/copy</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileName>p2.xml</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-350/pom2.zip</targetPath>
+                                    <file>${outputDir}/pl-350/copy/p2.xml</file>
+                                    <pack>true</pack>
+                                    <move>true</move>
+                                    <filtering>true</filtering>
+                                    <replace>
+                                        <to>aaaaa</to>
+                                    </replace>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-350/pom2-zip-unpack</targetPath>
+                                    <file>${outputDir}/pl-350/pom2.zip</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-441: -->
+                    <!-- Support <dependency> "destFileName"             -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-441</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-441/1</targetPath>
+                                    <dependency>
+                                        <groupId>org.codehaus.groovy</groupId>
+                                        <artifactId>groovy-all</artifactId>
+                                        <version>1.9.0-beta-2</version>
+                                        <destFileName>groovy-1.jar</destFileName>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-441/2</targetPath>
+                                    <dependency>
+                                        <groupId>org.codehaus.groovy</groupId>
+                                        <artifactId>groovy-all</artifactId>
+                                        <version>1.9.0-beta-2</version>
+                                    </dependency>
+                                    <destFileName>groovy-1.jar</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-441/3</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>org.codehaus.groovy</groupId>
+                                            <artifactId>groovy-all</artifactId>
+                                            <version>1.9.0-beta-2</version>
+                                            <destFileName>groovy-3.jar</destFileName>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.codehaus.groovy</groupId>
+                                            <artifactId>groovy-all</artifactId>
+                                            <version>1.8.1</version>
+                                            <destFileName>groovy-4.jar</destFileName>
+                                        </dependency>
+                                    </dependencies>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-441/4</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>org.codehaus.groovy</groupId>
+                                            <artifactId>groovy-all</artifactId>
+                                            <version>1.9.0-beta-2</version>
+                                            <destFileName>groovy-3.jar</destFileName>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.codehaus.groovy</groupId>
+                                            <artifactId>groovy-all</artifactId>
+                                            <version>1.8.1</version>
+                                            <destFileName>groovy-4.jar</destFileName>
+                                        </dependency>
+                                    </dependencies>
+                                    <dependenciesAtM2>false</dependenciesAtM2>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-441/5</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>org.codehaus.groovy</groupId>
+                                            <artifactId>groovy-all</artifactId>
+                                            <version>1.9.0-beta-2</version>
+                                            <destFileName>groovy-3.jar</destFileName>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.codehaus.groovy</groupId>
+                                            <artifactId>groovy-all</artifactId>
+                                            <version>1.8.1</version>
+                                        </dependency>
+                                    </dependencies>
+                                    <destFileName>groovy-4.jar</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-441/6</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>org.codehaus.groovy</groupId>
+                                            <artifactId>groovy-all</artifactId>
+                                            <version>1.9.0-beta-2</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.codehaus.groovy</groupId>
+                                            <artifactId>groovy-all</artifactId>
+                                            <version>1.8.1</version>
+                                            <destFileName>groovy-4.jar</destFileName>
+                                        </dependency>
+                                    </dependencies>
+                                    <destFileName>groovy-3.jar</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-441/7</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>org.codehaus.groovy</groupId>
+                                            <artifactId>groovy-all</artifactId>
+                                            <version>1.9.0-beta-2</version>
+                                            <destFileName>groovy-3.jar</destFileName>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.codehaus.groovy</groupId>
+                                            <artifactId>groovy-all</artifactId>
+                                            <version>1.8.1</version>
+                                        </dependency>
+                                    </dependencies>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-441/8</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>org.codehaus.groovy</groupId>
+                                            <artifactId>groovy-all</artifactId>
+                                            <version>1.9.0-beta-2</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.codehaus.groovy</groupId>
+                                            <artifactId>groovy-all</artifactId>
+                                            <version>1.8.1</version>
+                                            <destFileName>groovy-4.jar</destFileName>
+                                        </dependency>
+                                    </dependencies>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-429:                          -->
+                    <!-- Support "prefix" and "destFileName" when archives are updated or created -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-429</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-429/pom0.zip</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <pack>true</pack>
+                                    <destFileName>/</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-429/pom1.zip</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <pack>true</pack>
+                                    <prefix>/</prefix>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-429/pom2.zip</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <pack>true</pack>
+                                    <destFileName>pom2.xml</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-429/pom3.zip</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <pack>true</pack>
+                                    <destFileName>3/2/1/pom3.xml</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-429/txts.zip</targetPath>
+                                    <directory>${resourcesDir}</directory>
+                                    <include>*.txt</include>
+                                    <pack>true</pack>
+                                    <prefix>txts</prefix>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-429</targetPath>
+                                    <dependency>
+                                        <groupId>org.codehaus.groovy</groupId>
+                                        <artifactId>groovy-all</artifactId>
+                                        <version>1.8.1</version>
+                                        <destFileName>g.jar</destFileName>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-429/g.jar</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <pack>true</pack>
+                                    <update>true</update>
+                                    <destFileName>p/o/m/1.xml</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-429/g.jar</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <pack>true</pack>
+                                    <update>true</update>
+                                    <prefix>pp/oo/mm</prefix>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-429/g.jar</targetPath>
+                                    <directory>${resourcesDir}</directory>
+                                    <include>*.txt</include>
+                                    <pack>true</pack>
+                                    <update>true</update>
+                                    <prefix>txt/s</prefix>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-429/unpack</targetPath>
+                                    <file>${outputDir}/pl-429/g.jar</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-429/unpack0</targetPath>
+                                    <file>${outputDir}/pl-429/pom0.zip</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-429/unpack1</targetPath>
+                                    <file>${outputDir}/pl-429/pom1.zip</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-429/unpack2</targetPath>
+                                    <file>${outputDir}/pl-429/pom2.zip</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-429/unpack3</targetPath>
+                                    <file>${outputDir}/pl-429/pom3.zip</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-429/unpack4</targetPath>
+                                    <file>${outputDir}/pl-429/txts.zip</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-444:                  -->
+                    <!-- When archive is unpacked <process> should contain files unpacked -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-444</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-444</targetPath>
+                                    <dependency>
+                                        <groupId>org.codehaus.groovy</groupId>
+                                        <artifactId>groovy-all</artifactId>
+                                        <version>1.8.1</version>
+                                    </dependency>
+                                    <unpack>true</unpack>
+                                    <process>{{ assert files.size() == 3657 }}</process>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-442:                     -->
+                    <!-- Support <replace> and <filtering> when files are packed or unpacked -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-442</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-442/1</targetPath>
+                                    <dependency>
+                                        <groupId>org.codehaus.groovy</groupId>
+                                        <artifactId>groovy-all</artifactId>
+                                        <version>1.8.1</version>
+                                    </dependency>
+                                    <unpack>true</unpack>
+                                    <zipEntry>**/*.txt</zipEntry>
+                                    <replace>
+                                        <from>(?s).</from>
+                                        <to>@</to>
+                                    </replace>
+                                    <process>{{ assert files.size() == 6 }}</process>
+                                </resource>
+                                <resource>
+                                    <verbose>false</verbose>
+                                    <targetPath>${outputDir}/pl-442/2</targetPath>
+                                    <dependency>
+                                        <groupId>org.jenkins-ci.main</groupId>
+                                        <artifactId>jenkins-war</artifactId>
+                                        <version>1.421</version>
+                                        <type>war</type>
+                                    </dependency>
+                                    <unpack>true</unpack>
+                                    <zipEntry>**/*.html</zipEntry>
+                                    <replace>
+                                        <from>(?s).</from>
+                                        <to>!</to>
+                                    </replace>
+                                    <preservePath>false</preservePath>
+                                    <process>{{ assert files.size() == 554 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-442/pom.zip</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <filtering>true</filtering>
+                                    <replaces>
+                                        <replace>
+                                            <from>(?i)a</from>
+                                            <to>b</to>
+                                        </replace>
+                                        <replace>
+                                            <from>(?i)c</from>
+                                            <to>d</to>
+                                        </replace>
+                                    </replaces>
+                                    <pack>true</pack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-442/3</targetPath>
+                                    <file>${outputDir}/pl-442/pom.zip</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-442/4</targetPath>
+                                    <file>${outputDir}/pl-442/pom.zip</file>
+                                    <unpack>true</unpack>
+                                    <replaces>
+                                        <replace>
+                                            <from>(?i)b</from>
+                                            <to>a</to>
+                                        </replace>
+                                        <replace>
+                                            <from>(?i)d</from>
+                                            <to>c</to>
+                                        </replace>
+                                    </replaces>
+                                </resource>
+                                <resource>
+                                    <targetPaths>
+                                        <targetPath>${outputDir}/pl-442/5</targetPath>
+                                        <targetPath>${outputDir}/pl-442/5/one</targetPath>
+                                        <targetPath>${outputDir}/pl-442/5/one/two</targetPath>
+                                    </targetPaths>
+                                    <directory>${resourcesDir}</directory>
+                                    <preservePath>true</preservePath>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-442/6</targetPath>
+                                    <dependency>
+                                        <groupId>org.codehaus.groovy</groupId>
+                                        <artifactId>groovy-all</artifactId>
+                                        <version>1.8.1</version>
+                                    </dependency>
+                                    <destFileName>g.jar</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-442/6/g.jar</targetPath>
+                                    <file>${outputDir}/pl-442/5/one/two/4.txt</file>
+                                    <pack>true</pack>
+                                    <update>true</update>
+                                    <destFileName>aaa/AAA/bbb.txt</destFileName>
+                                    <replace>
+                                        <from>pdf</from>
+                                        <to>fgh</to>
+                                    </replace>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-442/6/g.jar</targetPath>
+                                    <directory>${outputDir}/pl-442/5</directory>
+                                    <pack>true</pack>
+                                    <update>true</update>
+                                    <prefix>resources-5</prefix>
+                                    <replaces>
+                                        <replace>
+                                            <from>class</from>
+                                            <to>pass</to>
+                                            <failIfNotFound>false</failIfNotFound>
+                                        </replace>
+                                        <replace>
+                                            <from>jar</from>
+                                            <to>par</to>
+                                            <failIfNotFound>false</failIfNotFound>
+                                        </replace>
+                                    </replaces>
+                                    <filtering>true</filtering>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-442/7</targetPath>
+                                    <file>${outputDir}/pl-442/6/g.jar</file>
+                                    <unpack>true</unpack>
+                                    <nonFilteredExtensions>class</nonFilteredExtensions>
+                                    <replaces>
+                                        <replace>
+                                            <from>pass</from>
+                                            <to>@class@</to>
+                                            <failIfNotFound>false</failIfNotFound>
+                                        </replace>
+                                        <replace>
+                                            <from>par</from>
+                                            <to>!jar!</to>
+                                            <failIfNotFound>false</failIfNotFound>
+                                        </replace>
+                                    </replaces>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-463:                               -->
+                    <!-- Executable permission bits are not preserved after packing a kit into .tar.gz -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-463</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <runIf>{{ ${ifLinux} || ${ifMac} }}</runIf>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-463/1</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <replace>
+                                        <to>
+#!${bash}
+echo "[${project.basedir}] - [${project.groupId}:${project.artifactId}:${project.version}]"
+echo {{ '"[' + project.basedir + '] - [' + project.groupId + ':' + project.artifactId + ':' + project.version + ']"' }}
+                                        </to>
+                                        <groovy>true</groovy>
+                                    </replace>
+                                    <destFileName>test.sh</destFileName>
+                                    <process>
+                                        ${chmodTest}
+                                    </process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-463/pack.tar.gz</targetPath>
+                                    <directory>${outputDir}/pl-463/1</directory>
+                                    <pack>true</pack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-463/2</targetPath>
+                                    <file>${outputDir}/pl-463/pack.tar.gz</file>
+                                    <unpack>true</unpack>
+                                    <process>
+                                        ${chmodTest}
+                                    </process>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.github.goldin</groupId>
+                <artifactId>maven-assert-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <execution>
+                        <id>destFileNameTest</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/destFileNameTest-1/aaaa.jar
+                                ${outputDir}/destFileNameTest-2/aaaa.jar
+                                ${outputDir}/destFileNameTest-3/aaaa.jar
+
+                                ${outputDir}/destFileNameTest-4/my-spring.jar
+                                ${outputDir}/destFileNameTest-5/my-spring.jar
+                                ${outputDir}/destFileNameTest-6/my-spring.jar
+                            </assertFiles>
+                            <assertEqual>
+                                ${outputDir}/destFileNameTest-1|${outputDir}/destFileNameTest-2
+                                ${outputDir}/destFileNameTest-2|${outputDir}/destFileNameTest-3
+                                ${outputDir}/destFileNameTest-3|${outputDir}/destFileNameTest-1
+
+                                ${outputDir}/destFileNameTest-4|${outputDir}/destFileNameTest-5
+                                ${outputDir}/destFileNameTest-5|${outputDir}/destFileNameTest-6
+                                ${outputDir}/destFileNameTest-6|${outputDir}/destFileNameTest-4
+                            </assertEqual>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-350 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-350</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <shouldFailAssertFiles>
+                                ${outputDir}/pl-350/pom.xml
+                                ${outputDir}/pl-350/copy/*.xml
+                            </shouldFailAssertFiles>
+                            <assertFiles>
+                                ${outputDir}/pl-350/pom2.xml
+                                ${outputDir}/pl-350/pom3.xml
+                                ${outputDir}/pl-350/pom1-zip-unpack/p1.xml
+                                ${outputDir}/pl-350/pom2-zip-unpack/p2.xml
+                            </assertFiles>
+                            <assertGroovy>
+                                new File( outputDir, 'pl-350/pom2.xml' ).text ==~ /(?s).+/
+                                new File( outputDir, 'pl-350/pom3.xml' ).text ==~ /!+/
+                                new File( outputDir, 'pl-350/pom2.xml' ).text.size()    == new File( outputDir, 'pl-350/pom3.xml' ).text.size()
+                                new File( outputDir, 'pl-350/copy' ).listFiles().size() == 0
+                                new File( outputDir, 'pl-350/pom1-zip-unpack/p1.xml' ).text == new File( project.basedir, 'pom.xml' ).text
+                                new File( outputDir, 'pl-350/pom2-zip-unpack/p2.xml' ).text == 'aaaaa'
+                            </assertGroovy>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-441 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-441</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-441/1/groovy-1.jar
+                                ${outputDir}/pl-441/2/groovy-1.jar
+                                ${outputDir}/pl-441/3/groovy-3.jar
+                                ${outputDir}/pl-441/3/groovy-4.jar
+                                ${outputDir}/pl-441/4/groovy-3.jar
+                                ${outputDir}/pl-441/4/groovy-4.jar
+                                ${outputDir}/pl-441/5/groovy-3.jar
+                                ${outputDir}/pl-441/5/groovy-4.jar
+                                ${outputDir}/pl-441/6/groovy-3.jar
+                                ${outputDir}/pl-441/6/groovy-4.jar
+                                ${outputDir}/pl-441/7/groovy-3.jar
+                                ${outputDir}/pl-441/7/groovy-all-1.8.1.jar
+                                ${outputDir}/pl-441/8/groovy-all-1.9.0-beta-2.jar
+                                ${outputDir}/pl-441/8/groovy-4.jar
+                            </assertFiles>
+                            <assertEqual>
+                                ${outputDir}/pl-441/1|${outputDir}/pl-441/2
+                                ${outputDir}/pl-441/3|${outputDir}/pl-441/4
+                                ${outputDir}/pl-441/4|${outputDir}/pl-441/5
+                                ${outputDir}/pl-441/5|${outputDir}/pl-441/6
+                                ${outputDir}/pl-441/6|${outputDir}/pl-441/3
+                            </assertEqual>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-429 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-429</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-429/g.jar
+                                ${outputDir}/pl-429/pom2.zip
+                                ${outputDir}/pl-429/pom3.zip
+                                ${outputDir}/pl-429/txts.zip
+
+                                ${outputDir}/pl-429/unpack/p/o/m/1.xml
+                                ${outputDir}/pl-429/unpack/pp/oo/mm/pom.xml
+                                ${outputDir}/pl-429/unpack/txt/s/*.txt
+
+                                ${outputDir}/pl-429/unpack0/pom.xml
+                                ${outputDir}/pl-429/unpack1/pom.xml
+                                ${outputDir}/pl-429/unpack2/pom2.xml
+                                ${outputDir}/pl-429/unpack3/3/2/1/pom3.xml
+                                ${outputDir}/pl-429/unpack4/txts/*.txt
+                            </assertFiles>
+                            <assertGroovy>
+                                new File( outputDir, 'pl-429/unpack/txt/s' ).listFiles().size() == 6
+                            </assertGroovy>
+                            <assertEqual>
+                                ${outputDir}/pl-429/unpack/txt/s|${outputDir}/pl-429/unpack4/txts
+                                ${outputDir}/pl-429/unpack0|${outputDir}/pl-429/unpack1
+                            </assertEqual>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-442 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-442</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-442/1/*.txt
+                                ${outputDir}/pl-442/2/*.html
+                                ${outputDir}/pl-442/3/pom.xml
+                                ${outputDir}/pl-442/4/pom.xml
+
+                                ${outputDir}/pl-442/5
+                                ${outputDir}/pl-442/5/one
+                                ${outputDir}/pl-442/5/one/two
+                                ${outputDir}/pl-442/5/one/two/**
+                                ${outputDir}/pl-442/5/one/two/*.*
+                                ${outputDir}/pl-442/5/one/two/*.txt
+                                ${outputDir}/pl-442/6/g.jar
+                                ${outputDir}/pl-442/7
+                                ${outputDir}/pl-442/7/aaa/AAA/bbb.txt
+                                ${outputDir}/pl-442/7/resources-5
+                                ${outputDir}/pl-442/7/resources-5/
+                                ${outputDir}/pl-442/7/resources-5/**
+                                ${outputDir}/pl-442/7/resources-5/one
+                                ${outputDir}/pl-442/7/resources-5/one/two
+                                ${outputDir}/pl-442/7/resources-5/one/two/*.txt
+                            </assertFiles>
+                            <assertGroovy>
+                                new File( outputDir, 'pl-442/1' ).listFiles().size() == 6
+                                new File( outputDir, 'pl-442/1' ).directorySize()    == 16781
+                                new File( outputDir, 'pl-442/2' ).listFiles().size() == 554
+                                new File( outputDir, 'pl-442/2' ).directorySize().with{( delegate == 309805 ) || ( delegate == 310154 )}
+
+                                new File( outputDir, 'pl-442/1' ).listFiles().every{ it.text ==~ /@+/ &amp;&amp; it.name.endsWith( '.txt' ) }
+                                new File( outputDir, 'pl-442/2' ).listFiles().every{ it.text ==~ /!+/ &amp;&amp; it.name.endsWith( '.html' ) }
+
+                                ! new File( outputDir, 'pl-442/3/pom.xml' ).text.toLowerCase().with{ contains( 'a' ) || contains( 'c' ) }
+                                ! new File( outputDir, 'pl-442/4/pom.xml' ).text.toLowerCase().with{ contains( 'b' ) || contains( 'd' ) }
+
+                                new File( outputDir, 'pl-442/7/aaa/AAA/bbb.txt' ).text.trim()       == '**/*.fgh'
+                                new File( outputDir, 'pl-442/7/resources-5/one/two/1.txt' ).text        == '**/*.@class@'
+                                new File( outputDir, 'pl-442/7/resources-5/one/two/2.txt' ).text        == '**/*.!jar!'
+                                new File( outputDir, 'pl-442/7/resources-5/one/two/3.txt' ).text        == '**/*.@class@'
+                                new File( outputDir, 'pl-442/7/resources-5/one/two/4.txt' ).text.trim() == '**/*.pdf'
+                            </assertGroovy>
+                            <shouldFailAssertEqual>
+                                ${outputDir}/pl-442/3|${outputDir}/pl-442/4
+                            </shouldFailAssertEqual>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-463 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-463</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <runIf>{{ ${ifLinux} || ${ifMac} }}</runIf>
+                            <assertFiles>
+                                ${outputDir}/pl-463/1/test.sh
+                                ${outputDir}/pl-463/2/test.sh
+                            </assertFiles>
+                            <assertGroovy>
+                                "${outputDir}/pl-463/1/test.sh".execute().text == "${outputDir}/pl-463/2/test.sh".execute().text
+                            </assertGroovy>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

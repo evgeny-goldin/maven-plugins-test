@@ -155,13 +155,13 @@
             </plugin>
 
             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-            <!-- Resolving IDEA Ivy dependencies as if they were regular Maven dependencies using "maven-copy-plugin" -->
+            <!-- Resolving IDEA Ivy dependencies as if they were regular Maven dependencies using "copy-maven-plugin" -->
             <!-- Note! <groupId> should start with "ivy." to mark a dependency as Ivy artifact                        -->
             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
             <plugin>
                 <groupId>com.github.goldin</groupId>
-                <artifactId>maven-copy-plugin</artifactId>
+                <artifactId>copy-maven-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
                     <execution>

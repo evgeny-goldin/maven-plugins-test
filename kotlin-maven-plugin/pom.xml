@@ -54,7 +54,7 @@
 
             <plugin>
                 <groupId>com.github.goldin</groupId>
-                <artifactId>maven-copy-plugin</artifactId>
+                <artifactId>copy-maven-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
                     <execution>
@@ -201,7 +201,7 @@
 
             <plugin>
                 <groupId>com.github.goldin</groupId>
-                <artifactId>maven-copy-plugin</artifactId>
+                <artifactId>copy-maven-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
                     <execution>

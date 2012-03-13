@@ -1,0 +1,2869 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns              = "http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi          = "http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0
+                               http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.github.goldin.maven-plugins-test</groupId>
+    <artifactId>copy-maven-plugin.issues.0.2.3.5</artifactId>
+    <packaging>jar</packaging>
+    <version>0.1-SNAPSHOT</version>
+    <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
+
+
+    <parent>
+        <groupId>com.github.goldin.maven-plugins-test</groupId>
+        <artifactId>copy-maven-plugin.issues</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+
+    <properties>
+        <resourcesDir>${project.basedir}/../../copy-mojo/src/main/resources</resourcesDir>
+        <mainPom>${project.basedir}/../../../pom.xml</mainPom>
+
+        <!-- http://evgeny-goldin.org/youtrack/issue/pl-516 -->
+        <processAssert>
+        {{
+            assert files.size()    == 4
+            assert file            == files.first()
+            assert file.name       == '0.txt'
+            assert files[ 0 ].name == '0.txt'
+            assert files[ 1 ].name == '1.txt'
+            assert files[ 2 ].name == '2.txt'
+            assert files[ 3 ].name == '3.txt'
+        }}
+        </processAssert>
+        <assert12>
+        {{
+            assert files.size() == 12
+            assert files.every{ File f -> f.lastModified() > new File( resourcesDir, f.name ).lastModified() }
+        }}
+        </assert12>
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <!-- Splits file name to "body" and "extension" -->
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <splitName>findAll( /^([^\.]+)(\.(.+))?$/ ){ [ it[1], it[3] ?: '' ] }[ 0 ]</splitName>
+
+
+        <!-- "pl-548" properties -->
+        <project.name.prefix>my-prefix</project.name.prefix>
+        <project.version.major>1</project.version.major>
+        <project.version.minor>2</project.version.minor>
+        <project.version.revision>rev</project.version.revision>
+        <project.version.tag>tag</project.version.tag>
+        <project.vendor>vendor</project.vendor>
+        <version.name>name</version.name>
+        <BUILD_ID>23</BUILD_ID>
+    </properties>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.github.goldin</groupId>
+                <artifactId>copy-maven-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-549 -->
+                    <!-- "copy dependency ignores scope settings"       -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-549</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <filterWithDollarOnly>true</filterWithDollarOnly>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-549</targetPath>
+                                    <dependency>
+                                        <excludeScope>provided</excludeScope>
+                                    </dependency>
+                                    <process>{{ assert files.size() == 5 }}</process>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-548                           -->
+                    <!-- "File filtering fails on Windows if destination directory doesn't exist" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-548</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <filterWithDollarOnly>true</filterWithDollarOnly>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-548/1/2/3/4/5/6/7/8/9</targetPath>
+                                    <directory>${basedir}/src/test/resources</directory>
+                                    <include>**/*</include>
+                                    <filtering>true</filtering>
+                                    <preservePath>true</preservePath>
+                                    <process>{{ assert files.size() == 3 }}</process>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-541                 -->
+                    <!-- "Support <process> for <clean> operation - send deleted files" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-541</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetRoot>${outputDir}/pl-541</targetRoot>
+                                    <targetPath>1, 2, 3</targetPath>
+                                    <dependency>
+                                        <groupId>org.codehaus.groovy</groupId>
+                                        <artifactId>groovy-all</artifactId>
+                                        <version>2.0.0-beta-1</version>
+                                    </dependency>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <directory>${outputDir}/pl-541/1</directory>
+                                    <clean>true</clean>
+                                    <verbose>false</verbose>
+                                    <process>{{ assert files.size() == 3775 }}</process>
+                                </resource>
+                                <resource>
+                                    <directory>${outputDir}/pl-541/2</directory>
+                                    <clean>true</clean>
+                                    <cleanEmptyDirectories>true</cleanEmptyDirectories>
+                                    <verbose>false</verbose>
+                                    <process>{{ assert files.size() == 3891 }}</process>
+                                </resource>
+                                <resource>
+                                    <directory>${outputDir}/pl-541/3</directory>
+                                    <clean>true</clean>
+                                    <cleanEmptyDirectories>true</cleanEmptyDirectories>
+                                    <include>**/*.class, **/*.txt</include>
+                                    <exclude>groovy/servlet, **/groovy/text/**</exclude>
+                                    <verbose>false</verbose>
+                                    <process>{{ assert files.size() == 3773 }}</process>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-539                                                      -->
+                    <!-- "Build fails if <dependency> resolves to zero dependencies even when <failIfNotFound> is specified" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-539</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <groovyConfig>
+                                <verbose>true</verbose>
+                            </groovyConfig>
+                            <resources>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Retrieving optional non-existing dependency -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539/1</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>1.2.3.4.5</version>
+                                        <optional>true</optional>
+                                    </dependency>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539/2</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>1.2.3.4.5</version>
+                                    </dependency>
+                                    <failOnError>false</failOnError>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539/3</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>1.2.3.4.5</version>
+                                        <optional>true</optional>
+                                    </dependency>
+                                    <process>{{ assert files.size() > 0 }}</process>
+                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539/4</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>1.2.3.4.5</version>
+                                        <optional>true</optional>
+                                    </dependency>
+                                    <process>{{ assert files.size() > 0 }}</process>
+                                    <failOnError>false</failOnError>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539/5</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>1.2.3.4.5</version>
+                                    </dependency>
+                                    <shouldFailWith>MojoExecutionException</shouldFailWith>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Retrieving optional non-existing dependencies -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539/6</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>ch.qos.logback</groupId>
+                                            <artifactId>logback-core</artifactId>
+                                            <version>1.0.0</version>
+                                            <optional>true</optional>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.springframework</groupId>
+                                            <artifactId>spring-context</artifactId>
+                                            <version>1.2.3.4.5</version>
+                                            <optional>true</optional>
+                                        </dependency>
+                                    </dependencies>
+                                    <process>{{ assert files.size() == 1 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539/7</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>ch.qos.logback</groupId>
+                                            <artifactId>logback-core</artifactId>
+                                            <version>1.0.0</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.springframework</groupId>
+                                            <artifactId>spring-context</artifactId>
+                                            <version>1.2.3.4.5</version>
+                                        </dependency>
+                                    </dependencies>
+                                    <failOnError>false</failOnError>
+                                    <process>{{ assert files.size() == 1 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539/8</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>ch.qos.logback</groupId>
+                                            <artifactId>logback-core</artifactId>
+                                            <version>1.0.0</version>
+                                            <optional>true</optional>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.springframework</groupId>
+                                            <artifactId>spring-context</artifactId>
+                                            <version>1.2.3.4.5</version>
+                                            <optional>true</optional>
+                                        </dependency>
+                                    </dependencies>
+                                    <process>{{ assert files.size() > 1 }}</process>
+                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539/9</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>ch.qos.logback</groupId>
+                                            <artifactId>logback-core</artifactId>
+                                            <version>1.0.0</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.springframework</groupId>
+                                            <artifactId>spring-context</artifactId>
+                                            <version>1.2.3.4.5</version>
+                                        </dependency>
+                                    </dependencies>
+                                    <shouldFailWith>MojoExecutionException</shouldFailWith>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Retrieving optional non-existing dependencies transitively -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539/10</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>ch.qos.logback</groupId>
+                                            <artifactId>logback-core</artifactId>
+                                            <version>1.0.0</version>
+                                            <optional>true</optional>
+                                            <excludeTransitive>false</excludeTransitive>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.springframework</groupId>
+                                            <artifactId>spring-context</artifactId>
+                                            <version>1.2.3.4.5</version>
+                                            <optional>true</optional>
+                                            <excludeTransitive>false</excludeTransitive>
+                                        </dependency>
+                                    </dependencies>
+                                    <process>{{ assert files.size() == 6 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539/11</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>1.2.3.4.5</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                    </dependency>
+                                    <failOnError>false</failOnError>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539/12</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>1.2.3.4.5</version>
+                                        <optional>true</optional>
+                                        <excludeTransitive>false</excludeTransitive>
+                                    </dependency>
+                                    <process>{{ assert files.size() > 0 }}</process>
+                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539/13</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>ch.qos.logback</groupId>
+                                            <artifactId>logback-core</artifactId>
+                                            <version>1.0.0</version>
+                                            <excludeTransitive>false</excludeTransitive>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.springframework</groupId>
+                                            <artifactId>spring-context</artifactId>
+                                            <version>1.2.3.4.5</version>
+                                            <excludeTransitive>false</excludeTransitive>
+                                        </dependency>
+                                    </dependencies>
+                                    <shouldFailWith>MojoExecutionException</shouldFailWith>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Retrieving non-existing dependency with <failIfNotFound>/<failOnError> set to false -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539/14</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>1.2.3.4.5</version>
+                                    </dependency>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539/15</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>1.2.3.4.5</version>
+                                    </dependency>
+                                    <failOnError>false</failOnError>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539/16</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>ch.qos.logback</groupId>
+                                            <artifactId>logback-core</artifactId>
+                                            <version>1.0.0</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.springframework</groupId>
+                                            <artifactId>spring-context</artifactId>
+                                            <version>1.2.3.4.5</version>
+                                        </dependency>
+                                    </dependencies>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <process>{{ assert files.size() == 1 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539/17</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>ch.qos.logback</groupId>
+                                            <artifactId>logback-core</artifactId>
+                                            <version>1.0.0</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.springframework</groupId>
+                                            <artifactId>spring-context</artifactId>
+                                            <version>1.2.3.4.5</version>
+                                        </dependency>
+                                    </dependencies>
+                                    <failOnError>false</failOnError>
+                                    <process>{{ assert files.size() == 1 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539/18</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>1.2.3.4.5</version>
+                                    </dependency>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <process>{{ assert files.size() > 0 }}</process>
+                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Retrieving non-existing dependency transitively with <failIfNotFound>/<failOnError> set to false -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539/19</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>1.2.3.4.5</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                    </dependency>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539/20</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>1.2.3.4.5</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                    </dependency>
+                                    <failOnError>false</failOnError>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539/21</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>ch.qos.logback</groupId>
+                                            <artifactId>logback-core</artifactId>
+                                            <version>1.0.0</version>
+                                            <excludeTransitive>false</excludeTransitive>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.springframework</groupId>
+                                            <artifactId>spring-context</artifactId>
+                                            <version>1.2.3.4.5</version>
+                                            <excludeTransitive>false</excludeTransitive>
+                                        </dependency>
+                                    </dependencies>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <process>{{ assert files.size() == 6 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539/22</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>ch.qos.logback</groupId>
+                                            <artifactId>logback-core</artifactId>
+                                            <version>1.0.0</version>
+                                            <excludeTransitive>false</excludeTransitive>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.springframework</groupId>
+                                            <artifactId>spring-context</artifactId>
+                                            <version>1.2.3.4.5</version>
+                                            <excludeTransitive>false</excludeTransitive>
+                                        </dependency>
+                                    </dependencies>
+                                    <failOnError>false</failOnError>
+                                    <process>{{ assert files.size() == 1 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539/23</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>1.2.3.4.5</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                    </dependency>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <process>{{ assert files.size() > 0 }}</process>
+                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-539/24</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>1.2.3.4.5</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                    </dependency>
+                                    <shouldFailWith>MojoExecutionException</shouldFailWith>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-533                                           -->
+                    <!-- "Execution fails when <file> specified doesn't exist even if <failIfNotFound> is "false" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-533</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <groovyConfig>
+                                <verbose>true</verbose>
+                            </groovyConfig>
+                            <resources>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <file>no-such-file.txt</file>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <file>no-such-file.txt</file>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() > 0 }}</process>
+                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <file>1/2/3/4/5/6/7/no-such-file.txt</file>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <file>1/2/3/4/5/6/7/no-such-file.txt</file>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() > 0 }}</process>
+                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <file>${project.basedir}/no-such-file.txt</file>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <file>${project.basedir}/no-such-file.txt</file>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() > 0 }}</process>
+                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <file>${project.basedir}/1/2/3/4/5/6/7/no-such-file.txt</file>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <file>${project.basedir}/1/2/3/4/5/6/7/no-such-file.txt</file>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() > 0 }}</process>
+                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <file>user.properties</file>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <file>user.properties</file>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() > 0 }}</process>
+                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <file>src/main/db/environments/user/user.properties</file>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <file>src/main/db/environments/user/user.properties</file>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() > 0 }}</process>
+                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <file>${project.basedir}/user.properties</file>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <file>${project.basedir}/user.properties</file>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() > 0 }}</process>
+                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <file>${project.basedir}/src/main/db/environments/user/user.properties</file>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <file>${project.basedir}/src/main/db/environments/user/user.properties</file>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() > 0 }}</process>
+                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <directory>no-such-directory</directory>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <directory>no-such-directory</directory>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() > 0 }}</process>
+                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <directory>no-such-directory</directory>
+                                    <include>no-such-file.txt</include>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <directory>no-such-directory</directory>
+                                    <include>no-such-file.txt</include>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() > 0 }}</process>
+                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <directory>${project.basedir}</directory>
+                                    <include>no-such-file.txt</include>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <directory>${project.basedir}</directory>
+                                    <include>no-such-file.txt</include>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() > 0 }}</process>
+                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <directory>${project.basedir}</directory>
+                                    <include>**/*.nothing</include>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <directory>${project.basedir}</directory>
+                                    <include>**/*.nothing</include>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert files.size() > 0 }}</process>
+                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-509 -->
+                    <!-- "Dependency filtering"                         -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-509</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <groovyConfig>
+                                <verbose>true</verbose>
+                            </groovyConfig>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-509/1</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>3.1.1.RELEASE</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                    </dependency>
+                                    <process>{{ assert files.size() == 21 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-509/2</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>3.1.1.RELEASE</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                        <includeGroupIds>org.springframework</includeGroupIds>
+                                    </dependency>
+                                    <process>{{ assert files.size() == 6 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-509/3</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>3.1.1.RELEASE</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                        <includeArtifactIds>commons-pool, commons-logging, easymock</includeArtifactIds>
+                                    </dependency>
+                                    <process>{{ assert files.size() == 3 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-509/4</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>3.1.1.RELEASE</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                        <excludeArtifactIds>commons-logging, commons-pool, easymock</excludeArtifactIds>
+                                    </dependency>
+                                    <process>{{ assert files.size() == ( 21 - 3 ) }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-509/5</targetPath>
+                                    <dependency>
+                                        <groupId>ch.qos.logback</groupId>
+                                        <artifactId>logback-core</artifactId>
+                                        <version>1.0.0</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                    </dependency>
+                                    <process>{{ assert files.size() == 6 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-509/6</targetPath>
+                                    <dependency>
+                                        <groupId>ch.qos.logback</groupId>
+                                        <artifactId>logback-core</artifactId>
+                                        <version>1.0.0</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                        <!-- "org.easytesting:fest-assert, org.easytesting:fest-util" -->
+                                        <excludeGroupIds>org.easytesting</excludeGroupIds>
+                                        <!-- "org.easymock:easymock" -->
+                                        <excludeArtifactIds>easymock</excludeArtifactIds>
+                                        <excludeTypes>zip</excludeTypes>
+                                    </dependency>
+                                    <process>{{ assert files.size() == 3 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-509/7</targetPath>
+                                    <dependency>
+                                        <groupId>ch.qos.logback</groupId>
+                                        <artifactId>logback-core</artifactId>
+                                        <version>1.0.0</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                        <excludeTypes>jar</excludeTypes>
+                                    </dependency>
+                                    <failIfNotFound>false</failIfNotFound>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-430        -->
+                    <!-- "Add "ant" and "startTime" variables to Groovy scope" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-430</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-430</targetPath>
+                                    <file>${mainPom}</file>
+                                    <process>
+                                    {{
+                                        assert project
+                                        assert session
+                                        assert mavenVersion
+                                        assert startTime
+                                        assert ant
+
+                                        def newFile = new File( file.parentFile, '111.xml' )
+                                        println "[$project][$session][$mavenVersion][$startTime][$ant]"
+                                        ant.move( file: file, tofile: newFile )
+                                        ant.echo( message: "[$project][$session][$mavenVersion][$startTime][$ant]" )
+                                        ant.script( language: 'groovy' ){
+                                            assert startTime.time > 0
+                                            assert newFile.renameTo( new File( file.parentFile, '222.xml' ))
+                                            println "[$project][$session][$mavenVersion][$startTime][$ant]"
+                                        }
+                                    }}
+                                    </process>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-506                                    -->
+                    <!-- "Set <dependenciesAtM2> to "true" when there's a single dependency to operate on" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-506</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <description>1</description>
+                                    <targetPath>${outputDir}/pl-506/1</targetPath>
+                                    <dependency>
+                                        <groupId>com.jcraft</groupId>
+                                        <artifactId>jsch</artifactId>
+                                        <version>0.1.38</version>
+                                    </dependency>
+                                    <dependenciesAtM2>true</dependenciesAtM2>
+                                    <filter>{{  assert ( files.size() == 1 ) &amp;&amp; ( file.canonicalPath.contains( '.m2' )); files }}</filter>
+                                    <process>{{ assert ( files.size() == 1 ) }}</process>
+                                </resource>
+                                <resource>
+                                    <description>2</description>
+                                    <targetPath>${outputDir}/pl-506/2</targetPath>
+                                    <dependency>
+                                        <groupId>com.jcraft</groupId>
+                                        <artifactId>jsch</artifactId>
+                                        <version>0.1.38</version>
+                                    </dependency>
+                                    <filter>{{  assert ( files.size() == 1 ) &amp;&amp; ( file.canonicalPath.contains( '.m2' )); files }}</filter>
+                                    <process>{{ assert ( files.size() == 1 ) }}</process>
+                                </resource>
+                                <resource>
+                                    <description>3</description>
+                                    <targetPath>${outputDir}/pl-506/3</targetPath>
+                                    <dependency>
+                                        <groupId>com.jcraft</groupId>
+                                        <artifactId>jsch</artifactId>
+                                        <version>0.1.38</version>
+                                    </dependency>
+                                    <dependenciesAtM2>false</dependenciesAtM2>
+                                    <filter>{{  assert ( files.size() == 1 ) &amp;&amp; ( ! file.canonicalPath.contains( '.m2' )); files }}</filter>
+                                    <process>{{ assert ( files.size() == 1 ) }}</process>
+                                </resource>
+                                <resource>
+                                    <description>4</description>
+                                    <targetPath>${outputDir}/pl-506/4</targetPath>
+                                    <dependency>
+                                        <groupId>com.jcraft</groupId>
+                                        <artifactId>jsch</artifactId>
+                                        <version>0.1.38</version>
+                                    </dependency>
+                                    <stripVersion>true</stripVersion>
+                                    <filter>{{  assert ( files.size() == 1 ) &amp;&amp; ( file.canonicalPath.contains( '.m2' )); files }}</filter>
+                                    <process>{{ assert ( files.size() == 1 ) }}</process>
+                                </resource>
+                                <resource>
+                                    <description>5</description>
+                                    <targetPath>${outputDir}/pl-506/5</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>com.jcraft</groupId>
+                                            <artifactId>jsch</artifactId>
+                                            <version>0.1.38</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>com.jcraft</groupId>
+                                            <artifactId>jsch</artifactId>
+                                            <version>0.1.45</version>
+                                        </dependency>
+                                    </dependencies>
+                                    <filter>{{  assert ( files.size() == 2 ) &amp;&amp; ( files.every{ ! it.canonicalPath.contains( '.m2' ) } ); files }}</filter>
+                                    <process>{{ assert ( files.size() == 2 ) }}</process>
+                                </resource>
+                                <resource>
+                                    <description>6</description>
+                                    <targetPath>${outputDir}/pl-506/6</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>com.jcraft</groupId>
+                                            <artifactId>jsch</artifactId>
+                                            <version>0.1.38</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>com.jcraft</groupId>
+                                            <artifactId>jsch</artifactId>
+                                            <version>0.1.45</version>
+                                        </dependency>
+                                    </dependencies>
+                                    <dependenciesAtM2>true</dependenciesAtM2>
+                                    <!-- Each dependency reported separately -->
+                                    <filter>{{  assert ( files.size() == 1 ) &amp;&amp; ( files.every{ it.canonicalPath.contains( '.m2' ) } ); files }}</filter>
+                                    <process>{{ assert ( files.size() == 1 ) }}</process>
+                                </resource>
+                                <resource>
+                                    <description>7</description>
+                                    <targetPath>${outputDir}/pl-506/7</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>com.jcraft</groupId>
+                                            <artifactId>jsch</artifactId>
+                                            <version>0.1.38</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>com.jcraft</groupId>
+                                            <artifactId>jsch</artifactId>
+                                            <version>0.1.45</version>
+                                        </dependency>
+                                    </dependencies>
+                                    <stripVersion>true</stripVersion>
+                                    <!-- Dependencies overwrite each other -->
+                                    <filter>{{  assert ( files.size() == 1 ) &amp;&amp; ( files.every{ ! it.canonicalPath.contains( '.m2' ) } ); files }}</filter>
+                                    <process>{{ assert ( files.size() == 1 ) }}</process>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-523  -->
+                    <!-- "Allow to specify comma-separated <targetPath>" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-523</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetRoot>${outputDir}/pl-523</targetRoot>
+                                    <targetPath>1, 2, 3</targetPath>
+                                    <file>${mainPom}</file>
+                                    <process>{{ assert ( files.size() == 3 ) &amp;&amp; files.every{ it.lastModified() == new File( mainPom ).lastModified() }}}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-523/11, ${outputDir}/pl-523/22, ${outputDir}/pl-523/33</targetPath>
+                                    <file>${mainPom}</file>
+                                    <process>{{ assert ( files.size() == 3 ) &amp;&amp; files.every{ it.lastModified() == new File( mainPom ).lastModified() }}}</process>
+                                </resource>
+                                <resource>
+                                    <targetPaths>
+                                        <targetPath>${outputDir}/pl-523/111</targetPath>
+                                        <targetPath>${outputDir}/pl-523/222</targetPath>
+                                        <targetPath>${outputDir}/pl-523/333</targetPath>
+                                    </targetPaths>
+                                    <file>${mainPom}</file>
+                                    <process>{{ assert ( files.size() == 3 ) &amp;&amp; files.every{ it.lastModified() == new File( mainPom ).lastModified() }}}</process>
+                                </resource>
+                                <resource>
+                                    <targetRoot>${outputDir}/pl-523</targetRoot>
+                                    <targetPath>1111, 2222, 3333</targetPath>
+                                    <filtering>true</filtering>
+                                    <filterWithDollarOnly>true</filterWithDollarOnly>
+                                    <file>${mainPom}</file>
+                                    <!-- Files were filtered and their timestamp is set to "now" -->
+                                    <process>{{ assert ( files.size() == 3 ) &amp;&amp; files.every{ it.lastModified() > new File( mainPom ).lastModified() }}}</process>
+                                </resource>
+                                <resource>
+                                    <targetRoot>${outputDir}/pl-523</targetRoot>
+                                    <targetPath>a, b, c</targetPath>
+                                    <directory>${resourcesDir}</directory>
+                                    <process>
+                                    {{
+                                        assert ( files.size() == 36 ) &amp;&amp;
+                                               files.every{ File f -> f.lastModified() == new File( resourcesDir, f.name ).lastModified() }
+                                    }}
+                                    </process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-523/aa, ${outputDir}/pl-523/bb, ${outputDir}/pl-523/cc</targetPath>
+                                    <directory>${resourcesDir}</directory>
+                                    <process>
+                                    {{
+                                        assert ( files.size() == 36 ) &amp;&amp;
+                                               files.every{ File f -> f.lastModified() == new File( resourcesDir, f.name ).lastModified() }
+                                    }}
+                                    </process>
+                                </resource>
+                                <resource>
+                                    <targetPaths>
+                                        <targetPath>${outputDir}/pl-523/aaa</targetPath>
+                                        <targetPath>${outputDir}/pl-523/bbb</targetPath>
+                                        <targetPath>${outputDir}/pl-523/ccc</targetPath>
+                                    </targetPaths>
+                                    <directory>${resourcesDir}</directory>
+                                    <process>
+                                    {{
+                                        assert ( files.size() == 36 ) &amp;&amp;
+                                               files.every{ File f -> f.lastModified() == new File( resourcesDir, f.name ).lastModified() }
+                                    }}
+                                    </process>
+                                </resource>
+                                <resource>
+                                    <targetRoot>${outputDir}/pl-523</targetRoot>
+                                    <targetPath>aaaa, bbbb, cccc</targetPath>
+                                    <directory>${resourcesDir}</directory>
+                                    <filtering>true</filtering>
+                                    <filterWithDollarOnly>true</filterWithDollarOnly>
+                                    <!-- Files were not filtered (no ${ .. } expressions) and their timestamp is not modified -->
+                                    <process>
+                                    {{
+                                        assert ( files.size() == 36 ) &amp;&amp;
+                                               files.every{ File f -> f.lastModified() == new File( resourcesDir, f.name ).lastModified() }
+                                    }}
+                                    </process>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-515 -->
+                    <!-- "<nonFilteredExtensions> is case-sensitive"    -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-515</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-515/1</targetPath>
+                                    <file>${project.basedir}/src/main/resources/1.bat</file>
+                                    <filtering>true</filtering>
+                                    <process>{{ assert ! file.text.contains( '$' + '{' ) }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-515/2</targetPath>
+                                    <file>${project.basedir}/src/main/resources/1.bat</file>
+                                    <filtering>true</filtering>
+                                    <filterWithDollarOnly>true</filterWithDollarOnly>
+                                    <process>{{ assert ! file.text.contains( '$' + '{' ) }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-515/3</targetPath>
+                                    <file>${project.basedir}/src/main/resources/1.bat</file>
+                                    <filtering>true</filtering>
+                                    <filterWithDollarOnly>true</filterWithDollarOnly>
+                                    <nonFilteredExtensions>bat</nonFilteredExtensions>
+                                    <process>{{ assert file.text.contains( '$' + '{' ) }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-515/4</targetPath>
+                                    <file>${project.basedir}/src/main/resources/1.bat</file>
+                                    <filtering>true</filtering>
+                                    <filterWithDollarOnly>true</filterWithDollarOnly>
+                                    <destFileExtension>BaT</destFileExtension>
+                                    <nonFilteredExtensions>bat</nonFilteredExtensions>
+                                    <process>{{ assert file.text.contains( '$' + '{' ) }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-515/5</targetPath>
+                                    <file>${project.basedir}/src/main/resources/1.bat</file>
+                                    <filtering>true</filtering>
+                                    <filterWithDollarOnly>true</filterWithDollarOnly>
+                                    <destFilePrefix>opa-</destFilePrefix>
+                                    <destFileSuffix>-apo</destFileSuffix>
+                                    <destFileExtension>bAt</destFileExtension>
+                                    <nonFilteredExtensions>batt</nonFilteredExtensions>
+                                    <process>{{ assert ! file.text.contains( '$' + '{' ) }}</process>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-514                      -->
+                    <!-- "Eliminate temp files usage when <filtering> or <replace> are used" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-514</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Regular copy operation -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/pl-514/1</targetPath>
+                                    <file>${mainPom}</file>
+                                    <filtering>true</filtering>
+                                    <filter>{{ files }}</filter>
+                                    <process>
+                                    {{
+                                        assert ! file.text.contains( '$' + '{' )
+                                        assert   file.text.find( /\d|\w/ )
+                                    }}
+                                    </process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-514/2</targetPath>
+                                    <file>${mainPom}</file>
+                                    <replace>
+                                        <from>(?s).</from>
+                                        <to>a</to>
+                                    </replace>
+                                    <filter>{{ files }}</filter>
+                                    <process>{{ assert file.text ==~ /^a+$/ }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-514/3</targetPath>
+                                    <file>${mainPom}</file>
+                                    <filtering>true</filtering>
+                                    <replaces>
+                                        <replace>
+                                            <from>\d+</from>
+                                            <to>*</to>
+                                        </replace>
+                                        <replace>
+                                            <from>\w+</from>
+                                            <to>!</to>
+                                        </replace>
+                                    </replaces>
+                                    <filter>{{ files }}</filter>
+                                    <process>{{ assert file.text.with{ ! ( contains( '$' + '{' ) || find( /\d|\w/ )) }}}</process>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Copying file to itself -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetRoot>${outputDir}/pl-514</targetRoot>
+                                    <targetPath>4, 5, 6</targetPath>
+                                    <file>${mainPom}</file>
+                                    <filter>{{ files }}</filter>
+                                    <process>{{ assert files.size() == 3 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-514/4</targetPath>
+                                    <file>${outputDir}/pl-514/4/pom.xml</file>
+                                    <filtering>true</filtering>
+                                    <filter>{{ files }}</filter>
+                                    <process>
+                                    {{
+                                        assert ! file.text.contains( '$' + '{' )
+                                        assert   file.text.find( /\d|\w/ )
+                                    }}
+                                    </process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-514/5</targetPath>
+                                    <file>${outputDir}/pl-514/5/pom.xml</file>
+                                    <replace>
+                                        <from>(?s).</from>
+                                        <to>a</to>
+                                    </replace>
+                                    <filter>{{ files }}</filter>
+                                    <process>{{ assert file.text ==~ /^a+$/ }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-514/6</targetPath>
+                                    <file>${outputDir}/pl-514/6/pom.xml</file>
+                                    <filtering>true</filtering>
+                                    <replaces>
+                                        <replace>
+                                            <from>\d+</from>
+                                            <to>*</to>
+                                        </replace>
+                                        <replace>
+                                            <from>\w+</from>
+                                            <to>!</to>
+                                        </replace>
+                                    </replaces>
+                                    <filter>{{ files }}</filter>
+                                    <process>{{ assert file.text.with{ ! ( contains( '$' + '{' ) || find( /\d|\w/ )) }}}</process>
+                                </resource>
+                                <!-- ~~~~~~~~~~~ -->
+                                <!-- Moving file -->
+                                <!-- ~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetRoot>${outputDir}/pl-514</targetRoot>
+                                    <targetPath>7, 8, 9</targetPath>
+                                    <file>${mainPom}</file>
+                                    <filter>{{ files }}</filter>
+                                    <process>{{ assert files.size() == 3 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-514/10</targetPath>
+                                    <file>${outputDir}/pl-514/7/pom.xml</file>
+                                    <move>true</move>
+                                    <filtering>true</filtering>
+                                    <filter>{{ files }}</filter>
+                                    <process>
+                                    {{
+                                        assert ! file.text.contains( '$' + '{' )
+                                        assert   file.text.find( /\d|\w/ )
+                                        assert ! new File( outputDir, 'pl-514/7/pom.xml' ).file
+                                    }}
+                                    </process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-514/11</targetPath>
+                                    <file>${outputDir}/pl-514/8/pom.xml</file>
+                                    <move>true</move>
+                                    <replace>
+                                        <from>(?s).</from>
+                                        <to>a</to>
+                                    </replace>
+                                    <filter>{{ files }}</filter>
+                                    <process>
+                                    {{
+                                        assert file.text ==~ /^a+$/
+                                        assert ! new File( outputDir, 'pl-514/8/pom.xml' ).file
+                                    }}
+                                    </process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-514/12</targetPath>
+                                    <file>${outputDir}/pl-514/9/pom.xml</file>
+                                    <move>true</move>
+                                    <filtering>true</filtering>
+                                    <replaces>
+                                        <replace>
+                                            <from>\d+</from>
+                                            <to>*</to>
+                                        </replace>
+                                        <replace>
+                                            <from>\w+</from>
+                                            <to>!</to>
+                                        </replace>
+                                    </replaces>
+                                    <filter>{{ files }}</filter>
+                                    <process>
+                                    {{
+                                        assert file.text.with{ ! ( contains( '$' + '{' ) || find( /\d|\w/ )) }
+                                        assert ! new File( outputDir, 'pl-514/9/pom.xml' ).file
+                                    }}
+                                    </process>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Skipping identical files -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/pl-514/13</targetPath>
+                                    <directory>${resourcesDir}</directory>
+                                    <process>
+                                    {{
+                                        assert files.size() == 12
+                                        assert files.every{ File f -> f.lastModified() == new File( resourcesDir, f.name ).lastModified() }
+                                    }}
+                                    </process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-514/13</targetPath>
+                                    <directory>${resourcesDir}</directory>
+                                    <process>
+                                    {{
+                                        assert files.size() == 12
+                                        assert files.every{ File f -> f.lastModified() == new File( resourcesDir, f.name ).lastModified() }
+                                    }}
+                                    </process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-514/13</targetPath>
+                                    <directory>${resourcesDir}</directory>
+                                    <skipIdentical>true</skipIdentical>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-514/13</targetPath>
+                                    <directory>${outputDir}/pl-514/13</directory>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-514/13</targetPath>
+                                    <directory>${outputDir}/pl-514/13</directory>
+                                    <filtering>true</filtering>
+                                    <process>${assert12}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-514/13</targetPath>
+                                    <directory>${outputDir}/pl-514/13</directory>
+                                    <replace>
+                                        <from>.</from>
+                                        <to>..</to>
+                                    </replace>
+                                    <process>${assert12}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-514/13</targetPath>
+                                    <directory>${outputDir}/pl-514/13</directory>
+                                    <filtering>true</filtering>
+                                    <replace>
+                                        <from>.</from>
+                                        <to>..</to>
+                                    </replace>
+                                    <process>${assert12}</process>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-511                                                         -->
+                    <!-- "Do not filter files if they don't contain ${..} expressions when <filterWithDollarOnly> is activated" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-511</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-511/1</targetPath>
+                                    <file>${mainPom}</file>
+                                    <filtering>true</filtering>
+                                    <destFileName>1.xml</destFileName>
+                                    <process>{{ assert file.with{ ( name == '1.xml' ) &amp;&amp; ( ! text.contains( '$' + '{' )) }; sleep ( 2000 ) }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-511/2</targetPath>
+                                    <file>${outputDir}/pl-511/1/1.xml</file>
+                                    <filtering>true</filtering>
+                                    <filterWithDollarOnly>true</filterWithDollarOnly>
+                                    <!-- No filtering was made - there's no "${ .. }" expressions in the file and "filterWithDollarOnly" is used  -->
+                                    <process>{{ assert file.lastModified() == new File( outputDir, 'pl-511/1/1.xml' ).lastModified() }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-511/3</targetPath>
+                                    <file>${outputDir}/pl-511/1/1.xml</file>
+                                    <filtering>true</filtering>
+                                    <!-- Filtering was made - there's no "${ .. }" expressions in the file but "filterWithDollarOnly" isn't used -->
+                                    <process>{{ assert file.lastModified() > new File( outputDir, 'pl-511/1/1.xml' ).lastModified() }}</process>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-522                                   -->
+                    <!-- "<process> gets list of files with duplicate entries if <preservePath> is false" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-522</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetRoot>${outputDir}/pl-522/1</targetRoot>
+                                    <targetPaths>
+                                        <targetPath>0/0/09</targetPath>
+                                        <targetPath>1/1</targetPath>
+                                        <targetPath>2/2</targetPath>
+                                        <targetPath>3</targetPath>
+                                        <targetPath>6/7</targetPath>
+                                        <targetPath>9</targetPath>
+                                        <targetPath>12</targetPath>
+                                        <targetPath>aaa/bbb/ccc</targetPath>
+                                    </targetPaths>
+                                    <file>${project.basedir}/pom.xml</file>
+                                </resource>
+                                <resource>
+                                    <targetRoot>${outputDir}/pl-522/1</targetRoot>
+                                    <targetPaths>
+                                        <targetPath>0/0/09</targetPath>
+                                        <targetPath>1/1</targetPath>
+                                        <targetPath>2/2</targetPath>
+                                        <targetPath>3</targetPath>
+                                        <targetPath>6/7</targetPath>
+                                        <targetPath>9</targetPath>
+                                        <targetPath>12</targetPath>
+                                        <targetPath>aaa/bbb/ccc</targetPath>
+                                    </targetPaths>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileName>1.txt</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-522/2</targetPath>
+                                    <directory>${outputDir}/pl-522/1</directory>
+                                    <process>{{ assert ( files.size() == 2 ) &amp;&amp; files.every{ ( it.name == 'pom.xml' ) || ( it.name == '1.txt' ) } }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-522/3</targetPath>
+                                    <directory>${outputDir}/pl-522/1</directory>
+                                    <preservePath>true</preservePath>
+                                    <process>{{ assert ( files.size() == ( 2 * 8 )) &amp;&amp; files.every{ ( it.name == 'pom.xml' ) || ( it.name == '1.txt' ) } }}</process>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-510                      -->
+                    <!-- "Provide an option to exclude ZIP entries when archive is unpacked" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-510</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-510/1</targetPath>
+                                    <dependency>
+                                        <groupId>org.codehaus.groovy</groupId>
+                                        <artifactId>groovy-all</artifactId>
+                                        <version>1.8.3</version>
+                                    </dependency>
+                                    <unpack>true</unpack>
+                                    <preservePath>true</preservePath>
+                                    <zipEntryExclude>**/*Abstract*, **/beans/**</zipEntryExclude>
+                                    <process>{{ assert files.size() == 3705 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-510/2</targetPath>
+                                    <dependency>
+                                        <groupId>org.codehaus.groovy</groupId>
+                                        <artifactId>groovy-all</artifactId>
+                                        <version>1.8.3</version>
+                                    </dependency>
+                                    <unpack>true</unpack>
+                                    <preservePath>true</preservePath>
+                                    <zipEntriesExclude>
+                                        <zipEntryExclude>**/*Abstract*</zipEntryExclude>
+                                        <zipEntryExclude>**/beans/**</zipEntryExclude>
+                                    </zipEntriesExclude>
+                                    <process>{{ assert files.size() == 3705 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-510/3</targetPath>
+                                    <dependency>
+                                        <groupId>org.codehaus.groovy</groupId>
+                                        <artifactId>groovy-all</artifactId>
+                                        <version>1.8.3</version>
+                                    </dependency>
+                                    <unpack>true</unpack>
+                                    <preservePath>true</preservePath>
+                                    <zipEntry>**/*.class</zipEntry>
+                                    <zipEntriesExclude>
+                                        <zipEntryExclude>**/*Abstract*.class</zipEntryExclude>
+                                        <zipEntryExclude>**/beans/**</zipEntryExclude>
+                                    </zipEntriesExclude>
+                                    <process>{{ assert files.size() == 3631 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-510/4</targetPath>
+                                    <dependency>
+                                        <groupId>org.jenkins-ci.main</groupId>
+                                        <artifactId>jenkins-war</artifactId>
+                                        <version>1.421</version>
+                                        <type>war</type>
+                                    </dependency>
+                                    <unpack>true</unpack>
+                                    <preservePath>true</preservePath>
+                                    <zipEntryExclude>**/*.html, **/*.png</zipEntryExclude>
+                                    <process>{{ assert files.size() == 437 }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-510/5</targetPath>
+                                    <dependency>
+                                        <groupId>org.jenkins-ci.main</groupId>
+                                        <artifactId>jenkins-war</artifactId>
+                                        <version>1.421</version>
+                                        <type>war</type>
+                                    </dependency>
+                                    <unpack>true</unpack>
+                                    <preservePath>true</preservePath>
+                                    <zipEntry>**/*.html, **/*.jar, **/*.png</zipEntry>
+                                    <zipEntryExclude>**/ant-*.html, **/commons-*.jar, **/empty.png, **/grey.png</zipEntryExclude>
+                                    <process>{{ assert files.size() == 842 }}</process>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-516                        -->
+                    <!-- "Order of files is not kept when "files" list is passed to <process>" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-516</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-516/1</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileName>0.txt</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-516/1</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileName>1.txt</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-516/1</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileName>2.txt</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-516/1</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileName>3.txt</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-516/2</targetPath>
+                                    <directory>${outputDir}/pl-516/1</directory>
+                                    <includes>
+                                        <include>0.txt</include>
+                                        <include>1.txt</include>
+                                        <include>2.txt</include>
+                                        <include>3.txt</include>
+                                    </includes>
+                                    <process>${processAssert}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-516/2</targetPath>
+                                    <directory>${outputDir}/pl-516/1</directory>
+                                    <includes>
+                                        <include>3.txt</include>
+                                        <include>1.txt</include>
+                                        <include>0.txt</include>
+                                        <include>2.txt</include>
+                                    </includes>
+                                    <process>${processAssert}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-516/2</targetPath>
+                                    <directory>${outputDir}/pl-516/1</directory>
+                                    <includes>
+                                        <include>3.txt</include>
+                                        <include>2.txt</include>
+                                        <include>1.txt</include>
+                                        <include>0.txt</include>
+                                    </includes>
+                                    <process>${processAssert}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-516/3</targetPath>
+                                    <directory>${outputDir}/pl-516/1</directory>
+                                    <include>0.txt, 1.txt, 2.txt, 3.txt</include>
+                                    <process>${processAssert}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-516/3</targetPath>
+                                    <directory>${outputDir}/pl-516/1</directory>
+                                    <include>3.txt, 1.txt, 2.txt, 0.txt</include>
+                                    <process>${processAssert}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-516/3</targetPath>
+                                    <directory>${outputDir}/pl-516/1</directory>
+                                    <include>3.txt, 2.txt, 1.txt, 0.txt</include>
+                                    <process>${processAssert}</process>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-513                        -->
+                    <!-- "Support <destFilePrefix>, <destFileSuffix>, and <destFileExtension>" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-513-1</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <!-- ~~~~~~~~~~~~~ -->
+                                <!-- Copying files -->
+                                <!-- ~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513-1/1</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileName>1-pom-1.xml</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513-1/2</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFilePrefix>2-</destFilePrefix>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513-1/3</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileSuffix>-3</destFileSuffix>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513-1/4</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileExtension>4</destFileExtension>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513-1/5</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFilePrefix>5-</destFilePrefix>
+                                    <destFileSuffix>-5</destFileSuffix>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513-1/6</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileSuffix>-6</destFileSuffix>
+                                    <destFileExtension>6</destFileExtension>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513-1/7</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFilePrefix>7-</destFilePrefix>
+                                    <destFileSuffix>-7</destFileSuffix>
+                                    <destFileExtension>7</destFileExtension>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513-1/8</targetPath>
+                                    <directory>${resourcesDir}</directory>
+                                    <preservePath>true</preservePath>
+                                    <filter>{{ files.findAll{ it.name.endsWith( '.txt' ) }}}</filter>
+                                    <destFilePrefix>8-</destFilePrefix>
+                                    <destFileSuffix>-8</destFileSuffix>
+                                    <destFileExtension>8</destFileExtension>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513-1/9</targetPath>
+                                    <directory>${resourcesDir}</directory>
+                                    <preservePath>true</preservePath>
+                                    <filter>{{ files.findAll{ ! it.name.endsWith( '.txt' ) }}}</filter>
+                                    <destFilePrefix>9-</destFilePrefix>
+                                    <destFileSuffix>-9</destFileSuffix>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Copying files with structure -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513-1/10</targetPath>
+                                    <dependency>
+                                        <groupId>com.jcraft</groupId>
+                                        <artifactId>jsch</artifactId>
+                                        <version>0.1.38</version>
+                                    </dependency>
+                                    <unpack>true</unpack>
+                                    <process>{{ files.findAll{ it.name.endsWith( '.MF' ) }.first().delete() }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513-1/11</targetPath>
+                                    <directory>${outputDir}/pl-513-1/10</directory>
+                                    <verbose>false</verbose>
+                                    <preservePath>true</preservePath>
+                                    <destFilePrefix>11-</destFilePrefix>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513-1/12</targetPath>
+                                    <directory>${outputDir}/pl-513-1/10</directory>
+                                    <verbose>false</verbose>
+                                    <preservePath>true</preservePath>
+                                    <destFileSuffix>-12</destFileSuffix>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513-1/13</targetPath>
+                                    <directory>${outputDir}/pl-513-1/10</directory>
+                                    <verbose>false</verbose>
+                                    <preservePath>true</preservePath>
+                                    <destFilePrefix>13-</destFilePrefix>
+                                    <destFileSuffix>-13</destFileSuffix>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513-1/14</targetPath>
+                                    <directory>${outputDir}/pl-513-1/10</directory>
+                                    <verbose>false</verbose>
+                                    <preservePath>true</preservePath>
+                                    <destFilePrefix>14-</destFilePrefix>
+                                    <destFileSuffix>-14</destFileSuffix>
+                                    <destFileExtension>14</destFileExtension>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513-1/15</targetPath>
+                                    <directory>${outputDir}/pl-513-1/10</directory>
+                                    <verbose>false</verbose>
+                                    <destFilePrefix>15-</destFilePrefix>
+                                    <destFileSuffix>-15</destFileSuffix>
+                                    <destFileExtension>15</destFileExtension>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513-1/16</targetPath>
+                                    <directory>${outputDir}/pl-513-1/10</directory>
+                                    <verbose>false</verbose>
+                                    <destFileName>destFileName</destFileName>
+                                    <destFilePrefix>16-</destFilePrefix>
+                                    <destFileSuffix>-16</destFileSuffix>
+                                    <destFileExtension>16</destFileExtension>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-513                        -->
+                    <!-- "Support <destFilePrefix>, <destFileSuffix>, and <destFileExtension>" -->
+                    <!-- Duplicating tests using <process>                                     -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-513-2</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <!-- ~~~~~~~~~~~~~ -->
+                                <!-- Copying files -->
+                                <!-- ~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513-2/1</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                               <!-- <destFileName>1-pom-1.xml</destFileName> -->
+                                    <process>{{ assert file.file &amp;&amp; file.renameTo( new File( file.parentFile, '1-pom-1.xml' )) }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513-2/2</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                               <!-- <destFilePrefix>2-</destFilePrefix> -->
+                                    <process>{{ assert file.file &amp;&amp; file.renameTo( new File( file.parentFile, "2-$file.name" )) }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513-2/3</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                               <!-- <destFileSuffix>-3</destFileSuffix> -->
+                                    <process>
+                                    {{
+                                        def ( body, extension ) = file.name.${splitName}
+                                        assert file.file &amp;&amp; file.renameTo( new File( file.parentFile, "$body-3" + ( extension ? '.' + extension : '' )))
+                                    }}
+                                    </process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513-2/4</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                              <!-- <destFileExtension>4</destFileExtension> -->
+                                    <process>
+                                    {{
+                                        def ( body, extension ) = file.name.${splitName}
+                                        assert file.file &amp;&amp; file.renameTo( new File( file.parentFile, "$body.4" ))
+                                    }}
+                                    </process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513-2/5</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                               <!-- <destFilePrefix>5-</destFilePrefix> -->
+                               <!-- <destFileSuffix>-5</destFileSuffix> -->
+                                    <process>
+                                    {{
+                                        def ( body, extension ) = file.name.${splitName}
+                                        assert file.file &amp;&amp; file.renameTo( new File( file.parentFile, "5-$body-5" + ( extension ? '.' + extension : '' )))
+                                    }}
+                                    </process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513-2/6</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                               <!-- <destFileSuffix>-6</destFileSuffix> -->
+                               <!-- <destFileExtension>6</destFileExtension> -->
+                                    <process>
+                                    {{
+                                        def ( body, extension ) = file.name.${splitName}
+                                        assert file.file &amp;&amp; file.renameTo( new File( file.parentFile, "$body-6.6" ))
+                                    }}
+                                    </process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513-2/7</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                               <!-- <destFilePrefix>7-</destFilePrefix>-->
+                               <!-- <destFileSuffix>-7</destFileSuffix>-->
+                               <!-- <destFileExtension>7</destFileExtension>-->
+                                    <process>
+                                    {{
+                                        def ( body, extension ) = file.name.${splitName}
+                                        assert file.file &amp;&amp; file.renameTo( new File( file.parentFile, "7-$body-7.7" ))
+                                    }}
+                                    </process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513-2/8</targetPath>
+                                    <directory>${resourcesDir}</directory>
+                                    <preservePath>true</preservePath>
+                                    <filter>{{ files.findAll{ it.name.endsWith( '.txt' ) }}}</filter>
+                               <!-- <destFilePrefix>8-</destFilePrefix>-->
+                               <!-- <destFileSuffix>-8</destFileSuffix>-->
+                               <!-- <destFileExtension>8</destFileExtension>-->
+                                    <process>
+                                    {{
+                                        files.each { File f ->
+                                            assert f.file
+                                            def ( body, extension ) = f.name.${splitName}
+                                            assert f.renameTo( new File( f.parentFile, "8-$body-8.8" ))
+                                        }
+                                    }}
+                                    </process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513-2/9</targetPath>
+                                    <directory>${resourcesDir}</directory>
+                                    <preservePath>true</preservePath>
+                                    <filter>{{ files.findAll{ ! it.name.endsWith( '.txt' ) }}}</filter>
+                               <!-- <destFilePrefix>9-</destFilePrefix>-->
+                               <!-- <destFileSuffix>-9</destFileSuffix>-->
+                                    <process>
+                                    {{
+                                        files.each { File f ->
+                                            assert f.file
+                                            def ( body, extension ) = f.name.${splitName}
+                                            assert f.renameTo( new File( f.parentFile, "9-$body-9" + ( extension ? '.' + extension : '' )))
+                                        }
+                                    }}
+                                    </process>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Copying files with structure -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513-2/10</targetPath>
+                                    <dependency>
+                                        <groupId>com.jcraft</groupId>
+                                        <artifactId>jsch</artifactId>
+                                        <version>0.1.38</version>
+                                    </dependency>
+                                    <unpack>true</unpack>
+                                    <process>{{ files.findAll{ it.name.endsWith( '.MF' ) }.first().delete() }}</process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513-2/11</targetPath>
+                                    <directory>${outputDir}/pl-513-2/10</directory>
+                                    <verbose>false</verbose>
+                                    <preservePath>true</preservePath>
+                               <!-- <destFilePrefix>11-</destFilePrefix> -->
+                                    <process>
+                                    {{
+                                        files.each { File f ->
+                                            assert f.file
+                                            def ( body, extension ) = f.name.${splitName}
+                                            assert f.renameTo( new File( f.parentFile, "11-$f.name" ))
+                                        }
+                                    }}
+                                    </process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513-2/12</targetPath>
+                                    <directory>${outputDir}/pl-513-2/10</directory>
+                                    <verbose>false</verbose>
+                                    <preservePath>true</preservePath>
+                               <!-- <destFileSuffix>-12</destFileSuffix> -->
+                                    <process>
+                                    {{
+                                        files.each { File f ->
+                                            assert f.file
+                                            def ( body, extension ) = f.name.${splitName}
+                                            assert f.renameTo( new File( f.parentFile, "$body-12" + ( extension ? '.' + extension : '' )))
+                                        }
+                                    }}
+                                    </process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513-2/13</targetPath>
+                                    <directory>${outputDir}/pl-513-2/10</directory>
+                                    <verbose>false</verbose>
+                                    <preservePath>true</preservePath>
+                               <!-- <destFilePrefix>13-</destFilePrefix> -->
+                               <!-- <destFileSuffix>-13</destFileSuffix> -->
+                                    <process>
+                                    {{
+                                        files.each { File f ->
+                                            assert f.file
+                                            def ( body, extension ) = f.name.${splitName}
+                                            assert f.renameTo( new File( f.parentFile, "13-$body-13" + ( extension ? '.' + extension : '' )))
+                                        }
+                                    }}
+                                    </process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513-2/14</targetPath>
+                                    <directory>${outputDir}/pl-513-2/10</directory>
+                                    <verbose>false</verbose>
+                                    <preservePath>true</preservePath>
+                               <!-- <destFilePrefix>14-</destFilePrefix> -->
+                               <!-- <destFileSuffix>-14</destFileSuffix> -->
+                               <!-- <destFileExtension>14</destFileExtension> -->
+                                    <process>
+                                    {{
+                                        files.each { File f ->
+                                            assert f.file
+                                            def ( body, extension ) = f.name.${splitName}
+                                            assert f.renameTo( new File( f.parentFile, "14-$body-14.14" ))
+                                        }
+                                    }}
+                                    </process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513-2/15</targetPath>
+                                    <directory>${outputDir}/pl-513-2/10</directory>
+                                    <verbose>false</verbose>
+                               <!-- <destFilePrefix>15-</destFilePrefix> -->
+                               <!-- <destFileSuffix>-15</destFileSuffix> -->
+                               <!-- <destFileExtension>15</destFileExtension> -->
+                                    <process>
+                                    {{
+                                        files.each { File f ->
+                                            assert f.file
+                                            def ( body, extension ) = f.name.${splitName}
+                                            assert f.renameTo( new File( f.parentFile, "15-$body-15.15" ))
+                                        }
+                                    }}
+                                    </process>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-513-2/16</targetPath>
+                                    <directory>${outputDir}/pl-513-2/10</directory>
+                                    <verbose>false</verbose>
+                               <!-- <destFileName>destFileName</destFileName> -->
+                               <!-- <destFilePrefix>16-</destFilePrefix> -->
+                               <!-- <destFileSuffix>-16</destFileSuffix> -->
+                               <!-- <destFileExtension>16</destFileExtension> -->
+                                    <process>
+                                    {{
+                                        files.each { File f ->
+                                            assert f.file
+                                            assert new File( f.parentFile, 'destFileName' ).with{ (( ! file ) || delete()) &amp;&amp; f.renameTo( delegate )}
+                                        }
+                                    }}
+                                    </process>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-493                    -->
+                    <!-- "Avoid unpacking files that have been unpacked by a previous run" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-493-1</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <skipUnpacked>true</skipUnpacked>
+                            <resources>
+                                <resource>
+                                    <description>unpack-groovy-1</description>
+                                    <targetPath>${outputDir}/pl-493/unpack</targetPath>
+                                    <dependency>
+                                        <groupId>org.codehaus.groovy</groupId>
+                                        <artifactId>groovy-all</artifactId>
+                                        <version>1.9.0-beta-4</version>
+                                    </dependency>
+                                    <unpack>true</unpack>
+                                    <filter>{{  assert ( files.size() == 1    ) &amp;&amp; ( file.canonicalPath.contains( '.m2' )); files }}</filter>
+                                    <process>{{ assert ( files.size() == 3759 ) }}</process>
+                                </resource>
+                                <resource>
+                                    <description>unpack-groovy-2</description>
+                                    <targetPath>${outputDir}/pl-493/unpack</targetPath>
+                                    <dependency>
+                                        <groupId>org.codehaus.groovy</groupId>
+                                        <artifactId>groovy-all</artifactId>
+                                        <version>1.9.0-beta-4</version>
+                                    </dependency>
+                                    <unpack>true</unpack>
+                                    <filter>{{  assert ( files.size()  == 1 ) &amp;&amp; ( file.canonicalPath.contains( '.m2' )); files }}</filter>
+                                    <process>{{ assert (( files.size() == 0 ) &amp;&amp; ( file == null )) }}</process>
+                                </resource>
+                                <resource>
+                                    <description>unpack-groovy-3</description>
+                                    <targetPath>${outputDir}/pl-493/unpack</targetPath>
+                                    <dependency>
+                                        <groupId>org.codehaus.groovy</groupId>
+                                        <artifactId>groovy-all</artifactId>
+                                        <version>1.9.0-beta-4</version>
+                                    </dependency>
+                                    <unpack>true</unpack>
+                                    <filter>{{  assert ( files.size()  == 1 ) &amp;&amp; ( file.canonicalPath.contains( '.m2' )); files }}</filter>
+                                    <process>{{ assert ( files.size() > 0 ) }}</process>
+                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-493-2</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <description>unpack-groovy-4</description>
+                                    <targetPath>${outputDir}/pl-493/unpack</targetPath>
+                                    <dependency>
+                                        <groupId>org.codehaus.groovy</groupId>
+                                        <artifactId>groovy-all</artifactId>
+                                        <version>1.9.0-beta-4</version>
+                                    </dependency>
+                                    <skipUnpacked>true</skipUnpacked>
+                                    <unpack>true</unpack>
+                                    <filter>{{  assert ( files.size()  == 1 ) &amp;&amp; ( file.canonicalPath.contains( '.m2' )); files }}</filter>
+                                    <process>{{ assert (( files.size() == 0 ) &amp;&amp; ( file == null )) }}</process>
+                                </resource>
+                                <resource>
+                                    <description>unpack-groovy-5</description>
+                                    <targetPath>${outputDir}/pl-493/unpack</targetPath>
+                                    <dependency>
+                                        <groupId>org.codehaus.groovy</groupId>
+                                        <artifactId>groovy-all</artifactId>
+                                        <version>1.9.0-beta-4</version>
+                                    </dependency>
+                                    <skipUnpacked>true</skipUnpacked>
+                                    <unpack>true</unpack>
+                                    <filter>{{  assert ( files.size()  == 1 ) &amp;&amp; ( file.canonicalPath.contains( '.m2' )); files }}</filter>
+                                    <process>{{ assert ( files.size() > 0 ) }}</process>
+                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-502:                   -->
+                    <!-- "Treat <nonFilteredExtensions> for non-replaceable files as well" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-502</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-502</targetPath>
+                                    <dependency>
+                                        <groupId>org.codehaus.groovy</groupId>
+                                        <artifactId>groovy-all</artifactId>
+                                        <version>1.8.3</version>
+                                    </dependency>
+                                    <destFileName>groovy-all.jar</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-502/1</targetPath>
+                                    <file>${outputDir}/pl-502/groovy-all.jar</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Copying with and without replaces -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/pl-502/copy-1</targetPath>
+                                    <directory>${outputDir}/pl-502/1</directory>
+                                    <verbose>false</verbose>
+                                    <preservePath>true</preservePath>
+                                    <replace>
+                                        <from>.</from>
+                                        <to>!</to>
+                                    </replace>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-502/copy-2</targetPath>
+                                    <directory>${outputDir}/pl-502/1</directory>
+                                    <verbose>false</verbose>
+                                    <preservePath>true</preservePath>
+                                    <replace>
+                                        <from>.</from>
+                                        <to>!</to>
+                                    </replace>
+                                    <nonFilteredExtensions>class, xml</nonFilteredExtensions>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Unpacking with and without replaces -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/pl-502/unpack-1</targetPath>
+                                    <file>${outputDir}/pl-502/groovy-all.jar</file>
+                                    <unpack>true</unpack>
+                                    <replace>
+                                        <from>.</from>
+                                        <to>!</to>
+                                    </replace>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-502/unpack-2</targetPath>
+                                    <file>${outputDir}/pl-502/groovy-all.jar</file>
+                                    <unpack>true</unpack>
+                                    <replace>
+                                        <from>.</from>
+                                        <to>!</to>
+                                    </replace>
+                                    <nonFilteredExtensions>class, xml</nonFilteredExtensions>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Packing with and without replaces -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/pl-502/pack-1/groovy-all.jar</targetPath>
+                                    <directory>${outputDir}/pl-502/1</directory>
+                                    <pack>true</pack>
+                                    <replace>
+                                        <from>.</from>
+                                        <to>!</to>
+                                    </replace>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-502/pack-1/unpack</targetPath>
+                                    <file>${outputDir}/pl-502/pack-1/groovy-all.jar</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-502/pack-2/groovy-all.jar</targetPath>
+                                    <directory>${outputDir}/pl-502/1</directory>
+                                    <pack>true</pack>
+                                    <replace>
+                                        <from>.</from>
+                                        <to>!</to>
+                                    </replace>
+                                    <nonFilteredExtensions>class, xml</nonFilteredExtensions>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-502/pack-2/unpack</targetPath>
+                                    <file>${outputDir}/pl-502/pack-2/groovy-all.jar</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- Cleanup phase for next test to start faster -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>cleanups</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>verify</phase>
+                        <configuration>
+                            <resource>
+                                <directory>${outputDir}</directory>
+                                <include>pl-430, pl-493, pl-502, pl-509, pl-510, pl-522, pl-539</include>
+                                <verbose>false</verbose>
+                                <clean>true</clean>
+                                <cleanEmptyDirectories>true</cleanEmptyDirectories>
+                                <process>{{ assert ! files.any{ it.exists() } }}</process>
+                            </resource>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.github.goldin</groupId>
+                <artifactId>maven-assert-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-549 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-549</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-549/commons-codec-1.2.jar
+                                ${outputDir}/pl-549/commons-httpclient-3.1.jar
+                                ${outputDir}/pl-549/commons-logging-1.0.4.jar
+                                ${outputDir}/pl-549/jcl-over-slf4j-1.6.2.jar
+                                ${outputDir}/pl-549/slf4j-api-1.6.2.jar
+                            </assertFiles>
+                            <assertGroovy>
+                                new File( outputDir, 'pl-549' ).directorySize() == 416100
+                            </assertGroovy>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-548 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-548</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-548/1/2/3/4/5/6/7/8/9/META-INF
+                                ${outputDir}/pl-548/1/2/3/4/5/6/7/8/9/META-INF/jboss-service.xml
+                                ${outputDir}/pl-548/1/2/3/4/5/6/7/8/9/META-INF/jbosss-service.xml
+                                ${outputDir}/pl-548/1/2/3/4/5/6/7/8/9/META-INF/MANIFEST.MF
+                            </assertFiles>
+                            <assertGroovy>
+                              ! [ 'jboss-service.xml', 'jbosss-service.xml', 'MANIFEST.MF' ].any{ new File( outputDir, "pl-548/1/2/3/4/5/6/7/8/9/META-INF/$it"  ).text.contains( '$' ) }
+                            </assertGroovy>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-541 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-541</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertGroovy>
+                                new File( outputDir, 'pl-541/1' ).directory
+                              ! new File( outputDir, 'pl-541/2' ).directory
+                                new File( outputDir, 'pl-541/3' ).directory
+                                new File( outputDir, 'pl-541/1' ).directorySize()       == 0
+                                new File( outputDir, 'pl-541/1' ).recurse([:], {}).size == 115
+                                new File( outputDir, 'pl-541/3' ).directorySize()       == 274188
+                                new File( outputDir, 'pl-541/3' ).recurse([:], {}).size == 117
+                            </assertGroovy>
+                            <assertFiles>
+                                ${outputDir}/pl-541/1
+                                ${outputDir}/pl-541/3
+                            </assertFiles>
+                            <shouldFailAssertFiles>
+                                ${outputDir}/pl-541/2
+                            </shouldFailAssertFiles>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-539 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-539</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertGroovy>
+                                [ 6, 8, 10, 16, 21 ].every{ new File( outputDir, "pl-539/$it" ).directory }
+                                (( 1 .. 24 ) - [ 6, 8, 10, 16, 21 ]).every{ ! new File( outputDir, "pl-539/$it" ).directory }
+
+                                [ 6, 8, 16 ].every{ new File( outputDir, "pl-539/$it" ).listFiles().size() == 1 }
+                                [ 6, 8, 16 ].every{ new File( outputDir, "pl-539/$it" ).directorySize()    == 327911 }
+                                [ 10, 21   ].every{ new File( outputDir, "pl-539/$it" ).listFiles().size() == 6 }
+                                [ 10, 21   ].every{ new File( outputDir, "pl-539/$it" ).directorySize()    == 9595383 }
+                            </assertGroovy>
+                            <assertFiles>
+                                ${outputDir}/pl-539/6
+                                ${outputDir}/pl-539/6/*.jar
+                                ${outputDir}/pl-539/6/logback-core-1.0.0.jar
+                                ${outputDir}/pl-539/8
+                                ${outputDir}/pl-539/8/*.jar
+                                ${outputDir}/pl-539/8/logback-core-1.0.0.jar
+                                ${outputDir}/pl-539/10
+                                ${outputDir}/pl-539/10/*.jar
+                                ${outputDir}/pl-539/16
+                                ${outputDir}/pl-539/16/*.jar
+                                ${outputDir}/pl-539/16/logback-core-1.0.0.jar
+                                ${outputDir}/pl-539/21
+                                ${outputDir}/pl-539/21/*.jar
+                            </assertFiles>
+                            <shouldFailAssertFiles>
+                                ${outputDir}/pl-539/1
+                                ${outputDir}/pl-539/2
+                                ${outputDir}/pl-539/3
+                                ${outputDir}/pl-539/4
+                                ${outputDir}/pl-539/5
+                                ${outputDir}/pl-539/7
+                                ${outputDir}/pl-539/9
+                                ${outputDir}/pl-539/11
+                                ${outputDir}/pl-539/12
+                                ${outputDir}/pl-539/13
+                                ${outputDir}/pl-539/14
+                                ${outputDir}/pl-539/15
+                                ${outputDir}/pl-539/17
+                                ${outputDir}/pl-539/18
+                                ${outputDir}/pl-539/19
+                                ${outputDir}/pl-539/20
+                                ${outputDir}/pl-539/22
+                                ${outputDir}/pl-539/23
+                                ${outputDir}/pl-539/24
+                            </shouldFailAssertFiles>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-509 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-509</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-509/1/*.jar
+                                ${outputDir}/pl-509/2/*.jar
+                                ${outputDir}/pl-509/3/*.jar
+                                ${outputDir}/pl-509/4/*.jar
+                                ${outputDir}/pl-509/5/*.jar
+                                ${outputDir}/pl-509/6/*.jar
+                            </assertFiles>
+                            <assertGroovy>
+                                new File( outputDir, 'pl-509/1' ).listFiles().size() == 21
+                                <!--new File( outputDir, 'pl-509/1' ).directorySize()    == 4499219-->
+                                new File( outputDir, 'pl-509/2' ).listFiles().size() == 6
+                                new File( outputDir, 'pl-509/2' ).directorySize()    == 2431079
+                                new File( outputDir, 'pl-509/3' ).listFiles().size() == 3
+                                new File( outputDir, 'pl-509/3' ).directorySize()    == 250164
+                                new File( outputDir, 'pl-509/4' ).listFiles().size() == 18
+                                new File( outputDir, 'pl-509/4' ).directorySize()    == 4278733
+                                new File( outputDir, 'pl-509/5' ).listFiles().size() == 6
+                                new File( outputDir, 'pl-509/5' ).directorySize()    == 9595383
+                                new File( outputDir, 'pl-509/6' ).listFiles().size() == 3
+                                new File( outputDir, 'pl-509/6' ).directorySize()    == 9408245
+                              ! new File( outputDir, 'pl-509/7' ).directory
+                            </assertGroovy>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-430 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-430</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-430/222.xml
+                            </assertFiles>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-506 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-506</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-506/1/jsch-0.1.38.jar
+                                ${outputDir}/pl-506/2/jsch-0.1.38.jar
+                                ${outputDir}/pl-506/3/jsch-0.1.38.jar
+                                ${outputDir}/pl-506/4/jsch.jar
+                                ${outputDir}/pl-506/5/jsch-0.1.38.jar
+                                ${outputDir}/pl-506/5/jsch-0.1.45.jar
+                                ${outputDir}/pl-506/6/jsch-0.1.38.jar
+                                ${outputDir}/pl-506/6/jsch-0.1.45.jar
+                                ${outputDir}/pl-506/7/jsch.jar
+                            </assertFiles>
+                            <assertEqual>
+                                ${outputDir}/pl-506/1|${outputDir}/pl-506/2
+                                ${outputDir}/pl-506/2|${outputDir}/pl-506/3
+                                ${outputDir}/pl-506/5|${outputDir}/pl-506/6
+                            </assertEqual>
+                            <assertGroovy>
+                                new File( outputDir, 'pl-506/1' ).directorySize() == 177748
+                                new File( outputDir, 'pl-506/2' ).directorySize() == 177748
+                                new File( outputDir, 'pl-506/3' ).directorySize() == 177748
+                                new File( outputDir, 'pl-506/4' ).directorySize() == 177748
+                                new File( outputDir, 'pl-506/5' ).directorySize() == 400951
+                                new File( outputDir, 'pl-506/6' ).directorySize() == 400951
+                                new File( outputDir, 'pl-506/7' ).directorySize() == 223203
+                            </assertGroovy>
+                            <shouldFailAssertEqual>
+                                ${outputDir}/pl-506/1|${outputDir}/pl-506/4
+                                ${outputDir}/pl-506/2|${outputDir}/pl-506/4
+                                ${outputDir}/pl-506/3|${outputDir}/pl-506/4
+                                ${outputDir}/pl-506/4|${outputDir}/pl-506/7
+                            </shouldFailAssertEqual>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-523 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-523</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertEqual>
+                                ${outputDir}/pl-523/1|${outputDir}/pl-523/11
+                                ${outputDir}/pl-523/2|${outputDir}/pl-523/22
+                                ${outputDir}/pl-523/3|${outputDir}/pl-523/33
+
+                                ${outputDir}/pl-523/1|${outputDir}/pl-523/111
+                                ${outputDir}/pl-523/2|${outputDir}/pl-523/222
+                                ${outputDir}/pl-523/3|${outputDir}/pl-523/333
+
+                                ${outputDir}/pl-523/a|${outputDir}/pl-523/aa
+                                ${outputDir}/pl-523/b|${outputDir}/pl-523/bb
+                                ${outputDir}/pl-523/c|${outputDir}/pl-523/cc
+
+                                ${outputDir}/pl-523/a|${outputDir}/pl-523/aaa
+                                ${outputDir}/pl-523/b|${outputDir}/pl-523/bbb
+                                ${outputDir}/pl-523/c|${outputDir}/pl-523/ccc
+
+                                ${outputDir}/pl-523/a|${outputDir}/pl-523/aaaa
+                                ${outputDir}/pl-523/b|${outputDir}/pl-523/bbbb
+                                ${outputDir}/pl-523/c|${outputDir}/pl-523/cccc
+                            </assertEqual>
+                            <shouldFailAssertEqual>
+                                ${outputDir}/pl-523/1|${outputDir}/pl-523/1111
+                                ${outputDir}/pl-523/2|${outputDir}/pl-523/2222
+                                ${outputDir}/pl-523/3|${outputDir}/pl-523/3333
+                            </shouldFailAssertEqual>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-515 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-515</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-515/4/1.BaT
+                                ${outputDir}/pl-515/5/opa-1-apo.bAt
+                            </assertFiles>
+                            <assertGroovy>
+                                new File( outputDir, 'pl-515/1/1.bat' ).text.contains( '@echo off' )
+                              ! new File( outputDir, 'pl-515/1/1.bat' ).text.contains( '$' + '{' )
+
+                              ! new File( outputDir, 'pl-515/2/1.bat' ).text.contains( '$' + '{' )
+                                new File( outputDir, 'pl-515/2/1.bat' ).text.contains( '[${project.groupId}:${project.artifactId}:${project.version}]' )
+                                new File( outputDir, 'pl-515/2/1.bat' ).text.contains( '[' + project.groupId + ':' + project.artifactId + ':' + project.version + ']' )
+
+                                new File( outputDir, 'pl-515/3/1.bat' ).text.contains( '$' + '{' )
+                                new File( outputDir, 'pl-515/4/1.BaT' ).text.contains( '$' + '{' )
+
+                              ! new File( outputDir, 'pl-515/5/opa-1-apo.bAt' ).text.contains( '$' + '{' )
+                                new File( outputDir, 'pl-515/5/opa-1-apo.bAt' ).text.contains( '[${project.groupId}:${project.artifactId}:${project.version}]' )
+                                new File( outputDir, 'pl-515/5/opa-1-apo.bAt' ).text.contains( '[' + project.groupId + ':' + project.artifactId + ':' + project.version + ']' )
+                            </assertGroovy>
+                            <shouldFailAssertEqual>
+                                ${outputDir}/pl-515/1|${outputDir}/pl-515/3
+                                ${outputDir}/pl-515/2|${outputDir}/pl-515/5
+                                <!-- http://evgeny-goldin.org/youtrack/issue/pl-525 -->
+                                <!-- ${outputDir}/pl-515/3|${outputDir}/pl-515/4    -->
+                            </shouldFailAssertEqual>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-514 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-514</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertGroovy>
+                              ! new File( outputDir, 'pl-514/1/pom.xml' ).text.contains( '$' + '{' )
+                                new File( outputDir, 'pl-514/1/pom.xml' ).text.find( /\d|\w/ )
+                                new File( outputDir, 'pl-514/2/pom.xml' ).text ==~ /^a+$/
+                                new File( outputDir, 'pl-514/3/pom.xml' ).text.with{ ! ( contains( '$' + '{' ) || find( /\d|\w/ )) }
+
+                              ! new File( outputDir, 'pl-514/4/pom.xml' ).text.contains( '$' + '{' )
+                                new File( outputDir, 'pl-514/4/pom.xml' ).text.find( /\d|\w/ )
+                                new File( outputDir, 'pl-514/5/pom.xml' ).text ==~ /^a+$/
+                                new File( outputDir, 'pl-514/6/pom.xml' ).text.with{ ! ( contains( '$' + '{' ) || find( /\d|\w/ )) }
+
+                              ! new File( outputDir, 'pl-514/10/pom.xml' ).text.contains( '$' + '{' )
+                                new File( outputDir, 'pl-514/10/pom.xml' ).text.find( /\d|\w/ )
+                                new File( outputDir, 'pl-514/11/pom.xml' ).text ==~ /^a+$/
+                                new File( outputDir, 'pl-514/12/pom.xml' ).text.with{ ! ( contains( '$' + '{' ) || find( /\d|\w/ )) }
+                            </assertGroovy>
+                            <assertEqual>
+                                ${outputDir}/pl-514/1|${outputDir}/pl-514/4
+                                ${outputDir}/pl-514/2|${outputDir}/pl-514/5
+                                ${outputDir}/pl-514/3|${outputDir}/pl-514/6
+                                ${outputDir}/pl-514/4|${outputDir}/pl-514/10
+                                ${outputDir}/pl-514/5|${outputDir}/pl-514/11
+                                ${outputDir}/pl-514/6|${outputDir}/pl-514/12
+                            </assertEqual>
+                            <shouldFailAssertFiles>
+                                ${outputDir}/pl-514/7/pom.xml
+                                ${outputDir}/pl-514/8/pom.xml
+                                ${outputDir}/pl-514/9/pom.xml
+                            </shouldFailAssertFiles>
+                            <shouldFailAssertEqual>
+                                ${outputDir}/pl-514/7|${outputDir}/pl-514/10
+                                ${outputDir}/pl-514/8|${outputDir}/pl-514/11
+                                ${outputDir}/pl-514/9|${outputDir}/pl-514/12
+                            </shouldFailAssertEqual>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-511 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-511</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertEqual>
+                                ${outputDir}/pl-511/1|${outputDir}/pl-511/2
+                                ${outputDir}/pl-511/2|${outputDir}/pl-511/3
+                                ${outputDir}/pl-511/3|${outputDir}/pl-511/1
+
+                                ${outputDir}/pl-511/1|${outputDir}/pl-511/2|1.xml
+                                ${outputDir}/pl-511/2|${outputDir}/pl-511/3|1.xml
+                                ${outputDir}/pl-511/3|${outputDir}/pl-511/1|1.xml
+
+                                ${outputDir}/pl-511/1|${outputDir}/pl-511/2|*.xml
+                                ${outputDir}/pl-511/2|${outputDir}/pl-511/3|*.xml
+                                ${outputDir}/pl-511/3|${outputDir}/pl-511/1|*.xml
+
+                                ${outputDir}/pl-511/1|${outputDir}/pl-511/2|**/*.xml
+                                ${outputDir}/pl-511/2|${outputDir}/pl-511/3|**/*.xml
+                                ${outputDir}/pl-511/3|${outputDir}/pl-511/1|**/*.xml
+                            </assertEqual>
+                            <shouldFailAssertEqual>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Non-matching patterns should fail -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                ${outputDir}/pl-511/1|${outputDir}/pl-511/2|2.xml
+                                ${outputDir}/pl-511/2|${outputDir}/pl-511/3|2.xml
+                                ${outputDir}/pl-511/3|${outputDir}/pl-511/1|2.xml
+
+                                ${outputDir}/pl-511/1|${outputDir}/pl-511/2|*.ppt
+                                ${outputDir}/pl-511/2|${outputDir}/pl-511/3|*.ppt
+                                ${outputDir}/pl-511/3|${outputDir}/pl-511/1|*.ppt
+
+                                ${outputDir}/pl-511/1|${outputDir}/pl-511/2|**/*.exe
+                                ${outputDir}/pl-511/2|${outputDir}/pl-511/3|**/*.exe
+                                ${outputDir}/pl-511/3|${outputDir}/pl-511/1|**/*.exe
+                            </shouldFailAssertEqual>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-522 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-522</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <shouldFailAssertEqual>
+                                ${outputDir}/pl-522/2|${outputDir}/pl-522/3
+                            </shouldFailAssertEqual>
+                            <assertGroovy>
+                                new File( outputDir, 'pl-522/2' ).listFiles().size() == 2
+                                new File( outputDir, 'pl-522/2' ).recurse([ type: groovy.io.FileType.FILES ], { assert it.file }).size() == 2
+                                new File( outputDir, 'pl-522/3' ).recurse([ type: groovy.io.FileType.FILES ], { assert it.file }).size() == 16
+                                new File( outputDir, 'pl-522/3' ).recurse([ type: groovy.io.FileType.FILES, returnList: false ], { assert it.file }).size() == 0
+                            </assertGroovy>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-510 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-510</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertEqual>
+                                ${outputDir}/pl-510/1|${outputDir}/pl-510/2
+                                ${outputDir}/pl-510/1|${outputDir}/pl-510/2|**/*.class
+                                ${outputDir}/pl-510/1|${outputDir}/pl-510/2|**/*.xml
+                            </assertEqual>
+                            <assertGroovy>
+                                new File( outputDir, 'pl-510/1' ).directorySize() == 13550506
+                                new File( outputDir, 'pl-510/2' ).directorySize() == 13550506
+                                new File( outputDir, 'pl-510/3' ).directorySize() == 13324310
+                                new File( outputDir, 'pl-510/4' ).directorySize() == 44272143
+                                new File( outputDir, 'pl-510/5' ).directorySize() == 28547406
+                            </assertGroovy>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-516 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-516</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-516/1/*.txt
+                                ${outputDir}/pl-516/1/0.txt
+                                ${outputDir}/pl-516/1/1.txt
+                                ${outputDir}/pl-516/1/2.txt
+                                ${outputDir}/pl-516/1/3.txt
+
+                                ${outputDir}/pl-516/2/*.txt
+                                ${outputDir}/pl-516/2/0.txt
+                                ${outputDir}/pl-516/2/1.txt
+                                ${outputDir}/pl-516/2/2.txt
+                                ${outputDir}/pl-516/2/3.txt
+
+                                ${outputDir}/pl-516/3/*.txt
+                                ${outputDir}/pl-516/3/0.txt
+                                ${outputDir}/pl-516/3/1.txt
+                                ${outputDir}/pl-516/3/2.txt
+                                ${outputDir}/pl-516/3/3.txt
+                            </assertFiles>
+                            <assertEqual>
+                                ${outputDir}/pl-516/1|${outputDir}/pl-516/2
+                                ${outputDir}/pl-516/2|${outputDir}/pl-516/3
+                                ${outputDir}/pl-516/3|${outputDir}/pl-516/1
+                            </assertEqual>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-513 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-513</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-513-1/1/1-pom-1.xml
+                                ${outputDir}/pl-513-1/2/2-pom.xml
+                                ${outputDir}/pl-513-1/3/pom-3.xml
+                                ${outputDir}/pl-513-1/4/pom.4
+                                ${outputDir}/pl-513-1/5/5-pom-5.xml
+                                ${outputDir}/pl-513-1/6/pom-6.6
+                                ${outputDir}/pl-513-1/7/7-pom-7.7
+                                ${outputDir}/pl-513-1/8/8-1-8.8
+                                ${outputDir}/pl-513-1/8/8-2-8.8
+                                ${outputDir}/pl-513-1/8/8-3-8.8
+                                ${outputDir}/pl-513-1/8/8-4-8.8
+                                ${outputDir}/pl-513-1/8/8-ftp-exclude-8.8
+                                ${outputDir}/pl-513-1/8/8-ftp-include-8.8
+                                ${outputDir}/pl-513-1/9/9-1-9
+                                ${outputDir}/pl-513-1/9/9-2-9
+                                ${outputDir}/pl-513-1/9/9-3-9
+                                ${outputDir}/pl-513-1/9/9-4-9
+                                ${outputDir}/pl-513-1/9/9-ftp-exclude-9
+                                ${outputDir}/pl-513-1/9/9-ftp-include-9
+                                ${outputDir}/pl-513-1/16/destFileName
+                            </assertFiles>
+                            <assertGroovy>
+                                new File( outputDir, 'pl-513-1/8' ).directorySize() == 69
+                                new File( outputDir, 'pl-513-1/9' ).directorySize() == 69
+                                new File( outputDir, 'pl-513-1/8' ).directorySize() == new File( outputDir, 'pl-513-1/9'  ).directorySize()
+
+                                [ 10, 11, 12, 13, 14 ].every{ new File( outputDir, "pl-513-1/$it" ).directorySize() == 302093 }
+                                new File( outputDir, 'pl-513-1/15' ).directorySize() == 294372
+
+                                null == new File( outputDir, 'pl-513-1/10' ).eachFileRecurse{ assert it.with{ directory || ( file &amp;&amp; name.endsWith( '.class'    )) }}
+                                null == new File( outputDir, 'pl-513-1/11' ).eachFileRecurse{ assert it.with{ directory || ( file &amp;&amp; name.startsWith( '11-'     )) }}
+                                null == new File( outputDir, 'pl-513-1/12' ).eachFileRecurse{ assert it.with{ directory || ( file &amp;&amp; name.endsWith( '-12.class' )) }}
+                                null == new File( outputDir, 'pl-513-1/13' ).eachFileRecurse{ assert it.with{ directory || ( file &amp;&amp; name.with{ startsWith( '13-' ) &amp;&amp; endsWith( '-13.class' ) } ) }}
+                                null == new File( outputDir, 'pl-513-1/14' ).eachFileRecurse{ assert it.with{ directory || ( file &amp;&amp; name.with{ startsWith( '14-' ) &amp;&amp; endsWith( '-14.14'    ) } ) }}
+
+                                new File( outputDir, 'pl-513-1/15' ).listFiles().size() == 99
+                                new File( outputDir, 'pl-513-1/15' ).listFiles().every{ it.with{ file &amp;&amp; name.with{ startsWith( '15-' ) &amp;&amp; endsWith( '-15.15' ) }}}
+
+                                new File( outputDir, 'pl-513-1/16' ).listFiles().size() == 1
+                            </assertGroovy>
+                            <shouldFailAssertEqual>
+                                ${outputDir}/pl-513-1/8 |${outputDir}/pl-513-1/9
+                                ${outputDir}/pl-513-1/10|${outputDir}/pl-513-1/11
+                                ${outputDir}/pl-513-1/11|${outputDir}/pl-513-1/12
+                                ${outputDir}/pl-513-1/10|${outputDir}/pl-513-1/12
+                            </shouldFailAssertEqual>
+                            <assertEqual>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Folders "15" and "16" are different due to <process> files re-ordering: -->
+                                <!-- we have files of different sizes copied to the same destination         -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                ${outputDir}/pl-513-1/1 |${outputDir}/pl-513-2/1
+                                ${outputDir}/pl-513-1/2 |${outputDir}/pl-513-2/2
+                                ${outputDir}/pl-513-1/3 |${outputDir}/pl-513-2/3
+                                ${outputDir}/pl-513-1/4 |${outputDir}/pl-513-2/4
+                                ${outputDir}/pl-513-1/5 |${outputDir}/pl-513-2/5
+                                ${outputDir}/pl-513-1/6 |${outputDir}/pl-513-2/6
+                                ${outputDir}/pl-513-1/7 |${outputDir}/pl-513-2/7
+                                ${outputDir}/pl-513-1/8 |${outputDir}/pl-513-2/8
+                                ${outputDir}/pl-513-1/9 |${outputDir}/pl-513-2/9
+                                ${outputDir}/pl-513-1/10|${outputDir}/pl-513-2/10
+                                ${outputDir}/pl-513-1/11|${outputDir}/pl-513-2/11
+                                ${outputDir}/pl-513-1/12|${outputDir}/pl-513-2/12
+                                ${outputDir}/pl-513-1/13|${outputDir}/pl-513-2/13
+                                ${outputDir}/pl-513-1/14|${outputDir}/pl-513-2/14
+                            </assertEqual>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-502 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-502</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertEqual>
+                                <!-- No replaces -->
+                                ${outputDir}/pl-502/1|${outputDir}/pl-502/copy-2|**/*.class
+                                ${outputDir}/pl-502/1|${outputDir}/pl-502/copy-2|**/*.xml
+                                ${outputDir}/pl-502/copy-2|${outputDir}/pl-502/unpack-2|**/*.class
+                                ${outputDir}/pl-502/copy-2|${outputDir}/pl-502/unpack-2|**/*.xml
+                                ${outputDir}/pl-502/unpack-2|${outputDir}/pl-502/pack-2/unpack|**/*.class
+                                ${outputDir}/pl-502/unpack-2|${outputDir}/pl-502/pack-2/unpack|**/*.xml
+                                ${outputDir}/pl-502/pack-2/unpack|${outputDir}/pl-502/1|**/*.class
+                                ${outputDir}/pl-502/pack-2/unpack|${outputDir}/pl-502/1|**/*.xml
+                                <!-- Replaces -->
+                                ${outputDir}/pl-502/copy-1|${outputDir}/pl-502/unpack-1
+                                ${outputDir}/pl-502/unpack-1|${outputDir}/pl-502/pack-1/unpack
+                                ${outputDir}/pl-502/pack-1/unpack|${outputDir}/pl-502/copy-1
+                            </assertEqual>
+                            <shouldFailAssertEqual>
+                                <!-- Non-matching patterns -->
+                                ${outputDir}/pl-502/1|${outputDir}/pl-502/copy-2|*.class
+                                ${outputDir}/pl-502/1|${outputDir}/pl-502/copy-2|**/*.ppt
+                                <!-- Replaced vs. non-replaced files -->
+                                ${outputDir}/pl-502/copy-1|${outputDir}/pl-502/copy-2
+                                ${outputDir}/pl-502/copy-1|${outputDir}/pl-502/copy-2|**/*.class
+                                ${outputDir}/pl-502/unpack-1|${outputDir}/pl-502/unpack-2
+                                ${outputDir}/pl-502/unpack-1|${outputDir}/pl-502/unpack-2|**/*.class
+                                ${outputDir}/pl-502/pack-1/unpack|${outputDir}/pl-502/pack-2/unpack
+                                ${outputDir}/pl-502/pack-1/unpack|${outputDir}/pl-502/pack-2/unpack|**/*.class
+                            </shouldFailAssertEqual>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>cleanups</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>verify</phase>
+                        <configuration>
+                            <shouldFailAssertFiles>
+                                <!-- pl-430, pl-493, pl-502, pl-509, pl-510, pl-522, pl-539 -->
+                                ${outputDir}/pl-430
+                                ${outputDir}/pl-493
+                                ${outputDir}/pl-502
+                                ${outputDir}/pl-509
+                                ${outputDir}/pl-510
+                                ${outputDir}/pl-522
+                                ${outputDir}/pl-539
+                            </shouldFailAssertFiles>
+                            <assertGroovy>
+                              ! new File( outputDir, 'pl-430' ).directory
+                              ! new File( outputDir, 'pl-493' ).directory
+                              ! new File( outputDir, 'pl-502' ).directory
+                              ! new File( outputDir, 'pl-509' ).directory
+                              ! new File( outputDir, 'pl-510' ).directory
+                              ! new File( outputDir, 'pl-522' ).directory
+                              ! new File( outputDir, 'pl-539' ).directory
+                            </assertGroovy>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+
+    <dependencies>
+        <!-- http://evgeny-goldin.org/youtrack/issue/pl-549 -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.3</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+</project>

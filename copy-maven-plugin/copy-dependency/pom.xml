@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns              = "http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi          = "http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0
+                               http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.github.goldin.maven-plugins-test</groupId>
+    <artifactId>copy-maven-plugin.copy-dependency</artifactId>
+    <packaging>jar</packaging>
+    <version>0.1-SNAPSHOT</version>
+    <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
+
+
+    <parent>
+        <groupId>com.github.goldin.maven-plugins-test</groupId>
+        <artifactId>copy-maven-plugin</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>com.github.goldin</groupId>
+                <artifactId>copy-maven-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <execution>
+                        <id>test-dependency-copy</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>validate</phase>
+                        <configuration>
+                            <resources>
+
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- "compile" dependencies: <includeScope>, <excludeTransitive> -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+                                <resource>
+                                    <targetPath>${project.build.directory}/compile-deps-transitive-1</targetPath>
+                                    <dependency>
+                                        <includeScope>compile</includeScope>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${project.build.directory}/compile-deps-transitive-2</targetPath>
+                                    <dependency>
+                                        <includeScope>compile</includeScope>
+                                        <excludeTransitive>false</excludeTransitive>
+                                    </dependency>
+                                </resource>
+
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- "compile" dependencies: <includeGroupIds>, <includeGroupIds> -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+                                <resource>
+                                    <targetPath>${project.build.directory}/compile-deps-transitive-GroupId-include-1</targetPath>
+                                    <dependency>
+                                        <includeScope>compile</includeScope>
+                                        <includeGroupIds>org.springframework</includeGroupIds>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${project.build.directory}/compile-deps-transitive-GroupId-include-2</targetPath>
+                                    <dependency>
+                                        <includeScope>compile</includeScope>
+                                        <includeGroupIds>org.springframework</includeGroupIds>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${project.build.directory}/compile-deps-transitive-GroupId-include-3</targetPath>
+                                    <dependency>
+                                        <includeScope>compile</includeScope>
+                                        <includeGroupIds>org.springframework,jaxen</includeGroupIds>
+                                    </dependency>
+                                </resource>
+
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- "compile" dependencies: <excludeGroupIds>, <excludeTransitive> -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+                                <resource>
+                                    <targetPath>${project.build.directory}/compile-deps-transitive-GroupId-exclude</targetPath>
+                                    <dependency>
+                                        <includeScope>compile</includeScope>
+                                        <excludeGroupIds>org.springframework</excludeGroupIds>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${project.build.directory}/compile-deps-no-transitive</targetPath>
+                                    <dependency>
+                                        <includeScope>compile</includeScope>
+                                        <excludeTransitive>true</excludeTransitive>
+                                    </dependency>
+                                </resource>
+
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- "compile" dependencies: <includeClassifiers>, <includeTypes> -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+                                <resource>
+                                    <targetPath>${project.build.directory}/compile-deps-classifiers-1</targetPath>
+                                    <dependency>
+                                        <includeScope>compile</includeScope>
+                                        <includeClassifiers>javadoc</includeClassifiers>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${project.build.directory}/compile-deps-classifiers-2</targetPath>
+                                    <dependency>
+                                        <includeScope>compile</includeScope>
+                                        <includeClassifiers>javadoc,sources</includeClassifiers>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${project.build.directory}/compile-deps-classifiers-3</targetPath>
+                                    <dependency>
+                                        <includeScope>compile</includeScope>
+                                        <includeClassifiers>javadoc,sources</includeClassifiers>
+                                        <includeTypes>jar</includeTypes>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${project.build.directory}/images-1</targetPath>
+                                    <dependency>
+                                        <includeClassifiers>abc,def</includeClassifiers>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${project.build.directory}/images-2</targetPath>
+                                    <dependency>
+                                        <excludeTransitive>true</excludeTransitive>
+                                        <includeScope>runtime</includeScope>
+                                        <includeGroupIds>com.goldin.test</includeGroupIds>
+                                        <includeArtifactIds>image</includeArtifactIds>
+                                        <includeClassifiers>abc,def</includeClassifiers>
+                                        <includeTypes>zip,tar.gz</includeTypes>
+                                    </dependency>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${project.build.directory}/images-3</targetPath>
+                                    <dependency>
+                                        <includeTypes>zip,tar.gz</includeTypes>
+                                    </dependency>
+                                    <unpack>true</unpack>
+                                </resource>
+
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- "test" dependencies: <includeScope>, <excludeTransitive> -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+                                <resource>
+                                    <targetPath>${project.build.directory}/test-deps-transitive-1</targetPath>
+                                    <dependency>
+                                        <includeScope>test</includeScope>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${project.build.directory}/test-deps-transitive-2</targetPath>
+                                    <dependency>
+                                        <includeScope>test</includeScope>
+                                        <excludeTransitive>false</excludeTransitive>
+                                    </dependency>
+                                </resource>
+
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- "test" dependencies: <includeGroupIds>, <includeGroupIds> -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+                                <resource>
+                                    <targetPath>${project.build.directory}/test-deps-transitive-GroupId-include-1</targetPath>
+                                    <dependency>
+                                        <includeScope>test</includeScope>
+                                        <includeGroupIds>org.springframework</includeGroupIds>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${project.build.directory}/test-deps-transitive-GroupId-include-2</targetPath>
+                                    <dependency>
+                                        <includeScope>test</includeScope>
+                                        <includeGroupIds>org.springframework</includeGroupIds>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${project.build.directory}/test-deps-transitive-GroupId-include-3</targetPath>
+                                    <dependency>
+                                        <includeScope>test</includeScope>
+                                        <includeGroupIds>org.springframework,junit</includeGroupIds>
+                                    </dependency>
+                                </resource>
+
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- "test" dependencies: <excludeGroupIds>, <excludeScope>, <excludeTransitive> -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+                                <resource>
+                                    <targetPath>${project.build.directory}/test-deps-transitive-GroupId-exclude</targetPath>
+                                    <dependency>
+                                        <includeScope>test</includeScope>
+                                        <excludeGroupIds>org.springframework</excludeGroupIds>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${project.build.directory}/test-deps-no-transitive</targetPath>
+                                    <dependency>
+                                        <includeScope>test</includeScope>
+                                        <excludeTransitive>true</excludeTransitive>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${project.build.directory}/test-deps-no-transitive-no-compile</targetPath>
+                                    <dependency>
+                                        <excludeScope>compile</excludeScope>
+                                        <excludeTransitive>true</excludeTransitive>
+                                    </dependency>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.github.goldin</groupId>
+                <artifactId>maven-assert-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <execution>
+                        <id>assert-dependency-copy</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${project.build.directory}/compile-deps-transitive-1/commons-logging-1.1.1.jar
+                                ${project.build.directory}/compile-deps-transitive-1/spring-asm-${spring-version}.jar
+                                ${project.build.directory}/compile-deps-transitive-1/spring-core-${spring-version}.jar
+                                ${project.build.directory}/compile-deps-transitive-1/dom4j-1.6.1.jar
+                                ${project.build.directory}/compile-deps-transitive-1/icu4j-2.6.1.jar
+                                ${project.build.directory}/compile-deps-transitive-1/jaxen-${jaxen-version}.jar
+                                ${project.build.directory}/compile-deps-transitive-1/jdom-1.0.jar
+                                ${project.build.directory}/compile-deps-transitive-1/log4j-${log4j-version}.jar
+                                ${project.build.directory}/compile-deps-transitive-1/xalan-2.6.0.jar
+                                ${project.build.directory}/compile-deps-transitive-1/xercesImpl-2.6.2.jar
+                                ${project.build.directory}/compile-deps-transitive-1/xml-apis-1.3.02.jar
+                                ${project.build.directory}/compile-deps-transitive-1/xmlParserAPIs-2.6.2.jar
+                                ${project.build.directory}/compile-deps-transitive-1/xom-1.0.jar
+                                ${project.build.directory}/compile-deps-transitive-1/commons-lang-2.3.jar
+                                ${project.build.directory}/compile-deps-transitive-1/fixedformat4j-1.2.2-javadoc.jar
+                                ${project.build.directory}/compile-deps-transitive-1/fixedformat4j-1.2.2-sources.jar
+
+                                ${project.build.directory}/compile-deps-transitive-GroupId-include-1/spring-asm-${spring-version}.jar
+                                ${project.build.directory}/compile-deps-transitive-GroupId-include-1/spring-core-${spring-version}.jar
+
+                                ${project.build.directory}/compile-deps-transitive-GroupId-include-3/spring-asm-${spring-version}.jar
+                                ${project.build.directory}/compile-deps-transitive-GroupId-include-3/spring-core-${spring-version}.jar
+                                ${project.build.directory}/compile-deps-transitive-GroupId-include-3/jaxen-${jaxen-version}.jar
+
+                                ${project.build.directory}/compile-deps-no-transitive/spring-core-${spring-version}.jar
+                                ${project.build.directory}/compile-deps-no-transitive/jaxen-${jaxen-version}.jar
+                                ${project.build.directory}/compile-deps-no-transitive/log4j-${log4j-version}.jar
+
+                                ${project.build.directory}/compile-deps-classifiers-1/fixedformat4j-1.2.2-javadoc.jar
+                                ${project.build.directory}/compile-deps-classifiers-2/fixedformat4j-1.2.2-javadoc.jar
+                                ${project.build.directory}/compile-deps-classifiers-2/fixedformat4j-1.2.2-sources.jar
+
+                                ${project.build.directory}/images-1/image-1-abc.png
+                                ${project.build.directory}/images-1/image-2-def.png
+                                ${project.build.directory}/images-1/image-3-abc.zip
+                                ${project.build.directory}/images-1/image-4-def.tar.gz
+                                ${project.build.directory}/images-2/1.png
+                                ${project.build.directory}/images-3/1.png
+
+                                ${project.build.directory}/test-deps-transitive-1/commons-logging-1.1.1.jar
+                                ${project.build.directory}/test-deps-transitive-1/commons-lang-2.3.jar
+                                ${project.build.directory}/test-deps-transitive-1/spring-asm-${spring-version}.jar
+                                ${project.build.directory}/test-deps-transitive-1/spring-core-${spring-version}.jar
+                                ${project.build.directory}/test-deps-transitive-1/dom4j-1.6.1.jar
+                                ${project.build.directory}/test-deps-transitive-1/icu4j-2.6.1.jar
+                                ${project.build.directory}/test-deps-transitive-1/jaxen-${jaxen-version}.jar
+                                ${project.build.directory}/test-deps-transitive-1/jdom-1.0.jar
+                                ${project.build.directory}/test-deps-transitive-1/log4j-${log4j-version}.jar
+                                ${project.build.directory}/test-deps-transitive-1/xalan-2.6.0.jar
+                                ${project.build.directory}/test-deps-transitive-1/xercesImpl-2.6.2.jar
+                                ${project.build.directory}/test-deps-transitive-1/xml-apis-1.3.02.jar
+                                ${project.build.directory}/test-deps-transitive-1/xmlParserAPIs-2.6.2.jar
+                                ${project.build.directory}/test-deps-transitive-1/xom-1.0.jar
+                                ${project.build.directory}/test-deps-transitive-1/junit-${junit-version}.jar
+                                ${project.build.directory}/test-deps-transitive-1/spring-test-${spring-version}.jar
+                                ${project.build.directory}/test-deps-transitive-1/image-1-abc.png
+                                ${project.build.directory}/test-deps-transitive-1/image-2-def.png
+                                ${project.build.directory}/test-deps-transitive-1/image-3-abc.zip
+                                ${project.build.directory}/test-deps-transitive-1/image-4-def.tar.gz
+                                ${project.build.directory}/test-deps-transitive-1/fixedformat4j-1.2.2-javadoc.jar
+                                ${project.build.directory}/test-deps-transitive-1/fixedformat4j-1.2.2-sources.jar
+
+                                ${project.build.directory}/test-deps-transitive-GroupId-include-1/spring-asm-${spring-version}.jar
+                                ${project.build.directory}/test-deps-transitive-GroupId-include-1/spring-core-${spring-version}.jar
+                                ${project.build.directory}/test-deps-transitive-GroupId-include-1/spring-test-${spring-version}.jar
+
+                                ${project.build.directory}/test-deps-transitive-GroupId-include-3/spring-asm-${spring-version}.jar
+                                ${project.build.directory}/test-deps-transitive-GroupId-include-3/spring-core-${spring-version}.jar
+                                ${project.build.directory}/test-deps-transitive-GroupId-include-3/spring-test-${spring-version}.jar
+                                ${project.build.directory}/test-deps-transitive-GroupId-include-3/junit-${junit-version}.jar
+
+                                ${project.build.directory}/test-deps-no-transitive/spring-core-${spring-version}.jar
+                                ${project.build.directory}/test-deps-no-transitive/log4j-${log4j-version}.jar
+                                ${project.build.directory}/test-deps-no-transitive/jaxen-${jaxen-version}.jar
+                                ${project.build.directory}/test-deps-no-transitive/junit-${junit-version}.jar
+                                ${project.build.directory}/test-deps-no-transitive/spring-test-${spring-version}.jar
+                                ${project.build.directory}/test-deps-no-transitive/fixedformat4j-1.2.2-javadoc.jar
+                                ${project.build.directory}/test-deps-no-transitive/fixedformat4j-1.2.2-sources.jar
+                                ${project.build.directory}/test-deps-no-transitive/image-1-abc.png
+                                ${project.build.directory}/test-deps-no-transitive/image-2-def.png
+                                ${project.build.directory}/test-deps-no-transitive/image-3-abc.zip
+                                ${project.build.directory}/test-deps-no-transitive/image-4-def.tar.gz
+
+                                ${project.build.directory}/test-deps-no-transitive-no-compile/junit-${junit-version}.jar
+                                ${project.build.directory}/test-deps-no-transitive-no-compile/spring-test-${spring-version}.jar
+                                ${project.build.directory}/test-deps-no-transitive-no-compile/image-1-abc.png
+                                ${project.build.directory}/test-deps-no-transitive-no-compile/image-2-def.png
+                                ${project.build.directory}/test-deps-no-transitive-no-compile/image-3-abc.zip
+                                ${project.build.directory}/test-deps-no-transitive-no-compile/image-4-def.tar.gz
+                            </assertFiles>
+                            <assertEqualNoChecksum>
+                                ${project.build.directory}/compile-deps-transitive-1                 | ${project.build.directory}/compile-deps-transitive-2
+                                ${project.build.directory}/compile-deps-transitive-GroupId-include-1 | ${project.build.directory}/compile-deps-transitive-GroupId-include-2
+                                ${project.build.directory}/compile-deps-classifiers-2                | ${project.build.directory}/compile-deps-classifiers-3
+                                ${project.build.directory}/images-2                                  | ${project.build.directory}/images-3
+
+                                ${project.build.directory}/test-deps-transitive-1                    | ${project.build.directory}/test-deps-transitive-2
+                                ${project.build.directory}/test-deps-transitive-GroupId-include-1    | ${project.build.directory}/test-deps-transitive-GroupId-include-2
+                            </assertEqualNoChecksum>
+                            <assertGroovy>
+                                new File( project.build.directory, 'compile-deps-transitive-1'                 ).listFiles().size() == 16
+                                new File( project.build.directory, 'compile-deps-transitive-2'                 ).listFiles().size() == 16
+                                new File( project.build.directory, 'compile-deps-transitive-GroupId-include-1' ).listFiles().size() == 2
+                                new File( project.build.directory, 'compile-deps-transitive-GroupId-include-2' ).listFiles().size() == 2
+                                new File( project.build.directory, 'compile-deps-transitive-GroupId-include-3' ).listFiles().size() == 3
+                                new File( project.build.directory, 'compile-deps-transitive-GroupId-exclude'   ).listFiles().size() == 14
+                                new File( project.build.directory, 'compile-deps-no-transitive'                ).listFiles().size() == 5
+                                new File( project.build.directory, 'compile-deps-classifiers-1'                ).listFiles().size() == 1
+                                new File( project.build.directory, 'compile-deps-classifiers-2'                ).listFiles().size() == 2
+                                new File( project.build.directory, 'compile-deps-classifiers-3'                ).listFiles().size() == 2
+                                new File( project.build.directory, 'images-1'                                  ).listFiles().size() == 4
+                                new File( project.build.directory, 'images-2'                                  ).listFiles().size() == 1
+                                new File( project.build.directory, 'images-3'                                  ).listFiles().size() == 1
+
+                                new File( project.build.directory, 'test-deps-transitive-1'                    ).listFiles().size() == 23
+                                new File( project.build.directory, 'test-deps-transitive-2'                    ).listFiles().size() == 23
+                                new File( project.build.directory, 'test-deps-transitive-GroupId-include-1'    ).listFiles().size() == 3
+                                new File( project.build.directory, 'test-deps-transitive-GroupId-include-2'    ).listFiles().size() == 3
+                                new File( project.build.directory, 'test-deps-transitive-GroupId-include-3'    ).listFiles().size() == 4
+                                new File( project.build.directory, 'test-deps-transitive-GroupId-exclude'      ).listFiles().size() == 20
+                                new File( project.build.directory, 'test-deps-no-transitive'                   ).listFiles().size() == 11
+                                new File( project.build.directory, 'test-deps-no-transitive-no-compile'        ).listFiles().size() == 6
+                            </assertGroovy>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+
+    <dependencies>
+
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
+        <!-- "compile" dependencies -->
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring-version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j-version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>jaxen</groupId>
+            <artifactId>jaxen</artifactId>
+            <version>${jaxen-version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ancientprogramming.fixedformat4j</groupId>
+            <artifactId>fixedformat4j</artifactId>
+            <version>1.2.2</version>
+            <classifier>javadoc</classifier>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ancientprogramming.fixedformat4j</groupId>
+            <artifactId>fixedformat4j</artifactId>
+            <version>1.2.2</version>
+            <classifier>sources</classifier>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
+        <!-- "runtime" dependencies -->
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
+
+        <dependency>
+            <groupId>com.goldin.test</groupId>
+            <artifactId>image</artifactId>
+            <version>1</version>
+            <classifier>abc</classifier>
+            <type>png</type>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.goldin.test</groupId>
+            <artifactId>image</artifactId>
+            <version>2</version>
+            <classifier>def</classifier>
+            <type>png</type>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.goldin.test</groupId>
+            <artifactId>image</artifactId>
+            <version>3</version>
+            <classifier>abc</classifier>
+            <type>zip</type>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.goldin.test</groupId>
+            <artifactId>image</artifactId>
+            <version>4</version>
+            <classifier>def</classifier>
+            <type>tar.gz</type>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- ~~~~~~~~~~~~~~~~~~~ -->
+        <!-- "test" dependencies -->
+        <!-- ~~~~~~~~~~~~~~~~~~~ -->
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit-version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring-version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>

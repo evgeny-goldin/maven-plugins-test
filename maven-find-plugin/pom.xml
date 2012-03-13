@@ -33,7 +33,7 @@
 
             <plugin>
                 <groupId>com.github.goldin</groupId>
-                <artifactId>maven-copy-plugin</artifactId>
+                <artifactId>copy-maven-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
                     <execution>
@@ -159,8 +159,8 @@
                             <assertFiles>
                                 ${rootPath}/pom.xml
                                 ${rootPath}/README.txt
-                                ${rootPath}/maven-copy-plugin
-                                ${rootPath}/maven-copy-plugin/issues/0.2/0.2-beta-5/pom.xml
+                                ${rootPath}/copy-maven-plugin
+                                ${rootPath}/copy-maven-plugin/issues/0.2/0.2-beta-5/pom.xml
                                 ${rootPath}/maven-find-plugin
                                 ${rootPath}/maven-find-plugin/pom.xml
                                 ${rootPath}/jenkins-maven-plugin
@@ -174,7 +174,7 @@
                                 rootPath
                                 new File( rootPath ).isDirectory()
                                 new File( rootPath ).directorySize() > 0
-                                new File( rootPath, 'maven-copy-plugin/issues/0.2/0.2-beta-5/pom.xml' ).isFile()
+                                new File( rootPath, 'copy-maven-plugin/issues/0.2/0.2-beta-5/pom.xml' ).isFile()
                                 rootPath == project.properties.rootPath
                             </assertGroovy>
                             <shouldFailAssertFiles>

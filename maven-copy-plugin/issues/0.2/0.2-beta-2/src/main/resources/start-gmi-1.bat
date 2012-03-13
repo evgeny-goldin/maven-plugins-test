@@ -1,3 +1,0 @@
-${testProperty}
-${anotherTestProperty}
-${spring-version}

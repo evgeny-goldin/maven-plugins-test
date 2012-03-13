@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns              = "http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi          = "http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0
+                               http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.github.goldin.maven-plugins-test</groupId>
+    <artifactId>copy-maven-plugin.resource-replace</artifactId>
+    <packaging>jar</packaging>
+    <version>0.1-SNAPSHOT</version>
+    <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
+
+
+    <parent>
+        <groupId>com.github.goldin.maven-plugins-test</groupId>
+        <artifactId>copy-maven-plugin</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+
+    <properties>
+        <resourcesDir>${project.basedir}/src/main/resources</resourcesDir>
+        <antName>apache-ant-1.8.1</antName>
+        <antDir>${outputDir}/${antName}</antDir>
+    </properties>
+
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>com.github.goldin</groupId>
+                <artifactId>copy-maven-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <execution>
+                        <id>test-resource-copy</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>validate</phase>
+                        <configuration>
+                            <resources>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Unpacking test archive -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}</targetPath>
+                                    <file>${resourcesDir}/${antName}.zip</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Copying single <include> -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/ant-includes-1</targetPath>
+                                    <directory>${antDir}</directory>
+                                    <includes>
+                                        <include>lib/*.jar</include>
+                                    </includes>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Copying single <exclude> -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/ant-includes-2</targetPath>
+                                    <directory>${antDir}</directory>
+                                    <excludes>
+                                        <exclude>lib/*.jar</exclude>
+                                    </excludes>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Copying single <include> -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/ant-includes-3</targetPath>
+                                    <directory>${antDir}/lib</directory>
+                                    <include>*.jar</include>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Copying single <exclude> -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/ant-includes-4</targetPath>
+                                    <directory>${antDir}</directory>
+                                    <exclude>lib/*.jar</exclude>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Copying to <targetPaths> -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPaths>
+                                        <targetPath>${outputDir}/all-files-1</targetPath>
+                                        <targetPath>${outputDir}/all-files-2</targetPath>
+                                    </targetPaths>
+                                    <directory>${antDir}</directory>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Copying to <targetPaths> -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPaths>
+                                        <targetPath>${outputDir}/all-files-3</targetPath>
+                                        <targetPath>${outputDir}/all-files-4</targetPath>
+                                    </targetPaths>
+                                    <directory>${antDir}</directory>
+                                    <preservePath>true</preservePath>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Copying with <replace> and <file> -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/replace-1</targetPath>
+                                    <file>${antDir}/WHATSNEW</file>
+                                    <replace>
+                                        <to>nothing</to>
+                                    </replace>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Copying with <replace> and <file> -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/replace-2</targetPath>
+                                    <file>${antDir}/WHATSNEW</file>
+                                    <replace>
+                                        <from>\w+</from>
+                                        <to>#</to>
+                                    </replace>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Copying with <replace> and <file> -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/replace-3</targetPath>
+                                    <file>${resourcesDir}/pom.xml</file>
+                                    <replace>
+                                        <addDollar>true</addDollar>
+                                        <endOfLine>windows</endOfLine>
+                                    </replace>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Copying with <replace> and <file> -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/replace-4</targetPath>
+                                    <file>${resourcesDir}/pom.xml</file>
+                                    <replace>
+                                        <addDollar>projectGroupId,projectArtifactId,projectVersion</addDollar>
+                                        <endOfLine>windows</endOfLine>
+                                    </replace>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Copying with <replace> -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/replace-5</targetPath>
+                                    <directory>${antDir}</directory>
+                                    <include>**/*.xml</include>
+                                    <replace>
+                                        <from>(name="[^"]+")</from>
+                                        <to>$1</to>
+                                        <quoteReplacement>false</quoteReplacement>
+                                        <replaceAll>false</replaceAll>
+                                        <groovy>true</groovy>
+                                        <failIfNotFound>true</failIfNotFound>
+                                    </replace>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Copying with <replace> -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${outputDir}/replace-6</targetPath>
+                                    <directory>${antDir}</directory>
+                                    <include>**/*.xml</include>
+                                    <replace>
+                                        <from>name="[^"]+"</from>
+                                        <to>$1{{ [1, 2, 3].findAll{ it == 2 }.size() }}</to>
+                                        <quoteReplacement>true</quoteReplacement>
+                                        <replaceAll>true</replaceAll>
+                                        <groovy>true</groovy>
+                                        <failIfNotFound>true</failIfNotFound>
+                                    </replace>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.github.goldin</groupId>
+                <artifactId>maven-assert-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <execution>
+                        <id>assert-dependency-copy</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/${antName}
+                                ${outputDir}/${antName}/bin/*
+                                ${outputDir}/${antName}/bin/*.*
+                                ${outputDir}/${antName}/bin/*.cmd
+                                ${outputDir}/${antName}/bin/*.bat
+                                ${outputDir}/${antName}/bin/*.pl
+                                ${outputDir}/${antName}/bin/*.py
+                                ${outputDir}/${antName}/lib/*.jar
+                                ${outputDir}/${antName}/lib/*.pom
+                                ${outputDir}/${antName}/lib/*.properties
+                                ${outputDir}/ant-includes-1/*.jar
+                                ${outputDir}/ant-includes-2/*.xsl
+                                ${outputDir}/ant-includes-3/*.jar
+                                ${outputDir}/ant-includes-4/*.xml
+                                ${outputDir}/all-files-1/*.bat
+                                ${outputDir}/all-files-2/*.pom
+                                ${outputDir}/all-files-3/*.xml
+                                ${outputDir}/all-files-4/*
+                                ${outputDir}/replace-1/WHATSNEW
+                                ${outputDir}/replace-2/WHATSNEW
+                                ${outputDir}/replace-3/pom.xml
+                                ${outputDir}/replace-4/pom.xml
+                                ${outputDir}/replace-5/fetch.xml
+                                ${outputDir}/replace-5/get-m2.xml
+                                ${outputDir}/replace-6/fetch.xml
+                                ${outputDir}/replace-6/get-m2.xml
+                            </assertFiles>
+                            <assertGroovy>
+                                new File( outputDir, antName ).directorySize() == 2992163
+
+                                new File( outputDir, 'ant-includes-1' ).directorySize() == 2312326
+                                new File( outputDir, 'ant-includes-1' ).directorySize() == new File( outputDir, 'ant-includes-3' ).directorySize()
+                                new File( outputDir, 'ant-includes-2' ).directorySize() == 679837
+                                new File( outputDir, 'ant-includes-2' ).directorySize() == new File( outputDir, 'ant-includes-4' ).directorySize()
+
+                                new File( outputDir, 'all-files-1' ).directorySize() == 2992163
+                                new File( outputDir, 'all-files-1' ).directorySize() == new File( outputDir, 'all-files-2' ).directorySize()
+                                new File( outputDir, 'all-files-3' ).directorySize() == 2992163
+                                new File( outputDir, 'all-files-3' ).directorySize() == new File( outputDir, 'all-files-4' ).directorySize()
+                                new File( outputDir, 'all-files-3' ).directorySize() == new File( outputDir, antName ).directorySize()
+
+                                new File( outputDir, 'replace-1/WHATSNEW' ).size() == 7
+                                new File( outputDir, 'replace-1/WHATSNEW' ).text   == 'nothing'
+                                new File( outputDir, 'replace-2/WHATSNEW' ).size() == 81472
+                            ! ( new File( outputDir, 'replace-2/WHATSNEW' ).text   =~ /\w/ )
+                                new File( outputDir, 'replace-2/WHATSNEW' ).text   =~ /#/
+
+                                new File( outputDir, 'replace-3/pom.xml' ).size() == 11260
+                                new File( outputDir, 'replace-3/pom.xml' ).size() == new File( outputDir, 'replace-4/pom.xml' ).size()
+                                new File( outputDir, 'replace-3/pom.xml' ).text   == new File( outputDir, 'replace-4/pom.xml' ).text
+                                new File( outputDir, 'replace-3/pom.xml' ).text.contains( '$' + '{projectGroupId}'    )
+                                new File( outputDir, 'replace-3/pom.xml' ).text.contains( '$' + '{projectArtifactId}' )
+                                new File( outputDir, 'replace-3/pom.xml' ).text.contains( '$' + '{projectVersion}'    )
+
+                                new File( outputDir, 'replace-5/fetch.xml'  ).size() == 7920
+                                new File( outputDir, 'replace-5/get-m2.xml' ).size() == 4566
+                                new File( outputDir, 'replace-5/fetch.xml'  ).text   == new File( antDir, 'fetch.xml'  ).text
+                                new File( outputDir, 'replace-5/get-m2.xml' ).text   == new File( antDir, 'get-m2.xml' ).text
+
+                                new File( outputDir, 'replace-6/fetch.xml'  ).size() == 7610
+                                new File( outputDir, 'replace-6/get-m2.xml' ).size() == 4303
+                                new File( outputDir, 'replace-6/fetch.xml'  ).text   != new File( antDir, 'fetch.xml'  ).text
+                                new File( outputDir, 'replace-6/fetch.xml'  ).text.contains( 'target $11' )
+                                new File( outputDir, 'replace-6/get-m2.xml' ).text   != new File( antDir, 'get-m2.xml' ).text
+                                new File( outputDir, 'replace-6/get-m2.xml' ).text.contains( 'target $11' )
+                              ! new File( outputDir, 'replace-6/get-m2.xml' ).text.contains( 'target $12' )
+                            </assertGroovy>
+                            <assertEqualNoChecksum>
+                                ${outputDir}/ant-includes-1|${outputDir}/ant-includes-3
+                                ${outputDir}/ant-includes-2|${outputDir}/ant-includes-4
+                                ${outputDir}/all-files-1|${outputDir}/all-files-2
+                                ${outputDir}/all-files-2|${outputDir}/all-files-1
+                                ${outputDir}/all-files-3|${outputDir}/all-files-4
+                                ${outputDir}/all-files-3|${antDir}
+                                ${outputDir}/all-files-4|${antDir}
+                            </assertEqualNoChecksum>
+                            <assertEqual>
+                                ${outputDir}/replace-3|${outputDir}/replace-4
+                                ${outputDir}/replace-5|${antDir}|*.xml
+                            </assertEqual>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns              = "http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi          = "http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0
+                               http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.github.goldin.maven-plugins-test</groupId>
+    <artifactId>copy-maven-plugin.issues.0.2.3.4-b</artifactId>
+    <packaging>jar</packaging>
+    <version>0.1-SNAPSHOT</version>
+    <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
+
+
+    <parent>
+        <groupId>com.github.goldin.maven-plugins-test</groupId>
+        <artifactId>copy-maven-plugin.issues.0.2.3.4</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>com.github.goldin</groupId>
+                <artifactId>copy-maven-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-469:                              -->
+                    <!-- "Filtered dependency comes from module's "dist" instead of local Maven repo" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-469</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-469/1</targetPath>
+                                    <dependency>
+                                        <groupId>com.github.goldin.maven-plugins-test</groupId>
+                                        <artifactId>copy-maven-plugin.issues.0.2.3.4-a</artifactId>
+                                        <version>0.1-SNAPSHOT</version>
+                                    </dependency>
+                                    <filter>${filterNotM2}</filter>
+                                    <dependenciesAtM2>true</dependenciesAtM2>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-469/2</targetPath>
+                                    <dependency>
+                                        <includeScope>compile</includeScope>
+                                    </dependency>
+                                    <filter>${filterNotM2}</filter>
+                                    <dependenciesAtM2>true</dependenciesAtM2>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-477: -->
+                    <!-- "Add support for <nonFilteredExtensions>"       -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-477-1</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/nonFilteredExtensions/1</targetPath>
+                                    <file>${project.basedir}/src/main/resources/1.txt</file>
+                                    <filtering>true</filtering>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/nonFilteredExtensions/2</targetPath>
+                                    <file>${project.basedir}/src/main/resources/1.txt</file>
+                                    <nonFilteredExtensions>pdf, exe</nonFilteredExtensions>
+                                    <filtering>true</filtering>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/nonFilteredExtensions/3</targetPath>
+                                    <file>${project.basedir}/src/main/resources/1.txt</file>
+                                    <nonFilteredExtensions>txt</nonFilteredExtensions>
+                                    <filtering>true</filtering>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/nonFilteredExtensions/4</targetPath>
+                                    <file>${project.basedir}/src/main/resources/1.txt</file>
+                                    <nonFilteredExtensions>txt, pdf</nonFilteredExtensions>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-477-2</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <nonFilteredExtensions>txt, pdf</nonFilteredExtensions>
+                            <resource>
+                                <targetPath>${outputDir}/nonFilteredExtensions/5</targetPath>
+                                <file>${project.basedir}/src/main/resources/1.txt</file>
+                                <filtering>true</filtering>
+                            </resource>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-446:                                      -->
+                    <!-- "If some <include>s have no files matched - do not fail if others had files matched" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-446</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-446/1</targetPath>
+                                    <directory>${project.basedir}</directory>
+                                    <include>*.xml, *.pdf, *.ppt</include>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-446/2</targetPath>
+                                    <directory>${project.basedir}</directory>
+                                    <includes>
+                                        <include>*.xml</include>
+                                        <include>*.pdf</include>
+                                        <include>*.ppt</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-473:           -->
+                    <!-- Add "/**" to folder <include> if pattern is not specified -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-473</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-473/1</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-473/2</targetPath>
+                                    <directory>${outputDir}/pl-473/1</directory>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-473/3</targetPath>
+                                    <directory>${outputDir}/pl-473</directory>
+                                    <include>2</include>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-473/4</targetPath>
+                                    <directory>${outputDir}/pl-473</directory>
+                                    <include>1, 2, 3, ha-ha-ha</include>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-473/5</targetPath>
+                                    <directory>${outputDir}/pl-473</directory>
+                                    <includes>
+                                        <include>1</include>
+                                        <include>2</include>
+                                        <include>3</include>
+                                        <include>4</include>
+                                        <include>noSuchDir</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-233:       -->
+                    <!-- <filtering>true</filtering> doesn't filter *.bat file -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-233-1</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-233/1</targetPath>
+                                    <file>${project.basedir}/src/main/resources/go.bat</file>
+                                    <filtering>true</filtering>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-233/2</targetPath>
+                                    <file>${project.basedir}/src/main/resources/go.bat</file>
+                                    <filtering>true</filtering>
+                                    <filterWithDollarOnly>true</filterWithDollarOnly>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-233-2</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <filterWithDollarOnly>true</filterWithDollarOnly>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-233/3</targetPath>
+                                    <file>${project.basedir}/src/main/resources/go.bat</file>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~s~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-488:                                                       -->
+                    <!-- When copying <dependency> - <destFileName> can be ignored if dependency is built in the same reactor -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-488</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-488/1</targetPath>
+                                    <dependency>
+                                        <groupId>com.github.goldin.maven-plugins-test</groupId>
+                                        <artifactId>copy-maven-plugin.issues.0.2.3.4-a</artifactId>
+                                        <version>0.1-SNAPSHOT</version>
+                                    </dependency>
+                                    <destFileName>something.jar</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-488/2</targetPath>
+                                    <dependency>
+                                        <groupId>com.github.goldin.maven-plugins-test</groupId>
+                                        <artifactId>copy-maven-plugin.issues.0.2.3.4-a</artifactId>
+                                        <version>0.1-SNAPSHOT</version>
+                                    </dependency>
+                                    <dependenciesAtM2>false</dependenciesAtM2>
+                                    <destFileName>something.jar</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-488/3</targetPath>
+                                    <dependency>
+                                        <groupId>com.github.goldin.maven-plugins-test</groupId>
+                                        <artifactId>copy-maven-plugin.issues.0.2.3.4-a</artifactId>
+                                        <version>0.1-SNAPSHOT</version>
+                                    </dependency>
+                                    <dependenciesAtM2>true</dependenciesAtM2>
+                                    <destFileName>something.jar</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-488/4</targetPath>
+                                    <dependency>
+                                        <groupId>com.github.goldin.maven-plugins-test</groupId>
+                                        <artifactId>copy-maven-plugin.issues.0.2.3.4-a</artifactId>
+                                        <version>0.1-SNAPSHOT</version>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-488/5</targetPath>
+                                    <dependency>
+                                        <groupId>com.github.goldin.maven-plugins-test</groupId>
+                                        <artifactId>copy-maven-plugin.issues.0.2.3.4-a</artifactId>
+                                        <version>0.1-SNAPSHOT</version>
+                                    </dependency>
+                                    <dependenciesAtM2>false</dependenciesAtM2>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-488/6</targetPath>
+                                    <dependency>
+                                        <groupId>com.github.goldin.maven-plugins-test</groupId>
+                                        <artifactId>copy-maven-plugin.issues.0.2.3.4-a</artifactId>
+                                        <version>0.1-SNAPSHOT</version>
+                                    </dependency>
+                                    <dependenciesAtM2>true</dependenciesAtM2>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+            <plugin>
+                <groupId>com.github.goldin</groupId>
+                <artifactId>maven-assert-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-477 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-477</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/nonFilteredExtensions/1/1.txt
+                                ${outputDir}/nonFilteredExtensions/2/1.txt
+                                ${outputDir}/nonFilteredExtensions/3/1.txt
+                                ${outputDir}/nonFilteredExtensions/4/1.txt
+                                ${outputDir}/nonFilteredExtensions/5/1.txt
+                            </assertFiles>
+                            <assertEqual>
+                                ${outputDir}/nonFilteredExtensions/1|${outputDir}/nonFilteredExtensions/2
+                                ${outputDir}/nonFilteredExtensions/1|${outputDir}/nonFilteredExtensions/2|*.txt
+                                ${outputDir}/nonFilteredExtensions/1|${outputDir}/nonFilteredExtensions/2|**/*.txt
+                                ${outputDir}/nonFilteredExtensions/3|${outputDir}/nonFilteredExtensions/4
+                                ${outputDir}/nonFilteredExtensions/3|${outputDir}/nonFilteredExtensions/4|*.txt
+                                ${outputDir}/nonFilteredExtensions/3|${outputDir}/nonFilteredExtensions/4|**/*.txt
+                                ${outputDir}/nonFilteredExtensions/4|${outputDir}/nonFilteredExtensions/5
+                                ${outputDir}/nonFilteredExtensions/4|${outputDir}/nonFilteredExtensions/5|*.txt
+                                ${outputDir}/nonFilteredExtensions/4|${outputDir}/nonFilteredExtensions/5|**/*.txt
+                            </assertEqual>
+                            <assertGroovy>
+                              ! new File ( outputDir, 'nonFilteredExtensions/1/1.txt' ).text.contains( '{project.groupId' )
+                              ! new File ( outputDir, 'nonFilteredExtensions/2/1.txt' ).text.contains( '{project.groupId' )
+                                new File ( outputDir, 'nonFilteredExtensions/1/1.txt' ).text == '${project.groupId}:${project.artifactId}:${project.version}'
+                                new File ( outputDir, 'nonFilteredExtensions/3/1.txt' ).text.contains( '${project.groupId' )
+                                new File ( outputDir, 'nonFilteredExtensions/4/1.txt' ).text.contains( '${project.artifactId' )
+                                new File ( outputDir, 'nonFilteredExtensions/5/1.txt' ).text.contains( '${project.version' )
+                            </assertGroovy>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-446 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-446</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-446/1/pom.xml
+                                ${outputDir}/pl-446/1/*.xml
+                                ${outputDir}/pl-446/2/pom.xml
+                                ${outputDir}/pl-446/2/*.xml
+                            </assertFiles>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-473 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-473</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-473/1/pom.xml
+                                ${outputDir}/pl-473/2/pom.xml
+                                ${outputDir}/pl-473/3/pom.xml
+                                ${outputDir}/pl-473/4/pom.xml
+                                ${outputDir}/pl-473/5/pom.xml
+                            </assertFiles>
+                            <assertEqual>
+                                ${outputDir}/pl-473/1|${outputDir}/pl-473/2
+                                ${outputDir}/pl-473/1|${outputDir}/pl-473/2|*.xml
+                                ${outputDir}/pl-473/1|${outputDir}/pl-473/2|**/*.xml
+                                ${outputDir}/pl-473/2|${outputDir}/pl-473/3
+                                ${outputDir}/pl-473/3|${outputDir}/pl-473/4
+                                ${outputDir}/pl-473/4|${outputDir}/pl-473/5
+                                ${outputDir}/pl-473/5|${outputDir}/pl-473/1
+                            </assertEqual>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-233 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-233</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-233/1/go.bat
+                                ${outputDir}/pl-233/1/*.bat
+                                ${outputDir}/pl-233/2/go.bat
+                                ${outputDir}/pl-233/2/*.bat
+                                ${outputDir}/pl-233/3/go.bat
+                                ${outputDir}/pl-233/3/*.bat
+                            </assertFiles>
+                            <assertGroovy>
+                                [ 1, 2, 3 ].every{   new File( outputDir, "pl-233/$it/go.bat" ).text.readLines()[ 0 ] == '@echo off' }
+                                [ 1       ].every{ ! new File( outputDir, "pl-233/$it/go.bat" ).text.readLines()[ 1 ].contains( '$' ) }
+                                [ 2, 3    ].every{ ! new File( outputDir, "pl-233/$it/go.bat" ).text.readLines()[ 1 ].contains( '$' ) }
+                                [ 2, 3    ].every{   new File( outputDir, "pl-233/$it/go.bat" ).text.readLines()[ 1 ] == "echo '${project.groupId}:${project.artifactId}:${project.version}'" }
+                            </assertGroovy>
+                            <assertEqual>
+                                ${outputDir}/pl-233/2|${outputDir}/pl-233/3
+                                ${outputDir}/pl-233/2|${outputDir}/pl-233/3|*.bat
+                                ${outputDir}/pl-233/2|${outputDir}/pl-233/3|**/*.bat
+                            </assertEqual>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-488 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-488</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-488/1/something.jar
+                                ${outputDir}/pl-488/2/something.jar
+                                ${outputDir}/pl-488/3/something.jar
+                                ${outputDir}/pl-488/4/copy-maven-plugin.issues.0.2.3.4-a-0.1-SNAPSHOT.jar
+                                ${outputDir}/pl-488/5/copy-maven-plugin.issues.0.2.3.4-a-0.1-SNAPSHOT.jar
+                                ${outputDir}/pl-488/6/copy-maven-plugin.issues.0.2.3.4-a-0.1-SNAPSHOT.jar
+                            </assertFiles>
+                            <assertEqual>
+                                ${outputDir}/pl-488/1|${outputDir}/pl-488/2
+                                ${outputDir}/pl-488/2|${outputDir}/pl-488/3
+
+                                ${outputDir}/pl-488/1|${outputDir}/pl-488/2|*.jar
+                                ${outputDir}/pl-488/1|${outputDir}/pl-488/2|**/*.jar
+
+                                ${outputDir}/pl-488/2|${outputDir}/pl-488/3|*.jar
+                                ${outputDir}/pl-488/2|${outputDir}/pl-488/3|**/*.jar
+
+                                ${outputDir}/pl-488/4|${outputDir}/pl-488/5
+                                ${outputDir}/pl-488/5|${outputDir}/pl-488/6
+                            </assertEqual>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+
+    <dependencies>
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <!-- Needed for "pl-469" test above -->
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <dependency>
+            <groupId>com.github.goldin.maven-plugins-test</groupId>
+            <artifactId>copy-maven-plugin.issues.0.2.3.4-a</artifactId>
+            <version>0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+</project>

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns              = "http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi          = "http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0
+                               http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.github.goldin.maven-plugins-test</groupId>
+    <artifactId>copy-maven-plugin.issues.0.2.3.4-a</artifactId>
+    <packaging>jar</packaging>
+    <version>0.1-SNAPSHOT</version>
+    <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
+
+
+    <parent>
+        <groupId>com.github.goldin.maven-plugins-test</groupId>
+        <artifactId>copy-maven-plugin.issues.0.2.3.4</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>com.github.goldin</groupId>
+                <artifactId>copy-maven-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-467: -->
+                    <!-- "Treat "sar" extension as zip archive"          -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-467</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPaths>
+                                        <targetPath>${outputDir}/pl-467/pom.zip</targetPath>
+                                        <targetPath>${outputDir}/pl-467/pom.sar</targetPath>
+                                    </targetPaths>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <pack>true</pack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-467/zip</targetPath>
+                                    <file>${outputDir}/pl-467/pom.zip</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-467/sar</targetPath>
+                                    <file>${outputDir}/pl-467/pom.sar</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-302:                         -->
+                    <!-- "Merge capabilities of explicit <dependency> and filtered dependencies" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-302</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-302/spring-single-1</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>${spring-version}</version>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-302/spring-single-2</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>${spring-version}</version>
+                                        <excludeTransitive>true</excludeTransitive>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-302/spring-all</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>${spring-version}</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-302/spring-test</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>${spring-version}</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                        <includeScope>test</includeScope>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-302/spring-compile</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>${spring-version}</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                        <includeScope>compile</includeScope>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-302/spring-gid</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>${spring-version}</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                        <includeGroupIds>org.springframework</includeGroupIds>
+                                        <includeScope>compile</includeScope>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-302/spring-aid</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>${spring-version}</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                        <includeArtifactIds>spring-asm,commons-logging</includeArtifactIds>
+                                    </dependency>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.github.goldin</groupId>
+                <artifactId>maven-assert-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-467 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-467</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-467/pom.zip
+                                ${outputDir}/pl-467/pom.sar
+                                ${outputDir}/pl-467/zip
+                                ${outputDir}/pl-467/sar
+                            </assertFiles>
+                            <assertEqual>
+                                ${outputDir}/pl-467/zip|${outputDir}/pl-467/sar
+                            </assertEqual>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-302 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-302</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-302/spring-single-1
+                                ${outputDir}/pl-302/spring-single-2
+                                ${outputDir}/pl-302/spring-all
+                                ${outputDir}/pl-302/spring-test
+                                ${outputDir}/pl-302/spring-compile
+                                ${outputDir}/pl-302/spring-gid
+                                ${outputDir}/pl-302/spring-aid
+                            </assertFiles>
+                            <assertGroovy>
+                                new File( outputDir, 'pl-302/spring-single-1' ).listFiles().size() == 1
+                                new File( outputDir, 'pl-302/spring-single-2' ).listFiles().size() == 1
+                                new File( outputDir, 'pl-302/spring-all'      ).listFiles().size() == 21
+                                new File( outputDir, 'pl-302/spring-test'     ).listFiles().size() == 21
+                                new File( outputDir, 'pl-302/spring-compile'  ).listFiles().size() == 9
+                                new File( outputDir, 'pl-302/spring-gid'      ).listFiles().size() == 6
+                                new File( outputDir, 'pl-302/spring-aid'      ).listFiles().size() == 2
+                            </assertGroovy>
+                            <assertEqual>
+                                ${outputDir}/pl-302/spring-all|${outputDir}/pl-302/spring-test
+                            </assertEqual>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
