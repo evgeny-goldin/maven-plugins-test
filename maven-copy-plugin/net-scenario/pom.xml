@@ -6,7 +6,7 @@
                                http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+    <groupId>com.github.goldin.maven-plugins-test</groupId>
     <artifactId>maven-copy-plugin.net-scenario</artifactId>
     <packaging>jar</packaging>
     <version>0.1-SNAPSHOT</version>
@@ -14,7 +14,7 @@
 
 
     <parent>
-        <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+        <groupId>com.github.goldin.maven-plugins-test</groupId>
         <artifactId>maven-copy-plugin</artifactId>
         <version>0.1-SNAPSHOT</version>
     </parent>
@@ -34,7 +34,7 @@
             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
             <plugin>
-                <groupId>com.goldin.plugins</groupId>
+                <groupId>com.github.goldin</groupId>
                 <artifactId>maven-copy-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
@@ -163,7 +163,7 @@
             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
             <plugin>
-                <groupId>com.goldin.plugins</groupId>
+                <groupId>com.github.goldin</groupId>
                 <artifactId>maven-sshexec-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
@@ -193,7 +193,7 @@
             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
             <plugin>
-                <groupId>com.goldin.plugins</groupId>
+                <groupId>com.github.goldin</groupId>
                 <artifactId>maven-assert-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>

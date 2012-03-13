@@ -6,15 +6,15 @@
                                http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.goldin.plugins.maven-plugins-test</groupId>
-    <artifactId>maven-about-plugin</artifactId>
+    <groupId>com.github.goldin.maven-plugins-test</groupId>
+    <artifactId>about-maven-plugin</artifactId>
     <packaging>jar</packaging>
     <version>0.1-SNAPSHOT</version>
     <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
 
 
     <parent>
-        <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+        <groupId>com.github.goldin.maven-plugins-test</groupId>
         <artifactId>main.tests</artifactId>
         <version>0.1-SNAPSHOT</version>
     </parent>
@@ -24,8 +24,8 @@
         <plugins>
 
             <plugin>
-                <groupId>com.goldin.plugins</groupId>
-                <artifactId>maven-about-plugin</artifactId>
+                <groupId>com.github.goldin</groupId>
+                <artifactId>about-maven-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
                     <execution>
@@ -214,7 +214,7 @@
 
 
             <plugin>
-                <groupId>com.goldin.plugins</groupId>
+                <groupId>com.github.goldin</groupId>
                 <artifactId>maven-copy-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
@@ -249,82 +249,82 @@
                                 <targetPath>${outputDir}/pl-483</targetPath>
                                 <dependencies>
                                     <dependency>
-                                        <groupId>com.goldin.plugins</groupId>
+                                        <groupId>com.github.goldin</groupId>
                                         <artifactId>maven2-common</artifactId>
                                         <version>${plugins-version}</version>
                                     </dependency>
                                     <dependency>
-                                        <groupId>com.goldin.plugins</groupId>
+                                        <groupId>com.github.goldin</groupId>
                                         <artifactId>maven3-common</artifactId>
                                         <version>${plugins-version}</version>
                                     </dependency>
                                     <dependency>
-                                        <groupId>com.goldin.plugins</groupId>
+                                        <groupId>com.github.goldin</groupId>
                                         <artifactId>duplicates-finder-plugin</artifactId>
                                         <version>${plugins-version}</version>
                                     </dependency>
                                     <dependency>
-                                        <groupId>com.goldin.plugins</groupId>
+                                        <groupId>com.github.goldin</groupId>
                                         <artifactId>ivy-maven-plugin</artifactId>
                                         <version>${plugins-version}</version>
                                     </dependency>
                                     <dependency>
-                                        <groupId>com.goldin.plugins</groupId>
+                                        <groupId>com.github.goldin</groupId>
                                         <artifactId>kotlin-maven-plugin</artifactId>
                                         <version>${plugins-version}</version>
                                     </dependency>
                                     <dependency>
-                                        <groupId>com.goldin.plugins</groupId>
-                                        <artifactId>maven-about-plugin</artifactId>
+                                        <groupId>com.github.goldin</groupId>
+                                        <artifactId>about-maven-plugin</artifactId>
                                         <version>${plugins-version}</version>
                                     </dependency>
                                     <dependency>
-                                        <groupId>com.goldin.plugins</groupId>
+                                        <groupId>com.github.goldin</groupId>
                                         <artifactId>maven-assert-plugin</artifactId>
                                         <version>${plugins-version}</version>
                                     </dependency>
                                     <dependency>
-                                        <groupId>com.goldin.plugins</groupId>
+                                        <groupId>com.github.goldin</groupId>
                                         <artifactId>maven-copy-plugin</artifactId>
                                         <version>${plugins-version}</version>
                                     </dependency>
                                     <dependency>
-                                        <groupId>com.goldin.plugins</groupId>
+                                        <groupId>com.github.goldin</groupId>
                                         <artifactId>maven-find-plugin</artifactId>
                                         <version>${plugins-version}</version>
                                     </dependency>
                                     <dependency>
-                                        <groupId>com.goldin.plugins</groupId>
+                                        <groupId>com.github.goldin</groupId>
                                         <artifactId>maven-jenkins-plugin</artifactId>
                                         <version>${plugins-version}</version>
                                     </dependency>
                                     <dependency>
-                                        <groupId>com.goldin.plugins</groupId>
+                                        <groupId>com.github.goldin</groupId>
                                         <artifactId>maven-mail-plugin</artifactId>
                                         <version>${plugins-version}</version>
                                     </dependency>
                                     <dependency>
-                                        <groupId>com.goldin.plugins</groupId>
+                                        <groupId>com.github.goldin</groupId>
                                         <artifactId>maven-properties-plugin</artifactId>
                                         <version>${plugins-version}</version>
                                     </dependency>
                                     <dependency>
-                                        <groupId>com.goldin.plugins</groupId>
+                                        <groupId>com.github.goldin</groupId>
                                         <artifactId>maven-spring-batch-plugin</artifactId>
                                         <version>${plugins-version}</version>
                                     </dependency>
                                     <dependency>
-                                        <groupId>com.goldin.plugins</groupId>
+                                        <groupId>com.github.goldin</groupId>
                                         <artifactId>maven-sshexec-plugin</artifactId>
                                         <version>${plugins-version}</version>
                                     </dependency>
                                     <dependency>
-                                        <groupId>com.goldin.plugins</groupId>
+                                        <groupId>com.github.goldin</groupId>
                                         <artifactId>maven-timestamp-plugin</artifactId>
                                         <version>${plugins-version}</version>
                                     </dependency>
                                 </dependencies>
-                                <zipEntry>META-INF/about~com.goldin.plugins~*~${plugins-version}.txt</zipEntry>
+                                <zipEntry>META-INF/about~com.github.goldin~*~${plugins-version}.txt</zipEntry>
                                 <unpack>true</unpack>
                             </resource>
                         </configuration>
@@ -334,7 +334,7 @@
 
 
             <plugin>
-                <groupId>com.goldin.plugins</groupId>
+                <groupId>com.github.goldin</groupId>
                 <artifactId>maven-assert-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
@@ -402,21 +402,21 @@
                         <configuration>
                             <runIf>{{ slowTests }}</runIf>
                             <assertFiles>
-                                ${outputDir}/pl-483/about~com.goldin.plugins~duplicates-finder-plugin~${plugins-version}.txt
-                                ${outputDir}/pl-483/about~com.goldin.plugins~maven-about-plugin~${plugins-version}.txt
-                                ${outputDir}/pl-483/about~com.goldin.plugins~maven-assert-plugin~${plugins-version}.txt
-                                ${outputDir}/pl-483/about~com.goldin.plugins~maven2-common~${plugins-version}.txt
-                                ${outputDir}/pl-483/about~com.goldin.plugins~maven3-common~${plugins-version}.txt
-                                ${outputDir}/pl-483/about~com.goldin.plugins~ivy-maven-plugin~${plugins-version}.txt
-                                ${outputDir}/pl-483/about~com.goldin.plugins~kotlin-maven-plugin~${plugins-version}.txt
-                                ${outputDir}/pl-483/about~com.goldin.plugins~maven-copy-plugin~${plugins-version}.txt
-                                ${outputDir}/pl-483/about~com.goldin.plugins~maven-find-plugin~${plugins-version}.txt
-                                ${outputDir}/pl-483/about~com.goldin.plugins~maven-jenkins-plugin~${plugins-version}.txt
-                                ${outputDir}/pl-483/about~com.goldin.plugins~maven-mail-plugin~${plugins-version}.txt
-                                ${outputDir}/pl-483/about~com.goldin.plugins~maven-properties-plugin~${plugins-version}.txt
-                                ${outputDir}/pl-483/about~com.goldin.plugins~maven-spring-batch-plugin~${plugins-version}.txt
-                                ${outputDir}/pl-483/about~com.goldin.plugins~maven-sshexec-plugin~${plugins-version}.txt
-                                ${outputDir}/pl-483/about~com.goldin.plugins~maven-timestamp-plugin~${plugins-version}.txt
+                                ${outputDir}/pl-483/about~com.github.goldin~duplicates-finder-plugin~${plugins-version}.txt
+                                ${outputDir}/pl-483/about~com.github.goldin~about-maven-plugin~${plugins-version}.txt
+                                ${outputDir}/pl-483/about~com.github.goldin~maven-assert-plugin~${plugins-version}.txt
+                                ${outputDir}/pl-483/about~com.github.goldin~maven2-common~${plugins-version}.txt
+                                ${outputDir}/pl-483/about~com.github.goldin~maven3-common~${plugins-version}.txt
+                                ${outputDir}/pl-483/about~com.github.goldin~ivy-maven-plugin~${plugins-version}.txt
+                                ${outputDir}/pl-483/about~com.github.goldin~kotlin-maven-plugin~${plugins-version}.txt
+                                ${outputDir}/pl-483/about~com.github.goldin~maven-copy-plugin~${plugins-version}.txt
+                                ${outputDir}/pl-483/about~com.github.goldin~maven-find-plugin~${plugins-version}.txt
+                                ${outputDir}/pl-483/about~com.github.goldin~maven-jenkins-plugin~${plugins-version}.txt
+                                ${outputDir}/pl-483/about~com.github.goldin~maven-mail-plugin~${plugins-version}.txt
+                                ${outputDir}/pl-483/about~com.github.goldin~maven-properties-plugin~${plugins-version}.txt
+                                ${outputDir}/pl-483/about~com.github.goldin~maven-spring-batch-plugin~${plugins-version}.txt
+                                ${outputDir}/pl-483/about~com.github.goldin~maven-sshexec-plugin~${plugins-version}.txt
+                                ${outputDir}/pl-483/about~com.github.goldin~maven-timestamp-plugin~${plugins-version}.txt
                             </assertFiles>
                             <assertGroovy>
                                 new File( outputDir, 'pl-483' ).listFiles().size() == 15

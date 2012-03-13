@@ -6,7 +6,7 @@
                                http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+    <groupId>com.github.goldin.maven-plugins-test</groupId>
     <artifactId>maven-copy-plugin.issues.0.2.3.4-b</artifactId>
     <packaging>jar</packaging>
     <version>0.1-SNAPSHOT</version>
@@ -14,7 +14,7 @@
 
 
     <parent>
-        <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+        <groupId>com.github.goldin.maven-plugins-test</groupId>
         <artifactId>maven-copy-plugin.issues.0.2.3.4</artifactId>
         <version>0.1-SNAPSHOT</version>
     </parent>
@@ -24,7 +24,7 @@
         <plugins>
 
             <plugin>
-                <groupId>com.goldin.plugins</groupId>
+                <groupId>com.github.goldin</groupId>
                 <artifactId>maven-copy-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
@@ -43,7 +43,7 @@
                                 <resource>
                                     <targetPath>${outputDir}/pl-469/1</targetPath>
                                     <dependency>
-                                        <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+                                        <groupId>com.github.goldin.maven-plugins-test</groupId>
                                         <artifactId>maven-copy-plugin.issues.0.2.3.4-a</artifactId>
                                         <version>0.1-SNAPSHOT</version>
                                     </dependency>
@@ -245,7 +245,7 @@
                                 <resource>
                                     <targetPath>${outputDir}/pl-488/1</targetPath>
                                     <dependency>
-                                        <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+                                        <groupId>com.github.goldin.maven-plugins-test</groupId>
                                         <artifactId>maven-copy-plugin.issues.0.2.3.4-a</artifactId>
                                         <version>0.1-SNAPSHOT</version>
                                     </dependency>
@@ -254,7 +254,7 @@
                                 <resource>
                                     <targetPath>${outputDir}/pl-488/2</targetPath>
                                     <dependency>
-                                        <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+                                        <groupId>com.github.goldin.maven-plugins-test</groupId>
                                         <artifactId>maven-copy-plugin.issues.0.2.3.4-a</artifactId>
                                         <version>0.1-SNAPSHOT</version>
                                     </dependency>
@@ -264,7 +264,7 @@
                                 <resource>
                                     <targetPath>${outputDir}/pl-488/3</targetPath>
                                     <dependency>
-                                        <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+                                        <groupId>com.github.goldin.maven-plugins-test</groupId>
                                         <artifactId>maven-copy-plugin.issues.0.2.3.4-a</artifactId>
                                         <version>0.1-SNAPSHOT</version>
                                     </dependency>
@@ -274,7 +274,7 @@
                                 <resource>
                                     <targetPath>${outputDir}/pl-488/4</targetPath>
                                     <dependency>
-                                        <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+                                        <groupId>com.github.goldin.maven-plugins-test</groupId>
                                         <artifactId>maven-copy-plugin.issues.0.2.3.4-a</artifactId>
                                         <version>0.1-SNAPSHOT</version>
                                     </dependency>
@@ -282,7 +282,7 @@
                                 <resource>
                                     <targetPath>${outputDir}/pl-488/5</targetPath>
                                     <dependency>
-                                        <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+                                        <groupId>com.github.goldin.maven-plugins-test</groupId>
                                         <artifactId>maven-copy-plugin.issues.0.2.3.4-a</artifactId>
                                         <version>0.1-SNAPSHOT</version>
                                     </dependency>
@@ -291,7 +291,7 @@
                                 <resource>
                                     <targetPath>${outputDir}/pl-488/6</targetPath>
                                     <dependency>
-                                        <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+                                        <groupId>com.github.goldin.maven-plugins-test</groupId>
                                         <artifactId>maven-copy-plugin.issues.0.2.3.4-a</artifactId>
                                         <version>0.1-SNAPSHOT</version>
                                     </dependency>
@@ -305,7 +305,7 @@
 
 
             <plugin>
-                <groupId>com.goldin.plugins</groupId>
+                <groupId>com.github.goldin</groupId>
                 <artifactId>maven-assert-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
@@ -468,7 +468,7 @@
         <!-- Needed for "pl-469" test above -->
         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
         <dependency>
-            <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+            <groupId>com.github.goldin.maven-plugins-test</groupId>
             <artifactId>maven-copy-plugin.issues.0.2.3.4-a</artifactId>
             <version>0.1-SNAPSHOT</version>
             <scope>compile</scope>

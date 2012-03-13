@@ -6,7 +6,7 @@
                                http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+    <groupId>com.github.goldin.maven-plugins-test</groupId>
     <artifactId>main.tests</artifactId>
     <packaging>pom</packaging>
     <version>0.1-SNAPSHOT</version>
@@ -231,7 +231,7 @@ FTP  tests - [${ftpTests}]
             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
             <plugin>
-                <groupId>com.goldin.plugins</groupId>
+                <groupId>com.github.goldin</groupId>
                 <artifactId>maven-properties-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
@@ -302,7 +302,7 @@ FTP  tests - [${ftpTests}]
 
     <modules>
         <module>cleanup-temp</module>
-        <module>maven-about-plugin</module>
+        <module>about-maven-plugin</module>
         <module>ivy-maven-plugin</module>
         <module>kotlin-maven-plugin</module>
         <module>duplicates-finder-plugin</module>

@@ -6,7 +6,7 @@
                                http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+    <groupId>com.github.goldin.maven-plugins-test</groupId>
     <artifactId>maven-copy-plugin.issues.0.2.3.4-c</artifactId>
     <packaging>jar</packaging>
     <version>0.1-SNAPSHOT</version>
@@ -14,7 +14,7 @@
 
 
     <parent>
-        <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+        <groupId>com.github.goldin.maven-plugins-test</groupId>
         <artifactId>maven-copy-plugin.issues.0.2.3.4</artifactId>
         <version>0.1-SNAPSHOT</version>
     </parent>
@@ -57,7 +57,7 @@
         <plugins>
 
             <plugin>
-                <groupId>com.goldin.plugins</groupId>
+                <groupId>com.github.goldin</groupId>
                 <artifactId>maven-copy-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
@@ -74,7 +74,7 @@
                                     <targetPath>${outputDir}/destFileNameTest-1</targetPath>
                                     <destFileName>aaaa.jar</destFileName>
                                     <dependency>
-                                        <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+                                        <groupId>com.github.goldin.maven-plugins-test</groupId>
                                         <artifactId>maven-copy-plugin.issues.0.2.3.4-a</artifactId>
                                         <version>${project.version}</version>
                                     </dependency>
@@ -86,7 +86,7 @@
                                     <targetPath>${outputDir}/destFileNameTest-2</targetPath>
                                     <destFileName>aaaa.jar</destFileName>
                                     <dependency>
-                                        <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+                                        <groupId>com.github.goldin.maven-plugins-test</groupId>
                                         <artifactId>maven-copy-plugin.issues.0.2.3.4-a</artifactId>
                                         <version>${project.version}</version>
                                     </dependency>
@@ -98,7 +98,7 @@
                                     <targetPath>${outputDir}/destFileNameTest-3</targetPath>
                                     <destFileName>aaaa.jar</destFileName>
                                     <dependency>
-                                        <groupId>com.goldin.plugins.maven-plugins-test</groupId>
+                                        <groupId>com.github.goldin.maven-plugins-test</groupId>
                                         <artifactId>maven-copy-plugin.issues.0.2.3.4-a</artifactId>
                                         <version>${project.version}</version>
                                     </dependency>
@@ -691,7 +691,7 @@ echo {{ '"[' + project.basedir + '] - [' + project.groupId + ':' + project.artif
             </plugin>
 
             <plugin>
-                <groupId>com.goldin.plugins</groupId>
+                <groupId>com.github.goldin</groupId>
                 <artifactId>maven-assert-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
