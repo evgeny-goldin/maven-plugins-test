@@ -2372,11 +2372,11 @@
                                 new File( outputDir, 'pl-509/1' ).listFiles().size() == 21
                                 <!--new File( outputDir, 'pl-509/1' ).directorySize()    == 4499219-->
                                 new File( outputDir, 'pl-509/2' ).listFiles().size() == 6
-                                new File( outputDir, 'pl-509/2' ).directorySize()    == 2394151
+                                new File( outputDir, 'pl-509/2' ).directorySize()    == 2431079
                                 new File( outputDir, 'pl-509/3' ).listFiles().size() == 3
                                 new File( outputDir, 'pl-509/3' ).directorySize()    == 250164
                                 new File( outputDir, 'pl-509/4' ).listFiles().size() == 18
-                                new File( outputDir, 'pl-509/4' ).directorySize()    == 4249055
+                                new File( outputDir, 'pl-509/4' ).directorySize()    == 4278733
                                 new File( outputDir, 'pl-509/5' ).listFiles().size() == 6
                                 new File( outputDir, 'pl-509/5' ).directorySize()    == 9595383
                                 new File( outputDir, 'pl-509/6' ).listFiles().size() == 3
