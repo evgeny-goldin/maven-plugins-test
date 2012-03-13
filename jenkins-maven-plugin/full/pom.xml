@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns              = "http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi          = "http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0
+                               http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.github.goldin.maven-plugins-test</groupId>
+    <artifactId>jenkins-maven-plugin.full</artifactId>
+    <packaging>pom</packaging>
+    <version>0.1-SNAPSHOT</version>
+    <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
+
+
+    <parent>
+        <groupId>com.github.goldin.maven-plugins-test</groupId>
+        <artifactId>jenkins-maven-plugin</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+
+    <properties>
+        <jobsToTest>16</jobsToTest>
+    </properties>
+
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>com.github.goldin</groupId>
+                <artifactId>jenkins-maven-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <execution>
+                        <id>generate-jenkins-jobs</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${configs-outputDirectory}</outputDirectory>
+                            <generationPom>http://github.com/evgeny-goldin/maven-plugins-test/blob/master/jenkins-maven-plugin/full/pom.xml</generationPom>
+                            <jenkinsUrl>http://evgeny-goldin.org/jenkins</jenkinsUrl>
+                            <timestamp>false</timestamp>
+                            <jobs>
+                                <job>
+                                    <id>base-git</id>
+                                    <abstract>true</abstract>
+                                    <scmType>git</scmType>
+                                    <mavenName>apache-maven-3</mavenName>
+                                    <jdkName>jdk1.6.0</jdkName>
+                                    <daysToKeep>3</daysToKeep>
+                                    <numToKeep>3</numToKeep>
+                                </job>
+
+                                <job>
+                                    <id>base-svn</id>
+                                    <abstract>true</abstract>
+                                    <parent>base-git</parent>
+                                    <scmType>svn</scmType>
+                                </job>
+
+                                <job>
+                                    <id>github-maven-plugins-master</id>
+                                    <parent>base-git</parent>
+                                    <repository>
+                                        <remote>${maven-plugins-repo}</remote>
+                                    </repository>
+                                </job>
+
+                                <job>
+                                    <id>github-maven-plugins-dev</id>
+                                    <parent>base-git</parent>
+                                    <repository>
+                                        <remote>${maven-plugins-repo}</remote>
+                                        <gitBranch>dev</gitBranch>
+                                    </repository>
+                                </job>
+
+                                <job>
+                                    <id>github-maven-plugins-master-1</id>
+                                    <parent>base-git</parent>
+                                    <repository>
+                                        <remote>${maven-plugins-repo}</remote>
+                                    </repository>
+                                    <localRepoBase>${localM2Repo}</localRepoBase>
+                                    <localRepo>maven-plugins-master-1</localRepo>
+                                </job>
+
+                                <job>
+                                    <id>github-maven-plugins-master-2</id>
+                                    <parent>base-git</parent>
+                                    <repository>
+                                        <remote>${maven-plugins-repo}</remote>
+                                    </repository>
+                                    <localRepoBase>${localM2Repo}</localRepoBase>
+                                </job>
+
+                                <job>
+                                    <id>github-maven-plugins-master-3</id>
+                                    <parent>base-git</parent>
+                                    <repository>
+                                        <remote>${maven-plugins-repo}</remote>
+                                    </repository>
+                                    <localRepoBase>${localM2Repo}</localRepoBase>
+                                    <localRepo>maven-plugins-master-3</localRepo>
+                                    <mavenOpts>-server -Xmx256m</mavenOpts>
+                                    <mail>
+                                        <recipients>evgenyg@gmail.com evgeny.goldin@gmail.com</recipients>
+                                    </mail>
+                                </job>
+
+                                <job>
+                                    <id>github-maven-plugins-master-4</id>
+                                    <parent>base-git</parent>
+                                    <repository>
+                                        <remote>${maven-plugins-repo}</remote>
+                                    </repository>
+                                    <privateRepository>true</privateRepository>
+                                </job>
+
+                                <job>
+                                    <id>gitorious-JBoss EJB 3-master</id>
+                                    <parent>base-git</parent>
+                                    <repository>
+                                        <remote>git://gitorious.org/jboss-ejb3/jboss-ejb3-context.git</remote>
+                                    </repository>
+                                </job>
+
+                                <job>
+                                    <id>repo.or.cz-jgit-master</id>
+                                    <parent>base-git</parent>
+                                    <repository>
+                                        <remote>git://repo.or.cz/jgit.git</remote>
+                                    </repository>
+                                </job>
+
+                                <job>
+                                    <id>gitorious-wsarena3-master</id>
+                                    <parent>base-git</parent>
+                                    <repository>
+                                        <remote>git://gitorious.org/esp-home/wsarena3.git</remote>
+                                    </repository>
+                                    <invoke>
+                                        <jobs>gitorious-wsarena3-version1</jobs>
+                                        <always>true</always>
+                                        <triggerWithoutParameters>true</triggerWithoutParameters>
+                                    </invoke>
+                                </job>
+
+                                <job>
+                                    <id>gitorious-wsarena3-version1</id>
+                                    <parent>base-git</parent>
+                                    <repository>
+                                        <remote>git://gitorious.org/esp-home/wsarena3.git</remote>
+                                        <gitBranch>version1</gitBranch>
+                                    </repository>
+                                    <invoke>
+                                        <jobs>googlecode-google-guice-trunk, googlecode-google-guice-2.0-maven</jobs>
+                                        <triggerWithoutParameters>false</triggerWithoutParameters>
+                                        <currentBuildParams>true</currentBuildParams>
+                                        <gitCommitParam>true</gitCommitParam>
+                                        <params>
+                                            a = b
+                                            c = d
+                                        </params>
+                                        <propertiesFileParams>file.properties</propertiesFileParams>
+                                    </invoke>
+                                </job>
+
+                                <job>
+                                    <id>googlecode-google-guice-trunk</id>
+                                    <parent>base-svn</parent>
+                                    <useUpdate>true</useUpdate>
+                                    <daysToKeep>7</daysToKeep>
+                                    <mavenName>apache-maven-3</mavenName>
+                                    <repository>
+                                        <remote>http://google-guice.googlecode.com/svn/trunk/</remote>
+                                    </repository>
+                                    <invoke>
+                                        <jobs>googlecode-facebook-java-api-trunk, googlecode-facebook-java-api-fbapi-2.0.0</jobs>
+                                        <failed>true</failed>
+                                        <currentBuildParams>true</currentBuildParams>
+                                        <subversionRevisionParam>true</subversionRevisionParam>
+                                    </invoke>
+                                    <trigger>
+                                        <type>timer</type>
+                                        <expression>0 12 * * *</expression>
+                                    </trigger>
+                                </job>
+
+                                <job>
+                                    <id>googlecode-google-guice-2.0-maven</id>
+                                    <parent>base-svn</parent>
+                                    <daysToKeep>7</daysToKeep>
+                                    <repository>
+                                        <remote>http://google-guice.googlecode.com/svn/branches/2.0-maven/</remote>
+                                    </repository>
+                                    <invoke>
+                                        <jobs>googlecode-facebook-java-api-trunk, googlecode-facebook-java-api-fbapi-2.0.0</jobs>
+                                        <unstable>true</unstable>
+                                    </invoke>
+                                    <trigger>
+                                        <type>timer</type>
+                                        <expression>0 12 * * *</expression>
+                                        <description>[12:00] - daily build</description>
+                                    </trigger>
+                                </job>
+
+                                <job>
+                                    <id>googlecode-facebook-java-api-trunk</id>
+                                    <parent>base-svn</parent>
+                                    <daysToKeep>7</daysToKeep>
+                                    <repository>
+                                        <remote>http://facebook-java-api.googlecode.com/svn/trunk/</remote>
+                                    </repository>
+                                    <invoke>
+                                        <jobs>googlecode-facebook-java-api-fbapi-2.0.0</jobs>
+                                        <unstable>true</unstable>
+                                        <failed>true</failed>
+                                    </invoke>
+                                    <trigger>
+                                        <type>scm</type>
+                                        <expression>*/10 * * * *</expression>
+                                    </trigger>
+                                </job>
+
+                                <job>
+                                    <id>googlecode-facebook-java-api-fbapi-2.0.0</id>
+                                    <parent>base-svn</parent>
+                                    <daysToKeep>7</daysToKeep>
+                                    <repository>
+                                        <remote>http://facebook-java-api.googlecode.com/svn/branches/fbapi-2.0.0/</remote>
+                                    </repository>
+                                    <invoke>
+                                        <jobs>github-maven-plugins-master</jobs>
+                                        <stable>false</stable>
+                                        <unstable>true</unstable>
+                                    </invoke>
+                                    <trigger>
+                                        <type>scm</type>
+                                        <expression>*/10 * * * *</expression>
+                                        <description>Check SCM for changes every 10 minutes</description>
+                                    </trigger>
+                                </job>
+
+                                <job>
+                                    <id>simple-wicket-full</id>
+                                    <scmType>cvs</scmType>
+                                    <mavenName>apache-maven-2</mavenName>
+                                    <jdkName>jdk1.6.0</jdkName>
+                                    <repository>
+                                        <remote>:pserver:anonymous@simple-wicket.cvs.sourceforge.net:/cvsroot/simple-wicket</remote>
+                                        <cvsModule>simple-wicket</cvsModule>
+                                        <!-- Default -->
+                                        <cvsBranch></cvsBranch>
+                                        <!-- Default -->
+                                        <cvsRsh></cvsRsh>
+                                        <!-- Default -->
+                                        <cvsExcludedRegions></cvsExcludedRegions>
+                                        <!-- Default -->
+                                        <cvsTag>false</cvsTag>
+                                        <!-- Default -->
+                                        <cvsUpdate>true</cvsUpdate>
+                                        <!-- Default -->
+                                        <cvsLegacy>false</cvsLegacy>
+                                        <cvsRepositoryBrowser>ViewCVS</cvsRepositoryBrowser>
+                                        <cvsRepositoryBrowserUrl>http://simple-wicket.cvs.sourceforge.net/viewvc/</cvsRepositoryBrowserUrl>
+                                    </repository>
+                                </job>
+
+                                <job>
+                                    <id>generate-jobs</id>
+                                    <parent>base-git</parent>
+                                    <numToKeep>1</numToKeep>
+                                    <repository>
+                                        <remote>${maven-plugins-test-repo}</remote>
+                                    </repository>
+                                    <pom>jenkins-maven-plugin/pom.xml</pom>
+                                    <localRepoBase>${localM2Repo}</localRepoBase>
+                                    <process>
+                                    {{
+                                        <!-- http://groovy.codehaus.org/gapi/groovy/util/Node.html -->
+                                        def prebuilders = new Node( node,        'prebuilders' )
+                                        def shell       = new Node( prebuilders, 'hudson.tasks.Shell' )
+                                        def command     = new Node( shell,       'command' , pluginsRepoCleanup )
+                                    }}
+                                    </process>
+                                </job>
+                            </jobs>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

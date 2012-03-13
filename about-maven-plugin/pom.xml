@@ -295,7 +295,7 @@
                                     </dependency>
                                     <dependency>
                                         <groupId>com.github.goldin</groupId>
-                                        <artifactId>maven-jenkins-plugin</artifactId>
+                                        <artifactId>jenkins-maven-plugin</artifactId>
                                         <version>${plugins-version}</version>
                                     </dependency>
                                     <dependency>
@@ -411,7 +411,7 @@
                                 ${outputDir}/pl-483/about~com.github.goldin~kotlin-maven-plugin~${plugins-version}.txt
                                 ${outputDir}/pl-483/about~com.github.goldin~maven-copy-plugin~${plugins-version}.txt
                                 ${outputDir}/pl-483/about~com.github.goldin~maven-find-plugin~${plugins-version}.txt
-                                ${outputDir}/pl-483/about~com.github.goldin~maven-jenkins-plugin~${plugins-version}.txt
+                                ${outputDir}/pl-483/about~com.github.goldin~jenkins-maven-plugin~${plugins-version}.txt
                                 ${outputDir}/pl-483/about~com.github.goldin~maven-mail-plugin~${plugins-version}.txt
                                 ${outputDir}/pl-483/about~com.github.goldin~maven-properties-plugin~${plugins-version}.txt
                                 ${outputDir}/pl-483/about~com.github.goldin~maven-spring-batch-plugin~${plugins-version}.txt

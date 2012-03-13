@@ -306,7 +306,7 @@ FTP  tests - [${ftpTests}]
         <module>ivy-maven-plugin</module>
         <module>kotlin-maven-plugin</module>
         <module>duplicates-finder-plugin</module>
-        <module>maven-jenkins-plugin</module>
+        <module>jenkins-maven-plugin</module>
         <module>maven-copy-plugin</module>
         <module>maven-properties-plugin</module>
         <module>maven-find-plugin</module>

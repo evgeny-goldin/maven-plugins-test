@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns              = "http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi          = "http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0
+                               http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.github.goldin.maven-plugins-test</groupId>
+    <artifactId>jenkins-maven-plugin</artifactId>
+    <packaging>pom</packaging>
+    <version>0.1-SNAPSHOT</version>
+    <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
+
+
+    <parent>
+        <groupId>com.github.goldin.maven-plugins-test</groupId>
+        <artifactId>main.tests</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+
+    <properties>
+        <configs-outputDirectory>${user.home}/.jenkins/jobs</configs-outputDirectory>
+        <maven-plugins-repo>git://github.com/evgeny-goldin/maven-plugins.git</maven-plugins-repo>
+        <maven-plugins-test-repo>git://github.com/evgeny-goldin/maven-plugins-test.git</maven-plugins-test-repo>
+        <jobsToTest>0</jobsToTest>
+        <localM2Repo>/home/evgenyg/.m2/repo</localM2Repo>
+        <pluginsRepoCleanup>rm -rf ${localM2Repo}/com/goldin</pluginsRepoCleanup>
+    </properties>
+
+
+    <modules>
+        <module>issues</module>
+        <module>full</module>
+        <module>google-guice</module>
+        <module>standalone</module>
+        <module>jenkins-book</module>
+    </modules>
+
+
+    <build>
+        <plugins>
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- Verifying configs generated have not changed -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+            <plugin>
+                <groupId>com.github.goldin</groupId>
+                <artifactId>maven-assert-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <execution>
+                        <id>verify-configs</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <runIf>{{ ( jobsToTest as int ) > 0 }}</runIf>
+                            <endOfLine>windows</endOfLine>
+                            <assertEqual>
+                                ${project.basedir}/src/test/resources/configs/|${configs-outputDirectory}|**/config.xml
+                            </assertEqual>
+                            <assertGroovy>
+                                new File( project.basedir, 'src/test/resources/configs' ).listFiles().size() == ( jobsToTest as int )
+                                new File( project.basedir, 'src/test/resources/configs' ).listFiles().every { it.directory &amp;&amp; it.listFiles().with{ ( size() == 1 ) &amp;&amp; ( delegate[ 0 ].name == 'config.xml' ) }}
+                            </assertGroovy>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

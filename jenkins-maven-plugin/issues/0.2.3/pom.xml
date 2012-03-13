@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns              = "http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi          = "http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0
+                               http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.github.goldin.maven-plugins-test</groupId>
+    <artifactId>jenkins-maven-plugin.issues-0.2.3</artifactId>
+    <packaging>pom</packaging>
+    <version>0.1-SNAPSHOT</version>
+    <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
+
+
+    <parent>
+        <groupId>com.github.goldin.maven-plugins-test</groupId>
+        <artifactId>jenkins-maven-plugin.issues</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+
+    <properties>
+        <jobsToTest>1</jobsToTest>
+    </properties>
+
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>com.github.goldin</groupId>
+                <artifactId>jenkins-maven-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <execution>
+                        <id>generate-jenkins-jobs</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${configs-outputDirectory}</outputDirectory>
+                            <generationPom>https://github.com/evgeny-goldin/maven-plugins-test/blob/master/jenkins-maven-plugin/issues/0.2.3/pom.xml</generationPom>
+                            <jenkinsUrl>http://evgeny-goldin.org/jenkins</jenkinsUrl>
+                            <timestamp>false</timestamp>
+                            <jobs>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- http://evgeny-goldin.org/youtrack/issue/pl-460                 -->
+                                <!-- "Empty <pom> element in freestyle job maven task uses pom.xml" -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <job>
+                                    <id>pl-460</id>
+                                    <jobType>free</jobType>
+                                    <tasks>
+                                        <maven>
+                                            <mavenName>apache-maven-3</mavenName>
+                                            <targets>
+org.apache.maven.plugins:maven-archetype-plugin:2.0:generate -DinteractiveMode=false -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-webapp -DarchetypeVersion=1.0 -DgroupId=com.test -DartifactId=something -Dpackage=jar
+                                            </targets>
+                                            <pom>false</pom>
+                                        </maven>
+                                    </tasks>
+                                </job>
+                            </jobs>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>
