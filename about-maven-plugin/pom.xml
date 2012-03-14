@@ -426,7 +426,7 @@
                                 new File( outputDir, 'pl-483' ).listFiles().every{ File f -> f.text.readLines().any{ it.trim() ==~ /^Commit Author\s+:\s+\[.+?\]$/ }}
                                 new File( outputDir, 'pl-483' ).listFiles().every{ File f -> f.text.readLines().any{ it.trim() ==~ /^Commit Message\s+:\s+\[.+?\]$/ }}
                                 new File( outputDir, 'pl-483' ).listFiles().every{ File f -> f.text.readLines().any{ it.trim() ==~ /^.+?\Qorg.apache.maven:maven-core:jar\E.+?$/ }}
-                                new File( outputDir, 'pl-483' ).listFiles().every{ File f -> f.text.readLines().any{ it.trim() ==~ /^.+?\Qcom.goldin:gcommons:jar\E.+?$/ }}
+                                new File( outputDir, 'pl-483' ).listFiles().every{ File f -> f.text.readLines().any{ it.trim() ==~ /^.+?\Qcom.github.goldin:gcommons:jar\E.+?$/ }}
                                 new File( outputDir, 'pl-483' ).listFiles().every{ File f -> f.text.readLines().any{ it.trim() ==~ /^.+?\Qjunit:junit:jar\E.+?$/ }}
                                 new File( outputDir, 'pl-483' ).listFiles().every{ File f -> f.text.readLines().any{ it.trim() ==~ /^.+?\Qorg.codehaus.plexus:plexus-utils:jar\E.+?$/ }}
                             </assertGroovy>
