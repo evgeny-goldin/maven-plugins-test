@@ -668,7 +668,7 @@
                             </shouldFailAssertFiles>
                             <assertGroovy>
                                 new File( outputDir, 'pack-exclude/unpack' ).listFiles().size() == 10
-                                new File( outputDir, 'pack-exclude/unpack' ).directorySize()    == 110
+                                new File( outputDir, 'pack-exclude/unpack' ).directorySize()    == 104
 
                                 new File( outputDir, 'latestTestSelect/bb.txt' ).text
                               ! new File( outputDir, 'runIf/1.txt' ).text
