@@ -290,7 +290,7 @@
                                     </dependency>
                                     <dependency>
                                         <groupId>com.github.goldin</groupId>
-                                        <artifactId>maven-find-plugin</artifactId>
+                                        <artifactId>find-maven-plugin</artifactId>
                                         <version>${plugins-version}</version>
                                     </dependency>
                                     <dependency>
@@ -410,7 +410,7 @@
                                 ${outputDir}/pl-483/about~com.github.goldin~ivy-maven-plugin~${plugins-version}.txt
                                 ${outputDir}/pl-483/about~com.github.goldin~kotlin-maven-plugin~${plugins-version}.txt
                                 ${outputDir}/pl-483/about~com.github.goldin~copy-maven-plugin~${plugins-version}.txt
-                                ${outputDir}/pl-483/about~com.github.goldin~maven-find-plugin~${plugins-version}.txt
+                                ${outputDir}/pl-483/about~com.github.goldin~find-maven-plugin~${plugins-version}.txt
                                 ${outputDir}/pl-483/about~com.github.goldin~jenkins-maven-plugin~${plugins-version}.txt
                                 ${outputDir}/pl-483/about~com.github.goldin~maven-mail-plugin~${plugins-version}.txt
                                 ${outputDir}/pl-483/about~com.github.goldin~properties-maven-plugin~${plugins-version}.txt

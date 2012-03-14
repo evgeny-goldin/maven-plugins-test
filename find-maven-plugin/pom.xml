@@ -7,7 +7,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.goldin.maven-plugins-test</groupId>
-    <artifactId>maven-find-plugin</artifactId>
+    <artifactId>find-maven-plugin</artifactId>
     <packaging>jar</packaging>
     <version>0.1-SNAPSHOT</version>
     <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
@@ -58,7 +58,7 @@
 
             <plugin>
                 <groupId>com.github.goldin</groupId>
-                <artifactId>maven-find-plugin</artifactId>
+                <artifactId>find-maven-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
                     <execution>
@@ -161,8 +161,8 @@
                                 ${rootPath}/README.txt
                                 ${rootPath}/copy-maven-plugin
                                 ${rootPath}/copy-maven-plugin/issues/0.2/0.2-beta-5/pom.xml
-                                ${rootPath}/maven-find-plugin
-                                ${rootPath}/maven-find-plugin/pom.xml
+                                ${rootPath}/find-maven-plugin
+                                ${rootPath}/find-maven-plugin/pom.xml
                                 ${rootPath}/jenkins-maven-plugin
                                 ${rootPath}/jenkins-maven-plugin/issues/0.2-beta-2/src/test/resources/configs/pl-18/config.xml
                                 ${rootPath}/properties-maven-plugin
