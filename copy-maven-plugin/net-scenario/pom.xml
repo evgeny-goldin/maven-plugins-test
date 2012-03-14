@@ -164,7 +164,7 @@
 
             <plugin>
                 <groupId>com.github.goldin</groupId>
-                <artifactId>maven-sshexec-plugin</artifactId>
+                <artifactId>sshexec-maven-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
                     <execution>
