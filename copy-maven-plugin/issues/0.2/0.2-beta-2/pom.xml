@@ -261,7 +261,7 @@
                                 ${outputDir}/pl-233/start-gmi-2.bat
                             </assertFiles>
                             <assertGroovy>
-                                new File( outputDir, 'pl-233/start-gmi-1.bat' ).text == "${testProperty}\r\n${anotherTestProperty}\r\n${spring-version}"
+                                new File( outputDir, 'pl-233/start-gmi-1.bat' ).text == "${testProperty}${anotherTestProperty}${spring-version}"
                                 new File( outputDir, 'pl-233/start-gmi-2.bat' ).text.contains( '${testProperty}' )
                                 new File( outputDir, 'pl-233/start-gmi-2.bat' ).text.contains( '${anotherTestProperty}' )
                                 new File( outputDir, 'pl-233/start-gmi-2.bat' ).text.contains( '${spring-version}' )
