@@ -320,7 +320,7 @@
                                     </dependency>
                                     <dependency>
                                         <groupId>com.github.goldin</groupId>
-                                        <artifactId>maven-timestamp-plugin</artifactId>
+                                        <artifactId>timestamp-maven-plugin</artifactId>
                                         <version>${plugins-version}</version>
                                     </dependency>
                                 </dependencies>
@@ -416,7 +416,7 @@
                                 ${outputDir}/pl-483/about~com.github.goldin~properties-maven-plugin~${plugins-version}.txt
                                 ${outputDir}/pl-483/about~com.github.goldin~maven-spring-batch-plugin~${plugins-version}.txt
                                 ${outputDir}/pl-483/about~com.github.goldin~maven-sshexec-plugin~${plugins-version}.txt
-                                ${outputDir}/pl-483/about~com.github.goldin~maven-timestamp-plugin~${plugins-version}.txt
+                                ${outputDir}/pl-483/about~com.github.goldin~timestamp-maven-plugin~${plugins-version}.txt
                             </assertFiles>
                             <assertGroovy>
                                 new File( outputDir, 'pl-483' ).listFiles().size() == 15

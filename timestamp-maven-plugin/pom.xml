@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns              = "http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi          = "http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0
+                               http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.github.goldin.maven-plugins-test</groupId>
+    <artifactId>timestamp-maven-plugin</artifactId>
+    <packaging>jar</packaging>
+    <version>0.1-SNAPSHOT</version>
+    <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
+
+
+    <parent>
+        <groupId>com.github.goldin.maven-plugins-test</groupId>
+        <artifactId>main.tests</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.github.goldin</groupId>
+                <artifactId>timestamp-maven-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <execution>
+                        <id>set-zero-timestamp</id>
+                        <goals>
+                            <goal>timestamp</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <time>{{ new Date( 0 ) }}</time>
+                            <timestamps>
+                                <timestamp>
+                                    <property>zeroDate</property>
+                                    <pattern>dd-MM-yyyy</pattern>
+                                </timestamp>
+                                <timestamp>
+                                    <property>zeroDateIsrael</property>
+                                    <pattern>dd-MM-yyyy</pattern>
+                                    <timezone>GMT+2</timezone>
+                                    <locale>UK</locale>
+                                </timestamp>
+                                <timestamp>
+                                    <property>zeroTime</property>
+                                    <pattern>HH:mm:ss</pattern>
+                                </timestamp>
+                                <timestamp>
+                                    <property>zeroTimeIsrael</property>
+                                    <pattern>HH:mm:ss</pattern>
+                                    <timezone>GMT+2</timezone>
+                                    <locale>US</locale>
+                                </timestamp>
+                                <timestamp>
+                                    <property>zeroMonthFr</property>
+                                    <pattern>MMMM</pattern>
+                                    <timezone>CET</timezone> <!-- "Central European Time" -->
+                                    <locale>fr</locale>
+                                </timestamp>
+                                <timestamp>
+                                    <property>zeroMonthHe</property>
+                                    <pattern>MMMM</pattern>
+                                    <locale>he</locale>
+                                </timestamp>
+                            </timestamps>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>set-now-timestamp</id>
+                        <goals>
+                            <goal>timestamp</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <timestamps>
+                                <timestamp>
+                                    <property>nowTimestamp</property>
+                                    <pattern>dd MMMM yyyy, HH:mm:ss</pattern>
+                                </timestamp>
+                                <timestamp>
+                                    <property>nowYear4D</property>
+                                    <pattern>yyyy</pattern>
+                                </timestamp>
+                                <timestamp>
+                                    <property>nowYear2D</property>
+                                    <pattern>yy</pattern>
+                                </timestamp>
+                            </timestamps>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+            <plugin>
+                <groupId>com.github.goldin</groupId>
+                <artifactId>maven-assert-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <execution>
+                        <id>check-timestamps</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertGroovy>
+                                zeroDate       == '01-01-1970'
+                                zeroDateIsrael == '01-01-1970'
+                                zeroTime       == '00:00:00'
+                                zeroTimeIsrael == '02:00:00'
+                                zeroMonthFr    == 'janvier'
+                                zeroMonthHe    == 'ינואר'
+                                nowTimestamp   ==~ /^\d{2} \w+ \d{4}, \d{2}:\d{2}:\d{2}$/ /* "01 February 2011, 00:23:49" */
+                                ( nowYear4D as int ) >= 2011
+                                ( nowYear2D as int ) >= 11 /* This test will fail in year 3000 */
+                            </assertGroovy>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>

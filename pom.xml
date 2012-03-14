@@ -310,7 +310,7 @@ FTP  tests - [${ftpTests}]
         <module>copy-maven-plugin</module>
         <module>properties-maven-plugin</module>
         <module>find-maven-plugin</module>
-        <module>maven-timestamp-plugin</module>
+        <module>timestamp-maven-plugin</module>
         <module>maven-sshexec-plugin</module>
         <module>verify-temp</module>
     </modules>

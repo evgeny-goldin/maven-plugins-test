@@ -34,7 +34,7 @@
 
             <plugin>
                 <groupId>com.github.goldin</groupId>
-                <artifactId>maven-timestamp-plugin</artifactId>
+                <artifactId>timestamp-maven-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
                     <execution>
