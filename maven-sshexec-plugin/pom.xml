@@ -29,7 +29,7 @@
 
             <plugin>
                 <groupId>com.github.goldin</groupId>
-                <artifactId>maven-properties-plugin</artifactId>
+                <artifactId>properties-maven-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
                     <execution>

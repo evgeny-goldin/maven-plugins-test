@@ -232,7 +232,7 @@ FTP  tests - [${ftpTests}]
 
             <plugin>
                 <groupId>com.github.goldin</groupId>
-                <artifactId>maven-properties-plugin</artifactId>
+                <artifactId>properties-maven-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
                     <execution>
@@ -308,7 +308,7 @@ FTP  tests - [${ftpTests}]
         <module>duplicates-finder-plugin</module>
         <module>jenkins-maven-plugin</module>
         <module>copy-maven-plugin</module>
-        <module>maven-properties-plugin</module>
+        <module>properties-maven-plugin</module>
         <module>maven-find-plugin</module>
         <module>maven-timestamp-plugin</module>
         <module>maven-sshexec-plugin</module>

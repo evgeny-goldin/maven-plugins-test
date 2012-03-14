@@ -121,7 +121,7 @@
 
             <plugin>
                 <groupId>com.github.goldin</groupId>
-                <artifactId>maven-properties-plugin</artifactId>
+                <artifactId>properties-maven-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
                     <execution>
@@ -165,8 +165,8 @@
                                 ${rootPath}/maven-find-plugin/pom.xml
                                 ${rootPath}/jenkins-maven-plugin
                                 ${rootPath}/jenkins-maven-plugin/issues/0.2-beta-2/src/test/resources/configs/pl-18/config.xml
-                                ${rootPath}/maven-properties-plugin
-                                ${rootPath}/maven-properties-plugin/issues/0.2-beta-5/pom.xml
+                                ${rootPath}/properties-maven-plugin
+                                ${rootPath}/properties-maven-plugin/issues/0.2-beta-5/pom.xml
                                 ${outputDir}
                                 ${targetPath}
                             </assertFiles>
