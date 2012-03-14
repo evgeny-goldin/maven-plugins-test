@@ -2723,8 +2723,8 @@
                                 ${outputDir}/pl-513-1/16/destFileName
                             </assertFiles>
                             <assertGroovy>
-                                new File( outputDir, 'pl-513-1/8' ).directorySize() == 69
-                                new File( outputDir, 'pl-513-1/9' ).directorySize() == 69
+                                new File( outputDir, 'pl-513-1/8' ).directorySize() == 63
+                                new File( outputDir, 'pl-513-1/9' ).directorySize() == 63
                                 new File( outputDir, 'pl-513-1/8' ).directorySize() == new File( outputDir, 'pl-513-1/9'  ).directorySize()
 
                                 [ 10, 11, 12, 13, 14 ].every{ new File( outputDir, "pl-513-1/$it" ).directorySize() == 302093 }
