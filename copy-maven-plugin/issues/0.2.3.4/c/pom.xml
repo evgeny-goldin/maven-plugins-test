@@ -692,7 +692,7 @@ echo {{ '"[' + project.basedir + '] - [' + project.groupId + ':' + project.artif
 
             <plugin>
                 <groupId>com.github.goldin</groupId>
-                <artifactId>maven-assert-plugin</artifactId>
+                <artifactId>assert-maven-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
                     <execution>

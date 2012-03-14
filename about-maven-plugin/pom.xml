@@ -280,7 +280,7 @@
                                     </dependency>
                                     <dependency>
                                         <groupId>com.github.goldin</groupId>
-                                        <artifactId>maven-assert-plugin</artifactId>
+                                        <artifactId>assert-maven-plugin</artifactId>
                                         <version>${plugins-version}</version>
                                     </dependency>
                                     <dependency>
@@ -335,7 +335,7 @@
 
             <plugin>
                 <groupId>com.github.goldin</groupId>
-                <artifactId>maven-assert-plugin</artifactId>
+                <artifactId>assert-maven-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
                     <execution>
@@ -404,7 +404,7 @@
                             <assertFiles>
                                 ${outputDir}/pl-483/about~com.github.goldin~duplicates-finder-plugin~${plugins-version}.txt
                                 ${outputDir}/pl-483/about~com.github.goldin~about-maven-plugin~${plugins-version}.txt
-                                ${outputDir}/pl-483/about~com.github.goldin~maven-assert-plugin~${plugins-version}.txt
+                                ${outputDir}/pl-483/about~com.github.goldin~assert-maven-plugin~${plugins-version}.txt
                                 ${outputDir}/pl-483/about~com.github.goldin~maven2-common~${plugins-version}.txt
                                 ${outputDir}/pl-483/about~com.github.goldin~maven3-common~${plugins-version}.txt
                                 ${outputDir}/pl-483/about~com.github.goldin~ivy-maven-plugin~${plugins-version}.txt
