@@ -21,7 +21,7 @@
 
 
     <properties>
-        <jobsToTest>2</jobsToTest>
+        <jobsToTest>3</jobsToTest>
     </properties>
 
 
@@ -129,6 +129,18 @@
                                     </parameters>
                                     <blockBuildWhenDownstreamBuilding>true</blockBuildWhenDownstreamBuilding>
                                     <blockBuildWhenUpstreamBuilding>true</blockBuildWhenUpstreamBuilding>
+                                </job>
+                                <job>
+                                    <id>pl-595</id>
+                                    <jobType>free</jobType>
+                                    <disabled>true</disabled>
+                                    <tasks>
+                                        <ant>
+                                            <antName>myAntName</antName>
+                                            <targets>clean</targets>
+                                            <buildFile>build file</buildFile>
+                                        </ant>
+                                    </tasks>
                                 </job>
                             </jobs>
                         </configuration>
