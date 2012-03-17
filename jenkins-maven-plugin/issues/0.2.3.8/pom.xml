@@ -127,6 +127,8 @@
                                             <value>true</value>
                                         </parameter>
                                     </parameters>
+                                    <blockBuildWhenDownstreamBuilding>true</blockBuildWhenDownstreamBuilding>
+                                    <blockBuildWhenUpstreamBuilding>true</blockBuildWhenUpstreamBuilding>
                                 </job>
                             </jobs>
                         </configuration>
