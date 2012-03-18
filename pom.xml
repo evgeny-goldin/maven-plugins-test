@@ -212,6 +212,8 @@
                                 println """
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                                               -=-=-= Running tests =-=-=-
+
+Module     - [${project.groupId}:${project.artifactId}]
 Java       - [${java.version}]
 Maven      - [$mavenVersion]
 Groovy     - [$GroovySystem.version]
