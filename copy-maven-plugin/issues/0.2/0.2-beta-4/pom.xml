@@ -22,7 +22,7 @@
 
     <properties>
         <maven.repo.local>${user.home}/.m2/repository</maven.repo.local>
-        <repoSubFolder>com/goldin</repoSubFolder>
+        <repoSubFolder>com/github/goldin</repoSubFolder>
     </properties>
 
 

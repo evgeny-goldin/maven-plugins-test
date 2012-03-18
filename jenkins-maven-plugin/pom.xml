@@ -26,7 +26,7 @@
         <maven-plugins-test-repo>git://github.com/evgeny-goldin/maven-plugins-test.git</maven-plugins-test-repo>
         <jobsToTest>0</jobsToTest>
         <localM2Repo>/home/evgenyg/.m2/repo</localM2Repo>
-        <pluginsRepoCleanup>rm -rf ${localM2Repo}/com/goldin</pluginsRepoCleanup>
+        <pluginsRepoCleanup>rm -rf ${localM2Repo}/com/github/goldin</pluginsRepoCleanup>
     </properties>
 
 
