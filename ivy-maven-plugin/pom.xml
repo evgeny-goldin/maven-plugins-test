@@ -134,6 +134,52 @@
                             </dependencies>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>dependencies-mix</id>
+                        <goals>
+                            <goal>ivy</goal>
+                        </goals>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <dir>${outputDir}/dependencies-mix</dir>
+                            <dependencies>
+                                <dependency>
+                                    <groupId>ivy.org</groupId>
+                                    <artifactId>bt343</artifactId>
+                                    <version>latest.lastSuccessful</version>
+                                    <classifier>core/annotations</classifier>
+                                </dependency>
+                                <dependency>
+                                    <groupId>ivy.org</groupId>
+                                    <artifactId>bt343</artifactId>
+                                    <version>latest.lastSuccessful</version>
+                                    <classifier>core/asm</classifier>
+                                </dependency>
+                                <dependency>
+                                    <groupId>ivy.org</groupId>
+                                    <artifactId>bt344</artifactId>
+                                    <version>latest.lastSuccessful</version>
+                                    <classifier>kotlin-build-tools</classifier>
+                                </dependency>
+                                <dependency>
+                                    <groupId>ivy.org</groupId>
+                                    <artifactId>bt344</artifactId>
+                                    <version>latest.lastSuccessful</version>
+                                    <classifier>kotlin-runtime</classifier>
+                                </dependency>
+                                <dependency>
+                                    <groupId>org.springframework</groupId>
+                                    <artifactId>spring-core</artifactId>
+                                    <version>${spring-version}</version>
+                                </dependency>
+                                <dependency>
+                                    <groupId>org.apache.ant</groupId>
+                                    <artifactId>ant</artifactId>
+                                    <version>1.8.2</version>
+                                </dependency>
+                            </dependencies>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- Adding Ivy resolver for plugins that follow, so they can resolve Ivy artifacts -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -387,6 +433,13 @@
                                 ${outputDir}/compile/ant-1.8.2.jar
                                 ${outputDir}/compile/log4j-1.2.16.jar
 
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Dependencies mix was copied -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+                                ${outputDir}/dependencies-mix/spring-core-3.1.0.RELEASE.jar
+                                ${outputDir}/dependencies-mix/ant-1.8.2.jar
+
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <!-- IDEA jars were unpacked -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -435,10 +488,11 @@
                                 ${outputDir}/kotlin-6|${outputDir}/kotlin-3
                             </shouldFailAssertEqual>
                             <assertGroovy>
-                                new File( outputDir, 'idea'    ).listFiles().size()        == 2
-                                new File( outputDir, 'compile' ).listFiles().size()        == 10
-                                new File( outputDir, 'idea-artifacts' ).listFiles().size() == 8
-                                new File( outputDir, 'idea-artifacts' ).listFiles().every{ File f -> [ 'annotations', 'asm', 'asm-commons', 'cli-10', 'guava-11.0.1', 'intellij-core', 'picocontainer', 'trove4j' ].any{ f.name ==~ /$it-\d+\.lastSuccessful\.jar/ }}
+                                new File( outputDir, 'idea'             ).listFiles().size() == 2
+                                new File( outputDir, 'compile'          ).listFiles().size() == 10
+                                new File( outputDir, 'dependencies-mix' ).listFiles().size() == 6
+                                new File( outputDir, 'idea-artifacts'   ).listFiles().size() == 8
+                                new File( outputDir, 'idea-artifacts'   ).listFiles().every{ File f -> [ 'annotations', 'asm', 'asm-commons', 'cli-10', 'guava-11.0.1', 'intellij-core', 'picocontainer', 'trove4j' ].any{ f.name ==~ /$it-\d+\.lastSuccessful\.jar/ }}
                             </assertGroovy>
                         </configuration>
                     </execution>
