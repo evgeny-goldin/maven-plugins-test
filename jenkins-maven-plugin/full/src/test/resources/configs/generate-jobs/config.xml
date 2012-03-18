@@ -124,7 +124,7 @@
   <buildWrappers/>
   <prebuilders>
     <hudson.tasks.Shell>
-      <command>rm -rf /home/evgenyg/.m2/repo/com/goldin</command>
+      <command>rm -rf /home/evgenyg/.m2/repo/com/github/goldin</command>
     </hudson.tasks.Shell>
   </prebuilders>
 </maven2-moduleset>
