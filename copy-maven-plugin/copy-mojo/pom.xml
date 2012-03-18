@@ -20,11 +20,6 @@
     </parent>
 
 
-    <properties>
-        <zymicFtp>ftp://evgenyg_zxq:sdaed432e23@evgenyg.zxq.net</zymicFtp>
-    </properties>
-
-
     <build>
         <plugins>
 
@@ -145,27 +140,27 @@
                                 <resource>
                                     <runIf>{{ ftpTests }}</runIf>
                                     <targetPath>${outputDir}/net-ftp/1</targetPath>
-                                    <directory>${zymicFtp}:/</directory>
+                                    <directory>${ftpPath}</directory>
                                     <include>index.html</include>
                                 </resource>
                                 <resource>
                                     <runIf>{{ ftpTests }}</runIf>
                                     <targetPath>${outputDir}/net-ftp/2</targetPath>
-                                    <directory>${zymicFtp}:/apache-maven-3.0.1</directory>
+                                    <directory>${ftpPath}/apache-maven-3.0.1</directory>
                                     <include>lib/no-such-file*.jar</include>
                                     <failIfNotFound>false</failIfNotFound>
                                 </resource>
                                 <resource>
                                     <runIf>{{ ftpTests }}</runIf>
                                     <targetPath>${outputDir}/net-ftp/3</targetPath>
-                                    <directory>${zymicFtp}:/apache-maven-3.0.1/lib</directory>
+                                    <directory>${ftpPath}/apache-maven-3.0.1/lib</directory>
                                     <include>wagon-*.jar</include>
                                     <exclude>wagon-http-*.jar</exclude>
                                 </resource>
                                 <resource>
                                     <runIf>{{ Boolean.valueOf( ftpTests ) &amp;&amp; ( ! mavenVersion.startsWith( '2' )) }}</runIf>
                                     <targetPath>${outputDir}/net-ftp/4</targetPath>
-                                    <directory>${zymicFtp}:/apache-maven-3.0.1</directory>
+                                    <directory>${ftpPath}/apache-maven-3.0.1</directory>
                                     <include>file:${project.basedir}/src/main/resources/ftp-include.txt</include>
                                     <exclude>classpath:/ftp-exclude.txt</exclude>
                                 </resource>
