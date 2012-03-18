@@ -94,7 +94,7 @@
   <builders>
     <hudson.tasks.Shell>
         <command>pwd
-rm -rf /home/evgenyg/.m2/repo/com/goldin
+rm -rf /home/evgenyg/.m2/repo/com/github/goldin
 ls -al
 du -hs .</command>
     </hudson.tasks.Shell>
