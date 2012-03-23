@@ -194,8 +194,8 @@
                             <assertGroovy>
                                 new File( outputDir, 'pl-302/spring-single-1' ).listFiles().size() == 1
                                 new File( outputDir, 'pl-302/spring-single-2' ).listFiles().size() == 1
-                                new File( outputDir, 'pl-302/spring-all'      ).listFiles().size() == 23
-                                new File( outputDir, 'pl-302/spring-test'     ).listFiles().size() == 23
+                                new File( outputDir, 'pl-302/spring-all'      ).listFiles().size() == ${spring-all-dependencies}
+                                new File( outputDir, 'pl-302/spring-test'     ).listFiles().size() == ${spring-all-dependencies}
                                 new File( outputDir, 'pl-302/spring-compile'  ).listFiles().size() == 9
                                 new File( outputDir, 'pl-302/spring-gid'      ).listFiles().size() == 6
                                 new File( outputDir, 'pl-302/spring-aid'      ).listFiles().size() == 2

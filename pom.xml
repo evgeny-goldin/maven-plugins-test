@@ -19,6 +19,7 @@
         <maven-version>3.0.4</maven-version>
         <java-version>1.6</java-version>
         <spring-version>3.1.1.RELEASE</spring-version>
+        <spring-all-dependencies>23</spring-all-dependencies>
         <junit-version>4.10</junit-version>
         <log4j-version>1.2.16</log4j-version>
         <jaxen-version>1.1.1</jaxen-version>
