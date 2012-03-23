@@ -437,7 +437,7 @@
                                 <!-- Dependencies mix was copied -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-                                ${outputDir}/dependencies-mix/spring-core-3.1.0.RELEASE.jar
+                                ${outputDir}/dependencies-mix/spring-core-${spring-version}.jar
                                 ${outputDir}/dependencies-mix/ant-1.8.2.jar
 
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~ -->

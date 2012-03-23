@@ -111,7 +111,7 @@
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-core</artifactId>
-                                        <version>3.1.0.RELEASE</version>
+                                        <version>${spring-version}</version>
                                     </dependency>
                                     <dependenciesAtM2>true</dependenciesAtM2>
                                     <process>{{ assert file.name == 'my-spring.jar' }}</process>
@@ -123,7 +123,7 @@
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-core</artifactId>
-                                        <version>3.1.0.RELEASE</version>
+                                        <version>${spring-version}</version>
                                     </dependency>
                                     <dependenciesAtM2>false</dependenciesAtM2>
                                     <process>{{ assert file.name == 'my-spring.jar' }}</process>
@@ -135,7 +135,7 @@
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-core</artifactId>
-                                        <version>3.1.0.RELEASE</version>
+                                        <version>${spring-version}</version>
                                     </dependency>
                                     <process>{{ assert file.name == 'my-spring.jar' }}</process>
                                 </resource>

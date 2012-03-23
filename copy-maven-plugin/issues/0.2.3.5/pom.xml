@@ -746,17 +746,17 @@
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
-                                        <version>3.1.1.RELEASE</version>
+                                        <version>${spring-version}</version>
                                         <excludeTransitive>false</excludeTransitive>
                                     </dependency>
-                                    <process>{{ assert files.size() == 21 }}</process>
+                                    <process>{{ assert files.size() == 23 }}</process>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-509/2</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
-                                        <version>3.1.1.RELEASE</version>
+                                        <version>${spring-version}</version>
                                         <excludeTransitive>false</excludeTransitive>
                                         <includeGroupIds>org.springframework</includeGroupIds>
                                     </dependency>
@@ -767,7 +767,7 @@
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
-                                        <version>3.1.1.RELEASE</version>
+                                        <version>${spring-version}</version>
                                         <excludeTransitive>false</excludeTransitive>
                                         <includeArtifactIds>commons-pool, commons-logging, easymock</includeArtifactIds>
                                     </dependency>
@@ -778,7 +778,7 @@
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
-                                        <version>3.1.1.RELEASE</version>
+                                        <version>${spring-version}</version>
                                         <excludeTransitive>false</excludeTransitive>
                                         <excludeArtifactIds>commons-logging, commons-pool, easymock</excludeArtifactIds>
                                     </dependency>

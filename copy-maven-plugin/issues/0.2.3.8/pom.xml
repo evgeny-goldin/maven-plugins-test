@@ -894,7 +894,7 @@
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-beans</artifactId>
-                                        <version>3.1.0.RELEASE</version>
+                                        <version>${spring-version}</version>
                                     </dependency>
                                     <filter>${filterM2}</filter>
                                 </resource>
@@ -904,7 +904,7 @@
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-beans</artifactId>
-                                        <version>3.1.0.RELEASE</version>
+                                        <version>${spring-version}</version>
                                         <excludeTransitive>false</excludeTransitive>
                                     </dependency>
                                     <filter>${filterNotM2}</filter>
@@ -952,7 +952,7 @@
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-beans</artifactId>
-                                        <version>3.1.0.RELEASE</version>
+                                        <version>${spring-version}</version>
                                     </dependency>
                                     <filter>${filterM2}</filter>
                                 </resource>
@@ -961,7 +961,7 @@
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-beans</artifactId>
-                                        <version>3.1.0.RELEASE</version>
+                                        <version>${spring-version}</version>
                                         <excludeTransitive>false</excludeTransitive>
                                     </dependency>
                                     <filter>${filterNotM2}</filter>
@@ -1009,7 +1009,7 @@
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-beans</artifactId>
-                                        <version>3.1.0.RELEASE</version>
+                                        <version>${spring-version}</version>
                                     </dependency>
                                     <filter>${filterM2}</filter>
                                 </resource>
@@ -1020,7 +1020,7 @@
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-beans</artifactId>
-                                        <version>3.1.0.RELEASE</version>
+                                        <version>${spring-version}</version>
                                         <excludeTransitive>false</excludeTransitive>
                                     </dependency>
                                     <filter>${filterM2}</filter>
@@ -1072,7 +1072,7 @@
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-beans</artifactId>
-                                        <version>3.1.0.RELEASE</version>
+                                        <version>${spring-version}</version>
                                     </dependency>
                                     <filter>${filterNotM2}</filter>
                                 </resource>
@@ -1083,7 +1083,7 @@
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-beans</artifactId>
-                                        <version>3.1.0.RELEASE</version>
+                                        <version>${spring-version}</version>
                                         <excludeTransitive>false</excludeTransitive>
                                     </dependency>
                                     <filter>${filterNotM2}</filter>
@@ -1356,8 +1356,8 @@
                                 ${outputDir}/pl-567/2/spring-asm.jar
                                 ${outputDir}/pl-567/3/servlet-api.jar
                                 ${outputDir}/pl-567/4/slf4j-api.jar
-                                ${outputDir}/pl-567/11/spring-beans-3.1.0.RELEASE.jar
-                                ${outputDir}/pl-567/22/spring-asm-3.1.0.RELEASE.jar
+                                ${outputDir}/pl-567/11/spring-beans-${spring-version}.jar
+                                ${outputDir}/pl-567/22/spring-asm-${spring-version}.jar
                                 ${outputDir}/pl-567/33/servlet-api-2.3.jar
                                 ${outputDir}/pl-567/44/slf4j-api-1.6.2.jar
                             </assertFiles>
