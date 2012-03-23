@@ -354,8 +354,8 @@
                                 new File( project.build.directory, 'images-2'                                  ).listFiles().size() == 1
                                 new File( project.build.directory, 'images-3'                                  ).listFiles().size() == 1
 
-                                new File( project.build.directory, 'test-deps-transitive-1'                    ).listFiles().size() == ${spring-all-dependencies}
-                                new File( project.build.directory, 'test-deps-transitive-2'                    ).listFiles().size() == ${spring-all-dependencies}
+                                new File( project.build.directory, 'test-deps-transitive-1'                    ).listFiles().size() == ${springAllDependencies}
+                                new File( project.build.directory, 'test-deps-transitive-2'                    ).listFiles().size() == ${springAllDependencies}
                                 new File( project.build.directory, 'test-deps-transitive-GroupId-include-1'    ).listFiles().size() == 3
                                 new File( project.build.directory, 'test-deps-transitive-GroupId-include-2'    ).listFiles().size() == 3
                                 new File( project.build.directory, 'test-deps-transitive-GroupId-include-3'    ).listFiles().size() == 4

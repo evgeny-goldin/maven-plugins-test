@@ -19,7 +19,6 @@
         <maven-version>3.0.4</maven-version>
         <java-version>1.6</java-version>
         <spring-version>3.1.1.RELEASE</spring-version>
-        <spring-all-dependencies>23</spring-all-dependencies>
         <junit-version>4.10</junit-version>
         <log4j-version>1.2.16</log4j-version>
         <jaxen-version>1.1.1</jaxen-version>
@@ -66,9 +65,9 @@
         <pluginManagement>
             <plugins>
 
-                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                <!-- Configuring Jar plugin to pack anything -->
-                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                <!-- Configuring Jar plugin to pack nothing -->
+                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -79,33 +78,6 @@
                             <include>nothing</include>
                         </includes>
                     </configuration>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-enforcer-plugin</artifactId>
-                    <version>1.0.1</version>
-                    <inherited>false</inherited>
-                    <executions>
-                        <execution>
-                            <id>maven-enforcer</id>
-                            <goals>
-                                <goal>display-info</goal>
-                                <goal>enforce</goal>
-                            </goals>
-                            <phase>initialize</phase>
-                            <configuration>
-                                <rules>
-                                    <requireMavenVersion>
-                                        <version>${maven-version}</version>
-                                    </requireMavenVersion>
-                                    <requireJavaVersion>
-                                        <version>${java-version}</version>
-                                    </requireJavaVersion>
-                                </rules>
-                            </configuration>
-                        </execution>
-                    </executions>
                 </plugin>
 
                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -162,7 +134,7 @@
         <plugins>
 
             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-            <!-- Enforcing Maven/Java versions -->
+            <!-- Enforcing Java/Maven versions -->
             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
             <plugin>
@@ -172,21 +144,24 @@
                 <inherited>false</inherited>
                 <executions>
                     <execution>
-                        <id>maven-enforcer-enforce</id>
-                        <goals><goal>enforce</goal></goals>
-                        <phase>validate</phase>
+                        <id>maven-enforcer</id>
+                        <goals>
+                            <goal>display-info</goal>
+                            <goal>enforce</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <rules>
+                                <requireMavenVersion>
+                                    <version>${maven-version}</version>
+                                </requireMavenVersion>
+                                <requireJavaVersion>
+                                    <version>${java-version}</version>
+                                </requireJavaVersion>
+                            </rules>
+                        </configuration>
                     </execution>
                 </executions>
-                <configuration>
-                    <rules>
-                        <requireMavenVersion>
-                            <version>2.2.1</version>
-                        </requireMavenVersion>
-                        <requireJavaVersion>
-                            <version>1.6</version>
-                        </requireJavaVersion>
-                    </rules>
-                </configuration>
             </plugin>
 
             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -228,16 +203,32 @@ FTP  tests - [${ftpTests}]
                 </executions>
             </plugin>
 
-
-            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-            <!-- Setting FTP and SCP paths -->
-            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- ~~~~~~~~~~~~~~~~~~ -->
+            <!-- Setting properties -->
+            <!-- ~~~~~~~~~~~~~~~~~~ -->
 
             <plugin>
                 <groupId>com.github.goldin</groupId>
                 <artifactId>properties-maven-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <execution>
+                        <id>set-spring-deps</id>
+                        <goals>
+                            <goal>set-properties</goal>
+                        </goals>
+                        <phase>validate</phase>
+                        <configuration>
+                            <runIf>{{ session.executionProperties.springAllDependencies == null }}</runIf>
+                            <property>
+                                <name>springAllDependencies</name>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- There is a different number of Spring transitive dependencies on different platforms -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <value>{{ Boolean.valueOf( ifLinux ) ? 21 : 23 }}</value>
+                            </property>
+                        </configuration>
+                    </execution>
                     <execution>
                         <id>set-ftp-scp-paths-slowTests</id>
                         <goals>
@@ -298,7 +289,6 @@ FTP  tests - [${ftpTests}]
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
 

@@ -749,7 +749,7 @@
                                         <version>${spring-version}</version>
                                         <excludeTransitive>false</excludeTransitive>
                                     </dependency>
-                                    <process>{{ assert files.size() == ${spring-all-dependencies} }}</process>
+                                    <process>{{ assert files.size() == ${springAllDependencies} }}</process>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-509/2</targetPath>
@@ -782,7 +782,7 @@
                                         <excludeTransitive>false</excludeTransitive>
                                         <excludeArtifactIds>commons-logging, commons-pool, easymock</excludeArtifactIds>
                                     </dependency>
-                                    <process>{{ assert files.size() == ( ${spring-all-dependencies} - 3 ) }}</process>
+                                    <process>{{ assert files.size() == ( ${springAllDependencies} - 3 ) }}</process>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-509/5</targetPath>
@@ -2369,7 +2369,7 @@
                                 ${outputDir}/pl-509/6/*.jar
                             </assertFiles>
                             <assertGroovy>
-                                new File( outputDir, 'pl-509/1' ).listFiles().size() == ${spring-all-dependencies}
+                                new File( outputDir, 'pl-509/1' ).listFiles().size() == ${springAllDependencies}
                                 new File( outputDir, 'pl-509/1' ).directorySize()    == 4616804
                                 new File( outputDir, 'pl-509/2' ).listFiles().size() == 6
                                 new File( outputDir, 'pl-509/2' ).directorySize()    == 2431079

@@ -48,15 +48,16 @@
                 </executions>
             </plugin>
 
-            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-            <!-- Downloading and unpacking Kotlin distribution -->
-            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-
             <plugin>
                 <groupId>com.github.goldin</groupId>
                 <artifactId>copy-maven-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- Downloading and unpacking Kotlin distribution -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
                     <execution>
                         <id>unpack-kotlin-distribution</id>
                         <goals>
@@ -72,6 +73,25 @@
                                     <version>latest.lastSuccessful</version>
                                     <type>zip</type>
                                 </dependency>
+                                <unpack>true</unpack>
+                            </resource>
+                        </configuration>
+                    </execution>
+
+                    <!-- ~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- Unpacking unit tests -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~ -->
+
+                    <execution>
+                        <id>unpack-unit-tests</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>process-test-classes</phase>
+                        <configuration>
+                            <resource>
+                                <targetPath>${outputDir}/tests-out-jar</targetPath>
+                                <file>${outputDir}/out-tests-module.jar</file>
                                 <unpack>true</unpack>
                             </resource>
                         </configuration>
@@ -196,29 +216,6 @@
                 <configuration>
                     <verboseIvy>false</verboseIvy>
                 </configuration>
-            </plugin>
-
-
-            <plugin>
-                <groupId>com.github.goldin</groupId>
-                <artifactId>copy-maven-plugin</artifactId>
-                <version>${plugins-version}</version>
-                <executions>
-                    <execution>
-                        <id>unpack-unit-tests</id>
-                        <goals>
-                            <goal>copy</goal>
-                        </goals>
-                        <phase>process-test-classes</phase>
-                        <configuration>
-                            <resource>
-                                <targetPath>${outputDir}/tests-out-jar</targetPath>
-                                <file>${outputDir}/out-tests-module.jar</file>
-                                <unpack>true</unpack>
-                            </resource>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
 
             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
