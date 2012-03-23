@@ -232,7 +232,7 @@
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <!-- There is a different number of Spring transitive dependencies on different platforms -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                                <value>{{ Boolean.valueOf( isLinux ) ? 21 : 23 }}</value>
+                                <value>{{ ${isLinux} ? 21 : 23 }}</value>
                             </property>
                         </configuration>
                     </execution>
