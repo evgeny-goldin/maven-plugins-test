@@ -68,7 +68,7 @@
                         </goals>
                         <phase>initialize</phase>
                         <configuration>
-                            <runIf>{{ ${ifWindows} }}</runIf>
+                            <runIf>{{ ${isWindows} }}</runIf>
                             <file>pom.xml</file>
                             <startDir>${targetPath}</startDir>
                             <propertyName>pomPath</propertyName>
@@ -81,7 +81,7 @@
                         </goals>
                         <phase>initialize</phase>
                         <configuration>
-                            <runIf>{{ ${ifLinux} }}</runIf>
+                            <runIf>{{ ${isLinux} }}</runIf>
                             <file>pom.xml</file>
                             <startDir>${targetPath}</startDir>
                             <propertyName>pomPath</propertyName>
@@ -94,7 +94,7 @@
                         </goals>
                         <phase>initialize</phase>
                         <configuration>
-                            <runIf>{{ ${ifMac} }}</runIf>
+                            <runIf>{{ ${isMac} }}</runIf>
                             <file>pom.xml</file>
                             <startDir>${targetPath}</startDir>
                             <propertyName>pomPath</propertyName>

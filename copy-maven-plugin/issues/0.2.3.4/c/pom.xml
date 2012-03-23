@@ -653,7 +653,7 @@
                         </goals>
                         <phase>initialize</phase>
                         <configuration>
-                            <runIf>{{ ${ifLinux} || ${ifMac} }}</runIf>
+                            <runIf>{{ ${isLinux} || ${isMac} }}</runIf>
                             <resources>
                                 <resource>
                                     <targetPath>${outputDir}/pl-463/1</targetPath>
@@ -887,7 +887,7 @@ echo {{ '"[' + project.basedir + '] - [' + project.groupId + ':' + project.artif
                         </goals>
                         <phase>test</phase>
                         <configuration>
-                            <runIf>{{ ${ifLinux} || ${ifMac} }}</runIf>
+                            <runIf>{{ ${isLinux} || ${isMac} }}</runIf>
                             <assertFiles>
                                 ${outputDir}/pl-463/1/test.sh
                                 ${outputDir}/pl-463/2/test.sh

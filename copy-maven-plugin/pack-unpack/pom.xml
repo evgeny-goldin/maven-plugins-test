@@ -439,7 +439,7 @@
                         </goals>
                         <phase>validate</phase>
                         <configuration>
-                            <runIf>{{ ${ifLinux} || ${ifMac} }}</runIf>
+                            <runIf>{{ ${isLinux} || ${isMac} }}</runIf>
                             <resources>
                                 <resource>
                                     <targetPaths>
@@ -588,7 +588,7 @@
                         </goals>
                         <phase>test</phase>
                         <configuration>
-                            <runIf>{{ ${ifLinux} || ${ifMac} }}</runIf>
+                            <runIf>{{ ${isLinux} || ${isMac} }}</runIf>
                             <assertFiles>
                                 ${outputDir}/filemode/
                                 ${outputDir}/filemode/1

@@ -34,9 +34,9 @@
         <!-- OS-specific tests -->
         <!-- ~~~~~~~~~~~~~~~~~ -->
 
-        <ifWindows>osName.toLowerCase().contains( 'windows' )</ifWindows>
-        <ifLinux>  osName.toLowerCase().contains( 'linux'   )</ifLinux>
-        <ifMac>    osName.toLowerCase().contains( 'mac os'  )</ifMac>
+        <isWindows>System.getProperty( 'os.name' ).toLowerCase().contains( 'windows' )</isWindows>
+        <isLinux>  System.getProperty( 'os.name' ).toLowerCase().contains( 'linux'   )</isLinux>
+        <isMac>    System.getProperty( 'os.name' ).toLowerCase().contains( 'mac os'  )</isMac>
     </properties>
 
 
@@ -184,18 +184,25 @@
                                 def props = new Properties()
                                 props.load( org.apache.maven.Maven.class.getResourceAsStream( '/META-INF/maven/org.apache.maven/maven-core/pom.properties' ))
 
-                                def mavenVersion = props.getProperty( 'version', 'Unknown' ).trim()
+                                final mavenVersion = props.getProperty( 'version', 'Unknown' ).trim()
+                                final isWindows    = ${isWindows}
+                                final isLinux      = ${isLinux}
+                                final isMac        = ${isMac}
+
                                 println """
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                                               -=-=-= Running tests =-=-=-
 
-Module     - [${project.groupId}:${project.artifactId}]
-Java       - [${java.version}]
-Maven      - [$mavenVersion]
-Groovy     - [$GroovySystem.version]
-Plugins    - [${plugins-version}]
-Slow tests - [${slowTests}]
-FTP  tests - [${ftpTests}]
+ Module     - [${project.groupId}:${project.artifactId}]
+ Java       - [${java.version}]
+ Maven      - [$mavenVersion]
+ Groovy     - [$GroovySystem.version]
+ Plugins    - [${plugins-version}]
+ Slow tests - [${slowTests}]
+ FTP  tests - [${ftpTests}]
+ Is Windows - [$isWindows]
+ Is Linux   - [$isLinux]
+ Is Mac     - [$isMac]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~""".trim()
                             </source>
                         </configuration>
@@ -225,7 +232,7 @@ FTP  tests - [${ftpTests}]
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <!-- There is a different number of Spring transitive dependencies on different platforms -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                                <value>{{ Boolean.valueOf( ifLinux ) ? 21 : 23 }}</value>
+                                <value>{{ Boolean.valueOf( isLinux ) ? 21 : 23 }}</value>
                             </property>
                         </configuration>
                     </execution>
