@@ -227,13 +227,23 @@
                         <phase>validate</phase>
                         <configuration>
                             <runIf>{{ session.executionProperties.springAllDependencies == null }}</runIf>
-                            <property>
-                                <name>springAllDependencies</name>
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                                <!-- There is a different number of Spring transitive dependencies on different platforms -->
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                                <value>{{ ${isLinux} ? 21 : 23 }}</value>
-                            </property>
+                            <properties>
+
+                                <property>
+                                    <name>springAllDependencies</name>
+                                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                    <!-- There is a different number of Spring transitive dependencies on different platforms -->
+                                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                    <value>{{ ${isLinux} ? 21 : 23 }}</value>
+                                </property>
+                                <property>
+                                    <name>springAllDependenciesSize</name>
+                                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                    <!-- There is a different number of Spring transitive dependencies on different platforms -->
+                                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                    <value>{{ ${isLinux} ? 4532993 : 4616804 }}</value>
+                                </property>
+                            </properties>
                         </configuration>
                     </execution>
                     <execution>
