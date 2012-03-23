@@ -1362,10 +1362,10 @@
                                 ${outputDir}/pl-567/44/slf4j-api-1.6.2.jar
                             </assertFiles>
                             <assertGroovy>
-                                new File( outputDir, 'pl-567/1' ).directorySize()    == 589253
+                                new File( outputDir, 'pl-567/1' ).directorySize()    == 589824
                                 new File( outputDir, 'pl-567/1' ).listFiles().size() == 1
 
-                                new File( outputDir, 'pl-567/2' ).directorySize()    == 2524932
+                                new File( outputDir, 'pl-567/2' ).directorySize()    == 2532429
                                 new File( outputDir, 'pl-567/2' ).listFiles().size() == 11
 
                                 new File( outputDir, 'pl-567/3' ).directorySize()    == 425977
