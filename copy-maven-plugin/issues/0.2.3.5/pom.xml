@@ -2375,7 +2375,6 @@
                                 new File( outputDir, 'pl-509/3' ).listFiles().size() == 3
                                 new File( outputDir, 'pl-509/3' ).directorySize()    == 250164
                                 new File( outputDir, 'pl-509/4' ).listFiles().size() == ${springAllDependencies} - 3
-                                new File( outputDir, 'pl-509/4' ).directorySize()    == 4366640
                                 new File( outputDir, 'pl-509/5' ).listFiles().size() == 6
                                 new File( outputDir, 'pl-509/5' ).directorySize()    == 9595383
                                 new File( outputDir, 'pl-509/6' ).listFiles().size() == 3
