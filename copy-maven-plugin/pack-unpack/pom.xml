@@ -489,8 +489,8 @@
                                 new File( outputDir, 'unpack-12' ).directorySize() == 1556644
                                 new File( outputDir, 'unpack-2'  ).directorySize() == 19921721
                                 new File( outputDir, 'unpack-22' ).directorySize() == 19921721
-                                new File( outputDir, 'unpack-3'  ).directorySize() == 87484262
-                                new File( outputDir, 'unpack-32' ).directorySize() == 87484262
+                                new File( outputDir, 'unpack-3'  ).directorySize() == 84699618
+                                new File( outputDir, 'unpack-32' ).directorySize() == 84699618
                             </assertGroovy>
                             <assertEqual>
                                 ${outputDir}/unpack-1|${outputDir}/unpack-12
