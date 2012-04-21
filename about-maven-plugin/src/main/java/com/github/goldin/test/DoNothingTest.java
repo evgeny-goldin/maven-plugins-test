@@ -1,4 +1,4 @@
-package com.goldin.test;
+package com.github.goldin.test;
 
 
 public class DoNothingTest

@@ -1,8 +1,8 @@
-import com.goldin.gcommons.GCommons
+import com.github.goldin.gcommons.GCommons
 
 def fileBean        = GCommons.file()
 def tempDir         = fileBean.delete( fileBean.tempDirectory()).parentFile.canonicalFile
-def findCleanupDirs = { tempDir.listFiles().findAll{ it.directory && it.name.contains( 'com.goldin' ) }}
+def findCleanupDirs = { tempDir.listFiles().findAll{ it.directory && it.name.contains( 'com.github.goldin' ) }}
 
 if ( project.artifactId == 'cleanup-temp' )
 {
