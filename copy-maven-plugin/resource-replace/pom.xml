@@ -249,7 +249,7 @@
                             ! ( new File( outputDir, 'replace-2/WHATSNEW' ).text   =~ /\w/ )
                                 new File( outputDir, 'replace-2/WHATSNEW' ).text   =~ /#/
 
-                                new File( outputDir, 'replace-3/pom.xml' ).size() == 11258
+                                new File( outputDir, 'replace-3/pom.xml' ).size() == 11265
                                 new File( outputDir, 'replace-3/pom.xml' ).size() == new File( outputDir, 'replace-4/pom.xml' ).size()
                                 new File( outputDir, 'replace-3/pom.xml' ).text   == new File( outputDir, 'replace-4/pom.xml' ).text
                                 new File( outputDir, 'replace-3/pom.xml' ).text.contains( '$' + '{projectGroupId}'    )
