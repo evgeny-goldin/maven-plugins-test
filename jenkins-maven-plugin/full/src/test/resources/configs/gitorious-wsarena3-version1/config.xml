@@ -54,13 +54,13 @@
 - <a href="http://gitorious.org/esp-home/wsarena3/"><strong><code>git://gitorious.org/esp-home/wsarena3.git</code></strong></a>
 : <a href="http://gitorious.org/esp-home/wsarena3/trees/version1/">
 <strong><code>version1</code></strong>
-</a>
+</a><br/>
 </td>
 </tr>
 <tr>
 <td valign="top">POM</td>
 <td>
-- <a href="http://gitorious.org/esp-home/wsarena3/blobs/version1/pom.xml"><strong><code>http://gitorious.org/esp-home/wsarena3/blobs/version1/pom.xml</code></strong></a>
+- <a href="http://gitorious.org/esp-home/wsarena3/blobs/version1/pom.xml"><strong><code>http://gitorious.org/esp-home/wsarena3/blobs/version1/pom.xml</code></strong></a><br/>
 </td>
 </tr>
 <tr>
@@ -68,10 +68,10 @@
 <td>
 - <a href="http://evgeny-goldin.org/jenkins/job/googlecode-google-guice-trunk">
 <strong>googlecode-google-guice-trunk</strong>
-</a> when this job is <strong>stable</strong>
+</a> when this job is <strong>stable</strong><br/>
 - <a href="http://evgeny-goldin.org/jenkins/job/googlecode-google-guice-2.0-maven">
 <strong>googlecode-google-guice-2.0-maven</strong>
-</a> when this job is <strong>stable</strong>
+</a> when this job is <strong>stable</strong><br/>
 </td>
 </tr>
 <tr>
@@ -79,7 +79,7 @@
 <td>
 - <a href="http://evgeny-goldin.org/jenkins/job/gitorious-wsarena3-master">
 <strong>gitorious-wsarena3-master</strong>
-</a> when it is <strong>complete</strong> (always trigger)
+</a> when it is <strong>complete</strong> (always trigger)<br/>
 </td>
 </tr>
 </table>]]></description>

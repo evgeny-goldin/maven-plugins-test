@@ -42,7 +42,7 @@
 - <a href="http://github.com/evgeny-goldin/maven-plugins-test/"><strong><code>git://github.com/evgeny-goldin/maven-plugins-test.git</code></strong></a>
 : <a href="http://github.com/evgeny-goldin/maven-plugins-test/tree/master/">
 <strong><code>master</code></strong>
-</a>
+</a><br/>
 </table>]]></description>
   <keepDependencies>false</keepDependencies>
   <properties>

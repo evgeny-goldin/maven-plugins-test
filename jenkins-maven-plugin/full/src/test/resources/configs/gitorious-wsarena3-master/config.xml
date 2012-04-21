@@ -54,13 +54,13 @@
 - <a href="http://gitorious.org/esp-home/wsarena3/"><strong><code>git://gitorious.org/esp-home/wsarena3.git</code></strong></a>
 : <a href="http://gitorious.org/esp-home/wsarena3/trees/master/">
 <strong><code>master</code></strong>
-</a>
+</a><br/>
 </td>
 </tr>
 <tr>
 <td valign="top">POM</td>
 <td>
-- <a href="http://gitorious.org/esp-home/wsarena3/blobs/master/pom.xml"><strong><code>http://gitorious.org/esp-home/wsarena3/blobs/master/pom.xml</code></strong></a>
+- <a href="http://gitorious.org/esp-home/wsarena3/blobs/master/pom.xml"><strong><code>http://gitorious.org/esp-home/wsarena3/blobs/master/pom.xml</code></strong></a><br/>
 </td>
 </tr>
 <tr>
@@ -68,7 +68,7 @@
 <td>
 - <a href="http://evgeny-goldin.org/jenkins/job/gitorious-wsarena3-version1">
 <strong>gitorious-wsarena3-version1</strong>
-</a> when this job is <strong>complete</strong> (always trigger)
+</a> when this job is <strong>complete</strong> (always trigger)<br/>
 </td>
 </tr>
 </table>]]></description>

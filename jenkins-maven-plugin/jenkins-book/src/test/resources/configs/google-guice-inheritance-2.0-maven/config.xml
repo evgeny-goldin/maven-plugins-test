@@ -65,7 +65,7 @@
 <tr>
 <td valign="top">POM</td>
 <td>
-- <a href="http://google-guice.googlecode.com/svn/branches/2.0-maven/pom.xml"><strong><code>http://google-guice.googlecode.com/svn/branches/2.0-maven/pom.xml</code></strong></a>
+- <a href="http://google-guice.googlecode.com/svn/branches/2.0-maven/pom.xml"><strong><code>http://google-guice.googlecode.com/svn/branches/2.0-maven/pom.xml</code></strong></a><br/>
 </td>
 </tr>
 <tr>
@@ -73,7 +73,7 @@
 <td>
 - <a href="http://evgeny-goldin.org/jenkins/job/google-guice-inheritance-trunk">
 <strong>google-guice-inheritance-trunk</strong>
-</a> when it is <strong>stable</strong>
+</a> when it is <strong>stable</strong><br/>
 </td>
 </tr>
 </table>]]></description>

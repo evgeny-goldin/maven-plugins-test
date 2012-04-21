@@ -54,13 +54,13 @@
 - <a href="http://github.com/evgeny-goldin/maven-plugins/"><strong><code>git://github.com/evgeny-goldin/maven-plugins.git</code></strong></a>
 : <a href="http://github.com/evgeny-goldin/maven-plugins/tree/master/">
 <strong><code>master</code></strong>
-</a>
+</a><br/>
 </td>
 </tr>
 <tr>
 <td valign="top">POM</td>
 <td>
-- <a href="http://github.com/evgeny-goldin/maven-plugins/blob/master/pom.xml"><strong><code>http://github.com/evgeny-goldin/maven-plugins/blob/master/pom.xml</code></strong></a>
+- <a href="http://github.com/evgeny-goldin/maven-plugins/blob/master/pom.xml"><strong><code>http://github.com/evgeny-goldin/maven-plugins/blob/master/pom.xml</code></strong></a><br/>
 </td>
 </tr>
 <tr>
@@ -68,7 +68,7 @@
 <td>
 - <a href="http://evgeny-goldin.org/jenkins/job/googlecode-facebook-java-api-fbapi-2.0.0">
 <strong>googlecode-facebook-java-api-fbapi-2.0.0</strong>
-</a> when it is <strong>unstable</strong>
+</a> when it is <strong>unstable</strong><br/>
 </td>
 </tr>
 </table>]]></description>

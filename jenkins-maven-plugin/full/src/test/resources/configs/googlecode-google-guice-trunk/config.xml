@@ -56,9 +56,7 @@
 <td valign="top">Triggers</td>
 <td>
 - <strong><code>timer:</code></strong>
-<a href="http://www.manpagez.com/man/5/crontab/">
-<strong><code>&quot;0 12 * * *&quot;</code></strong>
-</a>
+<a href="http://www.manpagez.com/man/5/crontab/"><strong><code>&quot;0 12 * * *&quot;</code></strong></a> <br/>
 </td>
 </tr>
 <tr>
@@ -70,7 +68,7 @@
 <tr>
 <td valign="top">POM</td>
 <td>
-- <a href="http://google-guice.googlecode.com/svn/trunk/pom.xml"><strong><code>http://google-guice.googlecode.com/svn/trunk/pom.xml</code></strong></a>
+- <a href="http://google-guice.googlecode.com/svn/trunk/pom.xml"><strong><code>http://google-guice.googlecode.com/svn/trunk/pom.xml</code></strong></a><br/>
 </td>
 </tr>
 <tr>
@@ -78,10 +76,10 @@
 <td>
 - <a href="http://evgeny-goldin.org/jenkins/job/googlecode-facebook-java-api-trunk">
 <strong>googlecode-facebook-java-api-trunk</strong>
-</a> when this job has <strong>failed</strong>
+</a> when this job has <strong>failed</strong><br/>
 - <a href="http://evgeny-goldin.org/jenkins/job/googlecode-facebook-java-api-fbapi-2.0.0">
 <strong>googlecode-facebook-java-api-fbapi-2.0.0</strong>
-</a> when this job has <strong>failed</strong>
+</a> when this job has <strong>failed</strong><br/>
 </td>
 </tr>
 <tr>
@@ -89,7 +87,7 @@
 <td>
 - <a href="http://evgeny-goldin.org/jenkins/job/gitorious-wsarena3-version1">
 <strong>gitorious-wsarena3-version1</strong>
-</a> when it is <strong>stable</strong>
+</a> when it is <strong>stable</strong><br/>
 </td>
 </tr>
 </table>]]></description>
