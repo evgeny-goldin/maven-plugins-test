@@ -10,7 +10,6 @@
         </url>
     </resolvers>
     <modules>
-        <module organisation='org' name='bt343' matcher='regexp' resolver='jetbrains-repo'/>
-        <module organisation='org' name='bt344' matcher='regexp' resolver='jetbrains-repo'/>
+        <module organisation='org' matcher='regexp' resolver='jetbrains-repo'/>
     </modules>
 </ivysettings>

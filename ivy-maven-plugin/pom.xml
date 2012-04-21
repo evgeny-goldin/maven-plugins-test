@@ -157,15 +157,16 @@
                                 </dependency>
                                 <dependency>
                                     <groupId>ivy.org</groupId>
-                                    <artifactId>bt344</artifactId>
+                                    <artifactId>bt345</artifactId>
                                     <version>latest.lastSuccessful</version>
-                                    <classifier>kotlin-build-tools</classifier>
+                                    <classifier>kotlin-(\d+\.){2}\d+</classifier>
+                                    <type>zip</type>
                                 </dependency>
                                 <dependency>
                                     <groupId>ivy.org</groupId>
-                                    <artifactId>bt344</artifactId>
+                                    <artifactId>bt354</artifactId>
                                     <version>latest.lastSuccessful</version>
-                                    <classifier>kotlin-runtime</classifier>
+                                    <type>zip</type>
                                 </dependency>
                                 <dependency>
                                     <groupId>org.springframework</groupId>
@@ -242,7 +243,7 @@
                                     <dependency>
                                         <groupId>ivy.org</groupId>
                                         <artifactId>bt343</artifactId>
-                                        <version>64</version>
+                                        <version>110</version>
                                         <classifier>core/intellij-core</classifier>
                                     </dependency>
                                     <unpack>true</unpack>
@@ -285,9 +286,9 @@
                                     <targetPath>${outputDir}/kotlin-1</targetPath>
                                     <dependency>
                                         <groupId>ivy.org</groupId>
-                                        <artifactId>bt344</artifactId>
+                                        <artifactId>bt354</artifactId>
                                         <version>latest.lastSuccessful</version>
-                                        <classifier>kotlin-.*</classifier>
+                                        <classifier>kotlin-plugin-.*</classifier>
                                         <type>zip</type>
                                     </dependency>
                                 </resource>
@@ -295,7 +296,7 @@
                                     <targetPath>${outputDir}/kotlin-2</targetPath>
                                     <dependency>
                                         <groupId>ivy.org</groupId>
-                                        <artifactId>bt344</artifactId>
+                                        <artifactId>bt354</artifactId>
                                         <version>latest.lastSuccessful</version>
                                         <type>zip</type>
                                     </dependency>
@@ -317,9 +318,9 @@
                                     <targetPath>${outputDir}/kotlin-3</targetPath>
                                     <dependency>
                                         <groupId>ivy.org</groupId>
-                                        <artifactId>bt344</artifactId>
+                                        <artifactId>bt354</artifactId>
                                         <version>latest.lastSuccessful</version>
-                                        <classifier>kotlin-.*</classifier>
+                                        <classifier>kotlin-plugin-.*</classifier>
                                         <type>zip</type>
                                         <destFileName>kotlin-3.zip</destFileName>
                                     </dependency>
@@ -328,7 +329,7 @@
                                     <targetPath>${outputDir}/kotlin-4</targetPath>
                                     <dependency>
                                         <groupId>ivy.org</groupId>
-                                        <artifactId>bt344</artifactId>
+                                        <artifactId>bt354</artifactId>
                                         <version>latest.lastSuccessful</version>
                                         <type>zip</type>
                                         <destFileName>kotlin-4.zip</destFileName>
@@ -338,9 +339,9 @@
                                     <targetPath>${outputDir}/kotlin-5</targetPath>
                                     <dependency>
                                         <groupId>ivy.org</groupId>
-                                        <artifactId>bt344</artifactId>
+                                        <artifactId>bt354</artifactId>
                                         <version>latest.lastSuccessful</version>
-                                        <classifier>kotlin-.*</classifier>
+                                        <classifier>kotlin-plugin-.*</classifier>
                                         <type>zip</type>
                                     </dependency>
                                     <destFileName>kotlin-5.zip</destFileName>
@@ -349,7 +350,7 @@
                                     <targetPath>${outputDir}/kotlin-6</targetPath>
                                     <dependency>
                                         <groupId>ivy.org</groupId>
-                                        <artifactId>bt344</artifactId>
+                                        <artifactId>bt354</artifactId>
                                         <version>latest.lastSuccessful</version>
                                         <type>zip</type>
                                     </dependency>
@@ -464,10 +465,10 @@
 
                                 ${outputDir}/kotlin-1
                                 ${outputDir}/kotlin-2
-                                ${outputDir}/kotlin-1-unpack/kotlinc/bin/kotlinc
-                                ${outputDir}/kotlin-2-unpack/kotlinc/bin/kotlinc
-                                ${outputDir}/kotlin-1-unpack/kotlinc/lib/kotlin-runtime.jar
-                                ${outputDir}/kotlin-2-unpack/kotlinc/lib/kotlin-runtime.jar
+                                ${outputDir}/kotlin-1-unpack/Kotlin/kotlinc/bin/kotlinc
+                                ${outputDir}/kotlin-2-unpack/Kotlin/kotlinc/bin/kotlinc
+                                ${outputDir}/kotlin-1-unpack/Kotlin/kotlinc/lib/kotlin-runtime.jar
+                                ${outputDir}/kotlin-2-unpack/Kotlin/kotlinc/lib/kotlin-runtime.jar
 
                                 ${outputDir}/kotlin-3/kotlin-3.zip
                                 ${outputDir}/kotlin-4/kotlin-4.zip
