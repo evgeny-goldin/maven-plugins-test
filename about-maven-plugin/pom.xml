@@ -270,11 +270,6 @@
                                     </dependency>
                                     <dependency>
                                         <groupId>com.github.goldin</groupId>
-                                        <artifactId>kotlin-maven-plugin</artifactId>
-                                        <version>${plugins-version}</version>
-                                    </dependency>
-                                    <dependency>
-                                        <groupId>com.github.goldin</groupId>
                                         <artifactId>about-maven-plugin</artifactId>
                                         <version>${plugins-version}</version>
                                     </dependency>
@@ -408,7 +403,6 @@
                                 ${outputDir}/pl-483/about~com.github.goldin~maven2-common~${plugins-version}.txt
                                 ${outputDir}/pl-483/about~com.github.goldin~maven3-common~${plugins-version}.txt
                                 ${outputDir}/pl-483/about~com.github.goldin~ivy-maven-plugin~${plugins-version}.txt
-                                ${outputDir}/pl-483/about~com.github.goldin~kotlin-maven-plugin~${plugins-version}.txt
                                 ${outputDir}/pl-483/about~com.github.goldin~copy-maven-plugin~${plugins-version}.txt
                                 ${outputDir}/pl-483/about~com.github.goldin~find-maven-plugin~${plugins-version}.txt
                                 ${outputDir}/pl-483/about~com.github.goldin~jenkins-maven-plugin~${plugins-version}.txt
