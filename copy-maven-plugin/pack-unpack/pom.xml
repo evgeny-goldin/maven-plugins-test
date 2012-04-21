@@ -154,7 +154,7 @@
                                         <dependency>
                                             <groupId>org.jenkins-ci.main</groupId>
                                             <artifactId>jenkins-war</artifactId>
-                                            <version>1.421</version>
+                                            <version>${jenkins-version}</version>
                                             <type>war</type>
                                         </dependency>
                                         <dependency>
@@ -172,7 +172,7 @@
                                         <dependency>
                                             <groupId>org.artifactory</groupId>
                                             <artifactId>artifactory-web-war</artifactId>
-                                            <version>2.3.4</version>
+                                            <version>${artifactory-version}</version>
                                             <type>war</type>
                                         </dependency>
                                         <dependency>

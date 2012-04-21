@@ -25,6 +25,8 @@
         <gmaven-version>1.4</gmaven-version>
         <groovy-version>1.8.6</groovy-version>
         <plugins-version>0.2.4-SNAPSHOT</plugins-version>
+        <artifactory-version>2.3.1</artifactory-version>
+        <jenkins-version>1.421</jenkins-version>
         <plugins-version-for-jenkins-jobs>0.2.3.8</plugins-version-for-jenkins-jobs>
         <gcommons-version>0.5.3.8</gcommons-version>
         <ftpTests>false</ftpTests>

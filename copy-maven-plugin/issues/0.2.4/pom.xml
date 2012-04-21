@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns              = "http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi          = "http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0
+                               http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.github.goldin.maven-plugins-test</groupId>
+    <artifactId>copy-maven-plugin.issues.0.2.4</artifactId>
+    <packaging>jar</packaging>
+    <version>0.1-SNAPSHOT</version>
+    <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
+
+
+    <parent>
+        <groupId>com.github.goldin.maven-plugins-test</groupId>
+        <artifactId>copy-maven-plugin.issues</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.github.goldin</groupId>
+                <artifactId>copy-maven-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-617                         -->
+                    <!-- Allow to set compression level when Zip archives are created using Ant -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-617</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-617/unpack</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>org.artifactory</groupId>
+                                            <artifactId>artifactory-web-war</artifactId>
+                                            <version>${artifactory-version}</version>
+                                            <type>war</type>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.jenkins-ci.main</groupId>
+                                            <artifactId>jenkins-war</artifactId>
+                                            <version>${jenkins-version}</version>
+                                            <type>war</type>
+                                        </dependency>
+                                    </dependencies>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-617/1.zip</targetPath>
+                                    <directory>${outputDir}/pl-617/unpack</directory>
+                                    <pack>true</pack>
+                                    <compressionLevel>0</compressionLevel>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-617/2.zip</targetPath>
+                                    <directory>${outputDir}/pl-617/unpack</directory>
+                                    <pack>true</pack>
+                                    <compressionLevel>5</compressionLevel>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-617/3.zip</targetPath>
+                                    <directory>${outputDir}/pl-617/unpack</directory>
+                                    <pack>true</pack>
+                                    <compressionLevel>9</compressionLevel>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.github.goldin</groupId>
+                <artifactId>assert-maven-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-617 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-617</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-617/1.zip
+                                ${outputDir}/pl-617/2.zip
+                                ${outputDir}/pl-617/3.zip
+                            </assertFiles>
+                            <assertGroovy>
+                                new File( outputDir, 'pl-617/1.zip' ).size() > new File( outputDir, 'pl-617/2.zip' ).size()
+                                new File( outputDir, 'pl-617/2.zip' ).size() > new File( outputDir, 'pl-617/3.zip' ).size()
+                            </assertGroovy>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
