@@ -37,7 +37,7 @@
                         </goals>
                         <phase>validate</phase>
                         <configuration>
-                            <source>${project.basedir}/../src/main/groovy/cleanup.groovy</source>
+                            <source>${project.basedir}/../cleanup-temp/src/main/groovy/cleanup.groovy</source>
                         </configuration>
                     </execution>
                 </executions>
