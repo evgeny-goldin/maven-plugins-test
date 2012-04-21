@@ -41,7 +41,7 @@
                         <configuration>
                             <includes>
                                 <!-- FTP Ant task patch (Ant v1.7.1) -->
-                                <include>com/goldin/org/apache/tools/**/*.java</include>
+                                <include>com/github/goldin/org/apache/tools/**/*.java</include>
                             </includes>
                         </configuration>
                     </execution>
