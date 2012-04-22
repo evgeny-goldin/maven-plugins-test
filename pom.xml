@@ -200,6 +200,7 @@
  Maven      - [$mavenVersion]
  Groovy     - [$GroovySystem.version]
  Plugins    - [${plugins-version}]
+ -------------------------------------
  Slow tests - [${slowTests}]
  FTP  tests - [${ftpTests}]
  Is Windows - [$isWindows]
