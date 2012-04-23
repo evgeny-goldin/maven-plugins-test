@@ -20,8 +20,39 @@
     </parent>
 
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
+    </dependencies>
+
+
     <build>
         <plugins>
+
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- Copying Spring transitive dependencies -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.4</version>
+                <executions>
+                    <execution>
+                        <id>copy-spring-transitive-dependencies</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${outputDir}/pl-302/spring-transitive-dependencies</outputDirectory>
+                            <excludeTransitive>false</excludeTransitive>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 
             <plugin>
                 <groupId>com.github.goldin</groupId>
@@ -194,13 +225,15 @@
                             <assertGroovy>
                                 new File( outputDir, 'pl-302/spring-single-1' ).listFiles().size() == 1
                                 new File( outputDir, 'pl-302/spring-single-2' ).listFiles().size() == 1
-                                new File( outputDir, 'pl-302/spring-all'      ).listFiles().size() == ${springAllDependencies}
-                                new File( outputDir, 'pl-302/spring-test'     ).listFiles().size() == ${springAllDependencies}
+                                new File( outputDir, 'pl-302/spring-transitive-dependencies').listFiles().size() == ${springAllDependencies}
+                                new File( outputDir, 'pl-302/spring-all'                    ).listFiles().size() == ${springAllDependencies}
+                                new File( outputDir, 'pl-302/spring-test'                   ).listFiles().size() == ${springAllDependencies}
                                 new File( outputDir, 'pl-302/spring-compile'  ).listFiles().size() == 9
                                 new File( outputDir, 'pl-302/spring-gid'      ).listFiles().size() == 6
                                 new File( outputDir, 'pl-302/spring-aid'      ).listFiles().size() == 2
                             </assertGroovy>
                             <assertEqual>
+                                ${outputDir}/pl-302/spring-transitive-dependencies|${outputDir}/pl-302/spring-all
                                 ${outputDir}/pl-302/spring-all|${outputDir}/pl-302/spring-test
                             </assertEqual>
                         </configuration>

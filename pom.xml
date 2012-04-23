@@ -31,6 +31,7 @@
         <gcommons-version>0.5.4-SNAPSHOT</gcommons-version>
         <ftpTests>false</ftpTests>
         <slowTests>false</slowTests>
+        <springAllDependencies>8</springAllDependencies>
 
         <!-- ~~~~~~~~~~~~~~~~~ -->
         <!-- OS-specific tests -->
@@ -222,23 +223,6 @@
                 <artifactId>properties-maven-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
-                    <execution>
-                        <id>set-spring-deps</id>
-                        <goals>
-                            <goal>set-properties</goal>
-                        </goals>
-                        <phase>validate</phase>
-                        <configuration>
-                            <runIf>{{ session.executionProperties.springAllDependencies == null }}</runIf>
-                            <property>
-                                <name>springAllDependencies</name>
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                                <!-- There is a different number of Spring transitive dependencies on different platforms -->
-                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                                <value>{{ ${isLinux} ? 21 : 23 }}</value>
-                            </property>
-                        </configuration>
-                    </execution>
                     <execution>
                         <id>set-ftp-scp-paths-slowTests</id>
                         <goals>
