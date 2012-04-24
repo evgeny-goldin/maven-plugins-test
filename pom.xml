@@ -31,7 +31,11 @@
         <gcommons-version>0.5.4-SNAPSHOT</gcommons-version>
         <ftpTests>false</ftpTests>
         <slowTests>false</slowTests>
-        <springAllDependencies>8</springAllDependencies>
+
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <!-- Number of transitive String dependencies -->
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <springDependencies>8</springDependencies>
 
         <!-- ~~~~~~~~~~~~~~~~~ -->
         <!-- OS-specific tests -->

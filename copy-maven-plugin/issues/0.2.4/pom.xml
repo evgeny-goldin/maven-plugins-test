@@ -20,8 +20,55 @@
     </parent>
 
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring-version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit-version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jsr166-mirror</groupId>
+            <artifactId>jsr166</artifactId>
+            <version>1.7.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+
     <build>
         <plugins>
+
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- Copying Spring transitive dependencies using standard dependency plugin -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.4</version>
+                <executions>
+                    <execution>
+                        <id>copy-spring-transitive-dependencies</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${outputDir}/pl-550/dependency-plugin</outputDirectory>
+                            <excludeTransitive>false</excludeTransitive>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+
             <plugin>
                 <groupId>com.github.goldin</groupId>
                 <artifactId>copy-maven-plugin</artifactId>
@@ -78,6 +125,212 @@
                             </resources>
                         </configuration>
                     </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-550                                       -->
+                    <!-- Make both <includeScope> and <excludeScope> work together for filtering dependencies -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-550</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <!-- All transitive dependencies from all scopes -->
+                                <resource>
+                                    <description>all</description>
+                                    <targetPath>${outputDir}/pl-550/all</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>${spring-version}</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                        <!-- Not available in Maven repos -->
+                                        <excludeGroupIds>com.sun.jmx,com.sun.jdmk</excludeGroupIds>
+                                    </dependency>
+                                </resource>
+                                <!-- Single dependency, no transitivity -->
+                                <resource>
+                                    <description>single</description>
+                                    <targetPath>${outputDir}/pl-550/single</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>${spring-version}</version>
+                                    </dependency>
+                                </resource>
+                                <!-- Transitive dependencies from "compile" scope -->
+                                <resource>
+                                    <description>1</description>
+                                    <targetPath>${outputDir}/pl-550/1</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>${spring-version}</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                        <includeScope>compile</includeScope>
+                                    </dependency>
+                                </resource>
+                                <!-- Transitive dependencies from "test" scope -->
+                                <resource>
+                                    <description>2</description>
+                                    <targetPath>${outputDir}/pl-550/2</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>${spring-version}</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                        <includeScope>test</includeScope>
+                                    </dependency>
+                                </resource>
+                                <!-- Transitive dependencies from "provided" scope -->
+                                <resource>
+                                    <description>3</description>
+                                    <targetPath>${outputDir}/pl-550/3</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>${spring-version}</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                        <includeScope>provided</includeScope>
+                                    </dependency>
+                                </resource>
+                                <!-- Transitive dependencies from "compile" scope, "test" and "provided" excluded -->
+                                <resource>
+                                    <description>4</description>
+                                    <targetPath>${outputDir}/pl-550/4</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>${spring-version}</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                        <includeScope>compile</includeScope>
+                                        <excludeScope>test, provided</excludeScope>
+                                    </dependency>
+                                </resource>
+                                <!-- Transitive dependencies from "compile" scope, "test" excluded -->
+                                <resource>
+                                    <description>5</description>
+                                    <targetPath>${outputDir}/pl-550/5</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>${spring-version}</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                        <includeScope>compile</includeScope>
+                                        <excludeScope>test</excludeScope>
+                                    </dependency>
+                                </resource>
+                                <!-- Transitive dependencies from "compile" scope, "provided" excluded -->
+                                <resource>
+                                    <description>6</description>
+                                    <targetPath>${outputDir}/pl-550/6</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>${spring-version}</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                        <includeScope>compile</includeScope>
+                                        <excludeScope>provided</excludeScope>
+                                    </dependency>
+                                </resource>
+                                <!-- All transitive dependencies, "test" excluded -->
+                                <resource>
+                                    <description>7</description>
+                                    <targetPath>${outputDir}/pl-550/7</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>${spring-version}</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                        <excludeScope>test</excludeScope>
+                                    </dependency>
+                                </resource>
+                                <!-- All transitive dependencies, "provided" excluded -->
+                                <resource>
+                                    <description>8</description>
+                                    <targetPath>${outputDir}/pl-550/8</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>${spring-version}</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                        <excludeScope>provided</excludeScope>
+                                        <!-- Not available in Maven repos -->
+                                        <excludeGroupIds>com.sun.jmx,com.sun.jdmk</excludeGroupIds>
+                                    </dependency>
+                                </resource>
+                                <!-- Transitive "filtering" dependency with "compile" scope -->
+                                <resource>
+                                    <description>11</description>
+                                    <targetPath>${outputDir}/pl-550/11</targetPath>
+                                    <dependency>
+                                        <includeScope>compile</includeScope>
+                                    </dependency>
+                                </resource>
+                                <!-- Transitive "filtering" dependency with "test" scope -->
+                                <resource>
+                                    <description>22</description>
+                                    <targetPath>${outputDir}/pl-550/22</targetPath>
+                                    <dependency>
+                                        <includeScope>test</includeScope>
+                                    </dependency>
+                                </resource>
+                                <!-- Transitive "filtering" dependency with "provided" scope -->
+                                <resource>
+                                    <description>33</description>
+                                    <targetPath>${outputDir}/pl-550/33</targetPath>
+                                    <dependency>
+                                        <includeScope>provided</includeScope>
+                                    </dependency>
+                                </resource>
+                                <!-- Transitive "filtering" dependency with "compile" scope, "test" and "provided" excluded -->
+                                <resource>
+                                    <description>44</description>
+                                    <targetPath>${outputDir}/pl-550/44</targetPath>
+                                    <dependency>
+                                        <includeScope>compile</includeScope>
+                                        <excludeScope>test, provided</excludeScope>
+                                    </dependency>
+                                </resource>
+                                <!-- Transitive "filtering" dependency with "compile" scope, "test" excluded -->
+                                <resource>
+                                    <description>55</description>
+                                    <targetPath>${outputDir}/pl-550/55</targetPath>
+                                    <dependency>
+                                        <includeScope>compile</includeScope>
+                                        <excludeScope>test</excludeScope>
+                                    </dependency>
+                                </resource>
+                                <!-- Transitive "filtering" dependency with "compile" scope, "provided" excluded -->
+                                <resource>
+                                    <description>66</description>
+                                    <targetPath>${outputDir}/pl-550/66</targetPath>
+                                    <dependency>
+                                        <includeScope>compile</includeScope>
+                                        <excludeScope>provided</excludeScope>
+                                    </dependency>
+                                </resource>
+                                <!-- Transitive "filtering" dependency, "test" scope excluded -->
+                                <resource>
+                                    <description>77</description>
+                                    <targetPath>${outputDir}/pl-550/77</targetPath>
+                                    <dependency>
+                                        <excludeScope>test</excludeScope>
+                                    </dependency>
+                                </resource>
+                                <!-- Transitive "filtering" dependency, "provided" scope excluded -->
+                                <resource>
+                                    <description>88</description>
+                                    <targetPath>${outputDir}/pl-550/88</targetPath>
+                                    <dependency>
+                                        <excludeScope>provided</excludeScope>
+                                    </dependency>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 
@@ -105,6 +358,47 @@
                                 new File( outputDir, 'pl-617/1.zip' ).size() > new File( outputDir, 'pl-617/2.zip' ).size()
                                 new File( outputDir, 'pl-617/2.zip' ).size() > new File( outputDir, 'pl-617/3.zip' ).size()
                             </assertGroovy>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-550 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-550</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDir}/pl-550
+                                ${outputDir}/pl-550/all
+                                ${outputDir}/pl-550/single
+                                ${outputDir}/pl-550/dependency-plugin
+                                ${outputDir}/pl-550/1
+                                ${outputDir}/pl-550/2
+                                ${outputDir}/pl-550/3
+                                ${outputDir}/pl-550/4
+                                ${outputDir}/pl-550/5
+                                ${outputDir}/pl-550/6
+                                ${outputDir}/pl-550/7
+                                ${outputDir}/pl-550/8
+                                ${outputDir}/pl-550/11
+                                ${outputDir}/pl-550/22
+                                ${outputDir}/pl-550/33
+                                ${outputDir}/pl-550/44
+                                ${outputDir}/pl-550/55
+                                ${outputDir}/pl-550/66
+                                ${outputDir}/pl-550/77
+                                ${outputDir}/pl-550/88
+                            </assertFiles>
+                            <assertGroovy>
+                                <!--new File( outputDir, 'pl-550/1' ).listFiles().size() == ${springDependencies}-->
+                                <!--new File( outputDir, 'pl-550/2' ).listFiles().size() == ${springDependencies}-->
+                            </assertGroovy>
+                            <assertEqual>
+                                <!--${outputDir}/pl-550/1|${outputDir}/pl-550/2-->
+                            </assertEqual>
                         </configuration>
                     </execution>
                 </executions>

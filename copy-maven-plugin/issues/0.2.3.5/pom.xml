@@ -749,7 +749,7 @@
                                         <version>${spring-version}</version>
                                         <excludeTransitive>false</excludeTransitive>
                                     </dependency>
-                                    <process>{{ assert files.size() == ${springAllDependencies} }}</process>
+                                    <process>{{ assert files.size() == ${springDependencies} }}</process>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-509/2</targetPath>
@@ -782,7 +782,7 @@
                                         <excludeTransitive>false</excludeTransitive>
                                         <excludeArtifactIds>commons-logging, commons-pool, easymock</excludeArtifactIds>
                                     </dependency>
-                                    <process>{{ assert files.size() == ( ${springAllDependencies} - 3 ) }}</process>
+                                    <process>{{ assert files.size() == ( ${springDependencies} - 3 ) }}</process>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-509/5</targetPath>
@@ -2369,12 +2369,12 @@
                                 ${outputDir}/pl-509/6/*.jar
                             </assertFiles>
                             <assertGroovy>
-                                new File( outputDir, 'pl-509/1' ).listFiles().size() == ${springAllDependencies}
+                                new File( outputDir, 'pl-509/1' ).listFiles().size() == ${springDependencies}
                                 new File( outputDir, 'pl-509/2' ).listFiles().size() == 6
                                 new File( outputDir, 'pl-509/2' ).directorySize()    == 2431079
                                 new File( outputDir, 'pl-509/3' ).listFiles().size() == 3
                                 new File( outputDir, 'pl-509/3' ).directorySize()    == 250164
-                                new File( outputDir, 'pl-509/4' ).listFiles().size() == ${springAllDependencies} - 3
+                                new File( outputDir, 'pl-509/4' ).listFiles().size() == ${springDependencies} - 3
                                 new File( outputDir, 'pl-509/5' ).listFiles().size() == 6
                                 new File( outputDir, 'pl-509/5' ).directorySize()    == 9595383
                                 new File( outputDir, 'pl-509/6' ).listFiles().size() == 3
