@@ -88,6 +88,9 @@
                             <resources>
                                 <resource>
                                     <targetPath>${outputDir}/pl-617/unpack</targetPath>
+                                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                    <!-- Unpacking some heavy dependencies to pack them later with varying compression level -->
+                                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                     <dependencies>
                                         <dependency>
                                             <groupId>org.artifactory</groupId>
@@ -101,26 +104,68 @@
                                             <version>${jenkins-version}</version>
                                             <type>war</type>
                                         </dependency>
+                                        <dependency>
+                                            <groupId>org.apache.maven</groupId>
+                                            <artifactId>apache-maven</artifactId>
+                                            <version>${maven-version}</version>
+                                            <classifier>bin</classifier>
+                                            <type>tar.gz</type>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.apache.maven</groupId>
+                                            <artifactId>apache-maven</artifactId>
+                                            <version>${maven-version}</version>
+                                            <classifier>src</classifier>
+                                            <type>tar.gz</type>
+                                        </dependency>
                                     </dependencies>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-617/1.zip</targetPath>
+                                    <targetPath>${outputDir}/pl-617/1-Ant.tar</targetPath>
+                                    <directory>${outputDir}/pl-617/unpack</directory>
+                                    <pack>true</pack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-617/2-Ant.zip</targetPath>
                                     <directory>${outputDir}/pl-617/unpack</directory>
                                     <pack>true</pack>
                                     <compressionLevel>0</compressionLevel>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-617/2.zip</targetPath>
+                                    <targetPath>${outputDir}/pl-617/3-Ant.zip</targetPath>
                                     <directory>${outputDir}/pl-617/unpack</directory>
                                     <pack>true</pack>
                                     <compressionLevel>5</compressionLevel>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-617/3.zip</targetPath>
+                                    <targetPath>${outputDir}/pl-617/4-Ant.zip</targetPath>
                                     <directory>${outputDir}/pl-617/unpack</directory>
                                     <pack>true</pack>
                                     <compressionLevel>9</compressionLevel>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-617/5-Ant.tar.gz</targetPath>
+                                    <directory>${outputDir}/pl-617/unpack</directory>
+                                    <pack>true</pack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-617/1-TrueZip.tar</targetPath>
+                                    <directory>${outputDir}/pl-617/unpack</directory>
+                                    <useTrueZipForPack>true</useTrueZipForPack>
+                                    <pack>true</pack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-617/2-TrueZip.zip</targetPath>
+                                    <directory>${outputDir}/pl-617/unpack</directory>
+                                    <pack>true</pack>
+                                    <useTrueZipForPack>true</useTrueZipForPack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDir}/pl-617/3-TrueZip.tar.gz</targetPath>
+                                    <directory>${outputDir}/pl-617/unpack</directory>
+                                    <useTrueZipForPack>true</useTrueZipForPack>
+                                    <pack>true</pack>
                                 </resource>
                             </resources>
                         </configuration>
@@ -350,13 +395,26 @@
                         <phase>test</phase>
                         <configuration>
                             <assertFiles>
-                                ${outputDir}/pl-617/1.zip
-                                ${outputDir}/pl-617/2.zip
-                                ${outputDir}/pl-617/3.zip
+                                ${outputDir}/pl-617/1-Ant.tar
+                                ${outputDir}/pl-617/2-Ant.zip
+                                ${outputDir}/pl-617/3-Ant.zip
+                                ${outputDir}/pl-617/4-Ant.zip
+                                ${outputDir}/pl-617/5-Ant.tar.gz
+                                ${outputDir}/pl-617/1-TrueZip.tar
+                                ${outputDir}/pl-617/2-TrueZip.zip
+                                ${outputDir}/pl-617/3-TrueZip.tar.gz
                             </assertFiles>
                             <assertGroovy>
-                                new File( outputDir, 'pl-617/1.zip' ).size() > new File( outputDir, 'pl-617/2.zip' ).size()
-                                new File( outputDir, 'pl-617/2.zip' ).size() > new File( outputDir, 'pl-617/3.zip' ).size()
+                                <!-- Ant compression: tar, 3 compression levels (0, 5, 9), tar.gz -->
+                                new File( outputDir, 'pl-617/1-Ant.tar' ).size() > new File( outputDir, 'pl-617/2-Ant.zip'    ).size()
+                                new File( outputDir, 'pl-617/2-Ant.zip' ).size() > new File( outputDir, 'pl-617/3-Ant.zip'    ).size()
+                                new File( outputDir, 'pl-617/3-Ant.zip' ).size() > new File( outputDir, 'pl-617/4-Ant.zip'    ).size()
+                                new File( outputDir, 'pl-617/4-Ant.zip' ).size() > new File( outputDir, 'pl-617/5-Ant.tar.gz' ).size()
+
+                                <!-- TrueZip compression: tar, zip, tar.gz. Better in all categories! -->
+                                new File( outputDir, 'pl-617/1-Ant.tar'    ).size() > new File( outputDir, 'pl-617/1-TrueZip.tar'    ).size()
+                                new File( outputDir, 'pl-617/4-Ant.zip'    ).size() > new File( outputDir, 'pl-617/2-TrueZip.zip'    ).size()
+                                new File( outputDir, 'pl-617/5-Ant.tar.gz' ).size() > new File( outputDir, 'pl-617/3-TrueZip.tar.gz' ).size()
                             </assertGroovy>
                         </configuration>
                     </execution>
