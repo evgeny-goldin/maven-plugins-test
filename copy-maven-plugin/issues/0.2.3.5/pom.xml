@@ -313,7 +313,11 @@
                                             <artifactId>logback-core</artifactId>
                                             <version>1.0.0</version>
                                             <optional>true</optional>
+                                            <includeOptional>true</includeOptional>
                                             <excludeTransitive>false</excludeTransitive>
+                                            <excludeScope>test, provided</excludeScope>
+                                            <excludeGroupIds>xml-apis</excludeGroupIds>
+                                            <excludeArtifactIds>xerces-impl</excludeArtifactIds>
                                         </dependency>
                                         <dependency>
                                             <groupId>org.springframework</groupId>
@@ -323,7 +327,7 @@
                                             <excludeTransitive>false</excludeTransitive>
                                         </dependency>
                                     </dependencies>
-                                    <process>{{ assert files.size() == 6 }}</process>
+                                    <process>{{ assert files.size() == 85 }}</process>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-539/11</targetPath>
@@ -467,6 +471,7 @@
                                             <artifactId>logback-core</artifactId>
                                             <version>1.0.0</version>
                                             <excludeTransitive>false</excludeTransitive>
+                                            <includeScope>compile, test</includeScope>
                                         </dependency>
                                         <dependency>
                                             <groupId>org.springframework</groupId>
@@ -476,7 +481,7 @@
                                         </dependency>
                                     </dependencies>
                                     <failIfNotFound>false</failIfNotFound>
-                                    <process>{{ assert files.size() == 6 }}</process>
+                                    <process>{{ assert files.size() == 14 }}</process>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-539/22</targetPath>
@@ -748,6 +753,8 @@
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
                                         <excludeTransitive>false</excludeTransitive>
+                                        <includeScope>compile, test</includeScope>
+                                        <excludeGroupIds>com.sun</excludeGroupIds>
                                     </dependency>
                                     <process>{{ assert files.size() == ${springCompileTestDependencies} }}</process>
                                 </resource>
@@ -771,7 +778,7 @@
                                         <excludeTransitive>false</excludeTransitive>
                                         <includeArtifactIds>commons-pool, commons-logging, easymock</includeArtifactIds>
                                     </dependency>
-                                    <process>{{ assert files.size() == 3 }}</process>
+                                    <process>{{ assert files.size() == 6 }}</process>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-509/4</targetPath>
@@ -780,9 +787,10 @@
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
                                         <excludeTransitive>false</excludeTransitive>
+                                        <excludeGroupIds>com.sun</excludeGroupIds>
                                         <excludeArtifactIds>commons-logging, commons-pool, easymock</excludeArtifactIds>
                                     </dependency>
-                                    <process>{{ assert files.size() == ( ${springCompileTestDependencies} - 3 ) }}</process>
+                                    <process>{{ assert files.size() == 37 }}</process>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-509/5</targetPath>
@@ -792,7 +800,7 @@
                                         <version>1.0.0</version>
                                         <excludeTransitive>false</excludeTransitive>
                                     </dependency>
-                                    <process>{{ assert files.size() == 6 }}</process>
+                                    <process>{{ assert files.size() == 16 }}</process>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-509/6</targetPath>
@@ -801,13 +809,11 @@
                                         <artifactId>logback-core</artifactId>
                                         <version>1.0.0</version>
                                         <excludeTransitive>false</excludeTransitive>
-                                        <!-- "org.easytesting:fest-assert, org.easytesting:fest-util" -->
                                         <excludeGroupIds>org.easytesting</excludeGroupIds>
-                                        <!-- "org.easymock:easymock" -->
                                         <excludeArtifactIds>easymock</excludeArtifactIds>
                                         <excludeTypes>zip</excludeTypes>
                                     </dependency>
-                                    <process>{{ assert files.size() == 3 }}</process>
+                                    <process>{{ assert files.size() == 11 }}</process>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-509/7</targetPath>
