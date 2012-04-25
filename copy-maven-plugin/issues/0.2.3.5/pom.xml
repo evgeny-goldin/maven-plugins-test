@@ -313,9 +313,8 @@
                                             <artifactId>logback-core</artifactId>
                                             <version>1.0.0</version>
                                             <optional>true</optional>
-                                            <includeOptional>true</includeOptional>
                                             <excludeTransitive>false</excludeTransitive>
-                                            <excludeScope>test, provided</excludeScope>
+                                            <excludeScope>provided</excludeScope>
                                             <excludeGroupIds>xml-apis</excludeGroupIds>
                                             <excludeArtifactIds>xerces-impl</excludeArtifactIds>
                                         </dependency>
@@ -327,7 +326,7 @@
                                             <excludeTransitive>false</excludeTransitive>
                                         </dependency>
                                     </dependencies>
-                                    <process>{{ assert files.size() == 85 }}</process>
+                                    <process>{{ assert files.size() == 10 }}</process>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-539/11</targetPath>
@@ -481,7 +480,7 @@
                                         </dependency>
                                     </dependencies>
                                     <failIfNotFound>false</failIfNotFound>
-                                    <process>{{ assert files.size() == 14 }}</process>
+                                    <process>{{ assert files.size() == 10 }}</process>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-539/22</targetPath>
@@ -778,7 +777,7 @@
                                         <excludeTransitive>false</excludeTransitive>
                                         <includeArtifactIds>commons-pool, commons-logging, easymock</includeArtifactIds>
                                     </dependency>
-                                    <process>{{ assert files.size() == 6 }}</process>
+                                    <process>{{ assert files.size() == 3 }}</process>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-509/4</targetPath>
@@ -790,7 +789,7 @@
                                         <excludeGroupIds>com.sun</excludeGroupIds>
                                         <excludeArtifactIds>commons-logging, commons-pool, easymock</excludeArtifactIds>
                                     </dependency>
-                                    <process>{{ assert files.size() == 37 }}</process>
+                                    <process>{{ assert files.size() == 30 }}</process>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-509/5</targetPath>
@@ -800,7 +799,7 @@
                                         <version>1.0.0</version>
                                         <excludeTransitive>false</excludeTransitive>
                                     </dependency>
-                                    <process>{{ assert files.size() == 16 }}</process>
+                                    <process>{{ assert files.size() == 11 }}</process>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-509/6</targetPath>
@@ -813,7 +812,7 @@
                                         <excludeArtifactIds>easymock</excludeArtifactIds>
                                         <excludeTypes>zip</excludeTypes>
                                     </dependency>
-                                    <process>{{ assert files.size() == 11 }}</process>
+                                    <process>{{ assert files.size() == 6 }}</process>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-509/7</targetPath>
@@ -2315,9 +2314,12 @@
 
                                 [ 6, 8, 16 ].every{ new File( outputDir, "pl-539/$it" ).listFiles().size() == 1 }
                                 [ 6, 8, 16 ].every{ new File( outputDir, "pl-539/$it" ).directorySize()    == 327911 }
-                                [ 10, 21   ].every{ new File( outputDir, "pl-539/$it" ).listFiles().size() == 6 }
-                                [ 10, 21   ].every{ new File( outputDir, "pl-539/$it" ).directorySize()    == 9595383 }
+                                [ 10, 21   ].every{ new File( outputDir, "pl-539/$it" ).listFiles().size() == 10 }
+                                [ 10, 21   ].every{ new File( outputDir, "pl-539/$it" ).directorySize()    == 9992920 }
                             </assertGroovy>
+                            <assertEqual>
+                                ${outputDir}/pl-539/10|${outputDir}/pl-539/21
+                            </assertEqual>
                             <assertFiles>
                                 ${outputDir}/pl-539/6
                                 ${outputDir}/pl-539/6/*.jar
@@ -2380,11 +2382,12 @@
                                 new File( outputDir, 'pl-509/2' ).directorySize()    == 2431079
                                 new File( outputDir, 'pl-509/3' ).listFiles().size() == 3
                                 new File( outputDir, 'pl-509/3' ).directorySize()    == 250164
-                                new File( outputDir, 'pl-509/4' ).listFiles().size() == ${springCompileTestDependencies} - 3
-                                new File( outputDir, 'pl-509/5' ).listFiles().size() == 6
-                                new File( outputDir, 'pl-509/5' ).directorySize()    == 9595383
-                                new File( outputDir, 'pl-509/6' ).listFiles().size() == 3
-                                new File( outputDir, 'pl-509/6' ).directorySize()    == 9408245
+                                new File( outputDir, 'pl-509/4' ).listFiles().size() == 30
+                                new File( outputDir, 'pl-509/4' ).directorySize()    == 5648031
+                                new File( outputDir, 'pl-509/5' ).listFiles().size() == 11
+                                new File( outputDir, 'pl-509/5' ).directorySize()    == 10024502
+                                new File( outputDir, 'pl-509/6' ).listFiles().size() == 6
+                                new File( outputDir, 'pl-509/6' ).directorySize()    == 9827762
                               ! new File( outputDir, 'pl-509/7' ).directory
                             </assertGroovy>
                         </configuration>
