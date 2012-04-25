@@ -201,7 +201,7 @@
                                 new File( outputDir, 'pl-302/spring-test'     ).listFiles().size() == ${springCompileTestDependencies}
                                 new File( outputDir, 'pl-302/spring-compile'  ).listFiles().size() == ${springCompileDependencies}
                                 new File( outputDir, 'pl-302/spring-gid'      ).listFiles().size() == 6
-                                new File( outputDir, 'pl-302/spring-aid'      ).listFiles().size() == 3
+                                new File( outputDir, 'pl-302/spring-aid'      ).listFiles().size() == 2
                             </assertGroovy>
                             <assertEqual>
                                 ${outputDir}/pl-302/spring-all|${outputDir}/pl-302/spring-test
