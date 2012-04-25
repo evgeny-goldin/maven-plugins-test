@@ -906,6 +906,7 @@
                                         <artifactId>spring-beans</artifactId>
                                         <version>${spring-version}</version>
                                         <excludeTransitive>false</excludeTransitive>
+                                        <excludeGroupIds>com.sun</excludeGroupIds>
                                     </dependency>
                                     <filter>${filterNotM2}</filter>
                                 </resource>
@@ -963,6 +964,7 @@
                                         <artifactId>spring-beans</artifactId>
                                         <version>${spring-version}</version>
                                         <excludeTransitive>false</excludeTransitive>
+                                        <excludeGroupIds>com.sun</excludeGroupIds>
                                     </dependency>
                                     <filter>${filterNotM2}</filter>
                                 </resource>
@@ -1022,6 +1024,7 @@
                                         <artifactId>spring-beans</artifactId>
                                         <version>${spring-version}</version>
                                         <excludeTransitive>false</excludeTransitive>
+                                        <excludeGroupIds>com.sun</excludeGroupIds>
                                     </dependency>
                                     <filter>${filterM2}</filter>
                                 </resource>
@@ -1085,6 +1088,7 @@
                                         <artifactId>spring-beans</artifactId>
                                         <version>${spring-version}</version>
                                         <excludeTransitive>false</excludeTransitive>
+                                        <excludeGroupIds>com.sun</excludeGroupIds>
                                     </dependency>
                                     <filter>${filterNotM2}</filter>
                                 </resource>
@@ -1365,8 +1369,8 @@
                                 new File( outputDir, 'pl-567/1' ).directorySize()    == 589824
                                 new File( outputDir, 'pl-567/1' ).listFiles().size() == 1
 
-                                new File( outputDir, 'pl-567/2' ).directorySize()    == 2532429
-                                new File( outputDir, 'pl-567/2' ).listFiles().size() == 11
+                                new File( outputDir, 'pl-567/2' ).directorySize()    == 3822344
+                                new File( outputDir, 'pl-567/2' ).listFiles().size() == 19
 
                                 new File( outputDir, 'pl-567/3' ).directorySize()    == 425977
                                 new File( outputDir, 'pl-567/3' ).listFiles().size() == 4
