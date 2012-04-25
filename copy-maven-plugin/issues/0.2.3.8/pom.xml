@@ -1369,7 +1369,7 @@
                                 new File( outputDir, 'pl-567/1' ).directorySize()    == 589824
                                 new File( outputDir, 'pl-567/1' ).listFiles().size() == 1
 
-                                new File( outputDir, 'pl-567/2' ).directorySize()    == 3822344
+                                new File( outputDir, 'pl-567/2' ).directorySize().with{ ( delegate == 3822344 ) || ( delegate == 3822382 ) }
                                 new File( outputDir, 'pl-567/2' ).listFiles().size() == 19
 
                                 new File( outputDir, 'pl-567/3' ).directorySize()    == 425977
