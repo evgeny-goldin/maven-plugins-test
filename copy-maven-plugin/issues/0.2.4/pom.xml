@@ -205,6 +205,33 @@
                                         <version>${spring-version}</version>
                                     </dependency>
                                 </resource>
+                                <!-- Single "filtering" dependency from "compile" scope, no transitivity -->
+                                <resource>
+                                    <description>compile</description>
+                                    <targetPath>${outputDir}/pl-550/compile</targetPath>
+                                    <dependency>
+                                        <includeScope>compile</includeScope>
+                                        <excludeTransitive>true</excludeTransitive>
+                                    </dependency>
+                                </resource>
+                                <!-- Single "filtering" dependency from "test" scope, no transitivity -->
+                                <resource>
+                                    <description>test</description>
+                                    <targetPath>${outputDir}/pl-550/test</targetPath>
+                                    <dependency>
+                                        <includeScope>test</includeScope>
+                                        <excludeTransitive>true</excludeTransitive>
+                                    </dependency>
+                                </resource>
+                                <!-- Single "filtering" dependency from "provided" scope, no transitivity -->
+                                <resource>
+                                    <description>provided</description>
+                                    <targetPath>${outputDir}/pl-550/provided</targetPath>
+                                    <dependency>
+                                        <includeScope>provided</includeScope>
+                                        <excludeTransitive>true</excludeTransitive>
+                                    </dependency>
+                                </resource>
                                 <!-- Transitive dependencies from "compile" scope -->
                                 <resource>
                                     <description>1</description>
@@ -280,10 +307,36 @@
                                         <excludeScope>provided</excludeScope>
                                     </dependency>
                                 </resource>
-                                <!-- All transitive dependencies, "test" excluded -->
+                                <!-- Transitive dependencies from "test" scope, "compile" excluded -->
                                 <resource>
                                     <description>7</description>
                                     <targetPath>${outputDir}/pl-550/7</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>${spring-version}</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                        <includeScope>test</includeScope>
+                                        <excludeScope>compile</excludeScope>
+                                    </dependency>
+                                </resource>
+                                <!-- Transitive dependencies from "provided" scope, "compile" excluded -->
+                                <resource>
+                                    <description>8</description>
+                                    <targetPath>${outputDir}/pl-550/8</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>${spring-version}</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                        <includeScope>provided</includeScope>
+                                        <excludeScope>compile</excludeScope>
+                                    </dependency>
+                                </resource>
+                                <!-- All transitive dependencies, "test" excluded -->
+                                <resource>
+                                    <description>9</description>
+                                    <targetPath>${outputDir}/pl-550/9</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -294,8 +347,8 @@
                                 </resource>
                                 <!-- All transitive dependencies, "provided" excluded -->
                                 <resource>
-                                    <description>8</description>
-                                    <targetPath>${outputDir}/pl-550/8</targetPath>
+                                    <description>10</description>
+                                    <targetPath>${outputDir}/pl-550/10</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -308,8 +361,8 @@
                                 </resource>
                                 <!-- Transitive "filtering" dependency with "compile" scope -->
                                 <resource>
-                                    <description>11</description>
-                                    <targetPath>${outputDir}/pl-550/11</targetPath>
+                                    <description>12</description>
+                                    <targetPath>${outputDir}/pl-550/12</targetPath>
                                     <dependency>
                                         <includeScope>compile</includeScope>
                                     </dependency>
@@ -324,16 +377,16 @@
                                 </resource>
                                 <!-- Transitive "filtering" dependency with "provided" scope -->
                                 <resource>
-                                    <description>33</description>
-                                    <targetPath>${outputDir}/pl-550/33</targetPath>
+                                    <description>32</description>
+                                    <targetPath>${outputDir}/pl-550/32</targetPath>
                                     <dependency>
                                         <includeScope>provided</includeScope>
                                     </dependency>
                                 </resource>
                                 <!-- Transitive "filtering" dependency with "compile" scope, "test" and "provided" excluded -->
                                 <resource>
-                                    <description>44</description>
-                                    <targetPath>${outputDir}/pl-550/44</targetPath>
+                                    <description>42</description>
+                                    <targetPath>${outputDir}/pl-550/42</targetPath>
                                     <dependency>
                                         <includeScope>compile</includeScope>
                                         <excludeScope>test, provided</excludeScope>
@@ -341,8 +394,8 @@
                                 </resource>
                                 <!-- Transitive "filtering" dependency with "compile" scope, "test" excluded -->
                                 <resource>
-                                    <description>55</description>
-                                    <targetPath>${outputDir}/pl-550/55</targetPath>
+                                    <description>52</description>
+                                    <targetPath>${outputDir}/pl-550/52</targetPath>
                                     <dependency>
                                         <includeScope>compile</includeScope>
                                         <excludeScope>test</excludeScope>
@@ -350,25 +403,43 @@
                                 </resource>
                                 <!-- Transitive "filtering" dependency with "compile" scope, "provided" excluded -->
                                 <resource>
-                                    <description>66</description>
-                                    <targetPath>${outputDir}/pl-550/66</targetPath>
+                                    <description>62</description>
+                                    <targetPath>${outputDir}/pl-550/62</targetPath>
                                     <dependency>
                                         <includeScope>compile</includeScope>
                                         <excludeScope>provided</excludeScope>
                                     </dependency>
                                 </resource>
+                                <!-- Transitive "filtering" dependency with "test" scope, "compile" excluded -->
+                                <resource>
+                                    <description>72</description>
+                                    <targetPath>${outputDir}/pl-550/72</targetPath>
+                                    <dependency>
+                                        <includeScope>test</includeScope>
+                                        <excludeScope>compile</excludeScope>
+                                    </dependency>
+                                </resource>
+                                <!-- Transitive "filtering" dependency with "provided" scope, "compile" excluded -->
+                                <resource>
+                                    <description>82</description>
+                                    <targetPath>${outputDir}/pl-550/82</targetPath>
+                                    <dependency>
+                                        <includeScope>provided</includeScope>
+                                        <excludeScope>compile</excludeScope>
+                                    </dependency>
+                                </resource>
                                 <!-- Transitive "filtering" dependency, "test" scope excluded -->
                                 <resource>
-                                    <description>77</description>
-                                    <targetPath>${outputDir}/pl-550/77</targetPath>
+                                    <description>92</description>
+                                    <targetPath>${outputDir}/pl-550/92</targetPath>
                                     <dependency>
                                         <excludeScope>test</excludeScope>
                                     </dependency>
                                 </resource>
                                 <!-- Transitive "filtering" dependency, "provided" scope excluded -->
                                 <resource>
-                                    <description>88</description>
-                                    <targetPath>${outputDir}/pl-550/88</targetPath>
+                                    <description>102</description>
+                                    <targetPath>${outputDir}/pl-550/102</targetPath>
                                     <dependency>
                                         <excludeScope>provided</excludeScope>
                                     </dependency>
@@ -430,9 +501,13 @@
                         <configuration>
                             <assertFiles>
                                 ${outputDir}/pl-550
+                                ${outputDir}/pl-550/dependency-plugin
                                 ${outputDir}/pl-550/all
                                 ${outputDir}/pl-550/single
-                                ${outputDir}/pl-550/dependency-plugin
+                                ${outputDir}/pl-550/compile
+                                ${outputDir}/pl-550/test
+                                ${outputDir}/pl-550/provided
+
                                 ${outputDir}/pl-550/1
                                 ${outputDir}/pl-550/2
                                 ${outputDir}/pl-550/3
@@ -441,14 +516,19 @@
                                 ${outputDir}/pl-550/6
                                 ${outputDir}/pl-550/7
                                 ${outputDir}/pl-550/8
-                                ${outputDir}/pl-550/11
+                                ${outputDir}/pl-550/9
+
+                                ${outputDir}/pl-550/10
+                                ${outputDir}/pl-550/12
                                 ${outputDir}/pl-550/22
-                                ${outputDir}/pl-550/33
-                                ${outputDir}/pl-550/44
-                                ${outputDir}/pl-550/55
-                                ${outputDir}/pl-550/66
-                                ${outputDir}/pl-550/77
-                                ${outputDir}/pl-550/88
+                                ${outputDir}/pl-550/32
+                                ${outputDir}/pl-550/42
+                                ${outputDir}/pl-550/52
+                                ${outputDir}/pl-550/62
+                                ${outputDir}/pl-550/72
+                                ${outputDir}/pl-550/82
+                                ${outputDir}/pl-550/92
+                                ${outputDir}/pl-550/102
                             </assertFiles>
                             <assertGroovy>
                                 <!--new File( outputDir, 'pl-550/1' ).listFiles().size() == ${springDependencies}-->
