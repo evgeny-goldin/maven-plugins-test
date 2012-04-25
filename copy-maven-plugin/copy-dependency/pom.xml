@@ -279,49 +279,17 @@
                                 ${project.build.directory}/images-2/1.png
                                 ${project.build.directory}/images-3/1.png
 
-                                ${project.build.directory}/test-deps-transitive-1/commons-logging-1.1.1.jar
-                                ${project.build.directory}/test-deps-transitive-1/commons-lang-2.3.jar
-                                ${project.build.directory}/test-deps-transitive-1/spring-asm-${spring-version}.jar
-                                ${project.build.directory}/test-deps-transitive-1/spring-core-${spring-version}.jar
-                                ${project.build.directory}/test-deps-transitive-1/dom4j-1.6.1.jar
-                                ${project.build.directory}/test-deps-transitive-1/icu4j-2.6.1.jar
-                                ${project.build.directory}/test-deps-transitive-1/jaxen-${jaxen-version}.jar
-                                ${project.build.directory}/test-deps-transitive-1/jdom-1.0.jar
-                                ${project.build.directory}/test-deps-transitive-1/log4j-${log4j-version}.jar
-                                ${project.build.directory}/test-deps-transitive-1/xalan-2.6.0.jar
-                                ${project.build.directory}/test-deps-transitive-1/xercesImpl-2.6.2.jar
-                                ${project.build.directory}/test-deps-transitive-1/xml-apis-1.3.02.jar
-                                ${project.build.directory}/test-deps-transitive-1/xmlParserAPIs-2.6.2.jar
-                                ${project.build.directory}/test-deps-transitive-1/xom-1.0.jar
+                                ${project.build.directory}/test-deps-transitive-1/hamcrest-core-1.1.jar
                                 ${project.build.directory}/test-deps-transitive-1/junit-${junit-version}.jar
                                 ${project.build.directory}/test-deps-transitive-1/spring-test-${spring-version}.jar
-                                ${project.build.directory}/test-deps-transitive-1/image-1-abc.png
-                                ${project.build.directory}/test-deps-transitive-1/image-2-def.png
-                                ${project.build.directory}/test-deps-transitive-1/image-3-abc.zip
-                                ${project.build.directory}/test-deps-transitive-1/image-4-def.tar.gz
-                                ${project.build.directory}/test-deps-transitive-1/fixedformat4j-1.2.2-javadoc.jar
-                                ${project.build.directory}/test-deps-transitive-1/fixedformat4j-1.2.2-sources.jar
 
-                                ${project.build.directory}/test-deps-transitive-GroupId-include-1/spring-asm-${spring-version}.jar
-                                ${project.build.directory}/test-deps-transitive-GroupId-include-1/spring-core-${spring-version}.jar
                                 ${project.build.directory}/test-deps-transitive-GroupId-include-1/spring-test-${spring-version}.jar
 
-                                ${project.build.directory}/test-deps-transitive-GroupId-include-3/spring-asm-${spring-version}.jar
-                                ${project.build.directory}/test-deps-transitive-GroupId-include-3/spring-core-${spring-version}.jar
                                 ${project.build.directory}/test-deps-transitive-GroupId-include-3/spring-test-${spring-version}.jar
                                 ${project.build.directory}/test-deps-transitive-GroupId-include-3/junit-${junit-version}.jar
 
-                                ${project.build.directory}/test-deps-no-transitive/spring-core-${spring-version}.jar
-                                ${project.build.directory}/test-deps-no-transitive/log4j-${log4j-version}.jar
-                                ${project.build.directory}/test-deps-no-transitive/jaxen-${jaxen-version}.jar
                                 ${project.build.directory}/test-deps-no-transitive/junit-${junit-version}.jar
                                 ${project.build.directory}/test-deps-no-transitive/spring-test-${spring-version}.jar
-                                ${project.build.directory}/test-deps-no-transitive/fixedformat4j-1.2.2-javadoc.jar
-                                ${project.build.directory}/test-deps-no-transitive/fixedformat4j-1.2.2-sources.jar
-                                ${project.build.directory}/test-deps-no-transitive/image-1-abc.png
-                                ${project.build.directory}/test-deps-no-transitive/image-2-def.png
-                                ${project.build.directory}/test-deps-no-transitive/image-3-abc.zip
-                                ${project.build.directory}/test-deps-no-transitive/image-4-def.tar.gz
 
                                 ${project.build.directory}/test-deps-no-transitive-no-compile/junit-${junit-version}.jar
                                 ${project.build.directory}/test-deps-no-transitive-no-compile/spring-test-${spring-version}.jar
@@ -354,13 +322,13 @@
                                 new File( project.build.directory, 'images-2'                                  ).listFiles().size() == 1
                                 new File( project.build.directory, 'images-3'                                  ).listFiles().size() == 1
 
-                                new File( project.build.directory, 'test-deps-transitive-1'                    ).listFiles().size() == 23
-                                new File( project.build.directory, 'test-deps-transitive-2'                    ).listFiles().size() == 23
-                                new File( project.build.directory, 'test-deps-transitive-GroupId-include-1'    ).listFiles().size() == 3
-                                new File( project.build.directory, 'test-deps-transitive-GroupId-include-2'    ).listFiles().size() == 3
-                                new File( project.build.directory, 'test-deps-transitive-GroupId-include-3'    ).listFiles().size() == 4
-                                new File( project.build.directory, 'test-deps-transitive-GroupId-exclude'      ).listFiles().size() == 20
-                                new File( project.build.directory, 'test-deps-no-transitive'                   ).listFiles().size() == 11
+                                new File( project.build.directory, 'test-deps-transitive-1'                    ).listFiles().size() == 3
+                                new File( project.build.directory, 'test-deps-transitive-2'                    ).listFiles().size() == 3
+                                new File( project.build.directory, 'test-deps-transitive-GroupId-include-1'    ).listFiles().size() == 1
+                                new File( project.build.directory, 'test-deps-transitive-GroupId-include-2'    ).listFiles().size() == 1
+                                new File( project.build.directory, 'test-deps-transitive-GroupId-include-3'    ).listFiles().size() == 2
+                                new File( project.build.directory, 'test-deps-transitive-GroupId-exclude'      ).listFiles().size() == 2
+                                new File( project.build.directory, 'test-deps-no-transitive'                   ).listFiles().size() == 2
                                 new File( project.build.directory, 'test-deps-no-transitive-no-compile'        ).listFiles().size() == 6
                             </assertGroovy>
                         </configuration>
