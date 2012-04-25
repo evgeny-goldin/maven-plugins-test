@@ -195,6 +195,31 @@
                                         <excludeGroupIds>com.sun.jmx,com.sun.jdmk</excludeGroupIds>
                                     </dependency>
                                 </resource>
+                                <!-- All transitive dependencies from all scopes, including optional -->
+                                <resource>
+                                    <description>all</description>
+                                    <targetPath>${outputDir}/pl-550/optional-1</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>${spring-version}</version>
+                                        <excludeTransitive>false</excludeTransitive>
+                                        <includeOptional>true</includeOptional>
+                                        <!-- Not available in Maven repos -->
+                                        <excludeGroupIds>com.sun.jmx,com.sun.jdmk</excludeGroupIds>
+                                    </dependency>
+                                </resource>
+                                <!-- All non-transitive dependencies from all scopes, including optional -->
+                                <resource>
+                                    <description>all</description>
+                                    <targetPath>${outputDir}/pl-550/optional-2</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>${spring-version}</version>
+                                        <includeOptional>true</includeOptional>
+                                    </dependency>
+                                </resource>
                                 <!-- Single dependency, no transitivity -->
                                 <resource>
                                     <description>single</description>
