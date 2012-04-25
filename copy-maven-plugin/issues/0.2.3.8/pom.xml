@@ -816,7 +816,7 @@
                                     <dependency>
                                         <includeScope>compile</includeScope>
                                     </dependency>
-                                    <process>{{ assert time &gt; 10 }}</process>
+                                    <process>{{ assert time &gt; 5 }}</process>
                                 </resource>
                                 <resource>
                                     <description>pl-562/1 - skip</description>
