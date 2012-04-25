@@ -182,7 +182,7 @@
                         <phase>initialize</phase>
                         <configuration>
                             <resources>
-                                <!-- All transitive dependencies from all scopes -->
+                                <!-- Transitive dependencies from all scopes -->
                                 <resource>
                                     <description>all</description>
                                     <targetPath>${outputDir}/pl-550/all</targetPath>
@@ -195,7 +195,7 @@
                                         <excludeGroupIds>com.sun.jmx,com.sun.jdmk</excludeGroupIds>
                                     </dependency>
                                 </resource>
-                                <!-- All transitive dependencies from all scopes, including optional -->
+                                <!-- Transitive dependencies from all scopes, including optional (yeah, that's big!) -->
                                 <resource>
                                     <description>optional-1</description>
                                     <targetPath>${outputDir}/pl-550/optional-1</targetPath>
@@ -210,7 +210,7 @@
                                         <excludeArtifactIds>xerces-impl,xml-apis,commons-logging,commons-logging-api,stax-ri,hsqldb</excludeArtifactIds>
                                     </dependency>
                                 </resource>
-                                <!-- All non-transitive dependencies from all scopes, including optional -->
+                                <!-- Direct dependencies from all scopes, including optional -->
                                 <resource>
                                     <description>optional-2</description>
                                     <targetPath>${outputDir}/pl-550/optional-2</targetPath>
@@ -219,6 +219,18 @@
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
                                         <includeOptional>true</includeOptional>
+                                    </dependency>
+                                </resource>
+                                <!-- Direct dependencies from "compile" scope, including optional -->
+                                <resource>
+                                    <description>optional-3</description>
+                                    <targetPath>${outputDir}/pl-550/optional-3</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>${spring-version}</version>
+                                        <includeOptional>true</includeOptional>
+                                        <includeScope>compile</includeScope>
                                     </dependency>
                                 </resource>
                                 <!-- Single dependency, no transitivity -->
@@ -231,31 +243,37 @@
                                         <version>${spring-version}</version>
                                     </dependency>
                                 </resource>
-                                <!-- Single "filtering" dependency from "compile" scope, no transitivity -->
+                                <!-- Direct dependencies from "compile" scope -->
                                 <resource>
-                                    <description>compile</description>
-                                    <targetPath>${outputDir}/pl-550/compile</targetPath>
+                                    <description>single-compile</description>
+                                    <targetPath>${outputDir}/pl-550/single-compile</targetPath>
                                     <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>${spring-version}</version>
                                         <includeScope>compile</includeScope>
-                                        <excludeTransitive>true</excludeTransitive>
                                     </dependency>
                                 </resource>
-                                <!-- Single "filtering" dependency from "test" scope, no transitivity -->
+                                <!-- Direct dependencies from "test" scope -->
                                 <resource>
-                                    <description>test</description>
-                                    <targetPath>${outputDir}/pl-550/test</targetPath>
+                                    <description>single-test</description>
+                                    <targetPath>${outputDir}/pl-550/single-test</targetPath>
                                     <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>${spring-version}</version>
                                         <includeScope>test</includeScope>
-                                        <excludeTransitive>true</excludeTransitive>
                                     </dependency>
                                 </resource>
-                                <!-- Single "filtering" dependency from "provided" scope, no transitivity -->
+                                <!-- Direct dependencies from "provided" scope -->
                                 <resource>
-                                    <description>provided</description>
-                                    <targetPath>${outputDir}/pl-550/provided</targetPath>
+                                    <description>single-provided</description>
+                                    <targetPath>${outputDir}/pl-550/single-provided</targetPath>
                                     <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>${spring-version}</version>
                                         <includeScope>provided</includeScope>
-                                        <excludeTransitive>true</excludeTransitive>
                                     </dependency>
                                 </resource>
                                 <!-- Transitive dependencies from "compile" scope -->
@@ -383,6 +401,60 @@
                                         <excludeScope>provided</excludeScope>
                                         <!-- Not available in Maven repos -->
                                         <excludeGroupIds>com.sun.jmx,com.sun.jdmk</excludeGroupIds>
+                                    </dependency>
+                                </resource>
+                                <!-- "Filtering" dependency with "compile" scope, no transitivity -->
+                                <resource>
+                                    <description>compile</description>
+                                    <targetPath>${outputDir}/pl-550/compile</targetPath>
+                                    <dependency>
+                                        <includeScope>compile</includeScope>
+                                        <excludeTransitive>true</excludeTransitive>
+                                    </dependency>
+                                </resource>
+                                <!-- "Filtering" dependency with "test" scope, no transitivity -->
+                                <resource>
+                                    <description>test</description>
+                                    <targetPath>${outputDir}/pl-550/test</targetPath>
+                                    <dependency>
+                                        <includeScope>test</includeScope>
+                                        <excludeTransitive>true</excludeTransitive>
+                                    </dependency>
+                                </resource>
+                                <!-- "Filtering" dependency with "provided" scope, no transitivity -->
+                                <resource>
+                                    <description>provided</description>
+                                    <targetPath>${outputDir}/pl-550/provided</targetPath>
+                                    <dependency>
+                                        <includeScope>provided</includeScope>
+                                        <excludeTransitive>true</excludeTransitive>
+                                    </dependency>
+                                </resource>
+                                <!-- Transitive "filtering" dependency with "compile" scope, including optional -->
+                                <resource>
+                                    <description>optional-4</description>
+                                    <targetPath>${outputDir}/pl-550/optional-4</targetPath>
+                                    <dependency>
+                                        <includeScope>compile</includeScope>
+                                        <includeOptional>true</includeOptional>
+                                    </dependency>
+                                </resource>
+                                <!-- Transitive "filtering" dependency with "test" scope, including optional -->
+                                <resource>
+                                    <description>optional-5</description>
+                                    <targetPath>${outputDir}/pl-550/optional-5</targetPath>
+                                    <dependency>
+                                        <includeScope>test</includeScope>
+                                        <includeOptional>true</includeOptional>
+                                    </dependency>
+                                </resource>
+                                <!-- Transitive "filtering" dependency with "provided" scope, including optional -->
+                                <resource>
+                                    <description>optional-6</description>
+                                    <targetPath>${outputDir}/pl-550/optional-6</targetPath>
+                                    <dependency>
+                                        <includeScope>provided</includeScope>
+                                        <includeOptional>true</includeOptional>
                                     </dependency>
                                 </resource>
                                 <!-- Transitive "filtering" dependency with "compile" scope -->
@@ -529,12 +601,13 @@
                                 ${outputDir}/pl-550
                                 ${outputDir}/pl-550/dependency-plugin
                                 ${outputDir}/pl-550/all
-                                ${outputDir}/pl-550/single
-                                ${outputDir}/pl-550/compile
-                                ${outputDir}/pl-550/test
-                                ${outputDir}/pl-550/provided
                                 ${outputDir}/pl-550/optional-1
                                 ${outputDir}/pl-550/optional-2
+                                ${outputDir}/pl-550/optional-3
+                                ${outputDir}/pl-550/single
+                                ${outputDir}/pl-550/single-compile
+                                ${outputDir}/pl-550/single-test
+                                ${outputDir}/pl-550/single-provided
 
                                 ${outputDir}/pl-550/1
                                 ${outputDir}/pl-550/2
@@ -545,8 +618,15 @@
                                 ${outputDir}/pl-550/7
                                 ${outputDir}/pl-550/8
                                 ${outputDir}/pl-550/9
-
                                 ${outputDir}/pl-550/10
+
+                                ${outputDir}/pl-550/compile
+                                ${outputDir}/pl-550/test
+                                ${outputDir}/pl-550/provided
+                                ${outputDir}/pl-550/optional-4
+                                ${outputDir}/pl-550/optional-5
+                                ${outputDir}/pl-550/optional-6
+
                                 ${outputDir}/pl-550/12
                                 ${outputDir}/pl-550/22
                                 ${outputDir}/pl-550/32
