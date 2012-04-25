@@ -197,7 +197,7 @@
                                 </resource>
                                 <!-- All transitive dependencies from all scopes, including optional -->
                                 <resource>
-                                    <description>all</description>
+                                    <description>optional-1</description>
                                     <targetPath>${outputDir}/pl-550/optional-1</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
@@ -211,7 +211,7 @@
                                 </resource>
                                 <!-- All non-transitive dependencies from all scopes, including optional -->
                                 <resource>
-                                    <description>all</description>
+                                    <description>optional-2</description>
                                     <targetPath>${outputDir}/pl-550/optional-2</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
