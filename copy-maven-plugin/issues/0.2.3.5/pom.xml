@@ -2383,7 +2383,7 @@
                                 new File( outputDir, 'pl-509/3' ).listFiles().size() == 3
                                 new File( outputDir, 'pl-509/3' ).directorySize()    == 250164
                                 new File( outputDir, 'pl-509/4' ).listFiles().size() == 29
-                                new File( outputDir, 'pl-509/4' ).directorySize()    == 5623107
+                                new File( outputDir, 'pl-509/4' ).directorySize().with{ ( delegate == 5623107 ) || ( delegate == 5623145 ) }
                                 new File( outputDir, 'pl-509/5' ).listFiles().size() == 11
                                 new File( outputDir, 'pl-509/5' ).directorySize()    == 10024502
                                 new File( outputDir, 'pl-509/6' ).listFiles().size() == 6
