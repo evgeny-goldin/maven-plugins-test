@@ -532,6 +532,8 @@
                                 ${outputDir}/pl-550/compile
                                 ${outputDir}/pl-550/test
                                 ${outputDir}/pl-550/provided
+                                ${outputDir}/pl-550/optional-1
+                                ${outputDir}/pl-550/optional-2
 
                                 ${outputDir}/pl-550/1
                                 ${outputDir}/pl-550/2
