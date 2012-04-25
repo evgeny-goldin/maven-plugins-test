@@ -97,6 +97,8 @@
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
                                         <excludeTransitive>false</excludeTransitive>
+                                        <excludeGroupIds>com.sun</excludeGroupIds>
+                                        <excludeScope>provided</excludeScope>
                                     </dependency>
                                 </resource>
                                 <resource>
@@ -106,7 +108,8 @@
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
                                         <excludeTransitive>false</excludeTransitive>
-                                        <includeScope>test</includeScope>
+                                        <includeScope>compile, test</includeScope>
+                                        <excludeGroupIds>com.sun</excludeGroupIds>
                                     </dependency>
                                 </resource>
                                 <resource>
@@ -194,11 +197,11 @@
                             <assertGroovy>
                                 new File( outputDir, 'pl-302/spring-single-1' ).listFiles().size() == 1
                                 new File( outputDir, 'pl-302/spring-single-2' ).listFiles().size() == 1
-                                new File( outputDir, 'pl-302/spring-all'                    ).listFiles().size() == ${springDependencies}
-                                new File( outputDir, 'pl-302/spring-test'                   ).listFiles().size() == ${springDependencies}
-                                new File( outputDir, 'pl-302/spring-compile'  ).listFiles().size() == 9
+                                new File( outputDir, 'pl-302/spring-all'      ).listFiles().size() == ${springCompileTestDependencies}
+                                new File( outputDir, 'pl-302/spring-test'     ).listFiles().size() == ${springCompileTestDependencies}
+                                new File( outputDir, 'pl-302/spring-compile'  ).listFiles().size() == ${springCompileDependencies}
                                 new File( outputDir, 'pl-302/spring-gid'      ).listFiles().size() == 6
-                                new File( outputDir, 'pl-302/spring-aid'      ).listFiles().size() == 2
+                                new File( outputDir, 'pl-302/spring-aid'      ).listFiles().size() == 3
                             </assertGroovy>
                             <assertEqual>
                                 ${outputDir}/pl-302/spring-all|${outputDir}/pl-302/spring-test

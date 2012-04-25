@@ -639,8 +639,8 @@
                                 ${outputDir}/pl-550/102
                             </assertFiles>
                             <assertGroovy>
-                                <!--new File( outputDir, 'pl-550/1' ).listFiles().size() == ${springDependencies}-->
-                                <!--new File( outputDir, 'pl-550/2' ).listFiles().size() == ${springDependencies}-->
+                                <!--new File( outputDir, 'pl-550/1' ).listFiles().size() == ${springCompileTestDependencies}-->
+                                <!--new File( outputDir, 'pl-550/2' ).listFiles().size() == ${springCompileTestDependencies}-->
                             </assertGroovy>
                             <assertEqual>
                                 <!--${outputDir}/pl-550/1|${outputDir}/pl-550/2-->

@@ -35,7 +35,8 @@
         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
         <!-- Number of transitive String dependencies -->
         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-        <springDependencies>8</springDependencies>
+        <springCompileTestDependencies>38</springCompileTestDependencies>
+        <springCompileDependencies>8</springCompileDependencies>
 
         <!-- ~~~~~~~~~~~~~~~~~ -->
         <!-- OS-specific tests -->
