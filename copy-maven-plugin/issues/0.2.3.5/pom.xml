@@ -753,7 +753,7 @@
                                         <version>${spring-version}</version>
                                         <excludeTransitive>false</excludeTransitive>
                                         <includeScope>compile, test</includeScope>
-                                        <excludeGroupIds>com.sun</excludeGroupIds>
+                                        <excludeGroupIds>com.sun,javax.xml.soap</excludeGroupIds>
                                     </dependency>
                                     <process>{{ assert files.size() == ${springCompileTestDependencies} }}</process>
                                 </resource>

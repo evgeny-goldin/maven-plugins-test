@@ -97,7 +97,7 @@
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
                                         <excludeTransitive>false</excludeTransitive>
-                                        <excludeGroupIds>com.sun</excludeGroupIds>
+                                        <excludeGroupIds>com.sun,javax.xml.soap</excludeGroupIds>
                                         <excludeScope>provided</excludeScope>
                                     </dependency>
                                 </resource>
@@ -109,7 +109,7 @@
                                         <version>${spring-version}</version>
                                         <excludeTransitive>false</excludeTransitive>
                                         <includeScope>compile, test</includeScope>
-                                        <excludeGroupIds>com.sun</excludeGroupIds>
+                                        <excludeGroupIds>com.sun,javax.xml.soap</excludeGroupIds>
                                     </dependency>
                                 </resource>
                                 <resource>
