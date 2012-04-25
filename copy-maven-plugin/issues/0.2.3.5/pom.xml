@@ -786,10 +786,10 @@
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
                                         <excludeTransitive>false</excludeTransitive>
-                                        <excludeGroupIds>com.sun</excludeGroupIds>
+                                        <excludeGroupIds>com.sun,javax.xml.soap</excludeGroupIds>
                                         <excludeArtifactIds>commons-logging, commons-pool, easymock</excludeArtifactIds>
                                     </dependency>
-                                    <process>{{ assert files.size() == 30 }}</process>
+                                    <process>{{ assert files.size() == 29 }}</process>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-509/5</targetPath>
@@ -2382,8 +2382,8 @@
                                 new File( outputDir, 'pl-509/2' ).directorySize()    == 2431079
                                 new File( outputDir, 'pl-509/3' ).listFiles().size() == 3
                                 new File( outputDir, 'pl-509/3' ).directorySize()    == 250164
-                                new File( outputDir, 'pl-509/4' ).listFiles().size() == 30
-                                new File( outputDir, 'pl-509/4' ).directorySize()    == 5648031
+                                new File( outputDir, 'pl-509/4' ).listFiles().size() == 29
+                                new File( outputDir, 'pl-509/4' ).directorySize()    == 5623107
                                 new File( outputDir, 'pl-509/5' ).listFiles().size() == 11
                                 new File( outputDir, 'pl-509/5' ).directorySize()    == 10024502
                                 new File( outputDir, 'pl-509/6' ).listFiles().size() == 6
