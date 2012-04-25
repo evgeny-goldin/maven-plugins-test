@@ -206,7 +206,8 @@
                                         <excludeTransitive>false</excludeTransitive>
                                         <includeOptional>true</includeOptional>
                                         <!-- Not available in Maven repos -->
-                                        <excludeGroupIds>com.sun.jmx,com.sun.jdmk</excludeGroupIds>
+                                        <excludeGroupIds>com.sun.jmx,com.sun.jdmk,com.sun,javax.security,javax.jws,javax.mail,javax.activation</excludeGroupIds>
+                                        <excludeArtifactIds>xerces-impl,xml-apis,commons-logging,commons-logging-api,stax-ri,hsqldb</excludeArtifactIds>
                                     </dependency>
                                 </resource>
                                 <!-- All non-transitive dependencies from all scopes, including optional -->
