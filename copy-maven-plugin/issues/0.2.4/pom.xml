@@ -668,7 +668,7 @@
 
 
                                 new File( outputDir, 'pl-550/all'               ).listFiles().size() == 32
-                                new File( outputDir, 'pl-550/compile'           ).listFiles().size() == 6
+                                new File( outputDir, 'pl-550/compile'           ).listFiles().size() == 1
                                 new File( outputDir, 'pl-550/dependency-plugin' ).listFiles().size() == 11
                                 new File( outputDir, 'pl-550/optional-1'        ).listFiles().size() == 158
                                 new File( outputDir, 'pl-550/optional-2'        ).listFiles().size() == 37
@@ -707,7 +707,7 @@
 
                                 ${outputDir}/pl-550/9|${outputDir}/pl-550/92
 
-                                ${outputDir}/pl-550/compile|${outputDir}/pl-550/single-compile
+                                ${outputDir}/pl-550/compile|${outputDir}/pl-550/single
                             </assertEqual>
                         </configuration>
                     </execution>
