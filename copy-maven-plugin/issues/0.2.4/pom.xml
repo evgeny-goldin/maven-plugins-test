@@ -666,6 +666,22 @@
                                 new File( outputDir, 'pl-550/92'  ).listFiles().size() == 11
                                 new File( outputDir, 'pl-550/102' ).listFiles().size() == 29
 
+
+                                new File( outputDir, 'pl-550/all'               ).listFiles().size() == 32
+                                new File( outputDir, 'pl-550/compile'           ).listFiles().size() == 6
+                                new File( outputDir, 'pl-550/dependency-plugin' ).listFiles().size() == 11
+                                new File( outputDir, 'pl-550/optional-1'        ).listFiles().size() == 158
+                                new File( outputDir, 'pl-550/optional-2'        ).listFiles().size() == 37
+                                new File( outputDir, 'pl-550/optional-3'        ).listFiles().size() == 27
+                                new File( outputDir, 'pl-550/optional-4'        ).listFiles().size() == 86
+                                new File( outputDir, 'pl-550/optional-5'        ).listFiles().size() == 1
+                                new File( outputDir, 'pl-550/optional-6'        ).listFiles().size() == 1
+                                new File( outputDir, 'pl-550/provided'          ).listFiles().size() == 1
+                                new File( outputDir, 'pl-550/single'            ).listFiles().size() == 1
+                                new File( outputDir, 'pl-550/single-compile'    ).listFiles().size() == 6
+                                new File( outputDir, 'pl-550/single-provided'   ).listFiles().size() == 1
+                                new File( outputDir, 'pl-550/single-test'       ).listFiles().size() == 9
+                                new File( outputDir, 'pl-550/test'              ).listFiles().size() == 1
                             </assertGroovy>
                             <assertEqual>
                                 ${outputDir}/pl-550/1|${outputDir}/pl-550/4
@@ -681,10 +697,17 @@
                                 ${outputDir}/pl-550/8|${outputDir}/pl-550/3
                                 ${outputDir}/pl-550/3|${outputDir}/pl-550/32
                                 ${outputDir}/pl-550/32|${outputDir}/pl-550/82
+                                ${outputDir}/pl-550/82|${outputDir}/pl-550/optional-6
+                                ${outputDir}/pl-550/optional-6|${outputDir}/pl-550/provided
+                                ${outputDir}/pl-550/provided|${outputDir}/pl-550/single-provided
 
                                 ${outputDir}/pl-550/22|${outputDir}/pl-550/72
+                                ${outputDir}/pl-550/72|${outputDir}/pl-550/optional-5
+                                ${outputDir}/pl-550/optional-5|${outputDir}/pl-550/test
 
                                 ${outputDir}/pl-550/9|${outputDir}/pl-550/92
+
+                                ${outputDir}/pl-550/compile|${outputDir}/pl-550/single-compile
                             </assertEqual>
                         </configuration>
                     </execution>
