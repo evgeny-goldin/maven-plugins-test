@@ -540,6 +540,7 @@
                                     <targetPath>${outputDir}/pl-550/102</targetPath>
                                     <dependency>
                                         <excludeScope>provided</excludeScope>
+                                        <excludeGroupIds>com.sun,javax.xml.soap</excludeGroupIds>
                                     </dependency>
                                 </resource>
                             </resources>
@@ -639,11 +640,26 @@
                                 ${outputDir}/pl-550/102
                             </assertFiles>
                             <assertGroovy>
-                                <!--new File( outputDir, 'pl-550/1' ).listFiles().size() == ${springCompileTestDependencies}-->
-                                <!--new File( outputDir, 'pl-550/2' ).listFiles().size() == ${springCompileTestDependencies}-->
+                                new File( outputDir, 'pl-550/1'  ).listFiles().size() == ${springCompileDependencies}
+                                new File( outputDir, 'pl-550/2'  ).listFiles().size() == ${springTestDependencies}
+                                new File( outputDir, 'pl-550/3'  ).listFiles().size() == 1
+                                new File( outputDir, 'pl-550/4'  ).listFiles().size() == ${springCompileDependencies}
+                                new File( outputDir, 'pl-550/5'  ).listFiles().size() == ${springCompileDependencies}
+                                new File( outputDir, 'pl-550/6'  ).listFiles().size() == ${springCompileDependencies}
+                                new File( outputDir, 'pl-550/7'  ).listFiles().size() == ${springTestDependencies}
+                                new File( outputDir, 'pl-550/8'  ).listFiles().size() == 1
+                                new File( outputDir, 'pl-550/9'  ).listFiles().size() == 11
+                                new File( outputDir, 'pl-550/10' ).listFiles().size() == 29
+
                             </assertGroovy>
                             <assertEqual>
-                                <!--${outputDir}/pl-550/1|${outputDir}/pl-550/2-->
+                                ${outputDir}/pl-550/1|${outputDir}/pl-550/4
+                                ${outputDir}/pl-550/4|${outputDir}/pl-550/5
+                                ${outputDir}/pl-550/5|${outputDir}/pl-550/6
+
+                                ${outputDir}/pl-550/7|${outputDir}/pl-550/2
+
+                                ${outputDir}/pl-550/8|${outputDir}/pl-550/3
                             </assertEqual>
                         </configuration>
                     </execution>
