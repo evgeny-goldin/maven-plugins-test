@@ -137,7 +137,7 @@
                                     <dependency>
                                         <excludeTransitive>true</excludeTransitive>
                                         <includeScope>runtime</includeScope>
-                                        <includeGroupIds>com.goldin.test</includeGroupIds>
+                                        <includeGroupIds>com.github.goldin.test</includeGroupIds>
                                         <includeArtifactIds>image</includeArtifactIds>
                                         <includeClassifiers>abc,def</includeClassifiers>
                                         <includeTypes>zip,tar.gz</includeTypes>
@@ -215,7 +215,7 @@
                                     </dependency>
                                 </resource>
                                 <resource>
-                                    <targetPath>${project.build.directory}/test-deps-no-transitive-no-compile</targetPath>
+                                    <targetPath>${project.build.directory}/no-transitive-no-compile</targetPath>
                                     <dependency>
                                         <excludeScope>compile</excludeScope>
                                         <excludeTransitive>true</excludeTransitive>
@@ -279,24 +279,26 @@
                                 ${project.build.directory}/images-2/1.png
                                 ${project.build.directory}/images-3/1.png
 
-                                ${project.build.directory}/test-deps-transitive-1/hamcrest-core-1.1.jar
+                                ${project.build.directory}/test-deps-transitive-1/hibernate-cglib-repack-2.1_3.jar
+                                ${project.build.directory}/test-deps-transitive-1/hsqldb-1.8.0.7.jar
+                                ${project.build.directory}/test-deps-transitive-1/javax.inject-1.jar
                                 ${project.build.directory}/test-deps-transitive-1/junit-${junit-version}.jar
                                 ${project.build.directory}/test-deps-transitive-1/spring-test-${spring-version}.jar
 
                                 ${project.build.directory}/test-deps-transitive-GroupId-include-1/spring-test-${spring-version}.jar
 
-                                ${project.build.directory}/test-deps-transitive-GroupId-include-3/spring-test-${spring-version}.jar
                                 ${project.build.directory}/test-deps-transitive-GroupId-include-3/junit-${junit-version}.jar
+                                ${project.build.directory}/test-deps-transitive-GroupId-include-3/spring-test-${spring-version}.jar
 
                                 ${project.build.directory}/test-deps-no-transitive/junit-${junit-version}.jar
                                 ${project.build.directory}/test-deps-no-transitive/spring-test-${spring-version}.jar
 
-                                ${project.build.directory}/test-deps-no-transitive-no-compile/junit-${junit-version}.jar
-                                ${project.build.directory}/test-deps-no-transitive-no-compile/spring-test-${spring-version}.jar
-                                ${project.build.directory}/test-deps-no-transitive-no-compile/image-1-abc.png
-                                ${project.build.directory}/test-deps-no-transitive-no-compile/image-2-def.png
-                                ${project.build.directory}/test-deps-no-transitive-no-compile/image-3-abc.zip
-                                ${project.build.directory}/test-deps-no-transitive-no-compile/image-4-def.tar.gz
+                                ${project.build.directory}/no-transitive-no-compile/junit-${junit-version}.jar
+                                ${project.build.directory}/no-transitive-no-compile/spring-test-${spring-version}.jar
+                                ${project.build.directory}/no-transitive-no-compile/image-1-abc.png
+                                ${project.build.directory}/no-transitive-no-compile/image-2-def.png
+                                ${project.build.directory}/no-transitive-no-compile/image-3-abc.zip
+                                ${project.build.directory}/no-transitive-no-compile/image-4-def.tar.gz
                             </assertFiles>
                             <assertEqualNoChecksum>
                                 ${project.build.directory}/compile-deps-transitive-1                 | ${project.build.directory}/compile-deps-transitive-2
@@ -322,14 +324,14 @@
                                 new File( project.build.directory, 'images-2'                                  ).listFiles().size() == 1
                                 new File( project.build.directory, 'images-3'                                  ).listFiles().size() == 1
 
-                                new File( project.build.directory, 'test-deps-transitive-1'                    ).listFiles().size() == 3
-                                new File( project.build.directory, 'test-deps-transitive-2'                    ).listFiles().size() == 3
+                                new File( project.build.directory, 'test-deps-transitive-1'                    ).listFiles().size() == 5
+                                new File( project.build.directory, 'test-deps-transitive-2'                    ).listFiles().size() == 5
                                 new File( project.build.directory, 'test-deps-transitive-GroupId-include-1'    ).listFiles().size() == 1
                                 new File( project.build.directory, 'test-deps-transitive-GroupId-include-2'    ).listFiles().size() == 1
                                 new File( project.build.directory, 'test-deps-transitive-GroupId-include-3'    ).listFiles().size() == 2
-                                new File( project.build.directory, 'test-deps-transitive-GroupId-exclude'      ).listFiles().size() == 2
+                                new File( project.build.directory, 'test-deps-transitive-GroupId-exclude'      ).listFiles().size() == 4
                                 new File( project.build.directory, 'test-deps-no-transitive'                   ).listFiles().size() == 2
-                                new File( project.build.directory, 'test-deps-no-transitive-no-compile'        ).listFiles().size() == 6
+                                new File( project.build.directory, 'no-transitive-no-compile'                  ).listFiles().size() == 6
                             </assertGroovy>
                         </configuration>
                     </execution>
@@ -385,7 +387,7 @@
         <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
 
         <dependency>
-            <groupId>com.goldin.test</groupId>
+            <groupId>com.github.goldin.test</groupId>
             <artifactId>image</artifactId>
             <version>1</version>
             <classifier>abc</classifier>
@@ -393,7 +395,7 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
-            <groupId>com.goldin.test</groupId>
+            <groupId>com.github.goldin.test</groupId>
             <artifactId>image</artifactId>
             <version>2</version>
             <classifier>def</classifier>
@@ -401,7 +403,7 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
-            <groupId>com.goldin.test</groupId>
+            <groupId>com.github.goldin.test</groupId>
             <artifactId>image</artifactId>
             <version>3</version>
             <classifier>abc</classifier>
@@ -409,7 +411,7 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
-            <groupId>com.goldin.test</groupId>
+            <groupId>com.github.goldin.test</groupId>
             <artifactId>image</artifactId>
             <version>4</version>
             <classifier>def</classifier>
