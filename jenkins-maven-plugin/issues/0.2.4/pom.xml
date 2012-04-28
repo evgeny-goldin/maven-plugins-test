@@ -21,7 +21,7 @@
 
 
     <properties>
-        <jobsToTest>1</jobsToTest>
+        <jobsToTest>3</jobsToTest>
     </properties>
 
 
@@ -49,36 +49,88 @@
                             <jenkinsUrl>http://evgeny-goldin.org/jenkins</jenkinsUrl>
                             <timestamp>false</timestamp>
                             <jobs>
-<!--
                                 <job>
-                                    base job with pre and post builders of both kinds
-                                    <runPostStepsIfResult>
-                                </job>
-                                <job>
-                                    adds pre and post builders of both kinds
-                                    <id>pl-613</id>
+                                    <id>pl-613-base</id>
+                                    <abstract>true</abstract>
                                     <scmType>git</scmType>
                                     <jdkName>jdk1.6.0</jdkName>
                                     <mavenName>apache-maven-3</mavenName>
                                     <repository>
                                         <remote>${maven-plugins-repo}</remote>
                                     </repository>
-                                    <prebuilders>
+                                    <prebuildersTasks>
                                         <shell>
-                                            <command>ls -al; pwd</command>
+                                            <command>ls -al</command>
                                         </shell>
+                                        <shell>
+                                            <command>pwd</command>
+                                        </shell>
+                                        <maven>
+                                            <targets>clean</targets>
+                                        </maven>
+                                    </prebuildersTasks>
+                                    <postbuildersTasks>
+                                        <maven>
+                                            <targets>clean</targets>
+                                        </maven>
+                                        <shell>
+                                            <command>pwd</command>
+                                        </shell>
+                                        <shell>
+                                            <command>ls -al</command>
+                                        </shell>
+                                    </postbuildersTasks>
+                                    <prebuilders>
+                                        <![CDATA[ <!-- prebuilders-1 --> ]]>
                                     </prebuilders>
                                     <postbuilders>
-                                        <shell>
-                                            <command>ls -al; pwd</command>
-                                        </shell>
+                                        <![CDATA[ <!-- postbuilders-2 --> ]]>
                                     </postbuilders>
-                                    <runPostStepsIfResult>
                                 </job>
                                 <job>
-                                    doesn't add any builders, uses only those in parent
+                                    <id>pl-613-1</id>
+                                    <parent>pl-613-base</parent>
+                                    <appendTasks>true</appendTasks>
+                                    <prebuildersTasks>
+                                        <shell>
+                                            <command>ls</command>
+                                        </shell>
+                                        <maven>
+                                            <targets>dependency:tree</targets>
+                                        </maven>
+                                    </prebuildersTasks>
+                                    <postbuildersTasks>
+                                        <shell>
+                                            <command>ls</command>
+                                        </shell>
+                                    </postbuildersTasks>
+                                    <runPostStepsIfResult>all</runPostStepsIfResult>
                                 </job>
--->
+                                <job>
+                                    <id>pl-613-2</id>
+                                    <parent>pl-613-base</parent>
+                                    <prebuilders>
+                                        <![CDATA[ <!-- prebuilders-3 --> ]]>
+                                    </prebuilders>
+                                    <postbuilders>
+                                        <![CDATA[ <!-- postbuilders-4 --> ]]>
+                                    </postbuilders>
+                                    <runPostStepsIfResult>success</runPostStepsIfResult>
+                                </job>
+                                <job>
+                                    <id>pl-613-3</id>
+                                    <parent>pl-613-base</parent>
+                                    <prebuildersTasks>
+                                        <shell>
+                                            <command>ls</command>
+                                        </shell>
+                                    </prebuildersTasks>
+                                    <postbuildersTasks>
+                                        <shell>
+                                            <command>ls</command>
+                                        </shell>
+                                    </postbuildersTasks>
+                                </job>
                             </jobs>
                         </configuration>
                     </execution>
