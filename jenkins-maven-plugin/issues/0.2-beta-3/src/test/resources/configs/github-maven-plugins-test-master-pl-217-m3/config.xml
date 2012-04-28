@@ -114,4 +114,13 @@
   </publishers>
   <buildWrappers>
   </buildWrappers>
+  <prebuilders>
+  </prebuilders>
+  <postbuilders>
+  </postbuilders>
+  <runPostStepsIfResult>
+      <name>FAILURE</name>
+      <ordinal>2</ordinal>
+      <color>RED</color>
+  </runPostStepsIfResult>
 </project>

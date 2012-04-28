@@ -73,4 +73,59 @@
         </plugins>
     </build>
 
+
+    <profiles>
+
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <!-- Updates Jenkins configs (from .jenkins to project test copies) when all of them are modified -->
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+        <profile>
+            <id>updateConfigs</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.gmaven</groupId>
+                        <artifactId>gmaven-plugin</artifactId>
+                        <version>${gmaven-version}</version>
+                        <executions>
+                            <execution>
+                                <id>update-configs</id>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                                <phase>process-test-resources</phase>
+                                <configuration>
+                                    <source>
+                                        import com.github.goldin.gcommons.GCommons
+
+                                        final configs = new File( project.basedir, 'src/test/resources/configs' )
+                                        if ( configs.directory )
+                                        {
+                                            configs.listFiles().every {
+                                                File directory ->
+                                                assert directory.directory
+                                                final  source = new File( '${configs-outputDirectory}', directory.name + '/config.xml' )
+                                                assert source.file
+                                                println "Update config: [$source] => [$directory]"
+                                                GCommons.file().copy( source, directory )
+                                            }
+                                        }
+                                    </source>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>com.github.goldin</groupId>
+                                <artifactId>gcommons</artifactId>
+                                <version>0.5.4-SNAPSHOT</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
 </project>

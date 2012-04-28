@@ -122,6 +122,13 @@
   <reporters/>
   <publishers/>
   <buildWrappers/>
+  <prebuilders/>
+  <postbuilders/>
+  <runPostStepsIfResult>
+    <name>FAILURE</name>
+    <ordinal>2</ordinal>
+    <color>RED</color>
+  </runPostStepsIfResult>
   <prebuilders>
     <hudson.tasks.Shell>
       <command>rm -rf /home/evgenyg/.m2/repo/com/github/goldin</command>

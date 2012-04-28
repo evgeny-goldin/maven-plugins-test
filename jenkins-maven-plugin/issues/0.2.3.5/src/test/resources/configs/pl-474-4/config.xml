@@ -123,4 +123,11 @@
   <reporters/>
   <publishers/>
   <buildWrappers/>
+  <prebuilders/>
+  <postbuilders/>
+  <runPostStepsIfResult>
+    <name>FAILURE</name>
+    <ordinal>2</ordinal>
+    <color>RED</color>
+  </runPostStepsIfResult>
 </maven2-moduleset>
