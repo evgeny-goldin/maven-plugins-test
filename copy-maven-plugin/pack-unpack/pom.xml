@@ -44,9 +44,9 @@
                                     <useTrueZipForUnpack>true</useTrueZipForUnpack>
                                     <dependencies>
                                         <dependency>
-                                            <groupId>com.goldin</groupId>
+                                            <groupId>com.github.goldin</groupId>
                                             <artifactId>gcommons</artifactId>
-                                            <version>0.5.3</version>
+                                            <version>${gcommons-version}</version>
                                         </dependency>
                                         <dependency>
                                             <groupId>commons-io</groupId>
@@ -64,14 +64,14 @@
                                             <version>1.1</version>
                                         </dependency>
                                         <dependency>
-                                            <groupId>com.goldin.test</groupId>
+                                            <groupId>com.github.goldin.test</groupId>
                                             <artifactId>image</artifactId>
                                             <version>3</version>
                                             <classifier>abc</classifier>
                                             <type>zip</type>
                                         </dependency>
                                         <dependency>
-                                            <groupId>com.goldin.test</groupId>
+                                            <groupId>com.github.goldin.test</groupId>
                                             <artifactId>image</artifactId>
                                             <version>4</version>
                                             <classifier>def</classifier>
@@ -485,8 +485,6 @@
                         <phase>test</phase>
                         <configuration>
                             <assertGroovy>
-                                new File( outputDir, 'unpack-1'  ).directorySize() == 1556644
-                                new File( outputDir, 'unpack-12' ).directorySize() == 1556644
                                 new File( outputDir, 'unpack-2'  ).directorySize() == 19921721
                                 new File( outputDir, 'unpack-22' ).directorySize() == 19921721
                                 new File( outputDir, 'unpack-3'  ).directorySize() == 84699618

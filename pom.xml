@@ -38,6 +38,7 @@
 
         <springCompileTestDependencies>29</springCompileTestDependencies>
         <springCompileDependencies>8</springCompileDependencies>
+        <springTestDependencies>13</springTestDependencies>
 
         <!-- ~~~~~~~~~~~~~~~~~ -->
         <!-- OS-specific tests -->

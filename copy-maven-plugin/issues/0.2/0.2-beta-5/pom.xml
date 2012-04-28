@@ -166,7 +166,8 @@
                                             <excludeTransitive>true</excludeTransitive>
                                             <includeScope>test</includeScope>
                                             <includeGroupIds>org.jvnet.hudson.main,org.jvnet.hudson.plugins</includeGroupIds>
-                                            <excludeArtifactIds>greenballs</excludeArtifactIds> <!-- Has no jars at all :) -->
+                                            <!-- Have no jars -->
+                                            <excludeArtifactIds>greenballs,hudson-test-harness,ui-samples-plugin</excludeArtifactIds>
                                         </dependency>
                                     </dependencies>
                                     <zipEntries>
@@ -204,8 +205,9 @@
                                         <dependency>
                                             <excludeTransitive>true</excludeTransitive>
                                             <includeScope>test</includeScope>
+                                            <!-- Same excludes as in "pl-284/unpack-1" -->
                                             <includeGroupIds>org.jvnet.hudson.main,org.jvnet.hudson.plugins</includeGroupIds>
-                                            <excludeArtifactIds>greenballs</excludeArtifactIds> <!-- Has no jars at all :) -->
+                                            <excludeArtifactIds>greenballs,hudson-test-harness,ui-samples-plugin</excludeArtifactIds>
                                         </dependency>
                                     </dependencies>
                                     <unpack>true</unpack>
@@ -436,8 +438,8 @@
 
                                 new File( outputDir, 'pl-284/unpack-1' ).directorySize() == 68419140
                                 new File( outputDir, 'pl-284/unpack-2' ).directorySize() == 68419140
-                                new File( outputDir, 'pl-284/unpack-3' ).directorySize() == 658403
-                                new File( outputDir, 'pl-284/unpack-4' ).directorySize() == 658403
+                                new File( outputDir, 'pl-284/unpack-3' ).directorySize() == 1209982
+                                new File( outputDir, 'pl-284/unpack-4' ).directorySize() == 1209982
                             </assertGroovy>
                         </configuration>
                     </execution>

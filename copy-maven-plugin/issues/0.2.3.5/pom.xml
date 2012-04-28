@@ -60,6 +60,32 @@
     </properties>
 
 
+    <dependencies>
+        <!-- http://evgeny-goldin.org/youtrack/issue/pl-549 -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.3</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+
     <build>
         <plugins>
             <plugin>
@@ -85,7 +111,7 @@
                                     <dependency>
                                         <excludeScope>provided</excludeScope>
                                     </dependency>
-                                    <process>{{ assert files.size() == 5 }}</process>
+                                    <process>{{ assert files.size() == 8 }}</process>
                                 </resource>
                             </resources>
                         </configuration>
@@ -2245,7 +2271,7 @@
                                 ${outputDir}/pl-549/slf4j-api-1.6.2.jar
                             </assertFiles>
                             <assertGroovy>
-                                new File( outputDir, 'pl-549' ).directorySize() == 416100
+                                new File( outputDir, 'pl-549' ).directorySize() == 562741
                             </assertGroovy>
                         </configuration>
                     </execution>
@@ -2847,30 +2873,4 @@
             </plugin>
         </plugins>
     </build>
-
-
-    <dependencies>
-        <!-- http://evgeny-goldin.org/youtrack/issue/pl-549 -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.6.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
-            <version>1.6.2</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-httpclient</groupId>
-            <artifactId>commons-httpclient</artifactId>
-            <version>3.1</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>2.3</version>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
 </project>
