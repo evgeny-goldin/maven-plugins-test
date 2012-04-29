@@ -22,6 +22,7 @@
 
     <properties>
         <configs-outputDirectory>${user.home}/.jenkins/jobs</configs-outputDirectory>
+        <maven-plugins-url>https://github.com/evgeny-goldin/maven-plugins</maven-plugins-url>
         <maven-plugins-repo>git://github.com/evgeny-goldin/maven-plugins.git</maven-plugins-repo>
         <maven-plugins-test-repo>git://github.com/evgeny-goldin/maven-plugins-test.git</maven-plugins-test-repo>
         <jobsToTest>0</jobsToTest>
