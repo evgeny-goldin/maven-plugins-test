@@ -63,11 +63,11 @@
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <hudson.tasks.Ant>
-        <antName>myAntName</antName>
-        <targets>clean</targets>
-        <buildFile>build file</buildFile>
-    </hudson.tasks.Ant>
+<hudson.tasks.Ant>
+    <antName>myAntName</antName>
+    <targets>clean</targets>
+    <buildFile>build file</buildFile>
+</hudson.tasks.Ant>
   </builders>
   <publishers>
   </publishers>

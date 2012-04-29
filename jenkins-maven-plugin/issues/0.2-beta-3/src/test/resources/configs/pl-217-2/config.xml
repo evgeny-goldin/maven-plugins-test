@@ -52,12 +52,12 @@
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <hudson.tasks.Shell>
-        <command>pwd</command>
-    </hudson.tasks.Shell>
-    <hudson.tasks.Shell>
-        <command>ls -al</command>
-    </hudson.tasks.Shell>
+<hudson.tasks.Shell>
+    <command>pwd</command>
+</hudson.tasks.Shell>
+<hudson.tasks.Shell>
+    <command>ls -al</command>
+</hudson.tasks.Shell>
   </builders>
   <publishers>
   </publishers>

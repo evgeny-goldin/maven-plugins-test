@@ -52,25 +52,25 @@
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <hudson.tasks.Shell>
-        <command>ls -al</command>
-    </hudson.tasks.Shell>
-    <hudson.tasks.Maven>
-        <targets>clean</targets>
-        <mavenName>apache-maven-3</mavenName>
-        <pom>pom.xml</pom>
-        <usePrivateRepository>true</usePrivateRepository>
-    </hudson.tasks.Maven>
-    <hudson.tasks.BatchFile>
-        <command>dir</command>
-    </hudson.tasks.BatchFile>
-    <hudson.tasks.Ant>
-        <targets>clean</targets>
-        <antOpts>-Xmx128m</antOpts>
-        <buildFile>build file</buildFile>
-        <properties>a = b
+<hudson.tasks.Shell>
+    <command>ls -al</command>
+</hudson.tasks.Shell>
+<hudson.tasks.Maven>
+    <targets>clean</targets>
+    <mavenName>apache-maven-3</mavenName>
+    <pom>pom.xml</pom>
+    <usePrivateRepository>true</usePrivateRepository>
+</hudson.tasks.Maven>
+<hudson.tasks.BatchFile>
+    <command>dir</command>
+</hudson.tasks.BatchFile>
+<hudson.tasks.Ant>
+    <targets>clean</targets>
+    <antOpts>-Xmx128m</antOpts>
+    <buildFile>build file</buildFile>
+    <properties>a = b
                                                 c = d</properties>
-    </hudson.tasks.Ant>
+</hudson.tasks.Ant>
   </builders>
   <publishers>
   </publishers>

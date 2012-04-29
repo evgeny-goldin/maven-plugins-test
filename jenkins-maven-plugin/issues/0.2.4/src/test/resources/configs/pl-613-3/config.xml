@@ -131,16 +131,16 @@
   <buildWrappers>
   </buildWrappers>
   <prebuilders>
-    <hudson.tasks.Shell>
-        <command>ls</command>
-    </hudson.tasks.Shell>
-  <!-- prebuilders-1 -->
+<hudson.tasks.Shell>
+    <command>ls</command>
+</hudson.tasks.Shell>
+<!-- prebuilders-1 -->
   </prebuilders>
   <postbuilders>
-    <hudson.tasks.Shell>
-        <command>ls</command>
-    </hudson.tasks.Shell>
-  <!-- postbuilders-2 -->
+<hudson.tasks.Shell>
+    <command>ls</command>
+</hudson.tasks.Shell>
+<!-- postbuilders-2 -->
   </postbuilders>
   <runPostStepsIfResult>
       <name>FAILURE</name>
