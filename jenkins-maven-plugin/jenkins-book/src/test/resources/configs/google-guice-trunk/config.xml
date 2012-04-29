@@ -80,8 +80,10 @@ Building Google Guice trunk
 </tr>
 </table>]]></description>
   <logRotator>
-    <daysToKeep>5</daysToKeep>
-    <numToKeep>-1</numToKeep>
+      <daysToKeep>5</daysToKeep>
+      <numToKeep>-1</numToKeep>
+      <artifactDaysToKeep>-1</artifactDaysToKeep>
+      <artifactNumToKeep>-1</artifactNumToKeep>
   </logRotator>
   <keepDependencies>false</keepDependencies>
   <properties>
