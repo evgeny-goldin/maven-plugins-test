@@ -21,7 +21,7 @@
 
 
     <properties>
-        <jobsToTest>6</jobsToTest>
+        <jobsToTest>9</jobsToTest>
     </properties>
 
 
@@ -169,6 +169,10 @@
                                     <mavenName>apache-maven-3</mavenName>
                                     <quietPeriod>3</quietPeriod>
                                     <scmCheckoutRetryCount>4</scmCheckoutRetryCount>
+                                    <scmType>git</scmType>
+                                    <repository>
+                                        <remote>${maven-plugins-repo}</remote>
+                                    </repository>
                                 </job>
                                 <job>
                                     <id>pl-619-2</id>
@@ -181,6 +185,58 @@
                                     <quietPeriod>5</quietPeriod>
                                     <scmCheckoutRetryCount>6</scmCheckoutRetryCount>
                                     <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+                                </job>
+                            </jobs>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-623             -->
+                    <!-- "Add support for artifactNumToKeep and artifactDaysToKeep" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-623</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${configs-outputDirectory}</outputDirectory>
+                            <generationPom>https://github.com/evgeny-goldin/maven-plugins-test/blob/master/jenkins-maven-plugin/issues/0.2.4/pom.xml</generationPom>
+                            <jenkinsUrl>http://evgeny-goldin.org/jenkins</jenkinsUrl>
+                            <timestamp>false</timestamp>
+                            <jobs>
+                                <job>
+                                    <id>pl-623-base</id>
+                                    <abstract>true</abstract>
+                                    <mavenName>apache-maven-3</mavenName>
+                                    <scmType>git</scmType>
+                                    <repository>
+                                        <remote>${maven-plugins-repo}</remote>
+                                    </repository>
+                                    <daysToKeep>1</daysToKeep>
+                                    <numToKeep>2</numToKeep>
+                                    <artifactDaysToKeep>3</artifactDaysToKeep>
+                                    <artifactNumToKeep>4</artifactNumToKeep>
+                                </job>
+                                <job>
+                                    <id>pl-623-1</id>
+                                    <mavenName>apache-maven-3</mavenName>
+                                    <scmType>git</scmType>
+                                    <repository>
+                                        <remote>${maven-plugins-repo}</remote>
+                                    </repository>
+                                    <numToKeep>22</numToKeep>
+                                    <artifactNumToKeep>44</artifactNumToKeep>
+                                </job>
+                                <job>
+                                    <id>pl-623-2</id>
+                                    <parent>pl-623-base</parent>
+                                </job>
+                                <job>
+                                    <id>pl-623-3</id>
+                                    <parent>pl-623-base</parent>
+                                    <artifactDaysToKeep>5</artifactDaysToKeep>
+                                    <artifactNumToKeep>6</artifactNumToKeep>
                                 </job>
                             </jobs>
                         </configuration>
