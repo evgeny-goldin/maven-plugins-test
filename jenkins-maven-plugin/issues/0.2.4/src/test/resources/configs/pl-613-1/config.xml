@@ -28,7 +28,7 @@
 </tr>
 <tr>
 <td valign="top">Java</td>
-<td>jdk1.6.0</td>
+<td>(Default)</td>
 </tr>
 <tr>
 <td valign="top">Maven</td>
@@ -107,7 +107,7 @@
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <jdk>jdk1.6.0</jdk>
+  <jdk>(Default)</jdk>
   <triggers class="vector">
   </triggers>
   <concurrentBuild>false</concurrentBuild>
