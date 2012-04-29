@@ -267,6 +267,9 @@
                                         <remote>${maven-plugins-repo}</remote>
                                     </repository>
                                     <mavenGoals>clean</mavenGoals>
+                                    <trigger>
+                                        <type>github</type>
+                                    </trigger>
                                 </job>
                                 <job>
                                     <id>pl-357-1</id>

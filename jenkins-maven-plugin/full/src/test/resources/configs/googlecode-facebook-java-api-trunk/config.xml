@@ -55,8 +55,7 @@
 <tr>
 <td valign="top">Triggers</td>
 <td>
-- <strong><code>scm:</code></strong>
-<a href="http://www.manpagez.com/man/5/crontab/"><strong><code>&quot;*/10 * * * *&quot;</code></strong></a> <br/>
+- <strong><code>scm</code></strong>: <code>"*/10 * * * *"</code><br/>
 </td>
 </tr>
 <tr>

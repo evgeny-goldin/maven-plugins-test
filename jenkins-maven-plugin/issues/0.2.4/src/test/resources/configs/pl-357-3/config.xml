@@ -49,6 +49,12 @@
 </a></td>
 </tr>
 <tr>
+<td valign="top">Triggers</td>
+<td>
+- <strong><code>github</code></strong><br/>
+</td>
+</tr>
+<tr>
 <td valign="top">Repositories</td>
 <td>
 - <a href="http://github.com/evgeny-goldin/maven-plugins-test/"><strong><code>git://github.com/evgeny-goldin/maven-plugins-test.git</code></strong></a>
@@ -112,6 +118,9 @@
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <jdk>(Default)</jdk>
   <triggers class="vector">
+        <com.cloudbees.jenkins.GitHubPushTrigger>
+            <spec></spec>
+        </com.cloudbees.jenkins.GitHubPushTrigger>
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <rootPOM>pom.xml</rootPOM>

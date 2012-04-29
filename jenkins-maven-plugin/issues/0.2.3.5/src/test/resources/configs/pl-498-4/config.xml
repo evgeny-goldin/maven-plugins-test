@@ -55,8 +55,7 @@
 <tr>
 <td valign="top">Triggers</td>
 <td>
-- <strong><code>scm:</code></strong>
-<a href="http://www.manpagez.com/man/5/crontab/"><strong><code>&quot;0 1 * * *&quot;</code></strong></a> <i>(Scheduled to run at 1 AM nightly)</i><br/>
+- <strong><code>scm</code></strong>: <code>"0 1 * * *"</code> <em>(Scheduled to run at 1 AM nightly)</em><br/>
 </td>
 </tr>
 <tr>

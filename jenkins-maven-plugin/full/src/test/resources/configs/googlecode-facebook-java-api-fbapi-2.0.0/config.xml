@@ -55,8 +55,7 @@
 <tr>
 <td valign="top">Triggers</td>
 <td>
-- <strong><code>scm:</code></strong>
-<a href="http://www.manpagez.com/man/5/crontab/"><strong><code>&quot;*/10 * * * *&quot;</code></strong></a> <i>(Check SCM for changes every 10 minutes)</i><br/>
+- <strong><code>scm</code></strong>: <code>"*/10 * * * *"</code> <em>(Check SCM for changes every 10 minutes)</em><br/>
 </td>
 </tr>
 <tr>
