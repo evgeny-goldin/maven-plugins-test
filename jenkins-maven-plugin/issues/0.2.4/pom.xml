@@ -289,7 +289,6 @@
                                     <id>pl-357-3</id>
                                     <parent>pl-357-base</parent>
                                     <gitHubUrl>${maven-plugins-test-url}</gitHubUrl>
-                                    <scmType>git</scmType>
                                     <repository>
                                         <remote>${maven-plugins-test-repo}</remote>
                                     </repository>
