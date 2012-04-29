@@ -266,6 +266,7 @@
                                     <repository>
                                         <remote>${maven-plugins-repo}</remote>
                                     </repository>
+                                    <mavenGoals>clean</mavenGoals>
                                 </job>
                                 <job>
                                     <id>pl-357-1</id>
@@ -275,6 +276,7 @@
                                     <repository>
                                         <remote>${maven-plugins-repo}</remote>
                                     </repository>
+                                    <mavenGoals>clean</mavenGoals>
                                 </job>
                                 <job>
                                     <id>pl-357-2</id>
@@ -283,7 +285,11 @@
                                 <job>
                                     <id>pl-357-3</id>
                                     <parent>pl-357-base</parent>
-                                    <gitHubUrl>gitHubUrl</gitHubUrl>
+                                    <gitHubUrl>${maven-plugins-test-url}</gitHubUrl>
+                                    <scmType>git</scmType>
+                                    <repository>
+                                        <remote>${maven-plugins-test-repo}</remote>
+                                    </repository>
                                 </job>
                             </jobs>
                         </configuration>

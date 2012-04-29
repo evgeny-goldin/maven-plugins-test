@@ -36,7 +36,7 @@
 </tr>
 <tr>
 <td valign="top">Maven goals</td>
-<td><strong><code>-B -e clean install</code></strong></td>
+<td><strong><code>clean</code></strong></td>
 </tr>
 <tr>
 <td valign="top">Maven repository</td>
@@ -51,8 +51,8 @@
 <tr>
 <td valign="top">Repositories</td>
 <td>
-- <a href="http://github.com/evgeny-goldin/maven-plugins/"><strong><code>git://github.com/evgeny-goldin/maven-plugins.git</code></strong></a>
-: <a href="http://github.com/evgeny-goldin/maven-plugins/tree/master/">
+- <a href="http://github.com/evgeny-goldin/maven-plugins-test/"><strong><code>git://github.com/evgeny-goldin/maven-plugins-test.git</code></strong></a>
+: <a href="http://github.com/evgeny-goldin/maven-plugins-test/tree/master/">
 <strong><code>master</code></strong>
 </a><br/>
 </td>
@@ -60,14 +60,14 @@
 <tr>
 <td valign="top">POM</td>
 <td>
-- <a href="http://github.com/evgeny-goldin/maven-plugins/blob/master/pom.xml"><strong><code>http://github.com/evgeny-goldin/maven-plugins/blob/master/pom.xml</code></strong></a><br/>
+- <a href="http://github.com/evgeny-goldin/maven-plugins-test/blob/master/pom.xml"><strong><code>http://github.com/evgeny-goldin/maven-plugins-test/blob/master/pom.xml</code></strong></a><br/>
 </td>
 </tr>
 </table>]]></description>
   <keepDependencies>false</keepDependencies>
   <properties>
       <com.coravy.hudson.plugins.github.GithubProjectProperty>
-        <projectUrl>gitHubUrl</projectUrl>
+        <projectUrl>https://github.com/evgeny-goldin/maven-plugins-test</projectUrl>
       </com.coravy.hudson.plugins.github.GithubProjectProperty>
   </properties>
   <scm class="hudson.plugins.git.GitSCM">
@@ -79,7 +79,7 @@
         <hudson.plugins.git.UserRemoteConfig>
             <name>origin</name>
             <refspec>+refs/heads/*:refs/remotes/origin/*</refspec>
-            <url>git://github.com/evgeny-goldin/maven-plugins.git</url>
+            <url>git://github.com/evgeny-goldin/maven-plugins-test.git</url>
         </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>
@@ -115,7 +115,7 @@
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <rootPOM>pom.xml</rootPOM>
-  <goals>-B -e clean install</goals>
+  <goals>clean</goals>
   <mavenName>apache-maven-3</mavenName>
   <mavenOpts></mavenOpts>
   <aggregatorStyleBuild>true</aggregatorStyleBuild>

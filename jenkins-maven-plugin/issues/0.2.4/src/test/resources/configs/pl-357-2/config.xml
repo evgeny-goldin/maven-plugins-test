@@ -36,7 +36,7 @@
 </tr>
 <tr>
 <td valign="top">Maven goals</td>
-<td><strong><code>-B -e clean install</code></strong></td>
+<td><strong><code>clean</code></strong></td>
 </tr>
 <tr>
 <td valign="top">Maven repository</td>
@@ -115,7 +115,7 @@
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <rootPOM>pom.xml</rootPOM>
-  <goals>-B -e clean install</goals>
+  <goals>clean</goals>
   <mavenName>apache-maven-3</mavenName>
   <mavenOpts></mavenOpts>
   <aggregatorStyleBuild>true</aggregatorStyleBuild>
