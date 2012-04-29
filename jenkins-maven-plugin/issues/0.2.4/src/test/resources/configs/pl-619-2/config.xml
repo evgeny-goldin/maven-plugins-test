@@ -23,6 +23,14 @@
 </a></td>
 </tr>
 <tr>
+<td valign="top">Quiet period</td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td valign="top">Retry Count</td>
+<td><code>2</code></td>
+</tr>
+<tr>
 <td valign="top">Job type</td>
 <td>Maven</td>
 </tr>

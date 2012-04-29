@@ -23,6 +23,18 @@
 </a></td>
 </tr>
 <tr>
+<td valign="top">Display name</td>
+<td>pl619-2</td>
+</tr>
+<tr>
+<td valign="top">Quiet period</td>
+<td><code>5</code></td>
+</tr>
+<tr>
+<td valign="top">Retry Count</td>
+<td><code>6</code></td>
+</tr>
+<tr>
 <td valign="top">Job type</td>
 <td>Maven</td>
 </tr>
