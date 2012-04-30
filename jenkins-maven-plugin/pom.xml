@@ -107,7 +107,7 @@
                                             configs.listFiles().every {
                                                 File directory ->
                                                 assert directory.directory
-                                                final  source = new File( '${configs-outputDirectory}', directory.name + '/config.xml' )
+                                                final  source = new File( project.properties['configs-outputDirectory'], directory.name + '/config.xml' )
                                                 assert source.file
                                                 println "Update config: [$source] => [$directory]"
                                                 GCommons.file().copy( source, directory )
