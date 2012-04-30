@@ -21,7 +21,7 @@
 
 
     <properties>
-        <jobsToTest>15</jobsToTest>
+        <jobsToTest>16</jobsToTest>
     </properties>
 
 
@@ -334,6 +334,8 @@
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-560               -->
                     <!-- "Provide support for system Groovy scripts run as job tasks" -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-558               -->
+                    <!-- "Support arbitrary task types in freestyle builds"           -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <execution>
                         <id>http://evgeny-goldin.org/youtrack/issue/pl-560</id>
@@ -372,6 +374,7 @@
                                 <job>
                                     <id>pl-560-2</id>
                                     <jobType>free</jobType>
+                                    <gitHubUrl>${maven-plugins-url}</gitHubUrl>
                                     <scmType>git</scmType>
                                     <repository>
                                         <remote>${maven-plugins-repo}</remote>
@@ -389,6 +392,45 @@
                                             <file>codenarc.groovy</file>
                                             <groovyName>groovy-1.8.6</groovyName>
                                         </groovy>
+                                    </tasks>
+                                </job>
+                                <job>
+                                    <id>pl-558</id>
+                                    <parent>pl-560-2</parent>
+                                    <appendTasks>true</appendTasks>
+                                    <jobType>free</jobType>
+                                    <scmType>git</scmType>
+                                    <repository>
+                                        <remote>${maven-plugins-repo}</remote>
+                                    </repository>
+                                    <tasks>
+                                        <xml>
+                                            <content><![CDATA[ <!-- task-1 --> ]]></content>
+                                        </xml>
+                                        <xml>
+                                            <content>
+<![CDATA[
+<hudson.plugins.groovy.Groovy>
+    <scriptSource class="hudson.plugins.groovy.StringScriptSource">
+        <command>println "1-[$GroovySystem.version]"</command>
+    </scriptSource>
+    <javaOpts>-Xms128m</javaOpts>
+</hudson.plugins.groovy.Groovy>
+<hudson.tasks.Maven>
+    <targets>clean</targets>
+    <mavenName>apache-maven-3</mavenName>
+    <pom>pom.xml</pom>
+    <usePrivateRepository>false</usePrivateRepository>
+</hudson.tasks.Maven>
+<hudson.plugins.groovy.Groovy>
+    <scriptSource class="hudson.plugins.groovy.FileScriptSource">
+        <scriptFile>codenarc.groovy</scriptFile>
+    </scriptSource>
+    <groovyName>groovy-1.8.6</groovyName>
+</hudson.plugins.groovy.Groovy>
+]]>
+                                            </content>
+                                        </xml>
                                     </tasks>
                                 </job>
                             </jobs>
