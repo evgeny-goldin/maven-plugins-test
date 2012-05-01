@@ -17,47 +17,47 @@
 <p/>
 <table border="1" width="100%" cellpadding="3" cellspacing="3">
 <tr>
-<td  width="15%" valign="top">Job</td>
-<td><a href="http://evgeny-goldin.org/jenkins/job/pl-619-2">
-<strong>pl-619-2</strong>
-</a></td>
+<td  width="15%" valign='top'>Job</td>
+<td><a href='http://evgeny-goldin.org/jenkins/job/pl-619-2'><strong>pl-619-2</strong></a></td>
 </tr>
 <tr>
-<td valign="top">Quiet period</td>
-<td><code>1</code></td>
+<td valign='top'>Parent</td>
+<td>pl-619-base</td>
 </tr>
 <tr>
-<td valign="top">Retry Count</td>
-<td><code>2</code></td>
+<td valign='top'>Quiet period</td>
+<td><strong><code>1</code></strong></td>
 </tr>
 <tr>
-<td valign="top">Job type</td>
+<td valign='top'>Retry count</td>
+<td><strong><code>2</code></strong></td>
+</tr>
+<tr>
+<td valign='top'>Job type</td>
 <td>Maven</td>
 </tr>
 <tr>
-<td valign="top">Java</td>
-<td>(Default)</td>
+<td valign='top'>JDK name</td>
+<td><strong><code>"(Default)"</code></strong></td>
 </tr>
 <tr>
-<td valign="top">Maven</td>
-<td>apache-maven-3</td>
+<td valign='top'>Maven name</td>
+<td><strong><code>"apache-maven-3"</code></strong></td>
 </tr>
 <tr>
-<td valign="top">Maven goals</td>
+<td valign='top'>Maven goals</td>
 <td><strong><code>-B -e clean install</code></strong></td>
 </tr>
 <tr>
-<td valign="top">Maven repository</td>
+<td valign='top'>Maven repository</td>
 <td><strong><code>"&lt;user-home&gt;/.m2/repository"</code></strong></td>
 </tr>
 <tr>
-<td valign="top">Node</td>
-<td><a href="http://evgeny-goldin.org/jenkins/label/master/">
-<strong>master</strong>
-</a></td>
+<td valign='top'>Node</td>
+<td><a href="http://evgeny-goldin.org/jenkins/label/master/"><strong>master</strong></a></td>
 </tr>
 <tr>
-<td valign="top">Repositories</td>
+<td valign='top'>Repositories</td>
 <td>
 - <a href="http://github.com/evgeny-goldin/maven-plugins/"><strong><code>git://github.com/evgeny-goldin/maven-plugins.git</code></strong></a>
 : <a href="http://github.com/evgeny-goldin/maven-plugins/tree/master/">
@@ -66,7 +66,7 @@
 </td>
 </tr>
 <tr>
-<td valign="top">POM</td>
+<td valign='top'>POM</td>
 <td>
 - <a href="http://github.com/evgeny-goldin/maven-plugins/blob/master/pom.xml"><strong><code>http://github.com/evgeny-goldin/maven-plugins/blob/master/pom.xml</code></strong></a><br/>
 </td>

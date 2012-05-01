@@ -17,76 +17,70 @@
 <p/>
 <table border="1" width="100%" cellpadding="3" cellspacing="3">
 <tr>
-<td  width="15%" valign="top">Job</td>
-<td><a href="http://evgeny-goldin.org/jenkins/job/googlecode-google-guice-2.0-maven">
-<strong>googlecode-google-guice-2.0-maven</strong>
-</a></td>
+<td  width="15%" valign='top'>Job</td>
+<td><a href='http://evgeny-goldin.org/jenkins/job/googlecode-google-guice-2.0-maven'><strong>googlecode-google-guice-2.0-maven</strong></a></td>
 </tr>
 <tr>
-<td valign="top">Job type</td>
+<td valign='top'>Parent</td>
+<td>base-svn</td>
+</tr>
+<tr>
+<td valign='top'>Job type</td>
 <td>Maven</td>
 </tr>
 <tr>
-<td valign="top">Java</td>
-<td>jdk1.6.0</td>
+<td valign='top'>JDK name</td>
+<td><strong><code>"jdk1.6.0"</code></strong></td>
 </tr>
 <tr>
-<td valign="top">Maven</td>
-<td>apache-maven-3</td>
+<td valign='top'>Maven name</td>
+<td><strong><code>"apache-maven-3"</code></strong></td>
 </tr>
 <tr>
-<td valign="top">Maven goals</td>
+<td valign='top'>Maven goals</td>
 <td><strong><code>-B -e clean install</code></strong></td>
 </tr>
 <tr>
-<td valign="top">Maven repository</td>
+<td valign='top'>Maven repository</td>
 <td><strong><code>"&lt;user-home&gt;/.m2/repository"</code></strong></td>
 </tr>
 <tr>
-<td valign="top">SVN update policy</td>
+<td valign='top'>SVN update policy</td>
 <td>Revert - [false], update - [false], checkout - [true]</td>
 </tr>
 <tr>
-<td valign="top">Node</td>
-<td><a href="http://evgeny-goldin.org/jenkins/label/master/">
-<strong>master</strong>
-</a></td>
+<td valign='top'>Node</td>
+<td><a href="http://evgeny-goldin.org/jenkins/label/master/"><strong>master</strong></a></td>
 </tr>
 <tr>
-<td valign="top">Triggers</td>
+<td valign='top'>Triggers</td>
 <td>
 - <strong><code>timer</code></strong>: <code>"0 12 * * *"</code> <em>([12:00] - daily build)</em><br/>
 </td>
 </tr>
 <tr>
-<td valign="top">Repositories</td>
+<td valign='top'>Repositories</td>
 <td>
 - <a href="http://google-guice.googlecode.com/svn/branches/2.0-maven/"><strong><code>http://google-guice.googlecode.com/svn/branches/2.0-maven</code></strong></a>
 </td>
 </tr>
 <tr>
-<td valign="top">POM</td>
+<td valign='top'>POM</td>
 <td>
 - <a href="http://google-guice.googlecode.com/svn/branches/2.0-maven/pom.xml"><strong><code>http://google-guice.googlecode.com/svn/branches/2.0-maven/pom.xml</code></strong></a><br/>
 </td>
 </tr>
 <tr>
-<td valign="top">Invokes</td>
+<td valign='top'>Invokes</td>
 <td>
-- <a href="http://evgeny-goldin.org/jenkins/job/googlecode-facebook-java-api-trunk">
-<strong>googlecode-facebook-java-api-trunk</strong>
-</a> when this job is <strong>stable</strong> or <strong>unstable</strong> but not failed<br/>
-- <a href="http://evgeny-goldin.org/jenkins/job/googlecode-facebook-java-api-fbapi-2.0.0">
-<strong>googlecode-facebook-java-api-fbapi-2.0.0</strong>
-</a> when this job is <strong>stable</strong> or <strong>unstable</strong> but not failed<br/>
+- <a href='http://evgeny-goldin.org/jenkins/job/googlecode-facebook-java-api-trunk'><strong>googlecode-facebook-java-api-trunk</strong></a> when this job is <strong>stable</strong> or <strong>unstable</strong> but not failed<br/>
+- <a href='http://evgeny-goldin.org/jenkins/job/googlecode-facebook-java-api-fbapi-2.0.0'><strong>googlecode-facebook-java-api-fbapi-2.0.0</strong></a> when this job is <strong>stable</strong> or <strong>unstable</strong> but not failed<br/>
 </td>
 </tr>
 <tr>
-<td valign="top">Invoked by</td>
+<td valign='top'>Invoked by</td>
 <td>
-- <a href="http://evgeny-goldin.org/jenkins/job/gitorious-wsarena3-version1">
-<strong>gitorious-wsarena3-version1</strong>
-</a> when it is <strong>stable</strong><br/>
+- <a href='http://evgeny-goldin.org/jenkins/job/gitorious-wsarena3-version1'><strong>gitorious-wsarena3-version1</strong></a> when it is <strong>stable</strong><br/>
 </td>
 </tr>
 </table>]]></description>
