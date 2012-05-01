@@ -77,7 +77,7 @@
                                     <description>Building Google Guice trunk</description>
                                     <descriptionTable>
                                         <row>
-                                            <key>Project Page</key>
+                                            <key>Project Page - top</key>
                                             <value>
                                                 <![CDATA[
                                                 <a href="http://code.google.com/p/google-guice/">
@@ -87,6 +87,17 @@
                                             </value>
                                             <escapeHTML>false</escapeHTML>
                                             <bottom>false</bottom>
+                                        </row>
+                                        <row>
+                                            <key>Project Page - bottom</key>
+                                            <value>
+                                                <![CDATA[
+                                                <a href="http://code.google.com/p/google-guice/">
+                                                    <b><code>code.google.com/p/google-guice</code></b>
+                                                </a>
+                                                ]]>
+                                            </value>
+                                            <escapeHTML>false</escapeHTML>
                                         </row>
                                     </descriptionTable>
                                     <jdkName>jdk1.6.0</jdkName>
