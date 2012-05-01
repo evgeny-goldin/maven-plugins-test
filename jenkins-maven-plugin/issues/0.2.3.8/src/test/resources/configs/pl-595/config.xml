@@ -36,6 +36,12 @@
 <td valign='top'>SVN update policy</td>
 <td>Revert - [false], update - [false], checkout - [true]</td>
 </tr>
+<tr>
+<td valign='top'>Build steps</td>
+<td>
+- <strong>ant</strong> : &quot;<code>clean</code>&quot;
+</td>
+</tr>
 </table>]]></description>
   <keepDependencies>false</keepDependencies>
   <properties>

@@ -36,6 +36,12 @@
 <td valign='top'>JDK name</td>
 <td><strong><code>"(Default)"</code></strong></td>
 </tr>
+<tr>
+<td valign='top'>Build steps</td>
+<td>
+<table><tr><td>- <strong>shell</strong></td><td> : </td><td>&quot;<code>ls -al</code>&quot;</td></tr><tr><td>- <strong>maven</strong></td><td> : </td><td>&quot;<code>clean</code>&quot;</td></tr><tr><td>- <strong>batch</strong></td><td> : </td><td>&quot;<code>dir</code>&quot;</td></tr><tr><td>- <strong>ant</strong></td><td> : </td><td>&quot;<code>clean</code>&quot;</td></tr></table>
+</td>
+</tr>
 </table>]]></description>
   <keepDependencies>false</keepDependencies>
   <properties>

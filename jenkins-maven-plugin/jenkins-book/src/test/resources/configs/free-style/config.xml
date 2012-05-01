@@ -33,6 +33,15 @@
 <td><strong><code>"(Default)"</code></strong></td>
 </tr>
 <tr>
+<td valign='top'>Build steps</td>
+<td>
+<table><tr><td>- <strong>shell</strong></td><td> : </td><td>&quot;<code>pwd
+rm -rf /home/evgenyg/.m2/repo/com/github/goldin
+ls -al
+du -hs .</code>&quot;</td></tr><tr><td>- <strong>maven</strong></td><td> : </td><td>&quot;<code>-B -e clean install</code>&quot;</td></tr><tr><td>- <strong>shell</strong></td><td> : </td><td>&quot;<code>du -hs .</code>&quot;</td></tr></table>
+</td>
+</tr>
+<tr>
 <td valign='top'>Repositories</td>
 <td>
 - <a href='http://github.com/evgeny-goldin/maven-plugins-test/'><strong><code>git://github.com/evgeny-goldin/maven-plugins-test.git</code></strong></a>

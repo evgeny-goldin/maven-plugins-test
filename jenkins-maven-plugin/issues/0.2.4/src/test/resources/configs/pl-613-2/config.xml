@@ -37,6 +37,12 @@
 <td><strong><code>"(Default)"</code></strong></td>
 </tr>
 <tr>
+<td valign='top'>Pre-build steps</td>
+<td>
+<table><tr><td>- <strong>shell</strong></td><td> : </td><td>&quot;<code>ls -al</code>&quot;</td></tr><tr><td>- <strong>shell</strong></td><td> : </td><td>&quot;<code>pwd</code>&quot;</td></tr><tr><td>- <strong>maven</strong></td><td> : </td><td>&quot;<code>clean</code>&quot;</td></tr></table>
+</td>
+</tr>
+<tr>
 <td valign='top'>Maven name</td>
 <td><strong><code>"apache-maven-3"</code></strong></td>
 </tr>
@@ -47,6 +53,12 @@
 <tr>
 <td valign='top'>Maven repository</td>
 <td><strong><code>"&lt;user-home&gt;/.m2/repository"</code></strong></td>
+</tr>
+<tr>
+<td valign='top'>Post-build steps</td>
+<td>
+<table><tr><td>- <strong>maven</strong></td><td> : </td><td>&quot;<code>clean</code>&quot;</td></tr><tr><td>- <strong>shell</strong></td><td> : </td><td>&quot;<code>pwd</code>&quot;</td></tr><tr><td>- <strong>shell</strong></td><td> : </td><td>&quot;<code>ls -al</code>&quot;</td></tr></table>
+</td>
 </tr>
 <tr>
 <td valign='top'>Repositories</td>

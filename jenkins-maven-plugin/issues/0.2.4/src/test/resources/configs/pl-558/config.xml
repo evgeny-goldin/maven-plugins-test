@@ -37,6 +37,12 @@
 <td><strong><code>"(Default)"</code></strong></td>
 </tr>
 <tr>
+<td valign='top'>Build steps</td>
+<td>
+<table><tr><td>- <strong>groovy</strong></td><td> : </td><td>&quot;<code>println "1-[$GroovySystem.version]"</code>&quot;</td></tr><tr><td>- <strong>maven</strong></td><td> : </td><td>&quot;<code>clean</code>&quot;</td></tr><tr><td>- <strong>groovy</strong></td><td> : </td><td>&quot;<code>codenarc.groovy</code>&quot;</td></tr><tr><td>- <strong>xml</strong></td><td> : </td><td>&quot;<code>custom task</code>&quot;</td></tr><tr><td>- <strong>xml</strong></td><td> : </td><td>&quot;<code>custom task</code>&quot;</td></tr></table>
+</td>
+</tr>
+<tr>
 <td valign='top'>Repositories</td>
 <td>
 - <a href='http://github.com/evgeny-goldin/maven-plugins/'><strong><code>git://github.com/evgeny-goldin/maven-plugins.git</code></strong></a>

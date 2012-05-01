@@ -33,6 +33,12 @@
 <td><strong><code>"(Default)"</code></strong></td>
 </tr>
 <tr>
+<td valign='top'>Build steps</td>
+<td>
+- <strong>maven</strong> : &quot;<code>-e -B -U clean install</code>&quot;
+</td>
+</tr>
+<tr>
 <td valign='top'>Repositories</td>
 <td>
 - <a href='http://github.com/evgeny-goldin/maven-plugins-test/'><strong><code>git://github.com/evgeny-goldin/maven-plugins-test.git</code></strong></a>
