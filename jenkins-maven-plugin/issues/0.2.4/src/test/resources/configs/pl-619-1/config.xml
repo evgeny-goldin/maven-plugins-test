@@ -15,14 +15,22 @@
 </center>
 &nbsp;
 <p/>
-<table border="1" width="100%" cellpadding="3" cellspacing="3">
+<table border='1' width='100%' cellpadding='3' cellspacing='3'>
 <tr>
-<td  width="15%" valign='top'>Job</td>
-<td><a href='http://evgeny-goldin.org/jenkins/job/pl-619-1'><strong>pl-619-1</strong></a></td>
+<td width='15%' valign='top'>Job</td>
+<td width='85%'><a href='http://evgeny-goldin.org/jenkins/job/pl-619-1'><strong>pl-619-1</strong></a></td>
 </tr>
 <tr>
 <td valign='top'>Display name</td>
 <td>pl619</td>
+</tr>
+<tr>
+<td valign='top'>Job type</td>
+<td>Maven</td>
+</tr>
+<tr>
+<td valign='top'>Node</td>
+<td><a href='http://evgeny-goldin.org/jenkins/label/master'/><strong>master</strong></a></td>
 </tr>
 <tr>
 <td valign='top'>Quiet period</td>
@@ -31,10 +39,6 @@
 <tr>
 <td valign='top'>Retry count</td>
 <td><strong><code>4</code></strong></td>
-</tr>
-<tr>
-<td valign='top'>Job type</td>
-<td>Maven</td>
 </tr>
 <tr>
 <td valign='top'>JDK name</td>
@@ -53,23 +57,15 @@
 <td><strong><code>"&lt;user-home&gt;/.m2/repository"</code></strong></td>
 </tr>
 <tr>
-<td valign='top'>Node</td>
-<td><a href="http://evgeny-goldin.org/jenkins/label/master/"><strong>master</strong></a></td>
-</tr>
-<tr>
 <td valign='top'>Repositories</td>
 <td>
-- <a href="http://github.com/evgeny-goldin/maven-plugins/"><strong><code>git://github.com/evgeny-goldin/maven-plugins.git</code></strong></a>
-: <a href="http://github.com/evgeny-goldin/maven-plugins/tree/master/">
-<strong><code>master</code></strong>
-</a><br/>
+- <a href='http://github.com/evgeny-goldin/maven-plugins/'><strong><code>git://github.com/evgeny-goldin/maven-plugins.git</code></strong></a>
+: <a href='http://github.com/evgeny-goldin/maven-plugins/tree/master/'><strong><code>master</code></strong></a><br/>
 </td>
 </tr>
 <tr>
 <td valign='top'>POM</td>
-<td>
-- <a href="http://github.com/evgeny-goldin/maven-plugins/blob/master/pom.xml"><strong><code>http://github.com/evgeny-goldin/maven-plugins/blob/master/pom.xml</code></strong></a><br/>
-</td>
+<td>- <a href='http://github.com/evgeny-goldin/maven-plugins/blob/master/pom.xml'><strong><code>http://github.com/evgeny-goldin/maven-plugins/blob/master/pom.xml</code></strong></a><br/></td>
 </tr>
 </table>]]></description>
   <displayName>pl619</displayName>

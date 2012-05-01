@@ -11,10 +11,10 @@
 &lt;/center&gt;
 &amp;nbsp;
 &lt;p/&gt;
-&lt;table border=&quot;1&quot; width=&quot;100%&quot; cellpadding=&quot;3&quot; cellspacing=&quot;3&quot;&gt;
+&lt;table border='1' width='100%' cellpadding='3' cellspacing='3'&gt;
 &lt;tr&gt;
-&lt;td  width=&quot;15%&quot; valign='top'&gt;Job&lt;/td&gt;
-&lt;td&gt;&lt;a href='http://evgeny-goldin.org/jenkins/job/pl-474-3'&gt;&lt;strong&gt;pl-474-3&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;td width='15%' valign='top'&gt;Job&lt;/td&gt;
+&lt;td width='85%'&gt;&lt;a href='http://evgeny-goldin.org/jenkins/job/pl-474-3'&gt;&lt;strong&gt;pl-474-3&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td valign='top'&gt;Parent&lt;/td&gt;
@@ -23,6 +23,10 @@
 &lt;tr&gt;
 &lt;td valign='top'&gt;Job type&lt;/td&gt;
 &lt;td&gt;Maven&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td valign='top'&gt;Node&lt;/td&gt;
+&lt;td&gt;&lt;a href='http://evgeny-goldin.org/jenkins/label/master'/&gt;&lt;strong&gt;master&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td valign='top'&gt;JDK name&lt;/td&gt;
@@ -41,23 +45,15 @@
 &lt;td&gt;&lt;strong&gt;&lt;code&gt;&quot;&amp;lt;user-home&amp;gt;/.m2/repository&quot;&lt;/code&gt;&lt;/strong&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td valign='top'&gt;Node&lt;/td&gt;
-&lt;td&gt;&lt;a href=&quot;http://evgeny-goldin.org/jenkins/label/master/&quot;&gt;&lt;strong&gt;master&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
 &lt;td valign='top'&gt;Repositories&lt;/td&gt;
 &lt;td&gt;
-- &lt;a href=&quot;http://github.com/evgeny-goldin/maven-plugins/&quot;&gt;&lt;strong&gt;&lt;code&gt;git://github.com/evgeny-goldin/maven-plugins.git&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;
-: &lt;a href=&quot;http://github.com/evgeny-goldin/maven-plugins/tree/master/&quot;&gt;
-&lt;strong&gt;&lt;code&gt;master&lt;/code&gt;&lt;/strong&gt;
-&lt;/a&gt;&lt;br/&gt;
+- &lt;a href='http://github.com/evgeny-goldin/maven-plugins/'&gt;&lt;strong&gt;&lt;code&gt;git://github.com/evgeny-goldin/maven-plugins.git&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;
+: &lt;a href='http://github.com/evgeny-goldin/maven-plugins/tree/master/'&gt;&lt;strong&gt;&lt;code&gt;master&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;br/&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td valign='top'&gt;POM&lt;/td&gt;
-&lt;td&gt;
-- &lt;a href=&quot;http://github.com/evgeny-goldin/maven-plugins/blob/master/pom.xml&quot;&gt;&lt;strong&gt;&lt;code&gt;http://github.com/evgeny-goldin/maven-plugins/blob/master/pom.xml&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;br/&gt;
-&lt;/td&gt;
+&lt;td&gt;- &lt;a href='http://github.com/evgeny-goldin/maven-plugins/blob/master/pom.xml'&gt;&lt;strong&gt;&lt;code&gt;http://github.com/evgeny-goldin/maven-plugins/blob/master/pom.xml&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;br/&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;</description>
   <logRotator>

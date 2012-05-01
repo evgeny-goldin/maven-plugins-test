@@ -15,30 +15,30 @@
 </center>
 &nbsp;
 <p/>
-<table border="1" width="100%" cellpadding="3" cellspacing="3">
+<table border='1' width='100%' cellpadding='3' cellspacing='3'>
 <tr>
-<td  width="15%" valign='top'>Job</td>
-<td><a href='http://evgeny-goldin.org/jenkins/job/pl-560-2'><strong>pl-560-2</strong></a></td>
+<td width='15%' valign='top'>Job</td>
+<td width='85%'><a href='http://evgeny-goldin.org/jenkins/job/pl-560-2'><strong>pl-560-2</strong></a></td>
 </tr>
 <tr>
 <td valign='top'>Job type</td>
 <td>Free-Style</td>
 </tr>
 <tr>
+<td valign='top'>Node</td>
+<td><a href='http://evgeny-goldin.org/jenkins/label/master'/><strong>master</strong></a></td>
+</tr>
+<tr>
 <td valign='top'>JDK name</td>
 <td><strong><code>"(Default)"</code></strong></td>
 </tr>
 <tr>
-<td valign='top'>Node</td>
-<td><a href="http://evgeny-goldin.org/jenkins/label/master/"><strong>master</strong></a></td>
-</tr>
-<tr>
 <td valign='top'>Repositories</td>
 <td>
-- <a href="http://github.com/evgeny-goldin/maven-plugins/"><strong><code>git://github.com/evgeny-goldin/maven-plugins.git</code></strong></a>
-: <a href="http://github.com/evgeny-goldin/maven-plugins/tree/master/">
-<strong><code>master</code></strong>
-</a><br/>
+- <a href='http://github.com/evgeny-goldin/maven-plugins/'><strong><code>git://github.com/evgeny-goldin/maven-plugins.git</code></strong></a>
+: <a href='http://github.com/evgeny-goldin/maven-plugins/tree/master/'><strong><code>master</code></strong></a><br/>
+</td>
+</tr>
 </table>]]></description>
   <keepDependencies>false</keepDependencies>
   <properties>
