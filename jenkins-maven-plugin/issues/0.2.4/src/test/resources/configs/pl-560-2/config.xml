@@ -21,6 +21,10 @@
 <td width='85%'><a href='http://evgeny-goldin.org/jenkins/job/pl-560-2'><strong>pl-560-2</strong></a></td>
 </tr>
 <tr>
+<td valign='top'>Child job</td>
+<td><a href='http://evgeny-goldin.org/jenkins/job/pl-558'><strong>pl-558</strong></a></td>
+</tr>
+<tr>
 <td valign='top'>Job type</td>
 <td>Free-Style</td>
 </tr>

@@ -17,6 +17,10 @@
 &lt;td width='85%'&gt;&lt;a href='http://evgeny-goldin.org/jenkins/job/pl-474-1'&gt;&lt;strong&gt;pl-474-1&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
+&lt;td valign='top'&gt;Child jobs&lt;/td&gt;
+&lt;td&gt;&lt;a href='http://evgeny-goldin.org/jenkins/job/pl-474-2'&gt;&lt;strong&gt;pl-474-2&lt;/strong&gt;&lt;/a&gt;, &lt;a href='http://evgeny-goldin.org/jenkins/job/pl-474-3'&gt;&lt;strong&gt;pl-474-3&lt;/strong&gt;&lt;/a&gt;, &lt;a href='http://evgeny-goldin.org/jenkins/job/pl-474-4'&gt;&lt;strong&gt;pl-474-4&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
 &lt;td valign='top'&gt;Job type&lt;/td&gt;
 &lt;td&gt;Maven&lt;/td&gt;
 &lt;/tr&gt;
