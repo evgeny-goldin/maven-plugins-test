@@ -21,7 +21,7 @@
 <td width='85%'><a href='http://evgeny-goldin.org/jenkins/job/gitorious-wsarena3-master'><strong>gitorious-wsarena3-master</strong></a></td>
 </tr>
 <tr>
-<td valign='top'>Parent</td>
+<td valign='top'>Parent job</td>
 <td>base-git</td>
 </tr>
 <tr>

@@ -21,7 +21,7 @@
 <td width='85%'><a href='http://evgeny-goldin.org/jenkins/job/google-guice-inheritance-2.0-maven'><strong>google-guice-inheritance-2.0-maven</strong></a></td>
 </tr>
 <tr>
-<td valign='top'>Parent</td>
+<td valign='top'>Parent job</td>
 <td>google-guice-inheritance-base</td>
 </tr>
 <tr>

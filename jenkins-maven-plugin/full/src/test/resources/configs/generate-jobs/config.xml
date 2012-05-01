@@ -17,7 +17,7 @@
 &lt;td width='85%'&gt;&lt;a href='http://evgeny-goldin.org/jenkins/job/generate-jobs'&gt;&lt;strong&gt;generate-jobs&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td valign='top'&gt;Parent&lt;/td&gt;
+&lt;td valign='top'&gt;Parent job&lt;/td&gt;
 &lt;td&gt;base-git&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
