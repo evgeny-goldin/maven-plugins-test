@@ -490,10 +490,10 @@
                             </shouldFailAssertEqual>
                             <assertGroovy>
                                 new File( outputDir, 'idea'             ).listFiles().size() == 2
-                                new File( outputDir, 'compile'          ).listFiles().size() == 9
+                                new File( outputDir, 'compile'          ).listFiles().size() == 10
                                 new File( outputDir, 'dependencies-mix' ).listFiles().size() == 6
-                                new File( outputDir, 'idea-artifacts'   ).listFiles().size() == 7
-                                new File( outputDir, 'idea-artifacts'   ).listFiles().every{ File f -> [ 'annotations', 'asm', 'asm-commons', 'guava-11.0.1', 'intellij-core', 'picocontainer', 'trove4j' ].any{ f.name ==~ /$it-\d+\.lastSuccessful\.jar/ }}
+                                new File( outputDir, 'idea-artifacts'   ).listFiles().size() == 8
+                                new File( outputDir, 'idea-artifacts'   ).listFiles().every{ File f -> [ 'annotations', 'asm-commons', 'asm', 'cli-parser-1.1', 'guava-11.0.1', 'intellij-core', 'picocontainer', 'trove4j' ].any{ f.name ==~ /$it-\d+\.lastSuccessful\.jar/ }}
                             </assertGroovy>
                         </configuration>
                     </execution>
