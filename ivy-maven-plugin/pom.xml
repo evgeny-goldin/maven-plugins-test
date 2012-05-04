@@ -465,9 +465,13 @@
 
                                 ${outputDir}/kotlin-1
                                 ${outputDir}/kotlin-2
-                                ${outputDir}/kotlin-1-unpack/Kotlin/kotlinc/bin/kotlinc
-                                ${outputDir}/kotlin-2-unpack/Kotlin/kotlinc/bin/kotlinc
+
+                                ${outputDir}/kotlin-1-unpack/Kotlin/kotlinc/bin/kotlinc-jvm
+                                ${outputDir}/kotlin-1-unpack/Kotlin/kotlinc/bin/kotlinc-jvm.bat
                                 ${outputDir}/kotlin-1-unpack/Kotlin/kotlinc/lib/kotlin-runtime.jar
+
+                                ${outputDir}/kotlin-2-unpack/Kotlin/kotlinc/bin/kotlinc-jvm
+                                ${outputDir}/kotlin-2-unpack/Kotlin/kotlinc/bin/kotlinc-jvm.bat
                                 ${outputDir}/kotlin-2-unpack/Kotlin/kotlinc/lib/kotlin-runtime.jar
 
                                 ${outputDir}/kotlin-3/kotlin-3.zip
