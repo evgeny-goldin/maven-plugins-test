@@ -214,9 +214,12 @@
  Is Windows - [$isWindows]
  Is Linux   - [$isLinux]
  Is Mac     - [$isMac]
-##teamcity[progressMessage '${project.groupId}:${project.artifactId}']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~""".trim()
+                                if ( System.getProperty( 'teamcity.version' ))
+                                {
 <!-- http://confluence.jetbrains.net/display/TCD7/Build+Script+Interaction+with+TeamCity#BuildScriptInteractionwithTeamCity-ReportingBuildProgress -->
+                                    println "##teamcity[progressMessage '${project.groupId}:${project.artifactId}']"
+                                }
                             </source>
                         </configuration>
                     </execution>

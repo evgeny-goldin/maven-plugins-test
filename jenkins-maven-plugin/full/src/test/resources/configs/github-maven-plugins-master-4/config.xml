@@ -46,7 +46,7 @@
 </tr>
 <tr>
 <td valign='top'>Maven repository</td>
-<td><strong><code>"&lt;user-home&gt;/.jenkins/jobs/github-maven-plugins-master-4/workspace/.repository"</code></strong></td>
+<td><strong><code>".jenkins/jobs/github-maven-plugins-master-4/workspace/.repository"</code></strong></td>
 </tr>
 <tr>
 <td valign='top'>Repositories</td>
@@ -119,7 +119,7 @@
   <mavenOpts></mavenOpts>
   <aggregatorStyleBuild>true</aggregatorStyleBuild>
   <incrementalBuild>false</incrementalBuild>
-  <usePrivateRepository>true</usePrivateRepository>
+  <localRepository class="hudson.maven.local_repo.PerJobLocalRepositoryLocator"/>
   <ignoreUpstremChanges>true</ignoreUpstremChanges>
   <archivingDisabled>false</archivingDisabled>
   <resolveDependencies>false</resolveDependencies>

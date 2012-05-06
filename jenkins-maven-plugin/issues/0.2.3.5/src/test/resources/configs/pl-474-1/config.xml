@@ -42,7 +42,7 @@
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td valign='top'&gt;Maven repository&lt;/td&gt;
-&lt;td&gt;&lt;strong&gt;&lt;code&gt;&quot;&amp;lt;user-home&amp;gt;/.m2/repository&quot;&lt;/code&gt;&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;&lt;code&gt;&quot;.m2/repository&quot;&lt;/code&gt;&lt;/strong&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td valign='top'&gt;Repositories&lt;/td&gt;
@@ -110,7 +110,7 @@
   <mavenOpts/>
   <aggregatorStyleBuild>true</aggregatorStyleBuild>
   <incrementalBuild>false</incrementalBuild>
-  <usePrivateRepository>false</usePrivateRepository>
+  <localRepository class="hudson.maven.local_repo.DefaultLocalRepositoryLocator"/>
   <ignoreUpstremChanges>true</ignoreUpstremChanges>
   <archivingDisabled>false</archivingDisabled>
   <resolveDependencies>false</resolveDependencies>

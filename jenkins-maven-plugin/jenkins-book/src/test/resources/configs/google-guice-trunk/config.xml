@@ -48,7 +48,7 @@ Building Google Guice trunk
 </tr>
 <tr>
 <td valign='top'>Maven repository</td>
-<td><strong><code>"&lt;user-home&gt;/.m2/repository"</code></strong></td>
+<td><strong><code>".m2/repository"</code></strong></td>
 </tr>
 <tr>
 <td valign='top'>Maven options</td>
@@ -116,7 +116,7 @@ Building Google Guice trunk
   <mavenOpts>-Xmx256m -XX:MaxPermSize=128m</mavenOpts>
   <aggregatorStyleBuild>true</aggregatorStyleBuild>
   <incrementalBuild>false</incrementalBuild>
-  <usePrivateRepository>false</usePrivateRepository>
+  <localRepository class="hudson.maven.local_repo.DefaultLocalRepositoryLocator"/>
   <ignoreUpstremChanges>true</ignoreUpstremChanges>
   <archivingDisabled>false</archivingDisabled>
   <resolveDependencies>false</resolveDependencies>
