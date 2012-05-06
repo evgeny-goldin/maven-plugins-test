@@ -111,7 +111,6 @@
   <mavenOpts></mavenOpts>
   <aggregatorStyleBuild>true</aggregatorStyleBuild>
   <incrementalBuild>false</incrementalBuild>
-  <localRepository class="hudson.maven.local_repo.DefaultLocalRepositoryLocator"/>
   <ignoreUpstremChanges>true</ignoreUpstremChanges>
   <archivingDisabled>false</archivingDisabled>
   <resolveDependencies>false</resolveDependencies>
