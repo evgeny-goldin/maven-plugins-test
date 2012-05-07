@@ -103,6 +103,8 @@
   <builders>
 <hudson.plugins.gradle.Gradle>
     <tasks>clean build -x test</tasks>
+    <rootBuildScriptDir>build.gradle</rootBuildScriptDir>
+    <buildFile>build.gradle</buildFile>
     <useWrapper>false</useWrapper>
 </hudson.plugins.gradle.Gradle>
   </builders>

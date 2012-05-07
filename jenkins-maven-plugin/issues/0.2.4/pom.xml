@@ -423,7 +423,6 @@
                                     <tasks>
                                         <gradle>
                                             <tasks>clean build -x test</tasks>
-                                            <gradleName>1.0-rc-3</gradleName>
                                             <useWrapper>true</useWrapper>
                                         </gradle>
                                     </tasks>
@@ -437,7 +436,8 @@
                                     </repository>
                                     <tasks>
                                         <gradle>
-                                            <tasks>clean</tasks>
+                                            <gradleName>1.0-rc-3</gradleName>
+                                            <tasks>clean install</tasks>
                                         </gradle>
                                     </tasks>
                                 </job>

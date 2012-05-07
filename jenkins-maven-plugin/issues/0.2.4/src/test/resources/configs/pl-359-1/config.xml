@@ -35,7 +35,7 @@
 <tr>
 <td valign='top'>Build steps</td>
 <td>
-- <strong>gradle</strong> : &quot;<code>clean</code>&quot;
+- <strong>gradle</strong> : &quot;<code>clean install</code>&quot;
 </td>
 </tr>
 <tr>
@@ -95,7 +95,10 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
 <hudson.plugins.gradle.Gradle>
-    <tasks>clean</tasks>
+    <tasks>clean install</tasks>
+    <rootBuildScriptDir>build.gradle</rootBuildScriptDir>
+    <buildFile>build.gradle</buildFile>
+    <gradleName>1.0-rc-3</gradleName>
     <useWrapper>false</useWrapper>
 </hudson.plugins.gradle.Gradle>
   </builders>
