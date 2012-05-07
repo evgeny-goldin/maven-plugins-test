@@ -21,7 +21,7 @@
 
 
     <properties>
-        <jobsToTest>19</jobsToTest>
+        <jobsToTest>23</jobsToTest>
     </properties>
 
 
@@ -372,14 +372,88 @@
                                 </job>
                                 <job>
                                     <id>pl-626-2</id>
-                                    <parent>pl-626-base</parent>
+                                    <mavenName>apache-maven-3</mavenName>
+                                    <gitHubUrl>${maven-plugins-url}</gitHubUrl>
+                                    <scmType>git</scmType>
+                                    <repository>
+                                        <remote>${maven-plugins-repo}</remote>
+                                    </repository>
+                                    <mavenGoals>clean</mavenGoals>
+                                    <privateRepositoryPerExecutor>true</privateRepositoryPerExecutor>
                                 </job>
                                 <job>
                                     <id>pl-626-3</id>
                                     <parent>pl-626-base</parent>
+                                </job>
+                                <job>
+                                    <id>pl-626-4</id>
+                                    <parent>pl-626-base</parent>
                                     <privateRepository>true</privateRepository>
-                                    <!-- Undo inherited value to prevent error -->
+                                    <!-- Undo inherited value to prevent configuration error -->
                                     <privateRepositoryPerExecutor>false</privateRepositoryPerExecutor>
+                                </job>
+                            </jobs>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-359 -->
+                    <!-- "Support Gradle plugin"                        -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-359</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${configs-outputDirectory}</outputDirectory>
+                            <generationPom>https://github.com/evgeny-goldin/maven-plugins-test/blob/master/jenkins-maven-plugin/issues/0.2.4/pom.xml</generationPom>
+                            <jenkinsUrl>http://evgeny-goldin.org/jenkins</jenkinsUrl>
+                            <timestamp>false</timestamp>
+                            <jobs>
+                                <job>
+                                    <id>pl-359-base</id>
+                                    <abstract>true</abstract>
+                                    <jobType>free</jobType>
+                                    <gitHubUrl>${gcommons-url}</gitHubUrl>
+                                    <scmType>git</scmType>
+                                    <repository>
+                                        <remote>${gcommons-repo}</remote>
+                                    </repository>
+                                    <tasks>
+                                        <gradle>
+                                            <tasks>clean build -x test</tasks>
+                                            <gradleName>1.0-rc-3</gradleName>
+                                            <useWrapper>true</useWrapper>
+                                        </gradle>
+                                    </tasks>
+                                </job>
+                                <job>
+                                    <id>pl-359-1</id>
+                                    <jobType>free</jobType>
+                                    <scmType>git</scmType>
+                                    <repository>
+                                        <remote>${gcommons-repo}</remote>
+                                    </repository>
+                                    <tasks>
+                                        <gradle>
+                                            <tasks>clean</tasks>
+                                        </gradle>
+                                    </tasks>
+                                </job>
+                                <job>
+                                    <id>pl-359-2</id>
+                                    <parent>pl-359-base</parent>
+                                </job>
+                                <job>
+                                    <id>pl-359-3</id>
+                                    <parent>pl-359-base</parent>
+                                    <tasks>
+                                        <gradle>
+                                            <tasks>clean build -x test</tasks>
+                                            <useWrapper>false</useWrapper>
+                                        </gradle>
+                                    </tasks>
                                 </job>
                             </jobs>
                         </configuration>

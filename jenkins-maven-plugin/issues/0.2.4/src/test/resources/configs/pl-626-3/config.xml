@@ -46,7 +46,7 @@
 </tr>
 <tr>
 <td valign='top'>Maven repository</td>
-<td><strong><code>".jenkins/jobs/pl-626-3/workspace/.repository"</code></strong></td>
+<td><strong><code>".jenkins/maven-repositories/X"</code></strong></td>
 </tr>
 <tr>
 <td valign='top'>Repositories</td>
@@ -116,7 +116,7 @@
   <mavenOpts></mavenOpts>
   <aggregatorStyleBuild>true</aggregatorStyleBuild>
   <incrementalBuild>true</incrementalBuild>
-  <localRepository class="hudson.maven.local_repo.PerJobLocalRepositoryLocator"/>
+  <localRepository class="hudson.maven.local_repo.PerExecutorLocalRepositoryLocator"/>
   <ignoreUpstremChanges>true</ignoreUpstremChanges>
   <archivingDisabled>false</archivingDisabled>
   <resolveDependencies>false</resolveDependencies>
