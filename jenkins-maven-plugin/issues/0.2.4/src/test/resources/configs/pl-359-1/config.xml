@@ -98,7 +98,7 @@
     <description></description>
     <switches></switches>
     <tasks>clean install</tasks>
-    <rootBuildScriptDir>build.gradle</rootBuildScriptDir>
+    <rootBuildScriptDir>.</rootBuildScriptDir>
     <buildFile>build.gradle</buildFile>
     <gradleName>1.0-rc-3</gradleName>
     <useWrapper>false</useWrapper>
