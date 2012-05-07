@@ -243,7 +243,7 @@
                                     <dependency>
                                         <groupId>ivy.org</groupId>
                                         <artifactId>bt343</artifactId>
-                                        <version>110</version>
+                                        <version>126</version>
                                         <classifier>core/intellij-core</classifier>
                                     </dependency>
                                     <unpack>true</unpack>
