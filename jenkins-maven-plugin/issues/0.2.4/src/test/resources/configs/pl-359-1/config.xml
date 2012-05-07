@@ -95,6 +95,8 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
 <hudson.plugins.gradle.Gradle>
+    <description></description>
+    <switches></switches>
     <tasks>clean install</tasks>
     <rootBuildScriptDir>build.gradle</rootBuildScriptDir>
     <buildFile>build.gradle</buildFile>

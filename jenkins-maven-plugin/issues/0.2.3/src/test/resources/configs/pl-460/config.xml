@@ -68,6 +68,8 @@
 <hudson.tasks.Maven>
     <targets>org.apache.maven.plugins:maven-archetype-plugin:2.0:generate -DinteractiveMode=false -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-webapp -DarchetypeVersion=1.0 -DgroupId=com.test -DartifactId=something -Dpackage=jar</targets>
     <mavenName>apache-maven-3</mavenName>
+    <jvmOptions></jvmOptions>
+    <properties></properties>
     <usePrivateRepository>false</usePrivateRepository>
 </hudson.tasks.Maven>
   </builders>

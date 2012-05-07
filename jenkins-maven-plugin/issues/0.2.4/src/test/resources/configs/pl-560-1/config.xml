@@ -129,7 +129,12 @@
     <scriptSource class="hudson.plugins.groovy.StringScriptSource">
         <command>println "1-[$GroovySystem.version]"</command>
     </scriptSource>
+    <groovyName></groovyName>
+    <parameters></parameters>
+    <scriptParameters></scriptParameters>
+    <properties></properties>
     <javaOpts>-Xms128m</javaOpts>
+    <classPath></classPath>
 </hudson.plugins.groovy.Groovy>
   </prebuilders>
   <postbuilders>
@@ -138,7 +143,11 @@
         <command>println "2-[$GroovySystem.version]"</command>
     </scriptSource>
     <groovyName>groovy-1.8.6</groovyName>
+    <parameters></parameters>
+    <scriptParameters></scriptParameters>
     <properties>a = b</properties>
+    <javaOpts></javaOpts>
+    <classPath></classPath>
 </hudson.plugins.groovy.Groovy>
   </postbuilders>
   <runPostStepsIfResult>

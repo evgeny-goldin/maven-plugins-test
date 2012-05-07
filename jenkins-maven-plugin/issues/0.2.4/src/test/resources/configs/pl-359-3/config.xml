@@ -102,9 +102,12 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
 <hudson.plugins.gradle.Gradle>
+    <description></description>
+    <switches></switches>
     <tasks>clean build -x test</tasks>
     <rootBuildScriptDir>build.gradle</rootBuildScriptDir>
     <buildFile>build.gradle</buildFile>
+    <gradleName></gradleName>
     <useWrapper>false</useWrapper>
 </hudson.plugins.gradle.Gradle>
   </builders>

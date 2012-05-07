@@ -147,7 +147,9 @@
 <hudson.tasks.Maven>
     <targets>clean</targets>
     <mavenName>(Default)</mavenName>
+    <jvmOptions></jvmOptions>
     <pom>pom.xml</pom>
+    <properties></properties>
     <usePrivateRepository>false</usePrivateRepository>
 </hudson.tasks.Maven>
 <!-- prebuilders-3 -->
@@ -156,7 +158,9 @@
 <hudson.tasks.Maven>
     <targets>clean</targets>
     <mavenName>(Default)</mavenName>
+    <jvmOptions></jvmOptions>
     <pom>pom.xml</pom>
+    <properties></properties>
     <usePrivateRepository>false</usePrivateRepository>
 </hudson.tasks.Maven>
 <hudson.tasks.Shell>

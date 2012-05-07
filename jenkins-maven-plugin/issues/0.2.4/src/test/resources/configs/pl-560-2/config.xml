@@ -105,12 +105,19 @@
     <scriptSource class="hudson.plugins.groovy.StringScriptSource">
         <command>println "1-[$GroovySystem.version]"</command>
     </scriptSource>
+    <groovyName></groovyName>
+    <parameters></parameters>
+    <scriptParameters></scriptParameters>
+    <properties></properties>
     <javaOpts>-Xms128m</javaOpts>
+    <classPath></classPath>
 </hudson.plugins.groovy.Groovy>
 <hudson.tasks.Maven>
     <targets>clean</targets>
     <mavenName>apache-maven-3</mavenName>
+    <jvmOptions></jvmOptions>
     <pom>pom.xml</pom>
+    <properties></properties>
     <usePrivateRepository>false</usePrivateRepository>
 </hudson.tasks.Maven>
 <hudson.plugins.groovy.Groovy>
@@ -118,6 +125,11 @@
         <scriptFile>codenarc.groovy</scriptFile>
     </scriptSource>
     <groovyName>groovy-1.8.6</groovyName>
+    <parameters></parameters>
+    <scriptParameters></scriptParameters>
+    <properties></properties>
+    <javaOpts></javaOpts>
+    <classPath></classPath>
 </hudson.plugins.groovy.Groovy>
   </builders>
   <publishers>

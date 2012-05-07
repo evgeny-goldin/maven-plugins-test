@@ -64,7 +64,9 @@
 <hudson.tasks.Maven>
     <targets>clean</targets>
     <mavenName>apache-maven-3</mavenName>
+    <jvmOptions></jvmOptions>
     <pom>pom.xml</pom>
+    <properties></properties>
     <usePrivateRepository>true</usePrivateRepository>
 </hudson.tasks.Maven>
 <hudson.tasks.BatchFile>

@@ -68,7 +68,9 @@
 <hudson.tasks.Ant>
     <antName>myAntName</antName>
     <targets>clean</targets>
+    <antOpts></antOpts>
     <buildFile>build file</buildFile>
+    <properties></properties>
 </hudson.tasks.Ant>
   </builders>
   <publishers>
