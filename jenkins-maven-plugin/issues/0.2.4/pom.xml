@@ -21,7 +21,7 @@
 
 
     <properties>
-        <jobsToTest>23</jobsToTest>
+        <jobsToTest>24</jobsToTest>
     </properties>
 
 
@@ -453,6 +453,36 @@
                                             <tasks>clean build -x test</tasks>
                                             <useWrapper>false</useWrapper>
                                         </gradle>
+                                    </tasks>
+                                </job>
+                            </jobs>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-462 -->
+                    <!-- "Support Mercurial plugin"                     -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-462</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${configs-outputDirectory}</outputDirectory>
+                            <generationPom>https://github.com/evgeny-goldin/maven-plugins-test/blob/master/jenkins-maven-plugin/issues/0.2.4/pom.xml</generationPom>
+                            <jenkinsUrl>http://evgeny-goldin.org/jenkins</jenkinsUrl>
+                            <timestamp>false</timestamp>
+                            <jobs>
+                                <job>
+                                    <id>pl-462</id>
+                                    <jobType>free</jobType>
+                                    <scmType>hg</scmType>
+                                    <repository>
+                                        <remote>https://bitbucket.org/kotarak/i18n</remote>
+                                    </repository>
+                                    <tasks>
+                                        <gradle/>
                                     </tasks>
                                 </job>
                             </jobs>
