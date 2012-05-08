@@ -46,15 +46,6 @@
   <keepDependencies>false</keepDependencies>
   <properties>
   </properties>
-  <scm class="hudson.scm.SubversionSCM">
-    <!-- ~~~~~~~~~~~~~~ -->
-    <!-- SVN repository -->
-    <!-- ~~~~~~~~~~~~~~ -->
-    <locations>
-    </locations>
-    <useUpdate>false</useUpdate>
-    <doRevert>false</doRevert>
-  </scm>
   <assignedNode>master</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>

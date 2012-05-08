@@ -82,10 +82,7 @@
   <keepDependencies>false</keepDependencies>
   <properties>
   </properties>
-  <scm class="hudson.plugins.git.GitSCM">
-    <!-- ~~~~~~~~~~~~~~ -->
-    <!-- Git repository -->
-    <!-- ~~~~~~~~~~~~~~ -->
+<scm class='hudson.plugins.git.GitSCM'>
     <configVersion>2</configVersion>
     <userRemoteConfigs>
         <hudson.plugins.git.UserRemoteConfig>
@@ -106,9 +103,9 @@
     <wipeOutWorkspace>false</wipeOutWorkspace>
     <pruneBranches>false</pruneBranches>
     <remotePoll>false</remotePoll>
-    <buildChooser class="hudson.plugins.git.util.DefaultBuildChooser"/>
+    <buildChooser class='hudson.plugins.git.util.DefaultBuildChooser' />
     <gitTool>Default</gitTool>
-    <submoduleCfg class="list"/>
+    <submoduleCfg class='list' />
     <relativeTargetDir></relativeTargetDir>
     <excludedRegions></excludedRegions>
     <excludedUsers></excludedUsers>
@@ -116,7 +113,7 @@
     <gitConfigEmail></gitConfigEmail>
     <skipTag>false</skipTag>
     <scmName></scmName>
-  </scm>
+</scm>
   <assignedNode>master</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>

@@ -103,19 +103,16 @@
         </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
-  <scm class="hudson.scm.SubversionSCM">
-    <!-- ~~~~~~~~~~~~~~ -->
-    <!-- SVN repository -->
-    <!-- ~~~~~~~~~~~~~~ -->
+<scm class='hudson.scm.SubversionSCM'>
     <locations>
-      <hudson.scm.SubversionSCM_-ModuleLocation>
-        <remote>http://google-guice.googlecode.com/svn/trunk</remote>
-        <local>svn/trunk</local>
-      </hudson.scm.SubversionSCM_-ModuleLocation>
+        <hudson.scm.SubversionSCM_-ModuleLocation>
+            <remote>http://google-guice.googlecode.com/svn/trunk</remote>
+            <local>svn/trunk</local>
+        </hudson.scm.SubversionSCM_-ModuleLocation>
     </locations>
     <useUpdate>true</useUpdate>
     <doRevert>false</doRevert>
-  </scm>
+</scm>
   <assignedNode>master</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>

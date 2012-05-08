@@ -65,10 +65,7 @@
   <keepDependencies>false</keepDependencies>
   <properties>
   </properties>
-  <scm class="hudson.plugins.git.GitSCM">
-    <!-- ~~~~~~~~~~~~~~ -->
-    <!-- Git repository -->
-    <!-- ~~~~~~~~~~~~~~ -->
+<scm class='hudson.plugins.git.GitSCM'>
     <configVersion>2</configVersion>
     <userRemoteConfigs>
         <hudson.plugins.git.UserRemoteConfig>
@@ -84,8 +81,8 @@
     </branches>
     <localBranch>dev</localBranch>
     <userMergeOptions>
-      <mergeRemote>origin</mergeRemote>
-      <mergeTarget>master</mergeTarget>
+        <mergeRemote>origin</mergeRemote>
+        <mergeTarget>master</mergeTarget>
     </userMergeOptions>
     <recursiveSubmodules>false</recursiveSubmodules>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
@@ -94,12 +91,12 @@
     <wipeOutWorkspace>true</wipeOutWorkspace>
     <pruneBranches>false</pruneBranches>
     <remotePoll>true</remotePoll>
-    <buildChooser class="hudson.plugins.git.util.DefaultBuildChooser"/>
+    <buildChooser class='hudson.plugins.git.util.DefaultBuildChooser' />
     <gitTool>Default</gitTool>
-    <browser class="hudson.plugins.git.browser.GithubWeb">
-      <url>https://github.com/evgeny-goldin/maven-plugins</url>
+    <browser class='hudson.plugins.git.browser.GithubWeb'>
+        <url>https://github.com/evgeny-goldin/maven-plugins</url>
     </browser>
-    <submoduleCfg class="list"/>
+    <submoduleCfg class='list' />
     <relativeTargetDir>dir</relativeTargetDir>
     <excludedRegions></excludedRegions>
     <excludedUsers></excludedUsers>
@@ -107,7 +104,7 @@
     <gitConfigEmail>evgenyg@gmail.com</gitConfigEmail>
     <skipTag>false</skipTag>
     <scmName></scmName>
-  </scm>
+</scm>
   <assignedNode>master</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>

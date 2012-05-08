@@ -91,19 +91,16 @@
   <keepDependencies>false</keepDependencies>
   <properties>
   </properties>
-  <scm class="hudson.scm.SubversionSCM">
-    <!-- ~~~~~~~~~~~~~~ -->
-    <!-- SVN repository -->
-    <!-- ~~~~~~~~~~~~~~ -->
+<scm class='hudson.scm.SubversionSCM'>
     <locations>
-      <hudson.scm.SubversionSCM_-ModuleLocation>
-        <remote>http://google-guice.googlecode.com/svn/branches/2.0-maven</remote>
-        <local>svn/branches/2.0-maven</local>
-      </hudson.scm.SubversionSCM_-ModuleLocation>
+        <hudson.scm.SubversionSCM_-ModuleLocation>
+            <remote>http://google-guice.googlecode.com/svn/branches/2.0-maven</remote>
+            <local>svn/branches/2.0-maven</local>
+        </hudson.scm.SubversionSCM_-ModuleLocation>
     </locations>
     <useUpdate>false</useUpdate>
     <doRevert>false</doRevert>
-  </scm>
+</scm>
   <assignedNode>master</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
