@@ -91,7 +91,7 @@
   <keepDependencies>false</keepDependencies>
   <properties>
   </properties>
-<scm class='hudson.scm.SubversionSCM'>
+<scm class="hudson.scm.SubversionSCM">
     <locations>
         <hudson.scm.SubversionSCM_-ModuleLocation>
             <remote>http://google-guice.googlecode.com/svn/trunk</remote>

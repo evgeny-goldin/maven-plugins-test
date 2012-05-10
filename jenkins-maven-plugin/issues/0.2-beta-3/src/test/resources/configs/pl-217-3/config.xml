@@ -46,7 +46,7 @@
   <keepDependencies>false</keepDependencies>
   <properties>
   </properties>
-<scm class='hudson.scm.NullSCM' />
+<scm class="hudson.scm.NullSCM" />
   <assignedNode>master</assignedNode>
   <canRoam>false</canRoam>
   <disabled>true</disabled>

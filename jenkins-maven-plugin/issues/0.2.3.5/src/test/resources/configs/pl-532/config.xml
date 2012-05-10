@@ -65,7 +65,7 @@
   <keepDependencies>false</keepDependencies>
   <properties>
   </properties>
-<scm class='hudson.plugins.git.GitSCM'>
+<scm class="hudson.plugins.git.GitSCM">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
         <hudson.plugins.git.UserRemoteConfig>
@@ -91,12 +91,12 @@
     <wipeOutWorkspace>true</wipeOutWorkspace>
     <pruneBranches>false</pruneBranches>
     <remotePoll>true</remotePoll>
-    <buildChooser class='hudson.plugins.git.util.DefaultBuildChooser' />
+    <buildChooser class="hudson.plugins.git.util.DefaultBuildChooser" />
     <gitTool>Default</gitTool>
-    <browser class='hudson.plugins.git.browser.GithubWeb'>
+    <browser class="hudson.plugins.git.browser.GithubWeb">
         <url>https://github.com/evgeny-goldin/maven-plugins</url>
     </browser>
-    <submoduleCfg class='list' />
+    <submoduleCfg class="list" />
     <relativeTargetDir>dir</relativeTargetDir>
     <excludedRegions></excludedRegions>
     <excludedUsers></excludedUsers>

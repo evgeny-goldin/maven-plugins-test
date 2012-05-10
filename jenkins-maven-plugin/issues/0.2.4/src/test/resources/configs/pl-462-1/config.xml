@@ -52,12 +52,12 @@
   <keepDependencies>false</keepDependencies>
   <properties>
   </properties>
-<scm class='hudson.plugins.mercurial.MercurialSCM'>
+<scm class="hudson.plugins.mercurial.MercurialSCM">
     <source>https://bitbucket.org/kotarak/i18n</source>
     <modules></modules>
     <branch>default</branch>
     <clean>true</clean>
-    <browser class='hudson.plugins.mercurial.browser.BitBucket'>
+    <browser class="hudson.plugins.mercurial.browser.BitBucket">
         <url>https://bitbucket.org/kotarak/i18n</url>
     </browser>
 </scm>

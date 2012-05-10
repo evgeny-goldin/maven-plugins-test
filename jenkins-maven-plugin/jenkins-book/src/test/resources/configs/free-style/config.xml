@@ -52,7 +52,7 @@ du -hs .</code>&quot;</td></tr><tr><td>- <strong>maven</strong></td><td> : </td>
   <keepDependencies>false</keepDependencies>
   <properties>
   </properties>
-<scm class='hudson.plugins.git.GitSCM'>
+<scm class="hudson.plugins.git.GitSCM">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
         <hudson.plugins.git.UserRemoteConfig>
@@ -73,9 +73,9 @@ du -hs .</code>&quot;</td></tr><tr><td>- <strong>maven</strong></td><td> : </td>
     <wipeOutWorkspace>false</wipeOutWorkspace>
     <pruneBranches>false</pruneBranches>
     <remotePoll>false</remotePoll>
-    <buildChooser class='hudson.plugins.git.util.DefaultBuildChooser' />
+    <buildChooser class="hudson.plugins.git.util.DefaultBuildChooser" />
     <gitTool>Default</gitTool>
-    <submoduleCfg class='list' />
+    <submoduleCfg class="list" />
     <relativeTargetDir></relativeTargetDir>
     <excludedRegions></excludedRegions>
     <excludedUsers></excludedUsers>

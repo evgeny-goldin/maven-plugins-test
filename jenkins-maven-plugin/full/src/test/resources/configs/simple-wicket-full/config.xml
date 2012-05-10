@@ -58,12 +58,12 @@
   <keepDependencies>false</keepDependencies>
   <properties>
   </properties>
-<scm class='hudson.scm.CVSSCM'>
+<scm class="hudson.scm.CVSSCM">
     <cvsroot>:pserver:anonymous@simple-wicket.cvs.sourceforge.net:/cvsroot/simple-wicket</cvsroot>
     <module>simple-wicket</module>
     <canUseUpdate>true</canUseUpdate>
     <flatten>true</flatten>
-    <repositoryBrowser class='hudson.scm.browsers.ViewCVS'>
+    <repositoryBrowser class="hudson.scm.browsers.ViewCVS">
         <url>http://simple-wicket.cvs.sourceforge.net/viewvc/</url>
     </repositoryBrowser>
     <isTag>false</isTag>
