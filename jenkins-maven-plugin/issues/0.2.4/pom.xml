@@ -490,6 +490,7 @@
                                         <remote>https://bitbucket.org/kotarak/i18n</remote>
                                         <repoBrowser>bitbucket</repoBrowser>
                                         <repoBrowserUrl>https://bitbucket.org/kotarak/i18n</repoBrowserUrl>
+                                        <hgClean>true</hgClean>
                                     </repository>
                                 </job>
                                 <job>

@@ -56,7 +56,7 @@
     <source>https://code.google.com/p/ldpath</source>
     <modules></modules>
     <branch>default</branch>
-    <clean>true</clean>
+    <clean>false</clean>
     <browser class='hudson.plugins.mercurial.browser.GoogleCode'>
         <url>http://code.google.com/p/ldpath/source/</url>
     </browser>
