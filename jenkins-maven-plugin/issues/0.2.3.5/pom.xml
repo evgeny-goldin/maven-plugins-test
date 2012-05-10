@@ -129,8 +129,8 @@
                                         <gitMergeBranch>master</gitMergeBranch>
                                         <gitCleanAfterCheckout>true</gitCleanAfterCheckout>
                                         <gitWipeOutWorkspace>true</gitWipeOutWorkspace>
-                                        <gitRepoBrowser>githubweb</gitRepoBrowser>
-                                        <gitRepoBrowserUrl>https://github.com/evgeny-goldin/maven-plugins</gitRepoBrowserUrl>
+                                        <repoBrowser>githubweb</repoBrowser>
+                                        <repoBrowserUrl>https://github.com/evgeny-goldin/maven-plugins</repoBrowserUrl>
                                     </repository>
                                 </job>
                             </jobs>

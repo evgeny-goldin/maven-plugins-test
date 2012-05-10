@@ -266,8 +266,8 @@
                                         <cvsUpdate>true</cvsUpdate>
                                         <!-- Default -->
                                         <cvsLegacy>false</cvsLegacy>
-                                        <cvsRepositoryBrowser>ViewCVS</cvsRepositoryBrowser>
-                                        <cvsRepositoryBrowserUrl>http://simple-wicket.cvs.sourceforge.net/viewvc/</cvsRepositoryBrowserUrl>
+                                        <repoBrowser>ViewCVS</repoBrowser>
+                                        <repoBrowserUrl>http://simple-wicket.cvs.sourceforge.net/viewvc/</repoBrowserUrl>
                                     </repository>
                                 </job>
 

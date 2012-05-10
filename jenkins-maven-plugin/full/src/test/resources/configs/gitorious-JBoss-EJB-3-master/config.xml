@@ -49,7 +49,7 @@
 <td><strong><code>".m2/repository"</code></strong></td>
 </tr>
 <tr>
-<td valign='top'>Repositories</td>
+<td valign='top'>Git repository</td>
 <td>
 - <a href='http://gitorious.org/jboss-ejb3/jboss-ejb3-context/'><strong><code>git://gitorious.org/jboss-ejb3/jboss-ejb3-context.git</code></strong></a>
 : <a href='http://gitorious.org/jboss-ejb3/jboss-ejb3-context/trees/master/'><strong><code>master</code></strong></a><br/>

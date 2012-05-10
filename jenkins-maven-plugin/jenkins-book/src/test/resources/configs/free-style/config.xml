@@ -42,7 +42,7 @@ du -hs .</code>&quot;</td></tr><tr><td>- <strong>maven</strong></td><td> : </td>
 </td>
 </tr>
 <tr>
-<td valign='top'>Repositories</td>
+<td valign='top'>Git repository</td>
 <td>
 - <a href='http://github.com/evgeny-goldin/maven-plugins-test/'><strong><code>git://github.com/evgeny-goldin/maven-plugins-test.git</code></strong></a>
 : <a href='http://github.com/evgeny-goldin/maven-plugins-test/tree/master/'><strong><code>master</code></strong></a><br/>

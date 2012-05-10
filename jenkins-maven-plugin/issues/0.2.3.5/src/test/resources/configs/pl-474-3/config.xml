@@ -45,7 +45,7 @@
 &lt;td&gt;&lt;strong&gt;&lt;code&gt;&quot;.m2/repository&quot;&lt;/code&gt;&lt;/strong&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td valign='top'&gt;Repositories&lt;/td&gt;
+&lt;td valign='top'&gt;Git repository&lt;/td&gt;
 &lt;td&gt;
 - &lt;a href='http://github.com/evgeny-goldin/maven-plugins/'&gt;&lt;strong&gt;&lt;code&gt;git://github.com/evgeny-goldin/maven-plugins.git&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;
 : &lt;a href='http://github.com/evgeny-goldin/maven-plugins/tree/master/'&gt;&lt;strong&gt;&lt;code&gt;master&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;br/&gt;

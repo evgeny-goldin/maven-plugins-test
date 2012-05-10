@@ -45,7 +45,7 @@
 &lt;td&gt;&lt;strong&gt;&lt;code&gt;&quot;/home/evgenyg/.m2/repo/.&quot;&lt;/code&gt;&lt;/strong&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td valign='top'&gt;Repositories&lt;/td&gt;
+&lt;td valign='top'&gt;Git repository&lt;/td&gt;
 &lt;td&gt;
 - &lt;a href='http://github.com/evgeny-goldin/maven-plugins-test/'&gt;&lt;strong&gt;&lt;code&gt;git://github.com/evgeny-goldin/maven-plugins-test.git&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;
 : &lt;a href='http://github.com/evgeny-goldin/maven-plugins-test/tree/master/'&gt;&lt;strong&gt;&lt;code&gt;master&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;br/&gt;

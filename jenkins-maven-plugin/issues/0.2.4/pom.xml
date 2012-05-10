@@ -21,7 +21,7 @@
 
 
     <properties>
-        <jobsToTest>24</jobsToTest>
+        <jobsToTest>25</jobsToTest>
     </properties>
 
 
@@ -475,14 +475,35 @@
                             <timestamp>false</timestamp>
                             <jobs>
                                 <job>
-                                    <id>pl-462</id>
+                                    <id>pl-462-base</id>
+                                    <abstract>true</abstract>
                                     <jobType>free</jobType>
                                     <scmType>hg</scmType>
-                                    <repository>
-                                        <remote>https://bitbucket.org/kotarak/i18n</remote>
-                                    </repository>
                                     <tasks>
                                         <gradle/>
+                                    </tasks>
+                                </job>
+                                <job>
+                                    <id>pl-462-1</id>
+                                    <parent>pl-462-base</parent>
+                                    <repository>
+                                        <remote>https://bitbucket.org/kotarak/i18n</remote>
+                                        <repoBrowser>bitbucket</repoBrowser>
+                                        <repoBrowserUrl>https://bitbucket.org/kotarak/i18n</repoBrowserUrl>
+                                    </repository>
+                                </job>
+                                <job>
+                                    <id>pl-462-2</id>
+                                    <parent>pl-462-base</parent>
+                                    <repository>
+                                        <remote>https://code.google.com/p/ldpath/</remote>
+                                        <repoBrowser>googlecode</repoBrowser>
+                                        <repoBrowserUrl>http://code.google.com/p/ldpath/source/</repoBrowserUrl>
+                                    </repository>
+                                    <tasks>
+                                        <gradle>
+                                            <tasks>clean build -x test -x javadoc -x signArchives</tasks>
+                                        </gradle>
                                     </tasks>
                                 </job>
                             </jobs>

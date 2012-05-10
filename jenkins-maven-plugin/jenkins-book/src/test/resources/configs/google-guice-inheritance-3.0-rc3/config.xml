@@ -57,7 +57,7 @@
 <td>Revert - [false], update - [true], checkout - [false]</td>
 </tr>
 <tr>
-<td valign='top'>Repositories</td>
+<td valign='top'>Svn repository</td>
 <td>
 - <a href='http://google-guice.googlecode.com/svn/tags/3.0-rc3/'><strong><code>http://google-guice.googlecode.com/svn/tags/3.0-rc3</code></strong></a>
 </td>

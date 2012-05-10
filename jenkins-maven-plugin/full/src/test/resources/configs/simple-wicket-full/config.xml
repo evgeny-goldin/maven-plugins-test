@@ -45,7 +45,7 @@
 <td><strong><code>".m2/repository"</code></strong></td>
 </tr>
 <tr>
-<td valign='top'>Repositories</td>
+<td valign='top'>Cvs repository</td>
 <td>
 - <a href='http://simple-wicket.cvs.sourceforge.net/viewvc/simple-wicket/simple-wicket/'><strong><code>:pserver:anonymous@simple-wicket.cvs.sourceforge.net:/cvsroot/simple-wicket</code></strong></a>
 </td>

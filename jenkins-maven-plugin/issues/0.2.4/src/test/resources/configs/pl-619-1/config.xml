@@ -57,7 +57,7 @@
 <td><strong><code>".m2/repository"</code></strong></td>
 </tr>
 <tr>
-<td valign='top'>Repositories</td>
+<td valign='top'>Git repository</td>
 <td>
 - <a href='http://github.com/evgeny-goldin/maven-plugins/'><strong><code>git://github.com/evgeny-goldin/maven-plugins.git</code></strong></a>
 : <a href='http://github.com/evgeny-goldin/maven-plugins/tree/master/'><strong><code>master</code></strong></a><br/>
