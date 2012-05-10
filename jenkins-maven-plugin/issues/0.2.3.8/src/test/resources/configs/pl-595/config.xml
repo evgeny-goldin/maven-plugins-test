@@ -33,7 +33,7 @@
 <td><strong><code>"(Default)"</code></strong></td>
 </tr>
 <tr>
-<td valign='top'>SVN update policy</td>
+<td valign='top'>Svn update policy</td>
 <td>Revert - [false], update - [false], checkout - [true]</td>
 </tr>
 <tr>

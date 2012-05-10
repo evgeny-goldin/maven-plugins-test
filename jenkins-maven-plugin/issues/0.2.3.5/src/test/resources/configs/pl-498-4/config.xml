@@ -49,7 +49,7 @@
 <td><strong><code>".m2/repository"</code></strong></td>
 </tr>
 <tr>
-<td valign='top'>SVN update policy</td>
+<td valign='top'>Svn update policy</td>
 <td>Revert - [false], update - [true], checkout - [false]</td>
 </tr>
 <tr>

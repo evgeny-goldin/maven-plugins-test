@@ -59,7 +59,7 @@ Building Google Guice trunk
 <td><strong><code>jenkins@evgeny-goldin.org</code></strong></td>
 </tr>
 <tr>
-<td valign='top'>SVN update policy</td>
+<td valign='top'>Svn update policy</td>
 <td>Revert - [false], update - [false], checkout - [true]</td>
 </tr>
 <tr>
