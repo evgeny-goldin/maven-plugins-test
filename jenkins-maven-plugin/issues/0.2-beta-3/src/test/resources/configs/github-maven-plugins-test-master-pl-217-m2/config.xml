@@ -53,7 +53,7 @@
                 <hudson.model.StringParameterDefinition>
                     <name>plugins-version</name>
                     <description>Plugins version to test</description>
-                    <defaultValue>0.2.3.8</defaultValue>
+                    <defaultValue>0.2.4</defaultValue>
                 </hudson.model.StringParameterDefinition>
         </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -105,7 +105,7 @@
     <mavenName>apache-maven-3</mavenName>
     <jvmOptions>-Xmx256m -XX:MaxPermSize=250m</jvmOptions>
     <pom>pom.xml</pom>
-    <properties>plugins-version = 0.2.3.8</properties>
+    <properties>plugins-version = 0.2.4</properties>
     <usePrivateRepository>false</usePrivateRepository>
 </hudson.tasks.Maven>
   </builders>
