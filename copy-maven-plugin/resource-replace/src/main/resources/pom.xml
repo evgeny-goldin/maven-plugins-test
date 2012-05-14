@@ -316,17 +316,6 @@
             <artifactId>ant-jsch</artifactId>
             <version>${ant-version}</version>
         </dependency>
-
-        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-        <!-- http://code.google.com/p/mojo-executor/ -->
-        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-
-        <dependency>
-            <groupId>org.twdata.maven</groupId>
-            <artifactId>mojo-executor</artifactId>
-            <version>0.1</version>
-            <scope>compile</scope>
-        </dependency>
     </dependencies>
 
 </project>

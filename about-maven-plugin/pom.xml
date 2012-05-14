@@ -360,8 +360,8 @@
                                 new File( project.build.outputDirectory, 'about-standalone-1.txt' ).text.contains( ' [outputDir]' )
                                 new File( project.build.directory,       'about-standalone-2.txt' ).text.contains( ' [MavenProject: ${project.groupId}:${project.artifactId}:${project.version}' )
 
-                                new File( project.build.outputDirectory, '1/2/3/4/5/6/7.txt' ).text.contains( '|  |  |  +- jdom:jdom:jar:1.0:runtime' )
-                                new File( project.build.outputDirectory, '1/2/3/4/5/6/7.txt' ).text.contains( /|  |  |  \- jtidy:jtidy:jar:4aug2000r7-dev:runtime/ )
+                                new File( project.build.outputDirectory, '1/2/3/4/5/6/7.txt' ).text.contains( '+- log4j:log4j:jar:1.2.16:compile' )
+                                new File( project.build.outputDirectory, '1/2/3/4/5/6/7.txt' ).text.contains( /\- com.jcraft:jsch:jar:0.1.44-1:compile/ )
                                 new File( project.build.outputDirectory, '1/2/3/4/5/6/7.txt' ).text.contains( 'Maven Properties' )
                                 new File( project.build.outputDirectory, '1/2/3/4/5/6/7.txt' ).text.contains( '[${groovy-version}]' )
                                 new File( project.build.outputDirectory, '1/2/3/4/5/6/7.txt' ).text.contains( '[' + groovyVersion + ']' )
@@ -377,9 +377,7 @@
                                 new File( outputDir, 'unpack/About/fff.txt' ).text.toLowerCase().contains( '[path]' )
 
                                 new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '+- log4j:log4j:jar:1.2.16:compile' )
-                                new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '+- com.jcraft:jsch:jar:0.1.44-1:compile' )
-                                new File( outputDir, 'unpack/About/fff.txt' ).text.contains( /\- org.twdata.maven:mojo-executor:jar:0.1:compile/ )
-                                new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '|  +- org.apache.maven.wagon:wagon-http-lightweight:jar:1.0-beta-2:runtime' )
+                                new File( outputDir, 'unpack/About/fff.txt' ).text.contains( /\- com.jcraft:jsch:jar:0.1.44-1:compile/ )
                             </assertGroovy>
                         </configuration>
                     </execution>
@@ -436,12 +434,6 @@
             <groupId>com.jcraft</groupId>
             <artifactId>jsch</artifactId>
             <version>0.1.44-1</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.twdata.maven</groupId>
-            <artifactId>mojo-executor</artifactId>
-            <version>0.1</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
