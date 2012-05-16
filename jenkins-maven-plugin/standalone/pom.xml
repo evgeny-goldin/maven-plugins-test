@@ -13,26 +13,6 @@
     <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
 
 
-    <repositories>
-        <repository>
-            <id>libs-repo</id>
-            <url>http://evgeny-goldin.org/artifactory/repo</url>
-            <releases><enabled>true</enabled></releases>
-            <snapshots><enabled>true</enabled></snapshots>
-        </repository>
-    </repositories>
-
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>plugins-repo</id>
-            <url>http://evgeny-goldin.org/artifactory/repo</url>
-            <releases><enabled>true</enabled></releases>
-            <snapshots><enabled>true</enabled></snapshots>
-        </pluginRepository>
-    </pluginRepositories>
-
-
     <parent>
         <groupId>com.github.goldin.maven-plugins-test</groupId>
         <artifactId>jenkins-maven-plugin</artifactId>
