@@ -279,6 +279,7 @@
 
 
     <modules>
+        <module>maven-central</module>
         <module>cleanup-temp</module>
         <module>jenkins-maven-plugin</module>
         <module>about-maven-plugin</module>
