@@ -162,7 +162,7 @@
                                     <repository>
                                         <remote>${maven-plugins-repo}</remote>
                                     </repository>
-                                    <process>{{ assert config &amp;&amp; node &amp;&amp; file.file; node }}</process>
+                                    <process>{{ assert config &amp;&amp; node &amp;&amp; ( file != null ); node }}</process>
                                 </job>
                                 <job>
                                     <id>pl-474-2</id>
