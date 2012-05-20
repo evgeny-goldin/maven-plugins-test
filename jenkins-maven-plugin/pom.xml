@@ -31,6 +31,7 @@
         <jobsToTest>0</jobsToTest>
         <localM2Repo>/home/evgenyg/.m2/repo</localM2Repo>
         <pluginsRepoCleanup>rm -rf ${localM2Repo}/com/github/goldin</pluginsRepoCleanup>
+        <endOfLine>\r\n</endOfLine>
     </properties>
 
 
@@ -69,6 +70,7 @@
                             <assertGroovy>
                                 new File( project.basedir, 'src/test/resources/configs' ).listFiles().size() == ( jobsToTest as int )
                                 new File( project.basedir, 'src/test/resources/configs' ).listFiles().every { it.directory &amp;&amp; it.listFiles().with{ ( size() == 1 ) &amp;&amp; ( delegate[ 0 ].name == 'config.xml' ) }}
+                                new File( project.basedir, 'src/test/resources/configs' ).listFiles().every { new File( configsOutputDirectory, it.name + '/config.xml' ).text.contains( '${endOfLine}' ) }
                             </assertGroovy>
                         </configuration>
                     </execution>
