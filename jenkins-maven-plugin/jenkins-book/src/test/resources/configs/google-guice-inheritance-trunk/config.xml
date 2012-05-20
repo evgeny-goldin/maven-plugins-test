@@ -128,17 +128,18 @@
       <sendToIndividuals>true</sendToIndividuals>
     </hudson.maven.reporters.MavenMailer>
   </reporters>
-  <publishers />
-  <hudson.plugins.parameterizedtrigger.BuildTrigger>
-    <configs>
-      <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
-        <configs class="java.util.Collections$EmptyList" />
-        <projects>google-guice-inheritance-3.0-rc3, google-guice-inheritance-2.0-maven</projects>
-        <condition>SUCCESS</condition>
-        <triggerWithNoParameters>false</triggerWithNoParameters>
-      </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
-    </configs>
-  </hudson.plugins.parameterizedtrigger.BuildTrigger>
+  <publishers>
+    <hudson.plugins.parameterizedtrigger.BuildTrigger>
+      <configs>
+        <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+          <configs class="java.util.Collections$EmptyList" />
+          <projects>google-guice-inheritance-3.0-rc3, google-guice-inheritance-2.0-maven</projects>
+          <condition>SUCCESS</condition>
+          <triggerWithNoParameters>false</triggerWithNoParameters>
+        </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+      </configs>
+    </hudson.plugins.parameterizedtrigger.BuildTrigger>
+  </publishers>
   <buildWrappers />
   <prebuilders />
   <postbuilders />

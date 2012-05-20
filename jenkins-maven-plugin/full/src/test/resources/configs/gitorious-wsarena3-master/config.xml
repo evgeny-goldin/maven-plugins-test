@@ -135,17 +135,18 @@
   <mavenValidationLevel>0</mavenValidationLevel>
   <runHeadless>false</runHeadless>
   <reporters />
-  <publishers />
-  <hudson.plugins.parameterizedtrigger.BuildTrigger>
-    <configs>
-      <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
-        <configs class="java.util.Collections$EmptyList" />
-        <projects>gitorious-wsarena3-version1</projects>
-        <condition>ALWAYS</condition>
-        <triggerWithNoParameters>true</triggerWithNoParameters>
-      </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
-    </configs>
-  </hudson.plugins.parameterizedtrigger.BuildTrigger>
+  <publishers>
+    <hudson.plugins.parameterizedtrigger.BuildTrigger>
+      <configs>
+        <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+          <configs class="java.util.Collections$EmptyList" />
+          <projects>gitorious-wsarena3-version1</projects>
+          <condition>ALWAYS</condition>
+          <triggerWithNoParameters>true</triggerWithNoParameters>
+        </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+      </configs>
+    </hudson.plugins.parameterizedtrigger.BuildTrigger>
+  </publishers>
   <buildWrappers />
   <prebuilders />
   <postbuilders />

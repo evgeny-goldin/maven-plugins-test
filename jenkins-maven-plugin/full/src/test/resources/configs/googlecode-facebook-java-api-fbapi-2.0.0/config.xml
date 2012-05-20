@@ -136,17 +136,18 @@
   <mavenValidationLevel>0</mavenValidationLevel>
   <runHeadless>false</runHeadless>
   <reporters />
-  <publishers />
-  <hudson.plugins.parameterizedtrigger.BuildTrigger>
-    <configs>
-      <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
-        <configs class="java.util.Collections$EmptyList" />
-        <projects>github-maven-plugins-master</projects>
-        <condition>UNSTABLE</condition>
-        <triggerWithNoParameters>false</triggerWithNoParameters>
-      </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
-    </configs>
-  </hudson.plugins.parameterizedtrigger.BuildTrigger>
+  <publishers>
+    <hudson.plugins.parameterizedtrigger.BuildTrigger>
+      <configs>
+        <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+          <configs class="java.util.Collections$EmptyList" />
+          <projects>github-maven-plugins-master</projects>
+          <condition>UNSTABLE</condition>
+          <triggerWithNoParameters>false</triggerWithNoParameters>
+        </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+      </configs>
+    </hudson.plugins.parameterizedtrigger.BuildTrigger>
+  </publishers>
   <buildWrappers />
   <prebuilders />
   <postbuilders />

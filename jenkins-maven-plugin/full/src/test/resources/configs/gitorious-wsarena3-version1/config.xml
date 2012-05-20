@@ -142,27 +142,28 @@
   <mavenValidationLevel>0</mavenValidationLevel>
   <runHeadless>false</runHeadless>
   <reporters />
-  <publishers />
-  <hudson.plugins.parameterizedtrigger.BuildTrigger>
-    <configs>
-      <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
-        <configs>
-          <hudson.plugins.parameterizedtrigger.CurrentBuildParameters />
-          <hudson.plugins.git.GitRevisionBuildParameters />
-          <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-            <properties>a = b
+  <publishers>
+    <hudson.plugins.parameterizedtrigger.BuildTrigger>
+      <configs>
+        <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+          <configs>
+            <hudson.plugins.parameterizedtrigger.CurrentBuildParameters />
+            <hudson.plugins.git.GitRevisionBuildParameters />
+            <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+              <properties>a = b
 c = d</properties>
-          </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-          <hudson.plugins.parameterizedtrigger.FileBuildParameters>
-            <propertiesFile>file.properties</propertiesFile>
-          </hudson.plugins.parameterizedtrigger.FileBuildParameters>
-        </configs>
-        <projects>googlecode-google-guice-trunk, googlecode-google-guice-2.0-maven</projects>
-        <condition>SUCCESS</condition>
-        <triggerWithNoParameters>false</triggerWithNoParameters>
-      </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
-    </configs>
-  </hudson.plugins.parameterizedtrigger.BuildTrigger>
+            </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+            <hudson.plugins.parameterizedtrigger.FileBuildParameters>
+              <propertiesFile>file.properties</propertiesFile>
+            </hudson.plugins.parameterizedtrigger.FileBuildParameters>
+          </configs>
+          <projects>googlecode-google-guice-trunk, googlecode-google-guice-2.0-maven</projects>
+          <condition>SUCCESS</condition>
+          <triggerWithNoParameters>false</triggerWithNoParameters>
+        </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+      </configs>
+    </hudson.plugins.parameterizedtrigger.BuildTrigger>
+  </publishers>
   <buildWrappers />
   <prebuilders />
   <postbuilders />
