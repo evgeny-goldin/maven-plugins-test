@@ -184,7 +184,9 @@
   <reporters />
   <publishers />
   <buildWrappers />
-  <prebuilders><!-- prebuilders-1 -->
+  <prebuilders>
+  <!-- prebuilders-1 -->
+  
     <hudson.tasks.Shell>
       <command>ls -al</command>
     </hudson.tasks.Shell>
@@ -211,7 +213,9 @@
       <usePrivateRepository>false</usePrivateRepository>
     </hudson.tasks.Maven>
   </prebuilders>
-  <postbuilders><!-- postbuilders-2 -->
+  <postbuilders>
+  <!-- postbuilders-2 -->
+  
     <hudson.tasks.Maven>
       <targets>clean</targets>
       <mavenName>(Default)</mavenName>

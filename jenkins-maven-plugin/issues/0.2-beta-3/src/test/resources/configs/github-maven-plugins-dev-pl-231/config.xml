@@ -69,7 +69,8 @@
 ]]>
    </description>
   <keepDependencies>false</keepDependencies>
-  <properties><hudson.security.AuthorizationMatrixProperty>
+  <properties>
+  <hudson.security.AuthorizationMatrixProperty>
                                             <permission>hudson.model.Item.Read:bob</permission>
                                             <permission>hudson.model.Item.Read:mark</permission>
                                             <permission>hudson.model.Item.Build:ben</permission>
@@ -81,6 +82,7 @@
                                             <permission>hudson.model.Item.Configure:stuart</permission>
                                             <permission>hudson.model.Item.Configure:mary</permission>
                                         </hudson.security.AuthorizationMatrixProperty>
+  
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>

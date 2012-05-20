@@ -133,12 +133,16 @@
   <reporters />
   <publishers />
   <buildWrappers />
-  <prebuilders><!-- prebuilders-1 -->
+  <prebuilders>
+  <!-- prebuilders-1 -->
+  
     <hudson.tasks.Shell>
       <command>ls</command>
     </hudson.tasks.Shell>
   </prebuilders>
-  <postbuilders><!-- postbuilders-2 -->
+  <postbuilders>
+  <!-- postbuilders-2 -->
+  
     <hudson.tasks.Shell>
       <command>ls</command>
     </hudson.tasks.Shell>
