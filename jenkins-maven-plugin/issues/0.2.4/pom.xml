@@ -620,28 +620,6 @@
                     <endOfLine>unix</endOfLine>
                 </configuration>
             </plugin>
-
-
-            <plugin>
-                <groupId>com.github.goldin</groupId>
-                <artifactId>assert-maven-plugin</artifactId>
-                <version>${plugins-version}</version>
-                <executions>
-                    <execution>
-                        <id>assert-copy-mojo</id>
-                        <goals>
-                            <goal>assert</goal>
-                        </goals>
-                        <phase>install</phase>
-                        <configuration>
-                            <assertGroovy>
-                            </assertGroovy>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
         </plugins>
     </build>
-
 </project>
