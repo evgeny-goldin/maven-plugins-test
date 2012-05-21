@@ -222,7 +222,7 @@ du -hs .
                                     <maven>
                                         <mavenName>apache-maven-3</mavenName>
                                         <jvmOptions>-Xmx512m -XX:MaxPermSize=512m -Dmaven.repo.local=${localM2Repo}</jvmOptions>
-                                        <properties>plugins-version = ${plugins-version-for-jenkins-jobs}</properties>
+                                        <properties>plugins-version = ${plugins-version}</properties>
                                     </maven>
                                     <shell>
                                         <command>du -hs .</command>

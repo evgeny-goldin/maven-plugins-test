@@ -26,7 +26,6 @@
         <plugins-version>0.3-SNAPSHOT</plugins-version>
         <artifactory-version>2.3.1</artifactory-version>
         <jenkins-version>1.421</jenkins-version>
-        <plugins-version-for-jenkins-jobs>0.2.4</plugins-version-for-jenkins-jobs>
         <gcommons-version>0.5.4</gcommons-version>
         <ftpTests>false</ftpTests>
         <slowTests>false</slowTests>

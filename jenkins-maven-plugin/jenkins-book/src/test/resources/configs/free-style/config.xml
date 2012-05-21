@@ -125,7 +125,7 @@ du -hs .</command>
       <mavenName>apache-maven-3</mavenName>
       <jvmOptions>-Xmx512m -XX:MaxPermSize=512m -Dmaven.repo.local=/home/evgenyg/.m2/repo</jvmOptions>
       <pom>pom.xml</pom>
-      <properties>plugins-version = 0.2.4</properties>
+      <properties>plugins-version = 0.3-SNAPSHOT</properties>
       <usePrivateRepository>false</usePrivateRepository>
     </hudson.tasks.Maven>
     <hudson.tasks.Shell>
