@@ -16,7 +16,7 @@
 </center>
 &nbsp;
 <p/>
-<table border="1" width="100%" cellpadding="3" cellspacing="3">
+<table border="1" width="100%" cellpadding="5" cellspacing="2">
   <tr>
     <td width="15%" valign="top">Job</td>
     <td width="85%">
@@ -52,7 +52,7 @@
   <tr>
     <td valign="top">Git repository</td>
     <td>
-      <a href="http://github.com/evgeny-goldin/maven-plugins"><strong>git://github.com/evgeny-goldin/maven-plugins.git</strong></a>
+      <a href="http://github.com/evgeny-goldin/maven-plugins"><strong>git://github.com/evgeny-goldin/maven-plugins.git</strong></a><br/>
     </td>
   </tr>
   <tr>

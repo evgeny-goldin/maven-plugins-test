@@ -16,7 +16,7 @@
 </center>
 &nbsp;
 <p/>
-<table border="1" width="100%" cellpadding="3" cellspacing="3">
+<table border="1" width="100%" cellpadding="5" cellspacing="2">
   <tr>
     <td width="15%" valign="top">Job</td>
     <td width="85%">
@@ -44,7 +44,7 @@
   <tr>
     <td valign="top">Git repository</td>
     <td>
-      <a href="http://gitorious.org/esp-home/wsarena3"><strong>git://gitorious.org/esp-home/wsarena3.git</strong></a>
+      <a href="http://gitorious.org/esp-home/wsarena3"><strong>git://gitorious.org/esp-home/wsarena3.git</strong></a><br/>
     </td>
   </tr>
   <tr>
@@ -68,7 +68,7 @@
   <tr>
     <td valign="top">Invokes</td>
     <td>
-      <a href="http://evgeny-goldin.org/jenkins/job/gitorious-wsarena3-version1"><strong>gitorious-wsarena3-version1</strong></a>when this job is <strong>complete</strong> (always trigger)
+      <a href="http://evgeny-goldin.org/jenkins/job/gitorious-wsarena3-version1"><strong>gitorious-wsarena3-version1</strong></a> when this job is <strong>complete</strong> (always trigger)<br/>
     </td>
   </tr>
 </table>

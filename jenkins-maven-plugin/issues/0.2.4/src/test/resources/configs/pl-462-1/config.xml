@@ -16,7 +16,7 @@
 </center>
 &nbsp;
 <p/>
-<table border="1" width="100%" cellpadding="3" cellspacing="3">
+<table border="1" width="100%" cellpadding="5" cellspacing="2">
   <tr>
     <td width="15%" valign="top">Job</td>
     <td width="85%">
@@ -44,7 +44,7 @@
   <tr>
     <td valign="top">Hg repository</td>
     <td>
-      <a href="https://bitbucket.org/kotarak/i18n"><strong>https://bitbucket.org/kotarak/i18n</strong></a>
+      <a href="https://bitbucket.org/kotarak/i18n"><strong>https://bitbucket.org/kotarak/i18n</strong></a><br/>
     </td>
   </tr>
   <tr>

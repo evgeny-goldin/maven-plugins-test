@@ -16,7 +16,7 @@
 </center>
 &nbsp;
 <p/>
-<table border="1" width="100%" cellpadding="3" cellspacing="3">
+<table border="1" width="100%" cellpadding="5" cellspacing="2">
   <tr>
     <td width="15%" valign="top">Job</td>
     <td width="85%">
@@ -48,7 +48,7 @@
   <tr>
     <td valign="top">Svn repository</td>
     <td>
-      <a href="http://google-guice.googlecode.com/svn/trunk"><strong>http://google-guice.googlecode.com/svn/trunk</strong></a>
+      <a href="http://google-guice.googlecode.com/svn/trunk"><strong>http://google-guice.googlecode.com/svn/trunk</strong></a><br/>
     </td>
   </tr>
   <tr>
@@ -59,7 +59,7 @@
   </tr>
   <tr>
     <td valign="top">Triggers</td>
-    <td><strong><code>&quot;timer&quot;</code></strong> : <code>&quot;0 12 * * *&quot;</code></td>
+    <td><strong><code>&quot;timer&quot;</code></strong> : <code>&quot;0 12 * * *&quot;</code><br/></td>
   </tr>
   <tr>
     <td valign="top">Maven name</td>
@@ -75,15 +75,15 @@
   </tr>
   <tr>
     <td valign="top">Invokes</td>
-    <td>- 
-      <a href="http://evgeny-goldin.org/jenkins/job/googlecode-facebook-java-api-trunk"><strong>googlecode-facebook-java-api-trunk</strong></a>when this job has <strong>failed</strong>- 
-      <a href="http://evgeny-goldin.org/jenkins/job/googlecode-facebook-java-api-fbapi-2.0.0"><strong>googlecode-facebook-java-api-fbapi-2.0.0</strong></a>when this job has <strong>failed</strong>
+    <td>
+      <a href="http://evgeny-goldin.org/jenkins/job/googlecode-facebook-java-api-trunk"><strong>googlecode-facebook-java-api-trunk</strong></a> when this job has <strong>failed</strong><br/>
+      <a href="http://evgeny-goldin.org/jenkins/job/googlecode-facebook-java-api-fbapi-2.0.0"><strong>googlecode-facebook-java-api-fbapi-2.0.0</strong></a> when this job has <strong>failed</strong><br/>
     </td>
   </tr>
   <tr>
     <td valign="top">Invoked by</td>
     <td>
-      <a href="http://evgeny-goldin.org/jenkins/job/gitorious-wsarena3-version1"><strong>gitorious-wsarena3-version1</strong></a>when it is <strong>stable</strong>
+      <a href="http://evgeny-goldin.org/jenkins/job/gitorious-wsarena3-version1"><strong>gitorious-wsarena3-version1</strong></a> when it is <strong>stable</strong><br/>
     </td>
   </tr>
 </table>

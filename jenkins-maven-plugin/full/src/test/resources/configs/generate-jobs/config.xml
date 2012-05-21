@@ -11,7 +11,7 @@
 &lt;/center&gt;
 &amp;nbsp;
 &lt;p/&gt;
-&lt;table border=&quot;1&quot; width=&quot;100%&quot; cellpadding=&quot;3&quot; cellspacing=&quot;3&quot;&gt;
+&lt;table border=&quot;1&quot; width=&quot;100%&quot; cellpadding=&quot;5&quot; cellspacing=&quot;2&quot;&gt;
   &lt;tr&gt;
     &lt;td width=&quot;15%&quot; valign=&quot;top&quot;&gt;Job&lt;/td&gt;
     &lt;td width=&quot;85%&quot;&gt;
@@ -39,7 +39,7 @@
   &lt;tr&gt;
     &lt;td valign=&quot;top&quot;&gt;Git repository&lt;/td&gt;
     &lt;td&gt;
-      &lt;a href=&quot;http://github.com/evgeny-goldin/maven-plugins-test&quot;&gt;&lt;strong&gt;git://github.com/evgeny-goldin/maven-plugins-test.git&lt;/strong&gt;&lt;/a&gt;
+      &lt;a href=&quot;http://github.com/evgeny-goldin/maven-plugins-test&quot;&gt;&lt;strong&gt;git://github.com/evgeny-goldin/maven-plugins-test.git&lt;/strong&gt;&lt;/a&gt;&lt;br/&gt;
     &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;

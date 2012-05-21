@@ -16,7 +16,7 @@
 </center>
 &nbsp;
 <p/>
-<table border="1" width="100%" cellpadding="3" cellspacing="3">
+<table border="1" width="100%" cellpadding="5" cellspacing="2">
   <tr>
     <td width="15%" valign="top">Job</td>
     <td width="85%">
@@ -48,7 +48,7 @@
   <tr>
     <td valign="top">Svn repository</td>
     <td>
-      <a href="http://facebook-java-api.googlecode.com/svn/branches/fbapi-2.0.0"><strong>http://facebook-java-api.googlecode.com/svn/branches/fbapi-2.0.0</strong></a>
+      <a href="http://facebook-java-api.googlecode.com/svn/branches/fbapi-2.0.0"><strong>http://facebook-java-api.googlecode.com/svn/branches/fbapi-2.0.0</strong></a><br/>
     </td>
   </tr>
   <tr>
@@ -60,7 +60,7 @@
   <tr>
     <td valign="top">Triggers</td>
     <td><strong><code>&quot;scm&quot;</code></strong> : <code>&quot;*/10 * * * *&quot;</code>
-      <em>(Check SCM for changes every 10 minutes)</em>
+      <em> (Check SCM for changes every 10 minutes)</em><br/>
     </td>
   </tr>
   <tr>
@@ -78,15 +78,15 @@
   <tr>
     <td valign="top">Invokes</td>
     <td>
-      <a href="http://evgeny-goldin.org/jenkins/job/github-maven-plugins-master"><strong>github-maven-plugins-master</strong></a>when this job is <strong>unstable</strong>
+      <a href="http://evgeny-goldin.org/jenkins/job/github-maven-plugins-master"><strong>github-maven-plugins-master</strong></a> when this job is <strong>unstable</strong><br/>
     </td>
   </tr>
   <tr>
     <td valign="top">Invoked by</td>
-    <td>- 
-      <a href="http://evgeny-goldin.org/jenkins/job/googlecode-google-guice-trunk"><strong>googlecode-google-guice-trunk</strong></a>when it has <strong>failed</strong>- 
-      <a href="http://evgeny-goldin.org/jenkins/job/googlecode-google-guice-2.0-maven"><strong>googlecode-google-guice-2.0-maven</strong></a>when it is <strong>stable</strong> or <strong>unstable</strong> but not failed- 
-      <a href="http://evgeny-goldin.org/jenkins/job/googlecode-facebook-java-api-trunk"><strong>googlecode-facebook-java-api-trunk</strong></a>when it is <strong>complete</strong> (always trigger)
+    <td>
+      <a href="http://evgeny-goldin.org/jenkins/job/googlecode-google-guice-trunk"><strong>googlecode-google-guice-trunk</strong></a> when it has <strong>failed</strong><br/>
+      <a href="http://evgeny-goldin.org/jenkins/job/googlecode-google-guice-2.0-maven"><strong>googlecode-google-guice-2.0-maven</strong></a> when it is <strong>stable</strong> or <strong>unstable</strong> but not failed<br/>
+      <a href="http://evgeny-goldin.org/jenkins/job/googlecode-facebook-java-api-trunk"><strong>googlecode-facebook-java-api-trunk</strong></a> when it is <strong>complete</strong> (always trigger)<br/>
     </td>
   </tr>
 </table>

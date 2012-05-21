@@ -16,7 +16,7 @@
 </center>
 &nbsp;
 <p/>
-<table border="1" width="100%" cellpadding="3" cellspacing="3">
+<table border="1" width="100%" cellpadding="5" cellspacing="2">
   <tr>
     <td width="15%" valign="top">Job</td>
     <td width="85%">
@@ -52,7 +52,7 @@
   <tr>
     <td valign="top">Svn repository</td>
     <td>
-      <a href="http://google-guice.googlecode.com/svn/tags/3.0-rc3"><strong>http://google-guice.googlecode.com/svn/tags/3.0-rc3</strong></a>
+      <a href="http://google-guice.googlecode.com/svn/tags/3.0-rc3"><strong>http://google-guice.googlecode.com/svn/tags/3.0-rc3</strong></a><br/>
     </td>
   </tr>
   <tr>
@@ -76,7 +76,7 @@
   <tr>
     <td valign="top">Invoked by</td>
     <td>
-      <a href="http://evgeny-goldin.org/jenkins/job/google-guice-inheritance-trunk"><strong>google-guice-inheritance-trunk</strong></a>when it is <strong>stable</strong>
+      <a href="http://evgeny-goldin.org/jenkins/job/google-guice-inheritance-trunk"><strong>google-guice-inheritance-trunk</strong></a> when it is <strong>stable</strong><br/>
     </td>
   </tr>
 </table>

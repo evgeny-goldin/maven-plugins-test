@@ -16,7 +16,7 @@
 </center>
 &nbsp;
 <p/>
-<table border="1" width="100%" cellpadding="3" cellspacing="3">
+<table border="1" width="100%" cellpadding="5" cellspacing="2">
   <tr>
     <td width="15%" valign="top">Job</td>
     <td width="85%">
@@ -52,7 +52,7 @@
   <tr>
     <td valign="top">Svn repository</td>
     <td>
-      <a href="http://google-guice.googlecode.com/svn/trunk"><strong>http://google-guice.googlecode.com/svn/trunk</strong></a>
+      <a href="http://google-guice.googlecode.com/svn/trunk"><strong>http://google-guice.googlecode.com/svn/trunk</strong></a><br/>
     </td>
   </tr>
   <tr>
@@ -75,9 +75,9 @@
   </tr>
   <tr>
     <td valign="top">Invokes</td>
-    <td>- 
-      <a href="http://evgeny-goldin.org/jenkins/job/google-guice-inheritance-3.0-rc3"><strong>google-guice-inheritance-3.0-rc3</strong></a>when this job is <strong>stable</strong>- 
-      <a href="http://evgeny-goldin.org/jenkins/job/google-guice-inheritance-2.0-maven"><strong>google-guice-inheritance-2.0-maven</strong></a>when this job is <strong>stable</strong>
+    <td>
+      <a href="http://evgeny-goldin.org/jenkins/job/google-guice-inheritance-3.0-rc3"><strong>google-guice-inheritance-3.0-rc3</strong></a> when this job is <strong>stable</strong><br/>
+      <a href="http://evgeny-goldin.org/jenkins/job/google-guice-inheritance-2.0-maven"><strong>google-guice-inheritance-2.0-maven</strong></a> when this job is <strong>stable</strong><br/>
     </td>
   </tr>
 </table>
