@@ -19,6 +19,15 @@
         <version>0.1-SNAPSHOT</version>
     </parent>
 
+    <properties>
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <!-- Use build number of:                                                                                            -->
+        <!-- http://teamcity.jetbrains.com/viewLog.html?buildId=lastSuccessful&tab=buildResultsDiv&buildTypeId=bt343&guest=1 -->
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <idea-build-number>180</idea-build-number>
+    </properties>
+
+
 
     <build>
         <plugins>
@@ -243,7 +252,7 @@
                                     <dependency>
                                         <groupId>ivy.org</groupId>
                                         <artifactId>bt343</artifactId>
-                                        <version>126</version>
+                                        <version>${idea-build-number}</version>
                                         <classifier>core/intellij-core</classifier>
                                     </dependency>
                                     <unpack>true</unpack>
