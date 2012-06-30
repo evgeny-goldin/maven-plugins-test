@@ -21,7 +21,7 @@
 
 
     <properties>
-        <jobsToTest>3</jobsToTest>
+        <jobsToTest>4</jobsToTest>
     </properties>
 
 
@@ -81,6 +81,40 @@
                                         assert job.id          == 'pl-642-3'
                                     }}
                                     </process>
+                                </job>
+                            </jobs>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-645  -->
+                    <!-- "Support for more than one 'process' script"    -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-645</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${configs-outputDirectory}</outputDirectory>
+                            <generationPom>https://github.com/evgeny-goldin/maven-plugins-test/blob/master/jenkins-maven-plugin/issues/0.2.5.1/pom.xml</generationPom>
+                            <jenkinsUrl>http://evgeny-goldin.org/jenkins</jenkinsUrl>
+                            <timestamp>false</timestamp>
+                            <jobs>
+                                <job>
+                                    <id>pl-645-1</id>
+                                    <scmType>git</scmType>
+                                    <mavenName>apache-maven-3</mavenName>
+                                    <repository>
+                                        <remote>${maven-plugins-repo}</remote>
+                                    </repository>
+                                    <processes>
+                                        <!-- http://groovy.codehaus.org/gapi/groovy/util/Node.html -->
+                                        <process>{{ node.remove( node.reporters ) }}</process>
+                                        <process>${project.basedir}/src/main/groovy/job-update-1.groovy</process>
+                                        <process>${project.basedir}/src/main/groovy/job-update-2.groovy</process>
+                                        <process>{{ node.remove( node.runPostStepsIfResult ) }}</process>
+                                    </processes>
                                 </job>
                             </jobs>
                         </configuration>
