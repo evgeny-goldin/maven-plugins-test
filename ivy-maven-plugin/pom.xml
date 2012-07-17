@@ -19,18 +19,40 @@
         <version>0.1-SNAPSHOT</version>
     </parent>
 
-    <properties>
-        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-        <!-- Use build number of:                                                                                            -->
-        <!-- http://teamcity.jetbrains.com/viewLog.html?buildId=lastSuccessful&tab=buildResultsDiv&buildTypeId=bt343&guest=1 -->
-        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-        <idea-build-number>180</idea-build-number>
-    </properties>
-
-
 
     <build>
         <plugins>
+
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- Setting latest IDEA build number -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+            <plugin>
+                <groupId>com.github.goldin</groupId>
+                <artifactId>properties-maven-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <execution>
+                        <id>set-idea-build-number</id>
+                        <goals>
+                            <goal>set-properties</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <property>
+                                <name>idea-build-number</name>
+                                <value>
+                                {{
+                                    'http://teamcity.jetbrains.com/guestAuth/repository/download/bt343/latest.lastSuccessful/teamcity-ivy.xml'.
+                                    toURL().text.
+                                    findAll( /revision="(\d+).lastSuccessful"/ ){ it[ 1 ] }[ 0 ]
+                                }}
+                                </value>
+                            </property>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 
             <!-- ~~~~~~~~~~~~~~~~~~~ -->
             <!-- Adding Ivy resolver -->
