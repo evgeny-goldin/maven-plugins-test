@@ -21,7 +21,7 @@
 
 
     <properties>
-        <jobsToTest>6</jobsToTest>
+        <jobsToTest>8</jobsToTest>
     </properties>
 
 
@@ -68,10 +68,14 @@
                                     <process>
                                     {{
                                         assert job
+                                        assert job.id == 'pl-642-3'
+
                                         assert jobs
-                                        assert jobs.size()     == 3
-                                        assert jobs.first().id == 'pl-642-1'
-                                        assert job.id          == 'pl-642-3'
+                                        assert jobs.size() == 3
+
+                                        assert jobs[ 'pl-642-1' ].id == 'pl-642-1'
+                                        assert jobs[ 'pl-642-2' ].id == 'pl-642-2'
+                                        assert jobs[ 'pl-642-3' ].id == 'pl-642-3'
                                     }}
                                     </process>
                                 </job>
@@ -174,6 +178,40 @@
                                     <repository>
                                         <remote>${maven-plugins-repo}</remote>
                                     </repository>
+                                </job>
+                            </jobs>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-649  -->
+                    <!-- "NPE when multiple parents are specified" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-649</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <jobs>
+                                <job>
+                                    <id>pl-649-1</id>
+                                    <abstract>true</abstract>
+                                </job>
+                                <job>
+                                    <id>pl-649-2</id>
+                                    <abstract>true</abstract>
+                                </job>
+                                <job>
+                                    <id>pl-649-3</id>
+                                    <mavenName>apache-maven-3</mavenName>
+                                    <repository>
+                                        <remote>${maven-plugins-repo}</remote>
+                                    </repository>
+                                </job>
+                                <job>
+                                    <id>pl-649</id>
+                                    <parent>pl-649-1, pl-649-2, pl-649-3</parent>
                                 </job>
                             </jobs>
                         </configuration>
