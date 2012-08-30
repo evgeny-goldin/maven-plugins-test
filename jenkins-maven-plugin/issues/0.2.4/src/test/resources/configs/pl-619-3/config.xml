@@ -37,9 +37,7 @@
   </tr>
   <tr>
     <td valign="top">Node</td>
-    <td>
-      <a href="http://evgeny-goldin.org/jenkins/label/master"><strong>master</strong></a>
-    </td>
+    <td>Undefined, can roam</td>
   </tr>
   <tr>
     <td valign="top">JDK name</td>
@@ -117,8 +115,8 @@
   </scm>
   <quietPeriod>5</quietPeriod>
   <scmCheckoutRetryCount>6</scmCheckoutRetryCount>
-  <assignedNode>master</assignedNode>
-  <canRoam>false</canRoam>
+  <assignedNode></assignedNode>
+  <canRoam>true</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>true</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>

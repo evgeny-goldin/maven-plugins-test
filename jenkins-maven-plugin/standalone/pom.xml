@@ -41,7 +41,6 @@
                             <jobs>
                                 <job>
                                     <id>JBoss EJB 3</id>
-                                    <scmType>git</scmType>
                                     <mavenName>apache-maven-2</mavenName>
                                     <jdkName>jdk1.6.0</jdkName>
                                     <repository>

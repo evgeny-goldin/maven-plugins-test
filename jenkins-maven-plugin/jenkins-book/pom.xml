@@ -48,7 +48,6 @@
                             <timestamp>false</timestamp>
                             <job>
                                 <id>maven-plugins</id>
-                                <scmType>git</scmType>
                                 <mavenName>apache-maven-3</mavenName>
                                 <jdkName>jdk1.6.0</jdkName>
                                 <repository>
@@ -119,7 +118,6 @@
                                     <jdkName>jdk1.6.0</jdkName>
                                     <numToKeep>5</numToKeep>
                                     <mavenName>apache-maven-3</mavenName>
-                                    <scmType>git</scmType>
                                     <repository>
                                         <remote>git://github.com/jenkinsci/jenkins.git</remote>
                                     </repository>
@@ -206,7 +204,6 @@
                             <job>
                                 <id>free-style</id>
                                 <jobType>free</jobType>
-                                <scmType>git</scmType>
                                 <repository>
                                     <remote>${maven-plugins-test-repo}</remote>
                                 </repository>

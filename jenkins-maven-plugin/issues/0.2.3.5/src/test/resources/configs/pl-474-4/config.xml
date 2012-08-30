@@ -30,9 +30,7 @@
   &lt;/tr&gt;
   &lt;tr&gt;
     &lt;td valign=&quot;top&quot;&gt;Node&lt;/td&gt;
-    &lt;td&gt;
-      &lt;a href=&quot;http://evgeny-goldin.org/jenkins/label/master&quot;&gt;&lt;strong&gt;master&lt;/strong&gt;&lt;/a&gt;
-    &lt;/td&gt;
+    &lt;td&gt;Undefined, can roam&lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
     &lt;td valign=&quot;top&quot;&gt;JDK name&lt;/td&gt;
@@ -104,8 +102,8 @@
     <localBranch>dev</localBranch>
     <clean>true</clean>
   </scm>
-  <assignedNode>master</assignedNode>
-  <canRoam>false</canRoam>
+  <assignedNode/>
+  <canRoam>true</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>

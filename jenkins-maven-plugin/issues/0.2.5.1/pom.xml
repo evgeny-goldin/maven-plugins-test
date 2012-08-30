@@ -21,7 +21,7 @@
 
 
     <properties>
-        <jobsToTest>4</jobsToTest>
+        <jobsToTest>6</jobsToTest>
     </properties>
 
 
@@ -44,14 +44,9 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${configs-outputDirectory}</outputDirectory>
-                            <generationPom>https://github.com/evgeny-goldin/maven-plugins-test/blob/master/jenkins-maven-plugin/issues/0.2.5.1/pom.xml</generationPom>
-                            <jenkinsUrl>http://evgeny-goldin.org/jenkins</jenkinsUrl>
-                            <timestamp>false</timestamp>
                             <jobs>
                                 <job>
                                     <id>pl-642-1</id>
-                                    <scmType>git</scmType>
                                     <mavenName>apache-maven-3</mavenName>
                                     <repository>
                                         <remote>${maven-plugins-repo}</remote>
@@ -59,7 +54,6 @@
                                 </job>
                                 <job>
                                     <id>pl-642-2</id>
-                                    <scmType>git</scmType>
                                     <mavenName>apache-maven-3</mavenName>
                                     <repository>
                                         <remote>${maven-plugins-repo}</remote>
@@ -67,7 +61,6 @@
                                 </job>
                                 <job>
                                     <id>pl-642-3</id>
-                                    <scmType>git</scmType>
                                     <mavenName>apache-maven-3</mavenName>
                                     <repository>
                                         <remote>${maven-plugins-repo}</remote>
@@ -96,14 +89,9 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${configs-outputDirectory}</outputDirectory>
-                            <generationPom>https://github.com/evgeny-goldin/maven-plugins-test/blob/master/jenkins-maven-plugin/issues/0.2.5.1/pom.xml</generationPom>
-                            <jenkinsUrl>http://evgeny-goldin.org/jenkins</jenkinsUrl>
-                            <timestamp>false</timestamp>
                             <jobs>
                                 <job>
                                     <id>pl-645-1</id>
-                                    <scmType>git</scmType>
                                     <mavenName>apache-maven-3</mavenName>
                                     <repository>
                                         <remote>${maven-plugins-repo}</remote>
@@ -130,16 +118,12 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${configs-outputDirectory}</outputDirectory>
-                            <generationPom>https://github.com/evgeny-goldin/maven-plugins-test/blob/master/jenkins-maven-plugin/issues/0.2.5.1/pom.xml</generationPom>
-                            <jenkinsUrl>http://evgeny-goldin.org/jenkins</jenkinsUrl>
-                            <timestamp>false</timestamp>
                             <jobs>
                                 <job>
                                     <id>pl-647-base</id>
                                     <abstract>true</abstract>
                                     <jobType>free</jobType>
-                                    <mavenName>Maven 3</mavenName>
+                                    <mavenName>apache-maven-3</mavenName>
                                 </job>
                                 <job>
                                     <id>pl-647-github</id>
@@ -151,13 +135,53 @@
                                     <parent>pl-647-base</parent>
                                     <jobType>maven</jobType>
                                     <repository>
-                                        <remote>git://github.com/evgeny-goldin/maven-plugins.git</remote>
+                                        <remote>${maven-plugins-repo}</remote>
+                                    </repository>
+                                </job>
+                            </jobs>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-655  -->
+                    <!-- "Provide a way not to assign a job to any node" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-655</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <jobs>
+                                <job>
+                                    <id>pl-655-base</id>
+                                    <abstract>true</abstract>
+                                    <jobType>maven</jobType>
+                                    <mavenName>apache-maven-3</mavenName>
+                                </job>
+                                <job>
+                                    <id>pl-655-1</id>
+                                    <parent>pl-655-base</parent>
+                                    <repository>
+                                        <remote>${maven-plugins-repo}</remote>
+                                    </repository>
+                                </job>
+                                <job>
+                                    <id>pl-655-2</id>
+                                    <jobType>maven</jobType>
+                                    <mavenName>apache-maven-3</mavenName>
+                                    <node>master</node>
+                                    <repository>
+                                        <remote>${maven-plugins-repo}</remote>
                                     </repository>
                                 </job>
                             </jobs>
                         </configuration>
                     </execution>
                 </executions>
+                <configuration>
+                    <generationPom>https://github.com/evgeny-goldin/maven-plugins-test/blob/master/jenkins-maven-plugin/issues/0.2.5.1/pom.xml</generationPom>
+                </configuration>
             </plugin>
         </plugins>
     </build>

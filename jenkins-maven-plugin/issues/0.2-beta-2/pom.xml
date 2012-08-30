@@ -40,10 +40,6 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${configs-outputDirectory}</outputDirectory>
-                            <generationPom>https://github.com/evgeny-goldin/maven-plugins-test/blob/master/jenkins-maven-plugin/issues/0.2-beta-2/pom.xml</generationPom>
-                            <jenkinsUrl>http://evgeny-goldin.org/jenkins</jenkinsUrl>
-                            <timestamp>false</timestamp>
                             <jobs>
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <!-- http://evgeny-goldin.org/youtrack/issue/pl-18 -->
@@ -54,7 +50,6 @@
                                     <mavenName>apache-maven-3</mavenName>
                                     <jdkName>jdk1.6.0</jdkName>
                                     <privateRepository>false</privateRepository>
-                                    <scmType>git</scmType>
                                     <repository>
                                         <remote>${maven-plugins-repo}</remote>
                                     </repository>
@@ -63,6 +58,9 @@
                         </configuration>
                     </execution>
                 </executions>
+                <configuration>
+                    <generationPom>https://github.com/evgeny-goldin/maven-plugins-test/blob/master/jenkins-maven-plugin/issues/0.2-beta-2/pom.xml</generationPom>
+                </configuration>
             </plugin>
 
         </plugins>

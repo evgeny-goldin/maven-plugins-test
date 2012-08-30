@@ -45,6 +45,22 @@
 
 
     <build>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>com.github.goldin</groupId>
+                    <artifactId>jenkins-maven-plugin</artifactId>
+                    <version>${plugins-version}</version>
+                    <configuration>
+                        <outputDirectory>${configs-outputDirectory}</outputDirectory>
+                        <jenkinsUrl>http://evgeny-goldin.org/jenkins</jenkinsUrl>
+                        <timestamp>false</timestamp>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
         <plugins>
             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
             <!-- Verifying configs generated have not changed -->
