@@ -112,40 +112,6 @@
                         </configuration>
                     </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-647  -->
-                    <!-- "Inheritance doesn't always work as expected"   -->
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                    <execution>
-                        <id>http://evgeny-goldin.org/youtrack/issue/pl-647</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <jobs>
-                                <job>
-                                    <id>pl-647-base</id>
-                                    <abstract>true</abstract>
-                                    <jobType>free</jobType>
-                                    <mavenName>apache-maven-3</mavenName>
-                                </job>
-                                <job>
-                                    <id>pl-647-github</id>
-                                    <parent>pl-647-base</parent>
-                                    <abstract>true</abstract>
-                                </job>
-                                <job>
-                                    <id>pl-647-plugins</id>
-                                    <parent>pl-647-base</parent>
-                                    <jobType>maven</jobType>
-                                    <repository>
-                                        <remote>${maven-plugins-repo}</remote>
-                                    </repository>
-                                </job>
-                            </jobs>
-                        </configuration>
-                    </execution>
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-655  -->
                     <!-- "Provide a way not to assign a job to any node" -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -212,6 +178,70 @@
                                 <job>
                                     <id>pl-649</id>
                                     <parent>pl-649-1, pl-649-2, pl-649-3</parent>
+                                </job>
+                            </jobs>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-647      -->
+                    <!-- "pl-647 Provide inheritance more than 1 level deep" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-647</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <jobs>
+                                <job>
+                                    <id>pl-647-base</id>
+                                    <abstract>true</abstract>
+                                    <jobType>maven</jobType>
+                                    <mavenName>apache-maven-3</mavenName>
+                                </job>
+                                <job>
+                                    <id>pl-647-github</id>
+                                    <parent>pl-647-base</parent>
+                                    <abstract>true</abstract>
+                                </job>
+                                <job>
+                                    <id>pl-647-plugins</id>
+                                    <parent>pl-647-github</parent>
+                                    <jobType>maven</jobType>
+                                    <repository>
+                                        <remote>${maven-plugins-repo}</remote>
+                                    </repository>
+                                </job>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <job>
+                                    <id>pl-647-1</id>
+                                    <abstract>true</abstract>
+                                    <scmType>git</scmType>
+                                </job>
+                                <job>
+                                    <id>pl-647-2</id>
+                                    <abstract>true</abstract>
+                                    <parent>pl-647-1</parent>
+                                    <mavenName>apache-maven-3</mavenName>
+                                </job>
+                                <job>
+                                    <id>pl-647-3</id>
+                                    <abstract>true</abstract>
+                                    <parent>pl-647-2</parent>
+                                    <jdkName>jdk1.6.0</jdkName>
+                                </job>
+                                <job>
+                                    <id>pl-647-4</id>
+                                    <parent>pl-647-3</parent>
+                                    <repository>
+                                        <remote>${maven-plugins-repo}</remote>
+                                    </repository>
+                                </job>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <job>
+                                    <id>pl-647-5</id>
+                                    <parent>pl-647-1, pl-647-2, pl-647-3, pl-647-4</parent>
                                 </job>
                             </jobs>
                         </configuration>
