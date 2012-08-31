@@ -21,7 +21,7 @@
 
 
     <properties>
-        <jobsToTest>12</jobsToTest>
+        <jobsToTest>15</jobsToTest>
     </properties>
 
 
@@ -103,8 +103,8 @@
                                     <processes>
                                         <!-- http://groovy.codehaus.org/gapi/groovy/util/Node.html -->
                                         <process>{{ node.remove( node.reporters ) }}</process>
-                                        <process>${project.basedir}/src/main/groovy/job-update-1.groovy</process>
-                                        <process>${project.basedir}/src/main/groovy/job-update-2.groovy</process>
+                                        <process>${project.basedir}/src/test/resources/pl-645/job-update-1.groovy</process>
+                                        <process>${project.basedir}/src/test/resources/pl-645/job-update-2.groovy</process>
                                         <process>{{ node.remove( node.runPostStepsIfResult ) }}</process>
                                     </processes>
                                 </job>
@@ -268,6 +268,162 @@
                                     <uniqueVersion>true</uniqueVersion>
                                 </deploy>
                             </job>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-644      -->
+                    <!-- "Add support for gerrit trigger plugin for Jenkins" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-644</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <jobs>
+                                <job>
+                                    <id>pl-644-base</id>
+                                    <abstract>true</abstract>
+                                    <mavenName>apache-maven-3</mavenName>
+                                    <repository>
+                                        <remote>${maven-plugins-repo}</remote>
+                                    </repository>
+                                </job>
+                                <job>
+                                    <!-- Uses "gerrit.groovy" to add a Gerrit trigger -->
+                                    <id>pl-644-1</id>
+                                    <parent>pl-644-base</parent>
+                                    <process>${project.basedir}/src/test/resources/pl-644/gerrit.groovy</process>
+                                </job>
+                                <job>
+                                    <!-- Identical to pl-644-1 -->
+                                    <id>pl-644-2</id>
+                                    <parent>pl-644-base</parent>
+                                    <trigger>
+                                        <type>gerrit</type>
+                                        <project>
+                                            <pattern>maven-plugins</pattern>
+                                            <branch>
+                                                <type>path</type>
+                                                <pattern>**</pattern>
+                                            </branch>
+                                        </project>
+                                    </trigger>
+                                </job>
+                                <job>
+                                    <!-- Demonstrates all Gerrit trigger options -->
+                                    <id>pl-644-3</id>
+                                    <parent>pl-644-base</parent>
+                                    <trigger>
+                                        <type>gerrit</type>
+                                        <projects>
+                                            <project>
+                                                <pattern>maven-plugins</pattern>
+                                                <branch>
+                                                    <type>path</type>
+                                                    <pattern>**</pattern>
+                                                </branch>
+                                                <filePaths>
+                                                    <filePath>
+                                                        <pattern>file-plain</pattern>
+                                                    </filePath>
+                                                    <filePath>
+                                                        <type>path</type>
+                                                        <pattern>file-path</pattern>
+                                                    </filePath>
+                                                    <filePath>
+                                                        <type>regexp</type>
+                                                        <pattern>file-regexp</pattern>
+                                                    </filePath>
+                                                </filePaths>
+                                            </project>
+                                            <project>
+                                                <pattern>plain</pattern>
+                                                <branch>
+                                                    <pattern>plain</pattern>
+                                                </branch>
+                                                <filePath>
+                                                    <pattern>plain-path</pattern>
+                                                </filePath>
+                                            </project>
+                                            <project>
+                                                <type>path</type>
+                                                <pattern>path</pattern>
+                                                <branch>
+                                                    <pattern>plain</pattern>
+                                                </branch>
+                                            </project>
+                                            <project>
+                                                <type>regexp</type>
+                                                <pattern>regexp</pattern>
+                                                <branch>
+                                                    <pattern>plain</pattern>
+                                                </branch>
+                                            </project>
+                                            <project>
+                                                <pattern>plain</pattern>
+                                                <branch>
+                                                    <type>path</type>
+                                                    <pattern>path</pattern>
+                                                </branch>
+                                            </project>
+                                            <project>
+                                                <pattern>plain</pattern>
+                                                <branch>
+                                                    <type>regexp</type>
+                                                    <pattern>regexp</pattern>
+                                                </branch>
+                                            </project>
+                                            <project>
+                                                <pattern>project2-plain</pattern>
+                                                <branches>
+                                                    <branch>
+                                                        <pattern>project2-plain</pattern>
+                                                    </branch>
+                                                    <branch>
+                                                        <type>path</type>
+                                                        <pattern>project2-path</pattern>
+                                                    </branch>
+                                                    <branch>
+                                                        <type>regexp</type>
+                                                        <pattern>project2-regexp</pattern>
+                                                    </branch>
+                                                </branches>
+                                                <filePaths>
+                                                    <filePath>
+                                                        <pattern>project2-file-plain</pattern>
+                                                    </filePath>
+                                                    <filePath>
+                                                        <type>path</type>
+                                                        <pattern>project2-file-path</pattern>
+                                                    </filePath>
+                                                    <filePath>
+                                                        <type>regexp</type>
+                                                        <pattern>project2-file-regexp</pattern>
+                                                    </filePath>
+                                                </filePaths>
+                                            </project>
+                                        </projects>
+                                        <escapeQuotes>true</escapeQuotes>
+                                        <silentMode>true</silentMode>
+                                        <verifyStarted>1</verifyStarted>
+                                        <verifySuccessful>2</verifySuccessful>
+                                        <verifyFailed>3</verifyFailed>
+                                        <verifyUnstable>4</verifyUnstable>
+                                        <codeReviewStarted>5</codeReviewStarted>
+                                        <codeReviewSuccessful>6</codeReviewSuccessful>
+                                        <codeReviewFailed>7</codeReviewFailed>
+                                        <codeReviewUnstable>8</codeReviewUnstable>
+                                        <buildStartMessage>build start message</buildStartMessage>
+                                        <buildSuccessfulMessage>build successful message</buildSuccessfulMessage>
+                                        <buildUnstableMessage>build unstable message</buildUnstableMessage>
+                                        <buildFailureMessage>build failure message</buildFailureMessage>
+                                        <unsuccessfulMessageFile>unsuccessful message file</unsuccessfulMessageFile>
+                                        <urlToPost>url-to-post</urlToPost>
+                                    </trigger>
+                                </job>
+                            </jobs>
                         </configuration>
                     </execution>
                 </executions>
