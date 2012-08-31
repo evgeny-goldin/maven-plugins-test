@@ -158,7 +158,8 @@
                         <configuration>
                             <assertFiles>
                                 ${rootPath}/pom.xml
-                                ${rootPath}/README.txt
+                                ${rootPath}/README.markdown
+                                ${rootPath}/license.txt
                                 ${rootPath}/copy-maven-plugin
                                 ${rootPath}/copy-maven-plugin/issues/0.2/0.2-beta-5/pom.xml
                                 ${rootPath}/find-maven-plugin
