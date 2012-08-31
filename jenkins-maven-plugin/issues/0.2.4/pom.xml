@@ -566,7 +566,6 @@
                 </executions>
                 <configuration>
                     <endOfLine>unix</endOfLine>
-                    <generationPom>https://github.com/evgeny-goldin/maven-plugins-test/blob/master/jenkins-maven-plugin/issues/0.2.4/pom.xml</generationPom>
                 </configuration>
             </plugin>
         </plugins>

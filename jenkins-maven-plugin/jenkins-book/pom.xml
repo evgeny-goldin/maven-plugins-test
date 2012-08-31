@@ -27,7 +27,6 @@
 
     <build>
         <plugins>
-
             <plugin>
                 <groupId>com.github.goldin</groupId>
                 <artifactId>jenkins-maven-plugin</artifactId>
@@ -40,12 +39,6 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${user.home}/.jenkins/jobs</outputDirectory>
-                            <generationPom>
-                                http://github.com/evgeny-goldin/maven-plugins-test/blob/master/jenkins-maven-plugin/jenkins-book/pom.xml
-                            </generationPom>
-                            <jenkinsUrl>http://evgeny-goldin.org/jenkins</jenkinsUrl>
-                            <timestamp>false</timestamp>
                             <job>
                                 <id>maven-plugins</id>
                                 <mavenName>apache-maven-3</mavenName>
@@ -56,7 +49,6 @@
                             </job>
                         </configuration>
                     </execution>
-
                     <execution>
                         <id>standalone-jobs</id>
                         <phase>compile</phase>
@@ -64,12 +56,6 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${user.home}/.jenkins/jobs</outputDirectory>
-                            <generationPom>
-                                http://github.com/evgeny-goldin/maven-plugins-test/blob/master/jenkins-maven-plugin/jenkins-book/pom.xml
-                            </generationPom>
-                            <jenkinsUrl>http://evgeny-goldin.org/jenkins</jenkinsUrl>
-                            <timestamp>false</timestamp>
                             <jobs>
                                 <job>
                                     <id>google-guice-trunk</id>
@@ -112,7 +98,6 @@
                                         <recipients>jenkins@evgeny-goldin.org</recipients>
                                     </mail>
                                 </job>
-
                                 <job>
                                     <id>jenkins-master</id>
                                     <jdkName>jdk1.6.0</jdkName>
@@ -130,7 +115,6 @@
                             </jobs>
                         </configuration>
                     </execution>
-
                     <execution>
                         <id>inheritance-jobs</id>
                         <phase>compile</phase>
@@ -138,14 +122,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${user.home}/.jenkins/jobs</outputDirectory>
-                            <generationPom>
-                                http://github.com/evgeny-goldin/maven-plugins-test/blob/master/jenkins-maven-plugin/jenkins-book/pom.xml
-                            </generationPom>
-                            <jenkinsUrl>http://evgeny-goldin.org/jenkins</jenkinsUrl>
-                            <timestamp>false</timestamp>
                             <jobs>
-
                                 <job>
                                     <id>google-guice-inheritance-base</id>
                                     <abstract>true</abstract>
@@ -156,7 +133,6 @@
                                     <mavenGoals>-B -e -U clean install</mavenGoals>
                                     <mail><recipients>jenkins@evgeny-goldin.org</recipients></mail>
                                 </job>
-
                                 <job>
                                     <id>google-guice-inheritance-trunk</id>
                                     <parent>google-guice-inheritance-base</parent>
@@ -167,7 +143,6 @@
                                         <jobs>google-guice-inheritance-3.0-rc3, google-guice-inheritance-2.0-maven</jobs>
                                     </invoke>
                                 </job>
-
                                 <job>
                                     <id>google-guice-inheritance-3.0-rc3</id>
                                     <parent>google-guice-inheritance-base</parent>
@@ -175,7 +150,6 @@
                                         <remote>http://google-guice.googlecode.com/svn/tags/3.0-rc3/</remote>
                                     </repository>
                                 </job>
-
                                 <job>
                                     <id>google-guice-inheritance-2.0-maven</id>
                                     <parent>google-guice-inheritance-base</parent>
@@ -187,7 +161,6 @@
                             </jobs>
                         </configuration>
                     </execution>
-
                     <execution>
                         <id>free-style-jobs</id>
                         <phase>compile</phase>
@@ -195,12 +168,6 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${user.home}/.jenkins/jobs</outputDirectory>
-                            <generationPom>
-                                http://github.com/evgeny-goldin/maven-plugins-test/blob/master/jenkins-maven-plugin/jenkins-book/pom.xml
-                            </generationPom>
-                            <jenkinsUrl>http://evgeny-goldin.org/jenkins</jenkinsUrl>
-                            <timestamp>false</timestamp>
                             <job>
                                 <id>free-style</id>
                                 <jobType>free</jobType>
@@ -230,8 +197,6 @@ du -hs .
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
-
 </project>

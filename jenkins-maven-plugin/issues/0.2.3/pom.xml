@@ -62,12 +62,7 @@ org.apache.maven.plugins:maven-archetype-plugin:2.0:generate -DinteractiveMode=f
                         </configuration>
                     </execution>
                 </executions>
-                <configuration>
-                    <generationPom>https://github.com/evgeny-goldin/maven-plugins-test/blob/master/jenkins-maven-plugin/issues/0.2.3/pom.xml</generationPom>
-                </configuration>
             </plugin>
-
         </plugins>
     </build>
-
 </project>

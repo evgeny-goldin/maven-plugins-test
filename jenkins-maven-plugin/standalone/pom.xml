@@ -35,9 +35,6 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <generationPom>http://github.com/evgeny-goldin/maven-plugins-test/blob/master/jenkins-maven-plugin/standalone/pom.xml</generationPom>
-                            <jenkinsUrl>http://evgeny-goldin.org/jenkins/</jenkinsUrl>
-                            <outputDirectory>${user.home}/.jenkins/jobs</outputDirectory>
                             <jobs>
                                 <job>
                                     <id>JBoss EJB 3</id>
@@ -47,7 +44,6 @@
                                         <remote>git://gitorious.org/jboss-ejb3/jboss-ejb3-context.git</remote>
                                     </repository>
                                 </job>
-
                                 <job>
                                     <id>google-guice</id>
                                     <mavenName>apache-maven-3</mavenName>
@@ -56,7 +52,6 @@
                                         <remote>http://google-guice.googlecode.com/svn/trunk/</remote>
                                     </repository>
                                 </job>
-
                                 <job>
                                     <id>simple-wicket</id>
                                     <scmType>cvs</scmType>
@@ -72,8 +67,6 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
-
 </project>

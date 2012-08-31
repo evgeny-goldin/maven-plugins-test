@@ -36,11 +36,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${user.home}/.jenkins/jobs</outputDirectory>
-                            <generationPom>http://github.com/evgeny-goldin/maven-plugins-test/blob/master/jenkins-maven-plugin/google-guice/pom.xml</generationPom>
-                            <jenkinsUrl>http://evgeny-goldin.org/jenkins</jenkinsUrl>
                             <jobs>
-
                                 <job>
                                     <id>base</id>
                                     <abstract>true</abstract>
@@ -55,7 +51,6 @@
                                         <recipients>evgenyg@gmail.com evgeny.goldin@gmail.com</recipients>
                                     </mail>
                                 </job>
-
                                 <job>
                                     <id>google-guice-2.0-maven</id>
                                     <parent>base</parent>
@@ -72,7 +67,6 @@
                                         <always>true</always>
                                     </invoke>
                                 </job>
-
                                 <job>
                                     <id>google-guice-2.0</id>
                                     <parent>base</parent>
@@ -80,7 +74,6 @@
                                         <remote>http://google-guice.googlecode.com/svn/tags/2.0/</remote>
                                     </repository>
                                 </job>
-
                                 <job>
                                     <id>google-guice-1.0-maven</id>
                                     <parent>base</parent>
@@ -88,14 +81,11 @@
                                         <remote>http://google-guice.googlecode.com/svn/tags/1.0-maven/</remote>
                                     </repository>
                                 </job>
-
                             </jobs>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
-
 </project>

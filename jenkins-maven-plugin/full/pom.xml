@@ -288,9 +288,6 @@
                         </configuration>
                     </execution>
                 </executions>
-                <configuration>
-                    <generationPom>http://github.com/evgeny-goldin/maven-plugins-test/blob/master/jenkins-maven-plugin/full/pom.xml</generationPom>
-                </configuration>
             </plugin>
         </plugins>
     </build>

@@ -32,6 +32,7 @@
         <localM2Repo>/home/evgenyg/.m2/repo</localM2Repo>
         <pluginsRepoCleanup>rm -rf ${localM2Repo}/com/github/goldin</pluginsRepoCleanup>
         <endOfLine>\r\n</endOfLine>
+        <generationPomUrlPrefix>https://github.com/evgeny-goldin/maven-plugins-test/blob/master/jenkins-maven-plugin/</generationPomUrlPrefix>
     </properties>
 
 
@@ -56,12 +57,50 @@
                         <outputDirectory>${configs-outputDirectory}</outputDirectory>
                         <jenkinsUrl>http://evgeny-goldin.org/jenkins</jenkinsUrl>
                         <timestamp>false</timestamp>
+                        <!-- Calculated below -->
+                        <generationPom>${generationPomUrl}</generationPom>
                     </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
 
         <plugins>
+
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- ${generationPomUrl} is used to configure plugin's <generationPom> -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+            <plugin>
+                <groupId>com.github.goldin</groupId>
+                <artifactId>properties-maven-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <execution>
+                        <id>set-generationPomUrl</id>
+                        <goals>
+                            <goal>set-properties</goal>
+                        </goals>
+                        <phase>validate</phase>
+                        <configuration>
+                            <property>
+                                <name>generationPomUrl</name>
+                        <!-- Example:                                                                                                       -->
+                        <!-- converts "/Users/evgenyg/Projects/maven-plugins-test/jenkins-maven-plugin/issues/pom.xml"                      -->
+                        <!-- to       "https://github.com/evgeny-goldin/maven-plugins-test/blob/master/jenkins-maven-plugin/issues/pom.xml" -->
+                                <value>
+                                {{
+                                    final  path  = project.file.canonicalPath.replace( '\\', '/' )
+                                    final  index = path.indexOf( 'jenkins-maven-plugin' ) + 'jenkins-maven-plugin'.size() + 1
+                                    assert index > 'jenkins-maven-plugin'.size()
+                                    ( index >= path.size() ? '' : '${generationPomUrlPrefix}' + path.substring( index ))
+                                }}
+                                </value>
+                            </property>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
             <!-- Verifying configs generated have not changed -->
             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
