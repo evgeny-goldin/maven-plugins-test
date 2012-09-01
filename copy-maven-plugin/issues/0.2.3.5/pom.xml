@@ -233,7 +233,7 @@
                                         <optional>true</optional>
                                     </dependency>
                                     <process>{{ assert files.size() > 0 }}</process>
-                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                    <failsWith>AssertionError</failsWith>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-539/4</targetPath>
@@ -253,7 +253,7 @@
                                         <artifactId>spring-context</artifactId>
                                         <version>1.2.3.4.5</version>
                                     </dependency>
-                                    <shouldFailWith>MojoExecutionException</shouldFailWith>
+                                    <failsWith>MojoExecutionException</failsWith>
                                 </resource>
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <!-- Retrieving optional non-existing dependencies -->
@@ -310,7 +310,7 @@
                                         </dependency>
                                     </dependencies>
                                     <process>{{ assert files.size() > 1 }}</process>
-                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                    <failsWith>AssertionError</failsWith>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-539/9</targetPath>
@@ -326,7 +326,7 @@
                                             <version>1.2.3.4.5</version>
                                         </dependency>
                                     </dependencies>
-                                    <shouldFailWith>MojoExecutionException</shouldFailWith>
+                                    <failsWith>MojoExecutionException</failsWith>
                                 </resource>
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <!-- Retrieving optional non-existing dependencies transitively -->
@@ -375,7 +375,7 @@
                                         <excludeTransitive>false</excludeTransitive>
                                     </dependency>
                                     <process>{{ assert files.size() > 0 }}</process>
-                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                    <failsWith>AssertionError</failsWith>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-539/13</targetPath>
@@ -393,7 +393,7 @@
                                             <excludeTransitive>false</excludeTransitive>
                                         </dependency>
                                     </dependencies>
-                                    <shouldFailWith>MojoExecutionException</shouldFailWith>
+                                    <failsWith>MojoExecutionException</failsWith>
                                 </resource>
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <!-- Retrieving non-existing dependency with <failIfNotFound>/<failOnError> set to false -->
@@ -461,7 +461,7 @@
                                     </dependency>
                                     <failIfNotFound>false</failIfNotFound>
                                     <process>{{ assert files.size() > 0 }}</process>
-                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                    <failsWith>AssertionError</failsWith>
                                 </resource>
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <!-- Retrieving non-existing dependency transitively with <failIfNotFound>/<failOnError> set to false -->
@@ -537,7 +537,7 @@
                                     </dependency>
                                     <failIfNotFound>false</failIfNotFound>
                                     <process>{{ assert files.size() > 0 }}</process>
-                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                    <failsWith>AssertionError</failsWith>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDir}/pl-539/24</targetPath>
@@ -547,7 +547,7 @@
                                         <version>1.2.3.4.5</version>
                                         <excludeTransitive>false</excludeTransitive>
                                     </dependency>
-                                    <shouldFailWith>MojoExecutionException</shouldFailWith>
+                                    <failsWith>MojoExecutionException</failsWith>
                                 </resource>
                             </resources>
                         </configuration>
@@ -580,7 +580,7 @@
                                     <file>no-such-file.txt</file>
                                     <filtering>true</filtering>
                                     <process>{{ assert files.size() > 0 }}</process>
-                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                    <failsWith>AssertionError</failsWith>
                                 </resource>
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
@@ -595,7 +595,7 @@
                                     <file>1/2/3/4/5/6/7/no-such-file.txt</file>
                                     <filtering>true</filtering>
                                     <process>{{ assert files.size() > 0 }}</process>
-                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                    <failsWith>AssertionError</failsWith>
                                 </resource>
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
@@ -610,7 +610,7 @@
                                     <file>${project.basedir}/no-such-file.txt</file>
                                     <filtering>true</filtering>
                                     <process>{{ assert files.size() > 0 }}</process>
-                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                    <failsWith>AssertionError</failsWith>
                                 </resource>
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
@@ -625,7 +625,7 @@
                                     <file>${project.basedir}/1/2/3/4/5/6/7/no-such-file.txt</file>
                                     <filtering>true</filtering>
                                     <process>{{ assert files.size() > 0 }}</process>
-                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                    <failsWith>AssertionError</failsWith>
                                 </resource>
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
@@ -640,7 +640,7 @@
                                     <file>user.properties</file>
                                     <filtering>true</filtering>
                                     <process>{{ assert files.size() > 0 }}</process>
-                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                    <failsWith>AssertionError</failsWith>
                                 </resource>
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
@@ -655,7 +655,7 @@
                                     <file>src/main/db/environments/user/user.properties</file>
                                     <filtering>true</filtering>
                                     <process>{{ assert files.size() > 0 }}</process>
-                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                    <failsWith>AssertionError</failsWith>
                                 </resource>
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
@@ -670,7 +670,7 @@
                                     <file>${project.basedir}/user.properties</file>
                                     <filtering>true</filtering>
                                     <process>{{ assert files.size() > 0 }}</process>
-                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                    <failsWith>AssertionError</failsWith>
                                 </resource>
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
@@ -685,7 +685,7 @@
                                     <file>${project.basedir}/src/main/db/environments/user/user.properties</file>
                                     <filtering>true</filtering>
                                     <process>{{ assert files.size() > 0 }}</process>
-                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                    <failsWith>AssertionError</failsWith>
                                 </resource>
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
@@ -700,7 +700,7 @@
                                     <directory>no-such-directory</directory>
                                     <filtering>true</filtering>
                                     <process>{{ assert files.size() > 0 }}</process>
-                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                    <failsWith>AssertionError</failsWith>
                                 </resource>
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
@@ -717,7 +717,7 @@
                                     <include>no-such-file.txt</include>
                                     <filtering>true</filtering>
                                     <process>{{ assert files.size() > 0 }}</process>
-                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                    <failsWith>AssertionError</failsWith>
                                 </resource>
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
@@ -734,7 +734,7 @@
                                     <include>no-such-file.txt</include>
                                     <filtering>true</filtering>
                                     <process>{{ assert files.size() > 0 }}</process>
-                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                    <failsWith>AssertionError</failsWith>
                                 </resource>
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
@@ -751,7 +751,7 @@
                                     <include>**/*.nothing</include>
                                     <filtering>true</filtering>
                                     <process>{{ assert files.size() > 0 }}</process>
-                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                    <failsWith>AssertionError</failsWith>
                                 </resource>
                             </resources>
                         </configuration>
@@ -2075,7 +2075,7 @@
                                     <unpack>true</unpack>
                                     <filter>{{  assert ( files.size()  == 1 ) &amp;&amp; ( file.canonicalPath.contains( '.m2' )); files }}</filter>
                                     <process>{{ assert ( files.size() > 0 ) }}</process>
-                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                    <failsWith>AssertionError</failsWith>
                                 </resource>
                             </resources>
                         </configuration>
@@ -2113,7 +2113,7 @@
                                     <unpack>true</unpack>
                                     <filter>{{  assert ( files.size()  == 1 ) &amp;&amp; ( file.canonicalPath.contains( '.m2' )); files }}</filter>
                                     <process>{{ assert ( files.size() > 0 ) }}</process>
-                                    <shouldFailWith>AssertionError</shouldFailWith>
+                                    <failsWith>AssertionError</failsWith>
                                 </resource>
                             </resources>
                         </configuration>

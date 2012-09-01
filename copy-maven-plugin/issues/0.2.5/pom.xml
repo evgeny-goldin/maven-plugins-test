@@ -27,13 +27,36 @@
                 <artifactId>copy-maven-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>com.github.goldin</groupId>
-                <artifactId>assert-maven-plugin</artifactId>
-                <version>${plugins-version}</version>
-                <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-651                                   -->
+                    <!-- "When mkdir true is specified, the scp target path is considered as local path"  -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-651</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>scp://something</targetPath>
+                                    <mkdir>true</mkdir>
+                                    <failsWith>AssertionError</failsWith>
+                                </resource>
+                                <resource>
+                                    <targetPath>ftp://something</targetPath>
+                                    <mkdir>true</mkdir>
+                                    <failsWith>AssertionError</failsWith>
+                                </resource>
+                                <resource>
+                                    <targetPath>http://something</targetPath>
+                                    <mkdir>true</mkdir>
+                                    <failsWith>AssertionError</failsWith>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
         </plugins>
