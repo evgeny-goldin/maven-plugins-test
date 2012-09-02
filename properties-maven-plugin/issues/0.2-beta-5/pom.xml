@@ -111,16 +111,16 @@
                             <resources>
                                 <resource>
                                     <runIf>{{ propertyFalse }}</runIf>
-                                    <targetPath>${outputDir}/pl-290-1</targetPath>
+                                    <targetPath>${outputDirectory}/pl-290-1</targetPath>
                                     <mkdir>true</mkdir>
                                 </resource>
                                 <resource>
                                     <runIf>{{ propertyTrue }}</runIf>
-                                    <targetPath>${outputDir}/pl-290-2</targetPath>
+                                    <targetPath>${outputDirectory}/pl-290-2</targetPath>
                                     <mkdir>true</mkdir>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-290-3</targetPath>
+                                    <targetPath>${outputDirectory}/pl-290-3</targetPath>
                                     <mkdir>true</mkdir>
                                 </resource>
                             </resources>
@@ -136,11 +136,11 @@
                             <resources>
                                 <resource>
                                     <runIf>{{ propertyTrue }}</runIf>
-                                    <targetPath>${outputDir}/pl-290-4/${propertyDir}/1</targetPath>
+                                    <targetPath>${outputDirectory}/pl-290-4/${propertyDir}/1</targetPath>
                                     <mkdir>true</mkdir>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-290-4/${propertyDir}/2</targetPath>
+                                    <targetPath>${outputDirectory}/pl-290-4/${propertyDir}/2</targetPath>
                                     <mkdir>true</mkdir>
                                 </resource>
                             </resources>
@@ -189,13 +189,13 @@
                                 session.executionProperties.propertyDir == 'dirdir'
                                 session.userProperties.propertyDir      == 'dirdir'
 
-                              ! new File( outputDir, 'pl-290-1' ).isDirectory()
-                                new File( outputDir, 'pl-290-2' ).isDirectory()
-                                new File( outputDir, 'pl-290-3' ).isDirectory()
-                              ! new File( outputDir, 'pl-290-4/dir/1' ).isDirectory()
-                              ! new File( outputDir, 'pl-290-4/dir/2' ).isDirectory()
-                                new File( outputDir, 'pl-290-4/dirdir/1' ).isDirectory()
-                                new File( outputDir, 'pl-290-4/dirdir/2' ).isDirectory()
+                              ! new File( outputDirectory, 'pl-290-1' ).isDirectory()
+                                new File( outputDirectory, 'pl-290-2' ).isDirectory()
+                                new File( outputDirectory, 'pl-290-3' ).isDirectory()
+                              ! new File( outputDirectory, 'pl-290-4/dir/1' ).isDirectory()
+                              ! new File( outputDirectory, 'pl-290-4/dir/2' ).isDirectory()
+                                new File( outputDirectory, 'pl-290-4/dirdir/1' ).isDirectory()
+                                new File( outputDirectory, 'pl-290-4/dirdir/2' ).isDirectory()
                             </assertGroovy>
                         </configuration>
                     </execution>

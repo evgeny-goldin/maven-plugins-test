@@ -73,7 +73,7 @@
                         </goals>
                         <phase>generate-resources</phase>
                         <configuration>
-                            <dir>${outputDir}/no-such-dir</dir>
+                            <dir>${outputDirectory}/no-such-dir</dir>
                             <failOnError>false</failOnError>
                             <dependencies>
                                 <!-- Wrong groupId -->
@@ -134,7 +134,7 @@
                         <phase>generate-resources</phase>
                         <configuration>
                             <ivy>${project.basedir}/src/main/resources/idea-ivy.xml</ivy>
-                            <dir>${outputDir}/idea-artifacts</dir>
+                            <dir>${outputDirectory}/idea-artifacts</dir>
                         </configuration>
                     </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -149,7 +149,7 @@
                         <phase>generate-resources</phase>
                         <configuration>
                             <ivy>${project.basedir}/src/main/resources/idea-ivy.xml</ivy>
-                            <dir>${outputDir}/compile</dir>
+                            <dir>${outputDirectory}/compile</dir>
                             <scope>compile</scope>
                             <dependencies>
                                 <dependency>
@@ -172,7 +172,7 @@
                         </goals>
                         <phase>generate-resources</phase>
                         <configuration>
-                            <dir>${outputDir}/dependencies-mix</dir>
+                            <dir>${outputDirectory}/dependencies-mix</dir>
                             <dependencies>
                                 <dependency>
                                     <groupId>ivy.org</groupId>
@@ -251,7 +251,7 @@
                         <configuration>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/idea</targetPath>
+                                    <targetPath>${outputDirectory}/idea</targetPath>
                                     <dependencies>
                                         <dependency>
                                             <groupId>ivy.org</groupId>
@@ -270,7 +270,7 @@
                                     </dependencies>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/idea-unpacked-1</targetPath>
+                                    <targetPath>${outputDirectory}/idea-unpacked-1</targetPath>
                                     <dependency>
                                         <groupId>ivy.org</groupId>
                                         <artifactId>bt343</artifactId>
@@ -280,7 +280,7 @@
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/idea-unpacked-2</targetPath>
+                                    <targetPath>${outputDirectory}/idea-unpacked-2</targetPath>
                                     <dependency>
                                         <groupId>ivy.org</groupId>
                                         <artifactId>bt343</artifactId>
@@ -290,7 +290,7 @@
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/idea-unpacked-3</targetPath>
+                                    <targetPath>${outputDirectory}/idea-unpacked-3</targetPath>
                                     <dependency>
                                         <groupId>ivy.org</groupId>
                                         <artifactId>bt343</artifactId>
@@ -314,7 +314,7 @@
                                 <!-- Making sure default file name is the one given by Ivy -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/kotlin-1</targetPath>
+                                    <targetPath>${outputDirectory}/kotlin-1</targetPath>
                                     <dependency>
                                         <groupId>ivy.org</groupId>
                                         <artifactId>bt354</artifactId>
@@ -324,7 +324,7 @@
                                     </dependency>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/kotlin-2</targetPath>
+                                    <targetPath>${outputDirectory}/kotlin-2</targetPath>
                                     <dependency>
                                         <groupId>ivy.org</groupId>
                                         <artifactId>bt354</artifactId>
@@ -333,20 +333,20 @@
                                     </dependency>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/kotlin-1-unpack</targetPath>
-                                    <directory>${outputDir}/kotlin-1</directory>
+                                    <targetPath>${outputDirectory}/kotlin-1-unpack</targetPath>
+                                    <directory>${outputDirectory}/kotlin-1</directory>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/kotlin-2-unpack</targetPath>
-                                    <directory>${outputDir}/kotlin-2</directory>
+                                    <targetPath>${outputDirectory}/kotlin-2-unpack</targetPath>
+                                    <directory>${outputDirectory}/kotlin-2</directory>
                                     <unpack>true</unpack>
                                 </resource>
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <!-- Making sure <destFileName> is applied correctly -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/kotlin-3</targetPath>
+                                    <targetPath>${outputDirectory}/kotlin-3</targetPath>
                                     <dependency>
                                         <groupId>ivy.org</groupId>
                                         <artifactId>bt354</artifactId>
@@ -357,7 +357,7 @@
                                     </dependency>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/kotlin-4</targetPath>
+                                    <targetPath>${outputDirectory}/kotlin-4</targetPath>
                                     <dependency>
                                         <groupId>ivy.org</groupId>
                                         <artifactId>bt354</artifactId>
@@ -367,7 +367,7 @@
                                     </dependency>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/kotlin-5</targetPath>
+                                    <targetPath>${outputDirectory}/kotlin-5</targetPath>
                                     <dependency>
                                         <groupId>ivy.org</groupId>
                                         <artifactId>bt354</artifactId>
@@ -378,7 +378,7 @@
                                     <destFileName>kotlin-5.zip</destFileName>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/kotlin-6</targetPath>
+                                    <targetPath>${outputDirectory}/kotlin-6</targetPath>
                                     <dependency>
                                         <groupId>ivy.org</groupId>
                                         <artifactId>bt354</artifactId>
@@ -410,7 +410,7 @@
                         </goals>
                         <phase>test-compile</phase>
                         <configuration>
-                            <outputDirectory>${outputDir}/idea2</outputDirectory>
+                            <outputDirectory>${outputDirectory}/idea2</outputDirectory>
                             <artifactItems>
                                 <artifactItem>
                                     <groupId>ivy.org</groupId>
@@ -454,81 +454,81 @@
                                 <!-- Sources were compiled -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~ -->
 
-                                ${outputDir}/IdeaClass.class
-                                ${outputDir}/MyAntTask.class
-                                ${outputDir}/MyLog4jAppender.class
+                                ${outputDirectory}/IdeaClass.class
+                                ${outputDirectory}/MyAntTask.class
+                                ${outputDirectory}/MyLog4jAppender.class
 
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <!-- Dependencies were copied -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-                                ${outputDir}/compile/ant-1.8.2.jar
-                                ${outputDir}/compile/log4j-1.2.16.jar
+                                ${outputDirectory}/compile/ant-1.8.2.jar
+                                ${outputDirectory}/compile/log4j-1.2.16.jar
 
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <!-- Dependencies mix was copied -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-                                ${outputDir}/dependencies-mix/spring-core-${spring-version}.jar
-                                ${outputDir}/dependencies-mix/ant-1.8.2.jar
+                                ${outputDirectory}/dependencies-mix/spring-core-${spring-version}.jar
+                                ${outputDirectory}/dependencies-mix/ant-1.8.2.jar
 
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <!-- IDEA jars were unpacked -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-                                ${outputDir}/idea/annotations.jar
-                                ${outputDir}/idea/intellij-core.jar
-                                ${outputDir}/idea2/annotations.jar
-                                ${outputDir}/idea2/intellij-core.jar
-                                ${outputDir}/idea-unpacked-1
-                                ${outputDir}/idea-unpacked-1/com/intellij/ide/presentation/VirtualFilePresentation.class
-                                ${outputDir}/idea-unpacked-1/com/intellij/core/CoreBundle.class
-                                ${outputDir}/idea-unpacked-2
-                                ${outputDir}/idea-unpacked-2/com/intellij/ide/presentation/VirtualFilePresentation.class
-                                ${outputDir}/idea-unpacked-2/com/intellij/core/CoreBundle.class
-                                ${outputDir}/idea-unpacked-3
-                                ${outputDir}/idea-unpacked-3/com/intellij/ide/presentation/VirtualFilePresentation.class
-                                ${outputDir}/idea-unpacked-3/com/intellij/core/CoreBundle.class
+                                ${outputDirectory}/idea/annotations.jar
+                                ${outputDirectory}/idea/intellij-core.jar
+                                ${outputDirectory}/idea2/annotations.jar
+                                ${outputDirectory}/idea2/intellij-core.jar
+                                ${outputDirectory}/idea-unpacked-1
+                                ${outputDirectory}/idea-unpacked-1/com/intellij/ide/presentation/VirtualFilePresentation.class
+                                ${outputDirectory}/idea-unpacked-1/com/intellij/core/CoreBundle.class
+                                ${outputDirectory}/idea-unpacked-2
+                                ${outputDirectory}/idea-unpacked-2/com/intellij/ide/presentation/VirtualFilePresentation.class
+                                ${outputDirectory}/idea-unpacked-2/com/intellij/core/CoreBundle.class
+                                ${outputDirectory}/idea-unpacked-3
+                                ${outputDirectory}/idea-unpacked-3/com/intellij/ide/presentation/VirtualFilePresentation.class
+                                ${outputDirectory}/idea-unpacked-3/com/intellij/core/CoreBundle.class
 
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <!-- Kotlin artifacts were downloaded -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-                                ${outputDir}/kotlin-1
-                                ${outputDir}/kotlin-2
+                                ${outputDirectory}/kotlin-1
+                                ${outputDirectory}/kotlin-2
 
-                                ${outputDir}/kotlin-1-unpack/Kotlin/kotlinc/bin/kotlinc-jvm
-                                ${outputDir}/kotlin-1-unpack/Kotlin/kotlinc/bin/kotlinc-jvm.bat
-                                ${outputDir}/kotlin-1-unpack/Kotlin/kotlinc/lib/kotlin-runtime.jar
+                                ${outputDirectory}/kotlin-1-unpack/Kotlin/kotlinc/bin/kotlinc-jvm
+                                ${outputDirectory}/kotlin-1-unpack/Kotlin/kotlinc/bin/kotlinc-jvm.bat
+                                ${outputDirectory}/kotlin-1-unpack/Kotlin/kotlinc/lib/kotlin-runtime.jar
 
-                                ${outputDir}/kotlin-2-unpack/Kotlin/kotlinc/bin/kotlinc-jvm
-                                ${outputDir}/kotlin-2-unpack/Kotlin/kotlinc/bin/kotlinc-jvm.bat
-                                ${outputDir}/kotlin-2-unpack/Kotlin/kotlinc/lib/kotlin-runtime.jar
+                                ${outputDirectory}/kotlin-2-unpack/Kotlin/kotlinc/bin/kotlinc-jvm
+                                ${outputDirectory}/kotlin-2-unpack/Kotlin/kotlinc/bin/kotlinc-jvm.bat
+                                ${outputDirectory}/kotlin-2-unpack/Kotlin/kotlinc/lib/kotlin-runtime.jar
 
-                                ${outputDir}/kotlin-3/kotlin-3.zip
-                                ${outputDir}/kotlin-4/kotlin-4.zip
-                                ${outputDir}/kotlin-5/kotlin-5.zip
-                                ${outputDir}/kotlin-6/kotlin-6.zip
+                                ${outputDirectory}/kotlin-3/kotlin-3.zip
+                                ${outputDirectory}/kotlin-4/kotlin-4.zip
+                                ${outputDirectory}/kotlin-5/kotlin-5.zip
+                                ${outputDirectory}/kotlin-6/kotlin-6.zip
                             </assertFiles>
                             <assertEqual>
-                                ${outputDir}/kotlin-1|${outputDir}/kotlin-2
-                                ${outputDir}/kotlin-1-unpack|${outputDir}/kotlin-2-unpack
+                                ${outputDirectory}/kotlin-1|${outputDirectory}/kotlin-2
+                                ${outputDirectory}/kotlin-1-unpack|${outputDirectory}/kotlin-2-unpack
                             </assertEqual>
                             <shouldFailAssertFiles>
-                                ${outputDir}/no-such-dir
+                                ${outputDirectory}/no-such-dir
                             </shouldFailAssertFiles>
                             <shouldFailAssertEqual>
-                                ${outputDir}/kotlin-3|${outputDir}/kotlin-4
-                                ${outputDir}/kotlin-4|${outputDir}/kotlin-5
-                                ${outputDir}/kotlin-5|${outputDir}/kotlin-6
-                                ${outputDir}/kotlin-6|${outputDir}/kotlin-3
+                                ${outputDirectory}/kotlin-3|${outputDirectory}/kotlin-4
+                                ${outputDirectory}/kotlin-4|${outputDirectory}/kotlin-5
+                                ${outputDirectory}/kotlin-5|${outputDirectory}/kotlin-6
+                                ${outputDirectory}/kotlin-6|${outputDirectory}/kotlin-3
                             </shouldFailAssertEqual>
                             <assertGroovy>
-                                new File( outputDir, 'idea'             ).listFiles().size() == 2
-                                new File( outputDir, 'compile'          ).listFiles().size() == 10
-                                new File( outputDir, 'dependencies-mix' ).listFiles().size() == 6
-                                new File( outputDir, 'idea-artifacts'   ).listFiles().size() == 8
-                                new File( outputDir, 'idea-artifacts'   ).listFiles().every{ File f -> [ 'annotations', 'asm-commons', 'asm', 'cli-parser-1.1', 'guava-12.0', 'intellij-core', 'picocontainer', 'trove4j' ].any{ f.name ==~ /$it-\d+\.lastSuccessful\.jar/ }}
+                                new File( outputDirectory, 'idea'             ).listFiles().size() == 2
+                                new File( outputDirectory, 'compile'          ).listFiles().size() == 10
+                                new File( outputDirectory, 'dependencies-mix' ).listFiles().size() == 6
+                                new File( outputDirectory, 'idea-artifacts'   ).listFiles().size() == 8
+                                new File( outputDirectory, 'idea-artifacts'   ).listFiles().every{ File f -> [ 'annotations', 'asm-commons', 'asm', 'cli-parser-1.1', 'guava-12.0', 'intellij-core', 'picocontainer', 'trove4j' ].any{ f.name ==~ /$it-\d+\.lastSuccessful\.jar/ }}
                             </assertGroovy>
                         </configuration>
                     </execution>

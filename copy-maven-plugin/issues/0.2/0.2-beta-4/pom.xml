@@ -48,27 +48,27 @@
                             <defaultExcludes>false</defaultExcludes>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-272/m2-source</targetPath>
+                                    <targetPath>${outputDirectory}/pl-272/m2-source</targetPath>
                                     <directory>${maven.repo.local}/${repoSubFolder}</directory>
                                     <include>**</include>
                                     <preservePath>true</preservePath>
                                     <verbose>false</verbose>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-272/m2-source/m1.zip</targetPath>
+                                    <targetPath>${outputDirectory}/pl-272/m2-source/m1.zip</targetPath>
                                     <directory>${maven.repo.local}/${repoSubFolder}</directory>
                                     <preservePath>true</preservePath>
                                     <pack>true</pack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-272/m2.zip</targetPath>
-                                    <directory>${outputDir}/pl-272/m2-source</directory>
+                                    <targetPath>${outputDirectory}/pl-272/m2.zip</targetPath>
+                                    <directory>${outputDirectory}/pl-272/m2-source</directory>
                                     <preservePath>true</preservePath>
                                     <pack>true</pack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-272/m2-unpack</targetPath>
-                                    <file>${outputDir}/pl-272/m2.zip</file>
+                                    <targetPath>${outputDirectory}/pl-272/m2-unpack</targetPath>
+                                    <file>${outputDirectory}/pl-272/m2.zip</file>
                                     <unpack>true</unpack>
                                 </resource>
                             </resources>
@@ -94,13 +94,13 @@
                         <configuration>
                             <runIf>{{ project.properties[ 'maven.repo.local' ] != null }}</runIf>
                             <assertFiles>
-                                ${outputDir}/pl-272/m2.zip
-                                ${outputDir}/pl-272/m2-source
-                                ${outputDir}/pl-272/m2-source/m1.zip
-                                ${outputDir}/pl-272/m2-unpack
+                                ${outputDirectory}/pl-272/m2.zip
+                                ${outputDirectory}/pl-272/m2-source
+                                ${outputDirectory}/pl-272/m2-source/m1.zip
+                                ${outputDirectory}/pl-272/m2-unpack
                             </assertFiles>
                             <assertEqual>
-                                ${outputDir}/pl-272/m2-source|${outputDir}/pl-272/m2-unpack
+                                ${outputDirectory}/pl-272/m2-source|${outputDirectory}/pl-272/m2-unpack
                             </assertEqual>
                         </configuration>
                     </execution>
@@ -126,8 +126,8 @@
                                 if ( project.properties[ 'maven.repo.local' ] )
                                 {
                                     def now     = System.currentTimeMillis()
-                                    def zipFile = new File( project.properties.outputDir, 'pl-272/m2.zip'    )
-                                    def zipDir  = new File( project.properties.outputDir, 'pl-272/m2-unpack' )
+                                    def zipFile = new File( project.properties.outputDirectory, 'pl-272/m2.zip'    )
+                                    def zipDir  = new File( project.properties.outputDirectory, 'pl-272/m2-unpack' )
 
                                     new ZipFile( zipFile ).entries().each{
                                         assert (( it.time - now ) &lt; 2000 ), "[$zipFile.canonicalPath]/[$it.name]: [" + new Date( it.time ) + "] > [" + new Date( now ) + "]"

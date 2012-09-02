@@ -45,13 +45,13 @@
                         <configuration>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-280/unpack-1</targetPath>
+                                    <targetPath>${outputDirectory}/pl-280/unpack-1</targetPath>
                                     <file>${resourcesDir}/apache-maven-3.0.1.zip</file>
                                     <zipEntry>apache-maven-3.0.1/lib/maven-core-3.0.1.jar</zipEntry>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-280/unpack-2</targetPath>
+                                    <targetPath>${outputDirectory}/pl-280/unpack-2</targetPath>
                                     <file>${resourcesDir}/apache-maven-3.0.1.zip</file>
                                     <zipEntries>
                                         <zipEntry>apache-maven-3.0.1/lib/maven-core-3.0.1.jar</zipEntry>
@@ -62,31 +62,31 @@
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-280/unpack-3</targetPath>
+                                    <targetPath>${outputDirectory}/pl-280/unpack-3</targetPath>
                                     <file>${resourcesDir}/apache-maven-3.0.1.zip</file>
                                     <zipEntry>apache-maven-3.0.1/lib/maven-core-3.0.1.jar</zipEntry>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-280/unpack-3</targetPath>
+                                    <targetPath>${outputDirectory}/pl-280/unpack-3</targetPath>
                                     <file>${resourcesDir}/apache-maven-3.0.1.zip</file>
                                     <zipEntry>apache-maven-3.0.1/LICENSE.txt</zipEntry>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-280/unpack-3</targetPath>
+                                    <targetPath>${outputDirectory}/pl-280/unpack-3</targetPath>
                                     <file>${resourcesDir}/apache-maven-3.0.1.zip</file>
                                     <zipEntry>apache-maven-3.0.1/bin/mvnDebug.bat</zipEntry>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-280/unpack-3</targetPath>
+                                    <targetPath>${outputDirectory}/pl-280/unpack-3</targetPath>
                                     <file>${resourcesDir}/apache-maven-3.0.1.zip</file>
                                     <zipEntry>apache-maven-3.0.1/lib/maven-compat-3.0.1.jar</zipEntry>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-280/unpack-4</targetPath>
+                                    <targetPath>${outputDirectory}/pl-280/unpack-4</targetPath>
                                     <file>${resourcesDir}/apache-maven-3.0.1.zip</file>
                                     <zipEntries>
                                         <zipEntry>apache-maven-3.0.1/lib/maven-core-3.0.1.jar</zipEntry>
@@ -98,12 +98,12 @@
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-280/unpack-5</targetPath>
+                                    <targetPath>${outputDirectory}/pl-280/unpack-5</targetPath>
                                     <file>${resourcesDir}/apache-maven-3.0.1.zip</file>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-280/unpack-6</targetPath>
+                                    <targetPath>${outputDirectory}/pl-280/unpack-6</targetPath>
                                     <file>${resourcesDir}/apache-maven-3.0.1.zip</file>
                                     <zipEntries>
                                         <zipEntry>**/*.jar</zipEntry>
@@ -119,7 +119,7 @@
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-280/unpack-7</targetPath>
+                                    <targetPath>${outputDirectory}/pl-280/unpack-7</targetPath>
                                     <file>${resourcesDir}/apache-maven-3.0.1.zip</file>
                                     <zipEntry>**</zipEntry>
                                     <preservePath>true</preservePath>
@@ -140,7 +140,7 @@
                         <configuration>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-284/unpack-1</targetPath>
+                                    <targetPath>${outputDirectory}/pl-284/unpack-1</targetPath>
                                     <dependencies>
                                         <dependency>
                                             <groupId>org.apache.maven</groupId>
@@ -180,7 +180,7 @@
                                     <filter>${filterM2}</filter>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-284/unpack-2</targetPath>
+                                    <targetPath>${outputDirectory}/pl-284/unpack-2</targetPath>
                                     <dependencies>
                                         <dependency>
                                             <groupId>org.apache.maven</groupId>
@@ -214,7 +214,7 @@
                                     <preservePath>true</preservePath>
                                 </resource>
                                 <resource>
-                                    <directory>${outputDir}/pl-284/unpack-2</directory>
+                                    <directory>${outputDirectory}/pl-284/unpack-2</directory>
                                     <clean>true</clean>
                                     <cleanEmptyDirectories>true</cleanEmptyDirectories>
                                     <excludes>
@@ -224,7 +224,7 @@
                                     <verbose>false</verbose>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-284/unpack-3</targetPath>
+                                    <targetPath>${outputDirectory}/pl-284/unpack-3</targetPath>
                                     <dependency>
                                         <excludeTransitive>false</excludeTransitive>
                                         <includeGroupIds>org.jvnet.hudson.plugins,org.jfrog.buildinfo,junit</includeGroupIds>
@@ -236,7 +236,7 @@
                                     <filter>${filterM2}</filter>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-284/unpack-4</targetPath>
+                                    <targetPath>${outputDirectory}/pl-284/unpack-4</targetPath>
                                     <dependency>
                                         <excludeTransitive>false</excludeTransitive>
                                         <includeGroupIds>org.jvnet.hudson.plugins,org.jfrog.buildinfo,junit</includeGroupIds>
@@ -245,7 +245,7 @@
                                     <preservePath>true</preservePath>
                                 </resource>
                                 <resource>
-                                    <directory>${outputDir}/pl-284/unpack-4</directory>
+                                    <directory>${outputDirectory}/pl-284/unpack-4</directory>
                                     <clean>true</clean>
                                     <cleanEmptyDirectories>true</cleanEmptyDirectories>
                                     <exclude>**/*.class</exclude>
@@ -266,7 +266,7 @@
                         <configuration>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/endOfLine</targetPath>
+                                    <targetPath>${outputDirectory}/endOfLine</targetPath>
                                     <dependency>
                                         <groupId>org.jvnet.hudson.plugins</groupId>
                                         <artifactId>artifactory</artifactId>
@@ -276,7 +276,7 @@
                                     <stripVersion>true</stripVersion>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/endOfLine</targetPath>
+                                    <targetPath>${outputDirectory}/endOfLine</targetPath>
                                     <dependency>
                                         <groupId>org.jvnet.hudson.plugins</groupId>
                                         <artifactId>artifactory</artifactId>
@@ -285,18 +285,18 @@
                                     </dependency>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/endOfLine/unpack</targetPath>
-                                    <file>${outputDir}/endOfLine/artifactory-1.4.1.hpi</file>
+                                    <targetPath>${outputDirectory}/endOfLine/unpack</targetPath>
+                                    <file>${outputDirectory}/endOfLine/artifactory-1.4.1.hpi</file>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/endOfLine/unpack</targetPath>
-                                    <file>${outputDir}/endOfLine/artifactory.hpi</file>
+                                    <targetPath>${outputDirectory}/endOfLine/unpack</targetPath>
+                                    <file>${outputDirectory}/endOfLine/artifactory.hpi</file>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/endOfLine/staplers1</targetPath>
-                                    <directory>${outputDir}/endOfLine/unpack</directory>
+                                    <targetPath>${outputDirectory}/endOfLine/staplers1</targetPath>
+                                    <directory>${outputDirectory}/endOfLine/unpack</directory>
                                     <include>**/*.stapler</include>
                                     <preservePath>true</preservePath>
                                     <replace>
@@ -307,8 +307,8 @@
                                     </replace>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/endOfLine/staplers2</targetPath>
-                                    <directory>${outputDir}/endOfLine/unpack</directory>
+                                    <targetPath>${outputDirectory}/endOfLine/staplers2</targetPath>
+                                    <directory>${outputDirectory}/endOfLine/unpack</directory>
                                     <includes>
                                         <include>**/*.stapler</include>
                                     </includes>
@@ -322,8 +322,8 @@
                                     </replace>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/endOfLine/staplers3</targetPath>
-                                    <directory>${outputDir}/endOfLine/unpack</directory>
+                                    <targetPath>${outputDirectory}/endOfLine/staplers3</targetPath>
+                                    <directory>${outputDirectory}/endOfLine/unpack</directory>
                                     <include>**/*.stapler</include>
                                     <preservePath>true</preservePath>
                                     <replace>
@@ -350,7 +350,7 @@
                             <resources>
                                 <resource>
                                     <targetPath>
-                                        ${outputDir}/pl-262-zip
+                                        ${outputDirectory}/pl-262-zip
                                     </targetPath>
                                     <dependency>
                                         <groupId>org.apache.maven</groupId>
@@ -363,7 +363,7 @@
                                 </resource>
                                 <resource>
                                     <targetPath>
-                                        ${outputDir}/pl-262-targz
+                                        ${outputDirectory}/pl-262-targz
                                     </targetPath>
                                     <dependency>
                                         <groupId>org.apache.maven</groupId>
@@ -396,50 +396,50 @@
                         <phase>test</phase>
                         <configuration>
                             <assertFiles>
-                                ${outputDir}/pl-280/unpack-1
-                                ${outputDir}/pl-280/unpack-2
-                                ${outputDir}/pl-280/unpack-3
-                                ${outputDir}/pl-280/unpack-4
+                                ${outputDirectory}/pl-280/unpack-1
+                                ${outputDirectory}/pl-280/unpack-2
+                                ${outputDirectory}/pl-280/unpack-3
+                                ${outputDirectory}/pl-280/unpack-4
 
-                                ${outputDir}/pl-280/unpack-1/maven-core-3.0.1.jar
+                                ${outputDirectory}/pl-280/unpack-1/maven-core-3.0.1.jar
 
-                                ${outputDir}/pl-280/unpack-2/maven-core-3.0.1.jar
-                                ${outputDir}/pl-280/unpack-2/LICENSE.txt
-                                ${outputDir}/pl-280/unpack-2/mvnDebug.bat
-                                ${outputDir}/pl-280/unpack-2/maven-compat-3.0.1.jar
+                                ${outputDirectory}/pl-280/unpack-2/maven-core-3.0.1.jar
+                                ${outputDirectory}/pl-280/unpack-2/LICENSE.txt
+                                ${outputDirectory}/pl-280/unpack-2/mvnDebug.bat
+                                ${outputDirectory}/pl-280/unpack-2/maven-compat-3.0.1.jar
 
-                                ${outputDir}/pl-280/unpack-3/maven-core-3.0.1.jar
-                                ${outputDir}/pl-280/unpack-3/LICENSE.txt
-                                ${outputDir}/pl-280/unpack-3/mvnDebug.bat
-                                ${outputDir}/pl-280/unpack-3/maven-compat-3.0.1.jar
+                                ${outputDirectory}/pl-280/unpack-3/maven-core-3.0.1.jar
+                                ${outputDirectory}/pl-280/unpack-3/LICENSE.txt
+                                ${outputDirectory}/pl-280/unpack-3/mvnDebug.bat
+                                ${outputDirectory}/pl-280/unpack-3/maven-compat-3.0.1.jar
 
-                                ${outputDir}/pl-280/unpack-4/apache-maven-3.0.1/lib/maven-core-3.0.1.jar
-                                ${outputDir}/pl-280/unpack-4/apache-maven-3.0.1/LICENSE.txt
-                                ${outputDir}/pl-280/unpack-4/apache-maven-3.0.1/bin/mvnDebug.bat
-                                ${outputDir}/pl-280/unpack-4/apache-maven-3.0.1/lib/maven-compat-3.0.1.jar
+                                ${outputDirectory}/pl-280/unpack-4/apache-maven-3.0.1/lib/maven-core-3.0.1.jar
+                                ${outputDirectory}/pl-280/unpack-4/apache-maven-3.0.1/LICENSE.txt
+                                ${outputDirectory}/pl-280/unpack-4/apache-maven-3.0.1/bin/mvnDebug.bat
+                                ${outputDirectory}/pl-280/unpack-4/apache-maven-3.0.1/lib/maven-compat-3.0.1.jar
                             </assertFiles>
                             <assertEqual>
-                                ${outputDir}/pl-280/unpack-2|${outputDir}/pl-280/unpack-3
-                                ${outputDir}/pl-280/unpack-5|${outputDir}/pl-280/unpack-6
-                                ${outputDir}/pl-280/unpack-6|${outputDir}/pl-280/unpack-7
-                                ${outputDir}/pl-280/unpack-7|${outputDir}/pl-280/unpack-5
+                                ${outputDirectory}/pl-280/unpack-2|${outputDirectory}/pl-280/unpack-3
+                                ${outputDirectory}/pl-280/unpack-5|${outputDirectory}/pl-280/unpack-6
+                                ${outputDirectory}/pl-280/unpack-6|${outputDirectory}/pl-280/unpack-7
+                                ${outputDirectory}/pl-280/unpack-7|${outputDirectory}/pl-280/unpack-5
 
-                                ${outputDir}/pl-284/unpack-1|${outputDir}/pl-284/unpack-2
-                                ${outputDir}/pl-284/unpack-3|${outputDir}/pl-284/unpack-4
+                                ${outputDirectory}/pl-284/unpack-1|${outputDirectory}/pl-284/unpack-2
+                                ${outputDirectory}/pl-284/unpack-3|${outputDirectory}/pl-284/unpack-4
                             </assertEqual>
                             <assertGroovy>
-                                new File( outputDir, 'pl-280/unpack-1' ).directorySize() == 530357
-                                new File( outputDir, 'pl-280/unpack-2' ).directorySize() == 833219
-                                new File( outputDir, 'pl-280/unpack-3' ).directorySize() == 833219
-                                new File( outputDir, 'pl-280/unpack-4' ).directorySize() == 833219
-                                new File( outputDir, 'pl-280/unpack-5' ).directorySize() == 3344329
-                                new File( outputDir, 'pl-280/unpack-6' ).directorySize() == 3344329
-                                new File( outputDir, 'pl-280/unpack-7' ).directorySize() == 3344329
+                                new File( outputDirectory, 'pl-280/unpack-1' ).directorySize() == 530357
+                                new File( outputDirectory, 'pl-280/unpack-2' ).directorySize() == 833219
+                                new File( outputDirectory, 'pl-280/unpack-3' ).directorySize() == 833219
+                                new File( outputDirectory, 'pl-280/unpack-4' ).directorySize() == 833219
+                                new File( outputDirectory, 'pl-280/unpack-5' ).directorySize() == 3344329
+                                new File( outputDirectory, 'pl-280/unpack-6' ).directorySize() == 3344329
+                                new File( outputDirectory, 'pl-280/unpack-7' ).directorySize() == 3344329
 
-                                new File( outputDir, 'pl-284/unpack-1' ).directorySize() == 68419140
-                                new File( outputDir, 'pl-284/unpack-2' ).directorySize() == 68419140
-                                new File( outputDir, 'pl-284/unpack-3' ).directorySize() == 1209982
-                                new File( outputDir, 'pl-284/unpack-4' ).directorySize() == 1209982
+                                new File( outputDirectory, 'pl-284/unpack-1' ).directorySize() == 68419140
+                                new File( outputDirectory, 'pl-284/unpack-2' ).directorySize() == 68419140
+                                new File( outputDirectory, 'pl-284/unpack-3' ).directorySize() == 1209982
+                                new File( outputDirectory, 'pl-284/unpack-4' ).directorySize() == 1209982
                             </assertGroovy>
                         </configuration>
                     </execution>
@@ -454,27 +454,27 @@
                         <phase>test</phase>
                         <configuration>
                             <assertFiles>
-                                ${outputDir}/endOfLine/staplers1/WEB-INF/classes/org/jfrog/hudson/*.stapler
-                                ${outputDir}/endOfLine/staplers2/WEB-INF/classes/org/jfrog/hudson/*.stapler
-                                ${outputDir}/endOfLine/staplers3/WEB-INF/classes/org/jfrog/hudson/*.stapler
+                                ${outputDirectory}/endOfLine/staplers1/WEB-INF/classes/org/jfrog/hudson/*.stapler
+                                ${outputDirectory}/endOfLine/staplers2/WEB-INF/classes/org/jfrog/hudson/*.stapler
+                                ${outputDirectory}/endOfLine/staplers3/WEB-INF/classes/org/jfrog/hudson/*.stapler
                             </assertFiles>
                             <assertEqual>
-                                ${outputDir}/endOfLine/unpack|${outputDir}/endOfLine/staplers1|**/*.stapler
-                                ${outputDir}/endOfLine/staplers1|${outputDir}/endOfLine/staplers2|**/*.stapler
+                                ${outputDirectory}/endOfLine/unpack|${outputDirectory}/endOfLine/staplers1|**/*.stapler
+                                ${outputDirectory}/endOfLine/staplers1|${outputDirectory}/endOfLine/staplers2|**/*.stapler
                             </assertEqual>
                             <shouldFailAssertEqual>
-                                ${outputDir}/endOfLine/staplers2|${outputDir}/endOfLine/staplers3|**/*.stapler
+                                ${outputDirectory}/endOfLine/staplers2|${outputDirectory}/endOfLine/staplers3|**/*.stapler
                             </shouldFailAssertEqual>
                             <assertGroovy>
-                                new File( outputDir, 'endOfLine/staplers1/WEB-INF/classes/org/jfrog/hudson' ).listFiles().findAll{ it.isFile() }.every{ it.text.contains( '\r\n' ) }
-                                new File( outputDir, 'endOfLine/staplers2/WEB-INF/classes/org/jfrog/hudson' ).listFiles().findAll{ it.isFile() }.every{ it.text.contains( '\r\n' ) }
-                                new File( outputDir, 'endOfLine/staplers3/WEB-INF/classes/org/jfrog/hudson' ).listFiles().findAll{ it.isFile() }.every{ ! it.text.contains( '\r\n' ) }
-                                new File( outputDir, 'endOfLine/staplers3/WEB-INF/classes/org/jfrog/hudson' ).listFiles().findAll{ it.isFile() }.every{ it.text.contains( '\n' ) }
+                                new File( outputDirectory, 'endOfLine/staplers1/WEB-INF/classes/org/jfrog/hudson' ).listFiles().findAll{ it.isFile() }.every{ it.text.contains( '\r\n' ) }
+                                new File( outputDirectory, 'endOfLine/staplers2/WEB-INF/classes/org/jfrog/hudson' ).listFiles().findAll{ it.isFile() }.every{ it.text.contains( '\r\n' ) }
+                                new File( outputDirectory, 'endOfLine/staplers3/WEB-INF/classes/org/jfrog/hudson' ).listFiles().findAll{ it.isFile() }.every{ ! it.text.contains( '\r\n' ) }
+                                new File( outputDirectory, 'endOfLine/staplers3/WEB-INF/classes/org/jfrog/hudson' ).listFiles().findAll{ it.isFile() }.every{ it.text.contains( '\n' ) }
 
-                                new File( outputDir, 'endOfLine'           ).directorySize() == 13847886
-                                new File( outputDir, 'endOfLine/staplers1' ).directorySize() == 1752
-                                new File( outputDir, 'endOfLine/staplers2' ).directorySize() == 1752
-                                new File( outputDir, 'endOfLine/staplers3' ).directorySize() == 1732
+                                new File( outputDirectory, 'endOfLine'           ).directorySize() == 13847886
+                                new File( outputDirectory, 'endOfLine/staplers1' ).directorySize() == 1752
+                                new File( outputDirectory, 'endOfLine/staplers2' ).directorySize() == 1752
+                                new File( outputDirectory, 'endOfLine/staplers3' ).directorySize() == 1732
                             </assertGroovy>
                         </configuration>
                     </execution>
@@ -489,23 +489,23 @@
                         <phase>test</phase>
                         <configuration>
                             <assertFiles>
-                                ${outputDir}/pl-262-zip
-                                ${outputDir}/pl-262-zip/apache-maven-3.0.1
-                                ${outputDir}/pl-262-targz
-                                ${outputDir}/pl-262-targz/apache-maven-3.0.1
+                                ${outputDirectory}/pl-262-zip
+                                ${outputDirectory}/pl-262-zip/apache-maven-3.0.1
+                                ${outputDirectory}/pl-262-targz
+                                ${outputDirectory}/pl-262-targz/apache-maven-3.0.1
                             </assertFiles>
                             <shouldFailAssertEqual>
-                                ${outputDir}/pl-262-zip|${outputDir}/pl-262-targz|*.txt
-                                ${outputDir}/pl-262-zip|${outputDir}/pl-262-targz|*.jar
+                                ${outputDirectory}/pl-262-zip|${outputDirectory}/pl-262-targz|*.txt
+                                ${outputDirectory}/pl-262-zip|${outputDirectory}/pl-262-targz|*.jar
                             </shouldFailAssertEqual>
                             <assertEqual>
-                                ${outputDir}/pl-262-zip|${outputDir}/pl-262-targz
-                                ${outputDir}/pl-262-zip|${outputDir}/pl-262-targz|**/*.txt
-                                ${outputDir}/pl-262-zip|${outputDir}/pl-262-targz|**/*.jar
+                                ${outputDirectory}/pl-262-zip|${outputDirectory}/pl-262-targz
+                                ${outputDirectory}/pl-262-zip|${outputDirectory}/pl-262-targz|**/*.txt
+                                ${outputDirectory}/pl-262-zip|${outputDirectory}/pl-262-targz|**/*.jar
                             </assertEqual>
                             <assertGroovy>
-                                new File( outputDir, 'pl-262-zip' ).directorySize() == 3353088
-                                new File( outputDir, 'pl-262-zip' ).directorySize() == new File( outputDir, 'pl-262-targz' ).directorySize()
+                                new File( outputDirectory, 'pl-262-zip' ).directorySize() == 3353088
+                                new File( outputDirectory, 'pl-262-zip' ).directorySize() == new File( outputDirectory, 'pl-262-targz' ).directorySize()
                             </assertGroovy>
                         </configuration>
                     </execution>

@@ -86,7 +86,7 @@
                             <goal>copy-dependencies</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${outputDir}/pl-550/dependency-plugin</outputDirectory>
+                            <outputDirectory>${outputDirectory}/pl-550/dependency-plugin</outputDirectory>
                             <excludeTransitive>false</excludeTransitive>
                         </configuration>
                     </execution>
@@ -112,23 +112,23 @@
                         <configuration>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-625/pom.jar</targetPath>
+                                    <targetPath>${outputDirectory}/pl-625/pom.jar</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <pack>true</pack>
                                     <deploy>http://evgenyg.artifactoryonline.com/evgenyg/tests-local/|${project.groupId}|${project.artifactId}|${timestamp}</deploy>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-625/pom.zip</targetPath>
+                                    <targetPath>${outputDirectory}/pl-625/pom.zip</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <pack>true</pack>
                                     <deploy>http://evgenyg.artifactoryonline.com/evgenyg/tests-local/|${project.groupId}|${project.artifactId}|${timestamp}|bin</deploy>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-625/1</targetPath>
+                                    <targetPath>${outputDirectory}/pl-625/1</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-625/2</targetPath>
+                                    <targetPath>${outputDirectory}/pl-625/2</targetPath>
                                     <dependency>
                                         <groupId>${project.groupId}</groupId>
                                         <artifactId>${project.artifactId}</artifactId>
@@ -137,7 +137,7 @@
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-625/3</targetPath>
+                                    <targetPath>${outputDirectory}/pl-625/3</targetPath>
                                     <dependency>
                                         <groupId>${project.groupId}</groupId>
                                         <artifactId>${project.artifactId}</artifactId>
@@ -163,7 +163,7 @@
                         <configuration>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-617/unpack</targetPath>
+                                    <targetPath>${outputDirectory}/pl-617/unpack</targetPath>
                                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                     <!-- Unpacking some heavy dependencies to pack them later with varying compression level -->
                                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -198,48 +198,48 @@
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-617/1-Ant.tar</targetPath>
-                                    <directory>${outputDir}/pl-617/unpack</directory>
+                                    <targetPath>${outputDirectory}/pl-617/1-Ant.tar</targetPath>
+                                    <directory>${outputDirectory}/pl-617/unpack</directory>
                                     <pack>true</pack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-617/2-Ant.zip</targetPath>
-                                    <directory>${outputDir}/pl-617/unpack</directory>
+                                    <targetPath>${outputDirectory}/pl-617/2-Ant.zip</targetPath>
+                                    <directory>${outputDirectory}/pl-617/unpack</directory>
                                     <pack>true</pack>
                                     <compressionLevel>0</compressionLevel>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-617/3-Ant.zip</targetPath>
-                                    <directory>${outputDir}/pl-617/unpack</directory>
+                                    <targetPath>${outputDirectory}/pl-617/3-Ant.zip</targetPath>
+                                    <directory>${outputDirectory}/pl-617/unpack</directory>
                                     <pack>true</pack>
                                     <compressionLevel>5</compressionLevel>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-617/4-Ant.zip</targetPath>
-                                    <directory>${outputDir}/pl-617/unpack</directory>
+                                    <targetPath>${outputDirectory}/pl-617/4-Ant.zip</targetPath>
+                                    <directory>${outputDirectory}/pl-617/unpack</directory>
                                     <pack>true</pack>
                                     <compressionLevel>9</compressionLevel>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-617/5-Ant.tar.gz</targetPath>
-                                    <directory>${outputDir}/pl-617/unpack</directory>
+                                    <targetPath>${outputDirectory}/pl-617/5-Ant.tar.gz</targetPath>
+                                    <directory>${outputDirectory}/pl-617/unpack</directory>
                                     <pack>true</pack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-617/1-TrueZip.tar</targetPath>
-                                    <directory>${outputDir}/pl-617/unpack</directory>
+                                    <targetPath>${outputDirectory}/pl-617/1-TrueZip.tar</targetPath>
+                                    <directory>${outputDirectory}/pl-617/unpack</directory>
                                     <useTrueZipForPack>true</useTrueZipForPack>
                                     <pack>true</pack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-617/2-TrueZip.zip</targetPath>
-                                    <directory>${outputDir}/pl-617/unpack</directory>
+                                    <targetPath>${outputDirectory}/pl-617/2-TrueZip.zip</targetPath>
+                                    <directory>${outputDirectory}/pl-617/unpack</directory>
                                     <pack>true</pack>
                                     <useTrueZipForPack>true</useTrueZipForPack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-617/3-TrueZip.tar.gz</targetPath>
-                                    <directory>${outputDir}/pl-617/unpack</directory>
+                                    <targetPath>${outputDirectory}/pl-617/3-TrueZip.tar.gz</targetPath>
+                                    <directory>${outputDirectory}/pl-617/unpack</directory>
                                     <useTrueZipForPack>true</useTrueZipForPack>
                                     <pack>true</pack>
                                 </resource>
@@ -262,7 +262,7 @@
                                 <!-- Transitive dependencies from all scopes -->
                                 <resource>
                                     <description>all</description>
-                                    <targetPath>${outputDir}/pl-550/all</targetPath>
+                                    <targetPath>${outputDirectory}/pl-550/all</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -275,7 +275,7 @@
                                 <!-- Transitive dependencies from all scopes, including optional (yeah, that's big!) -->
                                 <resource>
                                     <description>optional-1</description>
-                                    <targetPath>${outputDir}/pl-550/optional-1</targetPath>
+                                    <targetPath>${outputDirectory}/pl-550/optional-1</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -290,7 +290,7 @@
                                 <!-- Direct dependencies from all scopes, including optional -->
                                 <resource>
                                     <description>optional-2</description>
-                                    <targetPath>${outputDir}/pl-550/optional-2</targetPath>
+                                    <targetPath>${outputDirectory}/pl-550/optional-2</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -301,7 +301,7 @@
                                 <!-- Direct dependencies from "compile" scope, including optional -->
                                 <resource>
                                     <description>optional-3</description>
-                                    <targetPath>${outputDir}/pl-550/optional-3</targetPath>
+                                    <targetPath>${outputDirectory}/pl-550/optional-3</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -313,7 +313,7 @@
                                 <!-- Single dependency, no transitivity -->
                                 <resource>
                                     <description>single</description>
-                                    <targetPath>${outputDir}/pl-550/single</targetPath>
+                                    <targetPath>${outputDirectory}/pl-550/single</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -323,7 +323,7 @@
                                 <!-- Direct dependencies from "compile" scope -->
                                 <resource>
                                     <description>single-compile</description>
-                                    <targetPath>${outputDir}/pl-550/single-compile</targetPath>
+                                    <targetPath>${outputDirectory}/pl-550/single-compile</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -334,7 +334,7 @@
                                 <!-- Direct dependencies from "test" scope -->
                                 <resource>
                                     <description>single-test</description>
-                                    <targetPath>${outputDir}/pl-550/single-test</targetPath>
+                                    <targetPath>${outputDirectory}/pl-550/single-test</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -345,7 +345,7 @@
                                 <!-- Direct dependencies from "provided" scope -->
                                 <resource>
                                     <description>single-provided</description>
-                                    <targetPath>${outputDir}/pl-550/single-provided</targetPath>
+                                    <targetPath>${outputDirectory}/pl-550/single-provided</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -356,7 +356,7 @@
                                 <!-- Transitive dependencies from "compile" scope -->
                                 <resource>
                                     <description>1</description>
-                                    <targetPath>${outputDir}/pl-550/1</targetPath>
+                                    <targetPath>${outputDirectory}/pl-550/1</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -368,7 +368,7 @@
                                 <!-- Transitive dependencies from "test" scope -->
                                 <resource>
                                     <description>2</description>
-                                    <targetPath>${outputDir}/pl-550/2</targetPath>
+                                    <targetPath>${outputDirectory}/pl-550/2</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -380,7 +380,7 @@
                                 <!-- Transitive dependencies from "provided" scope -->
                                 <resource>
                                     <description>3</description>
-                                    <targetPath>${outputDir}/pl-550/3</targetPath>
+                                    <targetPath>${outputDirectory}/pl-550/3</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -392,7 +392,7 @@
                                 <!-- Transitive dependencies from "compile" scope, "test" and "provided" excluded -->
                                 <resource>
                                     <description>4</description>
-                                    <targetPath>${outputDir}/pl-550/4</targetPath>
+                                    <targetPath>${outputDirectory}/pl-550/4</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -405,7 +405,7 @@
                                 <!-- Transitive dependencies from "compile" scope, "test" excluded -->
                                 <resource>
                                     <description>5</description>
-                                    <targetPath>${outputDir}/pl-550/5</targetPath>
+                                    <targetPath>${outputDirectory}/pl-550/5</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -418,7 +418,7 @@
                                 <!-- Transitive dependencies from "compile" scope, "provided" excluded -->
                                 <resource>
                                     <description>6</description>
-                                    <targetPath>${outputDir}/pl-550/6</targetPath>
+                                    <targetPath>${outputDirectory}/pl-550/6</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -431,7 +431,7 @@
                                 <!-- Transitive dependencies from "test" scope, "compile" excluded -->
                                 <resource>
                                     <description>7</description>
-                                    <targetPath>${outputDir}/pl-550/7</targetPath>
+                                    <targetPath>${outputDirectory}/pl-550/7</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -444,7 +444,7 @@
                                 <!-- Transitive dependencies from "provided" scope, "compile" excluded -->
                                 <resource>
                                     <description>8</description>
-                                    <targetPath>${outputDir}/pl-550/8</targetPath>
+                                    <targetPath>${outputDirectory}/pl-550/8</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -457,7 +457,7 @@
                                 <!-- All transitive dependencies, "test" excluded -->
                                 <resource>
                                     <description>9</description>
-                                    <targetPath>${outputDir}/pl-550/9</targetPath>
+                                    <targetPath>${outputDirectory}/pl-550/9</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -469,7 +469,7 @@
                                 <!-- All transitive dependencies, "provided" excluded -->
                                 <resource>
                                     <description>10</description>
-                                    <targetPath>${outputDir}/pl-550/10</targetPath>
+                                    <targetPath>${outputDirectory}/pl-550/10</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -483,7 +483,7 @@
                                 <!-- "Filtering" dependency with "compile" scope, no transitivity -->
                                 <resource>
                                     <description>compile</description>
-                                    <targetPath>${outputDir}/pl-550/compile</targetPath>
+                                    <targetPath>${outputDirectory}/pl-550/compile</targetPath>
                                     <dependency>
                                         <includeScope>compile</includeScope>
                                         <excludeTransitive>true</excludeTransitive>
@@ -492,7 +492,7 @@
                                 <!-- "Filtering" dependency with "test" scope, no transitivity -->
                                 <resource>
                                     <description>test</description>
-                                    <targetPath>${outputDir}/pl-550/test</targetPath>
+                                    <targetPath>${outputDirectory}/pl-550/test</targetPath>
                                     <dependency>
                                         <includeScope>test</includeScope>
                                         <excludeTransitive>true</excludeTransitive>
@@ -501,7 +501,7 @@
                                 <!-- "Filtering" dependency with "provided" scope, no transitivity -->
                                 <resource>
                                     <description>provided</description>
-                                    <targetPath>${outputDir}/pl-550/provided</targetPath>
+                                    <targetPath>${outputDirectory}/pl-550/provided</targetPath>
                                     <dependency>
                                         <includeScope>provided</includeScope>
                                         <excludeTransitive>true</excludeTransitive>
@@ -510,7 +510,7 @@
                                 <!-- Transitive "filtering" dependency with "compile" scope, including optional -->
                                 <resource>
                                     <description>optional-4</description>
-                                    <targetPath>${outputDir}/pl-550/optional-4</targetPath>
+                                    <targetPath>${outputDirectory}/pl-550/optional-4</targetPath>
                                     <dependency>
                                         <includeScope>compile</includeScope>
                                         <includeOptional>true</includeOptional>
@@ -522,7 +522,7 @@
                                 <!-- Transitive "filtering" dependency with "test" scope, including optional -->
                                 <resource>
                                     <description>optional-5</description>
-                                    <targetPath>${outputDir}/pl-550/optional-5</targetPath>
+                                    <targetPath>${outputDirectory}/pl-550/optional-5</targetPath>
                                     <dependency>
                                         <includeScope>test</includeScope>
                                         <includeOptional>true</includeOptional>
@@ -531,7 +531,7 @@
                                 <!-- Transitive "filtering" dependency with "provided" scope, including optional -->
                                 <resource>
                                     <description>optional-6</description>
-                                    <targetPath>${outputDir}/pl-550/optional-6</targetPath>
+                                    <targetPath>${outputDirectory}/pl-550/optional-6</targetPath>
                                     <dependency>
                                         <includeScope>provided</includeScope>
                                         <includeOptional>true</includeOptional>
@@ -540,7 +540,7 @@
                                 <!-- Transitive "filtering" dependency with "compile" scope -->
                                 <resource>
                                     <description>12</description>
-                                    <targetPath>${outputDir}/pl-550/12</targetPath>
+                                    <targetPath>${outputDirectory}/pl-550/12</targetPath>
                                     <dependency>
                                         <includeScope>compile</includeScope>
                                     </dependency>
@@ -548,7 +548,7 @@
                                 <!-- Transitive "filtering" dependency with "test" scope -->
                                 <resource>
                                     <description>22</description>
-                                    <targetPath>${outputDir}/pl-550/22</targetPath>
+                                    <targetPath>${outputDirectory}/pl-550/22</targetPath>
                                     <dependency>
                                         <includeScope>test</includeScope>
                                     </dependency>
@@ -556,7 +556,7 @@
                                 <!-- Transitive "filtering" dependency with "provided" scope -->
                                 <resource>
                                     <description>32</description>
-                                    <targetPath>${outputDir}/pl-550/32</targetPath>
+                                    <targetPath>${outputDirectory}/pl-550/32</targetPath>
                                     <dependency>
                                         <includeScope>provided</includeScope>
                                     </dependency>
@@ -564,7 +564,7 @@
                                 <!-- Transitive "filtering" dependency with "compile" scope, "test" and "provided" excluded -->
                                 <resource>
                                     <description>42</description>
-                                    <targetPath>${outputDir}/pl-550/42</targetPath>
+                                    <targetPath>${outputDirectory}/pl-550/42</targetPath>
                                     <dependency>
                                         <includeScope>compile</includeScope>
                                         <excludeScope>test, provided</excludeScope>
@@ -573,7 +573,7 @@
                                 <!-- Transitive "filtering" dependency with "compile" scope, "test" excluded -->
                                 <resource>
                                     <description>52</description>
-                                    <targetPath>${outputDir}/pl-550/52</targetPath>
+                                    <targetPath>${outputDirectory}/pl-550/52</targetPath>
                                     <dependency>
                                         <includeScope>compile</includeScope>
                                         <excludeScope>test</excludeScope>
@@ -582,7 +582,7 @@
                                 <!-- Transitive "filtering" dependency with "compile" scope, "provided" excluded -->
                                 <resource>
                                     <description>62</description>
-                                    <targetPath>${outputDir}/pl-550/62</targetPath>
+                                    <targetPath>${outputDirectory}/pl-550/62</targetPath>
                                     <dependency>
                                         <includeScope>compile</includeScope>
                                         <excludeScope>provided</excludeScope>
@@ -591,7 +591,7 @@
                                 <!-- Transitive "filtering" dependency with "test" scope, "compile" excluded -->
                                 <resource>
                                     <description>72</description>
-                                    <targetPath>${outputDir}/pl-550/72</targetPath>
+                                    <targetPath>${outputDirectory}/pl-550/72</targetPath>
                                     <dependency>
                                         <includeScope>test</includeScope>
                                         <excludeScope>compile</excludeScope>
@@ -600,7 +600,7 @@
                                 <!-- Transitive "filtering" dependency with "provided" scope, "compile" excluded -->
                                 <resource>
                                     <description>82</description>
-                                    <targetPath>${outputDir}/pl-550/82</targetPath>
+                                    <targetPath>${outputDirectory}/pl-550/82</targetPath>
                                     <dependency>
                                         <includeScope>provided</includeScope>
                                         <excludeScope>compile</excludeScope>
@@ -609,7 +609,7 @@
                                 <!-- Transitive "filtering" dependency, "test" scope excluded -->
                                 <resource>
                                     <description>92</description>
-                                    <targetPath>${outputDir}/pl-550/92</targetPath>
+                                    <targetPath>${outputDirectory}/pl-550/92</targetPath>
                                     <dependency>
                                         <excludeScope>test</excludeScope>
                                     </dependency>
@@ -617,7 +617,7 @@
                                 <!-- Transitive "filtering" dependency, "provided" scope excluded -->
                                 <resource>
                                     <description>102</description>
-                                    <targetPath>${outputDir}/pl-550/102</targetPath>
+                                    <targetPath>${outputDirectory}/pl-550/102</targetPath>
                                     <dependency>
                                         <excludeScope>provided</excludeScope>
                                         <excludeGroupIds>com.sun,javax.xml.soap</excludeGroupIds>
@@ -645,9 +645,9 @@
                         <phase>test</phase>
                         <configuration>
                             <assertEqual>
-                                ${outputDir}/pl-625/1|${outputDir}/pl-625/2
-                                ${outputDir}/pl-625/2|${outputDir}/pl-625/3
-                                ${outputDir}/pl-625/3|${outputDir}/pl-625/1
+                                ${outputDirectory}/pl-625/1|${outputDirectory}/pl-625/2
+                                ${outputDirectory}/pl-625/2|${outputDirectory}/pl-625/3
+                                ${outputDirectory}/pl-625/3|${outputDirectory}/pl-625/1
                             </assertEqual>
                         </configuration>
                     </execution>
@@ -662,26 +662,26 @@
                         <phase>test</phase>
                         <configuration>
                             <assertFiles>
-                                ${outputDir}/pl-617/1-Ant.tar
-                                ${outputDir}/pl-617/2-Ant.zip
-                                ${outputDir}/pl-617/3-Ant.zip
-                                ${outputDir}/pl-617/4-Ant.zip
-                                ${outputDir}/pl-617/5-Ant.tar.gz
-                                ${outputDir}/pl-617/1-TrueZip.tar
-                                ${outputDir}/pl-617/2-TrueZip.zip
-                                ${outputDir}/pl-617/3-TrueZip.tar.gz
+                                ${outputDirectory}/pl-617/1-Ant.tar
+                                ${outputDirectory}/pl-617/2-Ant.zip
+                                ${outputDirectory}/pl-617/3-Ant.zip
+                                ${outputDirectory}/pl-617/4-Ant.zip
+                                ${outputDirectory}/pl-617/5-Ant.tar.gz
+                                ${outputDirectory}/pl-617/1-TrueZip.tar
+                                ${outputDirectory}/pl-617/2-TrueZip.zip
+                                ${outputDirectory}/pl-617/3-TrueZip.tar.gz
                             </assertFiles>
                             <assertGroovy>
                                 <!-- Ant compression: tar, 3 compression levels (0, 5, 9), tar.gz -->
-                                new File( outputDir, 'pl-617/1-Ant.tar' ).size() > new File( outputDir, 'pl-617/2-Ant.zip'    ).size()
-                                new File( outputDir, 'pl-617/2-Ant.zip' ).size() > new File( outputDir, 'pl-617/3-Ant.zip'    ).size()
-                                new File( outputDir, 'pl-617/3-Ant.zip' ).size() > new File( outputDir, 'pl-617/4-Ant.zip'    ).size()
-                                new File( outputDir, 'pl-617/4-Ant.zip' ).size() > new File( outputDir, 'pl-617/5-Ant.tar.gz' ).size()
+                                new File( outputDirectory, 'pl-617/1-Ant.tar' ).size() > new File( outputDirectory, 'pl-617/2-Ant.zip'    ).size()
+                                new File( outputDirectory, 'pl-617/2-Ant.zip' ).size() > new File( outputDirectory, 'pl-617/3-Ant.zip'    ).size()
+                                new File( outputDirectory, 'pl-617/3-Ant.zip' ).size() > new File( outputDirectory, 'pl-617/4-Ant.zip'    ).size()
+                                new File( outputDirectory, 'pl-617/4-Ant.zip' ).size() > new File( outputDirectory, 'pl-617/5-Ant.tar.gz' ).size()
 
                                 <!-- TrueZip compression: tar, zip, tar.gz. Better in all categories! -->
-                                new File( outputDir, 'pl-617/1-Ant.tar'    ).size() > new File( outputDir, 'pl-617/1-TrueZip.tar'    ).size()
-                                new File( outputDir, 'pl-617/4-Ant.zip'    ).size() > new File( outputDir, 'pl-617/2-TrueZip.zip'    ).size()
-                                new File( outputDir, 'pl-617/5-Ant.tar.gz' ).size() > new File( outputDir, 'pl-617/3-TrueZip.tar.gz' ).size()
+                                new File( outputDirectory, 'pl-617/1-Ant.tar'    ).size() > new File( outputDirectory, 'pl-617/1-TrueZip.tar'    ).size()
+                                new File( outputDirectory, 'pl-617/4-Ant.zip'    ).size() > new File( outputDirectory, 'pl-617/2-TrueZip.zip'    ).size()
+                                new File( outputDirectory, 'pl-617/5-Ant.tar.gz' ).size() > new File( outputDirectory, 'pl-617/3-TrueZip.tar.gz' ).size()
                             </assertGroovy>
                         </configuration>
                     </execution>
@@ -696,111 +696,111 @@
                         <phase>test</phase>
                         <configuration>
                             <assertFiles>
-                                ${outputDir}/pl-550
-                                ${outputDir}/pl-550/dependency-plugin
-                                ${outputDir}/pl-550/all
-                                ${outputDir}/pl-550/optional-1
-                                ${outputDir}/pl-550/optional-2
-                                ${outputDir}/pl-550/optional-3
-                                ${outputDir}/pl-550/single
-                                ${outputDir}/pl-550/single-compile
-                                ${outputDir}/pl-550/single-test
-                                ${outputDir}/pl-550/single-provided
+                                ${outputDirectory}/pl-550
+                                ${outputDirectory}/pl-550/dependency-plugin
+                                ${outputDirectory}/pl-550/all
+                                ${outputDirectory}/pl-550/optional-1
+                                ${outputDirectory}/pl-550/optional-2
+                                ${outputDirectory}/pl-550/optional-3
+                                ${outputDirectory}/pl-550/single
+                                ${outputDirectory}/pl-550/single-compile
+                                ${outputDirectory}/pl-550/single-test
+                                ${outputDirectory}/pl-550/single-provided
 
-                                ${outputDir}/pl-550/1
-                                ${outputDir}/pl-550/2
-                                ${outputDir}/pl-550/3
-                                ${outputDir}/pl-550/4
-                                ${outputDir}/pl-550/5
-                                ${outputDir}/pl-550/6
-                                ${outputDir}/pl-550/7
-                                ${outputDir}/pl-550/8
-                                ${outputDir}/pl-550/9
-                                ${outputDir}/pl-550/10
+                                ${outputDirectory}/pl-550/1
+                                ${outputDirectory}/pl-550/2
+                                ${outputDirectory}/pl-550/3
+                                ${outputDirectory}/pl-550/4
+                                ${outputDirectory}/pl-550/5
+                                ${outputDirectory}/pl-550/6
+                                ${outputDirectory}/pl-550/7
+                                ${outputDirectory}/pl-550/8
+                                ${outputDirectory}/pl-550/9
+                                ${outputDirectory}/pl-550/10
 
-                                ${outputDir}/pl-550/compile
-                                ${outputDir}/pl-550/test
-                                ${outputDir}/pl-550/provided
-                                ${outputDir}/pl-550/optional-4
-                                ${outputDir}/pl-550/optional-5
-                                ${outputDir}/pl-550/optional-6
+                                ${outputDirectory}/pl-550/compile
+                                ${outputDirectory}/pl-550/test
+                                ${outputDirectory}/pl-550/provided
+                                ${outputDirectory}/pl-550/optional-4
+                                ${outputDirectory}/pl-550/optional-5
+                                ${outputDirectory}/pl-550/optional-6
 
-                                ${outputDir}/pl-550/12
-                                ${outputDir}/pl-550/22
-                                ${outputDir}/pl-550/32
-                                ${outputDir}/pl-550/42
-                                ${outputDir}/pl-550/52
-                                ${outputDir}/pl-550/62
-                                ${outputDir}/pl-550/72
-                                ${outputDir}/pl-550/82
-                                ${outputDir}/pl-550/92
-                                ${outputDir}/pl-550/102
+                                ${outputDirectory}/pl-550/12
+                                ${outputDirectory}/pl-550/22
+                                ${outputDirectory}/pl-550/32
+                                ${outputDirectory}/pl-550/42
+                                ${outputDirectory}/pl-550/52
+                                ${outputDirectory}/pl-550/62
+                                ${outputDirectory}/pl-550/72
+                                ${outputDirectory}/pl-550/82
+                                ${outputDirectory}/pl-550/92
+                                ${outputDirectory}/pl-550/102
                             </assertFiles>
                             <assertGroovy>
-                                new File( outputDir, 'pl-550/1'   ).listFiles().size() == ${springCompileDependencies}
-                                new File( outputDir, 'pl-550/2'   ).listFiles().size() == ${springTestDependencies}
-                                new File( outputDir, 'pl-550/3'   ).listFiles().size() == 1
-                                new File( outputDir, 'pl-550/4'   ).listFiles().size() == ${springCompileDependencies}
-                                new File( outputDir, 'pl-550/5'   ).listFiles().size() == ${springCompileDependencies}
-                                new File( outputDir, 'pl-550/6'   ).listFiles().size() == ${springCompileDependencies}
-                                new File( outputDir, 'pl-550/7'   ).listFiles().size() == ${springTestDependencies}
-                                new File( outputDir, 'pl-550/8'   ).listFiles().size() == 1
-                                new File( outputDir, 'pl-550/9'   ).listFiles().size() == 11
-                                new File( outputDir, 'pl-550/10'  ).listFiles().size() == 29
+                                new File( outputDirectory, 'pl-550/1'   ).listFiles().size() == ${springCompileDependencies}
+                                new File( outputDirectory, 'pl-550/2'   ).listFiles().size() == ${springTestDependencies}
+                                new File( outputDirectory, 'pl-550/3'   ).listFiles().size() == 1
+                                new File( outputDirectory, 'pl-550/4'   ).listFiles().size() == ${springCompileDependencies}
+                                new File( outputDirectory, 'pl-550/5'   ).listFiles().size() == ${springCompileDependencies}
+                                new File( outputDirectory, 'pl-550/6'   ).listFiles().size() == ${springCompileDependencies}
+                                new File( outputDirectory, 'pl-550/7'   ).listFiles().size() == ${springTestDependencies}
+                                new File( outputDirectory, 'pl-550/8'   ).listFiles().size() == 1
+                                new File( outputDirectory, 'pl-550/9'   ).listFiles().size() == 11
+                                new File( outputDirectory, 'pl-550/10'  ).listFiles().size() == 29
 
-                                new File( outputDir, 'pl-550/12'  ).listFiles().size() == ${springCompileDependencies}
-                                new File( outputDir, 'pl-550/22'  ).listFiles().size() == 1
-                                new File( outputDir, 'pl-550/32'  ).listFiles().size() == 1
-                                new File( outputDir, 'pl-550/42'  ).listFiles().size() == ${springCompileDependencies}
-                                new File( outputDir, 'pl-550/52'  ).listFiles().size() == ${springCompileDependencies}
-                                new File( outputDir, 'pl-550/62'  ).listFiles().size() == ${springCompileDependencies}
-                                new File( outputDir, 'pl-550/72'  ).listFiles().size() == 1
-                                new File( outputDir, 'pl-550/82'  ).listFiles().size() == 1
-                                new File( outputDir, 'pl-550/92'  ).listFiles().size() == 11
-                                new File( outputDir, 'pl-550/102' ).listFiles().size() == 29
+                                new File( outputDirectory, 'pl-550/12'  ).listFiles().size() == ${springCompileDependencies}
+                                new File( outputDirectory, 'pl-550/22'  ).listFiles().size() == 1
+                                new File( outputDirectory, 'pl-550/32'  ).listFiles().size() == 1
+                                new File( outputDirectory, 'pl-550/42'  ).listFiles().size() == ${springCompileDependencies}
+                                new File( outputDirectory, 'pl-550/52'  ).listFiles().size() == ${springCompileDependencies}
+                                new File( outputDirectory, 'pl-550/62'  ).listFiles().size() == ${springCompileDependencies}
+                                new File( outputDirectory, 'pl-550/72'  ).listFiles().size() == 1
+                                new File( outputDirectory, 'pl-550/82'  ).listFiles().size() == 1
+                                new File( outputDirectory, 'pl-550/92'  ).listFiles().size() == 11
+                                new File( outputDirectory, 'pl-550/102' ).listFiles().size() == 29
 
 
-                                new File( outputDir, 'pl-550/all'               ).listFiles().size() == 32
-                                new File( outputDir, 'pl-550/compile'           ).listFiles().size() == 1
-                                new File( outputDir, 'pl-550/dependency-plugin' ).listFiles().size() == 11
-                                new File( outputDir, 'pl-550/optional-1'        ).listFiles().size() == 158
-                                new File( outputDir, 'pl-550/optional-2'        ).listFiles().size() == 37
-                                new File( outputDir, 'pl-550/optional-3'        ).listFiles().size() == 27
-                                new File( outputDir, 'pl-550/optional-4'        ).listFiles().size() == 86
-                                new File( outputDir, 'pl-550/optional-5'        ).listFiles().size() == 1
-                                new File( outputDir, 'pl-550/optional-6'        ).listFiles().size() == 1
-                                new File( outputDir, 'pl-550/provided'          ).listFiles().size() == 1
-                                new File( outputDir, 'pl-550/single'            ).listFiles().size() == 1
-                                new File( outputDir, 'pl-550/single-compile'    ).listFiles().size() == 6
-                                new File( outputDir, 'pl-550/single-provided'   ).listFiles().size() == 1
-                                new File( outputDir, 'pl-550/single-test'       ).listFiles().size() == 9
-                                new File( outputDir, 'pl-550/test'              ).listFiles().size() == 1
+                                new File( outputDirectory, 'pl-550/all'               ).listFiles().size() == 32
+                                new File( outputDirectory, 'pl-550/compile'           ).listFiles().size() == 1
+                                new File( outputDirectory, 'pl-550/dependency-plugin' ).listFiles().size() == 11
+                                new File( outputDirectory, 'pl-550/optional-1'        ).listFiles().size() == 158
+                                new File( outputDirectory, 'pl-550/optional-2'        ).listFiles().size() == 37
+                                new File( outputDirectory, 'pl-550/optional-3'        ).listFiles().size() == 27
+                                new File( outputDirectory, 'pl-550/optional-4'        ).listFiles().size() == 86
+                                new File( outputDirectory, 'pl-550/optional-5'        ).listFiles().size() == 1
+                                new File( outputDirectory, 'pl-550/optional-6'        ).listFiles().size() == 1
+                                new File( outputDirectory, 'pl-550/provided'          ).listFiles().size() == 1
+                                new File( outputDirectory, 'pl-550/single'            ).listFiles().size() == 1
+                                new File( outputDirectory, 'pl-550/single-compile'    ).listFiles().size() == 6
+                                new File( outputDirectory, 'pl-550/single-provided'   ).listFiles().size() == 1
+                                new File( outputDirectory, 'pl-550/single-test'       ).listFiles().size() == 9
+                                new File( outputDirectory, 'pl-550/test'              ).listFiles().size() == 1
                             </assertGroovy>
                             <assertEqual>
-                                ${outputDir}/pl-550/1|${outputDir}/pl-550/4
-                                ${outputDir}/pl-550/4|${outputDir}/pl-550/5
-                                ${outputDir}/pl-550/5|${outputDir}/pl-550/6
-                                ${outputDir}/pl-550/6|${outputDir}/pl-550/12
-                                ${outputDir}/pl-550/12|${outputDir}/pl-550/42
-                                ${outputDir}/pl-550/42|${outputDir}/pl-550/52
-                                ${outputDir}/pl-550/52|${outputDir}/pl-550/62
+                                ${outputDirectory}/pl-550/1|${outputDirectory}/pl-550/4
+                                ${outputDirectory}/pl-550/4|${outputDirectory}/pl-550/5
+                                ${outputDirectory}/pl-550/5|${outputDirectory}/pl-550/6
+                                ${outputDirectory}/pl-550/6|${outputDirectory}/pl-550/12
+                                ${outputDirectory}/pl-550/12|${outputDirectory}/pl-550/42
+                                ${outputDirectory}/pl-550/42|${outputDirectory}/pl-550/52
+                                ${outputDirectory}/pl-550/52|${outputDirectory}/pl-550/62
 
-                                ${outputDir}/pl-550/7|${outputDir}/pl-550/2
+                                ${outputDirectory}/pl-550/7|${outputDirectory}/pl-550/2
 
-                                ${outputDir}/pl-550/8|${outputDir}/pl-550/3
-                                ${outputDir}/pl-550/3|${outputDir}/pl-550/32
-                                ${outputDir}/pl-550/32|${outputDir}/pl-550/82
-                                ${outputDir}/pl-550/82|${outputDir}/pl-550/optional-6
-                                ${outputDir}/pl-550/optional-6|${outputDir}/pl-550/provided
-                                ${outputDir}/pl-550/provided|${outputDir}/pl-550/single-provided
+                                ${outputDirectory}/pl-550/8|${outputDirectory}/pl-550/3
+                                ${outputDirectory}/pl-550/3|${outputDirectory}/pl-550/32
+                                ${outputDirectory}/pl-550/32|${outputDirectory}/pl-550/82
+                                ${outputDirectory}/pl-550/82|${outputDirectory}/pl-550/optional-6
+                                ${outputDirectory}/pl-550/optional-6|${outputDirectory}/pl-550/provided
+                                ${outputDirectory}/pl-550/provided|${outputDirectory}/pl-550/single-provided
 
-                                ${outputDir}/pl-550/22|${outputDir}/pl-550/72
-                                ${outputDir}/pl-550/72|${outputDir}/pl-550/optional-5
-                                ${outputDir}/pl-550/optional-5|${outputDir}/pl-550/test
+                                ${outputDirectory}/pl-550/22|${outputDirectory}/pl-550/72
+                                ${outputDirectory}/pl-550/72|${outputDirectory}/pl-550/optional-5
+                                ${outputDirectory}/pl-550/optional-5|${outputDirectory}/pl-550/test
 
-                                ${outputDir}/pl-550/9|${outputDir}/pl-550/92
+                                ${outputDirectory}/pl-550/9|${outputDirectory}/pl-550/92
 
-                                ${outputDir}/pl-550/compile|${outputDir}/pl-550/single
+                                ${outputDirectory}/pl-550/compile|${outputDirectory}/pl-550/single
                             </assertEqual>
                         </configuration>
                     </execution>

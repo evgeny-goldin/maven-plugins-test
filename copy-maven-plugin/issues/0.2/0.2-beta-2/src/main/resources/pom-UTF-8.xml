@@ -21,7 +21,7 @@
 
 
     <properties>
-        <outputDir>${project.build.outputDirectory}</outputDir>
+        <outputDirectory>${project.build.outputDirectory}</outputDirectory>
         <resourcesDir>${project.basedir}/src/main/resources</resourcesDir>
     </properties>
 
@@ -54,13 +54,13 @@
                         <configuration>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-215/jar</targetPath>
+                                    <targetPath>${outputDirectory}/pl-215/jar</targetPath>
                                     <file>${resourcesDir}/apache-maven-3.0.1.zip</file>
                                     <filter>files.findAll{ it.name.endsWith( '.jar' ) }</filter>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-215/zip</targetPath>
+                                    <targetPath>${outputDirectory}/pl-215/zip</targetPath>
                                     <file>${resourcesDir}/apache-maven-3.0.1.zip</file>
                                     <filter>files.findAll{ it.name.endsWith( '.zip' ) }</filter>
                                     <unpack>true</unpack>
@@ -80,24 +80,24 @@
                                 <!-- Filtering "pom.xml" -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/pl-214/pom-default</targetPath>
+                                    <targetPath>${outputDirectory}/pl-214/pom-default</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <filtering>true</filtering>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-214/pom-UTF-8</targetPath>
+                                    <targetPath>${outputDirectory}/pl-214/pom-UTF-8</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <encoding>UTF-8</encoding>
                                     <filtering>true</filtering>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-214/pom-ASCII</targetPath>
+                                    <targetPath>${outputDirectory}/pl-214/pom-ASCII</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <encoding>ASCII</encoding>
                                     <filtering>true</filtering>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-214/pom-ISO-8859-1</targetPath>
+                                    <targetPath>${outputDirectory}/pl-214/pom-ISO-8859-1</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <encoding>ISO-8859-1</encoding>
                                     <filtering>true</filtering>
@@ -106,30 +106,30 @@
                                 <!-- Filtering "text-Windows-1251.txt" -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/pl-214/text-default</targetPath>
+                                    <targetPath>${outputDirectory}/pl-214/text-default</targetPath>
                                     <file>${resourcesDir}/text-Windows-1251.txt</file>
                                     <filtering>true</filtering>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-214/text-UTF-8</targetPath>
+                                    <targetPath>${outputDirectory}/pl-214/text-UTF-8</targetPath>
                                     <file>${resourcesDir}/text-Windows-1251.txt</file>
                                     <encoding>UTF-8</encoding>
                                     <filtering>true</filtering>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-214/text-ASCII</targetPath>
+                                    <targetPath>${outputDirectory}/pl-214/text-ASCII</targetPath>
                                     <file>${resourcesDir}/text-Windows-1251.txt</file>
                                     <encoding>ASCII</encoding>
                                     <filtering>true</filtering>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-214/text-ISO-8859-1</targetPath>
+                                    <targetPath>${outputDirectory}/pl-214/text-ISO-8859-1</targetPath>
                                     <file>${resourcesDir}/text-Windows-1251.txt</file>
                                     <encoding>ISO-8859-1</encoding>
                                     <filtering>true</filtering>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-214/text-Windows-1251</targetPath>
+                                    <targetPath>${outputDirectory}/pl-214/text-Windows-1251</targetPath>
                                     <file>${resourcesDir}/text-Windows-1251.txt</file>
                                     <encoding>Windows-1251</encoding>
                                     <filtering>true</filtering>
@@ -153,9 +153,9 @@
                         <phase>initialize</phase>
                         <configuration>
                             <assertGroovy>
-                                ! new File( outputDir, 'pl-215/jar' ).isDirectory() <!-- Directory should not be created -->
-                                  new File( outputDir, 'pl-215/zip' ).isDirectory() <!-- Directory should be created -->
-                                  new File( outputDir, 'pl-215/zip' ).directorySize() == 3344329
+                                ! new File( outputDirectory, 'pl-215/jar' ).isDirectory() <!-- Directory should not be created -->
+                                  new File( outputDirectory, 'pl-215/zip' ).isDirectory() <!-- Directory should be created -->
+                                  new File( outputDirectory, 'pl-215/zip' ).directorySize() == 3344329
                             </assertGroovy>
                         </configuration>
                     </execution>
@@ -167,19 +167,19 @@
                         <phase>initialize</phase>
                         <configuration>
                             <assertEqual>
-                                ${outputDir}/pl-214/pom-default|${outputDir}/pl-214/pom-UTF-8
-                                ${outputDir}/pl-214/pom-UTF-8|${outputDir}/pl-214/pom-ASCII
-                                ${outputDir}/pl-214/pom-ASCII|${outputDir}/pl-214/pom-ISO-8859-1
-                                ${outputDir}/pl-214/pom-ISO-8859-1|${outputDir}/pl-214/pom-default
+                                ${outputDirectory}/pl-214/pom-default|${outputDirectory}/pl-214/pom-UTF-8
+                                ${outputDirectory}/pl-214/pom-UTF-8|${outputDirectory}/pl-214/pom-ASCII
+                                ${outputDirectory}/pl-214/pom-ASCII|${outputDirectory}/pl-214/pom-ISO-8859-1
+                                ${outputDirectory}/pl-214/pom-ISO-8859-1|${outputDirectory}/pl-214/pom-default
 
-                                ${outputDir}/pl-214/text-ISO-8859-1|${outputDir}/pl-214/text-Windows-1251
+                                ${outputDirectory}/pl-214/text-ISO-8859-1|${outputDirectory}/pl-214/text-Windows-1251
                             </assertEqual>
                             <assertGroovy>
-                                new File( outputDir, 'pl-214/text-default/text-Windows-1251.txt' ).size()      == 203
-                                new File( outputDir, 'pl-214/text-UTF-8/text-Windows-1251.txt' ).size()        == 203
-                                new File( outputDir, 'pl-214/text-ASCII/text-Windows-1251.txt' ).size()        == 161
-                                new File( outputDir, 'pl-214/text-ISO-8859-1/text-Windows-1251.txt' ).size()   == 161
-                                new File( outputDir, 'pl-214/text-Windows-1251/text-Windows-1251.txt' ).size() == 161
+                                new File( outputDirectory, 'pl-214/text-default/text-Windows-1251.txt' ).size()      == 203
+                                new File( outputDirectory, 'pl-214/text-UTF-8/text-Windows-1251.txt' ).size()        == 203
+                                new File( outputDirectory, 'pl-214/text-ASCII/text-Windows-1251.txt' ).size()        == 161
+                                new File( outputDirectory, 'pl-214/text-ISO-8859-1/text-Windows-1251.txt' ).size()   == 161
+                                new File( outputDirectory, 'pl-214/text-Windows-1251/text-Windows-1251.txt' ).size() == 161
                             </assertGroovy>
                         </configuration>
                     </execution>

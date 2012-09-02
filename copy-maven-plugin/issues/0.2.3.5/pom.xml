@@ -107,7 +107,7 @@
                             <filterWithDollarOnly>true</filterWithDollarOnly>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-549</targetPath>
+                                    <targetPath>${outputDirectory}/pl-549</targetPath>
                                     <dependency>
                                         <excludeScope>provided</excludeScope>
                                     </dependency>
@@ -130,7 +130,7 @@
                             <filterWithDollarOnly>true</filterWithDollarOnly>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-548/1/2/3/4/5/6/7/8/9</targetPath>
+                                    <targetPath>${outputDirectory}/pl-548/1/2/3/4/5/6/7/8/9</targetPath>
                                     <directory>${basedir}/src/test/resources</directory>
                                     <include>**/*</include>
                                     <filtering>true</filtering>
@@ -153,7 +153,7 @@
                         <configuration>
                             <resources>
                                 <resource>
-                                    <targetRoot>${outputDir}/pl-541</targetRoot>
+                                    <targetRoot>${outputDirectory}/pl-541</targetRoot>
                                     <targetPath>1, 2, 3</targetPath>
                                     <dependency>
                                         <groupId>org.codehaus.groovy</groupId>
@@ -163,20 +163,20 @@
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <directory>${outputDir}/pl-541/1</directory>
+                                    <directory>${outputDirectory}/pl-541/1</directory>
                                     <clean>true</clean>
                                     <verbose>false</verbose>
                                     <process>{{ assert files.size() == 3775 }}</process>
                                 </resource>
                                 <resource>
-                                    <directory>${outputDir}/pl-541/2</directory>
+                                    <directory>${outputDirectory}/pl-541/2</directory>
                                     <clean>true</clean>
                                     <cleanEmptyDirectories>true</cleanEmptyDirectories>
                                     <verbose>false</verbose>
                                     <process>{{ assert files.size() == 3891 }}</process>
                                 </resource>
                                 <resource>
-                                    <directory>${outputDir}/pl-541/3</directory>
+                                    <directory>${outputDirectory}/pl-541/3</directory>
                                     <clean>true</clean>
                                     <cleanEmptyDirectories>true</cleanEmptyDirectories>
                                     <include>**/*.class, **/*.txt</include>
@@ -206,7 +206,7 @@
                                 <!-- Retrieving optional non-existing dependency -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/pl-539/1</targetPath>
+                                    <targetPath>${outputDirectory}/pl-539/1</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -216,7 +216,7 @@
                                     <process>{{ assert files.size() == 0 }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-539/2</targetPath>
+                                    <targetPath>${outputDirectory}/pl-539/2</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -225,7 +225,7 @@
                                     <failOnError>false</failOnError>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-539/3</targetPath>
+                                    <targetPath>${outputDirectory}/pl-539/3</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -236,7 +236,7 @@
                                     <failsWith>AssertionError</failsWith>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-539/4</targetPath>
+                                    <targetPath>${outputDirectory}/pl-539/4</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -247,7 +247,7 @@
                                     <failOnError>false</failOnError>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-539/5</targetPath>
+                                    <targetPath>${outputDirectory}/pl-539/5</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -259,7 +259,7 @@
                                 <!-- Retrieving optional non-existing dependencies -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/pl-539/6</targetPath>
+                                    <targetPath>${outputDirectory}/pl-539/6</targetPath>
                                     <dependencies>
                                         <dependency>
                                             <groupId>ch.qos.logback</groupId>
@@ -277,7 +277,7 @@
                                     <process>{{ assert files.size() == 1 }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-539/7</targetPath>
+                                    <targetPath>${outputDirectory}/pl-539/7</targetPath>
                                     <dependencies>
                                         <dependency>
                                             <groupId>ch.qos.logback</groupId>
@@ -294,7 +294,7 @@
                                     <process>{{ assert files.size() == 1 }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-539/8</targetPath>
+                                    <targetPath>${outputDirectory}/pl-539/8</targetPath>
                                     <dependencies>
                                         <dependency>
                                             <groupId>ch.qos.logback</groupId>
@@ -313,7 +313,7 @@
                                     <failsWith>AssertionError</failsWith>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-539/9</targetPath>
+                                    <targetPath>${outputDirectory}/pl-539/9</targetPath>
                                     <dependencies>
                                         <dependency>
                                             <groupId>ch.qos.logback</groupId>
@@ -332,7 +332,7 @@
                                 <!-- Retrieving optional non-existing dependencies transitively -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/pl-539/10</targetPath>
+                                    <targetPath>${outputDirectory}/pl-539/10</targetPath>
                                     <dependencies>
                                         <dependency>
                                             <groupId>ch.qos.logback</groupId>
@@ -355,7 +355,7 @@
                                     <process>{{ assert files.size() == 10 }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-539/11</targetPath>
+                                    <targetPath>${outputDirectory}/pl-539/11</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -366,7 +366,7 @@
                                     <process>{{ assert files.size() == 0 }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-539/12</targetPath>
+                                    <targetPath>${outputDirectory}/pl-539/12</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -378,7 +378,7 @@
                                     <failsWith>AssertionError</failsWith>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-539/13</targetPath>
+                                    <targetPath>${outputDirectory}/pl-539/13</targetPath>
                                     <dependencies>
                                         <dependency>
                                             <groupId>ch.qos.logback</groupId>
@@ -399,7 +399,7 @@
                                 <!-- Retrieving non-existing dependency with <failIfNotFound>/<failOnError> set to false -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/pl-539/14</targetPath>
+                                    <targetPath>${outputDirectory}/pl-539/14</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -409,7 +409,7 @@
                                     <process>{{ assert files.size() == 0 }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-539/15</targetPath>
+                                    <targetPath>${outputDirectory}/pl-539/15</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -419,7 +419,7 @@
                                     <process>{{ assert files.size() == 0 }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-539/16</targetPath>
+                                    <targetPath>${outputDirectory}/pl-539/16</targetPath>
                                     <dependencies>
                                         <dependency>
                                             <groupId>ch.qos.logback</groupId>
@@ -436,7 +436,7 @@
                                     <process>{{ assert files.size() == 1 }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-539/17</targetPath>
+                                    <targetPath>${outputDirectory}/pl-539/17</targetPath>
                                     <dependencies>
                                         <dependency>
                                             <groupId>ch.qos.logback</groupId>
@@ -453,7 +453,7 @@
                                     <process>{{ assert files.size() == 1 }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-539/18</targetPath>
+                                    <targetPath>${outputDirectory}/pl-539/18</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -467,7 +467,7 @@
                                 <!-- Retrieving non-existing dependency transitively with <failIfNotFound>/<failOnError> set to false -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/pl-539/19</targetPath>
+                                    <targetPath>${outputDirectory}/pl-539/19</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -478,7 +478,7 @@
                                     <process>{{ assert files.size() == 0 }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-539/20</targetPath>
+                                    <targetPath>${outputDirectory}/pl-539/20</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -489,7 +489,7 @@
                                     <process>{{ assert files.size() == 0 }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-539/21</targetPath>
+                                    <targetPath>${outputDirectory}/pl-539/21</targetPath>
                                     <dependencies>
                                         <dependency>
                                             <groupId>ch.qos.logback</groupId>
@@ -509,7 +509,7 @@
                                     <process>{{ assert files.size() == 10 }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-539/22</targetPath>
+                                    <targetPath>${outputDirectory}/pl-539/22</targetPath>
                                     <dependencies>
                                         <dependency>
                                             <groupId>ch.qos.logback</groupId>
@@ -528,7 +528,7 @@
                                     <process>{{ assert files.size() == 1 }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-539/23</targetPath>
+                                    <targetPath>${outputDirectory}/pl-539/23</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -540,7 +540,7 @@
                                     <failsWith>AssertionError</failsWith>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-539/24</targetPath>
+                                    <targetPath>${outputDirectory}/pl-539/24</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -569,14 +569,14 @@
                             <resources>
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
-                                    <targetPath>${outputDir}</targetPath>
+                                    <targetPath>${outputDirectory}</targetPath>
                                     <file>no-such-file.txt</file>
                                     <filtering>true</filtering>
                                     <process>{{ assert files.size() == 0 }}</process>
                                 </resource>
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
-                                    <targetPath>${outputDir}</targetPath>
+                                    <targetPath>${outputDirectory}</targetPath>
                                     <file>no-such-file.txt</file>
                                     <filtering>true</filtering>
                                     <process>{{ assert files.size() > 0 }}</process>
@@ -584,14 +584,14 @@
                                 </resource>
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
-                                    <targetPath>${outputDir}</targetPath>
+                                    <targetPath>${outputDirectory}</targetPath>
                                     <file>1/2/3/4/5/6/7/no-such-file.txt</file>
                                     <filtering>true</filtering>
                                     <process>{{ assert files.size() == 0 }}</process>
                                 </resource>
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
-                                    <targetPath>${outputDir}</targetPath>
+                                    <targetPath>${outputDirectory}</targetPath>
                                     <file>1/2/3/4/5/6/7/no-such-file.txt</file>
                                     <filtering>true</filtering>
                                     <process>{{ assert files.size() > 0 }}</process>
@@ -599,14 +599,14 @@
                                 </resource>
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
-                                    <targetPath>${outputDir}</targetPath>
+                                    <targetPath>${outputDirectory}</targetPath>
                                     <file>${project.basedir}/no-such-file.txt</file>
                                     <filtering>true</filtering>
                                     <process>{{ assert files.size() == 0 }}</process>
                                 </resource>
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
-                                    <targetPath>${outputDir}</targetPath>
+                                    <targetPath>${outputDirectory}</targetPath>
                                     <file>${project.basedir}/no-such-file.txt</file>
                                     <filtering>true</filtering>
                                     <process>{{ assert files.size() > 0 }}</process>
@@ -614,14 +614,14 @@
                                 </resource>
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
-                                    <targetPath>${outputDir}</targetPath>
+                                    <targetPath>${outputDirectory}</targetPath>
                                     <file>${project.basedir}/1/2/3/4/5/6/7/no-such-file.txt</file>
                                     <filtering>true</filtering>
                                     <process>{{ assert files.size() == 0 }}</process>
                                 </resource>
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
-                                    <targetPath>${outputDir}</targetPath>
+                                    <targetPath>${outputDirectory}</targetPath>
                                     <file>${project.basedir}/1/2/3/4/5/6/7/no-such-file.txt</file>
                                     <filtering>true</filtering>
                                     <process>{{ assert files.size() > 0 }}</process>
@@ -629,14 +629,14 @@
                                 </resource>
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
-                                    <targetPath>${outputDir}</targetPath>
+                                    <targetPath>${outputDirectory}</targetPath>
                                     <file>user.properties</file>
                                     <filtering>true</filtering>
                                     <process>{{ assert files.size() == 0 }}</process>
                                 </resource>
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
-                                    <targetPath>${outputDir}</targetPath>
+                                    <targetPath>${outputDirectory}</targetPath>
                                     <file>user.properties</file>
                                     <filtering>true</filtering>
                                     <process>{{ assert files.size() > 0 }}</process>
@@ -644,14 +644,14 @@
                                 </resource>
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
-                                    <targetPath>${outputDir}</targetPath>
+                                    <targetPath>${outputDirectory}</targetPath>
                                     <file>src/main/db/environments/user/user.properties</file>
                                     <filtering>true</filtering>
                                     <process>{{ assert files.size() == 0 }}</process>
                                 </resource>
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
-                                    <targetPath>${outputDir}</targetPath>
+                                    <targetPath>${outputDirectory}</targetPath>
                                     <file>src/main/db/environments/user/user.properties</file>
                                     <filtering>true</filtering>
                                     <process>{{ assert files.size() > 0 }}</process>
@@ -659,14 +659,14 @@
                                 </resource>
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
-                                    <targetPath>${outputDir}</targetPath>
+                                    <targetPath>${outputDirectory}</targetPath>
                                     <file>${project.basedir}/user.properties</file>
                                     <filtering>true</filtering>
                                     <process>{{ assert files.size() == 0 }}</process>
                                 </resource>
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
-                                    <targetPath>${outputDir}</targetPath>
+                                    <targetPath>${outputDirectory}</targetPath>
                                     <file>${project.basedir}/user.properties</file>
                                     <filtering>true</filtering>
                                     <process>{{ assert files.size() > 0 }}</process>
@@ -674,14 +674,14 @@
                                 </resource>
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
-                                    <targetPath>${outputDir}</targetPath>
+                                    <targetPath>${outputDirectory}</targetPath>
                                     <file>${project.basedir}/src/main/db/environments/user/user.properties</file>
                                     <filtering>true</filtering>
                                     <process>{{ assert files.size() == 0 }}</process>
                                 </resource>
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
-                                    <targetPath>${outputDir}</targetPath>
+                                    <targetPath>${outputDirectory}</targetPath>
                                     <file>${project.basedir}/src/main/db/environments/user/user.properties</file>
                                     <filtering>true</filtering>
                                     <process>{{ assert files.size() > 0 }}</process>
@@ -689,14 +689,14 @@
                                 </resource>
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
-                                    <targetPath>${outputDir}</targetPath>
+                                    <targetPath>${outputDirectory}</targetPath>
                                     <directory>no-such-directory</directory>
                                     <filtering>true</filtering>
                                     <process>{{ assert files.size() == 0 }}</process>
                                 </resource>
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
-                                    <targetPath>${outputDir}</targetPath>
+                                    <targetPath>${outputDirectory}</targetPath>
                                     <directory>no-such-directory</directory>
                                     <filtering>true</filtering>
                                     <process>{{ assert files.size() > 0 }}</process>
@@ -704,7 +704,7 @@
                                 </resource>
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
-                                    <targetPath>${outputDir}</targetPath>
+                                    <targetPath>${outputDirectory}</targetPath>
                                     <directory>no-such-directory</directory>
                                     <include>no-such-file.txt</include>
                                     <filtering>true</filtering>
@@ -712,7 +712,7 @@
                                 </resource>
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
-                                    <targetPath>${outputDir}</targetPath>
+                                    <targetPath>${outputDirectory}</targetPath>
                                     <directory>no-such-directory</directory>
                                     <include>no-such-file.txt</include>
                                     <filtering>true</filtering>
@@ -721,7 +721,7 @@
                                 </resource>
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
-                                    <targetPath>${outputDir}</targetPath>
+                                    <targetPath>${outputDirectory}</targetPath>
                                     <directory>${project.basedir}</directory>
                                     <include>no-such-file.txt</include>
                                     <filtering>true</filtering>
@@ -729,7 +729,7 @@
                                 </resource>
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
-                                    <targetPath>${outputDir}</targetPath>
+                                    <targetPath>${outputDirectory}</targetPath>
                                     <directory>${project.basedir}</directory>
                                     <include>no-such-file.txt</include>
                                     <filtering>true</filtering>
@@ -738,7 +738,7 @@
                                 </resource>
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
-                                    <targetPath>${outputDir}</targetPath>
+                                    <targetPath>${outputDirectory}</targetPath>
                                     <directory>${project.basedir}</directory>
                                     <include>**/*.nothing</include>
                                     <filtering>true</filtering>
@@ -746,7 +746,7 @@
                                 </resource>
                                 <resource>
                                     <failIfNotFound>false</failIfNotFound>
-                                    <targetPath>${outputDir}</targetPath>
+                                    <targetPath>${outputDirectory}</targetPath>
                                     <directory>${project.basedir}</directory>
                                     <include>**/*.nothing</include>
                                     <filtering>true</filtering>
@@ -772,7 +772,7 @@
                             </groovyConfig>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-509/1</targetPath>
+                                    <targetPath>${outputDirectory}/pl-509/1</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -784,7 +784,7 @@
                                     <process>{{ assert files.size() == ${springCompileTestDependencies} }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-509/2</targetPath>
+                                    <targetPath>${outputDirectory}/pl-509/2</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -795,7 +795,7 @@
                                     <process>{{ assert files.size() == 6 }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-509/3</targetPath>
+                                    <targetPath>${outputDirectory}/pl-509/3</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -806,7 +806,7 @@
                                     <process>{{ assert files.size() == 3 }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-509/4</targetPath>
+                                    <targetPath>${outputDirectory}/pl-509/4</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -818,7 +818,7 @@
                                     <process>{{ assert files.size() == 29 }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-509/5</targetPath>
+                                    <targetPath>${outputDirectory}/pl-509/5</targetPath>
                                     <dependency>
                                         <groupId>ch.qos.logback</groupId>
                                         <artifactId>logback-core</artifactId>
@@ -828,7 +828,7 @@
                                     <process>{{ assert files.size() == 11 }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-509/6</targetPath>
+                                    <targetPath>${outputDirectory}/pl-509/6</targetPath>
                                     <dependency>
                                         <groupId>ch.qos.logback</groupId>
                                         <artifactId>logback-core</artifactId>
@@ -841,7 +841,7 @@
                                     <process>{{ assert files.size() == 6 }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-509/7</targetPath>
+                                    <targetPath>${outputDirectory}/pl-509/7</targetPath>
                                     <dependency>
                                         <groupId>ch.qos.logback</groupId>
                                         <artifactId>logback-core</artifactId>
@@ -868,7 +868,7 @@
                         <configuration>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-430</targetPath>
+                                    <targetPath>${outputDirectory}/pl-430</targetPath>
                                     <file>${mainPom}</file>
                                     <process>
                                     {{
@@ -907,7 +907,7 @@
                             <resources>
                                 <resource>
                                     <description>1</description>
-                                    <targetPath>${outputDir}/pl-506/1</targetPath>
+                                    <targetPath>${outputDirectory}/pl-506/1</targetPath>
                                     <dependency>
                                         <groupId>com.jcraft</groupId>
                                         <artifactId>jsch</artifactId>
@@ -919,7 +919,7 @@
                                 </resource>
                                 <resource>
                                     <description>2</description>
-                                    <targetPath>${outputDir}/pl-506/2</targetPath>
+                                    <targetPath>${outputDirectory}/pl-506/2</targetPath>
                                     <dependency>
                                         <groupId>com.jcraft</groupId>
                                         <artifactId>jsch</artifactId>
@@ -930,7 +930,7 @@
                                 </resource>
                                 <resource>
                                     <description>3</description>
-                                    <targetPath>${outputDir}/pl-506/3</targetPath>
+                                    <targetPath>${outputDirectory}/pl-506/3</targetPath>
                                     <dependency>
                                         <groupId>com.jcraft</groupId>
                                         <artifactId>jsch</artifactId>
@@ -942,7 +942,7 @@
                                 </resource>
                                 <resource>
                                     <description>4</description>
-                                    <targetPath>${outputDir}/pl-506/4</targetPath>
+                                    <targetPath>${outputDirectory}/pl-506/4</targetPath>
                                     <dependency>
                                         <groupId>com.jcraft</groupId>
                                         <artifactId>jsch</artifactId>
@@ -954,7 +954,7 @@
                                 </resource>
                                 <resource>
                                     <description>5</description>
-                                    <targetPath>${outputDir}/pl-506/5</targetPath>
+                                    <targetPath>${outputDirectory}/pl-506/5</targetPath>
                                     <dependencies>
                                         <dependency>
                                             <groupId>com.jcraft</groupId>
@@ -972,7 +972,7 @@
                                 </resource>
                                 <resource>
                                     <description>6</description>
-                                    <targetPath>${outputDir}/pl-506/6</targetPath>
+                                    <targetPath>${outputDirectory}/pl-506/6</targetPath>
                                     <dependencies>
                                         <dependency>
                                             <groupId>com.jcraft</groupId>
@@ -992,7 +992,7 @@
                                 </resource>
                                 <resource>
                                     <description>7</description>
-                                    <targetPath>${outputDir}/pl-506/7</targetPath>
+                                    <targetPath>${outputDirectory}/pl-506/7</targetPath>
                                     <dependencies>
                                         <dependency>
                                             <groupId>com.jcraft</groupId>
@@ -1026,27 +1026,28 @@
                         <configuration>
                             <resources>
                                 <resource>
-                                    <targetRoot>${outputDir}/pl-523</targetRoot>
+                                    <targetRoot>${outputDirectory}/pl-523</targetRoot>
                                     <targetPath>1, 2, 3</targetPath>
                                     <file>${mainPom}</file>
                                     <process>{{ assert ( files.size() == 3 ) &amp;&amp; files.every{ it.lastModified() == new File( mainPom ).lastModified() }}}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-523/11, ${outputDir}/pl-523/22, ${outputDir}/pl-523/33</targetPath>
+                                    <targetPath>${outputDirectory}/pl-523/11, ${outputDirectory}/pl-523/22,
+                                        ${outputDirectory}/pl-523/33</targetPath>
                                     <file>${mainPom}</file>
                                     <process>{{ assert ( files.size() == 3 ) &amp;&amp; files.every{ it.lastModified() == new File( mainPom ).lastModified() }}}</process>
                                 </resource>
                                 <resource>
                                     <targetPaths>
-                                        <targetPath>${outputDir}/pl-523/111</targetPath>
-                                        <targetPath>${outputDir}/pl-523/222</targetPath>
-                                        <targetPath>${outputDir}/pl-523/333</targetPath>
+                                        <targetPath>${outputDirectory}/pl-523/111</targetPath>
+                                        <targetPath>${outputDirectory}/pl-523/222</targetPath>
+                                        <targetPath>${outputDirectory}/pl-523/333</targetPath>
                                     </targetPaths>
                                     <file>${mainPom}</file>
                                     <process>{{ assert ( files.size() == 3 ) &amp;&amp; files.every{ it.lastModified() == new File( mainPom ).lastModified() }}}</process>
                                 </resource>
                                 <resource>
-                                    <targetRoot>${outputDir}/pl-523</targetRoot>
+                                    <targetRoot>${outputDirectory}/pl-523</targetRoot>
                                     <targetPath>1111, 2222, 3333</targetPath>
                                     <filtering>true</filtering>
                                     <filterWithDollarOnly>true</filterWithDollarOnly>
@@ -1055,7 +1056,7 @@
                                     <process>{{ assert ( files.size() == 3 ) &amp;&amp; files.every{ it.lastModified() > new File( mainPom ).lastModified() }}}</process>
                                 </resource>
                                 <resource>
-                                    <targetRoot>${outputDir}/pl-523</targetRoot>
+                                    <targetRoot>${outputDirectory}/pl-523</targetRoot>
                                     <targetPath>a, b, c</targetPath>
                                     <directory>${resourcesDir}</directory>
                                     <process>
@@ -1066,7 +1067,8 @@
                                     </process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-523/aa, ${outputDir}/pl-523/bb, ${outputDir}/pl-523/cc</targetPath>
+                                    <targetPath>${outputDirectory}/pl-523/aa, ${outputDirectory}/pl-523/bb,
+                                        ${outputDirectory}/pl-523/cc</targetPath>
                                     <directory>${resourcesDir}</directory>
                                     <process>
                                     {{
@@ -1077,9 +1079,9 @@
                                 </resource>
                                 <resource>
                                     <targetPaths>
-                                        <targetPath>${outputDir}/pl-523/aaa</targetPath>
-                                        <targetPath>${outputDir}/pl-523/bbb</targetPath>
-                                        <targetPath>${outputDir}/pl-523/ccc</targetPath>
+                                        <targetPath>${outputDirectory}/pl-523/aaa</targetPath>
+                                        <targetPath>${outputDirectory}/pl-523/bbb</targetPath>
+                                        <targetPath>${outputDirectory}/pl-523/ccc</targetPath>
                                     </targetPaths>
                                     <directory>${resourcesDir}</directory>
                                     <process>
@@ -1090,7 +1092,7 @@
                                     </process>
                                 </resource>
                                 <resource>
-                                    <targetRoot>${outputDir}/pl-523</targetRoot>
+                                    <targetRoot>${outputDirectory}/pl-523</targetRoot>
                                     <targetPath>aaaa, bbbb, cccc</targetPath>
                                     <directory>${resourcesDir}</directory>
                                     <filtering>true</filtering>
@@ -1119,20 +1121,20 @@
                         <configuration>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-515/1</targetPath>
+                                    <targetPath>${outputDirectory}/pl-515/1</targetPath>
                                     <file>${project.basedir}/src/main/resources/1.bat</file>
                                     <filtering>true</filtering>
                                     <process>{{ assert ! file.text.contains( '$' + '{' ) }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-515/2</targetPath>
+                                    <targetPath>${outputDirectory}/pl-515/2</targetPath>
                                     <file>${project.basedir}/src/main/resources/1.bat</file>
                                     <filtering>true</filtering>
                                     <filterWithDollarOnly>true</filterWithDollarOnly>
                                     <process>{{ assert ! file.text.contains( '$' + '{' ) }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-515/3</targetPath>
+                                    <targetPath>${outputDirectory}/pl-515/3</targetPath>
                                     <file>${project.basedir}/src/main/resources/1.bat</file>
                                     <filtering>true</filtering>
                                     <filterWithDollarOnly>true</filterWithDollarOnly>
@@ -1140,7 +1142,7 @@
                                     <process>{{ assert file.text.contains( '$' + '{' ) }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-515/4</targetPath>
+                                    <targetPath>${outputDirectory}/pl-515/4</targetPath>
                                     <file>${project.basedir}/src/main/resources/1.bat</file>
                                     <filtering>true</filtering>
                                     <filterWithDollarOnly>true</filterWithDollarOnly>
@@ -1149,7 +1151,7 @@
                                     <process>{{ assert file.text.contains( '$' + '{' ) }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-515/5</targetPath>
+                                    <targetPath>${outputDirectory}/pl-515/5</targetPath>
                                     <file>${project.basedir}/src/main/resources/1.bat</file>
                                     <filtering>true</filtering>
                                     <filterWithDollarOnly>true</filterWithDollarOnly>
@@ -1178,7 +1180,7 @@
                                 <!-- Regular copy operation -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/pl-514/1</targetPath>
+                                    <targetPath>${outputDirectory}/pl-514/1</targetPath>
                                     <file>${mainPom}</file>
                                     <filtering>true</filtering>
                                     <filter>{{ files }}</filter>
@@ -1190,7 +1192,7 @@
                                     </process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-514/2</targetPath>
+                                    <targetPath>${outputDirectory}/pl-514/2</targetPath>
                                     <file>${mainPom}</file>
                                     <replace>
                                         <from>(?s).</from>
@@ -1200,7 +1202,7 @@
                                     <process>{{ assert file.text ==~ /^a+$/ }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-514/3</targetPath>
+                                    <targetPath>${outputDirectory}/pl-514/3</targetPath>
                                     <file>${mainPom}</file>
                                     <filtering>true</filtering>
                                     <replaces>
@@ -1220,15 +1222,15 @@
                                 <!-- Copying file to itself -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetRoot>${outputDir}/pl-514</targetRoot>
+                                    <targetRoot>${outputDirectory}/pl-514</targetRoot>
                                     <targetPath>4, 5, 6</targetPath>
                                     <file>${mainPom}</file>
                                     <filter>{{ files }}</filter>
                                     <process>{{ assert files.size() == 3 }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-514/4</targetPath>
-                                    <file>${outputDir}/pl-514/4/pom.xml</file>
+                                    <targetPath>${outputDirectory}/pl-514/4</targetPath>
+                                    <file>${outputDirectory}/pl-514/4/pom.xml</file>
                                     <filtering>true</filtering>
                                     <filter>{{ files }}</filter>
                                     <process>
@@ -1239,8 +1241,8 @@
                                     </process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-514/5</targetPath>
-                                    <file>${outputDir}/pl-514/5/pom.xml</file>
+                                    <targetPath>${outputDirectory}/pl-514/5</targetPath>
+                                    <file>${outputDirectory}/pl-514/5/pom.xml</file>
                                     <replace>
                                         <from>(?s).</from>
                                         <to>a</to>
@@ -1249,8 +1251,8 @@
                                     <process>{{ assert file.text ==~ /^a+$/ }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-514/6</targetPath>
-                                    <file>${outputDir}/pl-514/6/pom.xml</file>
+                                    <targetPath>${outputDirectory}/pl-514/6</targetPath>
+                                    <file>${outputDirectory}/pl-514/6/pom.xml</file>
                                     <filtering>true</filtering>
                                     <replaces>
                                         <replace>
@@ -1269,15 +1271,15 @@
                                 <!-- Moving file -->
                                 <!-- ~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetRoot>${outputDir}/pl-514</targetRoot>
+                                    <targetRoot>${outputDirectory}/pl-514</targetRoot>
                                     <targetPath>7, 8, 9</targetPath>
                                     <file>${mainPom}</file>
                                     <filter>{{ files }}</filter>
                                     <process>{{ assert files.size() == 3 }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-514/10</targetPath>
-                                    <file>${outputDir}/pl-514/7/pom.xml</file>
+                                    <targetPath>${outputDirectory}/pl-514/10</targetPath>
+                                    <file>${outputDirectory}/pl-514/7/pom.xml</file>
                                     <move>true</move>
                                     <filtering>true</filtering>
                                     <filter>{{ files }}</filter>
@@ -1285,13 +1287,13 @@
                                     {{
                                         assert ! file.text.contains( '$' + '{' )
                                         assert   file.text.find( /\d|\w/ )
-                                        assert ! new File( outputDir, 'pl-514/7/pom.xml' ).file
+                                        assert ! new File( outputDirectoryectory, 'pl-514/7/pom.xml' ).file
                                     }}
                                     </process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-514/11</targetPath>
-                                    <file>${outputDir}/pl-514/8/pom.xml</file>
+                                    <targetPath>${outputDirectory}/pl-514/11</targetPath>
+                                    <file>${outputDirectory}/pl-514/8/pom.xml</file>
                                     <move>true</move>
                                     <replace>
                                         <from>(?s).</from>
@@ -1301,13 +1303,13 @@
                                     <process>
                                     {{
                                         assert file.text ==~ /^a+$/
-                                        assert ! new File( outputDir, 'pl-514/8/pom.xml' ).file
+                                        assert ! new File( outputDirectoryectory, 'pl-514/8/pom.xml' ).file
                                     }}
                                     </process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-514/12</targetPath>
-                                    <file>${outputDir}/pl-514/9/pom.xml</file>
+                                    <targetPath>${outputDirectory}/pl-514/12</targetPath>
+                                    <file>${outputDirectory}/pl-514/9/pom.xml</file>
                                     <move>true</move>
                                     <filtering>true</filtering>
                                     <replaces>
@@ -1324,7 +1326,7 @@
                                     <process>
                                     {{
                                         assert file.text.with{ ! ( contains( '$' + '{' ) || find( /\d|\w/ )) }
-                                        assert ! new File( outputDir, 'pl-514/9/pom.xml' ).file
+                                        assert ! new File( outputDirectoryectory, 'pl-514/9/pom.xml' ).file
                                     }}
                                     </process>
                                 </resource>
@@ -1332,7 +1334,7 @@
                                 <!-- Skipping identical files -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/pl-514/13</targetPath>
+                                    <targetPath>${outputDirectory}/pl-514/13</targetPath>
                                     <directory>${resourcesDir}</directory>
                                     <process>
                                     {{
@@ -1342,7 +1344,7 @@
                                     </process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-514/13</targetPath>
+                                    <targetPath>${outputDirectory}/pl-514/13</targetPath>
                                     <directory>${resourcesDir}</directory>
                                     <process>
                                     {{
@@ -1352,25 +1354,25 @@
                                     </process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-514/13</targetPath>
+                                    <targetPath>${outputDirectory}/pl-514/13</targetPath>
                                     <directory>${resourcesDir}</directory>
                                     <skipIdentical>true</skipIdentical>
                                     <process>{{ assert files.size() == 0 }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-514/13</targetPath>
-                                    <directory>${outputDir}/pl-514/13</directory>
+                                    <targetPath>${outputDirectory}/pl-514/13</targetPath>
+                                    <directory>${outputDirectory}/pl-514/13</directory>
                                     <process>{{ assert files.size() == 0 }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-514/13</targetPath>
-                                    <directory>${outputDir}/pl-514/13</directory>
+                                    <targetPath>${outputDirectory}/pl-514/13</targetPath>
+                                    <directory>${outputDirectory}/pl-514/13</directory>
                                     <filtering>true</filtering>
                                     <process>${assert12}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-514/13</targetPath>
-                                    <directory>${outputDir}/pl-514/13</directory>
+                                    <targetPath>${outputDirectory}/pl-514/13</targetPath>
+                                    <directory>${outputDirectory}/pl-514/13</directory>
                                     <replace>
                                         <from>.</from>
                                         <to>..</to>
@@ -1378,8 +1380,8 @@
                                     <process>${assert12}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-514/13</targetPath>
-                                    <directory>${outputDir}/pl-514/13</directory>
+                                    <targetPath>${outputDirectory}/pl-514/13</targetPath>
+                                    <directory>${outputDirectory}/pl-514/13</directory>
                                     <filtering>true</filtering>
                                     <replace>
                                         <from>.</from>
@@ -1403,26 +1405,26 @@
                         <configuration>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-511/1</targetPath>
+                                    <targetPath>${outputDirectory}/pl-511/1</targetPath>
                                     <file>${mainPom}</file>
                                     <filtering>true</filtering>
                                     <destFileName>1.xml</destFileName>
                                     <process>{{ assert file.with{ ( name == '1.xml' ) &amp;&amp; ( ! text.contains( '$' + '{' )) }; sleep ( 2000 ) }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-511/2</targetPath>
-                                    <file>${outputDir}/pl-511/1/1.xml</file>
+                                    <targetPath>${outputDirectory}/pl-511/2</targetPath>
+                                    <file>${outputDirectory}/pl-511/1/1.xml</file>
                                     <filtering>true</filtering>
                                     <filterWithDollarOnly>true</filterWithDollarOnly>
                                     <!-- No filtering was made - there's no "${ .. }" expressions in the file and "filterWithDollarOnly" is used  -->
-                                    <process>{{ assert file.lastModified() == new File( outputDir, 'pl-511/1/1.xml' ).lastModified() }}</process>
+                                    <process>{{ assert file.lastModified() == new File( outputDirectoryectory, 'pl-511/1/1.xml' ).lastModified() }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-511/3</targetPath>
-                                    <file>${outputDir}/pl-511/1/1.xml</file>
+                                    <targetPath>${outputDirectory}/pl-511/3</targetPath>
+                                    <file>${outputDirectory}/pl-511/1/1.xml</file>
                                     <filtering>true</filtering>
                                     <!-- Filtering was made - there's no "${ .. }" expressions in the file but "filterWithDollarOnly" isn't used -->
-                                    <process>{{ assert file.lastModified() > new File( outputDir, 'pl-511/1/1.xml' ).lastModified() }}</process>
+                                    <process>{{ assert file.lastModified() > new File( outputDirectoryectory, 'pl-511/1/1.xml' ).lastModified() }}</process>
                                 </resource>
                             </resources>
                         </configuration>
@@ -1440,7 +1442,7 @@
                         <configuration>
                             <resources>
                                 <resource>
-                                    <targetRoot>${outputDir}/pl-522/1</targetRoot>
+                                    <targetRoot>${outputDirectory}/pl-522/1</targetRoot>
                                     <targetPaths>
                                         <targetPath>0/0/09</targetPath>
                                         <targetPath>1/1</targetPath>
@@ -1454,7 +1456,7 @@
                                     <file>${project.basedir}/pom.xml</file>
                                 </resource>
                                 <resource>
-                                    <targetRoot>${outputDir}/pl-522/1</targetRoot>
+                                    <targetRoot>${outputDirectory}/pl-522/1</targetRoot>
                                     <targetPaths>
                                         <targetPath>0/0/09</targetPath>
                                         <targetPath>1/1</targetPath>
@@ -1469,13 +1471,13 @@
                                     <destFileName>1.txt</destFileName>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-522/2</targetPath>
-                                    <directory>${outputDir}/pl-522/1</directory>
+                                    <targetPath>${outputDirectory}/pl-522/2</targetPath>
+                                    <directory>${outputDirectory}/pl-522/1</directory>
                                     <process>{{ assert ( files.size() == 2 ) &amp;&amp; files.every{ ( it.name == 'pom.xml' ) || ( it.name == '1.txt' ) } }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-522/3</targetPath>
-                                    <directory>${outputDir}/pl-522/1</directory>
+                                    <targetPath>${outputDirectory}/pl-522/3</targetPath>
+                                    <directory>${outputDirectory}/pl-522/1</directory>
                                     <preservePath>true</preservePath>
                                     <process>{{ assert ( files.size() == ( 2 * 8 )) &amp;&amp; files.every{ ( it.name == 'pom.xml' ) || ( it.name == '1.txt' ) } }}</process>
                                 </resource>
@@ -1495,7 +1497,7 @@
                         <configuration>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-510/1</targetPath>
+                                    <targetPath>${outputDirectory}/pl-510/1</targetPath>
                                     <dependency>
                                         <groupId>org.codehaus.groovy</groupId>
                                         <artifactId>groovy-all</artifactId>
@@ -1507,7 +1509,7 @@
                                     <process>{{ assert files.size() == 3705 }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-510/2</targetPath>
+                                    <targetPath>${outputDirectory}/pl-510/2</targetPath>
                                     <dependency>
                                         <groupId>org.codehaus.groovy</groupId>
                                         <artifactId>groovy-all</artifactId>
@@ -1522,7 +1524,7 @@
                                     <process>{{ assert files.size() == 3705 }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-510/3</targetPath>
+                                    <targetPath>${outputDirectory}/pl-510/3</targetPath>
                                     <dependency>
                                         <groupId>org.codehaus.groovy</groupId>
                                         <artifactId>groovy-all</artifactId>
@@ -1538,7 +1540,7 @@
                                     <process>{{ assert files.size() == 3631 }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-510/4</targetPath>
+                                    <targetPath>${outputDirectory}/pl-510/4</targetPath>
                                     <dependency>
                                         <groupId>org.jenkins-ci.main</groupId>
                                         <artifactId>jenkins-war</artifactId>
@@ -1551,7 +1553,7 @@
                                     <process>{{ assert files.size() == 437 }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-510/5</targetPath>
+                                    <targetPath>${outputDirectory}/pl-510/5</targetPath>
                                     <dependency>
                                         <groupId>org.jenkins-ci.main</groupId>
                                         <artifactId>jenkins-war</artifactId>
@@ -1580,28 +1582,28 @@
                         <configuration>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-516/1</targetPath>
+                                    <targetPath>${outputDirectory}/pl-516/1</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <destFileName>0.txt</destFileName>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-516/1</targetPath>
+                                    <targetPath>${outputDirectory}/pl-516/1</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <destFileName>1.txt</destFileName>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-516/1</targetPath>
+                                    <targetPath>${outputDirectory}/pl-516/1</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <destFileName>2.txt</destFileName>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-516/1</targetPath>
+                                    <targetPath>${outputDirectory}/pl-516/1</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <destFileName>3.txt</destFileName>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-516/2</targetPath>
-                                    <directory>${outputDir}/pl-516/1</directory>
+                                    <targetPath>${outputDirectory}/pl-516/2</targetPath>
+                                    <directory>${outputDirectory}/pl-516/1</directory>
                                     <includes>
                                         <include>0.txt</include>
                                         <include>1.txt</include>
@@ -1611,8 +1613,8 @@
                                     <process>${processAssert}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-516/2</targetPath>
-                                    <directory>${outputDir}/pl-516/1</directory>
+                                    <targetPath>${outputDirectory}/pl-516/2</targetPath>
+                                    <directory>${outputDirectory}/pl-516/1</directory>
                                     <includes>
                                         <include>3.txt</include>
                                         <include>1.txt</include>
@@ -1622,8 +1624,8 @@
                                     <process>${processAssert}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-516/2</targetPath>
-                                    <directory>${outputDir}/pl-516/1</directory>
+                                    <targetPath>${outputDirectory}/pl-516/2</targetPath>
+                                    <directory>${outputDirectory}/pl-516/1</directory>
                                     <includes>
                                         <include>3.txt</include>
                                         <include>2.txt</include>
@@ -1633,20 +1635,20 @@
                                     <process>${processAssert}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-516/3</targetPath>
-                                    <directory>${outputDir}/pl-516/1</directory>
+                                    <targetPath>${outputDirectory}/pl-516/3</targetPath>
+                                    <directory>${outputDirectory}/pl-516/1</directory>
                                     <include>0.txt, 1.txt, 2.txt, 3.txt</include>
                                     <process>${processAssert}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-516/3</targetPath>
-                                    <directory>${outputDir}/pl-516/1</directory>
+                                    <targetPath>${outputDirectory}/pl-516/3</targetPath>
+                                    <directory>${outputDirectory}/pl-516/1</directory>
                                     <include>3.txt, 1.txt, 2.txt, 0.txt</include>
                                     <process>${processAssert}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-516/3</targetPath>
-                                    <directory>${outputDir}/pl-516/1</directory>
+                                    <targetPath>${outputDirectory}/pl-516/3</targetPath>
+                                    <directory>${outputDirectory}/pl-516/1</directory>
                                     <include>3.txt, 2.txt, 1.txt, 0.txt</include>
                                     <process>${processAssert}</process>
                                 </resource>
@@ -1669,46 +1671,46 @@
                                 <!-- Copying files -->
                                 <!-- ~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/pl-513-1/1</targetPath>
+                                    <targetPath>${outputDirectory}/pl-513-1/1</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <destFileName>1-pom-1.xml</destFileName>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-513-1/2</targetPath>
+                                    <targetPath>${outputDirectory}/pl-513-1/2</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <destFilePrefix>2-</destFilePrefix>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-513-1/3</targetPath>
+                                    <targetPath>${outputDirectory}/pl-513-1/3</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <destFileSuffix>-3</destFileSuffix>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-513-1/4</targetPath>
+                                    <targetPath>${outputDirectory}/pl-513-1/4</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <destFileExtension>4</destFileExtension>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-513-1/5</targetPath>
+                                    <targetPath>${outputDirectory}/pl-513-1/5</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <destFilePrefix>5-</destFilePrefix>
                                     <destFileSuffix>-5</destFileSuffix>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-513-1/6</targetPath>
+                                    <targetPath>${outputDirectory}/pl-513-1/6</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <destFileSuffix>-6</destFileSuffix>
                                     <destFileExtension>6</destFileExtension>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-513-1/7</targetPath>
+                                    <targetPath>${outputDirectory}/pl-513-1/7</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <destFilePrefix>7-</destFilePrefix>
                                     <destFileSuffix>-7</destFileSuffix>
                                     <destFileExtension>7</destFileExtension>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-513-1/8</targetPath>
+                                    <targetPath>${outputDirectory}/pl-513-1/8</targetPath>
                                     <directory>${resourcesDir}</directory>
                                     <preservePath>true</preservePath>
                                     <filter>{{ files.findAll{ it.name.endsWith( '.txt' ) }}}</filter>
@@ -1717,7 +1719,7 @@
                                     <destFileExtension>8</destFileExtension>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-513-1/9</targetPath>
+                                    <targetPath>${outputDirectory}/pl-513-1/9</targetPath>
                                     <directory>${resourcesDir}</directory>
                                     <preservePath>true</preservePath>
                                     <filter>{{ files.findAll{ ! it.name.endsWith( '.txt' ) }}}</filter>
@@ -1728,7 +1730,7 @@
                                 <!-- Copying files with structure -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/pl-513-1/10</targetPath>
+                                    <targetPath>${outputDirectory}/pl-513-1/10</targetPath>
                                     <dependency>
                                         <groupId>com.jcraft</groupId>
                                         <artifactId>jsch</artifactId>
@@ -1738,30 +1740,30 @@
                                     <process>{{ files.findAll{ it.name.endsWith( '.MF' ) }.first().delete() }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-513-1/11</targetPath>
-                                    <directory>${outputDir}/pl-513-1/10</directory>
+                                    <targetPath>${outputDirectory}/pl-513-1/11</targetPath>
+                                    <directory>${outputDirectory}/pl-513-1/10</directory>
                                     <verbose>false</verbose>
                                     <preservePath>true</preservePath>
                                     <destFilePrefix>11-</destFilePrefix>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-513-1/12</targetPath>
-                                    <directory>${outputDir}/pl-513-1/10</directory>
+                                    <targetPath>${outputDirectory}/pl-513-1/12</targetPath>
+                                    <directory>${outputDirectory}/pl-513-1/10</directory>
                                     <verbose>false</verbose>
                                     <preservePath>true</preservePath>
                                     <destFileSuffix>-12</destFileSuffix>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-513-1/13</targetPath>
-                                    <directory>${outputDir}/pl-513-1/10</directory>
+                                    <targetPath>${outputDirectory}/pl-513-1/13</targetPath>
+                                    <directory>${outputDirectory}/pl-513-1/10</directory>
                                     <verbose>false</verbose>
                                     <preservePath>true</preservePath>
                                     <destFilePrefix>13-</destFilePrefix>
                                     <destFileSuffix>-13</destFileSuffix>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-513-1/14</targetPath>
-                                    <directory>${outputDir}/pl-513-1/10</directory>
+                                    <targetPath>${outputDirectory}/pl-513-1/14</targetPath>
+                                    <directory>${outputDirectory}/pl-513-1/10</directory>
                                     <verbose>false</verbose>
                                     <preservePath>true</preservePath>
                                     <destFilePrefix>14-</destFilePrefix>
@@ -1769,16 +1771,16 @@
                                     <destFileExtension>14</destFileExtension>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-513-1/15</targetPath>
-                                    <directory>${outputDir}/pl-513-1/10</directory>
+                                    <targetPath>${outputDirectory}/pl-513-1/15</targetPath>
+                                    <directory>${outputDirectory}/pl-513-1/10</directory>
                                     <verbose>false</verbose>
                                     <destFilePrefix>15-</destFilePrefix>
                                     <destFileSuffix>-15</destFileSuffix>
                                     <destFileExtension>15</destFileExtension>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-513-1/16</targetPath>
-                                    <directory>${outputDir}/pl-513-1/10</directory>
+                                    <targetPath>${outputDirectory}/pl-513-1/16</targetPath>
+                                    <directory>${outputDirectory}/pl-513-1/10</directory>
                                     <verbose>false</verbose>
                                     <destFileName>destFileName</destFileName>
                                     <destFilePrefix>16-</destFilePrefix>
@@ -1805,19 +1807,19 @@
                                 <!-- Copying files -->
                                 <!-- ~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/pl-513-2/1</targetPath>
+                                    <targetPath>${outputDirectory}/pl-513-2/1</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                <!-- <destFileName>1-pom-1.xml</destFileName> -->
                                     <process>{{ assert file.file &amp;&amp; file.renameTo( new File( file.parentFile, '1-pom-1.xml' )) }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-513-2/2</targetPath>
+                                    <targetPath>${outputDirectory}/pl-513-2/2</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                <!-- <destFilePrefix>2-</destFilePrefix> -->
                                     <process>{{ assert file.file &amp;&amp; file.renameTo( new File( file.parentFile, "2-$file.name" )) }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-513-2/3</targetPath>
+                                    <targetPath>${outputDirectory}/pl-513-2/3</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                <!-- <destFileSuffix>-3</destFileSuffix> -->
                                     <process>
@@ -1828,7 +1830,7 @@
                                     </process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-513-2/4</targetPath>
+                                    <targetPath>${outputDirectory}/pl-513-2/4</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                               <!-- <destFileExtension>4</destFileExtension> -->
                                     <process>
@@ -1839,7 +1841,7 @@
                                     </process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-513-2/5</targetPath>
+                                    <targetPath>${outputDirectory}/pl-513-2/5</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                <!-- <destFilePrefix>5-</destFilePrefix> -->
                                <!-- <destFileSuffix>-5</destFileSuffix> -->
@@ -1851,7 +1853,7 @@
                                     </process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-513-2/6</targetPath>
+                                    <targetPath>${outputDirectory}/pl-513-2/6</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                <!-- <destFileSuffix>-6</destFileSuffix> -->
                                <!-- <destFileExtension>6</destFileExtension> -->
@@ -1863,7 +1865,7 @@
                                     </process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-513-2/7</targetPath>
+                                    <targetPath>${outputDirectory}/pl-513-2/7</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                <!-- <destFilePrefix>7-</destFilePrefix>-->
                                <!-- <destFileSuffix>-7</destFileSuffix>-->
@@ -1876,7 +1878,7 @@
                                     </process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-513-2/8</targetPath>
+                                    <targetPath>${outputDirectory}/pl-513-2/8</targetPath>
                                     <directory>${resourcesDir}</directory>
                                     <preservePath>true</preservePath>
                                     <filter>{{ files.findAll{ it.name.endsWith( '.txt' ) }}}</filter>
@@ -1894,7 +1896,7 @@
                                     </process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-513-2/9</targetPath>
+                                    <targetPath>${outputDirectory}/pl-513-2/9</targetPath>
                                     <directory>${resourcesDir}</directory>
                                     <preservePath>true</preservePath>
                                     <filter>{{ files.findAll{ ! it.name.endsWith( '.txt' ) }}}</filter>
@@ -1914,7 +1916,7 @@
                                 <!-- Copying files with structure -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/pl-513-2/10</targetPath>
+                                    <targetPath>${outputDirectory}/pl-513-2/10</targetPath>
                                     <dependency>
                                         <groupId>com.jcraft</groupId>
                                         <artifactId>jsch</artifactId>
@@ -1924,8 +1926,8 @@
                                     <process>{{ files.findAll{ it.name.endsWith( '.MF' ) }.first().delete() }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-513-2/11</targetPath>
-                                    <directory>${outputDir}/pl-513-2/10</directory>
+                                    <targetPath>${outputDirectory}/pl-513-2/11</targetPath>
+                                    <directory>${outputDirectory}/pl-513-2/10</directory>
                                     <verbose>false</verbose>
                                     <preservePath>true</preservePath>
                                <!-- <destFilePrefix>11-</destFilePrefix> -->
@@ -1940,8 +1942,8 @@
                                     </process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-513-2/12</targetPath>
-                                    <directory>${outputDir}/pl-513-2/10</directory>
+                                    <targetPath>${outputDirectory}/pl-513-2/12</targetPath>
+                                    <directory>${outputDirectory}/pl-513-2/10</directory>
                                     <verbose>false</verbose>
                                     <preservePath>true</preservePath>
                                <!-- <destFileSuffix>-12</destFileSuffix> -->
@@ -1956,8 +1958,8 @@
                                     </process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-513-2/13</targetPath>
-                                    <directory>${outputDir}/pl-513-2/10</directory>
+                                    <targetPath>${outputDirectory}/pl-513-2/13</targetPath>
+                                    <directory>${outputDirectory}/pl-513-2/10</directory>
                                     <verbose>false</verbose>
                                     <preservePath>true</preservePath>
                                <!-- <destFilePrefix>13-</destFilePrefix> -->
@@ -1973,8 +1975,8 @@
                                     </process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-513-2/14</targetPath>
-                                    <directory>${outputDir}/pl-513-2/10</directory>
+                                    <targetPath>${outputDirectory}/pl-513-2/14</targetPath>
+                                    <directory>${outputDirectory}/pl-513-2/10</directory>
                                     <verbose>false</verbose>
                                     <preservePath>true</preservePath>
                                <!-- <destFilePrefix>14-</destFilePrefix> -->
@@ -1991,8 +1993,8 @@
                                     </process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-513-2/15</targetPath>
-                                    <directory>${outputDir}/pl-513-2/10</directory>
+                                    <targetPath>${outputDirectory}/pl-513-2/15</targetPath>
+                                    <directory>${outputDirectory}/pl-513-2/10</directory>
                                     <verbose>false</verbose>
                                <!-- <destFilePrefix>15-</destFilePrefix> -->
                                <!-- <destFileSuffix>-15</destFileSuffix> -->
@@ -2008,8 +2010,8 @@
                                     </process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-513-2/16</targetPath>
-                                    <directory>${outputDir}/pl-513-2/10</directory>
+                                    <targetPath>${outputDirectory}/pl-513-2/16</targetPath>
+                                    <directory>${outputDirectory}/pl-513-2/10</directory>
                                     <verbose>false</verbose>
                                <!-- <destFileName>destFileName</destFileName> -->
                                <!-- <destFilePrefix>16-</destFilePrefix> -->
@@ -2042,7 +2044,7 @@
                             <resources>
                                 <resource>
                                     <description>unpack-groovy-1</description>
-                                    <targetPath>${outputDir}/pl-493/unpack</targetPath>
+                                    <targetPath>${outputDirectory}/pl-493/unpack</targetPath>
                                     <dependency>
                                         <groupId>org.codehaus.groovy</groupId>
                                         <artifactId>groovy-all</artifactId>
@@ -2054,7 +2056,7 @@
                                 </resource>
                                 <resource>
                                     <description>unpack-groovy-2</description>
-                                    <targetPath>${outputDir}/pl-493/unpack</targetPath>
+                                    <targetPath>${outputDirectory}/pl-493/unpack</targetPath>
                                     <dependency>
                                         <groupId>org.codehaus.groovy</groupId>
                                         <artifactId>groovy-all</artifactId>
@@ -2066,7 +2068,7 @@
                                 </resource>
                                 <resource>
                                     <description>unpack-groovy-3</description>
-                                    <targetPath>${outputDir}/pl-493/unpack</targetPath>
+                                    <targetPath>${outputDirectory}/pl-493/unpack</targetPath>
                                     <dependency>
                                         <groupId>org.codehaus.groovy</groupId>
                                         <artifactId>groovy-all</artifactId>
@@ -2090,7 +2092,7 @@
                             <resources>
                                 <resource>
                                     <description>unpack-groovy-4</description>
-                                    <targetPath>${outputDir}/pl-493/unpack</targetPath>
+                                    <targetPath>${outputDirectory}/pl-493/unpack</targetPath>
                                     <dependency>
                                         <groupId>org.codehaus.groovy</groupId>
                                         <artifactId>groovy-all</artifactId>
@@ -2103,7 +2105,7 @@
                                 </resource>
                                 <resource>
                                     <description>unpack-groovy-5</description>
-                                    <targetPath>${outputDir}/pl-493/unpack</targetPath>
+                                    <targetPath>${outputDirectory}/pl-493/unpack</targetPath>
                                     <dependency>
                                         <groupId>org.codehaus.groovy</groupId>
                                         <artifactId>groovy-all</artifactId>
@@ -2131,7 +2133,7 @@
                         <configuration>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-502</targetPath>
+                                    <targetPath>${outputDirectory}/pl-502</targetPath>
                                     <dependency>
                                         <groupId>org.codehaus.groovy</groupId>
                                         <artifactId>groovy-all</artifactId>
@@ -2140,16 +2142,16 @@
                                     <destFileName>groovy-all.jar</destFileName>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-502/1</targetPath>
-                                    <file>${outputDir}/pl-502/groovy-all.jar</file>
+                                    <targetPath>${outputDirectory}/pl-502/1</targetPath>
+                                    <file>${outputDirectory}/pl-502/groovy-all.jar</file>
                                     <unpack>true</unpack>
                                 </resource>
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <!-- Copying with and without replaces -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/pl-502/copy-1</targetPath>
-                                    <directory>${outputDir}/pl-502/1</directory>
+                                    <targetPath>${outputDirectory}/pl-502/copy-1</targetPath>
+                                    <directory>${outputDirectory}/pl-502/1</directory>
                                     <verbose>false</verbose>
                                     <preservePath>true</preservePath>
                                     <replace>
@@ -2158,8 +2160,8 @@
                                     </replace>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-502/copy-2</targetPath>
-                                    <directory>${outputDir}/pl-502/1</directory>
+                                    <targetPath>${outputDirectory}/pl-502/copy-2</targetPath>
+                                    <directory>${outputDirectory}/pl-502/1</directory>
                                     <verbose>false</verbose>
                                     <preservePath>true</preservePath>
                                     <replace>
@@ -2172,8 +2174,8 @@
                                 <!-- Unpacking with and without replaces -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/pl-502/unpack-1</targetPath>
-                                    <file>${outputDir}/pl-502/groovy-all.jar</file>
+                                    <targetPath>${outputDirectory}/pl-502/unpack-1</targetPath>
+                                    <file>${outputDirectory}/pl-502/groovy-all.jar</file>
                                     <unpack>true</unpack>
                                     <replace>
                                         <from>.</from>
@@ -2181,8 +2183,8 @@
                                     </replace>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-502/unpack-2</targetPath>
-                                    <file>${outputDir}/pl-502/groovy-all.jar</file>
+                                    <targetPath>${outputDirectory}/pl-502/unpack-2</targetPath>
+                                    <file>${outputDirectory}/pl-502/groovy-all.jar</file>
                                     <unpack>true</unpack>
                                     <replace>
                                         <from>.</from>
@@ -2194,8 +2196,8 @@
                                 <!-- Packing with and without replaces -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/pl-502/pack-1/groovy-all.jar</targetPath>
-                                    <directory>${outputDir}/pl-502/1</directory>
+                                    <targetPath>${outputDirectory}/pl-502/pack-1/groovy-all.jar</targetPath>
+                                    <directory>${outputDirectory}/pl-502/1</directory>
                                     <pack>true</pack>
                                     <replace>
                                         <from>.</from>
@@ -2203,13 +2205,13 @@
                                     </replace>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-502/pack-1/unpack</targetPath>
-                                    <file>${outputDir}/pl-502/pack-1/groovy-all.jar</file>
+                                    <targetPath>${outputDirectory}/pl-502/pack-1/unpack</targetPath>
+                                    <file>${outputDirectory}/pl-502/pack-1/groovy-all.jar</file>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-502/pack-2/groovy-all.jar</targetPath>
-                                    <directory>${outputDir}/pl-502/1</directory>
+                                    <targetPath>${outputDirectory}/pl-502/pack-2/groovy-all.jar</targetPath>
+                                    <directory>${outputDirectory}/pl-502/1</directory>
                                     <pack>true</pack>
                                     <replace>
                                         <from>.</from>
@@ -2218,8 +2220,8 @@
                                     <nonFilteredExtensions>class, xml</nonFilteredExtensions>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-502/pack-2/unpack</targetPath>
-                                    <file>${outputDir}/pl-502/pack-2/groovy-all.jar</file>
+                                    <targetPath>${outputDirectory}/pl-502/pack-2/unpack</targetPath>
+                                    <file>${outputDirectory}/pl-502/pack-2/groovy-all.jar</file>
                                     <unpack>true</unpack>
                                 </resource>
                             </resources>
@@ -2236,7 +2238,7 @@
                         <phase>verify</phase>
                         <configuration>
                             <resource>
-                                <directory>${outputDir}</directory>
+                                <directory>${outputDirectory}</directory>
                                 <include>pl-430, pl-493, pl-502, pl-509, pl-510, pl-522, pl-539</include>
                                 <verbose>false</verbose>
                                 <clean>true</clean>
@@ -2264,14 +2266,14 @@
                         <phase>test</phase>
                         <configuration>
                             <assertFiles>
-                                ${outputDir}/pl-549/commons-codec-1.2.jar
-                                ${outputDir}/pl-549/commons-httpclient-3.1.jar
-                                ${outputDir}/pl-549/commons-logging-1.0.4.jar
-                                ${outputDir}/pl-549/jcl-over-slf4j-1.6.2.jar
-                                ${outputDir}/pl-549/slf4j-api-1.6.2.jar
+                                ${outputDirectory}/pl-549/commons-codec-1.2.jar
+                                ${outputDirectory}/pl-549/commons-httpclient-3.1.jar
+                                ${outputDirectory}/pl-549/commons-logging-1.0.4.jar
+                                ${outputDirectory}/pl-549/jcl-over-slf4j-1.6.2.jar
+                                ${outputDirectory}/pl-549/slf4j-api-1.6.2.jar
                             </assertFiles>
                             <assertGroovy>
-                                new File( outputDir, 'pl-549' ).directorySize() == 562741
+                                new File( outputDirectoryectory, 'pl-549' ).directorySize() == 562741
                             </assertGroovy>
                         </configuration>
                     </execution>
@@ -2286,13 +2288,13 @@
                         <phase>test</phase>
                         <configuration>
                             <assertFiles>
-                                ${outputDir}/pl-548/1/2/3/4/5/6/7/8/9/META-INF
-                                ${outputDir}/pl-548/1/2/3/4/5/6/7/8/9/META-INF/jboss-service.xml
-                                ${outputDir}/pl-548/1/2/3/4/5/6/7/8/9/META-INF/jbosss-service.xml
-                                ${outputDir}/pl-548/1/2/3/4/5/6/7/8/9/META-INF/MANIFEST.MF
+                                ${outputDirectory}/pl-548/1/2/3/4/5/6/7/8/9/META-INF
+                                ${outputDirectory}/pl-548/1/2/3/4/5/6/7/8/9/META-INF/jboss-service.xml
+                                ${outputDirectory}/pl-548/1/2/3/4/5/6/7/8/9/META-INF/jbosss-service.xml
+                                ${outputDirectory}/pl-548/1/2/3/4/5/6/7/8/9/META-INF/MANIFEST.MF
                             </assertFiles>
                             <assertGroovy>
-                              ! [ 'jboss-service.xml', 'jbosss-service.xml', 'MANIFEST.MF' ].any{ new File( outputDir, "pl-548/1/2/3/4/5/6/7/8/9/META-INF/$it"  ).text.contains( '$' ) }
+                              ! [ 'jboss-service.xml', 'jbosss-service.xml', 'MANIFEST.MF' ].any{ new File( outputDirectoryectory, "pl-548/1/2/3/4/5/6/7/8/9/META-INF/$it"  ).text.contains( '$' ) }
                             </assertGroovy>
                         </configuration>
                     </execution>
@@ -2307,20 +2309,20 @@
                         <phase>test</phase>
                         <configuration>
                             <assertGroovy>
-                                new File( outputDir, 'pl-541/1' ).directory
-                              ! new File( outputDir, 'pl-541/2' ).directory
-                                new File( outputDir, 'pl-541/3' ).directory
-                                new File( outputDir, 'pl-541/1' ).directorySize()       == 0
-                                new File( outputDir, 'pl-541/1' ).recurse([:], {}).size == 115
-                                new File( outputDir, 'pl-541/3' ).directorySize()       == 274188
-                                new File( outputDir, 'pl-541/3' ).recurse([:], {}).size == 117
+                                new File( outputDirectoryectory, 'pl-541/1' ).directory
+                              ! new File( outputDirectoryectory, 'pl-541/2' ).directory
+                                new File( outputDirectoryectory, 'pl-541/3' ).directory
+                                new File( outputDirectoryectory, 'pl-541/1' ).directorySize()       == 0
+                                new File( outputDirectoryectory, 'pl-541/1' ).recurse([:], {}).size == 115
+                                new File( outputDirectoryectory, 'pl-541/3' ).directorySize()       == 274188
+                                new File( outputDirectoryectory, 'pl-541/3' ).recurse([:], {}).size == 117
                             </assertGroovy>
                             <assertFiles>
-                                ${outputDir}/pl-541/1
-                                ${outputDir}/pl-541/3
+                                ${outputDirectory}/pl-541/1
+                                ${outputDirectory}/pl-541/3
                             </assertFiles>
                             <shouldFailAssertFiles>
-                                ${outputDir}/pl-541/2
+                                ${outputDirectory}/pl-541/2
                             </shouldFailAssertFiles>
                         </configuration>
                     </execution>
@@ -2335,52 +2337,52 @@
                         <phase>test</phase>
                         <configuration>
                             <assertGroovy>
-                                [ 6, 8, 10, 16, 21 ].every{ new File( outputDir, "pl-539/$it" ).directory }
-                                (( 1 .. 24 ) - [ 6, 8, 10, 16, 21 ]).every{ ! new File( outputDir, "pl-539/$it" ).directory }
+                                [ 6, 8, 10, 16, 21 ].every{ new File( outputDirectoryectory, "pl-539/$it" ).directory }
+                                (( 1 .. 24 ) - [ 6, 8, 10, 16, 21 ]).every{ ! new File( outputDirectoryectory, "pl-539/$it" ).directory }
 
-                                [ 6, 8, 16 ].every{ new File( outputDir, "pl-539/$it" ).listFiles().size() == 1 }
-                                [ 6, 8, 16 ].every{ new File( outputDir, "pl-539/$it" ).directorySize()    == 327911 }
-                                [ 10, 21   ].every{ new File( outputDir, "pl-539/$it" ).listFiles().size() == 10 }
-                                [ 10, 21   ].every{ new File( outputDir, "pl-539/$it" ).directorySize()    == 9992920 }
+                                [ 6, 8, 16 ].every{ new File( outputDirectoryectory, "pl-539/$it" ).listFiles().size() == 1 }
+                                [ 6, 8, 16 ].every{ new File( outputDirectoryectory, "pl-539/$it" ).directorySize()    == 327911 }
+                                [ 10, 21   ].every{ new File( outputDirectoryectory, "pl-539/$it" ).listFiles().size() == 10 }
+                                [ 10, 21   ].every{ new File( outputDirectoryectory, "pl-539/$it" ).directorySize()    == 9992920 }
                             </assertGroovy>
                             <assertEqual>
-                                ${outputDir}/pl-539/10|${outputDir}/pl-539/21
+                                ${outputDirectory}/pl-539/10|${outputDirectory}/pl-539/21
                             </assertEqual>
                             <assertFiles>
-                                ${outputDir}/pl-539/6
-                                ${outputDir}/pl-539/6/*.jar
-                                ${outputDir}/pl-539/6/logback-core-1.0.0.jar
-                                ${outputDir}/pl-539/8
-                                ${outputDir}/pl-539/8/*.jar
-                                ${outputDir}/pl-539/8/logback-core-1.0.0.jar
-                                ${outputDir}/pl-539/10
-                                ${outputDir}/pl-539/10/*.jar
-                                ${outputDir}/pl-539/16
-                                ${outputDir}/pl-539/16/*.jar
-                                ${outputDir}/pl-539/16/logback-core-1.0.0.jar
-                                ${outputDir}/pl-539/21
-                                ${outputDir}/pl-539/21/*.jar
+                                ${outputDirectory}/pl-539/6
+                                ${outputDirectory}/pl-539/6/*.jar
+                                ${outputDirectory}/pl-539/6/logback-core-1.0.0.jar
+                                ${outputDirectory}/pl-539/8
+                                ${outputDirectory}/pl-539/8/*.jar
+                                ${outputDirectory}/pl-539/8/logback-core-1.0.0.jar
+                                ${outputDirectory}/pl-539/10
+                                ${outputDirectory}/pl-539/10/*.jar
+                                ${outputDirectory}/pl-539/16
+                                ${outputDirectory}/pl-539/16/*.jar
+                                ${outputDirectory}/pl-539/16/logback-core-1.0.0.jar
+                                ${outputDirectory}/pl-539/21
+                                ${outputDirectory}/pl-539/21/*.jar
                             </assertFiles>
                             <shouldFailAssertFiles>
-                                ${outputDir}/pl-539/1
-                                ${outputDir}/pl-539/2
-                                ${outputDir}/pl-539/3
-                                ${outputDir}/pl-539/4
-                                ${outputDir}/pl-539/5
-                                ${outputDir}/pl-539/7
-                                ${outputDir}/pl-539/9
-                                ${outputDir}/pl-539/11
-                                ${outputDir}/pl-539/12
-                                ${outputDir}/pl-539/13
-                                ${outputDir}/pl-539/14
-                                ${outputDir}/pl-539/15
-                                ${outputDir}/pl-539/17
-                                ${outputDir}/pl-539/18
-                                ${outputDir}/pl-539/19
-                                ${outputDir}/pl-539/20
-                                ${outputDir}/pl-539/22
-                                ${outputDir}/pl-539/23
-                                ${outputDir}/pl-539/24
+                                ${outputDirectory}/pl-539/1
+                                ${outputDirectory}/pl-539/2
+                                ${outputDirectory}/pl-539/3
+                                ${outputDirectory}/pl-539/4
+                                ${outputDirectory}/pl-539/5
+                                ${outputDirectory}/pl-539/7
+                                ${outputDirectory}/pl-539/9
+                                ${outputDirectory}/pl-539/11
+                                ${outputDirectory}/pl-539/12
+                                ${outputDirectory}/pl-539/13
+                                ${outputDirectory}/pl-539/14
+                                ${outputDirectory}/pl-539/15
+                                ${outputDirectory}/pl-539/17
+                                ${outputDirectory}/pl-539/18
+                                ${outputDirectory}/pl-539/19
+                                ${outputDirectory}/pl-539/20
+                                ${outputDirectory}/pl-539/22
+                                ${outputDirectory}/pl-539/23
+                                ${outputDirectory}/pl-539/24
                             </shouldFailAssertFiles>
                         </configuration>
                     </execution>
@@ -2395,26 +2397,26 @@
                         <phase>test</phase>
                         <configuration>
                             <assertFiles>
-                                ${outputDir}/pl-509/1/*.jar
-                                ${outputDir}/pl-509/2/*.jar
-                                ${outputDir}/pl-509/3/*.jar
-                                ${outputDir}/pl-509/4/*.jar
-                                ${outputDir}/pl-509/5/*.jar
-                                ${outputDir}/pl-509/6/*.jar
+                                ${outputDirectory}/pl-509/1/*.jar
+                                ${outputDirectory}/pl-509/2/*.jar
+                                ${outputDirectory}/pl-509/3/*.jar
+                                ${outputDirectory}/pl-509/4/*.jar
+                                ${outputDirectory}/pl-509/5/*.jar
+                                ${outputDirectory}/pl-509/6/*.jar
                             </assertFiles>
                             <assertGroovy>
-                                new File( outputDir, 'pl-509/1' ).listFiles().size() == ${springCompileTestDependencies}
-                                new File( outputDir, 'pl-509/2' ).listFiles().size() == 6
-                                new File( outputDir, 'pl-509/2' ).directorySize()    == 2431079
-                                new File( outputDir, 'pl-509/3' ).listFiles().size() == 3
-                                new File( outputDir, 'pl-509/3' ).directorySize()    == 250164
-                                new File( outputDir, 'pl-509/4' ).listFiles().size() == 29
-                                new File( outputDir, 'pl-509/4' ).directorySize().with{ ( delegate == 5623107 ) || ( delegate == 5623145 ) }
-                                new File( outputDir, 'pl-509/5' ).listFiles().size() == 11
-                                new File( outputDir, 'pl-509/5' ).directorySize()    == 10024502
-                                new File( outputDir, 'pl-509/6' ).listFiles().size() == 6
-                                new File( outputDir, 'pl-509/6' ).directorySize()    == 9827762
-                              ! new File( outputDir, 'pl-509/7' ).directory
+                                new File( outputDirectoryectory, 'pl-509/1' ).listFiles().size() == ${springCompileTestDependencies}
+                                new File( outputDirectoryectory, 'pl-509/2' ).listFiles().size() == 6
+                                new File( outputDirectoryectory, 'pl-509/2' ).directorySize()    == 2431079
+                                new File( outputDirectoryectory, 'pl-509/3' ).listFiles().size() == 3
+                                new File( outputDirectoryectory, 'pl-509/3' ).directorySize()    == 250164
+                                new File( outputDirectoryectory, 'pl-509/4' ).listFiles().size() == 29
+                                new File( outputDirectoryectory, 'pl-509/4' ).directorySize().with{ ( delegate == 5623107 ) || ( delegate == 5623145 ) }
+                                new File( outputDirectoryectory, 'pl-509/5' ).listFiles().size() == 11
+                                new File( outputDirectoryectory, 'pl-509/5' ).directorySize()    == 10024502
+                                new File( outputDirectoryectory, 'pl-509/6' ).listFiles().size() == 6
+                                new File( outputDirectoryectory, 'pl-509/6' ).directorySize()    == 9827762
+                              ! new File( outputDirectoryectory, 'pl-509/7' ).directory
                             </assertGroovy>
                         </configuration>
                     </execution>
@@ -2429,7 +2431,7 @@
                         <phase>test</phase>
                         <configuration>
                             <assertFiles>
-                                ${outputDir}/pl-430/222.xml
+                                ${outputDirectory}/pl-430/222.xml
                             </assertFiles>
                         </configuration>
                     </execution>
@@ -2444,35 +2446,35 @@
                         <phase>test</phase>
                         <configuration>
                             <assertFiles>
-                                ${outputDir}/pl-506/1/jsch-0.1.38.jar
-                                ${outputDir}/pl-506/2/jsch-0.1.38.jar
-                                ${outputDir}/pl-506/3/jsch-0.1.38.jar
-                                ${outputDir}/pl-506/4/jsch.jar
-                                ${outputDir}/pl-506/5/jsch-0.1.38.jar
-                                ${outputDir}/pl-506/5/jsch-0.1.45.jar
-                                ${outputDir}/pl-506/6/jsch-0.1.38.jar
-                                ${outputDir}/pl-506/6/jsch-0.1.45.jar
-                                ${outputDir}/pl-506/7/jsch.jar
+                                ${outputDirectory}/pl-506/1/jsch-0.1.38.jar
+                                ${outputDirectory}/pl-506/2/jsch-0.1.38.jar
+                                ${outputDirectory}/pl-506/3/jsch-0.1.38.jar
+                                ${outputDirectory}/pl-506/4/jsch.jar
+                                ${outputDirectory}/pl-506/5/jsch-0.1.38.jar
+                                ${outputDirectory}/pl-506/5/jsch-0.1.45.jar
+                                ${outputDirectory}/pl-506/6/jsch-0.1.38.jar
+                                ${outputDirectory}/pl-506/6/jsch-0.1.45.jar
+                                ${outputDirectory}/pl-506/7/jsch.jar
                             </assertFiles>
                             <assertEqual>
-                                ${outputDir}/pl-506/1|${outputDir}/pl-506/2
-                                ${outputDir}/pl-506/2|${outputDir}/pl-506/3
-                                ${outputDir}/pl-506/5|${outputDir}/pl-506/6
+                                ${outputDirectory}/pl-506/1|${outputDirectory}/pl-506/2
+                                ${outputDirectory}/pl-506/2|${outputDirectory}/pl-506/3
+                                ${outputDirectory}/pl-506/5|${outputDirectory}/pl-506/6
                             </assertEqual>
                             <assertGroovy>
-                                new File( outputDir, 'pl-506/1' ).directorySize() == 177748
-                                new File( outputDir, 'pl-506/2' ).directorySize() == 177748
-                                new File( outputDir, 'pl-506/3' ).directorySize() == 177748
-                                new File( outputDir, 'pl-506/4' ).directorySize() == 177748
-                                new File( outputDir, 'pl-506/5' ).directorySize() == 400951
-                                new File( outputDir, 'pl-506/6' ).directorySize() == 400951
-                                new File( outputDir, 'pl-506/7' ).directorySize() == 223203
+                                new File( outputDirectoryectory, 'pl-506/1' ).directorySize() == 177748
+                                new File( outputDirectoryectory, 'pl-506/2' ).directorySize() == 177748
+                                new File( outputDirectoryectory, 'pl-506/3' ).directorySize() == 177748
+                                new File( outputDirectoryectory, 'pl-506/4' ).directorySize() == 177748
+                                new File( outputDirectoryectory, 'pl-506/5' ).directorySize() == 400951
+                                new File( outputDirectoryectory, 'pl-506/6' ).directorySize() == 400951
+                                new File( outputDirectoryectory, 'pl-506/7' ).directorySize() == 223203
                             </assertGroovy>
                             <shouldFailAssertEqual>
-                                ${outputDir}/pl-506/1|${outputDir}/pl-506/4
-                                ${outputDir}/pl-506/2|${outputDir}/pl-506/4
-                                ${outputDir}/pl-506/3|${outputDir}/pl-506/4
-                                ${outputDir}/pl-506/4|${outputDir}/pl-506/7
+                                ${outputDirectory}/pl-506/1|${outputDirectory}/pl-506/4
+                                ${outputDirectory}/pl-506/2|${outputDirectory}/pl-506/4
+                                ${outputDirectory}/pl-506/3|${outputDirectory}/pl-506/4
+                                ${outputDirectory}/pl-506/4|${outputDirectory}/pl-506/7
                             </shouldFailAssertEqual>
                         </configuration>
                     </execution>
@@ -2487,30 +2489,30 @@
                         <phase>test</phase>
                         <configuration>
                             <assertEqual>
-                                ${outputDir}/pl-523/1|${outputDir}/pl-523/11
-                                ${outputDir}/pl-523/2|${outputDir}/pl-523/22
-                                ${outputDir}/pl-523/3|${outputDir}/pl-523/33
+                                ${outputDirectory}/pl-523/1|${outputDirectory}/pl-523/11
+                                ${outputDirectory}/pl-523/2|${outputDirectory}/pl-523/22
+                                ${outputDirectory}/pl-523/3|${outputDirectory}/pl-523/33
 
-                                ${outputDir}/pl-523/1|${outputDir}/pl-523/111
-                                ${outputDir}/pl-523/2|${outputDir}/pl-523/222
-                                ${outputDir}/pl-523/3|${outputDir}/pl-523/333
+                                ${outputDirectory}/pl-523/1|${outputDirectory}/pl-523/111
+                                ${outputDirectory}/pl-523/2|${outputDirectory}/pl-523/222
+                                ${outputDirectory}/pl-523/3|${outputDirectory}/pl-523/333
 
-                                ${outputDir}/pl-523/a|${outputDir}/pl-523/aa
-                                ${outputDir}/pl-523/b|${outputDir}/pl-523/bb
-                                ${outputDir}/pl-523/c|${outputDir}/pl-523/cc
+                                ${outputDirectory}/pl-523/a|${outputDirectory}/pl-523/aa
+                                ${outputDirectory}/pl-523/b|${outputDirectory}/pl-523/bb
+                                ${outputDirectory}/pl-523/c|${outputDirectory}/pl-523/cc
 
-                                ${outputDir}/pl-523/a|${outputDir}/pl-523/aaa
-                                ${outputDir}/pl-523/b|${outputDir}/pl-523/bbb
-                                ${outputDir}/pl-523/c|${outputDir}/pl-523/ccc
+                                ${outputDirectory}/pl-523/a|${outputDirectory}/pl-523/aaa
+                                ${outputDirectory}/pl-523/b|${outputDirectory}/pl-523/bbb
+                                ${outputDirectory}/pl-523/c|${outputDirectory}/pl-523/ccc
 
-                                ${outputDir}/pl-523/a|${outputDir}/pl-523/aaaa
-                                ${outputDir}/pl-523/b|${outputDir}/pl-523/bbbb
-                                ${outputDir}/pl-523/c|${outputDir}/pl-523/cccc
+                                ${outputDirectory}/pl-523/a|${outputDirectory}/pl-523/aaaa
+                                ${outputDirectory}/pl-523/b|${outputDirectory}/pl-523/bbbb
+                                ${outputDirectory}/pl-523/c|${outputDirectory}/pl-523/cccc
                             </assertEqual>
                             <shouldFailAssertEqual>
-                                ${outputDir}/pl-523/1|${outputDir}/pl-523/1111
-                                ${outputDir}/pl-523/2|${outputDir}/pl-523/2222
-                                ${outputDir}/pl-523/3|${outputDir}/pl-523/3333
+                                ${outputDirectory}/pl-523/1|${outputDirectory}/pl-523/1111
+                                ${outputDirectory}/pl-523/2|${outputDirectory}/pl-523/2222
+                                ${outputDirectory}/pl-523/3|${outputDirectory}/pl-523/3333
                             </shouldFailAssertEqual>
                         </configuration>
                     </execution>
@@ -2525,29 +2527,29 @@
                         <phase>test</phase>
                         <configuration>
                             <assertFiles>
-                                ${outputDir}/pl-515/4/1.BaT
-                                ${outputDir}/pl-515/5/opa-1-apo.bAt
+                                ${outputDirectory}/pl-515/4/1.BaT
+                                ${outputDirectory}/pl-515/5/opa-1-apo.bAt
                             </assertFiles>
                             <assertGroovy>
-                                new File( outputDir, 'pl-515/1/1.bat' ).text.contains( '@echo off' )
-                              ! new File( outputDir, 'pl-515/1/1.bat' ).text.contains( '$' + '{' )
+                                new File( outputDirectoryectory, 'pl-515/1/1.bat' ).text.contains( '@echo off' )
+                              ! new File( outputDirectoryectory, 'pl-515/1/1.bat' ).text.contains( '$' + '{' )
 
-                              ! new File( outputDir, 'pl-515/2/1.bat' ).text.contains( '$' + '{' )
-                                new File( outputDir, 'pl-515/2/1.bat' ).text.contains( '[${project.groupId}:${project.artifactId}:${project.version}]' )
-                                new File( outputDir, 'pl-515/2/1.bat' ).text.contains( '[' + project.groupId + ':' + project.artifactId + ':' + project.version + ']' )
+                              ! new File( outputDirectoryectory, 'pl-515/2/1.bat' ).text.contains( '$' + '{' )
+                                new File( outputDirectoryectory, 'pl-515/2/1.bat' ).text.contains( '[${project.groupId}:${project.artifactId}:${project.version}]' )
+                                new File( outputDirectoryectory, 'pl-515/2/1.bat' ).text.contains( '[' + project.groupId + ':' + project.artifactId + ':' + project.version + ']' )
 
-                                new File( outputDir, 'pl-515/3/1.bat' ).text.contains( '$' + '{' )
-                                new File( outputDir, 'pl-515/4/1.BaT' ).text.contains( '$' + '{' )
+                                new File( outputDirectoryectory, 'pl-515/3/1.bat' ).text.contains( '$' + '{' )
+                                new File( outputDirectoryectory, 'pl-515/4/1.BaT' ).text.contains( '$' + '{' )
 
-                              ! new File( outputDir, 'pl-515/5/opa-1-apo.bAt' ).text.contains( '$' + '{' )
-                                new File( outputDir, 'pl-515/5/opa-1-apo.bAt' ).text.contains( '[${project.groupId}:${project.artifactId}:${project.version}]' )
-                                new File( outputDir, 'pl-515/5/opa-1-apo.bAt' ).text.contains( '[' + project.groupId + ':' + project.artifactId + ':' + project.version + ']' )
+                              ! new File( outputDirectoryectory, 'pl-515/5/opa-1-apo.bAt' ).text.contains( '$' + '{' )
+                                new File( outputDirectoryectory, 'pl-515/5/opa-1-apo.bAt' ).text.contains( '[${project.groupId}:${project.artifactId}:${project.version}]' )
+                                new File( outputDirectoryectory, 'pl-515/5/opa-1-apo.bAt' ).text.contains( '[' + project.groupId + ':' + project.artifactId + ':' + project.version + ']' )
                             </assertGroovy>
                             <shouldFailAssertEqual>
-                                ${outputDir}/pl-515/1|${outputDir}/pl-515/3
-                                ${outputDir}/pl-515/2|${outputDir}/pl-515/5
+                                ${outputDirectoryectory}/pl-515/1|${outputDirectoryectory}/pl-515/3
+                                ${outputDirectoryectory}/pl-515/2|${outputDirectoryectory}/pl-515/5
                                 <!-- http://evgeny-goldin.org/youtrack/issue/pl-525 -->
-                                <!-- ${outputDir}/pl-515/3|${outputDir}/pl-515/4    -->
+                                <!-- ${outputDirectoryectory}/pl-515/3|${outputDirectoryectory}/pl-515/4    -->
                             </shouldFailAssertEqual>
                         </configuration>
                     </execution>
@@ -2562,38 +2564,38 @@
                         <phase>test</phase>
                         <configuration>
                             <assertGroovy>
-                              ! new File( outputDir, 'pl-514/1/pom.xml' ).text.contains( '$' + '{' )
-                                new File( outputDir, 'pl-514/1/pom.xml' ).text.find( /\d|\w/ )
-                                new File( outputDir, 'pl-514/2/pom.xml' ).text ==~ /^a+$/
-                                new File( outputDir, 'pl-514/3/pom.xml' ).text.with{ ! ( contains( '$' + '{' ) || find( /\d|\w/ )) }
+                              ! new File( outputDirectoryectory, 'pl-514/1/pom.xml' ).text.contains( '$' + '{' )
+                                new File( outputDirectoryectory, 'pl-514/1/pom.xml' ).text.find( /\d|\w/ )
+                                new File( outputDirectoryectory, 'pl-514/2/pom.xml' ).text ==~ /^a+$/
+                                new File( outputDirectoryectory, 'pl-514/3/pom.xml' ).text.with{ ! ( contains( '$' + '{' ) || find( /\d|\w/ )) }
 
-                              ! new File( outputDir, 'pl-514/4/pom.xml' ).text.contains( '$' + '{' )
-                                new File( outputDir, 'pl-514/4/pom.xml' ).text.find( /\d|\w/ )
-                                new File( outputDir, 'pl-514/5/pom.xml' ).text ==~ /^a+$/
-                                new File( outputDir, 'pl-514/6/pom.xml' ).text.with{ ! ( contains( '$' + '{' ) || find( /\d|\w/ )) }
+                              ! new File( outputDirectoryectory, 'pl-514/4/pom.xml' ).text.contains( '$' + '{' )
+                                new File( outputDirectoryectory, 'pl-514/4/pom.xml' ).text.find( /\d|\w/ )
+                                new File( outputDirectoryectory, 'pl-514/5/pom.xml' ).text ==~ /^a+$/
+                                new File( outputDirectoryectory, 'pl-514/6/pom.xml' ).text.with{ ! ( contains( '$' + '{' ) || find( /\d|\w/ )) }
 
-                              ! new File( outputDir, 'pl-514/10/pom.xml' ).text.contains( '$' + '{' )
-                                new File( outputDir, 'pl-514/10/pom.xml' ).text.find( /\d|\w/ )
-                                new File( outputDir, 'pl-514/11/pom.xml' ).text ==~ /^a+$/
-                                new File( outputDir, 'pl-514/12/pom.xml' ).text.with{ ! ( contains( '$' + '{' ) || find( /\d|\w/ )) }
+                              ! new File( outputDirectoryectory, 'pl-514/10/pom.xml' ).text.contains( '$' + '{' )
+                                new File( outputDirectoryectory, 'pl-514/10/pom.xml' ).text.find( /\d|\w/ )
+                                new File( outputDirectoryectory, 'pl-514/11/pom.xml' ).text ==~ /^a+$/
+                                new File( outputDirectory, 'pl-514/12/pom.xml' ).text.with{ ! ( contains( '$' + '{' ) || find( /\d|\w/ )) }
                             </assertGroovy>
                             <assertEqual>
-                                ${outputDir}/pl-514/1|${outputDir}/pl-514/4
-                                ${outputDir}/pl-514/2|${outputDir}/pl-514/5
-                                ${outputDir}/pl-514/3|${outputDir}/pl-514/6
-                                ${outputDir}/pl-514/4|${outputDir}/pl-514/10
-                                ${outputDir}/pl-514/5|${outputDir}/pl-514/11
-                                ${outputDir}/pl-514/6|${outputDir}/pl-514/12
+                                ${outputDirectory}/pl-514/1|${outputDirectory}/pl-514/4
+                                ${outputDirectory}/pl-514/2|${outputDirectory}/pl-514/5
+                                ${outputDirectory}/pl-514/3|${outputDirectory}/pl-514/6
+                                ${outputDirectory}/pl-514/4|${outputDirectory}/pl-514/10
+                                ${outputDirectory}/pl-514/5|${outputDirectory}/pl-514/11
+                                ${outputDirectory}/pl-514/6|${outputDirectory}/pl-514/12
                             </assertEqual>
                             <shouldFailAssertFiles>
-                                ${outputDir}/pl-514/7/pom.xml
-                                ${outputDir}/pl-514/8/pom.xml
-                                ${outputDir}/pl-514/9/pom.xml
+                                ${outputDirectory}/pl-514/7/pom.xml
+                                ${outputDirectory}/pl-514/8/pom.xml
+                                ${outputDirectory}/pl-514/9/pom.xml
                             </shouldFailAssertFiles>
                             <shouldFailAssertEqual>
-                                ${outputDir}/pl-514/7|${outputDir}/pl-514/10
-                                ${outputDir}/pl-514/8|${outputDir}/pl-514/11
-                                ${outputDir}/pl-514/9|${outputDir}/pl-514/12
+                                ${outputDirectory}/pl-514/7|${outputDirectory}/pl-514/10
+                                ${outputDirectory}/pl-514/8|${outputDirectory}/pl-514/11
+                                ${outputDirectory}/pl-514/9|${outputDirectory}/pl-514/12
                             </shouldFailAssertEqual>
                         </configuration>
                     </execution>
@@ -2608,37 +2610,37 @@
                         <phase>test</phase>
                         <configuration>
                             <assertEqual>
-                                ${outputDir}/pl-511/1|${outputDir}/pl-511/2
-                                ${outputDir}/pl-511/2|${outputDir}/pl-511/3
-                                ${outputDir}/pl-511/3|${outputDir}/pl-511/1
+                                ${outputDirectory}/pl-511/1|${outputDirectory}/pl-511/2
+                                ${outputDirectory}/pl-511/2|${outputDirectory}/pl-511/3
+                                ${outputDirectory}/pl-511/3|${outputDirectory}/pl-511/1
 
-                                ${outputDir}/pl-511/1|${outputDir}/pl-511/2|1.xml
-                                ${outputDir}/pl-511/2|${outputDir}/pl-511/3|1.xml
-                                ${outputDir}/pl-511/3|${outputDir}/pl-511/1|1.xml
+                                ${outputDirectory}/pl-511/1|${outputDirectory}/pl-511/2|1.xml
+                                ${outputDirectory}/pl-511/2|${outputDirectory}/pl-511/3|1.xml
+                                ${outputDirectory}/pl-511/3|${outputDirectory}/pl-511/1|1.xml
 
-                                ${outputDir}/pl-511/1|${outputDir}/pl-511/2|*.xml
-                                ${outputDir}/pl-511/2|${outputDir}/pl-511/3|*.xml
-                                ${outputDir}/pl-511/3|${outputDir}/pl-511/1|*.xml
+                                ${outputDirectory}/pl-511/1|${outputDirectory}/pl-511/2|*.xml
+                                ${outputDirectory}/pl-511/2|${outputDirectory}/pl-511/3|*.xml
+                                ${outputDirectory}/pl-511/3|${outputDirectory}/pl-511/1|*.xml
 
-                                ${outputDir}/pl-511/1|${outputDir}/pl-511/2|**/*.xml
-                                ${outputDir}/pl-511/2|${outputDir}/pl-511/3|**/*.xml
-                                ${outputDir}/pl-511/3|${outputDir}/pl-511/1|**/*.xml
+                                ${outputDirectory}/pl-511/1|${outputDirectory}/pl-511/2|**/*.xml
+                                ${outputDirectory}/pl-511/2|${outputDirectory}/pl-511/3|**/*.xml
+                                ${outputDirectory}/pl-511/3|${outputDirectory}/pl-511/1|**/*.xml
                             </assertEqual>
                             <shouldFailAssertEqual>
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <!-- Non-matching patterns should fail -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                                ${outputDir}/pl-511/1|${outputDir}/pl-511/2|2.xml
-                                ${outputDir}/pl-511/2|${outputDir}/pl-511/3|2.xml
-                                ${outputDir}/pl-511/3|${outputDir}/pl-511/1|2.xml
+                                ${outputDirectory}/pl-511/1|${outputDirectory}/pl-511/2|2.xml
+                                ${outputDirectory}/pl-511/2|${outputDirectory}/pl-511/3|2.xml
+                                ${outputDirectory}/pl-511/3|${outputDirectory}/pl-511/1|2.xml
 
-                                ${outputDir}/pl-511/1|${outputDir}/pl-511/2|*.ppt
-                                ${outputDir}/pl-511/2|${outputDir}/pl-511/3|*.ppt
-                                ${outputDir}/pl-511/3|${outputDir}/pl-511/1|*.ppt
+                                ${outputDirectory}/pl-511/1|${outputDirectory}/pl-511/2|*.ppt
+                                ${outputDirectory}/pl-511/2|${outputDirectory}/pl-511/3|*.ppt
+                                ${outputDirectory}/pl-511/3|${outputDirectory}/pl-511/1|*.ppt
 
-                                ${outputDir}/pl-511/1|${outputDir}/pl-511/2|**/*.exe
-                                ${outputDir}/pl-511/2|${outputDir}/pl-511/3|**/*.exe
-                                ${outputDir}/pl-511/3|${outputDir}/pl-511/1|**/*.exe
+                                ${outputDirectory}/pl-511/1|${outputDirectory}/pl-511/2|**/*.exe
+                                ${outputDirectory}/pl-511/2|${outputDirectory}/pl-511/3|**/*.exe
+                                ${outputDirectory}/pl-511/3|${outputDirectory}/pl-511/1|**/*.exe
                             </shouldFailAssertEqual>
                         </configuration>
                     </execution>
@@ -2653,13 +2655,13 @@
                         <phase>test</phase>
                         <configuration>
                             <shouldFailAssertEqual>
-                                ${outputDir}/pl-522/2|${outputDir}/pl-522/3
+                                ${outputDirectory}/pl-522/2|${outputDirectory}/pl-522/3
                             </shouldFailAssertEqual>
                             <assertGroovy>
-                                new File( outputDir, 'pl-522/2' ).listFiles().size() == 2
-                                new File( outputDir, 'pl-522/2' ).recurse([ type: groovy.io.FileType.FILES ], { assert it.file }).size() == 2
-                                new File( outputDir, 'pl-522/3' ).recurse([ type: groovy.io.FileType.FILES ], { assert it.file }).size() == 16
-                                new File( outputDir, 'pl-522/3' ).recurse([ type: groovy.io.FileType.FILES, returnList: false ], { assert it.file }).size() == 0
+                                new File( outputDirectory, 'pl-522/2' ).listFiles().size() == 2
+                                new File( outputDirectory, 'pl-522/2' ).recurse([ type: groovy.io.FileType.FILES ], { assert it.file }).size() == 2
+                                new File( outputDirectory, 'pl-522/3' ).recurse([ type: groovy.io.FileType.FILES ], { assert it.file }).size() == 16
+                                new File( outputDirectory, 'pl-522/3' ).recurse([ type: groovy.io.FileType.FILES, returnList: false ], { assert it.file }).size() == 0
                             </assertGroovy>
                         </configuration>
                     </execution>
@@ -2674,16 +2676,16 @@
                         <phase>test</phase>
                         <configuration>
                             <assertEqual>
-                                ${outputDir}/pl-510/1|${outputDir}/pl-510/2
-                                ${outputDir}/pl-510/1|${outputDir}/pl-510/2|**/*.class
-                                ${outputDir}/pl-510/1|${outputDir}/pl-510/2|**/*.xml
+                                ${outputDirectory}/pl-510/1|${outputDirectory}/pl-510/2
+                                ${outputDirectory}/pl-510/1|${outputDirectory}/pl-510/2|**/*.class
+                                ${outputDirectory}/pl-510/1|${outputDirectory}/pl-510/2|**/*.xml
                             </assertEqual>
                             <assertGroovy>
-                                new File( outputDir, 'pl-510/1' ).directorySize() == 13550506
-                                new File( outputDir, 'pl-510/2' ).directorySize() == 13550506
-                                new File( outputDir, 'pl-510/3' ).directorySize() == 13324310
-                                new File( outputDir, 'pl-510/4' ).directorySize() == 44272143
-                                new File( outputDir, 'pl-510/5' ).directorySize() == 28547406
+                                new File( outputDirectory, 'pl-510/1' ).directorySize() == 13550506
+                                new File( outputDirectory, 'pl-510/2' ).directorySize() == 13550506
+                                new File( outputDirectory, 'pl-510/3' ).directorySize() == 13324310
+                                new File( outputDirectory, 'pl-510/4' ).directorySize() == 44272143
+                                new File( outputDirectory, 'pl-510/5' ).directorySize() == 28547406
                             </assertGroovy>
                         </configuration>
                     </execution>
@@ -2698,28 +2700,28 @@
                         <phase>test</phase>
                         <configuration>
                             <assertFiles>
-                                ${outputDir}/pl-516/1/*.txt
-                                ${outputDir}/pl-516/1/0.txt
-                                ${outputDir}/pl-516/1/1.txt
-                                ${outputDir}/pl-516/1/2.txt
-                                ${outputDir}/pl-516/1/3.txt
+                                ${outputDirectory}/pl-516/1/*.txt
+                                ${outputDirectory}/pl-516/1/0.txt
+                                ${outputDirectory}/pl-516/1/1.txt
+                                ${outputDirectory}/pl-516/1/2.txt
+                                ${outputDirectory}/pl-516/1/3.txt
 
-                                ${outputDir}/pl-516/2/*.txt
-                                ${outputDir}/pl-516/2/0.txt
-                                ${outputDir}/pl-516/2/1.txt
-                                ${outputDir}/pl-516/2/2.txt
-                                ${outputDir}/pl-516/2/3.txt
+                                ${outputDirectory}/pl-516/2/*.txt
+                                ${outputDirectory}/pl-516/2/0.txt
+                                ${outputDirectory}/pl-516/2/1.txt
+                                ${outputDirectory}/pl-516/2/2.txt
+                                ${outputDirectory}/pl-516/2/3.txt
 
-                                ${outputDir}/pl-516/3/*.txt
-                                ${outputDir}/pl-516/3/0.txt
-                                ${outputDir}/pl-516/3/1.txt
-                                ${outputDir}/pl-516/3/2.txt
-                                ${outputDir}/pl-516/3/3.txt
+                                ${outputDirectory}/pl-516/3/*.txt
+                                ${outputDirectory}/pl-516/3/0.txt
+                                ${outputDirectory}/pl-516/3/1.txt
+                                ${outputDirectory}/pl-516/3/2.txt
+                                ${outputDirectory}/pl-516/3/3.txt
                             </assertFiles>
                             <assertEqual>
-                                ${outputDir}/pl-516/1|${outputDir}/pl-516/2
-                                ${outputDir}/pl-516/2|${outputDir}/pl-516/3
-                                ${outputDir}/pl-516/3|${outputDir}/pl-516/1
+                                ${outputDirectory}/pl-516/1|${outputDirectory}/pl-516/2
+                                ${outputDirectory}/pl-516/2|${outputDirectory}/pl-516/3
+                                ${outputDirectory}/pl-516/3|${outputDirectory}/pl-516/1
                             </assertEqual>
                         </configuration>
                     </execution>
@@ -2734,71 +2736,71 @@
                         <phase>test</phase>
                         <configuration>
                             <assertFiles>
-                                ${outputDir}/pl-513-1/1/1-pom-1.xml
-                                ${outputDir}/pl-513-1/2/2-pom.xml
-                                ${outputDir}/pl-513-1/3/pom-3.xml
-                                ${outputDir}/pl-513-1/4/pom.4
-                                ${outputDir}/pl-513-1/5/5-pom-5.xml
-                                ${outputDir}/pl-513-1/6/pom-6.6
-                                ${outputDir}/pl-513-1/7/7-pom-7.7
-                                ${outputDir}/pl-513-1/8/8-1-8.8
-                                ${outputDir}/pl-513-1/8/8-2-8.8
-                                ${outputDir}/pl-513-1/8/8-3-8.8
-                                ${outputDir}/pl-513-1/8/8-4-8.8
-                                ${outputDir}/pl-513-1/8/8-ftp-exclude-8.8
-                                ${outputDir}/pl-513-1/8/8-ftp-include-8.8
-                                ${outputDir}/pl-513-1/9/9-1-9
-                                ${outputDir}/pl-513-1/9/9-2-9
-                                ${outputDir}/pl-513-1/9/9-3-9
-                                ${outputDir}/pl-513-1/9/9-4-9
-                                ${outputDir}/pl-513-1/9/9-ftp-exclude-9
-                                ${outputDir}/pl-513-1/9/9-ftp-include-9
-                                ${outputDir}/pl-513-1/16/destFileName
+                                ${outputDirectory}/pl-513-1/1/1-pom-1.xml
+                                ${outputDirectory}/pl-513-1/2/2-pom.xml
+                                ${outputDirectory}/pl-513-1/3/pom-3.xml
+                                ${outputDirectory}/pl-513-1/4/pom.4
+                                ${outputDirectory}/pl-513-1/5/5-pom-5.xml
+                                ${outputDirectory}/pl-513-1/6/pom-6.6
+                                ${outputDirectory}/pl-513-1/7/7-pom-7.7
+                                ${outputDirectory}/pl-513-1/8/8-1-8.8
+                                ${outputDirectory}/pl-513-1/8/8-2-8.8
+                                ${outputDirectory}/pl-513-1/8/8-3-8.8
+                                ${outputDirectory}/pl-513-1/8/8-4-8.8
+                                ${outputDirectory}/pl-513-1/8/8-ftp-exclude-8.8
+                                ${outputDirectory}/pl-513-1/8/8-ftp-include-8.8
+                                ${outputDirectory}/pl-513-1/9/9-1-9
+                                ${outputDirectory}/pl-513-1/9/9-2-9
+                                ${outputDirectory}/pl-513-1/9/9-3-9
+                                ${outputDirectory}/pl-513-1/9/9-4-9
+                                ${outputDirectory}/pl-513-1/9/9-ftp-exclude-9
+                                ${outputDirectory}/pl-513-1/9/9-ftp-include-9
+                                ${outputDirectory}/pl-513-1/16/destFileName
                             </assertFiles>
                             <assertGroovy>
-                                new File( outputDir, 'pl-513-1/8' ).directorySize() == 63
-                                new File( outputDir, 'pl-513-1/9' ).directorySize() == 63
-                                new File( outputDir, 'pl-513-1/8' ).directorySize() == new File( outputDir, 'pl-513-1/9'  ).directorySize()
+                                new File( outputDirectory, 'pl-513-1/8' ).directorySize() == 63
+                                new File( outputDirectory, 'pl-513-1/9' ).directorySize() == 63
+                                new File( outputDirectory, 'pl-513-1/8' ).directorySize() == new File( outputDirectory, 'pl-513-1/9'  ).directorySize()
 
-                                [ 10, 11, 12, 13, 14 ].every{ new File( outputDir, "pl-513-1/$it" ).directorySize() == 302093 }
-                                new File( outputDir, 'pl-513-1/15' ).directorySize() == 294372
+                                [ 10, 11, 12, 13, 14 ].every{ new File( outputDirectory, "pl-513-1/$it" ).directorySize() == 302093 }
+                                new File( outputDirectory, 'pl-513-1/15' ).directorySize() == 294372
 
-                                null == new File( outputDir, 'pl-513-1/10' ).eachFileRecurse{ assert it.with{ directory || ( file &amp;&amp; name.endsWith( '.class'    )) }}
-                                null == new File( outputDir, 'pl-513-1/11' ).eachFileRecurse{ assert it.with{ directory || ( file &amp;&amp; name.startsWith( '11-'     )) }}
-                                null == new File( outputDir, 'pl-513-1/12' ).eachFileRecurse{ assert it.with{ directory || ( file &amp;&amp; name.endsWith( '-12.class' )) }}
-                                null == new File( outputDir, 'pl-513-1/13' ).eachFileRecurse{ assert it.with{ directory || ( file &amp;&amp; name.with{ startsWith( '13-' ) &amp;&amp; endsWith( '-13.class' ) } ) }}
-                                null == new File( outputDir, 'pl-513-1/14' ).eachFileRecurse{ assert it.with{ directory || ( file &amp;&amp; name.with{ startsWith( '14-' ) &amp;&amp; endsWith( '-14.14'    ) } ) }}
+                                null == new File( outputDirectory, 'pl-513-1/10' ).eachFileRecurse{ assert it.with{ directory || ( file &amp;&amp; name.endsWith( '.class'    )) }}
+                                null == new File( outputDirectory, 'pl-513-1/11' ).eachFileRecurse{ assert it.with{ directory || ( file &amp;&amp; name.startsWith( '11-'     )) }}
+                                null == new File( outputDirectory, 'pl-513-1/12' ).eachFileRecurse{ assert it.with{ directory || ( file &amp;&amp; name.endsWith( '-12.class' )) }}
+                                null == new File( outputDirectory, 'pl-513-1/13' ).eachFileRecurse{ assert it.with{ directory || ( file &amp;&amp; name.with{ startsWith( '13-' ) &amp;&amp; endsWith( '-13.class' ) } ) }}
+                                null == new File( outputDirectory, 'pl-513-1/14' ).eachFileRecurse{ assert it.with{ directory || ( file &amp;&amp; name.with{ startsWith( '14-' ) &amp;&amp; endsWith( '-14.14'    ) } ) }}
 
-                                new File( outputDir, 'pl-513-1/15' ).listFiles().size() == 99
-                                new File( outputDir, 'pl-513-1/15' ).listFiles().every{ it.with{ file &amp;&amp; name.with{ startsWith( '15-' ) &amp;&amp; endsWith( '-15.15' ) }}}
+                                new File( outputDirectory, 'pl-513-1/15' ).listFiles().size() == 99
+                                new File( outputDirectory, 'pl-513-1/15' ).listFiles().every{ it.with{ file &amp;&amp; name.with{ startsWith( '15-' ) &amp;&amp; endsWith( '-15.15' ) }}}
 
-                                new File( outputDir, 'pl-513-1/16' ).listFiles().size() == 1
+                                new File( outputDirectory, 'pl-513-1/16' ).listFiles().size() == 1
                             </assertGroovy>
                             <shouldFailAssertEqual>
-                                ${outputDir}/pl-513-1/8 |${outputDir}/pl-513-1/9
-                                ${outputDir}/pl-513-1/10|${outputDir}/pl-513-1/11
-                                ${outputDir}/pl-513-1/11|${outputDir}/pl-513-1/12
-                                ${outputDir}/pl-513-1/10|${outputDir}/pl-513-1/12
+                                ${outputDirectory}/pl-513-1/8 |${outputDirectory}/pl-513-1/9
+                                ${outputDirectory}/pl-513-1/10|${outputDirectory}/pl-513-1/11
+                                ${outputDirectory}/pl-513-1/11|${outputDirectory}/pl-513-1/12
+                                ${outputDirectory}/pl-513-1/10|${outputDirectory}/pl-513-1/12
                             </shouldFailAssertEqual>
                             <assertEqual>
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <!-- Folders "15" and "16" are different due to <process> files re-ordering: -->
                                 <!-- we have files of different sizes copied to the same destination         -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                                ${outputDir}/pl-513-1/1 |${outputDir}/pl-513-2/1
-                                ${outputDir}/pl-513-1/2 |${outputDir}/pl-513-2/2
-                                ${outputDir}/pl-513-1/3 |${outputDir}/pl-513-2/3
-                                ${outputDir}/pl-513-1/4 |${outputDir}/pl-513-2/4
-                                ${outputDir}/pl-513-1/5 |${outputDir}/pl-513-2/5
-                                ${outputDir}/pl-513-1/6 |${outputDir}/pl-513-2/6
-                                ${outputDir}/pl-513-1/7 |${outputDir}/pl-513-2/7
-                                ${outputDir}/pl-513-1/8 |${outputDir}/pl-513-2/8
-                                ${outputDir}/pl-513-1/9 |${outputDir}/pl-513-2/9
-                                ${outputDir}/pl-513-1/10|${outputDir}/pl-513-2/10
-                                ${outputDir}/pl-513-1/11|${outputDir}/pl-513-2/11
-                                ${outputDir}/pl-513-1/12|${outputDir}/pl-513-2/12
-                                ${outputDir}/pl-513-1/13|${outputDir}/pl-513-2/13
-                                ${outputDir}/pl-513-1/14|${outputDir}/pl-513-2/14
+                                ${outputDirectory}/pl-513-1/1 |${outputDirectory}/pl-513-2/1
+                                ${outputDirectory}/pl-513-1/2 |${outputDirectory}/pl-513-2/2
+                                ${outputDirectory}/pl-513-1/3 |${outputDirectory}/pl-513-2/3
+                                ${outputDirectory}/pl-513-1/4 |${outputDirectory}/pl-513-2/4
+                                ${outputDirectory}/pl-513-1/5 |${outputDirectory}/pl-513-2/5
+                                ${outputDirectory}/pl-513-1/6 |${outputDirectory}/pl-513-2/6
+                                ${outputDirectory}/pl-513-1/7 |${outputDirectory}/pl-513-2/7
+                                ${outputDirectory}/pl-513-1/8 |${outputDirectory}/pl-513-2/8
+                                ${outputDirectory}/pl-513-1/9 |${outputDirectory}/pl-513-2/9
+                                ${outputDirectory}/pl-513-1/10|${outputDirectory}/pl-513-2/10
+                                ${outputDirectory}/pl-513-1/11|${outputDirectory}/pl-513-2/11
+                                ${outputDirectory}/pl-513-1/12|${outputDirectory}/pl-513-2/12
+                                ${outputDirectory}/pl-513-1/13|${outputDirectory}/pl-513-2/13
+                                ${outputDirectory}/pl-513-1/14|${outputDirectory}/pl-513-2/14
                             </assertEqual>
                         </configuration>
                     </execution>
@@ -2814,30 +2816,30 @@
                         <configuration>
                             <assertEqual>
                                 <!-- No replaces -->
-                                ${outputDir}/pl-502/1|${outputDir}/pl-502/copy-2|**/*.class
-                                ${outputDir}/pl-502/1|${outputDir}/pl-502/copy-2|**/*.xml
-                                ${outputDir}/pl-502/copy-2|${outputDir}/pl-502/unpack-2|**/*.class
-                                ${outputDir}/pl-502/copy-2|${outputDir}/pl-502/unpack-2|**/*.xml
-                                ${outputDir}/pl-502/unpack-2|${outputDir}/pl-502/pack-2/unpack|**/*.class
-                                ${outputDir}/pl-502/unpack-2|${outputDir}/pl-502/pack-2/unpack|**/*.xml
-                                ${outputDir}/pl-502/pack-2/unpack|${outputDir}/pl-502/1|**/*.class
-                                ${outputDir}/pl-502/pack-2/unpack|${outputDir}/pl-502/1|**/*.xml
+                                ${outputDirectory}/pl-502/1|${outputDirectory}/pl-502/copy-2|**/*.class
+                                ${outputDirectory}/pl-502/1|${outputDirectory}/pl-502/copy-2|**/*.xml
+                                ${outputDirectory}/pl-502/copy-2|${outputDirectory}/pl-502/unpack-2|**/*.class
+                                ${outputDirectory}/pl-502/copy-2|${outputDirectory}/pl-502/unpack-2|**/*.xml
+                                ${outputDirectory}/pl-502/unpack-2|${outputDirectory}/pl-502/pack-2/unpack|**/*.class
+                                ${outputDirectory}/pl-502/unpack-2|${outputDirectory}/pl-502/pack-2/unpack|**/*.xml
+                                ${outputDirectory}/pl-502/pack-2/unpack|${outputDirectory}/pl-502/1|**/*.class
+                                ${outputDirectory}/pl-502/pack-2/unpack|${outputDirectory}/pl-502/1|**/*.xml
                                 <!-- Replaces -->
-                                ${outputDir}/pl-502/copy-1|${outputDir}/pl-502/unpack-1
-                                ${outputDir}/pl-502/unpack-1|${outputDir}/pl-502/pack-1/unpack
-                                ${outputDir}/pl-502/pack-1/unpack|${outputDir}/pl-502/copy-1
+                                ${outputDirectory}/pl-502/copy-1|${outputDirectory}/pl-502/unpack-1
+                                ${outputDirectory}/pl-502/unpack-1|${outputDirectory}/pl-502/pack-1/unpack
+                                ${outputDirectory}/pl-502/pack-1/unpack|${outputDirectory}/pl-502/copy-1
                             </assertEqual>
                             <shouldFailAssertEqual>
                                 <!-- Non-matching patterns -->
-                                ${outputDir}/pl-502/1|${outputDir}/pl-502/copy-2|*.class
-                                ${outputDir}/pl-502/1|${outputDir}/pl-502/copy-2|**/*.ppt
+                                ${outputDirectory}/pl-502/1|${outputDirectory}/pl-502/copy-2|*.class
+                                ${outputDirectory}/pl-502/1|${outputDirectory}/pl-502/copy-2|**/*.ppt
                                 <!-- Replaced vs. non-replaced files -->
-                                ${outputDir}/pl-502/copy-1|${outputDir}/pl-502/copy-2
-                                ${outputDir}/pl-502/copy-1|${outputDir}/pl-502/copy-2|**/*.class
-                                ${outputDir}/pl-502/unpack-1|${outputDir}/pl-502/unpack-2
-                                ${outputDir}/pl-502/unpack-1|${outputDir}/pl-502/unpack-2|**/*.class
-                                ${outputDir}/pl-502/pack-1/unpack|${outputDir}/pl-502/pack-2/unpack
-                                ${outputDir}/pl-502/pack-1/unpack|${outputDir}/pl-502/pack-2/unpack|**/*.class
+                                ${outputDirectory}/pl-502/copy-1|${outputDirectory}/pl-502/copy-2
+                                ${outputDirectory}/pl-502/copy-1|${outputDirectory}/pl-502/copy-2|**/*.class
+                                ${outputDirectory}/pl-502/unpack-1|${outputDirectory}/pl-502/unpack-2
+                                ${outputDirectory}/pl-502/unpack-1|${outputDirectory}/pl-502/unpack-2|**/*.class
+                                ${outputDirectory}/pl-502/pack-1/unpack|${outputDirectory}/pl-502/pack-2/unpack
+                                ${outputDirectory}/pl-502/pack-1/unpack|${outputDirectory}/pl-502/pack-2/unpack|**/*.class
                             </shouldFailAssertEqual>
                         </configuration>
                     </execution>
@@ -2850,22 +2852,22 @@
                         <configuration>
                             <shouldFailAssertFiles>
                                 <!-- pl-430, pl-493, pl-502, pl-509, pl-510, pl-522, pl-539 -->
-                                ${outputDir}/pl-430
-                                ${outputDir}/pl-493
-                                ${outputDir}/pl-502
-                                ${outputDir}/pl-509
-                                ${outputDir}/pl-510
-                                ${outputDir}/pl-522
-                                ${outputDir}/pl-539
+                                ${outputDirectory}/pl-430
+                                ${outputDirectory}/pl-493
+                                ${outputDirectory}/pl-502
+                                ${outputDirectory}/pl-509
+                                ${outputDirectory}/pl-510
+                                ${outputDirectory}/pl-522
+                                ${outputDirectory}/pl-539
                             </shouldFailAssertFiles>
                             <assertGroovy>
-                              ! new File( outputDir, 'pl-430' ).directory
-                              ! new File( outputDir, 'pl-493' ).directory
-                              ! new File( outputDir, 'pl-502' ).directory
-                              ! new File( outputDir, 'pl-509' ).directory
-                              ! new File( outputDir, 'pl-510' ).directory
-                              ! new File( outputDir, 'pl-522' ).directory
-                              ! new File( outputDir, 'pl-539' ).directory
+                              ! new File( outputDirectory, 'pl-430' ).directory
+                              ! new File( outputDirectory, 'pl-493' ).directory
+                              ! new File( outputDirectory, 'pl-502' ).directory
+                              ! new File( outputDirectory, 'pl-509' ).directory
+                              ! new File( outputDirectory, 'pl-510' ).directory
+                              ! new File( outputDirectory, 'pl-522' ).directory
+                              ! new File( outputDirectory, 'pl-539' ).directory
                             </assertGroovy>
                         </configuration>
                     </execution>

@@ -42,20 +42,20 @@
                             <resources>
                                 <resource>
                                     <targetPaths>
-                                        <targetPath>${outputDir}/pl-467/pom.zip</targetPath>
-                                        <targetPath>${outputDir}/pl-467/pom.sar</targetPath>
+                                        <targetPath>${outputDirectory}/pl-467/pom.zip</targetPath>
+                                        <targetPath>${outputDirectory}/pl-467/pom.sar</targetPath>
                                     </targetPaths>
                                     <file>${project.basedir}/pom.xml</file>
                                     <pack>true</pack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-467/zip</targetPath>
-                                    <file>${outputDir}/pl-467/pom.zip</file>
+                                    <targetPath>${outputDirectory}/pl-467/zip</targetPath>
+                                    <file>${outputDirectory}/pl-467/pom.zip</file>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-467/sar</targetPath>
-                                    <file>${outputDir}/pl-467/pom.sar</file>
+                                    <targetPath>${outputDirectory}/pl-467/sar</targetPath>
+                                    <file>${outputDirectory}/pl-467/pom.sar</file>
                                     <unpack>true</unpack>
                                 </resource>
                             </resources>
@@ -74,7 +74,7 @@
                         <configuration>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-302/spring-single-1</targetPath>
+                                    <targetPath>${outputDirectory}/pl-302/spring-single-1</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -82,7 +82,7 @@
                                     </dependency>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-302/spring-single-2</targetPath>
+                                    <targetPath>${outputDirectory}/pl-302/spring-single-2</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -91,7 +91,7 @@
                                     </dependency>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-302/spring-all</targetPath>
+                                    <targetPath>${outputDirectory}/pl-302/spring-all</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -102,7 +102,7 @@
                                     </dependency>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-302/spring-test</targetPath>
+                                    <targetPath>${outputDirectory}/pl-302/spring-test</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -113,7 +113,7 @@
                                     </dependency>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-302/spring-compile</targetPath>
+                                    <targetPath>${outputDirectory}/pl-302/spring-compile</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -123,7 +123,7 @@
                                     </dependency>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-302/spring-gid</targetPath>
+                                    <targetPath>${outputDirectory}/pl-302/spring-gid</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -134,7 +134,7 @@
                                     </dependency>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-302/spring-aid</targetPath>
+                                    <targetPath>${outputDirectory}/pl-302/spring-aid</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
@@ -165,13 +165,13 @@
                         <phase>test</phase>
                         <configuration>
                             <assertFiles>
-                                ${outputDir}/pl-467/pom.zip
-                                ${outputDir}/pl-467/pom.sar
-                                ${outputDir}/pl-467/zip
-                                ${outputDir}/pl-467/sar
+                                ${outputDirectory}/pl-467/pom.zip
+                                ${outputDirectory}/pl-467/pom.sar
+                                ${outputDirectory}/pl-467/zip
+                                ${outputDirectory}/pl-467/sar
                             </assertFiles>
                             <assertEqual>
-                                ${outputDir}/pl-467/zip|${outputDir}/pl-467/sar
+                                ${outputDirectory}/pl-467/zip|${outputDirectory}/pl-467/sar
                             </assertEqual>
                         </configuration>
                     </execution>
@@ -186,25 +186,25 @@
                         <phase>test</phase>
                         <configuration>
                             <assertFiles>
-                                ${outputDir}/pl-302/spring-single-1
-                                ${outputDir}/pl-302/spring-single-2
-                                ${outputDir}/pl-302/spring-all
-                                ${outputDir}/pl-302/spring-test
-                                ${outputDir}/pl-302/spring-compile
-                                ${outputDir}/pl-302/spring-gid
-                                ${outputDir}/pl-302/spring-aid
+                                ${outputDirectory}/pl-302/spring-single-1
+                                ${outputDirectory}/pl-302/spring-single-2
+                                ${outputDirectory}/pl-302/spring-all
+                                ${outputDirectory}/pl-302/spring-test
+                                ${outputDirectory}/pl-302/spring-compile
+                                ${outputDirectory}/pl-302/spring-gid
+                                ${outputDirectory}/pl-302/spring-aid
                             </assertFiles>
                             <assertGroovy>
-                                new File( outputDir, 'pl-302/spring-single-1' ).listFiles().size() == 1
-                                new File( outputDir, 'pl-302/spring-single-2' ).listFiles().size() == 1
-                                new File( outputDir, 'pl-302/spring-all'      ).listFiles().size() == ${springCompileTestDependencies}
-                                new File( outputDir, 'pl-302/spring-test'     ).listFiles().size() == ${springCompileTestDependencies}
-                                new File( outputDir, 'pl-302/spring-compile'  ).listFiles().size() == ${springCompileDependencies}
-                                new File( outputDir, 'pl-302/spring-gid'      ).listFiles().size() == 6
-                                new File( outputDir, 'pl-302/spring-aid'      ).listFiles().size() == 2
+                                new File( outputDirectory, 'pl-302/spring-single-1' ).listFiles().size() == 1
+                                new File( outputDirectory, 'pl-302/spring-single-2' ).listFiles().size() == 1
+                                new File( outputDirectory, 'pl-302/spring-all'      ).listFiles().size() == ${springCompileTestDependencies}
+                                new File( outputDirectory, 'pl-302/spring-test'     ).listFiles().size() == ${springCompileTestDependencies}
+                                new File( outputDirectory, 'pl-302/spring-compile'  ).listFiles().size() == ${springCompileDependencies}
+                                new File( outputDirectory, 'pl-302/spring-gid'      ).listFiles().size() == 6
+                                new File( outputDirectory, 'pl-302/spring-aid'      ).listFiles().size() == 2
                             </assertGroovy>
                             <assertEqual>
-                                ${outputDir}/pl-302/spring-all|${outputDir}/pl-302/spring-test
+                                ${outputDirectory}/pl-302/spring-all|${outputDirectory}/pl-302/spring-test
                             </assertEqual>
                         </configuration>
                     </execution>

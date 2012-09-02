@@ -27,6 +27,77 @@
                 <artifactId>copy-maven-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-648                 -->
+                    <!-- "Resource processing is not performed for remote targetPaths"  -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-648</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <runIf>{{ ftpTests }}</runIf>
+                            <resources>
+                                <!-- Uploading modified 'pom.xml' to FTP and SCP directories -->
+                                <resource>
+                                    <targetPath>${ftpPath}/pl-648, ${scpPath}/pl-648</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <filtering>true</filtering>
+                                    <filter>{{ files.findAll{ it.name == 'pom.xml' } }}</filter>
+                                    <replaces>
+                                        <replace>
+                                            <from>&lt;</from>
+                                            <to>[</to>
+                                        </replace>
+                                        <replace>
+                                            <from>&gt;</from>
+                                            <to>]</to>
+                                        </replace>
+                                    </replaces>
+                                    <destFilePrefix>ppp-</destFilePrefix>
+                                    <destFileExtension>txt</destFileExtension>
+                                </resource>
+                                <!-- Uploading modified dependencies to FTP and SCP directories -->
+                                <resource>
+                                    <targetPath>${ftpPath}/pl-648, ${scpPath}/pl-648</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>javax.servlet</groupId>
+                                            <artifactId>servlet-api</artifactId>
+                                            <version>2.2</version>
+                                            <stripVersion>true</stripVersion>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>javax.servlet</groupId>
+                                            <artifactId>servlet-api</artifactId>
+                                            <version>2.2</version>
+                                            <destFileName>s.jar</destFileName>
+                                        </dependency>
+                                    </dependencies>
+                                </resource>
+                                <!-- Downloading files uploaded -->
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-648/ftp</targetPath>
+                                    <directory>${ftpPath}/pl-648</directory>
+                                    <include>ppp-pom.txt, servlet-api.jar, s.jar</include>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-648/scp</targetPath>
+                                    <file>${scpPath}/pl-648/ppp-pom.txt</file>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-648/scp</targetPath>
+                                    <file>${scpPath}/pl-648/servlet-api.jar</file>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-648/scp</targetPath>
+                                    <file>${scpPath}/pl-648/s.jar</file>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-651                                   -->
                     <!-- "When mkdir true is specified, the scp target path is considered as local path"  -->
@@ -55,6 +126,73 @@
                                     <failsWith>AssertionError</failsWith>
                                 </resource>
                             </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.github.goldin</groupId>
+                <artifactId>assert-maven-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-648 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-648</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <runIf>{{ ftpTests }}</runIf>
+                            <assertFiles>
+                                ${outputDirectory}/pl-648/ftp/ppp-pom.txt
+                                ${outputDirectory}/pl-648/ftp/servlet-api.jar
+                                ${outputDirectory}/pl-648/ftp/s.jar
+
+                                ${outputDirectory}/pl-648/scp/ppp-pom.txt
+                                ${outputDirectory}/pl-648/scp/servlet-api.jar
+                                ${outputDirectory}/pl-648/scp/s.jar
+                            </assertFiles>
+                            <assertEqual>
+                                ${outputDirectory}/pl-648/ftp|${outputDirectory}/pl-648/scp
+                            </assertEqual>
+                            <assertGroovy>
+                                  new File( outputDirectory, 'pl-648/ftp/ppp-pom.txt' ).text.contains( '[name][com.github.goldin.maven-plugins-test:copy-maven-plugin.issues.0.2.5:0.1-SNAPSHOT][/name]' )
+                                ! new File( outputDirectory, 'pl-648/ftp/ppp-pom.txt' ).text.contains( '&lt;' )
+                                ! new File( outputDirectory, 'pl-648/ftp/ppp-pom.txt' ).text.contains( '&gt;' )
+
+                                new File( outputDirectory, 'pl-648/ftp/ppp-pom.txt' ).text.contains( '[name][com.github.goldin.maven-plugins-test:copy-maven-plugin.issues.0.2.5:0.1-SNAPSHOT][/name]' )
+                                ! new File( outputDirectory, 'pl-648/scp/ppp-pom.txt' ).text.contains( '&lt;' )
+                                ! new File( outputDirectory, 'pl-648/scp/ppp-pom.txt' ).text.contains( '&gt;' )
+                            </assertGroovy>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+            <plugin>
+                <groupId>com.github.goldin</groupId>
+                <artifactId>sshexec-maven-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-648 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-648</id>
+                        <goals>
+                            <goal>sshexec</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <runIf>{{ ftpTests }}</runIf>
+                            <location>${scpPath}/pl-648</location>
+                            <command>ls -al; rm *; ls -al</command>
+                            <echoCommands>true</echoCommands>
                         </configuration>
                     </execution>
                 </executions>

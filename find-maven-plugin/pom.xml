@@ -21,7 +21,7 @@
 
 
     <properties>
-        <targetPath>${outputDir}/1/2/3/4/5/6/78/910</targetPath>
+        <targetPath>${outputDirectory}/1/2/3/4/5/6/78/910</targetPath>
     </properties>
 
     <build>
@@ -168,7 +168,7 @@
                                 ${rootPath}/jenkins-maven-plugin/issues/0.2-beta-2/src/test/resources/configs/pl-18/config.xml
                                 ${rootPath}/properties-maven-plugin
                                 ${rootPath}/properties-maven-plugin/issues/0.2-beta-5/pom.xml
-                                ${outputDir}
+                                ${outputDirectory}
                                 ${targetPath}
                             </assertFiles>
                             <assertGroovy>

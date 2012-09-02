@@ -40,7 +40,7 @@
                         <configuration>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-600/strip</targetPath>
+                                    <targetPath>${outputDirectory}/pl-600/strip</targetPath>
                                     <stripVersion>true</stripVersion>
                                     <dependencies>
                                         <dependency>
@@ -102,7 +102,7 @@
                                     </dependencies>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-600/no-strip</targetPath>
+                                    <targetPath>${outputDirectory}/pl-600/no-strip</targetPath>
                                     <stripVersion>false</stripVersion>
                                     <dependencies>
                                         <dependency>
@@ -179,7 +179,7 @@
                         <configuration>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-564/1/1.jar</targetPath>
+                                    <targetPath>${outputDirectory}/pl-564/1/1.jar</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <pack>true</pack>
                                     <manifest>
@@ -192,12 +192,12 @@
                                     </manifest>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-564/1/1-jar</targetPath>
-                                    <file>${outputDir}/pl-564/1/1.jar</file>
+                                    <targetPath>${outputDirectory}/pl-564/1/1-jar</targetPath>
+                                    <file>${outputDirectory}/pl-564/1/1.jar</file>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-564/1/2.zip</targetPath>
+                                    <targetPath>${outputDirectory}/pl-564/1/2.zip</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <pack>true</pack>
                                     <manifest>
@@ -211,12 +211,12 @@
                                     </manifest>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-564/1/2-zip</targetPath>
-                                    <file>${outputDir}/pl-564/1/2.zip</file>
+                                    <targetPath>${outputDirectory}/pl-564/1/2-zip</targetPath>
+                                    <file>${outputDirectory}/pl-564/1/2.zip</file>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-564/1/3.tar.gz</targetPath>
+                                    <targetPath>${outputDirectory}/pl-564/1/3.tar.gz</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <pack>true</pack>
                                     <manifest>
@@ -230,8 +230,8 @@
                                     </manifest>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-564/1/3-tar.gz</targetPath>
-                                    <file>${outputDir}/pl-564/1/3.tar.gz</file>
+                                    <targetPath>${outputDirectory}/pl-564/1/3-tar.gz</targetPath>
+                                    <file>${outputDirectory}/pl-564/1/3.tar.gz</file>
                                     <unpack>true</unpack>
                                 </resource>
                             </resources>
@@ -254,33 +254,33 @@
                             </manifest>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-564/2/1.jar</targetPath>
+                                    <targetPath>${outputDirectory}/pl-564/2/1.jar</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <pack>true</pack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-564/2/1-jar</targetPath>
-                                    <file>${outputDir}/pl-564/2/1.jar</file>
+                                    <targetPath>${outputDirectory}/pl-564/2/1-jar</targetPath>
+                                    <file>${outputDirectory}/pl-564/2/1.jar</file>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-564/2/2.zip</targetPath>
+                                    <targetPath>${outputDirectory}/pl-564/2/2.zip</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <pack>true</pack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-564/2/2-zip</targetPath>
-                                    <file>${outputDir}/pl-564/2/2.zip</file>
+                                    <targetPath>${outputDirectory}/pl-564/2/2-zip</targetPath>
+                                    <file>${outputDirectory}/pl-564/2/2.zip</file>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-564/2/3.tar.gz</targetPath>
+                                    <targetPath>${outputDirectory}/pl-564/2/3.tar.gz</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <pack>true</pack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-564/2/3-tar.gz</targetPath>
-                                    <file>${outputDir}/pl-564/2/3.tar.gz</file>
+                                    <targetPath>${outputDirectory}/pl-564/2/3-tar.gz</targetPath>
+                                    <file>${outputDirectory}/pl-564/2/3.tar.gz</file>
                                     <unpack>true</unpack>
                                 </resource>
                             </resources>
@@ -304,17 +304,17 @@
                             </manifest>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-564/3/1.jar</targetPath>
+                                    <targetPath>${outputDirectory}/pl-564/3/1.jar</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <pack>true</pack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-564/3/1-jar</targetPath>
-                                    <file>${outputDir}/pl-564/3/1.jar</file>
+                                    <targetPath>${outputDirectory}/pl-564/3/1-jar</targetPath>
+                                    <file>${outputDirectory}/pl-564/3/1.jar</file>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-564/3/2.zip</targetPath>
+                                    <targetPath>${outputDirectory}/pl-564/3/2.zip</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <pack>true</pack>
                                     <manifest>
@@ -326,12 +326,12 @@
                                     </manifest>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-564/3/2-zip</targetPath>
-                                    <file>${outputDir}/pl-564/3/2.zip</file>
+                                    <targetPath>${outputDirectory}/pl-564/3/2-zip</targetPath>
+                                    <file>${outputDirectory}/pl-564/3/2.zip</file>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-564/3/3.tar.gz</targetPath>
+                                    <targetPath>${outputDirectory}/pl-564/3/3.tar.gz</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <pack>true</pack>
                                     <manifest>
@@ -344,8 +344,8 @@
                                     </manifest>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-564/3/3-tar.gz</targetPath>
-                                    <file>${outputDir}/pl-564/3/3.tar.gz</file>
+                                    <targetPath>${outputDirectory}/pl-564/3/3-tar.gz</targetPath>
+                                    <file>${outputDirectory}/pl-564/3/3.tar.gz</file>
                                     <unpack>true</unpack>
                                 </resource>
                             </resources>
@@ -369,33 +369,33 @@
                             </manifest>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-564/4/1.jar</targetPath>
+                                    <targetPath>${outputDirectory}/pl-564/4/1.jar</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <pack>true</pack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-564/4/1-jar</targetPath>
-                                    <file>${outputDir}/pl-564/4/1.jar</file>
+                                    <targetPath>${outputDirectory}/pl-564/4/1-jar</targetPath>
+                                    <file>${outputDirectory}/pl-564/4/1.jar</file>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-564/4/2.zip</targetPath>
+                                    <targetPath>${outputDirectory}/pl-564/4/2.zip</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <pack>true</pack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-564/4/2-zip</targetPath>
-                                    <file>${outputDir}/pl-564/4/2.zip</file>
+                                    <targetPath>${outputDirectory}/pl-564/4/2-zip</targetPath>
+                                    <file>${outputDirectory}/pl-564/4/2.zip</file>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-564/4/3.tar.gz</targetPath>
+                                    <targetPath>${outputDirectory}/pl-564/4/3.tar.gz</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <pack>true</pack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-564/4/3-tar.gz</targetPath>
-                                    <file>${outputDir}/pl-564/4/3.tar.gz</file>
+                                    <targetPath>${outputDirectory}/pl-564/4/3-tar.gz</targetPath>
+                                    <file>${outputDirectory}/pl-564/4/3.tar.gz</file>
                                     <unpack>true</unpack>
                                 </resource>
                             </resources>
@@ -415,7 +415,7 @@
                             <stripVersion>true</stripVersion>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-571/1</targetPath>
+                                    <targetPath>${outputDirectory}/pl-571/1</targetPath>
                                     <dependencies>
                                         <dependency>
                                             <groupId>commons-validator</groupId>
@@ -449,7 +449,7 @@
                             <stripVersion>false</stripVersion>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-571/2</targetPath>
+                                    <targetPath>${outputDirectory}/pl-571/2</targetPath>
                                     <dependencies>
                                         <dependency>
                                             <groupId>commons-validator</groupId>
@@ -483,7 +483,7 @@
                             <stripVersion>true</stripVersion>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-571/3</targetPath>
+                                    <targetPath>${outputDirectory}/pl-571/3</targetPath>
                                     <dependencies>
                                         <dependency>
                                             <groupId>commons-validator</groupId>
@@ -518,7 +518,7 @@
                             <stripVersion>false</stripVersion>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-571/4</targetPath>
+                                    <targetPath>${outputDirectory}/pl-571/4</targetPath>
                                     <dependencies>
                                         <dependency>
                                             <groupId>commons-validator</groupId>
@@ -552,7 +552,7 @@
                         <configuration>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-571/5-1</targetPath>
+                                    <targetPath>${outputDirectory}/pl-571/5-1</targetPath>
                                     <stripVersion>true</stripVersion>
                                     <dependencies>
                                         <dependency>
@@ -575,7 +575,7 @@
                                     </dependencies>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-571/5-2</targetPath>
+                                    <targetPath>${outputDirectory}/pl-571/5-2</targetPath>
                                     <stripVersion>false</stripVersion>
                                     <dependencies>
                                         <dependency>
@@ -598,7 +598,7 @@
                                     </dependencies>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-571/5-3</targetPath>
+                                    <targetPath>${outputDirectory}/pl-571/5-3</targetPath>
                                     <stripVersion>true</stripVersion>
                                     <dependencies>
                                         <dependency>
@@ -622,7 +622,7 @@
                                     <filter>${filterNotM2}</filter>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-571/5-4</targetPath>
+                                    <targetPath>${outputDirectory}/pl-571/5-4</targetPath>
                                     <stripVersion>false</stripVersion>
                                     <dependencies>
                                         <dependency>
@@ -661,7 +661,7 @@
                         <configuration>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-572/1</targetPath>
+                                    <targetPath>${outputDirectory}/pl-572/1</targetPath>
                                     <dependencies>
                                         <dependency>
                                             <stripVersion>true</stripVersion>
@@ -686,7 +686,7 @@
                                     </dependencies>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-572/2</targetPath>
+                                    <targetPath>${outputDirectory}/pl-572/2</targetPath>
                                     <dependencies>
                                         <dependency>
                                             <stripVersion>false</stripVersion>
@@ -711,7 +711,7 @@
                                     </dependencies>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-572/3</targetPath>
+                                    <targetPath>${outputDirectory}/pl-572/3</targetPath>
                                     <dependencies>
                                         <dependency>
                                             <stripVersion>true</stripVersion>
@@ -737,7 +737,7 @@
                                     <filter>${filterNotM2}</filter>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-572/4</targetPath>
+                                    <targetPath>${outputDirectory}/pl-572/4</targetPath>
                                     <dependencies>
                                         <dependency>
                                             <stripVersion>false</stripVersion>
@@ -789,7 +789,7 @@
                             <resources>
                                 <resource>
                                     <description>pl-562/unpack</description>
-                                    <targetPath>${outputDir}/pl-562/unpack</targetPath>
+                                    <targetPath>${outputDirectory}/pl-562/unpack</targetPath>
                                     <dependency>
                                         <groupId>org.jenkins-ci.main</groupId>
                                         <artifactId>jenkins-war</artifactId>
@@ -800,19 +800,19 @@
                                 </resource>
                                 <resource>
                                     <description>pl-562/pack</description>
-                                    <targetPath>${outputDir}/pl-562/pack/1.zip</targetPath>
-                                    <directory>${outputDir}/pl-562/unpack</directory>
+                                    <targetPath>${outputDirectory}/pl-562/pack/1.zip</targetPath>
+                                    <directory>${outputDirectory}/pl-562/unpack</directory>
                                     <pack>true</pack>
                                 </resource>
                                 <resource>
                                     <description>pl-562/skip pack</description>
-                                    <targetPath>${outputDir}/pl-562/pack/1.zip</targetPath>
-                                    <directory>${outputDir}/pl-562/unpack</directory>
+                                    <targetPath>${outputDirectory}/pl-562/pack/1.zip</targetPath>
+                                    <directory>${outputDirectory}/pl-562/unpack</directory>
                                     <pack>true</pack>
                                 </resource>
                                 <resource>
                                     <description>pl-562/1 - copy</description>
-                                    <targetPath>${outputDir}/pl-562/1</targetPath>
+                                    <targetPath>${outputDirectory}/pl-562/1</targetPath>
                                     <dependency>
                                         <includeScope>compile</includeScope>
                                     </dependency>
@@ -820,14 +820,14 @@
                                 </resource>
                                 <resource>
                                     <description>pl-562/1 - skip</description>
-                                    <targetPath>${outputDir}/pl-562/1</targetPath>
+                                    <targetPath>${outputDirectory}/pl-562/1</targetPath>
                                     <dependency>
                                         <includeScope>compile</includeScope>
                                     </dependency>
                                 </resource>
                                 <resource>
                                     <description>pl-562/2 - copy</description>
-                                    <targetPath>${outputDir}/pl-562/2</targetPath>
+                                    <targetPath>${outputDirectory}/pl-562/2</targetPath>
                                     <dependencies>
                                         <dependency>
                                             <groupId>org.slf4j</groupId>
@@ -850,7 +850,7 @@
                                 </resource>
                                 <resource>
                                     <description>pl-562/2 - skip</description>
-                                    <targetPath>${outputDir}/pl-562/2</targetPath>
+                                    <targetPath>${outputDirectory}/pl-562/2</targetPath>
                                     <dependencies>
                                         <dependency>
                                             <groupId>org.slf4j</groupId>
@@ -889,7 +889,7 @@
                                 <!-- "stripVersion" -->
                                 <!-- ~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/pl-567/1</targetPath>
+                                    <targetPath>${outputDirectory}/pl-567/1</targetPath>
                                     <stripVersion>true</stripVersion>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
@@ -899,7 +899,7 @@
                                     <filter>${filterM2}</filter>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-567/2</targetPath>
+                                    <targetPath>${outputDirectory}/pl-567/2</targetPath>
                                     <stripVersion>true</stripVersion>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
@@ -911,7 +911,7 @@
                                     <filter>${filterNotM2}</filter>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-567/3</targetPath>
+                                    <targetPath>${outputDirectory}/pl-567/3</targetPath>
                                     <stripVersion>true</stripVersion>
                                     <dependencies>
                                         <dependency>
@@ -938,7 +938,7 @@
                                     <filter>${filterNotM2}</filter>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-567/4</targetPath>
+                                    <targetPath>${outputDirectory}/pl-567/4</targetPath>
                                     <stripVersion>true</stripVersion>
                                     <dependency>
                                         <includeScope>compile</includeScope>
@@ -949,7 +949,7 @@
                                 <!-- No "stripVersion" -->
                                 <!-- ~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/pl-567/11</targetPath>
+                                    <targetPath>${outputDirectory}/pl-567/11</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-beans</artifactId>
@@ -958,7 +958,7 @@
                                     <filter>${filterM2}</filter>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-567/22</targetPath>
+                                    <targetPath>${outputDirectory}/pl-567/22</targetPath>
                                     <dependency>
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-beans</artifactId>
@@ -969,7 +969,7 @@
                                     <filter>${filterNotM2}</filter>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-567/33</targetPath>
+                                    <targetPath>${outputDirectory}/pl-567/33</targetPath>
                                     <dependencies>
                                         <dependency>
                                             <groupId>org.slf4j</groupId>
@@ -995,7 +995,7 @@
                                     <filter>${filterNotM2}</filter>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-567/44</targetPath>
+                                    <targetPath>${outputDirectory}/pl-567/44</targetPath>
                                     <dependency>
                                         <includeScope>compile</includeScope>
                                     </dependency>
@@ -1005,7 +1005,7 @@
                                 <!-- "stripVersion" + "dependenciesAtM2" (true) -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/pl-567/111</targetPath>
+                                    <targetPath>${outputDirectory}/pl-567/111</targetPath>
                                     <stripVersion>true</stripVersion>
                                     <dependenciesAtM2>true</dependenciesAtM2>
                                     <dependency>
@@ -1016,7 +1016,7 @@
                                     <filter>${filterM2}</filter>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-567/222</targetPath>
+                                    <targetPath>${outputDirectory}/pl-567/222</targetPath>
                                     <stripVersion>true</stripVersion>
                                     <dependenciesAtM2>true</dependenciesAtM2>
                                     <dependency>
@@ -1029,7 +1029,7 @@
                                     <filter>${filterM2}</filter>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-567/333</targetPath>
+                                    <targetPath>${outputDirectory}/pl-567/333</targetPath>
                                     <stripVersion>true</stripVersion>
                                     <dependenciesAtM2>true</dependenciesAtM2>
                                     <dependencies>
@@ -1057,7 +1057,7 @@
                                     <filter>${filterM2}</filter>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-567/444</targetPath>
+                                    <targetPath>${outputDirectory}/pl-567/444</targetPath>
                                     <stripVersion>true</stripVersion>
                                     <dependenciesAtM2>true</dependenciesAtM2>
                                     <dependency>
@@ -1069,7 +1069,7 @@
                                 <!-- "stripVersion" + "dependenciesAtM2" (false) -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/pl-567/1111</targetPath>
+                                    <targetPath>${outputDirectory}/pl-567/1111</targetPath>
                                     <stripVersion>true</stripVersion>
                                     <dependenciesAtM2>false</dependenciesAtM2>
                                     <dependency>
@@ -1080,7 +1080,7 @@
                                     <filter>${filterNotM2}</filter>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-567/2222</targetPath>
+                                    <targetPath>${outputDirectory}/pl-567/2222</targetPath>
                                     <stripVersion>true</stripVersion>
                                     <dependenciesAtM2>false</dependenciesAtM2>
                                     <dependency>
@@ -1093,7 +1093,7 @@
                                     <filter>${filterNotM2}</filter>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-567/3333</targetPath>
+                                    <targetPath>${outputDirectory}/pl-567/3333</targetPath>
                                     <stripVersion>true</stripVersion>
                                     <dependenciesAtM2>false</dependenciesAtM2>
                                     <dependencies>
@@ -1121,7 +1121,7 @@
                                     <filter>${filterNotM2}</filter>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-567/4444</targetPath>
+                                    <targetPath>${outputDirectory}/pl-567/4444</targetPath>
                                     <stripVersion>true</stripVersion>
                                     <dependenciesAtM2>false</dependenciesAtM2>
                                     <dependency>
@@ -1151,40 +1151,40 @@
                         <phase>test</phase>
                         <configuration>
                             <assertFiles>
-                                ${outputDir}/pl-600/strip/build-info-api.jar
-                                ${outputDir}/pl-600/strip/build-info-client-sources.jar
-                                ${outputDir}/pl-600/strip/build-info-client.jar
-                                ${outputDir}/pl-600/strip/build-info-extractor-sources.jar
-                                ${outputDir}/pl-600/strip/build-info-extractor.jar
-                                ${outputDir}/pl-600/strip/teamcity-artifactory-plugin-agent-sources.jar
-                                ${outputDir}/pl-600/strip/teamcity-artifactory-plugin-agent.jar
-                                ${outputDir}/pl-600/strip/teamcity-artifactory-plugin-agent.pom
-                                ${outputDir}/pl-600/strip/teamcity-artifactory-plugin-agent.zip
-                                ${outputDir}/pl-600/strip/teamcity-artifactory-plugin.pom
+                                ${outputDirectory}/pl-600/strip/build-info-api.jar
+                                ${outputDirectory}/pl-600/strip/build-info-client-sources.jar
+                                ${outputDirectory}/pl-600/strip/build-info-client.jar
+                                ${outputDirectory}/pl-600/strip/build-info-extractor-sources.jar
+                                ${outputDirectory}/pl-600/strip/build-info-extractor.jar
+                                ${outputDirectory}/pl-600/strip/teamcity-artifactory-plugin-agent-sources.jar
+                                ${outputDirectory}/pl-600/strip/teamcity-artifactory-plugin-agent.jar
+                                ${outputDirectory}/pl-600/strip/teamcity-artifactory-plugin-agent.pom
+                                ${outputDirectory}/pl-600/strip/teamcity-artifactory-plugin-agent.zip
+                                ${outputDirectory}/pl-600/strip/teamcity-artifactory-plugin.pom
 
-                                ${outputDir}/pl-600/no-strip/build-info-client-1.3.1-sources.jar
-                                ${outputDir}/pl-600/no-strip/build-info-client-1.3.1.jar
-                                ${outputDir}/pl-600/no-strip/build-info-extractor-1.3.1-sources.jar
-                                ${outputDir}/pl-600/no-strip/build-info-extractor-1.3.1.jar
+                                ${outputDirectory}/pl-600/no-strip/build-info-client-1.3.1-sources.jar
+                                ${outputDirectory}/pl-600/no-strip/build-info-client-1.3.1.jar
+                                ${outputDirectory}/pl-600/no-strip/build-info-extractor-1.3.1-sources.jar
+                                ${outputDirectory}/pl-600/no-strip/build-info-extractor-1.3.1.jar
                             </assertFiles>
                             <shouldFailAssertFiles>
-                                ${outputDir}/pl-600/no-strip/build-info-api.jar
-                                ${outputDir}/pl-600/no-strip/build-info-client-sources.jar
-                                ${outputDir}/pl-600/no-strip/build-info-client.jar
-                                ${outputDir}/pl-600/no-strip/build-info-extractor-sources.jar
-                                ${outputDir}/pl-600/no-strip/build-info-extractor.jar
-                                ${outputDir}/pl-600/no-strip/teamcity-artifactory-plugin-agent-sources.jar
-                                ${outputDir}/pl-600/no-strip/teamcity-artifactory-plugin-agent.jar
-                                ${outputDir}/pl-600/no-strip/teamcity-artifactory-plugin-agent.pom
-                                ${outputDir}/pl-600/no-strip/teamcity-artifactory-plugin-agent.zip
-                                ${outputDir}/pl-600/no-strip/teamcity-artifactory-plugin.pom
+                                ${outputDirectory}/pl-600/no-strip/build-info-api.jar
+                                ${outputDirectory}/pl-600/no-strip/build-info-client-sources.jar
+                                ${outputDirectory}/pl-600/no-strip/build-info-client.jar
+                                ${outputDirectory}/pl-600/no-strip/build-info-extractor-sources.jar
+                                ${outputDirectory}/pl-600/no-strip/build-info-extractor.jar
+                                ${outputDirectory}/pl-600/no-strip/teamcity-artifactory-plugin-agent-sources.jar
+                                ${outputDirectory}/pl-600/no-strip/teamcity-artifactory-plugin-agent.jar
+                                ${outputDirectory}/pl-600/no-strip/teamcity-artifactory-plugin-agent.pom
+                                ${outputDirectory}/pl-600/no-strip/teamcity-artifactory-plugin-agent.zip
+                                ${outputDirectory}/pl-600/no-strip/teamcity-artifactory-plugin.pom
                             </shouldFailAssertFiles>
                             <assertGroovy>
-                                new File( outputDir, 'pl-600/strip'    ).listFiles().size() == 10
-                                new File( outputDir, 'pl-600/no-strip' ).listFiles().size() == 10
+                                new File( outputDirectory, 'pl-600/strip'    ).listFiles().size() == 10
+                                new File( outputDirectory, 'pl-600/no-strip' ).listFiles().size() == 10
                             </assertGroovy>
                             <shouldFailAssertEqual>
-                                ${outputDir}/pl-600/strip|${outputDir}/pl-600/no-strip
+                                ${outputDirectory}/pl-600/strip|${outputDirectory}/pl-600/no-strip
                             </shouldFailAssertEqual>
                         </configuration>
                     </execution>
@@ -1199,61 +1199,61 @@
                         <phase>test</phase>
                         <configuration>
                             <assertFiles>
-                                ${outputDir}/pl-564/1/1-jar/META-INF/MANIFEST.MF
-                                ${outputDir}/pl-564/1/2-zip/a/b/manifest.txt
-                                ${outputDir}/pl-564/1/3-tar.gz/manifest.txt
+                                ${outputDirectory}/pl-564/1/1-jar/META-INF/MANIFEST.MF
+                                ${outputDirectory}/pl-564/1/2-zip/a/b/manifest.txt
+                                ${outputDirectory}/pl-564/1/3-tar.gz/manifest.txt
 
-                                ${outputDir}/pl-564/2/1-jar/META-INF/MANIFEST.MF
-                                ${outputDir}/pl-564/2/2-zip/META-INF/MANIFEST.MF
-                                ${outputDir}/pl-564/2/3-tar.gz/META-INF/MANIFEST.MF
+                                ${outputDirectory}/pl-564/2/1-jar/META-INF/MANIFEST.MF
+                                ${outputDirectory}/pl-564/2/2-zip/META-INF/MANIFEST.MF
+                                ${outputDirectory}/pl-564/2/3-tar.gz/META-INF/MANIFEST.MF
 
-                                ${outputDir}/pl-564/3/1-jar/m.txt
-                                ${outputDir}/pl-564/3/2-zip/m.txt
-                                ${outputDir}/pl-564/3/3-tar.gz/m2.txt
+                                ${outputDirectory}/pl-564/3/1-jar/m.txt
+                                ${outputDirectory}/pl-564/3/2-zip/m.txt
+                                ${outputDirectory}/pl-564/3/3-tar.gz/m2.txt
 
-                                ${outputDir}/pl-564/4/1-jar/META-INF/MANIFEST.MF
-                                ${outputDir}/pl-564/4/2-zip/META-INF/MANIFEST.MF
-                                ${outputDir}/pl-564/4/3-tar.gz/META-INF/MANIFEST.MF
+                                ${outputDirectory}/pl-564/4/1-jar/META-INF/MANIFEST.MF
+                                ${outputDirectory}/pl-564/4/2-zip/META-INF/MANIFEST.MF
+                                ${outputDirectory}/pl-564/4/3-tar.gz/META-INF/MANIFEST.MF
                             </assertFiles>
                             <assertEqual>
-                                ${outputDir}/pl-564/2/1-jar|${outputDir}/pl-564/2/2-zip
-                                ${outputDir}/pl-564/2/2-zip|${outputDir}/pl-564/2/3-tar.gz
-                                ${outputDir}/pl-564/2/3-tar.gz|${outputDir}/pl-564/2/1-jar
+                                ${outputDirectory}/pl-564/2/1-jar|${outputDirectory}/pl-564/2/2-zip
+                                ${outputDirectory}/pl-564/2/2-zip|${outputDirectory}/pl-564/2/3-tar.gz
+                                ${outputDirectory}/pl-564/2/3-tar.gz|${outputDirectory}/pl-564/2/1-jar
 
-                                ${outputDir}/pl-564/2|${outputDir}/pl-564/4|**/*.MF
+                                ${outputDirectory}/pl-564/2|${outputDirectory}/pl-564/4|**/*.MF
                             </assertEqual>
                             <shouldFailAssertEqual>
-                                ${outputDir}/pl-564/1/2-zip/a/b|${outputDir}/pl-564/1/3-tar.gz
-                                ${outputDir}/pl-564/1/2-zip/a/b|${outputDir}/pl-564/1/3-tar.gz|*.txt
+                                ${outputDirectory}/pl-564/1/2-zip/a/b|${outputDirectory}/pl-564/1/3-tar.gz
+                                ${outputDirectory}/pl-564/1/2-zip/a/b|${outputDirectory}/pl-564/1/3-tar.gz|*.txt
 
-                                ${outputDir}/pl-564/3/1-jar|${outputDir}/pl-564/3/2-zip
-                                ${outputDir}/pl-564/3/1-jar|${outputDir}/pl-564/3/2-zip|*.txt
+                                ${outputDirectory}/pl-564/3/1-jar|${outputDirectory}/pl-564/3/2-zip
+                                ${outputDirectory}/pl-564/3/1-jar|${outputDirectory}/pl-564/3/2-zip|*.txt
                             </shouldFailAssertEqual>
                             <assertGroovy>
-                                new File( outputDir, 'pl-564/1/1-jar/META-INF/MANIFEST.MF' ).text.contains( 'a1: b1' )
-                                new File( outputDir, 'pl-564/1/2-zip/a/b/manifest.txt' ).text.contains( 'a2: b2' )
-                                new File( outputDir, 'pl-564/1/3-tar.gz/manifest.txt' ).text.contains( 'a3: b3' )
+                                new File( outputDirectory, 'pl-564/1/1-jar/META-INF/MANIFEST.MF' ).text.contains( 'a1: b1' )
+                                new File( outputDirectory, 'pl-564/1/2-zip/a/b/manifest.txt' ).text.contains( 'a2: b2' )
+                                new File( outputDirectory, 'pl-564/1/3-tar.gz/manifest.txt' ).text.contains( 'a3: b3' )
 
-                                new File( outputDir, 'pl-564/2/1-jar/META-INF/MANIFEST.MF' ).text.contains( 'a4: b4' )
-                                new File( outputDir, 'pl-564/2/2-zip/META-INF/MANIFEST.MF' ).text.contains( 'a4: b4' )
-                                new File( outputDir, 'pl-564/2/3-tar.gz/META-INF/MANIFEST.MF' ).text.contains( 'a4: b4' )
+                                new File( outputDirectory, 'pl-564/2/1-jar/META-INF/MANIFEST.MF' ).text.contains( 'a4: b4' )
+                                new File( outputDirectory, 'pl-564/2/2-zip/META-INF/MANIFEST.MF' ).text.contains( 'a4: b4' )
+                                new File( outputDirectory, 'pl-564/2/3-tar.gz/META-INF/MANIFEST.MF' ).text.contains( 'a4: b4' )
 
-                                new File( outputDir, 'pl-564/3/1-jar/m.txt' ).text.contains( 'a5: b5' )
-                                new File( outputDir, 'pl-564/3/2-zip/m.txt' ).text.contains( 'a5: zzzzz' )
-                                new File( outputDir, 'pl-564/3/2-zip/m.txt' ).text.contains( 'a7: b7' )
-                                new File( outputDir, 'pl-564/3/2-zip/m.txt' ).text.contains( 'basedir: ' )
-                                new File( outputDir, 'pl-564/3/3-tar.gz/m2.txt' ).text.contains( 'a5: xxxxx' )
-                                new File( outputDir, 'pl-564/3/3-tar.gz/m2.txt' ).text.contains( 'a6: b6' )
-                                new File( outputDir, 'pl-564/3/3-tar.gz/m2.txt' ).text.contains( 'project: ' )
+                                new File( outputDirectory, 'pl-564/3/1-jar/m.txt' ).text.contains( 'a5: b5' )
+                                new File( outputDirectory, 'pl-564/3/2-zip/m.txt' ).text.contains( 'a5: zzzzz' )
+                                new File( outputDirectory, 'pl-564/3/2-zip/m.txt' ).text.contains( 'a7: b7' )
+                                new File( outputDirectory, 'pl-564/3/2-zip/m.txt' ).text.contains( 'basedir: ' )
+                                new File( outputDirectory, 'pl-564/3/3-tar.gz/m2.txt' ).text.contains( 'a5: xxxxx' )
+                                new File( outputDirectory, 'pl-564/3/3-tar.gz/m2.txt' ).text.contains( 'a6: b6' )
+                                new File( outputDirectory, 'pl-564/3/3-tar.gz/m2.txt' ).text.contains( 'project: ' )
 
-                                new File( outputDir, 'pl-564/4/1-jar/META-INF/MANIFEST.MF' ).text.contains( 'a4: b4' )
-                                new File( outputDir, 'pl-564/4/2-zip/META-INF/MANIFEST.MF' ).text.contains( 'a4: b4' )
-                                new File( outputDir, 'pl-564/4/3-tar.gz/META-INF/MANIFEST.MF' ).text.contains( 'a4: b4' )
+                                new File( outputDirectory, 'pl-564/4/1-jar/META-INF/MANIFEST.MF' ).text.contains( 'a4: b4' )
+                                new File( outputDirectory, 'pl-564/4/2-zip/META-INF/MANIFEST.MF' ).text.contains( 'a4: b4' )
+                                new File( outputDirectory, 'pl-564/4/3-tar.gz/META-INF/MANIFEST.MF' ).text.contains( 'a4: b4' )
 
-                                new File( outputDir, 'pl-564' ).recurse([:], {}).findAll{ it.name.with{ endsWith( '.txt' ) || endsWith( '.MF' ) }}.every{ it.text.contains( 'OS-Version: ' ) }
-                                new File( outputDir, 'pl-564' ).recurse([:], {}).findAll{ it.name.with{ endsWith( '.txt' ) || endsWith( '.MF' ) }}.every{ it.text.contains( 'Specification-Title: ' ) }
-                                new File( outputDir, 'pl-564' ).recurse([:], {}).findAll{ it.name.with{ endsWith( '.txt' ) || endsWith( '.MF' ) }}.every{ it.text.contains( 'Manifest-Version: 1.0' ) }
-                                new File( outputDir, 'pl-564' ).recurse([:], {}).findAll{ it.name.with{ endsWith( '.txt' ) || endsWith( '.MF' ) }}.every{ it.text.contains( 'Specification-Version: ${project.version}' ) }
+                                new File( outputDirectory, 'pl-564' ).recurse([:], {}).findAll{ it.name.with{ endsWith( '.txt' ) || endsWith( '.MF' ) }}.every{ it.text.contains( 'OS-Version: ' ) }
+                                new File( outputDirectory, 'pl-564' ).recurse([:], {}).findAll{ it.name.with{ endsWith( '.txt' ) || endsWith( '.MF' ) }}.every{ it.text.contains( 'Specification-Title: ' ) }
+                                new File( outputDirectory, 'pl-564' ).recurse([:], {}).findAll{ it.name.with{ endsWith( '.txt' ) || endsWith( '.MF' ) }}.every{ it.text.contains( 'Manifest-Version: 1.0' ) }
+                                new File( outputDirectory, 'pl-564' ).recurse([:], {}).findAll{ it.name.with{ endsWith( '.txt' ) || endsWith( '.MF' ) }}.every{ it.text.contains( 'Specification-Version: ${project.version}' ) }
                             </assertGroovy>
                         </configuration>
                     </execution>
@@ -1268,49 +1268,49 @@
                         <phase>test</phase>
                         <configuration>
                             <assertFiles>
-                                ${outputDir}/pl-571/1/commons-validator.jar
-                                ${outputDir}/pl-571/1/commons-validator-javadoc.jar
-                                ${outputDir}/pl-571/1/commons-validator-sources.jar
+                                ${outputDirectory}/pl-571/1/commons-validator.jar
+                                ${outputDirectory}/pl-571/1/commons-validator-javadoc.jar
+                                ${outputDirectory}/pl-571/1/commons-validator-sources.jar
 
-                                ${outputDir}/pl-571/2/commons-validator-1.2.0.jar
-                                ${outputDir}/pl-571/2/commons-validator-1.2.0-javadoc.jar
-                                ${outputDir}/pl-571/2/commons-validator-1.2.0-sources.jar
+                                ${outputDirectory}/pl-571/2/commons-validator-1.2.0.jar
+                                ${outputDirectory}/pl-571/2/commons-validator-1.2.0-javadoc.jar
+                                ${outputDirectory}/pl-571/2/commons-validator-1.2.0-sources.jar
                             </assertFiles>
                             <assertEqual>
-                                ${outputDir}/pl-571/1|${outputDir}/pl-571/1
-                                ${outputDir}/pl-571/2|${outputDir}/pl-571/2
+                                ${outputDirectory}/pl-571/1|${outputDirectory}/pl-571/1
+                                ${outputDirectory}/pl-571/2|${outputDirectory}/pl-571/2
 
-                                ${outputDir}/pl-571/1|${outputDir}/pl-571/3
-                                ${outputDir}/pl-571/3|${outputDir}/pl-571/5-1
-                                ${outputDir}/pl-571/5-1|${outputDir}/pl-571/5-3
-                                ${outputDir}/pl-571/5-3|${outputDir}/pl-571/1
+                                ${outputDirectory}/pl-571/1|${outputDirectory}/pl-571/3
+                                ${outputDirectory}/pl-571/3|${outputDirectory}/pl-571/5-1
+                                ${outputDirectory}/pl-571/5-1|${outputDirectory}/pl-571/5-3
+                                ${outputDirectory}/pl-571/5-3|${outputDirectory}/pl-571/1
 
-                                ${outputDir}/pl-571/2|${outputDir}/pl-571/4
-                                ${outputDir}/pl-571/4|${outputDir}/pl-571/5-2
-                                ${outputDir}/pl-571/5-2|${outputDir}/pl-571/5-4
-                                ${outputDir}/pl-571/5-4|${outputDir}/pl-571/2
+                                ${outputDirectory}/pl-571/2|${outputDirectory}/pl-571/4
+                                ${outputDirectory}/pl-571/4|${outputDirectory}/pl-571/5-2
+                                ${outputDirectory}/pl-571/5-2|${outputDirectory}/pl-571/5-4
+                                ${outputDirectory}/pl-571/5-4|${outputDirectory}/pl-571/2
                             </assertEqual>
                             <shouldFailAssertEqual>
-                                ${outputDir}/pl-571/1|${outputDir}/pl-571/2
-                                ${outputDir}/pl-571/2|${outputDir}/pl-571/3
-                                ${outputDir}/pl-571/3|${outputDir}/pl-571/4
-                                ${outputDir}/pl-571/4|${outputDir}/pl-571/5-1
-                                ${outputDir}/pl-571/5-1|${outputDir}/pl-571/5-2
-                                ${outputDir}/pl-571/5-2|${outputDir}/pl-571/5-3
-                                ${outputDir}/pl-571/5-3|${outputDir}/pl-571/5-4
-                                ${outputDir}/pl-571/5-4|${outputDir}/pl-571/1
+                                ${outputDirectory}/pl-571/1|${outputDirectory}/pl-571/2
+                                ${outputDirectory}/pl-571/2|${outputDirectory}/pl-571/3
+                                ${outputDirectory}/pl-571/3|${outputDirectory}/pl-571/4
+                                ${outputDirectory}/pl-571/4|${outputDirectory}/pl-571/5-1
+                                ${outputDirectory}/pl-571/5-1|${outputDirectory}/pl-571/5-2
+                                ${outputDirectory}/pl-571/5-2|${outputDirectory}/pl-571/5-3
+                                ${outputDirectory}/pl-571/5-3|${outputDirectory}/pl-571/5-4
+                                ${outputDirectory}/pl-571/5-4|${outputDirectory}/pl-571/1
                             </shouldFailAssertEqual>
                             <assertGroovy>
-                                new File( outputDir, 'pl-571'     ).directorySize() == 2550944
-                                new File( outputDir, 'pl-571'     ).directorySize() == new File( outputDir, 'pl-571/1' ).directorySize() * 8
-                                new File( outputDir, 'pl-571/1'   ).directorySize() == 318868
-                                new File( outputDir, 'pl-571/2'   ).directorySize() == 318868
-                                new File( outputDir, 'pl-571/3'   ).directorySize() == 318868
-                                new File( outputDir, 'pl-571/4'   ).directorySize() == 318868
-                                new File( outputDir, 'pl-571/5-1' ).directorySize() == 318868
-                                new File( outputDir, 'pl-571/5-2' ).directorySize() == 318868
-                                new File( outputDir, 'pl-571/5-3' ).directorySize() == 318868
-                                new File( outputDir, 'pl-571/5-4' ).directorySize() == 318868
+                                new File( outputDirectory, 'pl-571'     ).directorySize() == 2550944
+                                new File( outputDirectory, 'pl-571'     ).directorySize() == new File( outputDirectory, 'pl-571/1' ).directorySize() * 8
+                                new File( outputDirectory, 'pl-571/1'   ).directorySize() == 318868
+                                new File( outputDirectory, 'pl-571/2'   ).directorySize() == 318868
+                                new File( outputDirectory, 'pl-571/3'   ).directorySize() == 318868
+                                new File( outputDirectory, 'pl-571/4'   ).directorySize() == 318868
+                                new File( outputDirectory, 'pl-571/5-1' ).directorySize() == 318868
+                                new File( outputDirectory, 'pl-571/5-2' ).directorySize() == 318868
+                                new File( outputDirectory, 'pl-571/5-3' ).directorySize() == 318868
+                                new File( outputDirectory, 'pl-571/5-4' ).directorySize() == 318868
                             </assertGroovy>
                         </configuration>
                     </execution>
@@ -1325,23 +1325,23 @@
                         <phase>test</phase>
                         <configuration>
                             <assertFiles>
-                                ${outputDir}/pl-572/1/commons-validator.jar
-                                ${outputDir}/pl-572/1/commons-validator-1.2.0-javadoc.jar
-                                ${outputDir}/pl-572/1/commons-validator-sources.jar
+                                ${outputDirectory}/pl-572/1/commons-validator.jar
+                                ${outputDirectory}/pl-572/1/commons-validator-1.2.0-javadoc.jar
+                                ${outputDirectory}/pl-572/1/commons-validator-sources.jar
 
-                                ${outputDir}/pl-572/2/commons-validator-1.2.0.jar
-                                ${outputDir}/pl-572/2/commons-validator-javadoc.jar
-                                ${outputDir}/pl-572/2/commons-validator-1.2.0-sources.jar
+                                ${outputDirectory}/pl-572/2/commons-validator-1.2.0.jar
+                                ${outputDirectory}/pl-572/2/commons-validator-javadoc.jar
+                                ${outputDirectory}/pl-572/2/commons-validator-1.2.0-sources.jar
                             </assertFiles>
                             <assertEqual>
-                                ${outputDir}/pl-572/1|${outputDir}/pl-572/3
-                                ${outputDir}/pl-572/2|${outputDir}/pl-572/4
+                                ${outputDirectory}/pl-572/1|${outputDirectory}/pl-572/3
+                                ${outputDirectory}/pl-572/2|${outputDirectory}/pl-572/4
                             </assertEqual>
                             <shouldFailAssertEqual>
-                                ${outputDir}/pl-572/1|${outputDir}/pl-572/2
-                                ${outputDir}/pl-572/2|${outputDir}/pl-572/3
-                                ${outputDir}/pl-572/3|${outputDir}/pl-572/4
-                                ${outputDir}/pl-572/4|${outputDir}/pl-572/1
+                                ${outputDirectory}/pl-572/1|${outputDirectory}/pl-572/2
+                                ${outputDirectory}/pl-572/2|${outputDirectory}/pl-572/3
+                                ${outputDirectory}/pl-572/3|${outputDirectory}/pl-572/4
+                                ${outputDirectory}/pl-572/4|${outputDirectory}/pl-572/1
                             </shouldFailAssertEqual>
                         </configuration>
                     </execution>
@@ -1356,50 +1356,50 @@
                         <phase>test</phase>
                         <configuration>
                             <assertFiles>
-                                ${outputDir}/pl-567/1/spring-beans.jar
-                                ${outputDir}/pl-567/2/spring-asm.jar
-                                ${outputDir}/pl-567/3/servlet-api.jar
-                                ${outputDir}/pl-567/4/slf4j-api.jar
-                                ${outputDir}/pl-567/11/spring-beans-${spring-version}.jar
-                                ${outputDir}/pl-567/22/spring-asm-${spring-version}.jar
-                                ${outputDir}/pl-567/33/servlet-api-2.3.jar
-                                ${outputDir}/pl-567/44/slf4j-api-1.6.2.jar
+                                ${outputDirectory}/pl-567/1/spring-beans.jar
+                                ${outputDirectory}/pl-567/2/spring-asm.jar
+                                ${outputDirectory}/pl-567/3/servlet-api.jar
+                                ${outputDirectory}/pl-567/4/slf4j-api.jar
+                                ${outputDirectory}/pl-567/11/spring-beans-${spring-version}.jar
+                                ${outputDirectory}/pl-567/22/spring-asm-${spring-version}.jar
+                                ${outputDirectory}/pl-567/33/servlet-api-2.3.jar
+                                ${outputDirectory}/pl-567/44/slf4j-api-1.6.2.jar
                             </assertFiles>
                             <assertGroovy>
-                                new File( outputDir, 'pl-567/1' ).directorySize()    == 589824
-                                new File( outputDir, 'pl-567/1' ).listFiles().size() == 1
+                                new File( outputDirectory, 'pl-567/1' ).directorySize()    == 589824
+                                new File( outputDirectory, 'pl-567/1' ).listFiles().size() == 1
 
-                                new File( outputDir, 'pl-567/2' ).directorySize().with{ ( delegate == 3822344 ) || ( delegate == 3822382 ) }
-                                new File( outputDir, 'pl-567/2' ).listFiles().size() == 19
+                                new File( outputDirectory, 'pl-567/2' ).directorySize().with{ ( delegate == 3822344 ) || ( delegate == 3822382 ) }
+                                new File( outputDirectory, 'pl-567/2' ).listFiles().size() == 19
 
-                                new File( outputDir, 'pl-567/3' ).directorySize()    == 425977
-                                new File( outputDir, 'pl-567/3' ).listFiles().size() == 4
+                                new File( outputDirectory, 'pl-567/3' ).directorySize()    == 425977
+                                new File( outputDirectory, 'pl-567/3' ).listFiles().size() == 4
 
-                                new File( outputDir, 'pl-567/4' ).directorySize()    == 494077
-                                new File( outputDir, 'pl-567/4' ).listFiles().size() == 6
+                                new File( outputDirectory, 'pl-567/4' ).directorySize()    == 494077
+                                new File( outputDirectory, 'pl-567/4' ).listFiles().size() == 6
                             </assertGroovy>
                             <assertEqual>
-                                ${outputDir}/pl-567/1|${outputDir}/pl-567/111
-                                ${outputDir}/pl-567/111|${outputDir}/pl-567/1111
-                                ${outputDir}/pl-567/1111|${outputDir}/pl-567/1
+                                ${outputDirectory}/pl-567/1|${outputDirectory}/pl-567/111
+                                ${outputDirectory}/pl-567/111|${outputDirectory}/pl-567/1111
+                                ${outputDirectory}/pl-567/1111|${outputDirectory}/pl-567/1
 
-                                ${outputDir}/pl-567/2|${outputDir}/pl-567/222
-                                ${outputDir}/pl-567/222|${outputDir}/pl-567/2222
-                                ${outputDir}/pl-567/2222|${outputDir}/pl-567/2
+                                ${outputDirectory}/pl-567/2|${outputDirectory}/pl-567/222
+                                ${outputDirectory}/pl-567/222|${outputDirectory}/pl-567/2222
+                                ${outputDirectory}/pl-567/2222|${outputDirectory}/pl-567/2
 
-                                ${outputDir}/pl-567/3|${outputDir}/pl-567/333
-                                ${outputDir}/pl-567/333|${outputDir}/pl-567/3333
-                                ${outputDir}/pl-567/3333|${outputDir}/pl-567/3
+                                ${outputDirectory}/pl-567/3|${outputDirectory}/pl-567/333
+                                ${outputDirectory}/pl-567/333|${outputDirectory}/pl-567/3333
+                                ${outputDirectory}/pl-567/3333|${outputDirectory}/pl-567/3
 
-                                ${outputDir}/pl-567/4|${outputDir}/pl-567/444
-                                ${outputDir}/pl-567/444|${outputDir}/pl-567/4444
-                                ${outputDir}/pl-567/4444|${outputDir}/pl-567/4
+                                ${outputDirectory}/pl-567/4|${outputDirectory}/pl-567/444
+                                ${outputDirectory}/pl-567/444|${outputDirectory}/pl-567/4444
+                                ${outputDirectory}/pl-567/4444|${outputDirectory}/pl-567/4
                             </assertEqual>
                             <shouldFailAssertEqual>
-                                ${outputDir}/pl-567/1|${outputDir}/pl-567/11
-                                ${outputDir}/pl-567/2|${outputDir}/pl-567/22
-                                ${outputDir}/pl-567/3|${outputDir}/pl-567/33
-                                ${outputDir}/pl-567/4|${outputDir}/pl-567/44
+                                ${outputDirectory}/pl-567/1|${outputDirectory}/pl-567/11
+                                ${outputDirectory}/pl-567/2|${outputDirectory}/pl-567/22
+                                ${outputDirectory}/pl-567/3|${outputDirectory}/pl-567/33
+                                ${outputDirectory}/pl-567/4|${outputDirectory}/pl-567/44
                             </shouldFailAssertEqual>
                         </configuration>
                     </execution>

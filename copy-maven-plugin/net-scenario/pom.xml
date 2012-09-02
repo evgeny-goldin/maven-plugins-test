@@ -52,7 +52,7 @@
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
                                 <resource>
-                                    <targetPath>${outputDir}/unpack</targetPath>
+                                    <targetPath>${outputDirectory}/unpack</targetPath>
                                     <file>${resourcesDir}/apache-maven-3.0.1.zip</file>
                                     <zipEntries>
                                         <zipEntry>**/*.txt</zipEntry>
@@ -63,8 +63,8 @@
                                     <preservePath>true</preservePath>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pack/net.zip</targetPath>
-                                    <directory>${outputDir}/unpack</directory>
+                                    <targetPath>${outputDirectory}/pack/net.zip</targetPath>
+                                    <directory>${outputDirectory}/unpack</directory>
                                     <pack>true</pack>
                                 </resource>
 
@@ -73,8 +73,8 @@
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
                                 <resource>
-                                    <targetPath>${outputDir}/pack</targetPath>
-                                    <file>${outputDir}/pack/net.zip</file>
+                                    <targetPath>${outputDirectory}/pack</targetPath>
+                                    <file>${outputDirectory}/pack/net.zip</file>
                                     <destFileName>net2.zip</destFileName>
                                 </resource>
 
@@ -84,12 +84,12 @@
 
                                 <resource>
                                     <targetPath>${ftpPath}</targetPath>
-                                    <directory>${outputDir}/pack</directory>
+                                    <directory>${outputDirectory}/pack</directory>
                                     <include>net*.*</include>
                                 </resource>
                                 <resource>
                                     <targetPath>${scpPath}</targetPath>
-                                    <file>${outputDir}/pack/net.zip</file>
+                                    <file>${outputDirectory}/pack/net.zip</file>
                                 </resource>
                             </resources>
                         </configuration>
@@ -112,23 +112,23 @@
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
                                 <resource>
-                                    <targetPath>${outputDir}/scp/lib</targetPath>
+                                    <targetPath>${outputDirectory}/scp/lib</targetPath>
                                     <file>${scpPath}/apache-maven-3.0.1/lib/aether-connector-wagon-1.8.jar</file>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/scp/conf</targetPath>
+                                    <targetPath>${outputDirectory}/scp/conf</targetPath>
                                     <file>${scpPath}/apache-maven-3.0.1/conf/settings.xml</file>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/scp</targetPath>
+                                    <targetPath>${outputDirectory}/scp</targetPath>
                                     <file>${scpPath}/apache-maven-3.0.1/LICENSE.txt</file>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/scp</targetPath>
+                                    <targetPath>${outputDirectory}/scp</targetPath>
                                     <file>${scpPath}/apache-maven-3.0.1/NOTICE.txt</file>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/scp</targetPath>
+                                    <targetPath>${outputDirectory}/scp</targetPath>
                                     <file>${scpPath}/apache-maven-3.0.1/README.txt</file>
                                 </resource>
 
@@ -137,7 +137,7 @@
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
                                 <resource>
-                                    <targetPath>${outputDir}/ftp-zip/1</targetPath>
+                                    <targetPath>${outputDirectory}/ftp-zip/1</targetPath>
                                     <directory>${ftpPath}</directory>
                                     <!-- "net.zip" -->
                                     <include>net.*</include>
@@ -145,7 +145,7 @@
                                 </resource>
 
                                 <resource>
-                                    <targetPath>${outputDir}/ftp-zip/2</targetPath>
+                                    <targetPath>${outputDirectory}/ftp-zip/2</targetPath>
                                     <directory>${ftpPath}</directory>
                                     <!-- "net2.zip" -->
                                     <include>*2.*</include>
@@ -206,20 +206,20 @@
                         <configuration>
                             <runIf>{{ ftpTests }}</runIf>
                             <assertFiles>
-                                ${outputDir}/scp
-                                ${outputDir}/scp/lib/aether-connector-wagon-1.8.jar
-                                ${outputDir}/scp/conf/settings.xml
-                                ${outputDir}/scp/LICENSE.txt
-                                ${outputDir}/scp/NOTICE.txt
-                                ${outputDir}/scp/README.txt
+                                ${outputDirectory}/scp
+                                ${outputDirectory}/scp/lib/aether-connector-wagon-1.8.jar
+                                ${outputDirectory}/scp/conf/settings.xml
+                                ${outputDirectory}/scp/LICENSE.txt
+                                ${outputDirectory}/scp/NOTICE.txt
+                                ${outputDirectory}/scp/README.txt
 
-                                ${outputDir}/ftp-zip/1
-                                ${outputDir}/ftp-zip/2
+                                ${outputDirectory}/ftp-zip/1
+                                ${outputDirectory}/ftp-zip/2
                             </assertFiles>
                             <assertEqual>
-                                ${outputDir}/unpack|${outputDir}/ftp-zip/1
-                                ${outputDir}/unpack|${outputDir}/ftp-zip/2
-                                ${outputDir}/ftp-zip/1|${outputDir}/ftp-zip/2
+                                ${outputDirectory}/unpack|${outputDirectory}/ftp-zip/1
+                                ${outputDirectory}/unpack|${outputDirectory}/ftp-zip/2
+                                ${outputDirectory}/ftp-zip/1|${outputDirectory}/ftp-zip/2
                             </assertEqual>
                         </configuration>
                     </execution>

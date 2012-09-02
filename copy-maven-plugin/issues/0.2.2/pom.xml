@@ -40,7 +40,7 @@
                         <phase>initialize</phase>
                         <configuration>
                             <resource>
-                                <targetPath>${outputDir}/gc-66</targetPath>
+                                <targetPath>${outputDirectory}/gc-66</targetPath>
                                 <dependency>
                                     <groupId>org.apache.maven</groupId>
                                     <artifactId>apache-maven</artifactId>
@@ -65,11 +65,11 @@
                         <configuration>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-396</targetPath>
+                                    <targetPath>${outputDirectory}/pl-396</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-396</targetPath>
+                                    <targetPath>${outputDirectory}/pl-396</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <mkdir>true</mkdir>
                                 </resource>
@@ -95,20 +95,20 @@
                         <phase>test</phase>
                         <configuration>
                             <assertFiles>
-                                ${outputDir}/gc-66
-                                ${outputDir}/gc-66/LICENSE.txt
-                                ${outputDir}/pl-396
-                                ${outputDir}/pl-396/pom.xml
+                                ${outputDirectory}/gc-66
+                                ${outputDirectory}/gc-66/LICENSE.txt
+                                ${outputDirectory}/pl-396
+                                ${outputDirectory}/pl-396/pom.xml
                             </assertFiles>
                             <assertEqual>
-                                ${outputDir}/gc-66/LICENSE.txt|${outputDir}/gc-66/LICENSE.txt
-                                ${outputDir}/gc-66/LICENSE.txt|${outputDir}/gc-66/LICENSE.txt|**/*.txt
+                                ${outputDirectory}/gc-66/LICENSE.txt|${outputDirectory}/gc-66/LICENSE.txt
+                                ${outputDirectory}/gc-66/LICENSE.txt|${outputDirectory}/gc-66/LICENSE.txt|**/*.txt
                             </assertEqual>
                             <shouldFailAssertEqual>
-                                ${outputDir}/gc-66/LICENSE.txt|${outputDir}/gc-66/LICENSE.txt|*.txt
+                                ${outputDirectory}/gc-66/LICENSE.txt|${outputDirectory}/gc-66/LICENSE.txt|*.txt
                             </shouldFailAssertEqual>
                             <assertGroovy>
-                                new File( outputDir, 'gc-66/LICENSE.txt' ).size() == 11560
+                                new File( outputDirectory, 'gc-66/LICENSE.txt' ).size() == 11560
                             </assertGroovy>
                         </configuration>
                     </execution>

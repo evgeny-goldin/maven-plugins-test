@@ -40,7 +40,7 @@
                                 <!-- Unpacking dependencies -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/unpack-1</targetPath>
+                                    <targetPath>${outputDirectory}/unpack-1</targetPath>
                                     <useTrueZipForUnpack>true</useTrueZipForUnpack>
                                     <dependencies>
                                         <dependency>
@@ -81,7 +81,7 @@
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/unpack-2</targetPath>
+                                    <targetPath>${outputDirectory}/unpack-2</targetPath>
                                     <useTrueZipForUnpack>false</useTrueZipForUnpack>
                                     <dependencies>
                                         <dependency>
@@ -148,7 +148,7 @@
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/unpack-3</targetPath>
+                                    <targetPath>${outputDirectory}/unpack-3</targetPath>
                                     <useTrueZipForUnpack>true</useTrueZipForUnpack>
                                     <dependencies>
                                         <dependency>
@@ -197,20 +197,20 @@
                                 <!-- ~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
                                     <useTrueZipForPack>false</useTrueZipForPack>
-                                    <targetPath>${outputDir}/1.zip</targetPath>
-                                    <directory>${outputDir}/unpack-1</directory>
+                                    <targetPath>${outputDirectory}/1.zip</targetPath>
+                                    <directory>${outputDirectory}/unpack-1</directory>
                                     <pack>true</pack>
                                 </resource>
                                 <resource>
                                     <useTrueZipForPack>true</useTrueZipForPack>
-                                    <targetPath>${outputDir}/2.tar.gz</targetPath>
-                                    <directory>${outputDir}/unpack-2</directory>
+                                    <targetPath>${outputDirectory}/2.tar.gz</targetPath>
+                                    <directory>${outputDirectory}/unpack-2</directory>
                                     <pack>true</pack>
                                 </resource>
                                 <resource>
                                     <useTrueZipForPack>false</useTrueZipForPack>
-                                    <targetPath>${outputDir}/3.jar</targetPath>
-                                    <directory>${outputDir}/unpack-3</directory>
+                                    <targetPath>${outputDirectory}/3.jar</targetPath>
+                                    <directory>${outputDirectory}/unpack-3</directory>
                                     <pack>true</pack>
                                 </resource>
                                 <!-- ~~~~~~~~~~~~~~~~~~~~ -->
@@ -218,20 +218,20 @@
                                 <!-- ~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
                                     <useTrueZipForUnpack>false</useTrueZipForUnpack>
-                                    <targetPath>${outputDir}/unpack-12</targetPath>
-                                    <file>${outputDir}/1.zip</file>
+                                    <targetPath>${outputDirectory}/unpack-12</targetPath>
+                                    <file>${outputDirectory}/1.zip</file>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
                                     <useTrueZipForUnpack>true</useTrueZipForUnpack>
-                                    <targetPath>${outputDir}/unpack-22</targetPath>
-                                    <file>${outputDir}/2.tar.gz</file>
+                                    <targetPath>${outputDirectory}/unpack-22</targetPath>
+                                    <file>${outputDirectory}/2.tar.gz</file>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
                                     <useTrueZipForUnpack>false</useTrueZipForUnpack>
-                                    <targetPath>${outputDir}/unpack-32</targetPath>
-                                    <file>${outputDir}/3.jar</file>
+                                    <targetPath>${outputDirectory}/unpack-32</targetPath>
+                                    <file>${outputDirectory}/3.jar</file>
                                     <unpack>true</unpack>
                                 </resource>
                             </resources>
@@ -247,68 +247,68 @@
                             <resources>
                                 <resource>
                                     <targetPaths>
-                                        <targetPath>${outputDir}/pack/pom.jar</targetPath>
-                                        <targetPath>${outputDir}/pack/pom.war</targetPath>
-                                        <targetPath>${outputDir}/pack/pom.ear</targetPath>
-                                        <targetPath>${outputDir}/pack/pom.sar</targetPath>
-                                        <targetPath>${outputDir}/pack/pom.zip</targetPath>
-                                        <targetPath>${outputDir}/pack/pom.hpi</targetPath>
-                                        <targetPath>${outputDir}/pack/pom.sima</targetPath>
-                                        <targetPath>${outputDir}/pack/pom.tar</targetPath>
-                                        <targetPath>${outputDir}/pack/pom.tgz</targetPath>
-                                        <targetPath>${outputDir}/pack/pom.tar.gz</targetPath>
+                                        <targetPath>${outputDirectory}/pack/pom.jar</targetPath>
+                                        <targetPath>${outputDirectory}/pack/pom.war</targetPath>
+                                        <targetPath>${outputDirectory}/pack/pom.ear</targetPath>
+                                        <targetPath>${outputDirectory}/pack/pom.sar</targetPath>
+                                        <targetPath>${outputDirectory}/pack/pom.zip</targetPath>
+                                        <targetPath>${outputDirectory}/pack/pom.hpi</targetPath>
+                                        <targetPath>${outputDirectory}/pack/pom.sima</targetPath>
+                                        <targetPath>${outputDirectory}/pack/pom.tar</targetPath>
+                                        <targetPath>${outputDirectory}/pack/pom.tgz</targetPath>
+                                        <targetPath>${outputDirectory}/pack/pom.tar.gz</targetPath>
                                     </targetPaths>
                                     <file>${project.basedir}/pom.xml</file>
                                     <pack>true</pack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/unpack/jar</targetPath>
-                                    <file>${outputDir}/pack/pom.jar</file>
+                                    <targetPath>${outputDirectory}/unpack/jar</targetPath>
+                                    <file>${outputDirectory}/pack/pom.jar</file>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/unpack/war</targetPath>
-                                    <file>${outputDir}/pack/pom.war</file>
+                                    <targetPath>${outputDirectory}/unpack/war</targetPath>
+                                    <file>${outputDirectory}/pack/pom.war</file>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/unpack/ear</targetPath>
-                                    <file>${outputDir}/pack/pom.ear</file>
+                                    <targetPath>${outputDirectory}/unpack/ear</targetPath>
+                                    <file>${outputDirectory}/pack/pom.ear</file>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/unpack/sar</targetPath>
-                                    <file>${outputDir}/pack/pom.sar</file>
+                                    <targetPath>${outputDirectory}/unpack/sar</targetPath>
+                                    <file>${outputDirectory}/pack/pom.sar</file>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/unpack/zip</targetPath>
-                                    <file>${outputDir}/pack/pom.zip</file>
+                                    <targetPath>${outputDirectory}/unpack/zip</targetPath>
+                                    <file>${outputDirectory}/pack/pom.zip</file>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/unpack/hpi</targetPath>
-                                    <file>${outputDir}/pack/pom.hpi</file>
+                                    <targetPath>${outputDirectory}/unpack/hpi</targetPath>
+                                    <file>${outputDirectory}/pack/pom.hpi</file>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/unpack/sima</targetPath>
-                                    <file>${outputDir}/pack/pom.sima</file>
+                                    <targetPath>${outputDirectory}/unpack/sima</targetPath>
+                                    <file>${outputDirectory}/pack/pom.sima</file>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/unpack/tar</targetPath>
-                                    <file>${outputDir}/pack/pom.tar</file>
+                                    <targetPath>${outputDirectory}/unpack/tar</targetPath>
+                                    <file>${outputDirectory}/pack/pom.tar</file>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/unpack/tgz</targetPath>
-                                    <file>${outputDir}/pack/pom.tgz</file>
+                                    <targetPath>${outputDirectory}/unpack/tgz</targetPath>
+                                    <file>${outputDirectory}/pack/pom.tgz</file>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/unpack/tar.gz</targetPath>
-                                    <file>${outputDir}/pack/pom.tar.gz</file>
+                                    <targetPath>${outputDirectory}/unpack/tar.gz</targetPath>
+                                    <file>${outputDirectory}/pack/pom.tar.gz</file>
                                     <unpack>true</unpack>
                                 </resource>
                             </resources>
@@ -326,48 +326,48 @@
                             <resources>
                                 <!-- Packing -->
                                 <resource>
-                                    <targetPath>${outputDir}/fullpath-prefix-TrueZip/fullpath.zip</targetPath>
+                                    <targetPath>${outputDirectory}/fullpath-prefix-TrueZip/fullpath.zip</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <destFileName>1/2/3/4.txt</destFileName>
                                     <pack>true</pack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/fullpath-prefix-TrueZip/fullpath.tar.gz</targetPath>
+                                    <targetPath>${outputDirectory}/fullpath-prefix-TrueZip/fullpath.tar.gz</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <destFileName>1/2/3/4.txt</destFileName>
                                     <pack>true</pack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/fullpath-prefix-TrueZip/prefix.zip</targetPath>
+                                    <targetPath>${outputDirectory}/fullpath-prefix-TrueZip/prefix.zip</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <prefix>a/bb/ccc/dddd</prefix>
                                     <pack>true</pack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/fullpath-prefix-TrueZip/prefix.tar.gz</targetPath>
+                                    <targetPath>${outputDirectory}/fullpath-prefix-TrueZip/prefix.tar.gz</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <prefix>a/bb/ccc/dddd</prefix>
                                     <pack>true</pack>
                                 </resource>
                                 <!-- Unpacking -->
                                 <resource>
-                                    <targetPath>${outputDir}/fullpath-prefix-TrueZip/unpack/fullpath-zip</targetPath>
-                                    <file>${outputDir}/fullpath-prefix-TrueZip/fullpath.zip</file>
+                                    <targetPath>${outputDirectory}/fullpath-prefix-TrueZip/unpack/fullpath-zip</targetPath>
+                                    <file>${outputDirectory}/fullpath-prefix-TrueZip/fullpath.zip</file>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/fullpath-prefix-TrueZip/unpack/fullpath-tar.gz</targetPath>
-                                    <file>${outputDir}/fullpath-prefix-TrueZip/fullpath.tar.gz</file>
+                                    <targetPath>${outputDirectory}/fullpath-prefix-TrueZip/unpack/fullpath-tar.gz</targetPath>
+                                    <file>${outputDirectory}/fullpath-prefix-TrueZip/fullpath.tar.gz</file>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/fullpath-prefix-TrueZip/unpack/prefix-zip</targetPath>
-                                    <file>${outputDir}/fullpath-prefix-TrueZip/prefix.zip</file>
+                                    <targetPath>${outputDirectory}/fullpath-prefix-TrueZip/unpack/prefix-zip</targetPath>
+                                    <file>${outputDirectory}/fullpath-prefix-TrueZip/prefix.zip</file>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/fullpath-prefix-TrueZip/unpack/prefix-tar.gz</targetPath>
-                                    <file>${outputDir}/fullpath-prefix-TrueZip/prefix.tar.gz</file>
+                                    <targetPath>${outputDirectory}/fullpath-prefix-TrueZip/unpack/prefix-tar.gz</targetPath>
+                                    <file>${outputDirectory}/fullpath-prefix-TrueZip/prefix.tar.gz</file>
                                     <unpack>true</unpack>
                                 </resource>
                             </resources>
@@ -385,48 +385,48 @@
                             <resources>
                                 <!-- Packing -->
                                 <resource>
-                                    <targetPath>${outputDir}/fullpath-prefix-Ant/fullpath.zip</targetPath>
+                                    <targetPath>${outputDirectory}/fullpath-prefix-Ant/fullpath.zip</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <destFileName>1/2/3/4.txt</destFileName>
                                     <pack>true</pack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/fullpath-prefix-Ant/fullpath.tar.gz</targetPath>
+                                    <targetPath>${outputDirectory}/fullpath-prefix-Ant/fullpath.tar.gz</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <destFileName>1/2/3/4.txt</destFileName>
                                     <pack>true</pack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/fullpath-prefix-Ant/prefix.zip</targetPath>
+                                    <targetPath>${outputDirectory}/fullpath-prefix-Ant/prefix.zip</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <prefix>a/bb/ccc/dddd</prefix>
                                     <pack>true</pack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/fullpath-prefix-Ant/prefix.tar.gz</targetPath>
+                                    <targetPath>${outputDirectory}/fullpath-prefix-Ant/prefix.tar.gz</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <prefix>a/bb/ccc/dddd</prefix>
                                     <pack>true</pack>
                                 </resource>
                                 <!-- Unpacking -->
                                 <resource>
-                                    <targetPath>${outputDir}/fullpath-prefix-Ant/unpack/fullpath-zip</targetPath>
-                                    <file>${outputDir}/fullpath-prefix-Ant/fullpath.zip</file>
+                                    <targetPath>${outputDirectory}/fullpath-prefix-Ant/unpack/fullpath-zip</targetPath>
+                                    <file>${outputDirectory}/fullpath-prefix-Ant/fullpath.zip</file>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/fullpath-prefix-Ant/unpack/fullpath-tar.gz</targetPath>
-                                    <file>${outputDir}/fullpath-prefix-Ant/fullpath.tar.gz</file>
+                                    <targetPath>${outputDirectory}/fullpath-prefix-Ant/unpack/fullpath-tar.gz</targetPath>
+                                    <file>${outputDirectory}/fullpath-prefix-Ant/fullpath.tar.gz</file>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/fullpath-prefix-Ant/unpack/prefix-zip</targetPath>
-                                    <file>${outputDir}/fullpath-prefix-Ant/prefix.zip</file>
+                                    <targetPath>${outputDirectory}/fullpath-prefix-Ant/unpack/prefix-zip</targetPath>
+                                    <file>${outputDirectory}/fullpath-prefix-Ant/prefix.zip</file>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/fullpath-prefix-Ant/unpack/prefix-tar.gz</targetPath>
-                                    <file>${outputDir}/fullpath-prefix-Ant/prefix.tar.gz</file>
+                                    <targetPath>${outputDirectory}/fullpath-prefix-Ant/unpack/prefix-tar.gz</targetPath>
+                                    <file>${outputDirectory}/fullpath-prefix-Ant/prefix.tar.gz</file>
                                     <unpack>true</unpack>
                                 </resource>
                             </resources>
@@ -443,20 +443,21 @@
                             <resources>
                                 <resource>
                                     <targetPaths>
-                                        <targetPath>${outputDir}/filemode/1</targetPath>
-                                        <targetPath>${outputDir}/filemode/2</targetPath>
+                                        <targetPath>${outputDirectory}/filemode/1</targetPath>
+                                        <targetPath>${outputDirectory}/filemode/2</targetPath>
                                     </targetPaths>
                                     <mkdir>true</mkdir>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/filemode/1.tar.gz</targetPath>
+                                    <targetPath>${outputDirectory}/filemode/1.tar.gz</targetPath>
                                     <directory>${project.basedir}/../issues/0.2/0.2-beta-2/src/main/resources</directory>
                                     <include>*.xml|731, *.bat|755, *.txt|700</include>
                                     <pack>true</pack>
-                                    <process>{{ "tar -xzf ${outputDir}/filemode/1.tar.gz -C ${outputDir}/filemode/1".execute().text }}</process>
+                                    <process>{{ "tar -xzf ${outputDirectory}/filemode/1.tar.gz -C
+                                        ${outputDirectory}/filemode/1".execute().text }}</process>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/filemode/2.tar.gz</targetPath>
+                                    <targetPath>${outputDirectory}/filemode/2.tar.gz</targetPath>
                                     <directory>${project.basedir}/../issues/0.2/0.2-beta-2/src/main/resources</directory>
                                     <includes>
                                         <include>*.xml|555</include>
@@ -464,7 +465,8 @@
                                         <include>*.txt|111</include>
                                     </includes>
                                     <pack>true</pack>
-                                    <process>{{ "tar -xzf ${outputDir}/filemode/2.tar.gz -C ${outputDir}/filemode/2".execute().text }}</process>
+                                    <process>{{ "tar -xzf ${outputDirectory}/filemode/2.tar.gz -C
+                                        ${outputDirectory}/filemode/2".execute().text }}</process>
                                 </resource>
                             </resources>
                         </configuration>
@@ -485,15 +487,15 @@
                         <phase>test</phase>
                         <configuration>
                             <assertGroovy>
-                                new File( outputDir, 'unpack-2'  ).directorySize() == 19921721
-                                new File( outputDir, 'unpack-22' ).directorySize() == 19921721
-                                new File( outputDir, 'unpack-3'  ).directorySize() == 84699618
-                                new File( outputDir, 'unpack-32' ).directorySize() == 84699618
+                                new File( outputDirectory, 'unpack-2'  ).directorySize() == 19921721
+                                new File( outputDirectory, 'unpack-22' ).directorySize() == 19921721
+                                new File( outputDirectory, 'unpack-3'  ).directorySize() == 84699618
+                                new File( outputDirectory, 'unpack-32' ).directorySize() == 84699618
                             </assertGroovy>
                             <assertEqual>
-                                ${outputDir}/unpack-1|${outputDir}/unpack-12
-                                ${outputDir}/unpack-2|${outputDir}/unpack-22
-                                ${outputDir}/unpack-3|${outputDir}/unpack-32
+                                ${outputDirectory}/unpack-1|${outputDirectory}/unpack-12
+                                ${outputDirectory}/unpack-2|${outputDirectory}/unpack-22
+                                ${outputDirectory}/unpack-3|${outputDirectory}/unpack-32
                             </assertEqual>
                         </configuration>
                     </execution>
@@ -505,39 +507,39 @@
                         <phase>test</phase>
                         <configuration>
                             <assertFiles>
-                                ${outputDir}/pack/pom.jar
-                                ${outputDir}/pack/pom.war
-                                ${outputDir}/pack/pom.ear
-                                ${outputDir}/pack/pom.sar
-                                ${outputDir}/pack/pom.zip
-                                ${outputDir}/pack/pom.hpi
-                                ${outputDir}/pack/pom.sima
-                                ${outputDir}/pack/pom.tar
-                                ${outputDir}/pack/pom.tgz
-                                ${outputDir}/pack/pom.tar.gz
+                                ${outputDirectory}/pack/pom.jar
+                                ${outputDirectory}/pack/pom.war
+                                ${outputDirectory}/pack/pom.ear
+                                ${outputDirectory}/pack/pom.sar
+                                ${outputDirectory}/pack/pom.zip
+                                ${outputDirectory}/pack/pom.hpi
+                                ${outputDirectory}/pack/pom.sima
+                                ${outputDirectory}/pack/pom.tar
+                                ${outputDirectory}/pack/pom.tgz
+                                ${outputDirectory}/pack/pom.tar.gz
 
-                                ${outputDir}/unpack/jar/pom.xml
-                                ${outputDir}/unpack/war/pom.xml
-                                ${outputDir}/unpack/ear/pom.xml
-                                ${outputDir}/unpack/sar/pom.xml
-                                ${outputDir}/unpack/zip/pom.xml
-                                ${outputDir}/unpack/hpi/pom.xml
-                                ${outputDir}/unpack/sima/pom.xml
-                                ${outputDir}/unpack/tar/pom.xml
-                                ${outputDir}/unpack/tgz/pom.xml
-                                ${outputDir}/unpack/tar.gz/pom.xml
+                                ${outputDirectory}/unpack/jar/pom.xml
+                                ${outputDirectory}/unpack/war/pom.xml
+                                ${outputDirectory}/unpack/ear/pom.xml
+                                ${outputDirectory}/unpack/sar/pom.xml
+                                ${outputDirectory}/unpack/zip/pom.xml
+                                ${outputDirectory}/unpack/hpi/pom.xml
+                                ${outputDirectory}/unpack/sima/pom.xml
+                                ${outputDirectory}/unpack/tar/pom.xml
+                                ${outputDirectory}/unpack/tgz/pom.xml
+                                ${outputDirectory}/unpack/tar.gz/pom.xml
                             </assertFiles>
                             <assertEqual>
-                                ${outputDir}/unpack/jar   |${outputDir}/unpack/war
-                                ${outputDir}/unpack/war   |${outputDir}/unpack/ear
-                                ${outputDir}/unpack/ear   |${outputDir}/unpack/sar
-                                ${outputDir}/unpack/sar   |${outputDir}/unpack/zip
-                                ${outputDir}/unpack/zip   |${outputDir}/unpack/hpi
-                                ${outputDir}/unpack/hpi   |${outputDir}/unpack/sima
-                                ${outputDir}/unpack/sima  |${outputDir}/unpack/tar
-                                ${outputDir}/unpack/tar   |${outputDir}/unpack/tgz
-                                ${outputDir}/unpack/tgz   |${outputDir}/unpack/tar.gz
-                                ${outputDir}/unpack/tar.gz|${outputDir}/unpack/jar
+                                ${outputDirectory}/unpack/jar |${outputDirectory}/unpack/war
+                                ${outputDirectory}/unpack/war |${outputDirectory}/unpack/ear
+                                ${outputDirectory}/unpack/ear |${outputDirectory}/unpack/sar
+                                ${outputDirectory}/unpack/sar |${outputDirectory}/unpack/zip
+                                ${outputDirectory}/unpack/zip |${outputDirectory}/unpack/hpi
+                                ${outputDirectory}/unpack/hpi |${outputDirectory}/unpack/sima
+                                ${outputDirectory}/unpack/sima |${outputDirectory}/unpack/tar
+                                ${outputDirectory}/unpack/tar |${outputDirectory}/unpack/tgz
+                                ${outputDirectory}/unpack/tgz |${outputDirectory}/unpack/tar.gz
+                                ${outputDirectory}/unpack/tar.gz|${outputDirectory}/unpack/jar
                             </assertEqual>
                         </configuration>
                     </execution>
@@ -549,33 +551,33 @@
                         <phase>test</phase>
                         <configuration>
                             <assertFiles>
-                                ${outputDir}/fullpath-prefix-TrueZip/unpack/fullpath-zip/1/2/3/4.txt
-                                ${outputDir}/fullpath-prefix-TrueZip/unpack/fullpath-tar.gz/1/2/3/4.txt
-                                ${outputDir}/fullpath-prefix-TrueZip/unpack/prefix-zip/a/bb/ccc/dddd/pom.xml
-                                ${outputDir}/fullpath-prefix-TrueZip/unpack/prefix-tar.gz/a/bb/ccc/dddd/pom.xml
+                                ${outputDirectory}/fullpath-prefix-TrueZip/unpack/fullpath-zip/1/2/3/4.txt
+                                ${outputDirectory}/fullpath-prefix-TrueZip/unpack/fullpath-tar.gz/1/2/3/4.txt
+                                ${outputDirectory}/fullpath-prefix-TrueZip/unpack/prefix-zip/a/bb/ccc/dddd/pom.xml
+                                ${outputDirectory}/fullpath-prefix-TrueZip/unpack/prefix-tar.gz/a/bb/ccc/dddd/pom.xml
 
-                                ${outputDir}/fullpath-prefix-Ant/unpack/fullpath-zip/1/2/3/4.txt
-                                ${outputDir}/fullpath-prefix-Ant/unpack/fullpath-tar.gz/1/2/3/4.txt
-                                ${outputDir}/fullpath-prefix-Ant/unpack/prefix-zip/a/bb/ccc/dddd/pom.xml
-                                ${outputDir}/fullpath-prefix-Ant/unpack/prefix-tar.gz/a/bb/ccc/dddd/pom.xml
+                                ${outputDirectory}/fullpath-prefix-Ant/unpack/fullpath-zip/1/2/3/4.txt
+                                ${outputDirectory}/fullpath-prefix-Ant/unpack/fullpath-tar.gz/1/2/3/4.txt
+                                ${outputDirectory}/fullpath-prefix-Ant/unpack/prefix-zip/a/bb/ccc/dddd/pom.xml
+                                ${outputDirectory}/fullpath-prefix-Ant/unpack/prefix-tar.gz/a/bb/ccc/dddd/pom.xml
                             </assertFiles>
                             <assertEqual>
-                                ${outputDir}/fullpath-prefix-TrueZip/unpack/fullpath-zip/1/2/3/4.txt|${outputDir}/fullpath-prefix-TrueZip/unpack/fullpath-tar.gz/1/2/3/4.txt
-                                ${outputDir}/fullpath-prefix-TrueZip/unpack/fullpath-tar.gz/1/2/3/4.txt|${outputDir}/fullpath-prefix-TrueZip/unpack/prefix-zip/a/bb/ccc/dddd/pom.xml
-                                ${outputDir}/fullpath-prefix-TrueZip/unpack/prefix-zip/a/bb/ccc/dddd/pom.xml|${outputDir}/fullpath-prefix-TrueZip/unpack/prefix-tar.gz/a/bb/ccc/dddd/pom.xml
-                                ${outputDir}/fullpath-prefix-TrueZip/unpack/prefix-tar.gz/a/bb/ccc/dddd/pom.xml|${outputDir}/fullpath-prefix-Ant/unpack/fullpath-zip/1/2/3/4.txt
+                                ${outputDirectory}/fullpath-prefix-TrueZip/unpack/fullpath-zip/1/2/3/4.txt|${outputDirectory}/fullpath-prefix-TrueZip/unpack/fullpath-tar.gz/1/2/3/4.txt
+                                ${outputDirectory}/fullpath-prefix-TrueZip/unpack/fullpath-tar.gz/1/2/3/4.txt|${outputDirectory}/fullpath-prefix-TrueZip/unpack/prefix-zip/a/bb/ccc/dddd/pom.xml
+                                ${outputDirectory}/fullpath-prefix-TrueZip/unpack/prefix-zip/a/bb/ccc/dddd/pom.xml|${outputDirectory}/fullpath-prefix-TrueZip/unpack/prefix-tar.gz/a/bb/ccc/dddd/pom.xml
+                                ${outputDirectory}/fullpath-prefix-TrueZip/unpack/prefix-tar.gz/a/bb/ccc/dddd/pom.xml|${outputDirectory}/fullpath-prefix-Ant/unpack/fullpath-zip/1/2/3/4.txt
 
-                                ${outputDir}/fullpath-prefix-Ant/unpack/fullpath-zip/1/2/3/4.txt|${outputDir}/fullpath-prefix-Ant/unpack/fullpath-tar.gz/1/2/3/4.txt
-                                ${outputDir}/fullpath-prefix-Ant/unpack/fullpath-tar.gz/1/2/3/4.txt|${outputDir}/fullpath-prefix-Ant/unpack/prefix-zip/a/bb/ccc/dddd/pom.xml
-                                ${outputDir}/fullpath-prefix-Ant/unpack/prefix-zip/a/bb/ccc/dddd/pom.xml|${outputDir}/fullpath-prefix-Ant/unpack/prefix-tar.gz/a/bb/ccc/dddd/pom.xml
-                                ${outputDir}/fullpath-prefix-Ant/unpack/prefix-tar.gz/a/bb/ccc/dddd/pom.xml|${outputDir}/fullpath-prefix-TrueZip/unpack/fullpath-zip/1/2/3/4.txt
+                                ${outputDirectory}/fullpath-prefix-Ant/unpack/fullpath-zip/1/2/3/4.txt|${outputDirectory}/fullpath-prefix-Ant/unpack/fullpath-tar.gz/1/2/3/4.txt
+                                ${outputDirectory}/fullpath-prefix-Ant/unpack/fullpath-tar.gz/1/2/3/4.txt|${outputDirectory}/fullpath-prefix-Ant/unpack/prefix-zip/a/bb/ccc/dddd/pom.xml
+                                ${outputDirectory}/fullpath-prefix-Ant/unpack/prefix-zip/a/bb/ccc/dddd/pom.xml|${outputDirectory}/fullpath-prefix-Ant/unpack/prefix-tar.gz/a/bb/ccc/dddd/pom.xml
+                                ${outputDirectory}/fullpath-prefix-Ant/unpack/prefix-tar.gz/a/bb/ccc/dddd/pom.xml|${outputDirectory}/fullpath-prefix-TrueZip/unpack/fullpath-zip/1/2/3/4.txt
 
-                                ${outputDir}/fullpath-prefix-TrueZip|${outputDir}/fullpath-prefix-Ant|**/*.txt
-                                ${outputDir}/fullpath-prefix-TrueZip|${outputDir}/fullpath-prefix-Ant|**/*.xml
+                                ${outputDirectory}/fullpath-prefix-TrueZip|${outputDirectory}/fullpath-prefix-Ant|**/*.txt
+                                ${outputDirectory}/fullpath-prefix-TrueZip|${outputDirectory}/fullpath-prefix-Ant|**/*.xml
                             </assertEqual>
                             <shouldFailAssertEqual>
-                                ${outputDir}/fullpath-prefix-TrueZip|${outputDir}/fullpath-prefix-Ant|*.txt
-                                ${outputDir}/fullpath-prefix-TrueZip|${outputDir}/fullpath-prefix-Ant|*.xml
+                                ${outputDirectory}/fullpath-prefix-TrueZip|${outputDirectory}/fullpath-prefix-Ant|*.txt
+                                ${outputDirectory}/fullpath-prefix-TrueZip|${outputDirectory}/fullpath-prefix-Ant|*.xml
                             </shouldFailAssertEqual>
                         </configuration>
                     </execution>
@@ -588,29 +590,29 @@
                         <configuration>
                             <runIf>{{ ${isLinux} || ${isMac} }}</runIf>
                             <assertFiles>
-                                ${outputDir}/filemode/
-                                ${outputDir}/filemode/1
-                                ${outputDir}/filemode/2
-                                ${outputDir}/filemode/1/pom-UTF-8.xml
-                                ${outputDir}/filemode/1/start-gmi-1.bat
-                                ${outputDir}/filemode/1/start-gmi-2.bat
-                                ${outputDir}/filemode/1/text-Windows-1251.txt
-                                ${outputDir}/filemode/2/pom-UTF-8.xml
-                                ${outputDir}/filemode/2/start-gmi-1.bat
-                                ${outputDir}/filemode/2/start-gmi-2.bat
-                                ${outputDir}/filemode/2/text-Windows-1251.txt
-                                ${outputDir}/filemode/1.tar.gz
-                                ${outputDir}/filemode/2.tar.gz
+                                ${outputDirectory}/filemode/
+                                ${outputDirectory}/filemode/1
+                                ${outputDirectory}/filemode/2
+                                ${outputDirectory}/filemode/1/pom-UTF-8.xml
+                                ${outputDirectory}/filemode/1/start-gmi-1.bat
+                                ${outputDirectory}/filemode/1/start-gmi-2.bat
+                                ${outputDirectory}/filemode/1/text-Windows-1251.txt
+                                ${outputDirectory}/filemode/2/pom-UTF-8.xml
+                                ${outputDirectory}/filemode/2/start-gmi-1.bat
+                                ${outputDirectory}/filemode/2/start-gmi-2.bat
+                                ${outputDirectory}/filemode/2/text-Windows-1251.txt
+                                ${outputDirectory}/filemode/1.tar.gz
+                                ${outputDirectory}/filemode/2.tar.gz
                             </assertFiles>
                             <assertGroovy>
-                                'ls -l ${outputDir}/filemode/1/pom-UTF-8.xml'.        execute().text.startsWith( '-rwx-wx--x' ) <!-- 731 -->
-                                'ls -l ${outputDir}/filemode/1/start-gmi-1.bat'.      execute().text.startsWith( '-rwxr-xr-x' ) <!-- 755 -->
-                                'ls -l ${outputDir}/filemode/1/start-gmi-2.bat'.      execute().text.startsWith( '-rwxr-xr-x' ) <!-- 755 -->
-                                'ls -l ${outputDir}/filemode/1/text-Windows-1251.txt'.execute().text.startsWith( '-rwx------' ) <!-- 700 -->
-                                'ls -l ${outputDir}/filemode/2/pom-UTF-8.xml'.        execute().text.startsWith( '-r-xr-xr-x' ) <!-- 555 -->
-                                'ls -l ${outputDir}/filemode/2/start-gmi-1.bat'.      execute().text.startsWith( '--wx-wx--x' ) <!-- 331 -->
-                                'ls -l ${outputDir}/filemode/2/start-gmi-2.bat'.      execute().text.startsWith( '--wx-wx--x' ) <!-- 331 -->
-                                'ls -l ${outputDir}/filemode/2/text-Windows-1251.txt'.execute().text.startsWith( '---x--x--x' ) <!-- 111 -->
+                                'ls -l ${outputDirectory}/filemode/1/pom-UTF-8.xml'.        execute().text.startsWith( '-rwx-wx--x' ) <!-- 731 -->
+                                'ls -l ${outputDirectory}/filemode/1/start-gmi-1.bat'.      execute().text.startsWith( '-rwxr-xr-x' ) <!-- 755 -->
+                                'ls -l ${outputDirectory}/filemode/1/start-gmi-2.bat'.      execute().text.startsWith( '-rwxr-xr-x' ) <!-- 755 -->
+                                'ls -l ${outputDirectory}/filemode/1/text-Windows-1251.txt'.execute().text.startsWith( '-rwx------' ) <!-- 700 -->
+                                'ls -l ${outputDirectory}/filemode/2/pom-UTF-8.xml'.        execute().text.startsWith( '-r-xr-xr-x' ) <!-- 555 -->
+                                'ls -l ${outputDirectory}/filemode/2/start-gmi-1.bat'.      execute().text.startsWith( '--wx-wx--x' ) <!-- 331 -->
+                                'ls -l ${outputDirectory}/filemode/2/start-gmi-2.bat'.      execute().text.startsWith( '--wx-wx--x' ) <!-- 331 -->
+                                'ls -l ${outputDirectory}/filemode/2/text-Windows-1251.txt'.execute().text.startsWith( '---x--x--x' ) <!-- 111 -->
                             </assertGroovy>
                         </configuration>
                     </execution>

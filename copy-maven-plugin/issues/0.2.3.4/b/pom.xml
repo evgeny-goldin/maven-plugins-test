@@ -41,7 +41,7 @@
                         <configuration>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-469/1</targetPath>
+                                    <targetPath>${outputDirectory}/pl-469/1</targetPath>
                                     <dependency>
                                         <groupId>com.github.goldin.maven-plugins-test</groupId>
                                         <artifactId>copy-maven-plugin.issues.0.2.3.4-a</artifactId>
@@ -51,7 +51,7 @@
                                     <dependenciesAtM2>true</dependenciesAtM2>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-469/2</targetPath>
+                                    <targetPath>${outputDirectory}/pl-469/2</targetPath>
                                     <dependency>
                                         <includeScope>compile</includeScope>
                                     </dependency>
@@ -74,24 +74,24 @@
                         <configuration>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/nonFilteredExtensions/1</targetPath>
+                                    <targetPath>${outputDirectory}/nonFilteredExtensions/1</targetPath>
                                     <file>${project.basedir}/src/main/resources/1.txt</file>
                                     <filtering>true</filtering>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/nonFilteredExtensions/2</targetPath>
+                                    <targetPath>${outputDirectory}/nonFilteredExtensions/2</targetPath>
                                     <file>${project.basedir}/src/main/resources/1.txt</file>
                                     <nonFilteredExtensions>pdf, exe</nonFilteredExtensions>
                                     <filtering>true</filtering>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/nonFilteredExtensions/3</targetPath>
+                                    <targetPath>${outputDirectory}/nonFilteredExtensions/3</targetPath>
                                     <file>${project.basedir}/src/main/resources/1.txt</file>
                                     <nonFilteredExtensions>txt</nonFilteredExtensions>
                                     <filtering>true</filtering>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/nonFilteredExtensions/4</targetPath>
+                                    <targetPath>${outputDirectory}/nonFilteredExtensions/4</targetPath>
                                     <file>${project.basedir}/src/main/resources/1.txt</file>
                                     <nonFilteredExtensions>txt, pdf</nonFilteredExtensions>
                                     <filtering>true</filtering>
@@ -108,7 +108,7 @@
                         <configuration>
                             <nonFilteredExtensions>txt, pdf</nonFilteredExtensions>
                             <resource>
-                                <targetPath>${outputDir}/nonFilteredExtensions/5</targetPath>
+                                <targetPath>${outputDirectory}/nonFilteredExtensions/5</targetPath>
                                 <file>${project.basedir}/src/main/resources/1.txt</file>
                                 <filtering>true</filtering>
                             </resource>
@@ -127,12 +127,12 @@
                         <configuration>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-446/1</targetPath>
+                                    <targetPath>${outputDirectory}/pl-446/1</targetPath>
                                     <directory>${project.basedir}</directory>
                                     <include>*.xml, *.pdf, *.ppt</include>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-446/2</targetPath>
+                                    <targetPath>${outputDirectory}/pl-446/2</targetPath>
                                     <directory>${project.basedir}</directory>
                                     <includes>
                                         <include>*.xml</include>
@@ -156,26 +156,26 @@
                         <configuration>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-473/1</targetPath>
+                                    <targetPath>${outputDirectory}/pl-473/1</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-473/2</targetPath>
-                                    <directory>${outputDir}/pl-473/1</directory>
+                                    <targetPath>${outputDirectory}/pl-473/2</targetPath>
+                                    <directory>${outputDirectory}/pl-473/1</directory>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-473/3</targetPath>
-                                    <directory>${outputDir}/pl-473</directory>
+                                    <targetPath>${outputDirectory}/pl-473/3</targetPath>
+                                    <directory>${outputDirectory}/pl-473</directory>
                                     <include>2</include>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-473/4</targetPath>
-                                    <directory>${outputDir}/pl-473</directory>
+                                    <targetPath>${outputDirectory}/pl-473/4</targetPath>
+                                    <directory>${outputDirectory}/pl-473</directory>
                                     <include>1, 2, 3, ha-ha-ha</include>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-473/5</targetPath>
-                                    <directory>${outputDir}/pl-473</directory>
+                                    <targetPath>${outputDirectory}/pl-473/5</targetPath>
+                                    <directory>${outputDirectory}/pl-473</directory>
                                     <includes>
                                         <include>1</include>
                                         <include>2</include>
@@ -200,12 +200,12 @@
                         <configuration>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-233/1</targetPath>
+                                    <targetPath>${outputDirectory}/pl-233/1</targetPath>
                                     <file>${project.basedir}/src/main/resources/go.bat</file>
                                     <filtering>true</filtering>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-233/2</targetPath>
+                                    <targetPath>${outputDirectory}/pl-233/2</targetPath>
                                     <file>${project.basedir}/src/main/resources/go.bat</file>
                                     <filtering>true</filtering>
                                     <filterWithDollarOnly>true</filterWithDollarOnly>
@@ -223,7 +223,7 @@
                             <filterWithDollarOnly>true</filterWithDollarOnly>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-233/3</targetPath>
+                                    <targetPath>${outputDirectory}/pl-233/3</targetPath>
                                     <file>${project.basedir}/src/main/resources/go.bat</file>
                                     <filtering>true</filtering>
                                 </resource>
@@ -243,7 +243,7 @@
                         <configuration>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-488/1</targetPath>
+                                    <targetPath>${outputDirectory}/pl-488/1</targetPath>
                                     <dependency>
                                         <groupId>com.github.goldin.maven-plugins-test</groupId>
                                         <artifactId>copy-maven-plugin.issues.0.2.3.4-a</artifactId>
@@ -252,7 +252,7 @@
                                     <destFileName>something.jar</destFileName>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-488/2</targetPath>
+                                    <targetPath>${outputDirectory}/pl-488/2</targetPath>
                                     <dependency>
                                         <groupId>com.github.goldin.maven-plugins-test</groupId>
                                         <artifactId>copy-maven-plugin.issues.0.2.3.4-a</artifactId>
@@ -262,7 +262,7 @@
                                     <destFileName>something.jar</destFileName>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-488/3</targetPath>
+                                    <targetPath>${outputDirectory}/pl-488/3</targetPath>
                                     <dependency>
                                         <groupId>com.github.goldin.maven-plugins-test</groupId>
                                         <artifactId>copy-maven-plugin.issues.0.2.3.4-a</artifactId>
@@ -272,7 +272,7 @@
                                     <destFileName>something.jar</destFileName>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-488/4</targetPath>
+                                    <targetPath>${outputDirectory}/pl-488/4</targetPath>
                                     <dependency>
                                         <groupId>com.github.goldin.maven-plugins-test</groupId>
                                         <artifactId>copy-maven-plugin.issues.0.2.3.4-a</artifactId>
@@ -280,7 +280,7 @@
                                     </dependency>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-488/5</targetPath>
+                                    <targetPath>${outputDirectory}/pl-488/5</targetPath>
                                     <dependency>
                                         <groupId>com.github.goldin.maven-plugins-test</groupId>
                                         <artifactId>copy-maven-plugin.issues.0.2.3.4-a</artifactId>
@@ -289,7 +289,7 @@
                                     <dependenciesAtM2>false</dependenciesAtM2>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-488/6</targetPath>
+                                    <targetPath>${outputDirectory}/pl-488/6</targetPath>
                                     <dependency>
                                         <groupId>com.github.goldin.maven-plugins-test</groupId>
                                         <artifactId>copy-maven-plugin.issues.0.2.3.4-a</artifactId>
@@ -320,30 +320,30 @@
                         <phase>test</phase>
                         <configuration>
                             <assertFiles>
-                                ${outputDir}/nonFilteredExtensions/1/1.txt
-                                ${outputDir}/nonFilteredExtensions/2/1.txt
-                                ${outputDir}/nonFilteredExtensions/3/1.txt
-                                ${outputDir}/nonFilteredExtensions/4/1.txt
-                                ${outputDir}/nonFilteredExtensions/5/1.txt
+                                ${outputDirectory}/nonFilteredExtensions/1/1.txt
+                                ${outputDirectory}/nonFilteredExtensions/2/1.txt
+                                ${outputDirectory}/nonFilteredExtensions/3/1.txt
+                                ${outputDirectory}/nonFilteredExtensions/4/1.txt
+                                ${outputDirectory}/nonFilteredExtensions/5/1.txt
                             </assertFiles>
                             <assertEqual>
-                                ${outputDir}/nonFilteredExtensions/1|${outputDir}/nonFilteredExtensions/2
-                                ${outputDir}/nonFilteredExtensions/1|${outputDir}/nonFilteredExtensions/2|*.txt
-                                ${outputDir}/nonFilteredExtensions/1|${outputDir}/nonFilteredExtensions/2|**/*.txt
-                                ${outputDir}/nonFilteredExtensions/3|${outputDir}/nonFilteredExtensions/4
-                                ${outputDir}/nonFilteredExtensions/3|${outputDir}/nonFilteredExtensions/4|*.txt
-                                ${outputDir}/nonFilteredExtensions/3|${outputDir}/nonFilteredExtensions/4|**/*.txt
-                                ${outputDir}/nonFilteredExtensions/4|${outputDir}/nonFilteredExtensions/5
-                                ${outputDir}/nonFilteredExtensions/4|${outputDir}/nonFilteredExtensions/5|*.txt
-                                ${outputDir}/nonFilteredExtensions/4|${outputDir}/nonFilteredExtensions/5|**/*.txt
+                                ${outputDirectory}/nonFilteredExtensions/1|${outputDirectory}/nonFilteredExtensions/2
+                                ${outputDirectory}/nonFilteredExtensions/1|${outputDirectory}/nonFilteredExtensions/2|*.txt
+                                ${outputDirectory}/nonFilteredExtensions/1|${outputDirectory}/nonFilteredExtensions/2|**/*.txt
+                                ${outputDirectory}/nonFilteredExtensions/3|${outputDirectory}/nonFilteredExtensions/4
+                                ${outputDirectory}/nonFilteredExtensions/3|${outputDirectory}/nonFilteredExtensions/4|*.txt
+                                ${outputDirectory}/nonFilteredExtensions/3|${outputDirectory}/nonFilteredExtensions/4|**/*.txt
+                                ${outputDirectory}/nonFilteredExtensions/4|${outputDirectory}/nonFilteredExtensions/5
+                                ${outputDirectory}/nonFilteredExtensions/4|${outputDirectory}/nonFilteredExtensions/5|*.txt
+                                ${outputDirectory}/nonFilteredExtensions/4|${outputDirectory}/nonFilteredExtensions/5|**/*.txt
                             </assertEqual>
                             <assertGroovy>
-                              ! new File ( outputDir, 'nonFilteredExtensions/1/1.txt' ).text.contains( '{project.groupId' )
-                              ! new File ( outputDir, 'nonFilteredExtensions/2/1.txt' ).text.contains( '{project.groupId' )
-                                new File ( outputDir, 'nonFilteredExtensions/1/1.txt' ).text == '${project.groupId}:${project.artifactId}:${project.version}'
-                                new File ( outputDir, 'nonFilteredExtensions/3/1.txt' ).text.contains( '${project.groupId' )
-                                new File ( outputDir, 'nonFilteredExtensions/4/1.txt' ).text.contains( '${project.artifactId' )
-                                new File ( outputDir, 'nonFilteredExtensions/5/1.txt' ).text.contains( '${project.version' )
+                              ! new File ( outputDirectory, 'nonFilteredExtensions/1/1.txt' ).text.contains( '{project.groupId' )
+                              ! new File ( outputDirectory, 'nonFilteredExtensions/2/1.txt' ).text.contains( '{project.groupId' )
+                                new File ( outputDirectory, 'nonFilteredExtensions/1/1.txt' ).text == '${project.groupId}:${project.artifactId}:${project.version}'
+                                new File ( outputDirectory, 'nonFilteredExtensions/3/1.txt' ).text.contains( '${project.groupId' )
+                                new File ( outputDirectory, 'nonFilteredExtensions/4/1.txt' ).text.contains( '${project.artifactId' )
+                                new File ( outputDirectory, 'nonFilteredExtensions/5/1.txt' ).text.contains( '${project.version' )
                             </assertGroovy>
                         </configuration>
                     </execution>
@@ -358,10 +358,10 @@
                         <phase>test</phase>
                         <configuration>
                             <assertFiles>
-                                ${outputDir}/pl-446/1/pom.xml
-                                ${outputDir}/pl-446/1/*.xml
-                                ${outputDir}/pl-446/2/pom.xml
-                                ${outputDir}/pl-446/2/*.xml
+                                ${outputDirectory}/pl-446/1/pom.xml
+                                ${outputDirectory}/pl-446/1/*.xml
+                                ${outputDirectory}/pl-446/2/pom.xml
+                                ${outputDirectory}/pl-446/2/*.xml
                             </assertFiles>
                         </configuration>
                     </execution>
@@ -376,20 +376,20 @@
                         <phase>test</phase>
                         <configuration>
                             <assertFiles>
-                                ${outputDir}/pl-473/1/pom.xml
-                                ${outputDir}/pl-473/2/pom.xml
-                                ${outputDir}/pl-473/3/pom.xml
-                                ${outputDir}/pl-473/4/pom.xml
-                                ${outputDir}/pl-473/5/pom.xml
+                                ${outputDirectory}/pl-473/1/pom.xml
+                                ${outputDirectory}/pl-473/2/pom.xml
+                                ${outputDirectory}/pl-473/3/pom.xml
+                                ${outputDirectory}/pl-473/4/pom.xml
+                                ${outputDirectory}/pl-473/5/pom.xml
                             </assertFiles>
                             <assertEqual>
-                                ${outputDir}/pl-473/1|${outputDir}/pl-473/2
-                                ${outputDir}/pl-473/1|${outputDir}/pl-473/2|*.xml
-                                ${outputDir}/pl-473/1|${outputDir}/pl-473/2|**/*.xml
-                                ${outputDir}/pl-473/2|${outputDir}/pl-473/3
-                                ${outputDir}/pl-473/3|${outputDir}/pl-473/4
-                                ${outputDir}/pl-473/4|${outputDir}/pl-473/5
-                                ${outputDir}/pl-473/5|${outputDir}/pl-473/1
+                                ${outputDirectory}/pl-473/1|${outputDirectory}/pl-473/2
+                                ${outputDirectory}/pl-473/1|${outputDirectory}/pl-473/2|*.xml
+                                ${outputDirectory}/pl-473/1|${outputDirectory}/pl-473/2|**/*.xml
+                                ${outputDirectory}/pl-473/2|${outputDirectory}/pl-473/3
+                                ${outputDirectory}/pl-473/3|${outputDirectory}/pl-473/4
+                                ${outputDirectory}/pl-473/4|${outputDirectory}/pl-473/5
+                                ${outputDirectory}/pl-473/5|${outputDirectory}/pl-473/1
                             </assertEqual>
                         </configuration>
                     </execution>
@@ -404,23 +404,23 @@
                         <phase>test</phase>
                         <configuration>
                             <assertFiles>
-                                ${outputDir}/pl-233/1/go.bat
-                                ${outputDir}/pl-233/1/*.bat
-                                ${outputDir}/pl-233/2/go.bat
-                                ${outputDir}/pl-233/2/*.bat
-                                ${outputDir}/pl-233/3/go.bat
-                                ${outputDir}/pl-233/3/*.bat
+                                ${outputDirectory}/pl-233/1/go.bat
+                                ${outputDirectory}/pl-233/1/*.bat
+                                ${outputDirectory}/pl-233/2/go.bat
+                                ${outputDirectory}/pl-233/2/*.bat
+                                ${outputDirectory}/pl-233/3/go.bat
+                                ${outputDirectory}/pl-233/3/*.bat
                             </assertFiles>
                             <assertGroovy>
-                                [ 1, 2, 3 ].every{   new File( outputDir, "pl-233/$it/go.bat" ).text.readLines()[ 0 ] == '@echo off' }
-                                [ 1       ].every{ ! new File( outputDir, "pl-233/$it/go.bat" ).text.readLines()[ 1 ].contains( '$' ) }
-                                [ 2, 3    ].every{ ! new File( outputDir, "pl-233/$it/go.bat" ).text.readLines()[ 1 ].contains( '$' ) }
-                                [ 2, 3    ].every{   new File( outputDir, "pl-233/$it/go.bat" ).text.readLines()[ 1 ] == "echo '${project.groupId}:${project.artifactId}:${project.version}'" }
+                                [ 1, 2, 3 ].every{   new File( outputDirectory, "pl-233/$it/go.bat" ).text.readLines()[ 0 ] == '@echo off' }
+                                [ 1       ].every{ ! new File( outputDirectory, "pl-233/$it/go.bat" ).text.readLines()[ 1 ].contains( '$' ) }
+                                [ 2, 3    ].every{ ! new File( outputDirectory, "pl-233/$it/go.bat" ).text.readLines()[ 1 ].contains( '$' ) }
+                                [ 2, 3    ].every{   new File( outputDirectory, "pl-233/$it/go.bat" ).text.readLines()[ 1 ] == "echo '${project.groupId}:${project.artifactId}:${project.version}'" }
                             </assertGroovy>
                             <assertEqual>
-                                ${outputDir}/pl-233/2|${outputDir}/pl-233/3
-                                ${outputDir}/pl-233/2|${outputDir}/pl-233/3|*.bat
-                                ${outputDir}/pl-233/2|${outputDir}/pl-233/3|**/*.bat
+                                ${outputDirectory}/pl-233/2|${outputDirectory}/pl-233/3
+                                ${outputDirectory}/pl-233/2|${outputDirectory}/pl-233/3|*.bat
+                                ${outputDirectory}/pl-233/2|${outputDirectory}/pl-233/3|**/*.bat
                             </assertEqual>
                         </configuration>
                     </execution>
@@ -435,25 +435,25 @@
                         <phase>test</phase>
                         <configuration>
                             <assertFiles>
-                                ${outputDir}/pl-488/1/something.jar
-                                ${outputDir}/pl-488/2/something.jar
-                                ${outputDir}/pl-488/3/something.jar
-                                ${outputDir}/pl-488/4/copy-maven-plugin.issues.0.2.3.4-a-0.1-SNAPSHOT.jar
-                                ${outputDir}/pl-488/5/copy-maven-plugin.issues.0.2.3.4-a-0.1-SNAPSHOT.jar
-                                ${outputDir}/pl-488/6/copy-maven-plugin.issues.0.2.3.4-a-0.1-SNAPSHOT.jar
+                                ${outputDirectory}/pl-488/1/something.jar
+                                ${outputDirectory}/pl-488/2/something.jar
+                                ${outputDirectory}/pl-488/3/something.jar
+                                ${outputDirectory}/pl-488/4/copy-maven-plugin.issues.0.2.3.4-a-0.1-SNAPSHOT.jar
+                                ${outputDirectory}/pl-488/5/copy-maven-plugin.issues.0.2.3.4-a-0.1-SNAPSHOT.jar
+                                ${outputDirectory}/pl-488/6/copy-maven-plugin.issues.0.2.3.4-a-0.1-SNAPSHOT.jar
                             </assertFiles>
                             <assertEqual>
-                                ${outputDir}/pl-488/1|${outputDir}/pl-488/2
-                                ${outputDir}/pl-488/2|${outputDir}/pl-488/3
+                                ${outputDirectory}/pl-488/1|${outputDirectory}/pl-488/2
+                                ${outputDirectory}/pl-488/2|${outputDirectory}/pl-488/3
 
-                                ${outputDir}/pl-488/1|${outputDir}/pl-488/2|*.jar
-                                ${outputDir}/pl-488/1|${outputDir}/pl-488/2|**/*.jar
+                                ${outputDirectory}/pl-488/1|${outputDirectory}/pl-488/2|*.jar
+                                ${outputDirectory}/pl-488/1|${outputDirectory}/pl-488/2|**/*.jar
 
-                                ${outputDir}/pl-488/2|${outputDir}/pl-488/3|*.jar
-                                ${outputDir}/pl-488/2|${outputDir}/pl-488/3|**/*.jar
+                                ${outputDirectory}/pl-488/2|${outputDirectory}/pl-488/3|*.jar
+                                ${outputDirectory}/pl-488/2|${outputDirectory}/pl-488/3|**/*.jar
 
-                                ${outputDir}/pl-488/4|${outputDir}/pl-488/5
-                                ${outputDir}/pl-488/5|${outputDir}/pl-488/6
+                                ${outputDirectory}/pl-488/4|${outputDirectory}/pl-488/5
+                                ${outputDirectory}/pl-488/5|${outputDirectory}/pl-488/6
                             </assertEqual>
                         </configuration>
                     </execution>

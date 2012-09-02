@@ -76,25 +76,25 @@
                                 <!-- HTTP Download -->
                                 <!-- ~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/pl-27/http</targetPath>
+                                    <targetPath>${outputDirectory}/pl-27/http</targetPath>
                                     <file>http://dl.dropbox.com/s/lzf918znlv75u2g/search.png</file>
                                 </resource>
                                 <!-- ~~~~~~~~~~~~ -->
                                 <!-- FTP Download -->
                                 <!-- ~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/pl-27/ftp-txt-base</targetPath>
+                                    <targetPath>${outputDirectory}/pl-27/ftp-txt-base</targetPath>
                                     <file>${resourcesDir}/apache-maven-3.0.1.zip</file>
                                     <unpack>true</unpack>
                                     <zipEntry>**/*.txt</zipEntry>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-27/ftp-1</targetPath>
+                                    <targetPath>${outputDirectory}/pl-27/ftp-1</targetPath>
                                     <directory>${ftpPath}</directory>
                                     <include>index.html</include>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-27/ftp-2</targetPath>
+                                    <targetPath>${outputDirectory}/pl-27/ftp-2</targetPath>
                                     <directory>${ftpPath}/apache-maven-3.0.1/lib/</directory>
                                     <include>wagon-*.jar</include>
                                     <excludes>
@@ -103,7 +103,7 @@
                                     </excludes>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-27/ftp-3</targetPath>
+                                    <targetPath>${outputDirectory}/pl-27/ftp-3</targetPath>
                                     <directory>${ftpPath}/apache-maven-3.0.1</directory>
                                     <include>*.txt</include>
                                 </resource>
@@ -111,40 +111,40 @@
                                 <!-- FTP Download + "wget" -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/pl-27/ftp-4</targetPath>
+                                    <targetPath>${outputDirectory}/pl-27/ftp-4</targetPath>
                                     <directory>${ftpPath}/apache-maven-3.0.1</directory>
                                     <include>*.txt</include>
                                     <wget>wget</wget>
                                     <verbose>false</verbose>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-27/ftp-5</targetPath>
+                                    <targetPath>${outputDirectory}/pl-27/ftp-5</targetPath>
                                     <directory>${ftpPath}/apache-maven-3.0.1</directory>
                                     <include>*.txt</include>
-                                    <wget>wget|${outputDir}/pl-27/ftp-5/list.txt|true|false</wget>
+                                    <wget>wget|${outputDirectory}/pl-27/ftp-5/list.txt|true|false</wget>
                                     <verbose>false</verbose>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-27/ftp-6</targetPath>
+                                    <targetPath>${outputDirectory}/pl-27/ftp-6</targetPath>
                                     <directory>${ftpPath}/apache-maven-3.0.1</directory>
                                     <include>*.txt</include>
-                                    <wget>wget|${outputDir}/pl-27/ftp-5/list.txt|true|true</wget>
+                                    <wget>wget|${outputDirectory}/pl-27/ftp-5/list.txt|true|true</wget>
                                     <verbose>false</verbose>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-27/ftp-7</targetPath>
+                                    <targetPath>${outputDirectory}/pl-27/ftp-7</targetPath>
                                     <directory>${ftpPath}/apache-maven-3.0.1</directory>
                                     <include>*.txt</include>
-                                    <wget>wget|${outputDir}/pl-27/ftp-5/list.txt|true|false</wget>
+                                    <wget>wget|${outputDirectory}/pl-27/ftp-5/list.txt|true|false</wget>
                                     <verbose>false</verbose>
                                     <!-- All files -->
                                     <listFilter>{{ files.keySet() }}</listFilter>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-27/ftp-8</targetPath>
+                                    <targetPath>${outputDirectory}/pl-27/ftp-8</targetPath>
                                     <directory>${ftpPath}/apache-maven-3.0.1</directory>
                                     <include>*.txt</include>
-                                    <wget>wget|${outputDir}/pl-27/ftp-5/list.txt|true|true</wget>
+                                    <wget>wget|${outputDirectory}/pl-27/ftp-5/list.txt|true|true</wget>
                                     <verbose>false</verbose>
                                     <!-- All files larger than 1K -->
                                     <listFilter>{{ files.keySet().findAll{ files[ it ] > 1024 }}}</listFilter>
@@ -153,7 +153,7 @@
                                 <!-- FTP Upload + Download -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/pl-27/ftp-9</targetPath>
+                                    <targetPath>${outputDirectory}/pl-27/ftp-9</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <replace>
                                         <to>${timestamp}</to>
@@ -161,10 +161,10 @@
                                 </resource>
                                 <resource>
                                     <targetPath>${ftpPath}</targetPath>
-                                    <file>${outputDir}/pl-27/ftp-9/pom.xml</file>
+                                    <file>${outputDirectory}/pl-27/ftp-9/pom.xml</file>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-27/ftp-10</targetPath>
+                                    <targetPath>${outputDirectory}/pl-27/ftp-10</targetPath>
                                     <directory>${ftpPath}</directory>
                                     <include>pom.xml</include>
                                 </resource>
@@ -172,7 +172,7 @@
                                 <!-- SCP Upload + Download -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/pl-27/scp-1</targetPath>
+                                    <targetPath>${outputDirectory}/pl-27/scp-1</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <replace>
                                         <to>${timestamp}</to>
@@ -180,11 +180,11 @@
                                 </resource>
                                 <resource>
                                     <targetPath>${scpPath}</targetPath>
-                                    <file>${outputDir}/pl-27/scp-1/pom.xml</file>
+                                    <file>${outputDirectory}/pl-27/scp-1/pom.xml</file>
                                     <verbose>false</verbose>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-27/scp-2</targetPath>
+                                    <targetPath>${outputDirectory}/pl-27/scp-2</targetPath>
                                     <file>${scpPath}/pom.xml</file>
                                     <verbose>false</verbose>
                                 </resource>
@@ -203,28 +203,28 @@
                         <configuration>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-303/copy-1</targetPath>
+                                    <targetPath>${outputDirectory}/pl-303/copy-1</targetPath>
                                     <file>${resourcesDir}/apache-maven-3.0.1.zip</file>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-303/copy-1/apache-maven-3.0.1.zip</targetPath>
+                                    <targetPath>${outputDirectory}/pl-303/copy-1/apache-maven-3.0.1.zip</targetPath>
                                     <directory>${resourcesDir}</directory>
                                     <include>*.xml, *.txt</include>
                                     <update>true</update>
                                     <pack>true</pack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-303/unpack-1</targetPath>
-                                    <file>${outputDir}/pl-303/copy-1/apache-maven-3.0.1.zip</file>
+                                    <targetPath>${outputDirectory}/pl-303/unpack-1</targetPath>
+                                    <file>${outputDirectory}/pl-303/copy-1/apache-maven-3.0.1.zip</file>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-303/unpack-2</targetPath>
+                                    <targetPath>${outputDirectory}/pl-303/unpack-2</targetPath>
                                     <file>${resourcesDir}/apache-maven-3.0.1.zip</file>
                                     <unpack>true</unpack>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-303/unpack-2</targetPath>
+                                    <targetPath>${outputDirectory}/pl-303/unpack-2</targetPath>
                                     <directory>${resourcesDir}</directory>
                                     <include>*.xml, *.txt</include>
                                 </resource>
@@ -251,61 +251,61 @@
                         <configuration>
                             <runIf>{{ ftpTests }}</runIf>
                             <assertFiles>
-                                ${outputDir}/pl-27/http/search.png
-                                ${outputDir}/pl-27/ftp-1/index.html
-                                ${outputDir}/pl-27/ftp-2/wagon-file-1.0-beta-7.jar
-                                ${outputDir}/pl-27/ftp-txt-base/*.txt
-                                ${outputDir}/pl-27/ftp-txt-base/LICENSE.txt
-                                ${outputDir}/pl-27/ftp-txt-base/NOTICE.txt
-                                ${outputDir}/pl-27/ftp-txt-base/README.txt
-                                ${outputDir}/pl-27/ftp-3/*.txt
-                                ${outputDir}/pl-27/ftp-3/LICENSE.txt
-                                ${outputDir}/pl-27/ftp-3/NOTICE.txt
-                                ${outputDir}/pl-27/ftp-3/README.txt
-                                ${outputDir}/pl-27/ftp-4/*.txt
-                                ${outputDir}/pl-27/ftp-4/LICENSE.txt
-                                ${outputDir}/pl-27/ftp-4/NOTICE.txt
-                                ${outputDir}/pl-27/ftp-4/README.txt
-                                ${outputDir}/pl-27/ftp-5/*.txt
-                                ${outputDir}/pl-27/ftp-5/LICENSE.txt
-                                ${outputDir}/pl-27/ftp-5/NOTICE.txt
-                                ${outputDir}/pl-27/ftp-5/README.txt
-                                ${outputDir}/pl-27/ftp-6/*.txt
-                                ${outputDir}/pl-27/ftp-6/LICENSE.txt
-                                ${outputDir}/pl-27/ftp-6/NOTICE.txt
-                                ${outputDir}/pl-27/ftp-6/README.txt
-                                ${outputDir}/pl-27/ftp-7/*.txt
-                                ${outputDir}/pl-27/ftp-7/LICENSE.txt
-                                ${outputDir}/pl-27/ftp-7/NOTICE.txt
-                                ${outputDir}/pl-27/ftp-7/README.txt
-                                ${outputDir}/pl-27/ftp-8/*.txt
-                                ${outputDir}/pl-27/ftp-8/LICENSE.txt
-                                ${outputDir}/pl-27/ftp-8/NOTICE.txt
-                                ${outputDir}/pl-27/ftp-8/README.txt
-                                ${outputDir}/pl-27/ftp-9/pom.xml
+                                ${outputDirectory}/pl-27/http/search.png
+                                ${outputDirectory}/pl-27/ftp-1/index.html
+                                ${outputDirectory}/pl-27/ftp-2/wagon-file-1.0-beta-7.jar
+                                ${outputDirectory}/pl-27/ftp-txt-base/*.txt
+                                ${outputDirectory}/pl-27/ftp-txt-base/LICENSE.txt
+                                ${outputDirectory}/pl-27/ftp-txt-base/NOTICE.txt
+                                ${outputDirectory}/pl-27/ftp-txt-base/README.txt
+                                ${outputDirectory}/pl-27/ftp-3/*.txt
+                                ${outputDirectory}/pl-27/ftp-3/LICENSE.txt
+                                ${outputDirectory}/pl-27/ftp-3/NOTICE.txt
+                                ${outputDirectory}/pl-27/ftp-3/README.txt
+                                ${outputDirectory}/pl-27/ftp-4/*.txt
+                                ${outputDirectory}/pl-27/ftp-4/LICENSE.txt
+                                ${outputDirectory}/pl-27/ftp-4/NOTICE.txt
+                                ${outputDirectory}/pl-27/ftp-4/README.txt
+                                ${outputDirectory}/pl-27/ftp-5/*.txt
+                                ${outputDirectory}/pl-27/ftp-5/LICENSE.txt
+                                ${outputDirectory}/pl-27/ftp-5/NOTICE.txt
+                                ${outputDirectory}/pl-27/ftp-5/README.txt
+                                ${outputDirectory}/pl-27/ftp-6/*.txt
+                                ${outputDirectory}/pl-27/ftp-6/LICENSE.txt
+                                ${outputDirectory}/pl-27/ftp-6/NOTICE.txt
+                                ${outputDirectory}/pl-27/ftp-6/README.txt
+                                ${outputDirectory}/pl-27/ftp-7/*.txt
+                                ${outputDirectory}/pl-27/ftp-7/LICENSE.txt
+                                ${outputDirectory}/pl-27/ftp-7/NOTICE.txt
+                                ${outputDirectory}/pl-27/ftp-7/README.txt
+                                ${outputDirectory}/pl-27/ftp-8/*.txt
+                                ${outputDirectory}/pl-27/ftp-8/LICENSE.txt
+                                ${outputDirectory}/pl-27/ftp-8/NOTICE.txt
+                                ${outputDirectory}/pl-27/ftp-8/README.txt
+                                ${outputDirectory}/pl-27/ftp-9/pom.xml
                             </assertFiles>
                             <assertGroovy>
-                                new File( outputDir, 'pl-27/http' ).directorySize()  == 987
-                                new File( outputDir, 'pl-27/ftp-1' ).directorySize() == 1809
-                                new File( outputDir, 'pl-27/ftp-2' ).directorySize() == 11063
-                                new File( outputDir, 'pl-27/ftp-3' ).directorySize() == 15149
-                                new File( outputDir, 'pl-27/ftp-4' ).directorySize() == 15149
-                                new File( outputDir, 'pl-27/ftp-5' ).directorySize() == 15149
-                                new File( outputDir, 'pl-27/ftp-6' ).directorySize() == 15149
-                                new File( outputDir, 'pl-27/ftp-7' ).directorySize() == 15149
-                                new File( outputDir, 'pl-27/ftp-8' ).directorySize() == 15149
+                                new File( outputDirectory, 'pl-27/http' ).directorySize()  == 987
+                                new File( outputDirectory, 'pl-27/ftp-1' ).directorySize() == 1809
+                                new File( outputDirectory, 'pl-27/ftp-2' ).directorySize() == 11063
+                                new File( outputDirectory, 'pl-27/ftp-3' ).directorySize() == 15149
+                                new File( outputDirectory, 'pl-27/ftp-4' ).directorySize() == 15149
+                                new File( outputDirectory, 'pl-27/ftp-5' ).directorySize() == 15149
+                                new File( outputDirectory, 'pl-27/ftp-6' ).directorySize() == 15149
+                                new File( outputDirectory, 'pl-27/ftp-7' ).directorySize() == 15149
+                                new File( outputDirectory, 'pl-27/ftp-8' ).directorySize() == 15149
                             </assertGroovy>
                             <assertEqual>
-                                ${outputDir}/pl-27/ftp-txt-base|${outputDir}/pl-27/ftp-3
-                                ${outputDir}/pl-27/ftp-3|${outputDir}/pl-27/ftp-4
-                                ${outputDir}/pl-27/ftp-4|${outputDir}/pl-27/ftp-5
-                                ${outputDir}/pl-27/ftp-5|${outputDir}/pl-27/ftp-6
-                                ${outputDir}/pl-27/ftp-6|${outputDir}/pl-27/ftp-7
-                                ${outputDir}/pl-27/ftp-7|${outputDir}/pl-27/ftp-8
-                                ${outputDir}/pl-27/ftp-8|${outputDir}/pl-27/ftp-txt-base
+                                ${outputDirectory}/pl-27/ftp-txt-base|${outputDirectory}/pl-27/ftp-3
+                                ${outputDirectory}/pl-27/ftp-3|${outputDirectory}/pl-27/ftp-4
+                                ${outputDirectory}/pl-27/ftp-4|${outputDirectory}/pl-27/ftp-5
+                                ${outputDirectory}/pl-27/ftp-5|${outputDirectory}/pl-27/ftp-6
+                                ${outputDirectory}/pl-27/ftp-6|${outputDirectory}/pl-27/ftp-7
+                                ${outputDirectory}/pl-27/ftp-7|${outputDirectory}/pl-27/ftp-8
+                                ${outputDirectory}/pl-27/ftp-8|${outputDirectory}/pl-27/ftp-txt-base
 
-                                ${outputDir}/pl-27/ftp-9|${outputDir}/pl-27/ftp-10
-                                ${outputDir}/pl-27/scp-1|${outputDir}/pl-27/scp-2
+                                ${outputDirectory}/pl-27/ftp-9|${outputDirectory}/pl-27/ftp-10
+                                ${outputDirectory}/pl-27/scp-1|${outputDirectory}/pl-27/scp-2
                             </assertEqual>
                         </configuration>
                     </execution>
@@ -320,15 +320,15 @@
                         <phase>test</phase>
                         <configuration>
                             <assertFiles>
-                                ${outputDir}/pl-303/unpack-1/apache-maven-3.0.1
-                                ${outputDir}/pl-303/unpack-1/pom-UTF-8.xml
-                                ${outputDir}/pl-303/unpack-1/text-Windows-1251.txt
-                                ${outputDir}/pl-303/unpack-2/apache-maven-3.0.1
-                                ${outputDir}/pl-303/unpack-2/pom-UTF-8.xml
-                                ${outputDir}/pl-303/unpack-2/text-Windows-1251.txt
+                                ${outputDirectory}/pl-303/unpack-1/apache-maven-3.0.1
+                                ${outputDirectory}/pl-303/unpack-1/pom-UTF-8.xml
+                                ${outputDirectory}/pl-303/unpack-1/text-Windows-1251.txt
+                                ${outputDirectory}/pl-303/unpack-2/apache-maven-3.0.1
+                                ${outputDirectory}/pl-303/unpack-2/pom-UTF-8.xml
+                                ${outputDirectory}/pl-303/unpack-2/text-Windows-1251.txt
                             </assertFiles>
                             <assertEqual>
-                                ${outputDir}/pl-303/unpack-1|${outputDir}/pl-303/unpack-2
+                                ${outputDirectory}/pl-303/unpack-1|${outputDirectory}/pl-303/unpack-2
                             </assertEqual>
                         </configuration>
                     </execution>

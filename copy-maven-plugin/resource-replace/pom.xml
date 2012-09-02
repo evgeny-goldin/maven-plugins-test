@@ -23,7 +23,7 @@
     <properties>
         <resourcesDir>${project.basedir}/src/main/resources</resourcesDir>
         <antName>apache-ant-1.8.1</antName>
-        <antDir>${outputDir}/${antName}</antDir>
+        <antDir>${outputDirectory}/${antName}</antDir>
     </properties>
 
 
@@ -47,7 +47,7 @@
                                 <!-- Unpacking test archive -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}</targetPath>
+                                    <targetPath>${outputDirectory}</targetPath>
                                     <file>${resourcesDir}/${antName}.zip</file>
                                     <unpack>true</unpack>
                                 </resource>
@@ -55,7 +55,7 @@
                                 <!-- Copying single <include> -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/ant-includes-1</targetPath>
+                                    <targetPath>${outputDirectory}/ant-includes-1</targetPath>
                                     <directory>${antDir}</directory>
                                     <includes>
                                         <include>lib/*.jar</include>
@@ -65,7 +65,7 @@
                                 <!-- Copying single <exclude> -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/ant-includes-2</targetPath>
+                                    <targetPath>${outputDirectory}/ant-includes-2</targetPath>
                                     <directory>${antDir}</directory>
                                     <excludes>
                                         <exclude>lib/*.jar</exclude>
@@ -75,7 +75,7 @@
                                 <!-- Copying single <include> -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/ant-includes-3</targetPath>
+                                    <targetPath>${outputDirectory}/ant-includes-3</targetPath>
                                     <directory>${antDir}/lib</directory>
                                     <include>*.jar</include>
                                 </resource>
@@ -83,7 +83,7 @@
                                 <!-- Copying single <exclude> -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/ant-includes-4</targetPath>
+                                    <targetPath>${outputDirectory}/ant-includes-4</targetPath>
                                     <directory>${antDir}</directory>
                                     <exclude>lib/*.jar</exclude>
                                 </resource>
@@ -92,8 +92,8 @@
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
                                     <targetPaths>
-                                        <targetPath>${outputDir}/all-files-1</targetPath>
-                                        <targetPath>${outputDir}/all-files-2</targetPath>
+                                        <targetPath>${outputDirectory}/all-files-1</targetPath>
+                                        <targetPath>${outputDirectory}/all-files-2</targetPath>
                                     </targetPaths>
                                     <directory>${antDir}</directory>
                                 </resource>
@@ -102,8 +102,8 @@
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
                                     <targetPaths>
-                                        <targetPath>${outputDir}/all-files-3</targetPath>
-                                        <targetPath>${outputDir}/all-files-4</targetPath>
+                                        <targetPath>${outputDirectory}/all-files-3</targetPath>
+                                        <targetPath>${outputDirectory}/all-files-4</targetPath>
                                     </targetPaths>
                                     <directory>${antDir}</directory>
                                     <preservePath>true</preservePath>
@@ -112,7 +112,7 @@
                                 <!-- Copying with <replace> and <file> -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/replace-1</targetPath>
+                                    <targetPath>${outputDirectory}/replace-1</targetPath>
                                     <file>${antDir}/WHATSNEW</file>
                                     <replace>
                                         <to>nothing</to>
@@ -122,7 +122,7 @@
                                 <!-- Copying with <replace> and <file> -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/replace-2</targetPath>
+                                    <targetPath>${outputDirectory}/replace-2</targetPath>
                                     <file>${antDir}/WHATSNEW</file>
                                     <replace>
                                         <from>\w+</from>
@@ -133,7 +133,7 @@
                                 <!-- Copying with <replace> and <file> -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/replace-3</targetPath>
+                                    <targetPath>${outputDirectory}/replace-3</targetPath>
                                     <file>${resourcesDir}/pom.xml</file>
                                     <replace>
                                         <addDollar>true</addDollar>
@@ -144,7 +144,7 @@
                                 <!-- Copying with <replace> and <file> -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/replace-4</targetPath>
+                                    <targetPath>${outputDirectory}/replace-4</targetPath>
                                     <file>${resourcesDir}/pom.xml</file>
                                     <replace>
                                         <addDollar>projectGroupId,projectArtifactId,projectVersion</addDollar>
@@ -155,7 +155,7 @@
                                 <!-- Copying with <replace> -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/replace-5</targetPath>
+                                    <targetPath>${outputDirectory}/replace-5</targetPath>
                                     <directory>${antDir}</directory>
                                     <include>**/*.xml</include>
                                     <replace>
@@ -171,7 +171,7 @@
                                 <!-- Copying with <replace> -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${outputDir}/replace-6</targetPath>
+                                    <targetPath>${outputDirectory}/replace-6</targetPath>
                                     <directory>${antDir}</directory>
                                     <include>**/*.xml</include>
                                     <replace>
@@ -202,85 +202,85 @@
                         <phase>test</phase>
                         <configuration>
                             <assertFiles>
-                                ${outputDir}/${antName}
-                                ${outputDir}/${antName}/bin/*
-                                ${outputDir}/${antName}/bin/*.*
-                                ${outputDir}/${antName}/bin/*.cmd
-                                ${outputDir}/${antName}/bin/*.bat
-                                ${outputDir}/${antName}/bin/*.pl
-                                ${outputDir}/${antName}/bin/*.py
-                                ${outputDir}/${antName}/lib/*.jar
-                                ${outputDir}/${antName}/lib/*.pom
-                                ${outputDir}/${antName}/lib/*.properties
-                                ${outputDir}/ant-includes-1/*.jar
-                                ${outputDir}/ant-includes-2/*.xsl
-                                ${outputDir}/ant-includes-3/*.jar
-                                ${outputDir}/ant-includes-4/*.xml
-                                ${outputDir}/all-files-1/*.bat
-                                ${outputDir}/all-files-2/*.pom
-                                ${outputDir}/all-files-3/*.xml
-                                ${outputDir}/all-files-4/*
-                                ${outputDir}/replace-1/WHATSNEW
-                                ${outputDir}/replace-2/WHATSNEW
-                                ${outputDir}/replace-3/pom.xml
-                                ${outputDir}/replace-4/pom.xml
-                                ${outputDir}/replace-5/fetch.xml
-                                ${outputDir}/replace-5/get-m2.xml
-                                ${outputDir}/replace-6/fetch.xml
-                                ${outputDir}/replace-6/get-m2.xml
+                                ${outputDirectory}/${antName}
+                                ${outputDirectory}/${antName}/bin/*
+                                ${outputDirectory}/${antName}/bin/*.*
+                                ${outputDirectory}/${antName}/bin/*.cmd
+                                ${outputDirectory}/${antName}/bin/*.bat
+                                ${outputDirectory}/${antName}/bin/*.pl
+                                ${outputDirectory}/${antName}/bin/*.py
+                                ${outputDirectory}/${antName}/lib/*.jar
+                                ${outputDirectory}/${antName}/lib/*.pom
+                                ${outputDirectory}/${antName}/lib/*.properties
+                                ${outputDirectory}/ant-includes-1/*.jar
+                                ${outputDirectory}/ant-includes-2/*.xsl
+                                ${outputDirectory}/ant-includes-3/*.jar
+                                ${outputDirectory}/ant-includes-4/*.xml
+                                ${outputDirectory}/all-files-1/*.bat
+                                ${outputDirectory}/all-files-2/*.pom
+                                ${outputDirectory}/all-files-3/*.xml
+                                ${outputDirectory}/all-files-4/*
+                                ${outputDirectory}/replace-1/WHATSNEW
+                                ${outputDirectory}/replace-2/WHATSNEW
+                                ${outputDirectory}/replace-3/pom.xml
+                                ${outputDirectory}/replace-4/pom.xml
+                                ${outputDirectory}/replace-5/fetch.xml
+                                ${outputDirectory}/replace-5/get-m2.xml
+                                ${outputDirectory}/replace-6/fetch.xml
+                                ${outputDirectory}/replace-6/get-m2.xml
                             </assertFiles>
                             <assertGroovy>
-                                new File( outputDir, antName ).directorySize() == 2992163
+                                new File( outputDirectory, antName ).directorySize() == 2992163
 
-                                new File( outputDir, 'ant-includes-1' ).directorySize() == 2312326
-                                new File( outputDir, 'ant-includes-1' ).directorySize() == new File( outputDir, 'ant-includes-3' ).directorySize()
-                                new File( outputDir, 'ant-includes-2' ).directorySize() == 679837
-                                new File( outputDir, 'ant-includes-2' ).directorySize() == new File( outputDir, 'ant-includes-4' ).directorySize()
+                                new File( outputDirectory, 'ant-includes-1' ).directorySize() == 2312326
+                                new File( outputDirectory, 'ant-includes-1' ).directorySize() == new File( outputDirectory, 'ant-includes-3' ).directorySize()
+                                new File( outputDirectory, 'ant-includes-2' ).directorySize() == 679837
+                                new File( outputDirectory, 'ant-includes-2' ).directorySize() == new File( outputDirectory, 'ant-includes-4' ).directorySize()
 
-                                new File( outputDir, 'all-files-1' ).directorySize() == 2992163
-                                new File( outputDir, 'all-files-1' ).directorySize() == new File( outputDir, 'all-files-2' ).directorySize()
-                                new File( outputDir, 'all-files-3' ).directorySize() == 2992163
-                                new File( outputDir, 'all-files-3' ).directorySize() == new File( outputDir, 'all-files-4' ).directorySize()
-                                new File( outputDir, 'all-files-3' ).directorySize() == new File( outputDir, antName ).directorySize()
+                                new File( outputDirectory, 'all-files-1' ).directorySize() == 2992163
+                                new File( outputDirectory, 'all-files-1' ).directorySize() == new File( outputDirectory, 'all-files-2' ).directorySize()
+                                new File( outputDirectory, 'all-files-3' ).directorySize() == 2992163
+                                new File( outputDirectory, 'all-files-3' ).directorySize() == new File( outputDirectory, 'all-files-4' ).directorySize()
+                                new File( outputDirectory, 'all-files-3' ).directorySize() == new File( outputDirectory, antName ).directorySize()
 
-                                new File( outputDir, 'replace-1/WHATSNEW' ).size() == 7
-                                new File( outputDir, 'replace-1/WHATSNEW' ).text   == 'nothing'
-                                new File( outputDir, 'replace-2/WHATSNEW' ).size() == 81472
-                            ! ( new File( outputDir, 'replace-2/WHATSNEW' ).text   =~ /\w/ )
-                                new File( outputDir, 'replace-2/WHATSNEW' ).text   =~ /#/
+                                new File( outputDirectory, 'replace-1/WHATSNEW' ).size() == 7
+                                new File( outputDirectory, 'replace-1/WHATSNEW' ).text   == 'nothing'
+                                new File( outputDirectory, 'replace-2/WHATSNEW' ).size() == 81472
+                            ! ( new File( outputDirectory, 'replace-2/WHATSNEW' ).text   =~ /\w/ )
+                                new File( outputDirectory, 'replace-2/WHATSNEW' ).text   =~ /#/
 
-                                new File( outputDir, 'replace-3/pom.xml' ).size() == 10869
-                                new File( outputDir, 'replace-3/pom.xml' ).size() == new File( outputDir, 'replace-4/pom.xml' ).size()
-                                new File( outputDir, 'replace-3/pom.xml' ).text   == new File( outputDir, 'replace-4/pom.xml' ).text
-                                new File( outputDir, 'replace-3/pom.xml' ).text.contains( '$' + '{projectGroupId}'    )
-                                new File( outputDir, 'replace-3/pom.xml' ).text.contains( '$' + '{projectArtifactId}' )
-                                new File( outputDir, 'replace-3/pom.xml' ).text.contains( '$' + '{projectVersion}'    )
+                                new File( outputDirectory, 'replace-3/pom.xml' ).size() == 10869
+                                new File( outputDirectory, 'replace-3/pom.xml' ).size() == new File( outputDirectory, 'replace-4/pom.xml' ).size()
+                                new File( outputDirectory, 'replace-3/pom.xml' ).text   == new File( outputDirectory, 'replace-4/pom.xml' ).text
+                                new File( outputDirectory, 'replace-3/pom.xml' ).text.contains( '$' + '{projectGroupId}'    )
+                                new File( outputDirectory, 'replace-3/pom.xml' ).text.contains( '$' + '{projectArtifactId}' )
+                                new File( outputDirectory, 'replace-3/pom.xml' ).text.contains( '$' + '{projectVersion}'    )
 
-                                new File( outputDir, 'replace-5/fetch.xml'  ).size() == 7920
-                                new File( outputDir, 'replace-5/get-m2.xml' ).size() == 4566
-                                new File( outputDir, 'replace-5/fetch.xml'  ).text   == new File( antDir, 'fetch.xml'  ).text
-                                new File( outputDir, 'replace-5/get-m2.xml' ).text   == new File( antDir, 'get-m2.xml' ).text
+                                new File( outputDirectory, 'replace-5/fetch.xml'  ).size() == 7920
+                                new File( outputDirectory, 'replace-5/get-m2.xml' ).size() == 4566
+                                new File( outputDirectory, 'replace-5/fetch.xml'  ).text   == new File( antDir, 'fetch.xml'  ).text
+                                new File( outputDirectory, 'replace-5/get-m2.xml' ).text   == new File( antDir, 'get-m2.xml' ).text
 
-                                new File( outputDir, 'replace-6/fetch.xml'  ).size() == 7610
-                                new File( outputDir, 'replace-6/get-m2.xml' ).size() == 4303
-                                new File( outputDir, 'replace-6/fetch.xml'  ).text   != new File( antDir, 'fetch.xml'  ).text
-                                new File( outputDir, 'replace-6/fetch.xml'  ).text.contains( 'target $11' )
-                                new File( outputDir, 'replace-6/get-m2.xml' ).text   != new File( antDir, 'get-m2.xml' ).text
-                                new File( outputDir, 'replace-6/get-m2.xml' ).text.contains( 'target $11' )
-                              ! new File( outputDir, 'replace-6/get-m2.xml' ).text.contains( 'target $12' )
+                                new File( outputDirectory, 'replace-6/fetch.xml'  ).size() == 7610
+                                new File( outputDirectory, 'replace-6/get-m2.xml' ).size() == 4303
+                                new File( outputDirectory, 'replace-6/fetch.xml'  ).text   != new File( antDir, 'fetch.xml'  ).text
+                                new File( outputDirectory, 'replace-6/fetch.xml'  ).text.contains( 'target $11' )
+                                new File( outputDirectory, 'replace-6/get-m2.xml' ).text   != new File( antDir, 'get-m2.xml' ).text
+                                new File( outputDirectory, 'replace-6/get-m2.xml' ).text.contains( 'target $11' )
+                              ! new File( outputDirectory, 'replace-6/get-m2.xml' ).text.contains( 'target $12' )
                             </assertGroovy>
                             <assertEqualNoChecksum>
-                                ${outputDir}/ant-includes-1|${outputDir}/ant-includes-3
-                                ${outputDir}/ant-includes-2|${outputDir}/ant-includes-4
-                                ${outputDir}/all-files-1|${outputDir}/all-files-2
-                                ${outputDir}/all-files-2|${outputDir}/all-files-1
-                                ${outputDir}/all-files-3|${outputDir}/all-files-4
-                                ${outputDir}/all-files-3|${antDir}
-                                ${outputDir}/all-files-4|${antDir}
+                                ${outputDirectory}/ant-includes-1|${outputDirectory}/ant-includes-3
+                                ${outputDirectory}/ant-includes-2|${outputDirectory}/ant-includes-4
+                                ${outputDirectory}/all-files-1|${outputDirectory}/all-files-2
+                                ${outputDirectory}/all-files-2|${outputDirectory}/all-files-1
+                                ${outputDirectory}/all-files-3|${outputDirectory}/all-files-4
+                                ${outputDirectory}/all-files-3|${antDir}
+                                ${outputDirectory}/all-files-4|${antDir}
                             </assertEqualNoChecksum>
                             <assertEqual>
-                                ${outputDir}/replace-3|${outputDir}/replace-4
-                                ${outputDir}/replace-5|${antDir}|*.xml
+                                ${outputDirectory}/replace-3|${outputDirectory}/replace-4
+                                ${outputDirectory}/replace-5|${antDir}|*.xml
                             </assertEqual>
                         </configuration>
                     </execution>

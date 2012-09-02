@@ -226,7 +226,7 @@
                         <phase>verify</phase>
                         <configuration>
                             <resource>
-                                <targetPath>${outputDir}/unpack</targetPath>
+                                <targetPath>${outputDirectory}/unpack</targetPath>
                                 <directory>${project.build.directory}</directory>
                                 <include>*.jar</include>
                                 <unpack>true</unpack>
@@ -246,7 +246,7 @@
                         <configuration>
                             <runIf>{{ slowTests }}</runIf>
                             <resource>
-                                <targetPath>${outputDir}/pl-483</targetPath>
+                                <targetPath>${outputDirectory}/pl-483</targetPath>
                                 <dependencies>
                                     <dependency>
                                         <groupId>com.github.goldin</groupId>
@@ -336,11 +336,11 @@
                         <phase>verify</phase>
                         <configuration>
                             <assertFiles>
-                                ${outputDir}/unpack/META-INF/about-${project.groupId}-${project.artifactId}-${project.version}.txt
-                                ${outputDir}/unpack/META-INF/about-content.txt
-                                ${outputDir}/unpack/META-INF/about-maven.txt
-                                ${outputDir}/unpack/About/fff.txt
-                                ${outputDir}/unpack/about-root.txt
+                                ${outputDirectory}/unpack/META-INF/about-${project.groupId}-${project.artifactId}-${project.version}.txt
+                                ${outputDirectory}/unpack/META-INF/about-content.txt
+                                ${outputDirectory}/unpack/META-INF/about-maven.txt
+                                ${outputDirectory}/unpack/About/fff.txt
+                                ${outputDirectory}/unpack/about-root.txt
 
                                 ${project.build.outputDirectory}/about-standalone-1.txt
                                 ${project.build.directory}/about-standalone-2.txt
@@ -349,15 +349,15 @@
                             </assertFiles>
                             <assertGroovy>
 
-                                new File( outputDir, 'unpack/META-INF/about-content.txt' ).text.contains( '[Coordinates] : [' )
-                                new File( outputDir, 'unpack/META-INF/about-maven.txt' ).text.contains( ' [spring-version]' )
-                                new File( outputDir, 'unpack/META-INF/about-maven.txt' ).text.contains( ' [outputDir]' )
+                                new File( outputDirectory, 'unpack/META-INF/about-content.txt' ).text.contains( '[Coordinates] : [' )
+                                new File( outputDirectory, 'unpack/META-INF/about-maven.txt' ).text.contains( ' [spring-version]' )
+                                new File( outputDirectory, 'unpack/META-INF/about-maven.txt' ).text.contains( ' [outputDirectory]' )
 
-                                new File( outputDir, 'unpack/META-INF/about-content-groovy.txt' ).text.contains( ' [Date] : [' )
-                                new File( outputDir, 'unpack/META-INF/about-content-groovy.txt' ).text.contains( ' [Sum]  : [156]' )
-                                new File( outputDir, 'unpack/META-INF/about-content-groovy.txt' ).text.contains( ' [Ver]  : [' + mavenVersion + ']' )
+                                new File( outputDirectory, 'unpack/META-INF/about-content-groovy.txt' ).text.contains( ' [Date] : [' )
+                                new File( outputDirectory, 'unpack/META-INF/about-content-groovy.txt' ).text.contains( ' [Sum]  : [156]' )
+                                new File( outputDirectory, 'unpack/META-INF/about-content-groovy.txt' ).text.contains( ' [Ver]  : [' + mavenVersion + ']' )
 
-                                new File( project.build.outputDirectory, 'about-standalone-1.txt' ).text.contains( ' [outputDir]' )
+                                new File( project.build.outputDirectory, 'about-standalone-1.txt' ).text.contains( ' [outputDirectory]' )
                                 new File( project.build.directory,       'about-standalone-2.txt' ).text.contains( ' [MavenProject: ${project.groupId}:${project.artifactId}:${project.version}' )
 
                                 new File( project.build.outputDirectory, '1/2/3/4/5/6/7.txt' ).text.contains( '+- log4j:log4j:jar:1.2.16:compile' )
@@ -368,16 +368,16 @@
                                 new File( project.build.outputDirectory, '1/2/3/4/5/6/7.txt' ).text.contains( '[${spring-version}]' )
                                 new File( project.build.outputDirectory, '1/2/3/4/5/6/7.txt' ).text.contains( '[' + springVersion + ']' )
 
-                                new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '[plugins-version]' )
-                                new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '[java.vm.version]' )
-                                new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '[os.name]' )
-                                new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '[os.version]' )
+                                new File( outputDirectory, 'unpack/About/fff.txt' ).text.contains( '[plugins-version]' )
+                                new File( outputDirectory, 'unpack/About/fff.txt' ).text.contains( '[java.vm.version]' )
+                                new File( outputDirectory, 'unpack/About/fff.txt' ).text.contains( '[os.name]' )
+                                new File( outputDirectory, 'unpack/About/fff.txt' ).text.contains( '[os.version]' )
 
-                                new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '[M2_HOME]' )
-                                new File( outputDir, 'unpack/About/fff.txt' ).text.toLowerCase().contains( '[path]' )
+                                new File( outputDirectory, 'unpack/About/fff.txt' ).text.contains( '[M2_HOME]' )
+                                new File( outputDirectory, 'unpack/About/fff.txt' ).text.toLowerCase().contains( '[path]' )
 
-                                new File( outputDir, 'unpack/About/fff.txt' ).text.contains( '+- log4j:log4j:jar:1.2.16:compile' )
-                                new File( outputDir, 'unpack/About/fff.txt' ).text.contains( /\- com.jcraft:jsch:jar:0.1.44-1:compile/ )
+                                new File( outputDirectory, 'unpack/About/fff.txt' ).text.contains( '+- log4j:log4j:jar:1.2.16:compile' )
+                                new File( outputDirectory, 'unpack/About/fff.txt' ).text.contains( /\- com.jcraft:jsch:jar:0.1.44-1:compile/ )
                             </assertGroovy>
                         </configuration>
                     </execution>
@@ -390,31 +390,31 @@
                         <configuration>
                             <runIf>{{ slowTests }}</runIf>
                             <assertFiles>
-                                ${outputDir}/pl-483/about~com.github.goldin~about-maven-plugin~${plugins-version}.txt
-                                ${outputDir}/pl-483/about~com.github.goldin~assert-maven-plugin~${plugins-version}.txt
-                                ${outputDir}/pl-483/about~com.github.goldin~copy-maven-plugin~${plugins-version}.txt
-                                ${outputDir}/pl-483/about~com.github.goldin~duplicates-finder-plugin~${plugins-version}.txt
-                                ${outputDir}/pl-483/about~com.github.goldin~find-maven-plugin~${plugins-version}.txt
-                                ${outputDir}/pl-483/about~com.github.goldin~ivy-maven-plugin~${plugins-version}.txt
-                                ${outputDir}/pl-483/about~com.github.goldin~jenkins-maven-plugin~${plugins-version}.txt
-                                ${outputDir}/pl-483/about~com.github.goldin~mail-maven-plugin~${plugins-version}.txt
-                                ${outputDir}/pl-483/about~com.github.goldin~maven-common~${plugins-version}.txt
-                                ${outputDir}/pl-483/about~com.github.goldin~properties-maven-plugin~${plugins-version}.txt
-                                ${outputDir}/pl-483/about~com.github.goldin~spring-batch-maven-plugin~${plugins-version}.txt
-                                ${outputDir}/pl-483/about~com.github.goldin~sshexec-maven-plugin~${plugins-version}.txt
-                                ${outputDir}/pl-483/about~com.github.goldin~timestamp-maven-plugin~${plugins-version}.txt
+                                ${outputDirectory}/pl-483/about~com.github.goldin~about-maven-plugin~${plugins-version}.txt
+                                ${outputDirectory}/pl-483/about~com.github.goldin~assert-maven-plugin~${plugins-version}.txt
+                                ${outputDirectory}/pl-483/about~com.github.goldin~copy-maven-plugin~${plugins-version}.txt
+                                ${outputDirectory}/pl-483/about~com.github.goldin~duplicates-finder-plugin~${plugins-version}.txt
+                                ${outputDirectory}/pl-483/about~com.github.goldin~find-maven-plugin~${plugins-version}.txt
+                                ${outputDirectory}/pl-483/about~com.github.goldin~ivy-maven-plugin~${plugins-version}.txt
+                                ${outputDirectory}/pl-483/about~com.github.goldin~jenkins-maven-plugin~${plugins-version}.txt
+                                ${outputDirectory}/pl-483/about~com.github.goldin~mail-maven-plugin~${plugins-version}.txt
+                                ${outputDirectory}/pl-483/about~com.github.goldin~maven-common~${plugins-version}.txt
+                                ${outputDirectory}/pl-483/about~com.github.goldin~properties-maven-plugin~${plugins-version}.txt
+                                ${outputDirectory}/pl-483/about~com.github.goldin~spring-batch-maven-plugin~${plugins-version}.txt
+                                ${outputDirectory}/pl-483/about~com.github.goldin~sshexec-maven-plugin~${plugins-version}.txt
+                                ${outputDirectory}/pl-483/about~com.github.goldin~timestamp-maven-plugin~${plugins-version}.txt
                             </assertFiles>
                             <assertGroovy>
-                                new File( outputDir, 'pl-483' ).listFiles().size() == 13
-                                new File( outputDir, 'pl-483' ).listFiles().every{ File f -> f.file }
-                                new File( outputDir, 'pl-483' ).listFiles().every{ File f -> f.text.readLines().any{ it.trim() ==~ /^Commit\s+:\s+\[[a-z0-9]{7}\]\[[a-z0-9]{40}\]$/ }}
-                                new File( outputDir, 'pl-483' ).listFiles().every{ File f -> f.text.readLines().any{ it.trim() ==~ /^Commit Date\s+:\s+\[\w+, \d+ \w+ \d{4} \d{2}:\d{2}:\d{2} \+\d{4}\]$/ }}
-                                new File( outputDir, 'pl-483' ).listFiles().every{ File f -> f.text.readLines().any{ it.trim() ==~ /^Commit Author\s+:\s+\[.+?\]$/ }}
-                                new File( outputDir, 'pl-483' ).listFiles().every{ File f -> f.text.readLines().any{ it.trim() ==~ /^Commit Message\s+:\s+\[.+?\]?$/ }}
-                                new File( outputDir, 'pl-483' ).listFiles().every{ File f -> f.text.readLines().any{ it.trim() ==~ /^.+?\Qorg.apache.maven:maven-core:jar\E.+?$/ }}
-                                new File( outputDir, 'pl-483' ).listFiles().every{ File f -> f.text.readLines().any{ it.trim() ==~ /^.+?\Qcom.github.goldin:gcommons:jar\E.+?$/ }}
-                                new File( outputDir, 'pl-483' ).listFiles().every{ File f -> f.text.readLines().any{ it.trim() ==~ /^.+?\Qjunit:junit:jar\E.+?$/ }}
-                                new File( outputDir, 'pl-483' ).listFiles().every{ File f -> f.text.readLines().any{ it.trim() ==~ /^.+?\Qorg.codehaus.plexus:plexus-utils:jar\E.+?$/ }}
+                                new File( outputDirectory, 'pl-483' ).listFiles().size() == 13
+                                new File( outputDirectory, 'pl-483' ).listFiles().every{ File f -> f.file }
+                                new File( outputDirectory, 'pl-483' ).listFiles().every{ File f -> f.text.readLines().any{ it.trim() ==~ /^Commit\s+:\s+\[[a-z0-9]{7}\]\[[a-z0-9]{40}\]$/ }}
+                                new File( outputDirectory, 'pl-483' ).listFiles().every{ File f -> f.text.readLines().any{ it.trim() ==~ /^Commit Date\s+:\s+\[\w+, \d+ \w+ \d{4} \d{2}:\d{2}:\d{2} \+\d{4}\]$/ }}
+                                new File( outputDirectory, 'pl-483' ).listFiles().every{ File f -> f.text.readLines().any{ it.trim() ==~ /^Commit Author\s+:\s+\[.+?\]$/ }}
+                                new File( outputDirectory, 'pl-483' ).listFiles().every{ File f -> f.text.readLines().any{ it.trim() ==~ /^Commit Message\s+:\s+\[.+?\]?$/ }}
+                                new File( outputDirectory, 'pl-483' ).listFiles().every{ File f -> f.text.readLines().any{ it.trim() ==~ /^.+?\Qorg.apache.maven:maven-core:jar\E.+?$/ }}
+                                new File( outputDirectory, 'pl-483' ).listFiles().every{ File f -> f.text.readLines().any{ it.trim() ==~ /^.+?\Qcom.github.goldin:gcommons:jar\E.+?$/ }}
+                                new File( outputDirectory, 'pl-483' ).listFiles().every{ File f -> f.text.readLines().any{ it.trim() ==~ /^.+?\Qjunit:junit:jar\E.+?$/ }}
+                                new File( outputDirectory, 'pl-483' ).listFiles().every{ File f -> f.text.readLines().any{ it.trim() ==~ /^.+?\Qorg.codehaus.plexus:plexus-utils:jar\E.+?$/ }}
                             </assertGroovy>
                         </configuration>
                     </execution>

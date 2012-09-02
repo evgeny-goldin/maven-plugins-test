@@ -21,7 +21,7 @@
 
 
     <properties>
-        <targetRoot>${outputDir}/tr1, ${outputDir}/tr2, ${outputDir}/tr3</targetRoot>
+        <targetRoot>${outputDirectory}/tr1, ${outputDirectory}/tr2, ${outputDirectory}/tr3</targetRoot>
     </properties>
 
 
@@ -45,7 +45,7 @@
                         <phase>initialize</phase>
                         <configuration>
                             <resource>
-                                <targetPath>${outputDir}/pl-397</targetPath>
+                                <targetPath>${outputDirectory}/pl-397</targetPath>
                                 <file>${project.basedir}/pom.xml</file>
                                 <mkdir>true</mkdir>
                             </resource>
@@ -60,12 +60,12 @@
                         <configuration>
                             <resources>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-395</targetPath>
+                                    <targetPath>${outputDirectory}/pl-395</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDir}/pl-395</targetPath>
-                                    <file>${outputDir}/pl-395/pom.xml</file>
+                                    <targetPath>${outputDirectory}/pl-395</targetPath>
+                                    <file>${outputDirectory}/pl-395/pom.xml</file>
                                     <process>{{ assert ( files.size() == 0 ) &amp;&amp; ( file == null ) }}</process>
                                 </resource>
                             </resources>
@@ -102,21 +102,21 @@
                                 </resource>
                                 <resource>
                                     <targetRoot><!-- Nothing --></targetRoot>
-                                    <targetPath>${outputDir}/pl-434-5</targetPath>
+                                    <targetPath>${outputDirectory}/pl-434-5</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                 </resource>
                                 <resource>
                                     <targetRoot> , </targetRoot>
-                                    <targetPath>${outputDir}/pl-434-6</targetPath>
+                                    <targetPath>${outputDirectory}/pl-434-6</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                 </resource>
                                 <resource>
-                                    <targetRoot> ${outputDir}/aa , </targetRoot>
+                                    <targetRoot>${outputDirectory}/aa ,</targetRoot>
                                     <targetPath>pl-434-7</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                 </resource>
                                 <resource>
-                                    <targetRoot> , ${outputDir}/bb , </targetRoot>
+                                    <targetRoot>, ${outputDirectory}/bb ,</targetRoot>
                                     <targetPath>pl-434-8</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                 </resource>
@@ -142,10 +142,10 @@
                         <phase>test</phase>
                         <configuration>
                             <assertFiles>
-                                ${outputDir}/pl-397
-                                ${outputDir}/pl-397/pom.xml
-                                ${outputDir}/pl-395
-                                ${outputDir}/pl-395/pom.xml
+                                ${outputDirectory}/pl-397
+                                ${outputDirectory}/pl-397/pom.xml
+                                ${outputDirectory}/pl-395
+                                ${outputDirectory}/pl-395/pom.xml
                             </assertFiles>
                         </configuration>
                     </execution>
@@ -160,37 +160,37 @@
                         <phase>test</phase>
                         <configuration>
                             <assertFiles>
-                                ${outputDir}/tr1
-                                ${outputDir}/tr1/pl-434-1
-                                ${outputDir}/tr1/pl-434-2
-                                ${outputDir}/tr1/pl-434-3
-                                ${outputDir}/tr1/pl-434-4
-                                ${outputDir}/tr2
-                                ${outputDir}/tr2/pl-434-1
-                                ${outputDir}/tr2/pl-434-2
-                                ${outputDir}/tr2/pl-434-3
-                                ${outputDir}/tr2/pl-434-4
-                                ${outputDir}/tr3
-                                ${outputDir}/tr3/pl-434-1
-                                ${outputDir}/tr3/pl-434-2
-                                ${outputDir}/tr3/pl-434-3
-                                ${outputDir}/tr3/pl-434-4
-                                ${outputDir}/pl-434-5
-                                ${outputDir}/pl-434-6
-                                ${outputDir}/aa
-                                ${outputDir}/aa/pl-434-7
-                                ${outputDir}/bb
-                                ${outputDir}/bb/pl-434-8
+                                ${outputDirectory}/tr1
+                                ${outputDirectory}/tr1/pl-434-1
+                                ${outputDirectory}/tr1/pl-434-2
+                                ${outputDirectory}/tr1/pl-434-3
+                                ${outputDirectory}/tr1/pl-434-4
+                                ${outputDirectory}/tr2
+                                ${outputDirectory}/tr2/pl-434-1
+                                ${outputDirectory}/tr2/pl-434-2
+                                ${outputDirectory}/tr2/pl-434-3
+                                ${outputDirectory}/tr2/pl-434-4
+                                ${outputDirectory}/tr3
+                                ${outputDirectory}/tr3/pl-434-1
+                                ${outputDirectory}/tr3/pl-434-2
+                                ${outputDirectory}/tr3/pl-434-3
+                                ${outputDirectory}/tr3/pl-434-4
+                                ${outputDirectory}/pl-434-5
+                                ${outputDirectory}/pl-434-6
+                                ${outputDirectory}/aa
+                                ${outputDirectory}/aa/pl-434-7
+                                ${outputDirectory}/bb
+                                ${outputDirectory}/bb/pl-434-8
                             </assertFiles>
                             <assertEqual>
-                                ${outputDir}/tr1|${outputDir}/tr2
-                                ${outputDir}/tr2|${outputDir}/tr3
-                                ${outputDir}/tr3|${outputDir}/tr1
+                                ${outputDirectory}/tr1|${outputDirectory}/tr2
+                                ${outputDirectory}/tr2|${outputDirectory}/tr3
+                                ${outputDirectory}/tr3|${outputDirectory}/tr1
 
-                                ${outputDir}/pl-434-5|${outputDir}/pl-434-6
-                                ${outputDir}/pl-434-6|${outputDir}/aa/pl-434-7
-                                ${outputDir}/aa/pl-434-7|${outputDir}/bb/pl-434-8
-                                ${outputDir}/bb/pl-434-8|${outputDir}/pl-434-5
+                                ${outputDirectory}/pl-434-5|${outputDirectory}/pl-434-6
+                                ${outputDirectory}/pl-434-6|${outputDirectory}/aa/pl-434-7
+                                ${outputDirectory}/aa/pl-434-7|${outputDirectory}/bb/pl-434-8
+                                ${outputDirectory}/bb/pl-434-8|${outputDirectory}/pl-434-5
                             </assertEqual>
                         </configuration>
                     </execution>
