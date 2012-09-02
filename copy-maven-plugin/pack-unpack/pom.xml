@@ -464,8 +464,7 @@
                                         <include>*.txt|111</include>
                                     </includes>
                                     <pack>true</pack>
-                                    <process>{{ "tar -xzf ${outputDirectory}/filemode/2.tar.gz -C
-                                        ${outputDirectory}/filemode/2".execute().text }}</process>
+                                    <process>{{ "tar -xzf ${outputDirectory}/filemode/2.tar.gz -C ${outputDirectory}/filemode/2".execute().text }}</process>
                                 </resource>
                             </resources>
                         </configuration>
