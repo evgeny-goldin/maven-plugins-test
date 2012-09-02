@@ -453,8 +453,7 @@
                                     <directory>${project.basedir}/../issues/0.2/0.2-beta-2/src/main/resources</directory>
                                     <include>*.xml|731, *.bat|755, *.txt|700</include>
                                     <pack>true</pack>
-                                    <process>{{ "tar -xzf ${outputDirectory}/filemode/1.tar.gz -C
-                                        ${outputDirectory}/filemode/1".execute().text }}</process>
+                                    <process>{{ "tar -xzf ${outputDirectory}/filemode/1.tar.gz -C ${outputDirectory}/filemode/1".execute().text }}</process>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDirectory}/filemode/2.tar.gz</targetPath>
