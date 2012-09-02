@@ -1287,7 +1287,7 @@
                                     {{
                                         assert ! file.text.contains( '$' + '{' )
                                         assert   file.text.find( /\d|\w/ )
-                                        assert ! new File( outputDirectoryectory, 'pl-514/7/pom.xml' ).file
+                                        assert ! new File( outputDirectory, 'pl-514/7/pom.xml' ).file
                                     }}
                                     </process>
                                 </resource>
@@ -1303,7 +1303,7 @@
                                     <process>
                                     {{
                                         assert file.text ==~ /^a+$/
-                                        assert ! new File( outputDirectoryectory, 'pl-514/8/pom.xml' ).file
+                                        assert ! new File( outputDirectory, 'pl-514/8/pom.xml' ).file
                                     }}
                                     </process>
                                 </resource>
@@ -1326,7 +1326,7 @@
                                     <process>
                                     {{
                                         assert file.text.with{ ! ( contains( '$' + '{' ) || find( /\d|\w/ )) }
-                                        assert ! new File( outputDirectoryectory, 'pl-514/9/pom.xml' ).file
+                                        assert ! new File( outputDirectory, 'pl-514/9/pom.xml' ).file
                                     }}
                                     </process>
                                 </resource>
@@ -1417,14 +1417,14 @@
                                     <filtering>true</filtering>
                                     <filterWithDollarOnly>true</filterWithDollarOnly>
                                     <!-- No filtering was made - there's no "${ .. }" expressions in the file and "filterWithDollarOnly" is used  -->
-                                    <process>{{ assert file.lastModified() == new File( outputDirectoryectory, 'pl-511/1/1.xml' ).lastModified() }}</process>
+                                    <process>{{ assert file.lastModified() == new File( outputDirectory, 'pl-511/1/1.xml' ).lastModified() }}</process>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDirectory}/pl-511/3</targetPath>
                                     <file>${outputDirectory}/pl-511/1/1.xml</file>
                                     <filtering>true</filtering>
                                     <!-- Filtering was made - there's no "${ .. }" expressions in the file but "filterWithDollarOnly" isn't used -->
-                                    <process>{{ assert file.lastModified() > new File( outputDirectoryectory, 'pl-511/1/1.xml' ).lastModified() }}</process>
+                                    <process>{{ assert file.lastModified() > new File( outputDirectory, 'pl-511/1/1.xml' ).lastModified() }}</process>
                                 </resource>
                             </resources>
                         </configuration>
@@ -2273,7 +2273,7 @@
                                 ${outputDirectory}/pl-549/slf4j-api-1.6.2.jar
                             </assertFiles>
                             <assertGroovy>
-                                new File( outputDirectoryectory, 'pl-549' ).directorySize() == 562741
+                                new File( outputDirectory, 'pl-549' ).directorySize() == 562741
                             </assertGroovy>
                         </configuration>
                     </execution>
@@ -2294,7 +2294,7 @@
                                 ${outputDirectory}/pl-548/1/2/3/4/5/6/7/8/9/META-INF/MANIFEST.MF
                             </assertFiles>
                             <assertGroovy>
-                              ! [ 'jboss-service.xml', 'jbosss-service.xml', 'MANIFEST.MF' ].any{ new File( outputDirectoryectory, "pl-548/1/2/3/4/5/6/7/8/9/META-INF/$it"  ).text.contains( '$' ) }
+                              ! [ 'jboss-service.xml', 'jbosss-service.xml', 'MANIFEST.MF' ].any{ new File( outputDirectory, "pl-548/1/2/3/4/5/6/7/8/9/META-INF/$it"  ).text.contains( '$' ) }
                             </assertGroovy>
                         </configuration>
                     </execution>
@@ -2309,13 +2309,13 @@
                         <phase>test</phase>
                         <configuration>
                             <assertGroovy>
-                                new File( outputDirectoryectory, 'pl-541/1' ).directory
-                              ! new File( outputDirectoryectory, 'pl-541/2' ).directory
-                                new File( outputDirectoryectory, 'pl-541/3' ).directory
-                                new File( outputDirectoryectory, 'pl-541/1' ).directorySize()       == 0
-                                new File( outputDirectoryectory, 'pl-541/1' ).recurse([:], {}).size == 115
-                                new File( outputDirectoryectory, 'pl-541/3' ).directorySize()       == 274188
-                                new File( outputDirectoryectory, 'pl-541/3' ).recurse([:], {}).size == 117
+                                new File( outputDirectory, 'pl-541/1' ).directory
+                              ! new File( outputDirectory, 'pl-541/2' ).directory
+                                new File( outputDirectory, 'pl-541/3' ).directory
+                                new File( outputDirectory, 'pl-541/1' ).directorySize()       == 0
+                                new File( outputDirectory, 'pl-541/1' ).recurse([:], {}).size == 115
+                                new File( outputDirectory, 'pl-541/3' ).directorySize()       == 274188
+                                new File( outputDirectory, 'pl-541/3' ).recurse([:], {}).size == 117
                             </assertGroovy>
                             <assertFiles>
                                 ${outputDirectory}/pl-541/1
@@ -2337,13 +2337,13 @@
                         <phase>test</phase>
                         <configuration>
                             <assertGroovy>
-                                [ 6, 8, 10, 16, 21 ].every{ new File( outputDirectoryectory, "pl-539/$it" ).directory }
-                                (( 1 .. 24 ) - [ 6, 8, 10, 16, 21 ]).every{ ! new File( outputDirectoryectory, "pl-539/$it" ).directory }
+                                [ 6, 8, 10, 16, 21 ].every{ new File( outputDirectory, "pl-539/$it" ).directory }
+                                (( 1 .. 24 ) - [ 6, 8, 10, 16, 21 ]).every{ ! new File( outputDirectory, "pl-539/$it" ).directory }
 
-                                [ 6, 8, 16 ].every{ new File( outputDirectoryectory, "pl-539/$it" ).listFiles().size() == 1 }
-                                [ 6, 8, 16 ].every{ new File( outputDirectoryectory, "pl-539/$it" ).directorySize()    == 327911 }
-                                [ 10, 21   ].every{ new File( outputDirectoryectory, "pl-539/$it" ).listFiles().size() == 10 }
-                                [ 10, 21   ].every{ new File( outputDirectoryectory, "pl-539/$it" ).directorySize()    == 9992920 }
+                                [ 6, 8, 16 ].every{ new File( outputDirectory, "pl-539/$it" ).listFiles().size() == 1 }
+                                [ 6, 8, 16 ].every{ new File( outputDirectory, "pl-539/$it" ).directorySize()    == 327911 }
+                                [ 10, 21   ].every{ new File( outputDirectory, "pl-539/$it" ).listFiles().size() == 10 }
+                                [ 10, 21   ].every{ new File( outputDirectory, "pl-539/$it" ).directorySize()    == 9992920 }
                             </assertGroovy>
                             <assertEqual>
                                 ${outputDirectory}/pl-539/10|${outputDirectory}/pl-539/21
@@ -2405,18 +2405,18 @@
                                 ${outputDirectory}/pl-509/6/*.jar
                             </assertFiles>
                             <assertGroovy>
-                                new File( outputDirectoryectory, 'pl-509/1' ).listFiles().size() == ${springCompileTestDependencies}
-                                new File( outputDirectoryectory, 'pl-509/2' ).listFiles().size() == 6
-                                new File( outputDirectoryectory, 'pl-509/2' ).directorySize()    == 2431079
-                                new File( outputDirectoryectory, 'pl-509/3' ).listFiles().size() == 3
-                                new File( outputDirectoryectory, 'pl-509/3' ).directorySize()    == 250164
-                                new File( outputDirectoryectory, 'pl-509/4' ).listFiles().size() == 29
-                                new File( outputDirectoryectory, 'pl-509/4' ).directorySize().with{ ( delegate == 5623107 ) || ( delegate == 5623145 ) }
-                                new File( outputDirectoryectory, 'pl-509/5' ).listFiles().size() == 11
-                                new File( outputDirectoryectory, 'pl-509/5' ).directorySize()    == 10024502
-                                new File( outputDirectoryectory, 'pl-509/6' ).listFiles().size() == 6
-                                new File( outputDirectoryectory, 'pl-509/6' ).directorySize()    == 9827762
-                              ! new File( outputDirectoryectory, 'pl-509/7' ).directory
+                                new File( outputDirectory, 'pl-509/1' ).listFiles().size() == ${springCompileTestDependencies}
+                                new File( outputDirectory, 'pl-509/2' ).listFiles().size() == 6
+                                new File( outputDirectory, 'pl-509/2' ).directorySize()    == 2431079
+                                new File( outputDirectory, 'pl-509/3' ).listFiles().size() == 3
+                                new File( outputDirectory, 'pl-509/3' ).directorySize()    == 250164
+                                new File( outputDirectory, 'pl-509/4' ).listFiles().size() == 29
+                                new File( outputDirectory, 'pl-509/4' ).directorySize().with{ ( delegate == 5623107 ) || ( delegate == 5623145 ) }
+                                new File( outputDirectory, 'pl-509/5' ).listFiles().size() == 11
+                                new File( outputDirectory, 'pl-509/5' ).directorySize()    == 10024502
+                                new File( outputDirectory, 'pl-509/6' ).listFiles().size() == 6
+                                new File( outputDirectory, 'pl-509/6' ).directorySize()    == 9827762
+                              ! new File( outputDirectory, 'pl-509/7' ).directory
                             </assertGroovy>
                         </configuration>
                     </execution>
@@ -2462,13 +2462,13 @@
                                 ${outputDirectory}/pl-506/5|${outputDirectory}/pl-506/6
                             </assertEqual>
                             <assertGroovy>
-                                new File( outputDirectoryectory, 'pl-506/1' ).directorySize() == 177748
-                                new File( outputDirectoryectory, 'pl-506/2' ).directorySize() == 177748
-                                new File( outputDirectoryectory, 'pl-506/3' ).directorySize() == 177748
-                                new File( outputDirectoryectory, 'pl-506/4' ).directorySize() == 177748
-                                new File( outputDirectoryectory, 'pl-506/5' ).directorySize() == 400951
-                                new File( outputDirectoryectory, 'pl-506/6' ).directorySize() == 400951
-                                new File( outputDirectoryectory, 'pl-506/7' ).directorySize() == 223203
+                                new File( outputDirectory, 'pl-506/1' ).directorySize() == 177748
+                                new File( outputDirectory, 'pl-506/2' ).directorySize() == 177748
+                                new File( outputDirectory, 'pl-506/3' ).directorySize() == 177748
+                                new File( outputDirectory, 'pl-506/4' ).directorySize() == 177748
+                                new File( outputDirectory, 'pl-506/5' ).directorySize() == 400951
+                                new File( outputDirectory, 'pl-506/6' ).directorySize() == 400951
+                                new File( outputDirectory, 'pl-506/7' ).directorySize() == 223203
                             </assertGroovy>
                             <shouldFailAssertEqual>
                                 ${outputDirectory}/pl-506/1|${outputDirectory}/pl-506/4
@@ -2531,25 +2531,25 @@
                                 ${outputDirectory}/pl-515/5/opa-1-apo.bAt
                             </assertFiles>
                             <assertGroovy>
-                                new File( outputDirectoryectory, 'pl-515/1/1.bat' ).text.contains( '@echo off' )
-                              ! new File( outputDirectoryectory, 'pl-515/1/1.bat' ).text.contains( '$' + '{' )
+                                new File( outputDirectory, 'pl-515/1/1.bat' ).text.contains( '@echo off' )
+                              ! new File( outputDirectory, 'pl-515/1/1.bat' ).text.contains( '$' + '{' )
 
-                              ! new File( outputDirectoryectory, 'pl-515/2/1.bat' ).text.contains( '$' + '{' )
-                                new File( outputDirectoryectory, 'pl-515/2/1.bat' ).text.contains( '[${project.groupId}:${project.artifactId}:${project.version}]' )
-                                new File( outputDirectoryectory, 'pl-515/2/1.bat' ).text.contains( '[' + project.groupId + ':' + project.artifactId + ':' + project.version + ']' )
+                              ! new File( outputDirectory, 'pl-515/2/1.bat' ).text.contains( '$' + '{' )
+                                new File( outputDirectory, 'pl-515/2/1.bat' ).text.contains( '[${project.groupId}:${project.artifactId}:${project.version}]' )
+                                new File( outputDirectory, 'pl-515/2/1.bat' ).text.contains( '[' + project.groupId + ':' + project.artifactId + ':' + project.version + ']' )
 
-                                new File( outputDirectoryectory, 'pl-515/3/1.bat' ).text.contains( '$' + '{' )
-                                new File( outputDirectoryectory, 'pl-515/4/1.BaT' ).text.contains( '$' + '{' )
+                                new File( outputDirectory, 'pl-515/3/1.bat' ).text.contains( '$' + '{' )
+                                new File( outputDirectory, 'pl-515/4/1.BaT' ).text.contains( '$' + '{' )
 
-                              ! new File( outputDirectoryectory, 'pl-515/5/opa-1-apo.bAt' ).text.contains( '$' + '{' )
-                                new File( outputDirectoryectory, 'pl-515/5/opa-1-apo.bAt' ).text.contains( '[${project.groupId}:${project.artifactId}:${project.version}]' )
-                                new File( outputDirectoryectory, 'pl-515/5/opa-1-apo.bAt' ).text.contains( '[' + project.groupId + ':' + project.artifactId + ':' + project.version + ']' )
+                              ! new File( outputDirectory, 'pl-515/5/opa-1-apo.bAt' ).text.contains( '$' + '{' )
+                                new File( outputDirectory, 'pl-515/5/opa-1-apo.bAt' ).text.contains( '[${project.groupId}:${project.artifactId}:${project.version}]' )
+                                new File( outputDirectory, 'pl-515/5/opa-1-apo.bAt' ).text.contains( '[' + project.groupId + ':' + project.artifactId + ':' + project.version + ']' )
                             </assertGroovy>
                             <shouldFailAssertEqual>
-                                ${outputDirectoryectory}/pl-515/1|${outputDirectoryectory}/pl-515/3
-                                ${outputDirectoryectory}/pl-515/2|${outputDirectoryectory}/pl-515/5
+                                ${outputDirectory}/pl-515/1|${outputDirectory}/pl-515/3
+                                ${outputDirectory}/pl-515/2|${outputDirectory}/pl-515/5
                                 <!-- http://evgeny-goldin.org/youtrack/issue/pl-525 -->
-                                <!-- ${outputDirectoryectory}/pl-515/3|${outputDirectoryectory}/pl-515/4    -->
+                                <!-- ${outputDirectory}/pl-515/3|${outputDirectory}/pl-515/4    -->
                             </shouldFailAssertEqual>
                         </configuration>
                     </execution>
@@ -2564,19 +2564,19 @@
                         <phase>test</phase>
                         <configuration>
                             <assertGroovy>
-                              ! new File( outputDirectoryectory, 'pl-514/1/pom.xml' ).text.contains( '$' + '{' )
-                                new File( outputDirectoryectory, 'pl-514/1/pom.xml' ).text.find( /\d|\w/ )
-                                new File( outputDirectoryectory, 'pl-514/2/pom.xml' ).text ==~ /^a+$/
-                                new File( outputDirectoryectory, 'pl-514/3/pom.xml' ).text.with{ ! ( contains( '$' + '{' ) || find( /\d|\w/ )) }
+                              ! new File( outputDirectory, 'pl-514/1/pom.xml' ).text.contains( '$' + '{' )
+                                new File( outputDirectory, 'pl-514/1/pom.xml' ).text.find( /\d|\w/ )
+                                new File( outputDirectory, 'pl-514/2/pom.xml' ).text ==~ /^a+$/
+                                new File( outputDirectory, 'pl-514/3/pom.xml' ).text.with{ ! ( contains( '$' + '{' ) || find( /\d|\w/ )) }
 
-                              ! new File( outputDirectoryectory, 'pl-514/4/pom.xml' ).text.contains( '$' + '{' )
-                                new File( outputDirectoryectory, 'pl-514/4/pom.xml' ).text.find( /\d|\w/ )
-                                new File( outputDirectoryectory, 'pl-514/5/pom.xml' ).text ==~ /^a+$/
-                                new File( outputDirectoryectory, 'pl-514/6/pom.xml' ).text.with{ ! ( contains( '$' + '{' ) || find( /\d|\w/ )) }
+                              ! new File( outputDirectory, 'pl-514/4/pom.xml' ).text.contains( '$' + '{' )
+                                new File( outputDirectory, 'pl-514/4/pom.xml' ).text.find( /\d|\w/ )
+                                new File( outputDirectory, 'pl-514/5/pom.xml' ).text ==~ /^a+$/
+                                new File( outputDirectory, 'pl-514/6/pom.xml' ).text.with{ ! ( contains( '$' + '{' ) || find( /\d|\w/ )) }
 
-                              ! new File( outputDirectoryectory, 'pl-514/10/pom.xml' ).text.contains( '$' + '{' )
-                                new File( outputDirectoryectory, 'pl-514/10/pom.xml' ).text.find( /\d|\w/ )
-                                new File( outputDirectoryectory, 'pl-514/11/pom.xml' ).text ==~ /^a+$/
+                              ! new File( outputDirectory, 'pl-514/10/pom.xml' ).text.contains( '$' + '{' )
+                                new File( outputDirectory, 'pl-514/10/pom.xml' ).text.find( /\d|\w/ )
+                                new File( outputDirectory, 'pl-514/11/pom.xml' ).text ==~ /^a+$/
                                 new File( outputDirectory, 'pl-514/12/pom.xml' ).text.with{ ! ( contains( '$' + '{' ) || find( /\d|\w/ )) }
                             </assertGroovy>
                             <assertEqual>
