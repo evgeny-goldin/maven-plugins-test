@@ -893,8 +893,7 @@ echo {{ '"[' + project.basedir + '] - [' + project.groupId + ':' + project.artif
                                 ${outputDirectory}/pl-463/2/test.sh
                             </assertFiles>
                             <assertGroovy>
-                                "${outputDirectory}/pl-463/1/test.sh".execute().text ==
-                                "${outputDirectory}/pl-463/2/test.sh".execute().text
+                                "${outputDirectory}/pl-463/1/test.sh".execute().text == "${outputDirectory}/pl-463/2/test.sh".execute().text
                             </assertGroovy>
                         </configuration>
                     </execution>
