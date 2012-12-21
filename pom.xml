@@ -17,16 +17,16 @@
         <outputDirectory>${project.build.outputDirectory}</outputDirectory>
         <maven-version>3.0.4</maven-version>
         <java-version>1.6</java-version>
-        <spring-version>3.1.1.RELEASE</spring-version>
-        <junit-version>4.10</junit-version>
-        <log4j-version>1.2.16</log4j-version>
-        <jaxen-version>1.1.1</jaxen-version>
-        <gmaven-version>1.4</gmaven-version>
-        <groovy-version>1.8.6</groovy-version>
+        <spring-version>3.2.0.RELEASE</spring-version>
+        <junit-version>4.11</junit-version>
+        <log4j-version>1.2.17</log4j-version>
+        <jaxen-version>1.1.4</jaxen-version>
+        <gmaven-version>1.5</gmaven-version>
+        <groovy-version>2.0.5</groovy-version>
         <plugins-version>0.3-SNAPSHOT</plugins-version>
         <artifactory-version>2.3.1</artifactory-version>
         <jenkins-version>1.421</jenkins-version>
-        <gcommons-version>0.5.4</gcommons-version>
+        <gcommons-version>0.6-SNAPSHOT</gcommons-version>
         <ftpTests>false</ftpTests>
         <slowTests>false</slowTests>
 
@@ -77,15 +77,19 @@
                     <artifactId>gmaven-plugin</artifactId>
                     <version>${gmaven-version}</version>
                     <configuration>
-                        <providerSelection>1.8</providerSelection>
+                        <providerSelection>2.0</providerSelection>
                         <source/>
                     </configuration>
                     <dependencies>
                         <dependency>
                             <groupId>org.codehaus.gmaven.runtime</groupId>
-                            <artifactId>gmaven-runtime-1.8</artifactId>
+                            <artifactId>gmaven-runtime-2.0</artifactId>
                             <version>${gmaven-version}</version>
                             <exclusions>
+                                <exclusion>
+                                    <groupId>org.codehaus.groovy</groupId>
+                                    <artifactId>groovy</artifactId>
+                                </exclusion>
                                 <exclusion>
                                     <groupId>org.codehaus.groovy</groupId>
                                     <artifactId>groovy-all</artifactId>
@@ -94,13 +98,13 @@
                         </dependency>
                         <dependency>
                             <groupId>org.codehaus.groovy</groupId>
-                            <artifactId>groovy-all</artifactId>
+                            <artifactId>groovy</artifactId>
                             <version>${groovy-version}</version>
                         </dependency>
                         <dependency>
                             <groupId>org.apache.ivy</groupId>
                             <artifactId>ivy</artifactId>
-                            <version>2.2.0</version>
+                            <version>2.3.0-rc2</version>
                         </dependency>
                         <dependency>
                             <groupId>com.github.goldin</groupId>
