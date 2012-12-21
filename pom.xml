@@ -17,7 +17,7 @@
         <outputDirectory>${project.build.outputDirectory}</outputDirectory>
         <maven-version>3.0.4</maven-version>
         <java-version>1.6</java-version>
-        <spring-version>3.2.0.RELEASE</spring-version>
+        <spring-version>3.1.1.RELEASE</spring-version>
         <junit-version>4.11</junit-version>
         <log4j-version>1.2.17</log4j-version>
         <jaxen-version>1.1.4</jaxen-version>
