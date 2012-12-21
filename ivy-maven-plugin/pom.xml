@@ -330,6 +330,7 @@
                                         <groupId>ivy.org</groupId>
                                         <artifactId>bt354</artifactId>
                                         <version>latest.lastSuccessful</version>
+                                        <classifier>kotlin-plugin-.*</classifier>
                                         <type>zip</type>
                                     </dependency>
                                 </resource>
@@ -363,6 +364,7 @@
                                         <groupId>ivy.org</groupId>
                                         <artifactId>bt354</artifactId>
                                         <version>latest.lastSuccessful</version>
+                                        <classifier>kotlin-plugin-.*</classifier>
                                         <type>zip</type>
                                         <destFileName>kotlin-4.zip</destFileName>
                                     </dependency>
@@ -384,6 +386,7 @@
                                         <groupId>ivy.org</groupId>
                                         <artifactId>bt354</artifactId>
                                         <version>latest.lastSuccessful</version>
+                                        <classifier>kotlin-plugin-.*</classifier>
                                         <type>zip</type>
                                     </dependency>
                                     <destFileName>kotlin-6.zip</destFileName>
