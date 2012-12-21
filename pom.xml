@@ -22,7 +22,7 @@
         <log4j-version>1.2.17</log4j-version>
         <jaxen-version>1.1.4</jaxen-version>
         <gmaven-version>1.5</gmaven-version>
-        <groovy-version>2.0.5</groovy-version>
+        <groovy-version>2.0.6</groovy-version>
         <plugins-version>0.3-SNAPSHOT</plugins-version>
         <artifactory-version>2.3.1</artifactory-version>
         <jenkins-version>1.421</jenkins-version>
