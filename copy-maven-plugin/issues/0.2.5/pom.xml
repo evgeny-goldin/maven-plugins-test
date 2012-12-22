@@ -44,6 +44,8 @@
                                 mkdir  pl-648
                                 rm -rf pl-393
                                 mkdir  pl-393
+                                mkdir  pl-393/1
+                                mkdir  pl-393/2
                             </command>
                             <echoCommands>true</echoCommands>
                         </configuration>
@@ -70,7 +72,7 @@
                             <runIf>{{ ftpTests }}</runIf>
                             <resources>
                                 <resource>
-                                    <targetPath>${scpPathKey}/pl-393</targetPath>
+                                    <targetPath>${scpPathKey}/pl-393/1</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                     <filtering>true</filtering>
                                     <filter>{{ files.findAll{ it.name == 'pom.xml' } }}</filter>
@@ -88,8 +90,30 @@
                                     <destFileExtension>txt</destFileExtension>
                                 </resource>
                                 <resource>
-                                    <targetPath>${outputDirectory}/pl-393</targetPath>
-                                    <file>${scpPathKey}/pl-393/ppp-pom.txt</file>
+                                    <targetPath>${outputDirectory}/pl-393/1</targetPath>
+                                    <file>${scpPathKey}/pl-393/1/ppp-pom.txt</file>
+                                </resource>
+                                <resource>
+                                    <targetPath>${scpPathKeyPassphrase}/pl-393/2</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <filtering>true</filtering>
+                                    <filter>{{ files.findAll{ it.name == 'pom.xml' } }}</filter>
+                                    <replaces>
+                                        <replace>
+                                            <from>&lt;</from>
+                                            <to>[</to>
+                                        </replace>
+                                        <replace>
+                                            <from>&gt;</from>
+                                            <to>]</to>
+                                        </replace>
+                                    </replaces>
+                                    <destFilePrefix>ppp-</destFilePrefix>
+                                    <destFileExtension>txt</destFileExtension>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-393/2</targetPath>
+                                    <file>${scpPathKeyPassphrase}/pl-393/2/ppp-pom.txt</file>
                                 </resource>
                             </resources>
                         </configuration>
@@ -224,7 +248,9 @@
                                 ${outputDirectory}/pl-648/scp/s.jar
                             </assertFiles>
                             <assertEqual>
-                                ${outputDirectory}/pl-393|${outputDirectory}/pl-648/scp|*.txt
+                                ${outputDirectory}/pl-393/1|${outputDirectory}/pl-393/2
+                                ${outputDirectory}/pl-393/1|${outputDirectory}/pl-648/scp|*.txt
+                                ${outputDirectory}/pl-393/2|${outputDirectory}/pl-648/scp|*.txt
                                 ${outputDirectory}/pl-648/ftp|${outputDirectory}/pl-648/scp
                             </assertEqual>
                             <assertGroovy>

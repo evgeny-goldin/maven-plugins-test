@@ -254,7 +254,7 @@
                                         {{
                                             assert System.getProperty( 'filesDir' ), 'System property "filesDir" is not defined!'
                                             final data = new File( System.getProperty( 'filesDir' ), 'scp.txt' ).text.splitWith( 'eachLine' )
-                                            "scp://" + data[ 0 ] + ":" + data[ 1 ] + "@" + data[ 3 ] + ":" + data[ 4 ]
+                                            "scp://" + data[ 0 ] + ":" + data[ 1 ] + "@" + data[ -2 ] + ":" + data[ -1 ]
                                             <!--       username          password             host          directory -->
                                         }}
                                     </value>
@@ -265,8 +265,19 @@
                                         {{
                                             assert System.getProperty( 'filesDir' ), 'System property "filesDir" is not defined!'
                                             final data = new File( System.getProperty( 'filesDir' ), 'scp.txt' ).text.splitWith( 'eachLine' )
-                                            "scp://" + data[ 0 ] + ":" + data[ 2 ] + "@" + data[ 3 ] + ":" + data[ 4 ]
-                                             <!--       username          key path            host          directory -->
+                                            "scp://" + data[ 0 ] + ":" + data[ 2 ] + "@" + data[ -2 ] + ":" + data[ -1 ]
+                                             <!--       username            key             host          directory -->
+                                        }}
+                                    </value>
+                                </property>
+                                <property>
+                                    <name>scpPathKeyPassphrase</name>
+                                    <value>
+                                        {{
+                                            assert System.getProperty( 'filesDir' ), 'System property "filesDir" is not defined!'
+                                            final data = new File( System.getProperty( 'filesDir' ), 'scp.txt' ).text.splitWith( 'eachLine' )
+                                            "scp://" + data[ 0 ] + ":" + data[ 3 ] + "@" + data[ -2 ] + ":" + data[ -1 ]
+                                             <!--       username       key + passphrase     host          directory -->
                                         }}
                                     </value>
                                 </property>
@@ -295,6 +306,10 @@
                                 </property>
                                 <property>
                                     <name>scpPathKey</name>
+                                    <value>{{'dummy'}}</value>
+                                </property>
+                                <property>
+                                    <name>scpPathKeyPassphrase</name>
                                     <value>{{'dummy'}}</value>
                                 </property>
                             </properties>
