@@ -24,9 +24,76 @@
         <plugins>
             <plugin>
                 <groupId>com.github.goldin</groupId>
+                <artifactId>sshexec-maven-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-648 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-648</id>
+                        <goals>
+                            <goal>sshexec</goal>
+                        </goals>
+                        <phase>validate</phase>
+                        <configuration>
+                            <runIf>{{ ftpTests }}</runIf>
+                            <location>${scpPathKey}/</location>
+                            <command>
+                                rm -rf pl-648
+                                mkdir  pl-648
+                                rm -rf pl-393
+                                mkdir  pl-393
+                            </command>
+                            <echoCommands>true</echoCommands>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.github.goldin</groupId>
                 <artifactId>copy-maven-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-393                  -->
+                    <!-- "Support ssh key file authentication for networking operations" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-393</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <runIf>{{ ftpTests }}</runIf>
+                            <resources>
+                                <resource>
+                                    <targetPath>${scpPathKey}/pl-393</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <filtering>true</filtering>
+                                    <filter>{{ files.findAll{ it.name == 'pom.xml' } }}</filter>
+                                    <replaces>
+                                        <replace>
+                                            <from>&lt;</from>
+                                            <to>[</to>
+                                        </replace>
+                                        <replace>
+                                            <from>&gt;</from>
+                                            <to>]</to>
+                                        </replace>
+                                    </replaces>
+                                    <destFilePrefix>ppp-</destFilePrefix>
+                                    <destFileExtension>txt</destFileExtension>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-393</targetPath>
+                                    <file>${scpPathKey}/pl-393/ppp-pom.txt</file>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-648                 -->
                     <!-- "Resource processing is not performed for remote targetPaths"  -->
@@ -157,6 +224,7 @@
                                 ${outputDirectory}/pl-648/scp/s.jar
                             </assertFiles>
                             <assertEqual>
+                                ${outputDirectory}/pl-393|${outputDirectory}/pl-648/scp|*.txt
                                 ${outputDirectory}/pl-648/ftp|${outputDirectory}/pl-648/scp
                             </assertEqual>
                             <assertGroovy>
@@ -168,31 +236,6 @@
                                 ! new File( outputDirectory, 'pl-648/scp/ppp-pom.txt' ).text.contains( '&lt;' )
                                 ! new File( outputDirectory, 'pl-648/scp/ppp-pom.txt' ).text.contains( '&gt;' )
                             </assertGroovy>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-
-            <plugin>
-                <groupId>com.github.goldin</groupId>
-                <artifactId>sshexec-maven-plugin</artifactId>
-                <version>${plugins-version}</version>
-                <executions>
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-648 -->
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                    <execution>
-                        <id>http://evgeny-goldin.org/youtrack/issue/pl-648</id>
-                        <goals>
-                            <goal>sshexec</goal>
-                        </goals>
-                        <phase>test</phase>
-                        <configuration>
-                            <runIf>{{ ftpTests }}</runIf>
-                            <location>${scpPath}/pl-648</location>
-                            <command>ls -al; rm *; ls -al</command>
-                            <echoCommands>true</echoCommands>
                         </configuration>
                     </execution>
                 </executions>
