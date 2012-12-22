@@ -15,22 +15,27 @@
 
     <properties>
         <outputDirectory>${project.build.outputDirectory}</outputDirectory>
-        <maven-version>3.0.4</maven-version>
-        <java-version>1.6</java-version>
-        <junit-version>4.11</junit-version>
-        <gmaven-version>1.5</gmaven-version>
-        <groovy-version>2.0.6</groovy-version>
-        <plugins-version>0.3-SNAPSHOT</plugins-version>
-        <artifactory-version>2.3.1</artifactory-version>
-        <jenkins-version>1.421</jenkins-version>
-        <gcommons-version>0.6-SNAPSHOT</gcommons-version>
         <ftpTests>false</ftpTests>
         <slowTests>false</slowTests>
 
-        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-        <!-- Versions used in tests, if updated => tests should be updated as well -->
-        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <!-- ~~~~~~~~~~~~~ -->
+        <!-- Versions used -->
+        <!-- ~~~~~~~~~~~~~ -->
 
+        <maven-version>3.0.4</maven-version>
+        <java-version>1.6</java-version>
+        <gmaven-version>1.5</gmaven-version>
+        <groovy-version>2.0.6</groovy-version>
+        <plugins-version>0.3-SNAPSHOT</plugins-version>
+        <gcommons-version>0.6-SNAPSHOT</gcommons-version>
+
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <!-- Versions used in tests, if updated => tests may need to be updated -->
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+        <junit-version>4.11</junit-version>
+        <artifactory-version>2.3.1</artifactory-version>
+        <jenkins-version>1.421</jenkins-version>
         <spring-version>3.1.1.RELEASE</spring-version>
         <log4j-version>1.2.16</log4j-version>
         <jaxen-version>1.1.1</jaxen-version>
