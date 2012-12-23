@@ -22,40 +22,6 @@
 
     <build>
         <plugins>
-
-            <!-- ~~~~~~~~~~~~~~~~ -->
-            <!-- Setting SCP path -->
-            <!-- ~~~~~~~~~~~~~~~~ -->
-
-            <plugin>
-                <groupId>com.github.goldin</groupId>
-                <artifactId>properties-maven-plugin</artifactId>
-                <version>${plugins-version}</version>
-                <executions>
-                    <execution>
-                        <id>read-files</id>
-                        <goals>
-                            <goal>set-properties</goal>
-                        </goals>
-                        <configuration>
-                            <runIf>{{ slowTests }}</runIf>
-                            <verbose>false</verbose>
-                            <property>
-                                <name>scpPath</name>
-                                <value>
-                                    {{
-                                        assert System.getProperty( 'filesDir' ), 'System property "filesDir" is not defined!'
-                                        def data = new File( System.getProperty( 'filesDir' ), 'scp.txt' ).text.splitWith( 'eachLine' )
-                                        "scp://" + data[ 0 ] + ":" + data[ 1 ] + "@" + data[ 2 ] + ":" + data[ 3 ]
-                                        <!--       username          password             host          directory -->
-                                    }}
-                                </value>
-                            </property>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
             <plugin>
                 <groupId>com.github.goldin</groupId>
                 <artifactId>sshexec-maven-plugin</artifactId>
@@ -77,8 +43,40 @@
                         <configuration>
                             <runIf>{{ slowTests }}</runIf>
                             <location>${scpPath}</location>
-                            <command>ls -al</command>
+                            <command>ls -al*pwd*ls -al</command>
                             <echoCommands>true</echoCommands>
+                            <commandDelimitersRegex>\Q*\E</commandDelimitersRegex>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-326-1-key</id>
+                        <goals>
+                            <goal>sshexec</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <runIf>{{ slowTests }}</runIf>
+                            <location>${scpPathKey}</location>
+                            <command>
+                                ls -al
+                                pwd
+                                ls -al
+                            </command>
+                            <echoCommands>true</echoCommands>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-326-1-key-passphrase</id>
+                        <goals>
+                            <goal>sshexec</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <runIf>{{ slowTests }}</runIf>
+                            <location>${scpPathKeyPassphrase}</location>
+                            <command>ls -al|pwd|ls -al</command>
+                            <echoCommands>true</echoCommands>
+                            <commandDelimitersRegex>\Q|\E</commandDelimitersRegex>
                         </configuration>
                     </execution>
                     <execution>
@@ -90,7 +88,7 @@
                         <configuration>
                             <runIf>{{ slowTests }}</runIf>
                             <location>${scpPath}</location>
-                            <command>ls -al; cd .svn; ls -al; cd ..; cat pom.xml; echo Current date is [`date -u`]</command>
+                            <command>ls -al; cd apache-maven-3.0.1; ls -al; cd ..; cat pom.xml; echo Current date is [`date -u`]</command>
                             <echoPwd>false</echoPwd>
                             <verbose>false</verbose>
                             <echoCommands>false</echoCommands>
@@ -105,7 +103,7 @@
                         <configuration>
                             <runIf>{{ slowTests }}</runIf>
                             <location>${scpPath}</location>
-                            <command>ls -al, cd .svn, ls -al, cd .., cat pom.xml, echo Current date is [`date -u`]</command>
+                            <command>ls -al, cd apache-maven-3.0.1, ls -al, cd .., cat pom.xml, echo Current date is [`date -u`]</command>
                             <verbose>false</verbose>
                             <echoCommands>true</echoCommands>
                         </configuration>
@@ -120,7 +118,7 @@
                             <runIf>{{ slowTests }}</runIf>
                             <location>${scpPath}</location>
                             <commands>
-                                <command>ls -al, cd .svn, ls -al, cd ..</command>
+                                <command>ls -al, cd apache-maven-3.0.1, ls -al, cd ..</command>
                                 <command>cat pom.xml; echo Current date is [`date -u`]</command>
                                 <command>echo Bye-bye!</command>
                             </commands>
