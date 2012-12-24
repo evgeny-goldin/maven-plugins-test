@@ -40,7 +40,7 @@
                             <runIf>{{ ftpTests }}</runIf>
                             <location>${scpPathKey}/</location>
                             <command>
-                                rm -rf pl-393 pl-672 pl-648
+                                rm -rf pl-393 pl-672 pl-673 pl-648
                                 ls -al
                             </command>
                             <echoCommands>true</echoCommands>
@@ -143,6 +143,26 @@
                             </resources>
                         </configuration>
                     </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-673                              -->
+                    <!-- "Support creating remote directories for <mkdir> and scp upload operations" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-673</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <runIf>{{ ftpTests }}</runIf>
+                            <resources>
+                                <resource>
+                                    <targetPath>${scpPathKey}/pl-673/1/2/3</targetPath>
+                                    <mkdir>true</mkdir>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-648                 -->
                     <!-- "Resource processing is not performed for remote targetPaths"  -->
@@ -226,11 +246,6 @@
                         <phase>initialize</phase>
                         <configuration>
                             <resources>
-                                <resource>
-                                    <targetPath>scp://something</targetPath>
-                                    <mkdir>true</mkdir>
-                                    <failsWith>AssertionError</failsWith>
-                                </resource>
                                 <resource>
                                     <targetPath>ftp://something</targetPath>
                                     <mkdir>true</mkdir>
