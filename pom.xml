@@ -281,6 +281,17 @@
                                         }}
                                     </value>
                                 </property>
+                                <property>
+                                    <name>scpPathSettings</name>
+                                    <value>
+                                        {{
+                                            assert System.getProperty( 'filesDir' ), 'System property "filesDir" is not defined!'
+                                            final data = new File( System.getProperty( 'filesDir' ), 'scp.txt' ).text.splitWith( 'eachLine' )
+                                            "scp://" + data[ 0 ] + ":&lt;settings&gt;@" + data[ -2 ] + ":" + data[ -1 ]
+                                             <!--       username                      host          directory -->
+                                        }}
+                                    </value>
+                                </property>
                             </properties>
                         </configuration>
                     </execution>
@@ -310,6 +321,10 @@
                                 </property>
                                 <property>
                                     <name>scpPathKeyPassphrase</name>
+                                    <value>{{'dummy'}}</value>
+                                </property>
+                                <property>
+                                    <name>scpPathSettings</name>
                                     <value>{{'dummy'}}</value>
                                 </property>
                             </properties>

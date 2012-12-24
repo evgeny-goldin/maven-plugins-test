@@ -262,6 +262,27 @@
                             <failIfNoOutput>File exists</failIfNoOutput>
                         </configuration>
                     </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-387 -->
+                    <!-- "SSH - use authentication infra of Maven"      -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-387</id>
+                        <goals>
+                            <goal>sshexec</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <runIf>{{ slowTests }}</runIf>
+                            <location>${scpPathSettings}</location>
+                            <command>
+                                echo '${random1}'
+                                echo '${random2}'
+                                echo '${random3}'
+                            </command>
+                            <failIfNoOutput>${random1}|${random2}|${random3}</failIfNoOutput>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 
