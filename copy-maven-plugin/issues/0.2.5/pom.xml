@@ -38,7 +38,7 @@
                         <phase>validate</phase>
                         <configuration>
                             <runIf>{{ ftpTests }}</runIf>
-                            <location>${scpPathKey}/</location>
+                            <location>${scpPathKey}</location>
                             <command>
                                 rm -rf pl-393 pl-672 pl-673 pl-648
                                 ls -al
@@ -130,52 +130,52 @@
 
                                 <!-- Uploading a file, preservePath -->
                                 <resource>
-                                    <targetPath>${scpPathKey}/pl-672/file-preserve</targetPath>
+                                    <targetPath>${scpPathKey}/pl-672/file preserve</targetPath>
                                     <directory>${outputDirectory}</directory>
                                     <include>pl-393/1/ppp-pom.txt</include>
                                     <preservePath>true</preservePath>
                                 </resource>
                                 <!-- Uploading a file, no preservePath -->
                                 <resource>
-                                    <targetPath>${scpPathKey}/pl-672/file-no-preserve</targetPath>
+                                    <targetPath>${scpPathKey}/pl-672/file no preserve</targetPath>
                                     <directory>${outputDirectory}</directory>
                                     <include>pl-393/1/ppp-pom.txt</include>
                                 </resource>
                                 <!-- Uploading a directory, preservePath -->
                                 <resource>
-                                    <targetPath>${scpPathKey}/pl-672/dir-preserve</targetPath>
+                                    <targetPath>${scpPathKey}/pl-672/dir preserve</targetPath>
                                     <directory>${outputDirectory}</directory>
                                     <preservePath>true</preservePath>
                                 </resource>
                                 <!-- Uploading a directory, no preservePath -->
                                 <resource>
-                                    <targetPath>${scpPathKey}/pl-672/dir-no-preserve</targetPath>
+                                    <targetPath>${scpPathKey}/pl-672/dir no preserve</targetPath>
                                     <directory>${outputDirectory}</directory>
                                 </resource>
 
                                 <!-- Downloading a file, preservePath -->
                                 <resource>
                                     <targetPath>${outputDirectory}/pl-672/1</targetPath>
-                                    <file>${scpPathKey}/pl-672/file-preserve/pl-393/1/ppp-pom.txt</file>
+                                    <file>${scpPathKey}/pl-672/file preserve/pl-393/1/ppp-pom.txt</file>
                                 </resource>
                                 <!-- Downloading a file, no preservePath -->
                                 <resource>
                                     <targetPath>${outputDirectory}/pl-672/2</targetPath>
-                                    <file>${scpPathKey}/pl-672/file-no-preserve/ppp-pom.txt</file>
+                                    <file>${scpPathKey}/pl-672/file no preserve/ppp-pom.txt</file>
                                 </resource>
                                 <!-- Downloading a directory, preservePath -->
                                 <resource>
                                     <targetPath>${outputDirectory}/pl-672/3/1</targetPath>
-                                    <file>${scpPathKey}/pl-672/dir-preserve/pl-393/1/ppp-pom.txt</file>
+                                    <file>${scpPathKey}/pl-672/dir preserve/pl-393/1/ppp-pom.txt</file>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDirectory}/pl-672/3/2</targetPath>
-                                    <file>${scpPathKey}/pl-672/dir-preserve/pl-393/2/ppp-pom.txt</file>
+                                    <file>${scpPathKey}/pl-672/dir preserve/pl-393/2/ppp-pom.txt</file>
                                 </resource>
                                 <!-- Downloading a directory, no preservePath -->
                                 <resource>
                                     <targetPath>${outputDirectory}/pl-672/4</targetPath>
-                                    <file>${scpPathKey}/pl-672/dir-no-preserve</file>
+                                    <file>${scpPathKey}/pl-672/dir no preserve</file>
                                 </resource>
 
                             </resources>
@@ -315,6 +315,9 @@
                 <executions>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-648 -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-393 -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-672 -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-673 -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <execution>
                         <id>http://evgeny-goldin.org/youtrack/issue/pl-648</id>

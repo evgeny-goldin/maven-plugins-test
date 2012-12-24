@@ -24,6 +24,37 @@
         <plugins>
             <plugin>
                 <groupId>com.github.goldin</groupId>
+                <artifactId>properties-maven-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <execution>
+                        <id>set-randoms</id>
+                        <goals>
+                            <goal>set-properties</goal>
+                        </goals>
+                        <phase>validate</phase>
+                        <configuration>
+                            <properties>
+                                <property>
+                                    <name>random1</name>
+                                    <value>{{ new Random ( System.currentTimeMillis()).nextInt( 1000 ) }}</value>
+                                </property>
+                                <property>
+                                    <name>random2</name>
+                                    <value>{{ new Random ( System.currentTimeMillis()).nextInt( 1000 ) }}</value>
+                                </property>
+                                <property>
+                                    <name>random3</name>
+                                    <value>{{ new Random ( System.currentTimeMillis()).nextInt( 1000 ) }}</value>
+                                </property>
+                            </properties>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.github.goldin</groupId>
                 <artifactId>sshexec-maven-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
@@ -43,9 +74,10 @@
                         <configuration>
                             <runIf>{{ slowTests }}</runIf>
                             <location>${scpPath}</location>
-                            <command>ls -al*pwd*ls -al</command>
+                            <command>mkdir 'a a a a'*cd 'a a a a'*pwd</command>
                             <echoCommands>true</echoCommands>
                             <commandDelimitersRegex>\Q*\E</commandDelimitersRegex>
+                            <failIfNoOutput>/a a a a</failIfNoOutput>
                         </configuration>
                     </execution>
                     <execution>
@@ -56,13 +88,19 @@
                         <phase>initialize</phase>
                         <configuration>
                             <runIf>{{ slowTests }}</runIf>
-                            <location>${scpPathKey}</location>
+                            <location>${scpPathKey}/a a a a</location>
                             <command>
                                 ls -al
                                 pwd
-                                ls -al
+                                mkdir 'b b b b'
+                                cd    'b b b b'
+                                pwd
+                                cd ../..
+                                rm -rf 'a a a a'
+                                cd     'a a a a'
                             </command>
-                            <echoCommands>true</echoCommands>
+                            <failOnError>false</failOnError>
+                            <failIfNoOutput>/a a a a/b b b b|No such file or directory</failIfNoOutput>
                         </configuration>
                     </execution>
                     <execution>
@@ -73,7 +111,7 @@
                         <phase>initialize</phase>
                         <configuration>
                             <runIf>{{ slowTests }}</runIf>
-                            <location>${scpPathKeyPassphrase}</location>
+                            <location>${scpPathKeyPassphrase}/a a a a/b b b b</location>
                             <command>ls -al|pwd|ls -al</command>
                             <echoCommands>true</echoCommands>
                             <commandDelimitersRegex>\Q|\E</commandDelimitersRegex>
@@ -143,9 +181,122 @@
                             <echoCommands>true</echoCommands>
                         </configuration>
                     </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-674              -->
+                    <!-- "Allow to store sshexec output to Maven property or a file" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-674</id>
+                        <goals>
+                            <goal>sshexec</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <runIf>{{ slowTests }}</runIf>
+                            <location>${scpPathKey}</location>
+                            <command>pwd</command>
+                            <outputProperty>pl674Output</outputProperty>
+                            <outputFile>${outputDirectory}/pl-674/output</outputFile>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-676 -->
+                    <!-- "Add 'failOnError' property"                   -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-676</id>
+                        <goals>
+                            <goal>sshexec</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <runIf>{{ slowTests }}</runIf>
+                            <location>${scpPathKey}</location>
+                            <command>cd 'no such folder'</command>
+                            <failOnError>false</failOnError>
+                            <failIfNoOutput>No such file or directory</failIfNoOutput>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-675                                        -->
+                    <!-- "Allow to fail the build if a certain output is found or not found in sshexec output" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-675-1</id>
+                        <goals>
+                            <goal>sshexec</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <runIf>{{ slowTests }}</runIf>
+                            <location>${scpPathKeyPassphrase}</location>
+                            <command>
+                                echo   '${random1}'
+                                rm -rf '${random2}'
+                                mkdir  '${random2}'
+                                cd     '${random2}'
+                                pwd
+                                cd ..
+                                rm -rf '${random2}'
+                            </command>
+                            <failIfOutput>File exists</failIfOutput>
+                            <failIfNoOutput>${random1}|${random2}</failIfNoOutput>
+                            <outputProperty>pl675Output</outputProperty>
+                            <outputFile>${outputDirectory}/pl-675/output</outputFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-675-2</id>
+                        <goals>
+                            <goal>sshexec</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <runIf>{{ slowTests }}</runIf>
+                            <location>${scpPathKeyPassphrase}</location>
+                            <command>
+                                mkdir  '${random3}'
+                                mkdir  '${random3}'
+                                rm -rf '${random3}'
+                            </command>
+                            <failIfNoOutput>File exists</failIfNoOutput>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.github.goldin</groupId>
+                <artifactId>assert-maven-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-674 -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-675 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-674</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <runIf>{{ ftpTests }}</runIf>
+                            <assertFiles>
+                                ${outputDirectory}/pl-674/output
+                                ${outputDirectory}/pl-675/output
+                            </assertFiles>
+                            <assertGroovy>
+                                pl674Output == new File( outputDirectory, 'pl-674/output' ).text
+                                pl675Output == new File( outputDirectory, 'pl-675/output' ).text
+                                pl675Output.contains( '${random1}' )
+                                pl675Output.contains( '${random2}' )
+                              ! pl675Output.contains( '${random3}' )
+                            </assertGroovy>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
         </plugins>
     </build>
-
 </project>
