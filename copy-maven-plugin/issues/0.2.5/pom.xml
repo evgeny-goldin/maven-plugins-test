@@ -127,19 +127,57 @@
                         <configuration>
                             <runIf>{{ ftpTests }}</runIf>
                             <resources>
+
+                                <!-- Uploading a file, preservePath -->
                                 <resource>
-                                    <targetPath>${scpPathKey}/pl-672</targetPath>
+                                    <targetPath>${scpPathKey}/pl-672/file-preserve</targetPath>
+                                    <directory>${outputDirectory}</directory>
+                                    <include>pl-393/1/ppp-pom.txt</include>
+                                    <preservePath>true</preservePath>
+                                </resource>
+                                <!-- Uploading a file, no preservePath -->
+                                <resource>
+                                    <targetPath>${scpPathKey}/pl-672/file-no-preserve</targetPath>
+                                    <directory>${outputDirectory}</directory>
+                                    <include>pl-393/1/ppp-pom.txt</include>
+                                </resource>
+                                <!-- Uploading a directory, preservePath -->
+                                <resource>
+                                    <targetPath>${scpPathKey}/pl-672/dir-preserve</targetPath>
                                     <directory>${outputDirectory}</directory>
                                     <preservePath>true</preservePath>
                                 </resource>
+                                <!-- Uploading a directory, no preservePath -->
+                                <resource>
+                                    <targetPath>${scpPathKey}/pl-672/dir-no-preserve</targetPath>
+                                    <directory>${outputDirectory}</directory>
+                                </resource>
+
+                                <!-- Downloading a file, preservePath -->
                                 <resource>
                                     <targetPath>${outputDirectory}/pl-672/1</targetPath>
-                                    <file>${scpPathKey}/pl-672/pl-393/1/ppp-pom.txt</file>
+                                    <file>${scpPathKey}/pl-672/file-preserve/pl-393/1/ppp-pom.txt</file>
                                 </resource>
+                                <!-- Downloading a file, no preservePath -->
                                 <resource>
                                     <targetPath>${outputDirectory}/pl-672/2</targetPath>
-                                    <file>${scpPathKey}/pl-672/pl-393/2/ppp-pom.txt</file>
+                                    <file>${scpPathKey}/pl-672/file-no-preserve/ppp-pom.txt</file>
                                 </resource>
+                                <!-- Downloading a directory, preservePath -->
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-672/3/1</targetPath>
+                                    <file>${scpPathKey}/pl-672/dir-preserve/pl-393/1/ppp-pom.txt</file>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-672/3/2</targetPath>
+                                    <file>${scpPathKey}/pl-672/dir-preserve/pl-393/2/ppp-pom.txt</file>
+                                </resource>
+                                <!-- Downloading a directory, no preservePath -->
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-672/4</targetPath>
+                                    <file>${scpPathKey}/pl-672/dir-no-preserve</file>
+                                </resource>
+
                             </resources>
                         </configuration>
                     </execution>
@@ -157,11 +195,11 @@
                             <runIf>{{ ftpTests }}</runIf>
                             <resources>
                                 <resource>
-                                    <targetPath>${scpPathKey}/pl-673/1/2/3</targetPath>
+                                    <targetPath>${scpPathKey}/pl-673/1/2/3/4/5/6/7/8/9</targetPath>
                                     <mkdir>true</mkdir>
                                 </resource>
                                 <resource>
-                                    <targetPath>${scpPathKey}/pl-673/1/2/3</targetPath>
+                                    <targetPath>${scpPathKey}/pl-673/1/2/3/4</targetPath>
                                     <file>${project.basedir}/pom.xml</file>
                                 </resource>
                                 <resource>
@@ -300,17 +338,35 @@
 
                                 ${outputDirectory}/pl-672/1/ppp-pom.txt
                                 ${outputDirectory}/pl-672/2/ppp-pom.txt
+                                ${outputDirectory}/pl-672/3/1/ppp-pom.txt
+                                ${outputDirectory}/pl-672/3/2/ppp-pom.txt
+                                ${outputDirectory}/pl-672/4/ppp-pom.txt
 
                                 ${outputDirectory}/pl-673/pom.xml
                             </assertFiles>
                             <assertEqual>
                                 ${outputDirectory}/pl-393/1|${outputDirectory}/pl-393/2
+
                                 ${outputDirectory}/pl-672/1|${outputDirectory}/pl-672/2
+                                ${outputDirectory}/pl-672/2|${outputDirectory}/pl-672/3/1
+                                ${outputDirectory}/pl-672/3/1|${outputDirectory}/pl-672/3/2
+                                ${outputDirectory}/pl-672/3/2|${outputDirectory}/pl-672/4
+                                ${outputDirectory}/pl-672/4|${outputDirectory}/pl-672/1
 
                                 ${outputDirectory}/pl-393/1|${outputDirectory}/pl-672/1
+                                ${outputDirectory}/pl-393/1|${outputDirectory}/pl-672/2
+                                ${outputDirectory}/pl-393/1|${outputDirectory}/pl-672/3/1
+                                ${outputDirectory}/pl-393/1|${outputDirectory}/pl-672/3/2
+                                ${outputDirectory}/pl-393/1|${outputDirectory}/pl-672/4
+
                                 ${outputDirectory}/pl-393/1|${outputDirectory}/pl-648/scp|*.txt
 
+                                ${outputDirectory}/pl-393/2|${outputDirectory}/pl-672/1
                                 ${outputDirectory}/pl-393/2|${outputDirectory}/pl-672/2
+                                ${outputDirectory}/pl-393/2|${outputDirectory}/pl-672/3/1
+                                ${outputDirectory}/pl-393/2|${outputDirectory}/pl-672/3/2
+                                ${outputDirectory}/pl-393/2|${outputDirectory}/pl-672/4
+
                                 ${outputDirectory}/pl-393/2|${outputDirectory}/pl-648/scp|*.txt
 
                                 ${outputDirectory}/pl-648/ftp|${outputDirectory}/pl-648/scp
@@ -322,7 +378,7 @@
                                 ! new File( outputDirectory, 'pl-648/ftp/ppp-pom.txt' ).text.contains( '&lt;' )
                                 ! new File( outputDirectory, 'pl-648/ftp/ppp-pom.txt' ).text.contains( '&gt;' )
 
-                                new File( outputDirectory, 'pl-648/ftp/ppp-pom.txt' ).text.contains( '[name][com.github.goldin.maven-plugins-test:copy-maven-plugin.issues.0.2.5:0.1-SNAPSHOT][/name]' )
+                                  new File( outputDirectory, 'pl-648/ftp/ppp-pom.txt' ).text.contains( '[name][com.github.goldin.maven-plugins-test:copy-maven-plugin.issues.0.2.5:0.1-SNAPSHOT][/name]' )
                                 ! new File( outputDirectory, 'pl-648/scp/ppp-pom.txt' ).text.contains( '&lt;' )
                                 ! new File( outputDirectory, 'pl-648/scp/ppp-pom.txt' ).text.contains( '&gt;' )
                             </assertGroovy>
