@@ -77,7 +77,7 @@
                                 <!-- ~~~~~~~~~~~~~ -->
                                 <resource>
                                     <targetPath>${outputDirectory}/pl-27/http</targetPath>
-                                    <file>http://dl.dropbox.com/s/lzf918znlv75u2g/search.png</file>
+                                    <file>http://evgeny-goldin.com/img/evgeny_goldin.png</file>
                                 </resource>
                                 <!-- ~~~~~~~~~~~~ -->
                                 <!-- FTP Download -->
@@ -251,7 +251,7 @@
                         <configuration>
                             <runIf>{{ ftpTests }}</runIf>
                             <assertFiles>
-                                ${outputDirectory}/pl-27/http/search.png
+                                ${outputDirectory}/pl-27/http/evgeny_goldin.png
                                 ${outputDirectory}/pl-27/ftp-1/index.html
                                 ${outputDirectory}/pl-27/ftp-2/wagon-file-1.0-beta-7.jar
                                 ${outputDirectory}/pl-27/ftp-txt-base/*.txt
@@ -285,7 +285,7 @@
                                 ${outputDirectory}/pl-27/ftp-9/pom.xml
                             </assertFiles>
                             <assertGroovy>
-                                new File( outputDirectory, 'pl-27/http' ).directorySize()  == 987
+                                new File( outputDirectory, 'pl-27/http'  ).directorySize() == 272847
                                 new File( outputDirectory, 'pl-27/ftp-1' ).directorySize() == 1809
                                 new File( outputDirectory, 'pl-27/ftp-2' ).directorySize() == 11063
                                 new File( outputDirectory, 'pl-27/ftp-3' ).directorySize() == 15149

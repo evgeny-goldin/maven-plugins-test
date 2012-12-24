@@ -130,12 +130,12 @@
                                 <resource>
                                     <runIf>{{ slowTests }}</runIf>
                                     <targetPath>${outputDirectory}/net-http</targetPath>
-                                    <file>http://dl.dropbox.com/u/4820835/search.png</file>
+                                    <file>http://evgeny-goldin.com/img/evgeny_goldin.png</file>
                                 </resource>
                                 <resource>
                                     <runIf>{{ slowTests }}</runIf>
                                     <targetPath>${outputDirectory}/net-http</targetPath>
-                                    <file>http://dl.dropbox.com/u/4820835/hudson-maven-git-NPE/debugger.png</file>
+                                    <file>http://evgeny-goldin.com/img/github.png</file>
                                 </resource>
                                 <resource>
                                     <runIf>{{ ftpTests }}</runIf>
@@ -715,15 +715,15 @@
                         <configuration>
                             <runIf>{{ ftpTests }}</runIf>
                             <assertFiles>
-                                ${outputDirectory}/net-http/search.png
-                                ${outputDirectory}/net-http/debugger.png
+                                ${outputDirectory}/net-http/evgeny_goldin.png
+                                ${outputDirectory}/net-http/github.png
                                 ${outputDirectory}/net-ftp/1/index.html
                                 ${outputDirectory}/net-ftp/3/wagon-file-1.0-beta-7.jar
                                 ${outputDirectory}/net-ftp/3/wagon-provider-api-1.0-beta-7.jar
                             </assertFiles>
                             <assertGroovy>
-                                new File( outputDirectory, 'net-http/search.png'   ).size() == 987
-                                new File( outputDirectory, 'net-http/debugger.png' ).size() == 193080
+                                new File( outputDirectory, 'net-http/evgeny_goldin.png' ).size() == 272847
+                                new File( outputDirectory, 'net-http/github.png'        ).size() == 2607
                               ! new File( outputDirectory, 'net-ftp/2' ).isDirectory()
                                 new File( outputDirectory, 'net-ftp/3' ).list().size()   == 2
                                 new File( outputDirectory, 'net-ftp/3' ).directorySize() == 64290
