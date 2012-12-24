@@ -160,6 +160,14 @@
                                     <targetPath>${scpPathKey}/pl-673/1/2/3</targetPath>
                                     <mkdir>true</mkdir>
                                 </resource>
+                                <resource>
+                                    <targetPath>${scpPathKey}/pl-673/1/2/3</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-673</targetPath>
+                                    <directory>${scpPathKey}/pl-673</directory>
+                                </resource>
                             </resources>
                         </configuration>
                     </execution>
@@ -286,6 +294,14 @@
                                 ${outputDirectory}/pl-648/scp/ppp-pom.txt
                                 ${outputDirectory}/pl-648/scp/servlet-api.jar
                                 ${outputDirectory}/pl-648/scp/s.jar
+
+                                ${outputDirectory}/pl-393/1/ppp-pom.txt
+                                ${outputDirectory}/pl-393/2/ppp-pom.txt
+
+                                ${outputDirectory}/pl-672/1/ppp-pom.txt
+                                ${outputDirectory}/pl-672/2/ppp-pom.txt
+
+                                ${outputDirectory}/pl-673/pom.xml
                             </assertFiles>
                             <assertEqual>
                                 ${outputDirectory}/pl-393/1|${outputDirectory}/pl-393/2
@@ -298,6 +314,8 @@
                                 ${outputDirectory}/pl-393/2|${outputDirectory}/pl-648/scp|*.txt
 
                                 ${outputDirectory}/pl-648/ftp|${outputDirectory}/pl-648/scp
+
+                                ${outputDirectory}/pl-673|${project.basedir}|pom.xml
                             </assertEqual>
                             <assertGroovy>
                                   new File( outputDirectory, 'pl-648/ftp/ppp-pom.txt' ).text.contains( '[name][com.github.goldin.maven-plugins-test:copy-maven-plugin.issues.0.2.5:0.1-SNAPSHOT][/name]' )
