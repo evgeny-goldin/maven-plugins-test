@@ -234,7 +234,7 @@
                         </goals>
                         <phase>validate</phase>
                         <configuration>
-                            <runIf>{{ ( session.userProperties.ftpPath == null ) &amp;&amp; Boolean.valueOf( slowTests ) }}</runIf>
+                            <runIf>{{ ( session.executionProperties.ftpPath == null ) &amp;&amp; Boolean.valueOf( slowTests ) }}</runIf>
                             <verbose>false</verbose>
                             <properties>
                                 <property>
@@ -291,7 +291,7 @@
                         </goals>
                         <phase>validate</phase>
                         <configuration>
-                            <runIf>{{ ( session.userProperties.ftpPath == null ) &amp;&amp; ( ! Boolean.valueOf( slowTests )) }}</runIf>
+                            <runIf>{{ ( session.executionProperties.ftpPath == null ) &amp;&amp; ( ! Boolean.valueOf( slowTests )) }}</runIf>
                             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                             <!-- Setting paths to dummy values if "slow tests" are not running -->
                             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
