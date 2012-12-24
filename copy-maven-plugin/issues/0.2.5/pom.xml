@@ -40,12 +40,8 @@
                             <runIf>{{ ftpTests }}</runIf>
                             <location>${scpPathKey}/</location>
                             <command>
-                                rm -rf pl-648
-                                mkdir  pl-648
-                                rm -rf pl-393
-                                mkdir  pl-393
-                                mkdir  pl-393/1
-                                mkdir  pl-393/2
+                                rm -rf pl-393 pl-672 pl-648
+                                ls -al
                             </command>
                             <echoCommands>true</echoCommands>
                         </configuration>
@@ -114,6 +110,35 @@
                                 <resource>
                                     <targetPath>${outputDirectory}/pl-393/2</targetPath>
                                     <file>${scpPathKeyPassphrase}/pl-393/2/ppp-pom.txt</file>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-672                                                -->
+                    <!-- "pl-672 Respect <preservePath> when uploading directories to remote ftp and scp destinations" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-672</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <runIf>{{ ftpTests }}</runIf>
+                            <resources>
+                                <resource>
+                                    <targetPath>${scpPathKey}/pl-672</targetPath>
+                                    <directory>${outputDirectory}</directory>
+                                    <preservePath>true</preservePath>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-672/1</targetPath>
+                                    <file>${scpPathKey}/pl-672/pl-393/1/ppp-pom.txt</file>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-672/2</targetPath>
+                                    <file>${scpPathKey}/pl-672/pl-393/2/ppp-pom.txt</file>
                                 </resource>
                             </resources>
                         </configuration>
@@ -249,8 +274,14 @@
                             </assertFiles>
                             <assertEqual>
                                 ${outputDirectory}/pl-393/1|${outputDirectory}/pl-393/2
+                                ${outputDirectory}/pl-672/1|${outputDirectory}/pl-672/2
+
+                                ${outputDirectory}/pl-393/1|${outputDirectory}/pl-672/1
                                 ${outputDirectory}/pl-393/1|${outputDirectory}/pl-648/scp|*.txt
+
+                                ${outputDirectory}/pl-393/2|${outputDirectory}/pl-672/2
                                 ${outputDirectory}/pl-393/2|${outputDirectory}/pl-648/scp|*.txt
+
                                 ${outputDirectory}/pl-648/ftp|${outputDirectory}/pl-648/scp
                             </assertEqual>
                             <assertGroovy>
