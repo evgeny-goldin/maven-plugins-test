@@ -209,6 +209,31 @@
                             </resources>
                         </configuration>
                     </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-387 -->
+                    <!-- "SSH - use authentication infra of Maven"      -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-387</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <runIf>{{ ftpTests }}</runIf>
+                            <resources>
+                                <resource>
+                                    <targetPath>${scpPathSettings}/pl-387</targetPath>
+                                    <directory>${outputDirectory}</directory>
+                                    <preservePath>true</preservePath>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-387</targetPath>
+                                    <directory>${scpPathSettings}/pl-387</directory>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-648                 -->
                     <!-- "Resource processing is not performed for remote targetPaths"  -->
@@ -318,6 +343,7 @@
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-393 -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-672 -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-673 -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-387 -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <execution>
                         <id>http://evgeny-goldin.org/youtrack/issue/pl-648</id>
@@ -346,6 +372,8 @@
                                 ${outputDirectory}/pl-672/4/ppp-pom.txt
 
                                 ${outputDirectory}/pl-673/pom.xml
+                                ${outputDirectory}/pl-387/pom.xml
+                                ${outputDirectory}/pl-387/ppp-pom.txt
                             </assertFiles>
                             <assertEqual>
                                 ${outputDirectory}/pl-393/1|${outputDirectory}/pl-393/2
@@ -363,6 +391,7 @@
                                 ${outputDirectory}/pl-393/1|${outputDirectory}/pl-672/4
 
                                 ${outputDirectory}/pl-393/1|${outputDirectory}/pl-648/scp|*.txt
+                                ${outputDirectory}/pl-393/1|${outputDirectory}/pl-387|*.txt
 
                                 ${outputDirectory}/pl-393/2|${outputDirectory}/pl-672/1
                                 ${outputDirectory}/pl-393/2|${outputDirectory}/pl-672/2
@@ -371,10 +400,12 @@
                                 ${outputDirectory}/pl-393/2|${outputDirectory}/pl-672/4
 
                                 ${outputDirectory}/pl-393/2|${outputDirectory}/pl-648/scp|*.txt
+                                ${outputDirectory}/pl-393/2|${outputDirectory}/pl-387|*.txt
 
                                 ${outputDirectory}/pl-648/ftp|${outputDirectory}/pl-648/scp
 
                                 ${outputDirectory}/pl-673|${project.basedir}|pom.xml
+                                ${outputDirectory}/pl-387|${project.basedir}|pom.xml
                             </assertEqual>
                             <assertGroovy>
                                   new File( outputDirectory, 'pl-648/ftp/ppp-pom.txt' ).text.contains( '[name][com.github.goldin.maven-plugins-test:copy-maven-plugin.issues.0.2.5:0.1-SNAPSHOT][/name]' )
