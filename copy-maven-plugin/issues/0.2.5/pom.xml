@@ -330,6 +330,55 @@
                             </resources>
                         </configuration>
                     </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-671  -->
+                    <!-- "Respect <preservePath> when creating archives" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-671</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>
+                                        ${outputDirectory}/pl-671/jar/2/3/1.jar,
+                                        ${outputDirectory}/pl-671/jar/2/3/2.jar,
+                                        ${outputDirectory}/pl-671/jar/2/3/3.jar,
+                                        ${outputDirectory}/pl-671/jar/2/3/4.jar
+                                    </targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <pack>true</pack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-671/war/1.war</targetPath>
+                                    <directory>${outputDirectory}/pl-671/jar/2/3</directory>
+                                    <include>*.jar</include>
+                                    <prefix>WEB-INF/lib</prefix>
+                                    <pack>true</pack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-671/war/2.war</targetPath>
+                                    <directory>${outputDirectory}/pl-671</directory>
+                                    <include>jar/**/*.jar</include>
+                                    <prefix>WEB-INF/lib</prefix>
+                                    <pack>true</pack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-671/1.war-unpacked</targetPath>
+                                    <file>${outputDirectory}/pl-671/war/1.war</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-671/2.war-unpacked</targetPath>
+                                    <file>${outputDirectory}/pl-671/war/2.war</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 
@@ -416,6 +465,29 @@
                                 ! new File( outputDirectory, 'pl-648/scp/ppp-pom.txt' ).text.contains( '&lt;' )
                                 ! new File( outputDirectory, 'pl-648/scp/ppp-pom.txt' ).text.contains( '&gt;' )
                             </assertGroovy>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-671 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-671</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertFiles>
+                                ${outputDirectory}/pl-671/1.war-unpacked/WEB-INF/lib/1.jar
+                                ${outputDirectory}/pl-671/1.war-unpacked/WEB-INF/lib/2.jar
+                                ${outputDirectory}/pl-671/1.war-unpacked/WEB-INF/lib/3.jar
+                                ${outputDirectory}/pl-671/1.war-unpacked/WEB-INF/lib/4.jar
+
+                                ${outputDirectory}/pl-671/2.war-unpacked/WEB-INF/lib/jar/2/3/1.jar
+                                ${outputDirectory}/pl-671/2.war-unpacked/WEB-INF/lib/jar/2/3/2.jar
+                                ${outputDirectory}/pl-671/2.war-unpacked/WEB-INF/lib/jar/2/3/3.jar
+                                ${outputDirectory}/pl-671/2.war-unpacked/WEB-INF/lib/jar/2/3/4.jar
+                            </assertFiles>
                         </configuration>
                     </execution>
                 </executions>
