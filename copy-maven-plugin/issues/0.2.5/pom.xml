@@ -414,6 +414,48 @@
                             </resources>
                         </configuration>
                     </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-666                                   -->
+                    <!-- " stripVersion does not work when copying dependencies to remote server via ssh" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-666</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <runIf>{{ ftpTests }}</runIf>
+                            <resources>
+                                <resource>
+                                    <targetPath>${scpPath}/pl-666/1</targetPath>
+                                    <dependency>
+                                        <groupId>javax.servlet</groupId>
+                                        <artifactId>servlet-api</artifactId>
+                                        <version>2.2</version>
+                                        <stripVersion>true</stripVersion>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${scpPath}/pl-666/2</targetPath>
+                                    <dependency>
+                                        <groupId>javax.servlet</groupId>
+                                        <artifactId>servlet-api</artifactId>
+                                        <version>2.2</version>
+                                    </dependency>
+                                    <stripVersion>true</stripVersion>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-666/1</targetPath>
+                                    <file>${scpPath}/pl-666/1/servlet-api.jar</file>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-666/2</targetPath>
+                                    <file>${scpPath}/pl-666/2/servlet-api.jar</file>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 
@@ -428,6 +470,7 @@
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-672 -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-673 -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-387 -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-666 -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <execution>
                         <id>http://evgeny-goldin.org/youtrack/issue/pl-648</id>
@@ -458,6 +501,9 @@
                                 ${outputDirectory}/pl-673/pom.xml
                                 ${outputDirectory}/pl-387/pom.xml
                                 ${outputDirectory}/pl-387/ppp-pom.txt
+
+                                ${outputDirectory}/pl-666/1/servlet-api.jar
+                                ${outputDirectory}/pl-666/2/servlet-api.jar
                             </assertFiles>
                             <assertEqual>
                                 ${outputDirectory}/pl-393/1|${outputDirectory}/pl-393/2
