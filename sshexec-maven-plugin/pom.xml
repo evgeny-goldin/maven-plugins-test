@@ -259,7 +259,7 @@
                                 mkdir  '${random3}'
                                 rm -rf '${random3}'
                             </command>
-                            <failIfNoOutput>File exists</failIfNoOutput>
+                            <failIfNoOutput>/File exists/</failIfNoOutput>
                         </configuration>
                     </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -280,8 +280,8 @@
                                 echo '${random2}'
                                 echo '${random3}'
                             </command>
-                            <failIfOutput>anything</failIfOutput>
-                            <failIfNoOutput>${random1}|${random2}|${random3}</failIfNoOutput>
+                            <failIfOutput>/[a-zA-Z]/</failIfOutput>
+                            <failIfNoOutput>/${random1}|${random2}|${random3}/</failIfNoOutput>
                             <outputProperty>pl387Output</outputProperty>
                             <outputFile>${outputDirectory}/pl-387/output</outputFile>
                         </configuration>
