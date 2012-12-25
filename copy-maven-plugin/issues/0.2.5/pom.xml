@@ -379,6 +379,41 @@
                             </resources>
                         </configuration>
                     </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-662                         -->
+                    <!-- "CopyMojo doesn't honor destFileName when copying LATEST dependencies" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-662</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-662/1</targetPath>
+                                    <dependency>
+                                        <groupId>mysql</groupId>
+                                        <artifactId>mysql-connector-java</artifactId>
+                                        <version>5.1.21</version>
+                                        <type>jar</type>
+                                        <destFileName>mysql-foo.jar</destFileName>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-662/2</targetPath>
+                                    <dependency>
+                                        <groupId>mysql</groupId>
+                                        <artifactId>mysql-connector-java</artifactId>
+                                        <version>LATEST</version>
+                                        <type>jar</type>
+                                        <destFileName>mysql-foo.jar</destFileName>
+                                    </dependency>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 
@@ -469,6 +504,7 @@
                     </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-671 -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-662 -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <execution>
                         <id>http://evgeny-goldin.org/youtrack/issue/pl-671</id>
@@ -487,6 +523,9 @@
                                 ${outputDirectory}/pl-671/2.war-unpacked/WEB-INF/lib/jar/2/3/2.jar
                                 ${outputDirectory}/pl-671/2.war-unpacked/WEB-INF/lib/jar/2/3/3.jar
                                 ${outputDirectory}/pl-671/2.war-unpacked/WEB-INF/lib/jar/2/3/4.jar
+
+                                ${outputDirectory}/pl-662/1/mysql-foo.jar
+                                ${outputDirectory}/pl-662/2/mysql-foo.jar
                             </assertFiles>
                         </configuration>
                     </execution>
