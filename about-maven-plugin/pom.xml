@@ -411,7 +411,7 @@
                                 ${outputDirectory}/pl-483/about~com.github.goldin~timestamp-maven-plugin~${plugins-version}.txt
                             </assertFiles>
                             <assertGroovy>
-                                new File( outputDirectory, 'pl-483' ).listFiles().size() == 13
+                                new File( outputDirectory, 'pl-483' ).listFiles().size() == 14
                                 new File( outputDirectory, 'pl-483' ).listFiles().every{ File f -> f.file }
                                 new File( outputDirectory, 'pl-483' ).listFiles().every{ File f -> f.text.readLines().any{ it.trim() ==~ /^Commit\s+:\s+\[[a-z0-9]{7}\]\[[a-z0-9]{40}\]$/ }}
                                 new File( outputDirectory, 'pl-483' ).listFiles().every{ File f -> f.text.readLines().any{ it.trim() ==~ /^Commit Date\s+:\s+\[\w+, \d+ \w+ \d{4} \d{2}:\d{2}:\d{2} \+\d{4}\]$/ }}
