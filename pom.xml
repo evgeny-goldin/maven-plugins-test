@@ -134,11 +134,27 @@
                         </dependency>
                     </dependencies>
                 </plugin>
-
             </plugins>
         </pluginManagement>
 
         <plugins>
+
+<!--
+            <plugin>
+                <groupId>com.github.goldin</groupId>
+                <artifactId>silencer-maven-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <execution>
+                        <id>enjoy-the-silence</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>silence</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+-->
 
             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
             <!-- Enforcing Java/Maven versions -->
@@ -346,7 +362,6 @@
         <module>ivy-maven-plugin</module>
         <module>jenkins-maven-plugin</module>
         <module>properties-maven-plugin</module>
-        <module>silencer-maven-plugin</module>
         <module>sshexec-maven-plugin</module>
         <module>timestamp-maven-plugin</module>
         <module>verify-temp</module>
