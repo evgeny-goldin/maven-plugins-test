@@ -73,6 +73,11 @@
         </dependency>
         <dependency>
             <groupId>com.github.goldin</groupId>
+            <artifactId>silencer-maven-plugin</artifactId>
+            <version>${plugins-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.goldin</groupId>
             <artifactId>spring-batch-maven-plugin</artifactId>
             <version>${plugins-version}</version>
         </dependency>

@@ -300,6 +300,11 @@
                                     </dependency>
                                     <dependency>
                                         <groupId>com.github.goldin</groupId>
+                                        <artifactId>silencer-maven-plugin</artifactId>
+                                        <version>${plugins-version}</version>
+                                    </dependency>
+                                    <dependency>
+                                        <groupId>com.github.goldin</groupId>
                                         <artifactId>spring-batch-maven-plugin</artifactId>
                                         <version>${plugins-version}</version>
                                     </dependency>
@@ -400,6 +405,7 @@
                                 ${outputDirectory}/pl-483/about~com.github.goldin~mail-maven-plugin~${plugins-version}.txt
                                 ${outputDirectory}/pl-483/about~com.github.goldin~maven-common~${plugins-version}.txt
                                 ${outputDirectory}/pl-483/about~com.github.goldin~properties-maven-plugin~${plugins-version}.txt
+                                ${outputDirectory}/pl-483/about~com.github.goldin~silencer-maven-plugin~${plugins-version}.txt
                                 ${outputDirectory}/pl-483/about~com.github.goldin~spring-batch-maven-plugin~${plugins-version}.txt
                                 ${outputDirectory}/pl-483/about~com.github.goldin~sshexec-maven-plugin~${plugins-version}.txt
                                 ${outputDirectory}/pl-483/about~com.github.goldin~timestamp-maven-plugin~${plugins-version}.txt

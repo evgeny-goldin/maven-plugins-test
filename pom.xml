@@ -339,15 +339,16 @@
     <modules>
         <module>maven-central</module>
         <module>cleanup-temp</module>
-        <module>jenkins-maven-plugin</module>
         <module>about-maven-plugin</module>
-        <module>ivy-maven-plugin</module>
-        <module>duplicates-finder-plugin</module>
         <module>copy-maven-plugin</module>
-        <module>properties-maven-plugin</module>
+        <module>duplicates-finder-plugin</module>
         <module>find-maven-plugin</module>
-        <module>timestamp-maven-plugin</module>
+        <module>ivy-maven-plugin</module>
+        <module>jenkins-maven-plugin</module>
+        <module>properties-maven-plugin</module>
+        <module>silencer-maven-plugin</module>
         <module>sshexec-maven-plugin</module>
+        <module>timestamp-maven-plugin</module>
         <module>verify-temp</module>
     </modules>
 
