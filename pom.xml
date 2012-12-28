@@ -139,22 +139,23 @@
 
         <plugins>
 
-<!--
             <plugin>
                 <groupId>com.github.goldin</groupId>
                 <artifactId>silencer-maven-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
                     <execution>
-                        <id>enjoy-the-silence</id>
+                        <id>enable-silencer</id>
                         <phase>validate</phase>
                         <goals>
                             <goal>silence</goal>
                         </goals>
+                        <configuration>
+                            <enabled>{{ System.getProperty( 'silence' ) != null }}</enabled>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
--->
 
             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
             <!-- Enforcing Java/Maven versions -->
@@ -204,15 +205,17 @@
                         <phase>validate</phase>
                         <configuration>
                             <source>
-                                def props = new Properties()
-                                props.load( org.apache.maven.Maven.class.getResourceAsStream( '/META-INF/maven/org.apache.maven/maven-core/pom.properties' ))
+                                if ( System.getProperty( 'silence' ) == null )
+                                {
+                                    final props = new Properties()
+                                    props.load( org.apache.maven.Maven.class.getResourceAsStream( '/META-INF/maven/org.apache.maven/maven-core/pom.properties' ))
 
-                                final mavenVersion = props.getProperty( 'version', 'Unknown' ).trim()
-                                final isWindows    = ${isWindows}
-                                final isLinux      = ${isLinux}
-                                final isMac        = ${isMac}
+                                    final mavenVersion = props.getProperty( 'version', 'Unknown' ).trim()
+                                    final isWindows    = ${isWindows}
+                                    final isLinux      = ${isLinux}
+                                    final isMac        = ${isMac}
 
-                                println """
+                                    println """
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                                               -=-=-= Running tests =-=-=-
 
@@ -228,6 +231,7 @@
  Is Linux   - [$isLinux]
  Is Mac     - [$isMac]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~""".trim()
+                                }
                             </source>
                         </configuration>
                     </execution>
