@@ -65,9 +65,37 @@
 
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <!-- http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.apache.maven.plugins%22%20AND%20a%3A%22maven-clean-plugin%22 -->
+                    <version>2.5</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <!-- http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.apache.maven.plugins%22%20AND%20a%3A%22maven-resources-plugin%22 -->
+                    <version>2.6</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <!-- http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.apache.maven.plugins%22%20AND%20a%3A%22maven-compiler-plugin%22 -->
+                    <version>3.0</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <!-- http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.apache.maven.plugins%22%20AND%20a%3A%22maven-surefire-plugin%22 -->
                     <version>2.13</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <!-- http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.apache.maven.plugins%22%20AND%20a%3A%22maven-install-plugin%22 -->
+                    <version>2.4</version>
                 </plugin>
 
                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -77,7 +105,8 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
-                    <version>2.3.2</version>
+                    <!-- http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.apache.maven.plugins%22%20AND%20a%3A%22maven-jar-plugin%22 -->
+                    <version>2.4</version>
                     <configuration>
                         <includes>
                             <include>nothing</include>
@@ -146,24 +175,6 @@
 
         <plugins>
 
-            <plugin>
-                <groupId>com.github.goldin</groupId>
-                <artifactId>silencer-maven-plugin</artifactId>
-                <version>${plugins-version}</version>
-                <executions>
-                    <execution>
-                        <id>enable-silencer</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>silence</goal>
-                        </goals>
-                        <configuration>
-                            <enabled>{{ System.getProperty( 'silence' ) != null }}</enabled>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
             <!-- Enforcing Java/Maven versions -->
             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -180,7 +191,7 @@
                             <goal>display-info</goal>
                             <goal>enforce</goal>
                         </goals>
-                        <phase>initialize</phase>
+                        <phase>validate</phase>
                         <configuration>
                             <rules>
                                 <requireMavenVersion>
@@ -190,6 +201,48 @@
                                     <version>${java-version}</version>
                                 </requireJavaVersion>
                             </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.github.goldin</groupId>
+                <artifactId>silencer-maven-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <inherited>false</inherited>
+                <executions>
+                    <execution>
+                        <id>enable-silencer</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>silence</goal>
+                        </goals>
+                        <configuration>
+                            <enabled>{{ System.getProperty( 'silence' ) != null }}</enabled>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <id>ant-echo</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo>Ant output!</echo>
+                                <zip destfile="1.zip"><fileset file="pom.xml"/></zip>
+                                <zip destfile="1.zip" update="true"><fileset file="pom.xml"/></zip>
+                                <delete file="1.zip"/>
+                            </target>
                         </configuration>
                     </execution>
                 </executions>
