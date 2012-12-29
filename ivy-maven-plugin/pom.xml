@@ -290,16 +290,6 @@
                                     </dependency>
                                     <unpack>true</unpack>
                                 </resource>
-                                <resource>
-                                    <targetPath>${outputDirectory}/idea-unpacked-3</targetPath>
-                                    <dependency>
-                                        <groupId>ivy.org</groupId>
-                                        <artifactId>bt343</artifactId>
-                                        <version>latest.lastFinished</version>
-                                        <classifier>core/intellij-core</classifier>
-                                    </dependency>
-                                    <unpack>true</unpack>
-                                </resource>
                             </resources>
                         </configuration>
                     </execution>
@@ -490,9 +480,6 @@
                                 ${outputDirectory}/idea-unpacked-2
                                 ${outputDirectory}/idea-unpacked-2/com/intellij/ide/presentation/VirtualFilePresentation.class
                                 ${outputDirectory}/idea-unpacked-2/com/intellij/core/CoreBundle.class
-                                ${outputDirectory}/idea-unpacked-3
-                                ${outputDirectory}/idea-unpacked-3/com/intellij/ide/presentation/VirtualFilePresentation.class
-                                ${outputDirectory}/idea-unpacked-3/com/intellij/core/CoreBundle.class
 
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <!-- Kotlin artifacts were downloaded -->
