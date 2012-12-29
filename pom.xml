@@ -210,7 +210,6 @@
                 <groupId>com.github.goldin</groupId>
                 <artifactId>silencer-maven-plugin</artifactId>
                 <version>${plugins-version}</version>
-                <inherited>false</inherited>
                 <executions>
                     <execution>
                         <id>enable-silencer</id>
