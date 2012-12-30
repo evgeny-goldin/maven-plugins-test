@@ -423,7 +423,6 @@
             </activation>
             <modules>
                 <module>cleanup-temp</module>
-                <module>maven-central</module>
                 <module>about-maven-plugin</module>
                 <module>copy-maven-plugin</module>
                 <module>duplicates-finder-plugin</module>
@@ -440,7 +439,6 @@
             <id>mavenCentral</id>
             <modules>
                 <module>cleanup-temp</module>
-                <module>maven-central</module>
                 <module>about-maven-plugin</module>
                 <module>verify-temp</module>
             </modules>
