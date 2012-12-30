@@ -436,8 +436,8 @@
                                 new File( outputDirectory, 'pl-280/unpack-6' ).directorySize() == 3344329
                                 new File( outputDirectory, 'pl-280/unpack-7' ).directorySize() == 3344329
 
-                                new File( outputDirectory, 'pl-284/unpack-1' ).directorySize() == 68419140
-                                new File( outputDirectory, 'pl-284/unpack-2' ).directorySize() == 68419140
+                                new File( outputDirectory, 'pl-284/unpack-1' ).directorySize() == 65107638
+                                new File( outputDirectory, 'pl-284/unpack-2' ).directorySize() == 65107638
                                 new File( outputDirectory, 'pl-284/unpack-3' ).directorySize() == 1209982
                                 new File( outputDirectory, 'pl-284/unpack-4' ).directorySize() == 1209982
                             </assertGroovy>

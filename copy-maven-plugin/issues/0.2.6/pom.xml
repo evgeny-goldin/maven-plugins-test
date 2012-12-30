@@ -269,6 +269,7 @@
                                 <!-- Uploading modified dependencies to FTP and SCP directories -->
                                 <resource>
                                     <targetPath>${ftpPath}/pl-648, ${scpPath}/pl-648</targetPath>
+                                    <eliminateDuplicates>false</eliminateDuplicates>
                                     <dependencies>
                                         <dependency>
                                             <groupId>javax.servlet</groupId>
@@ -575,6 +576,92 @@
                             </resources>
                         </configuration>
                     </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-677                   -->
+                    <!-- "Eliminate duplicates when <resource> dependencies are resolved" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-677</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-677/1</targetPath>
+                                    <dependency>
+                                        <dependency>
+                                            <groupId>com.jcraft</groupId>
+                                            <artifactId>jsch</artifactId>
+                                            <version>0.1.49</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>com.jcraft</groupId>
+                                            <artifactId>jsch</artifactId>
+                                            <version>0.1.48</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>com.jcraft</groupId>
+                                            <artifactId>jsch</artifactId>
+                                            <version>0.1.47</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>com.jcraft</groupId>
+                                            <artifactId>jzlib</artifactId>
+                                            <version>1.1.1</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>com.jcraft</groupId>
+                                            <artifactId>jzlib</artifactId>
+                                            <version>1.1.0</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>com.jcraft</groupId>
+                                            <artifactId>jzlib</artifactId>
+                                            <version>1.0.7</version>
+                                        </dependency>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-677/2</targetPath>
+                                    <eliminateDuplicates>false</eliminateDuplicates>
+                                    <dependency>
+                                        <dependency>
+                                            <groupId>com.jcraft</groupId>
+                                            <artifactId>jsch</artifactId>
+                                            <version>0.1.49</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>com.jcraft</groupId>
+                                            <artifactId>jsch</artifactId>
+                                            <version>0.1.48</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>com.jcraft</groupId>
+                                            <artifactId>jsch</artifactId>
+                                            <version>0.1.47</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>com.jcraft</groupId>
+                                            <artifactId>jzlib</artifactId>
+                                            <version>1.1.1</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>com.jcraft</groupId>
+                                            <artifactId>jzlib</artifactId>
+                                            <version>1.1.0</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>com.jcraft</groupId>
+                                            <artifactId>jzlib</artifactId>
+                                            <version>1.0.7</version>
+                                        </dependency>
+                                    </dependency>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-667                                      -->
                     <!-- "Apply dependencies filtering while traversing the transitive dependencies tree"    -->
@@ -700,6 +787,7 @@
                     </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-664 -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-677 -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <execution>
                         <id>http://evgeny-goldin.org/youtrack/issue/pl-664</id>
@@ -708,6 +796,18 @@
                         </goals>
                         <phase>test</phase>
                         <configuration>
+                            <assertFiles>
+                                ${outputDirectory}/pl-677/1/jsch-0.1.49.jar
+                                ${outputDirectory}/pl-677/1/jzlib-1.1.1.jar
+
+                                ${outputDirectory}/pl-677/2/jsch-0.1.49.jar
+                                ${outputDirectory}/pl-677/2/jsch-0.1.48.jar
+                                ${outputDirectory}/pl-677/2/jsch-0.1.47.jar
+
+                                ${outputDirectory}/pl-677/2/jzlib-1.1.1.jar
+                                ${outputDirectory}/pl-677/2/jzlib-1.1.0.jar
+                                ${outputDirectory}/pl-677/2/jzlib-1.0.7.jar
+                            </assertFiles>
                             <assertEqual>
                                 ${outputDirectory}/pl-664/0-1|${outputDirectory}/pl-664/0-2
                                 ${outputDirectory}/pl-664/1-1|${outputDirectory}/pl-664/1-2
@@ -723,6 +823,9 @@
                                 new File( outputDirectory, 'pl-664/2-2' ).list().size() == 56
                                 new File( outputDirectory, 'pl-664/3-1' ).list().size() == 100
                                 new File( outputDirectory, 'pl-664/3-2' ).list().size() == 100
+
+                                new File( outputDirectory, 'pl-677/1' ).list().size() == 2
+                                new File( outputDirectory, 'pl-677/2' ).list().size() == 6
                             </assertGroovy>
                         </configuration>
                     </execution>

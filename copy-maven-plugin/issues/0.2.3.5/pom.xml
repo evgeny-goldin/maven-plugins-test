@@ -963,8 +963,8 @@
                                         </dependency>
                                         <dependency>
                                             <groupId>com.jcraft</groupId>
-                                            <artifactId>jsch</artifactId>
-                                            <version>0.1.45</version>
+                                            <artifactId>jzlib</artifactId>
+                                            <version>1.1.1</version>
                                         </dependency>
                                     </dependencies>
                                     <filter>{{  assert ( files.size() == 2 ) &amp;&amp; ( files.every{ ! it.canonicalPath.contains( '.m2' ) } ); files }}</filter>
@@ -981,8 +981,8 @@
                                         </dependency>
                                         <dependency>
                                             <groupId>com.jcraft</groupId>
-                                            <artifactId>jsch</artifactId>
-                                            <version>0.1.45</version>
+                                            <artifactId>jzlib</artifactId>
+                                            <version>1.1.1</version>
                                         </dependency>
                                     </dependencies>
                                     <dependenciesAtM2>true</dependenciesAtM2>
@@ -1001,14 +1001,13 @@
                                         </dependency>
                                         <dependency>
                                             <groupId>com.jcraft</groupId>
-                                            <artifactId>jsch</artifactId>
-                                            <version>0.1.45</version>
+                                            <artifactId>jzlib</artifactId>
+                                            <version>1.1.1</version>
                                         </dependency>
                                     </dependencies>
                                     <stripVersion>true</stripVersion>
-                                    <!-- Dependencies overwrite each other -->
-                                    <filter>{{  assert ( files.size() == 1 ) &amp;&amp; ( files.every{ ! it.canonicalPath.contains( '.m2' ) } ); files }}</filter>
-                                    <process>{{ assert ( files.size() == 1 ) }}</process>
+                                    <filter>{{  assert ( files.size() == 2 ) &amp;&amp; ( files.every{ ! it.canonicalPath.contains( '.m2' ) } ); files }}</filter>
+                                    <process>{{ assert ( files.size() == 2 ) }}</process>
                                 </resource>
                             </resources>
                         </configuration>
@@ -2451,10 +2450,11 @@
                                 ${outputDirectory}/pl-506/3/jsch-0.1.38.jar
                                 ${outputDirectory}/pl-506/4/jsch.jar
                                 ${outputDirectory}/pl-506/5/jsch-0.1.38.jar
-                                ${outputDirectory}/pl-506/5/jsch-0.1.45.jar
+                                ${outputDirectory}/pl-506/5/jzlib-1.1.1.jar
                                 ${outputDirectory}/pl-506/6/jsch-0.1.38.jar
-                                ${outputDirectory}/pl-506/6/jsch-0.1.45.jar
+                                ${outputDirectory}/pl-506/6/jzlib-1.1.1.jar
                                 ${outputDirectory}/pl-506/7/jsch.jar
+                                ${outputDirectory}/pl-506/7/jzlib.jar
                             </assertFiles>
                             <assertEqual>
                                 ${outputDirectory}/pl-506/1|${outputDirectory}/pl-506/2
@@ -2466,9 +2466,9 @@
                                 new File( outputDirectory, 'pl-506/2' ).directorySize() == 177748
                                 new File( outputDirectory, 'pl-506/3' ).directorySize() == 177748
                                 new File( outputDirectory, 'pl-506/4' ).directorySize() == 177748
-                                new File( outputDirectory, 'pl-506/5' ).directorySize() == 400951
-                                new File( outputDirectory, 'pl-506/6' ).directorySize() == 400951
-                                new File( outputDirectory, 'pl-506/7' ).directorySize() == 223203
+                                new File( outputDirectory, 'pl-506/5' ).directorySize() == 247326
+                                new File( outputDirectory, 'pl-506/6' ).directorySize() == 247326
+                                new File( outputDirectory, 'pl-506/7' ).directorySize() == 247326
                             </assertGroovy>
                             <shouldFailAssertEqual>
                                 ${outputDirectory}/pl-506/1|${outputDirectory}/pl-506/4
