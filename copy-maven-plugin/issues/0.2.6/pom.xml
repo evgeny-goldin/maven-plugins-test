@@ -456,10 +456,125 @@
                             </resources>
                         </configuration>
                     </execution>
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-664                                      -->
-                    <!-- "Support <includeScope>X:N</includeScope> to specify depth of transitive artifacts" -->
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-664                                 -->
+                    <!-- "Support <depth> argument to specify depth of transitive artifacts to collect" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-664</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-664/0-1</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>com.github.goldin</groupId>
+                                            <artifactId>copy-maven-plugin</artifactId>
+                                            <version>${plugins-version}</version>
+                                            <includeScope>compile</includeScope>
+                                            <depth>0</depth>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>com.github.goldin</groupId>
+                                            <artifactId>assert-maven-plugin</artifactId>
+                                            <version>${plugins-version}</version>
+                                            <includeScope>compile</includeScope>
+                                            <depth>0</depth>
+                                        </dependency>
+                                    </dependencies>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-664/0-2</targetPath>
+                                    <dependency>
+                                        <includeScope>compile</includeScope>
+                                        <depth>0</depth>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-664/1-1</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>com.github.goldin</groupId>
+                                            <artifactId>copy-maven-plugin</artifactId>
+                                            <version>${plugins-version}</version>
+                                            <includeScope>compile</includeScope>
+                                            <depth>1</depth>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>com.github.goldin</groupId>
+                                            <artifactId>assert-maven-plugin</artifactId>
+                                            <version>${plugins-version}</version>
+                                            <includeScope>compile</includeScope>
+                                            <depth>1</depth>
+                                        </dependency>
+                                    </dependencies>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-664/1-2</targetPath>
+                                    <dependency>
+                                        <includeScope>compile</includeScope>
+                                        <depth>1</depth>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-664/2-1</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>com.github.goldin</groupId>
+                                            <artifactId>copy-maven-plugin</artifactId>
+                                            <version>${plugins-version}</version>
+                                            <includeScope>compile</includeScope>
+                                            <depth>2</depth>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>com.github.goldin</groupId>
+                                            <artifactId>assert-maven-plugin</artifactId>
+                                            <version>${plugins-version}</version>
+                                            <includeScope>compile</includeScope>
+                                            <depth>2</depth>
+                                        </dependency>
+                                    </dependencies>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-664/2-2</targetPath>
+                                    <dependency>
+                                        <includeScope>compile</includeScope>
+                                        <depth>2</depth>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-664/3-1</targetPath>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>com.github.goldin</groupId>
+                                            <artifactId>copy-maven-plugin</artifactId>
+                                            <version>${plugins-version}</version>
+                                            <includeScope>compile</includeScope>
+                                            <depth>3</depth>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>com.github.goldin</groupId>
+                                            <artifactId>assert-maven-plugin</artifactId>
+                                            <version>${plugins-version}</version>
+                                            <includeScope>compile</includeScope>
+                                            <depth>3</depth>
+                                        </dependency>
+                                    </dependencies>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-664/3-2</targetPath>
+                                    <dependency>
+                                        <includeScope>compile</includeScope>
+                                        <depth>3</depth>
+                                    </dependency>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-667                                      -->
                     <!-- "Apply dependencies filtering while traversing the transitive dependencies tree"    -->
@@ -583,8 +698,49 @@
                             </assertFiles>
                         </configuration>
                     </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-664 -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-664</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertEqual>
+                                ${outputDirectory}/pl-664/0-1|${outputDirectory}/pl-664/0-2
+                                ${outputDirectory}/pl-664/1-1|${outputDirectory}/pl-664/1-2
+                                ${outputDirectory}/pl-664/2-1|${outputDirectory}/pl-664/2-2
+                                ${outputDirectory}/pl-664/3-1|${outputDirectory}/pl-664/3-2
+                            </assertEqual>
+                            <assertGroovy>
+                                new File( outputDirectory, 'pl-664/0-1' ).list().size() == 2
+                                new File( outputDirectory, 'pl-664/0-2' ).list().size() == 2
+                                new File( outputDirectory, 'pl-664/1-1' ).list().size() == 7
+                                new File( outputDirectory, 'pl-664/1-2' ).list().size() == 7
+                                new File( outputDirectory, 'pl-664/2-1' ).list().size() == 56
+                                new File( outputDirectory, 'pl-664/2-2' ).list().size() == 56
+                                new File( outputDirectory, 'pl-664/3-1' ).list().size() == 100
+                                new File( outputDirectory, 'pl-664/3-2' ).list().size() == 100
+                            </assertGroovy>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
         </plugins>
     </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.github.goldin</groupId>
+            <artifactId>copy-maven-plugin</artifactId>
+            <version>${plugins-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.goldin</groupId>
+            <artifactId>assert-maven-plugin</artifactId>
+            <version>${plugins-version}</version>
+        </dependency>
+    </dependencies>
 </project>
