@@ -590,7 +590,7 @@
                             <resources>
                                 <resource>
                                     <targetPath>${outputDirectory}/pl-677/1</targetPath>
-                                    <dependency>
+                                    <dependencies>
                                         <dependency>
                                             <groupId>com.jcraft</groupId>
                                             <artifactId>jsch</artifactId>
@@ -621,12 +621,12 @@
                                             <artifactId>jzlib</artifactId>
                                             <version>1.0.7</version>
                                         </dependency>
-                                    </dependency>
+                                    </dependencies>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDirectory}/pl-677/2</targetPath>
                                     <eliminateDuplicates>false</eliminateDuplicates>
-                                    <dependency>
+                                    <dependencies>
                                         <dependency>
                                             <groupId>com.jcraft</groupId>
                                             <artifactId>jsch</artifactId>
@@ -657,7 +657,80 @@
                                             <artifactId>jzlib</artifactId>
                                             <version>1.0.7</version>
                                         </dependency>
-                                    </dependency>
+                                    </dependencies>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-677/3</targetPath>
+                                    <stripVersion>true</stripVersion>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>com.jcraft</groupId>
+                                            <artifactId>jsch</artifactId>
+                                            <version>0.1.49</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>com.jcraft</groupId>
+                                            <artifactId>jsch</artifactId>
+                                            <version>0.1.48</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>com.jcraft</groupId>
+                                            <artifactId>jsch</artifactId>
+                                            <version>0.1.47</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>com.jcraft</groupId>
+                                            <artifactId>jzlib</artifactId>
+                                            <version>1.1.1</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>com.jcraft</groupId>
+                                            <artifactId>jzlib</artifactId>
+                                            <version>1.1.0</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>com.jcraft</groupId>
+                                            <artifactId>jzlib</artifactId>
+                                            <version>1.0.7</version>
+                                        </dependency>
+                                    </dependencies>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-677/4</targetPath>
+                                    <eliminateDuplicates>false</eliminateDuplicates>
+                                    <stripVersion>true</stripVersion>
+                                    <dependencies>
+                                        <dependency>
+                                            <groupId>com.jcraft</groupId>
+                                            <artifactId>jsch</artifactId>
+                                            <version>0.1.49</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>com.jcraft</groupId>
+                                            <artifactId>jsch</artifactId>
+                                            <version>0.1.48</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>com.jcraft</groupId>
+                                            <artifactId>jsch</artifactId>
+                                            <version>0.1.47</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>com.jcraft</groupId>
+                                            <artifactId>jzlib</artifactId>
+                                            <version>1.1.1</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>com.jcraft</groupId>
+                                            <artifactId>jzlib</artifactId>
+                                            <version>1.1.0</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>com.jcraft</groupId>
+                                            <artifactId>jzlib</artifactId>
+                                            <version>1.0.7</version>
+                                        </dependency>
+                                    </dependencies>
                                 </resource>
                             </resources>
                         </configuration>
@@ -807,6 +880,12 @@
                                 ${outputDirectory}/pl-677/2/jzlib-1.1.1.jar
                                 ${outputDirectory}/pl-677/2/jzlib-1.1.0.jar
                                 ${outputDirectory}/pl-677/2/jzlib-1.0.7.jar
+
+                                ${outputDirectory}/pl-677/3/jsch.jar
+                                ${outputDirectory}/pl-677/3/jzlib.jar
+
+                                ${outputDirectory}/pl-677/4/jsch.jar
+                                ${outputDirectory}/pl-677/4/jzlib.jar
                             </assertFiles>
                             <assertEqual>
                                 ${outputDirectory}/pl-664/0-1|${outputDirectory}/pl-664/0-2
@@ -814,18 +893,27 @@
                                 ${outputDirectory}/pl-664/2-1|${outputDirectory}/pl-664/2-2
                                 ${outputDirectory}/pl-664/3-1|${outputDirectory}/pl-664/3-2
                             </assertEqual>
+                            <shouldFailAssertEqual>
+                                ${outputDirectory}/pl-677/1|${outputDirectory}/pl-677/2
+                                ${outputDirectory}/pl-677/2|${outputDirectory}/pl-677/3
+                                <!-- Identically named files, different versions -->
+                                ${outputDirectory}/pl-677/3|${outputDirectory}/pl-677/4
+                                ${outputDirectory}/pl-677/4|${outputDirectory}/pl-677/1
+                            </shouldFailAssertEqual>
                             <assertGroovy>
                                 new File( outputDirectory, 'pl-664/0-1' ).list().size() == 2
                                 new File( outputDirectory, 'pl-664/0-2' ).list().size() == 2
                                 new File( outputDirectory, 'pl-664/1-1' ).list().size() == 7
                                 new File( outputDirectory, 'pl-664/1-2' ).list().size() == 7
-                                new File( outputDirectory, 'pl-664/2-1' ).list().size() == 56
-                                new File( outputDirectory, 'pl-664/2-2' ).list().size() == 56
-                                new File( outputDirectory, 'pl-664/3-1' ).list().size() == 100
-                                new File( outputDirectory, 'pl-664/3-2' ).list().size() == 100
+                                new File( outputDirectory, 'pl-664/2-1' ).list().size() == 57
+                                new File( outputDirectory, 'pl-664/2-2' ).list().size() == 57
+                                new File( outputDirectory, 'pl-664/3-1' ).list().size() == 102
+                                new File( outputDirectory, 'pl-664/3-2' ).list().size() == 102
 
                                 new File( outputDirectory, 'pl-677/1' ).list().size() == 2
                                 new File( outputDirectory, 'pl-677/2' ).list().size() == 6
+                                new File( outputDirectory, 'pl-677/3' ).list().size() == 2
+                                new File( outputDirectory, 'pl-677/4' ).list().size() == 2
                             </assertGroovy>
                         </configuration>
                     </execution>
