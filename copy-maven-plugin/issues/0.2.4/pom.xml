@@ -245,7 +245,6 @@
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
-                                        <excludeTransitive>false</excludeTransitive>
                                         <!-- Not available in Maven repos -->
                                         <excludeGroupIds>com.sun.jmx,com.sun.jdmk</excludeGroupIds>
                                     </dependency>
@@ -258,7 +257,6 @@
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
-                                        <excludeTransitive>false</excludeTransitive>
                                         <includeOptional>true</includeOptional>
                                         <!-- Not available in Maven repos -->
                                         <excludeGroupIds>com.sun.jmx,com.sun.jdmk,com.sun,javax.security,javax.jws,javax.mail,javax.activation</excludeGroupIds>
@@ -344,7 +342,6 @@
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
-                                        <excludeTransitive>false</excludeTransitive>
                                         <includeScope>compile</includeScope>
                                     </dependency>
                                 </resource>
@@ -356,7 +353,6 @@
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
-                                        <excludeTransitive>false</excludeTransitive>
                                         <includeScope>test</includeScope>
                                     </dependency>
                                 </resource>
@@ -368,7 +364,6 @@
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
-                                        <excludeTransitive>false</excludeTransitive>
                                         <includeScope>provided</includeScope>
                                     </dependency>
                                 </resource>
@@ -380,7 +375,6 @@
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
-                                        <excludeTransitive>false</excludeTransitive>
                                         <includeScope>compile</includeScope>
                                         <excludeScope>test, provided</excludeScope>
                                     </dependency>
@@ -393,7 +387,6 @@
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
-                                        <excludeTransitive>false</excludeTransitive>
                                         <includeScope>compile</includeScope>
                                         <excludeScope>test</excludeScope>
                                     </dependency>
@@ -406,7 +399,6 @@
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
-                                        <excludeTransitive>false</excludeTransitive>
                                         <includeScope>compile</includeScope>
                                         <excludeScope>provided</excludeScope>
                                     </dependency>
@@ -419,7 +411,6 @@
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
-                                        <excludeTransitive>false</excludeTransitive>
                                         <includeScope>test</includeScope>
                                         <excludeScope>compile</excludeScope>
                                     </dependency>
@@ -432,7 +423,6 @@
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
-                                        <excludeTransitive>false</excludeTransitive>
                                         <includeScope>provided</includeScope>
                                         <excludeScope>compile</excludeScope>
                                     </dependency>
@@ -445,7 +435,6 @@
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
-                                        <excludeTransitive>false</excludeTransitive>
                                         <excludeScope>test</excludeScope>
                                     </dependency>
                                 </resource>
@@ -457,7 +446,6 @@
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
-                                        <excludeTransitive>false</excludeTransitive>
                                         <excludeScope>provided</excludeScope>
                                         <!-- Not available in Maven repos -->
                                         <excludeGroupIds>com.sun.jmx,com.sun.jdmk</excludeGroupIds>
@@ -526,6 +514,7 @@
                                     <targetPath>${outputDirectory}/pl-550/12</targetPath>
                                     <dependency>
                                         <includeScope>compile</includeScope>
+                                        <excludeScope>provided</excludeScope>
                                     </dependency>
                                 </resource>
                                 <!-- Transitive "filtering" dependency with "test" scope -->

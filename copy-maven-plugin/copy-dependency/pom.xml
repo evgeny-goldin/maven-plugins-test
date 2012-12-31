@@ -51,7 +51,6 @@
                                     <targetPath>${project.build.directory}/compile-deps-transitive-2</targetPath>
                                     <dependency>
                                         <includeScope>compile</includeScope>
-                                        <excludeTransitive>false</excludeTransitive>
                                     </dependency>
                                 </resource>
 
@@ -166,7 +165,6 @@
                                     <targetPath>${project.build.directory}/test-deps-transitive-2</targetPath>
                                     <dependency>
                                         <includeScope>test</includeScope>
-                                        <excludeTransitive>false</excludeTransitive>
                                     </dependency>
                                 </resource>
 

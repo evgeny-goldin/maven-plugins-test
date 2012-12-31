@@ -905,7 +905,6 @@
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-beans</artifactId>
                                         <version>${spring-version}</version>
-                                        <excludeTransitive>false</excludeTransitive>
                                         <excludeGroupIds>com.sun</excludeGroupIds>
                                     </dependency>
                                     <filter>${filterNotM2}</filter>
@@ -963,7 +962,6 @@
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-beans</artifactId>
                                         <version>${spring-version}</version>
-                                        <excludeTransitive>false</excludeTransitive>
                                         <excludeGroupIds>com.sun</excludeGroupIds>
                                     </dependency>
                                     <filter>${filterNotM2}</filter>
@@ -1023,7 +1021,6 @@
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-beans</artifactId>
                                         <version>${spring-version}</version>
-                                        <excludeTransitive>false</excludeTransitive>
                                         <excludeGroupIds>com.sun</excludeGroupIds>
                                     </dependency>
                                     <filter>${filterM2}</filter>
@@ -1087,7 +1084,6 @@
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-beans</artifactId>
                                         <version>${spring-version}</version>
-                                        <excludeTransitive>false</excludeTransitive>
                                         <excludeGroupIds>com.sun</excludeGroupIds>
                                     </dependency>
                                     <filter>${filterNotM2}</filter>

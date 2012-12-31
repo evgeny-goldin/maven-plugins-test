@@ -226,7 +226,6 @@
                                 <resource>
                                     <targetPath>${outputDirectory}/pl-284/unpack-3</targetPath>
                                     <dependency>
-                                        <excludeTransitive>false</excludeTransitive>
                                         <includeGroupIds>org.jvnet.hudson.plugins,org.jfrog.buildinfo,junit</includeGroupIds>
                                     </dependency>
                                     <zipEntry>**/*.class</zipEntry>
@@ -238,7 +237,6 @@
                                 <resource>
                                     <targetPath>${outputDirectory}/pl-284/unpack-4</targetPath>
                                     <dependency>
-                                        <excludeTransitive>false</excludeTransitive>
                                         <includeGroupIds>org.jvnet.hudson.plugins,org.jfrog.buildinfo,junit</includeGroupIds>
                                     </dependency>
                                     <unpack>true</unpack>
@@ -438,8 +436,8 @@
 
                                 new File( outputDirectory, 'pl-284/unpack-1' ).directorySize() == 65107638
                                 new File( outputDirectory, 'pl-284/unpack-2' ).directorySize() == 65107638
-                                new File( outputDirectory, 'pl-284/unpack-3' ).directorySize() == 1209982
-                                new File( outputDirectory, 'pl-284/unpack-4' ).directorySize() == 1209982
+                                new File( outputDirectory, 'pl-284/unpack-3' ).directorySize() == 899718
+                                new File( outputDirectory, 'pl-284/unpack-4' ).directorySize() == 899718
                             </assertGroovy>
                         </configuration>
                     </execution>

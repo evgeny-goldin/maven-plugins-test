@@ -60,32 +60,6 @@
     </properties>
 
 
-    <dependencies>
-        <!-- http://evgeny-goldin.org/youtrack/issue/pl-549 -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.6.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
-            <version>1.6.2</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-httpclient</groupId>
-            <artifactId>commons-httpclient</artifactId>
-            <version>3.1</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>2.3</version>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
-
-
     <build>
         <plugins>
             <plugin>
@@ -111,7 +85,7 @@
                                     <dependency>
                                         <excludeScope>provided</excludeScope>
                                     </dependency>
-                                    <process>{{ assert files.size() == 8 }}</process>
+                                    <process>{{ assert files.size() == 9 }}</process>
                                 </resource>
                             </resources>
                         </configuration>
@@ -339,7 +313,6 @@
                                             <artifactId>logback-core</artifactId>
                                             <version>1.0.0</version>
                                             <optional>true</optional>
-                                            <excludeTransitive>false</excludeTransitive>
                                             <excludeScope>provided</excludeScope>
                                             <excludeGroupIds>xml-apis</excludeGroupIds>
                                             <excludeArtifactIds>xerces-impl</excludeArtifactIds>
@@ -495,7 +468,6 @@
                                             <groupId>ch.qos.logback</groupId>
                                             <artifactId>logback-core</artifactId>
                                             <version>1.0.0</version>
-                                            <excludeTransitive>false</excludeTransitive>
                                             <includeScope>compile, test</includeScope>
                                         </dependency>
                                         <dependency>
@@ -777,7 +749,6 @@
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
-                                        <excludeTransitive>false</excludeTransitive>
                                         <includeScope>compile, test</includeScope>
                                         <excludeGroupIds>com.sun,javax.xml.soap</excludeGroupIds>
                                     </dependency>
@@ -789,7 +760,6 @@
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
-                                        <excludeTransitive>false</excludeTransitive>
                                         <includeGroupIds>org.springframework</includeGroupIds>
                                     </dependency>
                                     <process>{{ assert files.size() == 6 }}</process>
@@ -800,7 +770,6 @@
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
-                                        <excludeTransitive>false</excludeTransitive>
                                         <includeArtifactIds>commons-pool, commons-logging, easymock</includeArtifactIds>
                                     </dependency>
                                     <process>{{ assert files.size() == 3 }}</process>
@@ -811,7 +780,6 @@
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
-                                        <excludeTransitive>false</excludeTransitive>
                                         <excludeGroupIds>com.sun,javax.xml.soap</excludeGroupIds>
                                         <excludeArtifactIds>commons-logging, commons-pool, easymock</excludeArtifactIds>
                                     </dependency>
@@ -833,12 +801,11 @@
                                         <groupId>ch.qos.logback</groupId>
                                         <artifactId>logback-core</artifactId>
                                         <version>1.0.0</version>
-                                        <excludeTransitive>false</excludeTransitive>
                                         <excludeGroupIds>org.easytesting</excludeGroupIds>
                                         <excludeArtifactIds>easymock</excludeArtifactIds>
                                         <excludeTypes>zip</excludeTypes>
                                     </dependency>
-                                    <process>{{ assert files.size() == 6 }}</process>
+                                    <process>{{ assert files.size() == 3 }}</process>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDirectory}/pl-509/7</targetPath>
@@ -846,11 +813,9 @@
                                         <groupId>ch.qos.logback</groupId>
                                         <artifactId>logback-core</artifactId>
                                         <version>1.0.0</version>
-                                        <excludeTransitive>false</excludeTransitive>
                                         <excludeTypes>jar</excludeTypes>
                                     </dependency>
-                                    <failIfNotFound>false</failIfNotFound>
-                                    <process>{{ assert files.size() == 0 }}</process>
+                                    <process>{{ assert files.size() == 1 }}</process>
                                 </resource>
                             </resources>
                         </configuration>
@@ -2269,10 +2234,14 @@
                                 ${outputDirectory}/pl-549/commons-httpclient-3.1.jar
                                 ${outputDirectory}/pl-549/commons-logging-1.0.4.jar
                                 ${outputDirectory}/pl-549/jcl-over-slf4j-1.6.2.jar
+                                ${outputDirectory}/pl-549/junit-3.8.1.jar
+                                ${outputDirectory}/pl-549/servlet-api-2.3.jar
+                                ${outputDirectory}/pl-549/slf4j-api-1.6.2-tests.jar
                                 ${outputDirectory}/pl-549/slf4j-api-1.6.2.jar
+                                ${outputDirectory}/pl-549/slf4j-jdk14-1.6.2.jar
                             </assertFiles>
                             <assertGroovy>
-                                new File( outputDirectory, 'pl-549' ).directorySize() == 562741
+                                new File( outputDirectory, 'pl-549' ).directorySize() == 640718
                             </assertGroovy>
                         </configuration>
                     </execution>
@@ -2408,14 +2377,14 @@
                                 new File( outputDirectory, 'pl-509/2' ).listFiles().size() == 6
                                 new File( outputDirectory, 'pl-509/2' ).directorySize()    == 2431079
                                 new File( outputDirectory, 'pl-509/3' ).listFiles().size() == 3
-                                new File( outputDirectory, 'pl-509/3' ).directorySize()    == 250164
+                                new File( outputDirectory, 'pl-509/3' ).directorySize()    == 1020546
                                 new File( outputDirectory, 'pl-509/4' ).listFiles().size() == 29
                                 new File( outputDirectory, 'pl-509/4' ).directorySize().with{ ( delegate == 5623107 ) || ( delegate == 5623145 ) }
                                 new File( outputDirectory, 'pl-509/5' ).listFiles().size() == 11
                                 new File( outputDirectory, 'pl-509/5' ).directorySize()    == 10024502
-                                new File( outputDirectory, 'pl-509/6' ).listFiles().size() == 6
-                                new File( outputDirectory, 'pl-509/6' ).directorySize()    == 9827762
-                              ! new File( outputDirectory, 'pl-509/7' ).directory
+                                new File( outputDirectory, 'pl-509/6' ).listFiles().size() == 3
+                                new File( outputDirectory, 'pl-509/6' ).directorySize()    == 9408245
+                                new File( outputDirectory, 'pl-509/7' ).directorySize()    == 327911
                             </assertGroovy>
                         </configuration>
                     </execution>
@@ -2875,4 +2844,30 @@
             </plugin>
         </plugins>
     </build>
+
+    <dependencies>
+        <!-- http://evgeny-goldin.org/youtrack/issue/pl-549 -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.3</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
 </project>

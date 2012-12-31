@@ -96,7 +96,6 @@
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
-                                        <excludeTransitive>false</excludeTransitive>
                                         <excludeGroupIds>com.sun,javax.xml.soap</excludeGroupIds>
                                         <excludeScope>provided</excludeScope>
                                     </dependency>
@@ -107,7 +106,6 @@
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
-                                        <excludeTransitive>false</excludeTransitive>
                                         <includeScope>compile, test</includeScope>
                                         <excludeGroupIds>com.sun,javax.xml.soap</excludeGroupIds>
                                     </dependency>
@@ -118,7 +116,6 @@
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
-                                        <excludeTransitive>false</excludeTransitive>
                                         <includeScope>compile</includeScope>
                                     </dependency>
                                 </resource>
@@ -128,7 +125,6 @@
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
-                                        <excludeTransitive>false</excludeTransitive>
                                         <includeGroupIds>org.springframework</includeGroupIds>
                                         <includeScope>compile</includeScope>
                                     </dependency>
@@ -139,7 +135,6 @@
                                         <groupId>org.springframework</groupId>
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
-                                        <excludeTransitive>false</excludeTransitive>
                                         <includeArtifactIds>spring-asm,commons-logging</includeArtifactIds>
                                     </dependency>
                                 </resource>
