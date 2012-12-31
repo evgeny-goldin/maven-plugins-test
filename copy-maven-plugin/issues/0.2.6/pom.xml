@@ -468,6 +468,7 @@
                         </goals>
                         <phase>initialize</phase>
                         <configuration>
+                            <parallelDownload>true</parallelDownload>
                             <resources>
                                 <resource>
                                     <targetPath>${outputDirectory}/pl-664/0-1</targetPath>

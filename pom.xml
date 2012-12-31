@@ -416,6 +416,7 @@
             </activation>
             <modules>
                 <module>cleanup-temp</module>
+                <module>quick-test</module>
                 <module>about-maven-plugin</module>
                 <module>copy-maven-plugin</module>
                 <module>duplicates-finder-plugin</module>
