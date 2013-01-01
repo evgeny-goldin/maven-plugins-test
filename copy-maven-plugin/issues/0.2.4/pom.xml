@@ -258,8 +258,8 @@
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
                                         <includeOptional>true</includeOptional>
-                                        <!-- Not available in Maven repos -->
-                                        <excludeGroupIds>com.sun.jmx,com.sun.jdmk,com.sun,javax.security,javax.jws,javax.mail,javax.activation</excludeGroupIds>
+                                        <!-- Not available in Maven repos or there are no jars (only POMs) -->
+                                        <excludeGroupIds>ehcache,activation,com.sun.jmx,com.sun.jdmk,com.sun,javax.security,javax.jws,javax.mail,javax.activation</excludeGroupIds>
                                         <excludeArtifactIds>xerces-impl,xml-apis,commons-logging,commons-logging-api,stax-ri,hsqldb</excludeArtifactIds>
                                     </dependency>
                                 </resource>
@@ -376,7 +376,6 @@
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
                                         <includeScope>compile</includeScope>
-                                        <excludeScope>test, provided</excludeScope>
                                     </dependency>
                                 </resource>
                                 <!-- Transitive dependencies from "compile" scope, "test" excluded -->
@@ -388,7 +387,6 @@
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
                                         <includeScope>compile</includeScope>
-                                        <excludeScope>test</excludeScope>
                                     </dependency>
                                 </resource>
                                 <!-- Transitive dependencies from "compile" scope, "provided" excluded -->
@@ -400,7 +398,6 @@
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
                                         <includeScope>compile</includeScope>
-                                        <excludeScope>provided</excludeScope>
                                     </dependency>
                                 </resource>
                                 <!-- Transitive dependencies from "test" scope, "compile" excluded -->
@@ -412,7 +409,6 @@
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
                                         <includeScope>test</includeScope>
-                                        <excludeScope>compile</excludeScope>
                                     </dependency>
                                 </resource>
                                 <!-- Transitive dependencies from "provided" scope, "compile" excluded -->
@@ -424,7 +420,6 @@
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
                                         <includeScope>provided</includeScope>
-                                        <excludeScope>compile</excludeScope>
                                     </dependency>
                                 </resource>
                                 <!-- All transitive dependencies, "test" excluded -->
@@ -485,8 +480,8 @@
                                     <dependency>
                                         <includeScope>compile</includeScope>
                                         <includeOptional>true</includeOptional>
-                                        <!-- Not available in Maven repos -->
-                                        <excludeGroupIds>xml-apis,javax.jws,com.sun</excludeGroupIds>
+                                        <!-- Not available in Maven repos or there are no jars (only POMs) -->
+                                        <excludeGroupIds>activation,xml-apis,javax.jws,com.sun</excludeGroupIds>
                                         <excludeArtifactIds>xerces-impl</excludeArtifactIds>
                                     </dependency>
                                 </resource>
@@ -514,7 +509,6 @@
                                     <targetPath>${outputDirectory}/pl-550/12</targetPath>
                                     <dependency>
                                         <includeScope>compile</includeScope>
-                                        <excludeScope>provided</excludeScope>
                                     </dependency>
                                 </resource>
                                 <!-- Transitive "filtering" dependency with "test" scope -->
@@ -539,7 +533,6 @@
                                     <targetPath>${outputDirectory}/pl-550/42</targetPath>
                                     <dependency>
                                         <includeScope>compile</includeScope>
-                                        <excludeScope>test, provided</excludeScope>
                                     </dependency>
                                 </resource>
                                 <!-- Transitive "filtering" dependency with "compile" scope, "test" excluded -->
@@ -548,7 +541,6 @@
                                     <targetPath>${outputDirectory}/pl-550/52</targetPath>
                                     <dependency>
                                         <includeScope>compile</includeScope>
-                                        <excludeScope>test</excludeScope>
                                     </dependency>
                                 </resource>
                                 <!-- Transitive "filtering" dependency with "compile" scope, "provided" excluded -->
@@ -557,7 +549,6 @@
                                     <targetPath>${outputDirectory}/pl-550/62</targetPath>
                                     <dependency>
                                         <includeScope>compile</includeScope>
-                                        <excludeScope>provided</excludeScope>
                                     </dependency>
                                 </resource>
                                 <!-- Transitive "filtering" dependency with "test" scope, "compile" excluded -->
@@ -566,7 +557,6 @@
                                     <targetPath>${outputDirectory}/pl-550/72</targetPath>
                                     <dependency>
                                         <includeScope>test</includeScope>
-                                        <excludeScope>compile</excludeScope>
                                     </dependency>
                                 </resource>
                                 <!-- Transitive "filtering" dependency with "provided" scope, "compile" excluded -->
@@ -575,7 +565,6 @@
                                     <targetPath>${outputDirectory}/pl-550/82</targetPath>
                                     <dependency>
                                         <includeScope>provided</includeScope>
-                                        <excludeScope>compile</excludeScope>
                                     </dependency>
                                 </resource>
                                 <!-- Transitive "filtering" dependency, "test" scope excluded -->
@@ -735,7 +724,7 @@
                                 new File( outputDirectory, 'pl-550/all'               ).listFiles().size() == 32
                                 new File( outputDirectory, 'pl-550/compile'           ).listFiles().size() == 1
                                 new File( outputDirectory, 'pl-550/dependency-plugin' ).listFiles().size() == 11
-                                new File( outputDirectory, 'pl-550/optional-1'        ).listFiles().size() == 158
+                                new File( outputDirectory, 'pl-550/optional-1'        ).listFiles().size() == 159
                                 new File( outputDirectory, 'pl-550/optional-2'        ).listFiles().size() == 37
                                 new File( outputDirectory, 'pl-550/optional-3'        ).listFiles().size() == 27
                                 new File( outputDirectory, 'pl-550/optional-4'        ).listFiles().size() == 86

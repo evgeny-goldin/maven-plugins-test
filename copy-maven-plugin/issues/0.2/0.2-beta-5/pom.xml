@@ -165,9 +165,10 @@
                                         <dependency>
                                             <excludeTransitive>true</excludeTransitive>
                                             <includeScope>test</includeScope>
+                                            <!-- Same excludes as in other resources of this <execution> -->
                                             <includeGroupIds>org.jvnet.hudson.main,org.jvnet.hudson.plugins</includeGroupIds>
-                                            <!-- Have no jars -->
-                                            <excludeArtifactIds>greenballs,hudson-test-harness,ui-samples-plugin</excludeArtifactIds>
+                                            <excludeArtifactIds>stapler,greenballs,hudson-test-harness,ui-samples-plugin</excludeArtifactIds>
+                                            <applyWhileTraversing>true</applyWhileTraversing>
                                         </dependency>
                                     </dependencies>
                                     <zipEntries>
@@ -205,9 +206,10 @@
                                         <dependency>
                                             <excludeTransitive>true</excludeTransitive>
                                             <includeScope>test</includeScope>
-                                            <!-- Same excludes as in "pl-284/unpack-1" -->
+                                            <!-- Same excludes as in other resources of this <execution> -->
                                             <includeGroupIds>org.jvnet.hudson.main,org.jvnet.hudson.plugins</includeGroupIds>
-                                            <excludeArtifactIds>greenballs,hudson-test-harness,ui-samples-plugin</excludeArtifactIds>
+                                            <excludeArtifactIds>stapler,greenballs,hudson-test-harness,ui-samples-plugin</excludeArtifactIds>
+                                            <applyWhileTraversing>true</applyWhileTraversing>
                                         </dependency>
                                     </dependencies>
                                     <unpack>true</unpack>
@@ -226,7 +228,10 @@
                                 <resource>
                                     <targetPath>${outputDirectory}/pl-284/unpack-3</targetPath>
                                     <dependency>
-                                        <includeGroupIds>org.jvnet.hudson.plugins,org.jfrog.buildinfo,junit</includeGroupIds>
+                                        <!-- Same excludes as in other resources of this <execution> -->
+                                        <includeGroupIds>org.jvnet.hudson.main,org.jvnet.hudson.plugins</includeGroupIds>
+                                        <excludeArtifactIds>stapler,greenballs,hudson-test-harness,ui-samples-plugin</excludeArtifactIds>
+                                        <applyWhileTraversing>true</applyWhileTraversing>
                                     </dependency>
                                     <zipEntry>**/*.class</zipEntry>
                                     <dependenciesAtM2>true</dependenciesAtM2>
@@ -237,7 +242,10 @@
                                 <resource>
                                     <targetPath>${outputDirectory}/pl-284/unpack-4</targetPath>
                                     <dependency>
-                                        <includeGroupIds>org.jvnet.hudson.plugins,org.jfrog.buildinfo,junit</includeGroupIds>
+                                        <!-- Same excludes as in other resources of this <execution> -->
+                                        <includeGroupIds>org.jvnet.hudson.main,org.jvnet.hudson.plugins</includeGroupIds>
+                                        <excludeArtifactIds>stapler,greenballs,hudson-test-harness,ui-samples-plugin</excludeArtifactIds>
+                                        <applyWhileTraversing>true</applyWhileTraversing>
                                     </dependency>
                                     <unpack>true</unpack>
                                     <preservePath>true</preservePath>
@@ -436,8 +444,8 @@
 
                                 new File( outputDirectory, 'pl-284/unpack-1' ).directorySize() == 65107638
                                 new File( outputDirectory, 'pl-284/unpack-2' ).directorySize() == 65107638
-                                new File( outputDirectory, 'pl-284/unpack-3' ).directorySize() == 899718
-                                new File( outputDirectory, 'pl-284/unpack-4' ).directorySize() == 899718
+                                new File( outputDirectory, 'pl-284/unpack-3' ).directorySize() == 5096662
+                                new File( outputDirectory, 'pl-284/unpack-4' ).directorySize() == 5096662
                             </assertGroovy>
                         </configuration>
                     </execution>

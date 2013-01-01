@@ -85,7 +85,7 @@
                                     <dependency>
                                         <excludeScope>provided</excludeScope>
                                     </dependency>
-                                    <process>{{ assert files.size() == 9 }}</process>
+                                    <process>{{ assert files.size() == 8 }}</process>
                                 </resource>
                             </resources>
                         </configuration>
@@ -313,15 +313,15 @@
                                             <artifactId>logback-core</artifactId>
                                             <version>1.0.0</version>
                                             <optional>true</optional>
-                                            <excludeScope>provided</excludeScope>
-                                            <excludeGroupIds>xml-apis</excludeGroupIds>
-                                            <excludeArtifactIds>xerces-impl</excludeArtifactIds>
+                                            <includeOptional>true</includeOptional>
+                                            <depth>1</depth>
                                         </dependency>
                                         <dependency>
                                             <groupId>org.springframework</groupId>
                                             <artifactId>spring-context</artifactId>
                                             <version>1.2.3.4.5</version>
                                             <optional>true</optional>
+                                            <includeOptional>true</includeOptional>
                                             <excludeTransitive>false</excludeTransitive>
                                         </dependency>
                                     </dependencies>
@@ -468,6 +468,7 @@
                                             <groupId>ch.qos.logback</groupId>
                                             <artifactId>logback-core</artifactId>
                                             <version>1.0.0</version>
+                                            <depth>1</depth>
                                             <includeScope>compile, test</includeScope>
                                         </dependency>
                                         <dependency>
@@ -478,7 +479,7 @@
                                         </dependency>
                                     </dependencies>
                                     <failIfNotFound>false</failIfNotFound>
-                                    <process>{{ assert files.size() == 10 }}</process>
+                                    <process>{{ assert files.size() == 5 }}</process>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDirectory}/pl-539/22</targetPath>
@@ -805,7 +806,7 @@
                                         <excludeArtifactIds>easymock</excludeArtifactIds>
                                         <excludeTypes>zip</excludeTypes>
                                     </dependency>
-                                    <process>{{ assert files.size() == 3 }}</process>
+                                    <process>{{ assert files.size() == 6 }}</process>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDirectory}/pl-509/7</targetPath>
@@ -815,7 +816,19 @@
                                         <version>1.0.0</version>
                                         <excludeTypes>jar</excludeTypes>
                                     </dependency>
-                                    <process>{{ assert files.size() == 1 }}</process>
+                                    <!-- No files found -->
+                                    <failsWith>AssertionError</failsWith>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-509/8</targetPath>
+                                    <dependency>
+                                        <groupId>ch.qos.logback</groupId>
+                                        <artifactId>logback-core</artifactId>
+                                        <version>1.0.0</version>
+                                        <excludeTypes>jar</excludeTypes>
+                                    </dependency>
+                                    <process>{{ assert files.size() == 0 }}</process>
+                                    <failIfNotFound>false</failIfNotFound>
                                 </resource>
                             </resources>
                         </configuration>
@@ -2235,13 +2248,12 @@
                                 ${outputDirectory}/pl-549/commons-logging-1.0.4.jar
                                 ${outputDirectory}/pl-549/jcl-over-slf4j-1.6.2.jar
                                 ${outputDirectory}/pl-549/junit-3.8.1.jar
-                                ${outputDirectory}/pl-549/servlet-api-2.3.jar
                                 ${outputDirectory}/pl-549/slf4j-api-1.6.2-tests.jar
                                 ${outputDirectory}/pl-549/slf4j-api-1.6.2.jar
                                 ${outputDirectory}/pl-549/slf4j-jdk14-1.6.2.jar
                             </assertFiles>
                             <assertGroovy>
-                                new File( outputDirectory, 'pl-549' ).directorySize() == 640718
+                                new File( outputDirectory, 'pl-549' ).directorySize() == 562741
                             </assertGroovy>
                         </configuration>
                     </execution>
@@ -2310,12 +2322,9 @@
 
                                 [ 6, 8, 16 ].every{ new File( outputDirectory, "pl-539/$it" ).listFiles().size() == 1 }
                                 [ 6, 8, 16 ].every{ new File( outputDirectory, "pl-539/$it" ).directorySize()    == 327911 }
-                                [ 10, 21   ].every{ new File( outputDirectory, "pl-539/$it" ).listFiles().size() == 10 }
-                                [ 10, 21   ].every{ new File( outputDirectory, "pl-539/$it" ).directorySize()    == 9992920 }
+                                [ 10 ].every{ new File( outputDirectory, "pl-539/$it" ).listFiles().size()       == 10 }
+                                [ 10 ].every{ new File( outputDirectory, "pl-539/$it" ).directorySize()          == 16211671 }
                             </assertGroovy>
-                            <assertEqual>
-                                ${outputDirectory}/pl-539/10|${outputDirectory}/pl-539/21
-                            </assertEqual>
                             <assertFiles>
                                 ${outputDirectory}/pl-539/6
                                 ${outputDirectory}/pl-539/6/*.jar
@@ -2352,6 +2361,9 @@
                                 ${outputDirectory}/pl-539/23
                                 ${outputDirectory}/pl-539/24
                             </shouldFailAssertFiles>
+                            <shouldFailAssertEqual>
+                                ${outputDirectory}/pl-539/10|${outputDirectory}/pl-539/21
+                            </shouldFailAssertEqual>
                         </configuration>
                     </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -2377,14 +2389,13 @@
                                 new File( outputDirectory, 'pl-509/2' ).listFiles().size() == 6
                                 new File( outputDirectory, 'pl-509/2' ).directorySize()    == 2431079
                                 new File( outputDirectory, 'pl-509/3' ).listFiles().size() == 3
-                                new File( outputDirectory, 'pl-509/3' ).directorySize()    == 1020546
+                                new File( outputDirectory, 'pl-509/3' ).directorySize()    == 250164
                                 new File( outputDirectory, 'pl-509/4' ).listFiles().size() == 29
                                 new File( outputDirectory, 'pl-509/4' ).directorySize().with{ ( delegate == 5623107 ) || ( delegate == 5623145 ) }
                                 new File( outputDirectory, 'pl-509/5' ).listFiles().size() == 11
                                 new File( outputDirectory, 'pl-509/5' ).directorySize()    == 10024502
-                                new File( outputDirectory, 'pl-509/6' ).listFiles().size() == 3
-                                new File( outputDirectory, 'pl-509/6' ).directorySize()    == 9408245
-                                new File( outputDirectory, 'pl-509/7' ).directorySize()    == 327911
+                                new File( outputDirectory, 'pl-509/6' ).listFiles().size() == 6
+                                new File( outputDirectory, 'pl-509/6' ).directorySize()    == 9827762
                             </assertGroovy>
                         </configuration>
                     </execution>
