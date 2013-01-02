@@ -485,10 +485,10 @@
                         <phase>test</phase>
                         <configuration>
                             <assertGroovy>
-                                new File( outputDirectory, 'unpack-2'  ).directorySize() == 19921721
-                                new File( outputDirectory, 'unpack-22' ).directorySize() == 19921721
-                                new File( outputDirectory, 'unpack-3'  ).directorySize() == 84699618
-                                new File( outputDirectory, 'unpack-32' ).directorySize() == 84699618
+                                new File( outputDirectory, 'unpack-2'  ).directorySize() == 19268382
+                                new File( outputDirectory, 'unpack-22' ).directorySize() == 19268382
+                                new File( outputDirectory, 'unpack-3'  ).directorySize() == 81462554
+                                new File( outputDirectory, 'unpack-32' ).directorySize() == 81462554
                             </assertGroovy>
                             <assertEqual>
                                 ${outputDirectory}/unpack-1|${outputDirectory}/unpack-12
