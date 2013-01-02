@@ -305,7 +305,7 @@
                                 new File( outputDirectory, 'about-standalone-1.txt' ).text.contains( ' [outputDirectory]' )
                                 new File( project.build.directory,       'about-standalone-2.txt' ).text.contains( ' [MavenProject: ${project.groupId}:${project.artifactId}:${project.version}' )
 
-                                new File( outputDirectory, '1/2/3/4/5/6/7.txt' ).text.contains( '+- com.github.goldin:jenkins-maven-plugin:jar:${plugins-version}:compile' )
+                                new File( outputDirectory, '1/2/3/4/5/6/7.txt' ).text.contains( '+- com.github.goldin:jenkins-maven-plugin:jar:' )
                                 new File( outputDirectory, '1/2/3/4/5/6/7.txt' ).text.contains( '|  +- org.apache.maven:maven-core:jar:${maven-version}:compile' )
                                 new File( outputDirectory, '1/2/3/4/5/6/7.txt' ).text.contains( 'Maven Properties' )
                                 new File( outputDirectory, '1/2/3/4/5/6/7.txt' ).text.contains( '[${groovy-version}]' )
@@ -321,7 +321,7 @@
                                 new File( outputDirectory, 'unpack/About/fff.txt' ).text.contains( '[M2_HOME]' )
                                 new File( outputDirectory, 'unpack/About/fff.txt' ).text.toLowerCase().contains( '[path]' )
 
-                                new File( outputDirectory, 'unpack/About/fff.txt' ).text.contains( '+- com.github.goldin:jenkins-maven-plugin:jar:${plugins-version}:compile' )
+                                new File( outputDirectory, 'unpack/About/fff.txt' ).text.contains( '+- com.github.goldin:jenkins-maven-plugin:jar:' )
                                 new File( outputDirectory, 'unpack/About/fff.txt' ).text.contains( '|  +- org.apache.maven:maven-core:jar:${maven-version}:compile' )
                             </assertGroovy>
                         </configuration>
