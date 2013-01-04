@@ -33,6 +33,7 @@
         <pluginsRepoCleanup>rm -rf ${localM2Repo}/com/github/goldin</pluginsRepoCleanup>
         <endOfLine>\r\n</endOfLine>
         <generationPomUrlPrefix>https://github.com/evgeny-goldin/maven-plugins-test/blob/master/jenkins-maven-plugin/</generationPomUrlPrefix>
+        <testsPluginsVersion>0.3-beta-1</testsPluginsVersion>
     </properties>
 
 
