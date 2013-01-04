@@ -783,6 +783,97 @@ Caused by: java.lang.IllegalArgumentException: Illegal character in path at inde
                             </resources>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-677-2</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <eliminateDuplicates>false</eliminateDuplicates>
+                            <resource>
+                                <targetPath>${outputDirectory}/pl-677/5</targetPath>
+                                <dependencies>
+                                    <dependency>
+                                        <groupId>com.jcraft</groupId>
+                                        <artifactId>jsch</artifactId>
+                                        <version>0.1.49</version>
+                                    </dependency>
+                                    <dependency>
+                                        <groupId>com.jcraft</groupId>
+                                        <artifactId>jsch</artifactId>
+                                        <version>0.1.48</version>
+                                    </dependency>
+                                    <dependency>
+                                        <groupId>com.jcraft</groupId>
+                                        <artifactId>jsch</artifactId>
+                                        <version>0.1.47</version>
+                                    </dependency>
+                                    <dependency>
+                                        <groupId>com.jcraft</groupId>
+                                        <artifactId>jzlib</artifactId>
+                                        <version>1.1.1</version>
+                                    </dependency>
+                                    <dependency>
+                                        <groupId>com.jcraft</groupId>
+                                        <artifactId>jzlib</artifactId>
+                                        <version>1.1.0</version>
+                                    </dependency>
+                                    <dependency>
+                                        <groupId>com.jcraft</groupId>
+                                        <artifactId>jzlib</artifactId>
+                                        <version>1.0.7</version>
+                                    </dependency>
+                                </dependencies>
+                            </resource>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-677-3</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <eliminateDuplicates>false</eliminateDuplicates>
+                            <stripVersion>true</stripVersion>
+                            <resource>
+                                <targetPath>${outputDirectory}/pl-677/6</targetPath>
+                                <dependencies>
+                                    <dependency>
+                                        <groupId>com.jcraft</groupId>
+                                        <artifactId>jsch</artifactId>
+                                        <version>0.1.49</version>
+                                    </dependency>
+                                    <dependency>
+                                        <groupId>com.jcraft</groupId>
+                                        <artifactId>jsch</artifactId>
+                                        <version>0.1.48</version>
+                                    </dependency>
+                                    <dependency>
+                                        <groupId>com.jcraft</groupId>
+                                        <artifactId>jsch</artifactId>
+                                        <version>0.1.47</version>
+                                    </dependency>
+                                    <dependency>
+                                        <groupId>com.jcraft</groupId>
+                                        <artifactId>jzlib</artifactId>
+                                        <version>1.1.1</version>
+                                    </dependency>
+                                    <dependency>
+                                        <groupId>com.jcraft</groupId>
+                                        <artifactId>jzlib</artifactId>
+                                        <version>1.1.0</version>
+                                    </dependency>
+                                    <dependency>
+                                        <groupId>com.jcraft</groupId>
+                                        <artifactId>jzlib</artifactId>
+                                        <version>1.0.7</version>
+                                    </dependency>
+                                </dependencies>
+                            </resource>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-667                                      -->
                     <!-- "Apply dependencies filtering while traversing the transitive dependencies tree"    -->
@@ -929,24 +1020,40 @@ Caused by: java.lang.IllegalArgumentException: Illegal character in path at inde
                                 ${outputDirectory}/pl-677/2/jzlib-1.1.0.jar
                                 ${outputDirectory}/pl-677/2/jzlib-1.0.7.jar
 
+                                ${outputDirectory}/pl-677/5/jsch-0.1.49.jar
+                                ${outputDirectory}/pl-677/5/jsch-0.1.48.jar
+                                ${outputDirectory}/pl-677/5/jsch-0.1.47.jar
+
+                                ${outputDirectory}/pl-677/5/jzlib-1.1.1.jar
+                                ${outputDirectory}/pl-677/5/jzlib-1.1.0.jar
+                                ${outputDirectory}/pl-677/5/jzlib-1.0.7.jar
+
                                 ${outputDirectory}/pl-677/3/jsch.jar
                                 ${outputDirectory}/pl-677/3/jzlib.jar
 
                                 ${outputDirectory}/pl-677/4/jsch.jar
                                 ${outputDirectory}/pl-677/4/jzlib.jar
+
+                                ${outputDirectory}/pl-677/6/jsch.jar
+                                ${outputDirectory}/pl-677/6/jzlib.jar
                             </assertFiles>
                             <assertEqual>
                                 ${outputDirectory}/pl-664/0-1|${outputDirectory}/pl-664/0-2
                                 ${outputDirectory}/pl-664/1-1|${outputDirectory}/pl-664/1-2
                                 ${outputDirectory}/pl-664/2-1|${outputDirectory}/pl-664/2-2
                                 ${outputDirectory}/pl-664/3-1|${outputDirectory}/pl-664/3-2
+
+                                ${outputDirectory}/pl-677/2|${outputDirectory}/pl-677/5
+                                ${outputDirectory}/pl-677/4|${outputDirectory}/pl-677/6
                             </assertEqual>
                             <shouldFailAssertEqual>
                                 ${outputDirectory}/pl-677/1|${outputDirectory}/pl-677/2
                                 ${outputDirectory}/pl-677/2|${outputDirectory}/pl-677/3
                                 <!-- Identically named files, different versions -->
                                 ${outputDirectory}/pl-677/3|${outputDirectory}/pl-677/4
+                                ${outputDirectory}/pl-677/3|${outputDirectory}/pl-677/6
                                 ${outputDirectory}/pl-677/4|${outputDirectory}/pl-677/1
+                                ${outputDirectory}/pl-677/6|${outputDirectory}/pl-677/1
                             </shouldFailAssertEqual>
                             <assertGroovy>
                                 new File( outputDirectory, 'pl-664/0-1' ).list().size() == 2
@@ -963,6 +1070,8 @@ Caused by: java.lang.IllegalArgumentException: Illegal character in path at inde
                                 new File( outputDirectory, 'pl-677/2' ).list().size() == 6
                                 new File( outputDirectory, 'pl-677/3' ).list().size() == 2
                                 new File( outputDirectory, 'pl-677/4' ).list().size() == 2
+                                new File( outputDirectory, 'pl-677/5' ).list().size() == 6
+                                new File( outputDirectory, 'pl-677/6' ).list().size() == 2
                             </assertGroovy>
                         </configuration>
                     </execution>
