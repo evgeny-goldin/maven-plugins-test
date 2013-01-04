@@ -916,6 +916,102 @@ Caused by: java.lang.IllegalArgumentException: Illegal character in path at inde
                             </resource>
                         </configuration>
                     </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-679                     -->
+                    <!-- Treat transitive dependencies includeScope/excludeScope explicitly -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-679</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <parallelDownload>true</parallelDownload>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-679/1</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>${spring-version}</version>
+                                        <includeScope>compile</includeScope>
+                                        <excludeGroupIds>com.sun.jmx,com.sun.jdmk</excludeGroupIds>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-679/2</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>${spring-version}</version>
+                                        <includeScope>compile,test</includeScope>
+                                        <excludeGroupIds>com.sun.jmx,com.sun.jdmk</excludeGroupIds>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-679/3</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>${spring-version}</version>
+                                        <includeScope>compile,test,provided</includeScope>
+                                        <excludeGroupIds>com.sun.jmx,com.sun.jdmk</excludeGroupIds>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-679/4</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>${spring-version}</version>
+                                        <includeScope>test</includeScope>
+                                        <excludeGroupIds>com.sun.jmx,com.sun.jdmk</excludeGroupIds>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-679/5</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>${spring-version}</version>
+                                        <includeScope>provided</includeScope>
+                                        <excludeGroupIds>com.sun.jmx,com.sun.jdmk</excludeGroupIds>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-679/6</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>${spring-version}</version>
+                                        <excludeScope>compile</excludeScope>
+                                        <excludeGroupIds>com.sun.jmx,com.sun.jdmk</excludeGroupIds>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-679/7</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>${spring-version}</version>
+                                        <excludeScope>test</excludeScope>
+                                        <excludeGroupIds>com.sun.jmx,com.sun.jdmk</excludeGroupIds>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-679/8</targetPath>
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>spring-context</artifactId>
+                                        <version>${spring-version}</version>
+                                        <excludeScope>compile,test</excludeScope>
+                                        <excludeGroupIds>com.sun.jmx,com.sun.jdmk</excludeGroupIds>
+                                    </dependency>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-667                                      -->
                     <!-- "Apply dependencies filtering while traversing the transitive dependencies tree"    -->
@@ -1043,6 +1139,7 @@ Caused by: java.lang.IllegalArgumentException: Illegal character in path at inde
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-664 -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-677 -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-678 -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-679 -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <execution>
                         <id>http://evgeny-goldin.org/youtrack/issue/pl-664</id>
@@ -1089,6 +1186,8 @@ Caused by: java.lang.IllegalArgumentException: Illegal character in path at inde
                                 ${outputDirectory}/pl-677/2|${outputDirectory}/pl-677/5
                                 ${outputDirectory}/pl-677/4|${outputDirectory}/pl-677/6
                                 ${outputDirectory}/pl-678/1|${outputDirectory}/pl-678/2
+
+                                ${outputDirectory}/pl-679/5|${outputDirectory}/pl-679/8
                             </assertEqual>
                             <shouldFailAssertEqual>
                                 ${outputDirectory}/pl-677/1|${outputDirectory}/pl-677/2
@@ -1121,6 +1220,15 @@ Caused by: java.lang.IllegalArgumentException: Illegal character in path at inde
                                 new File( outputDirectory, 'pl-678/2' ).list().size()   == 9
                                 new File( outputDirectory, 'pl-678/1' ).directorySize() == 4586198
                                 new File( outputDirectory, 'pl-678/2' ).directorySize() == 4586198
+
+                                new File( outputDirectory, 'pl-679/1' ).list().size() == ${springCompileDependencies}
+                                new File( outputDirectory, 'pl-679/2' ).list().size() == ${springCompileTestDependencies}
+                                new File( outputDirectory, 'pl-679/3' ).list().size() == ${springCompileTestProvidedDependencies}
+                                new File( outputDirectory, 'pl-679/4' ).list().size() == ${springTestDependencies}
+                                new File( outputDirectory, 'pl-679/5' ).list().size() == ${springProvidedDependencies}
+                                new File( outputDirectory, 'pl-679/6' ).list().size() == 15
+                                new File( outputDirectory, 'pl-679/7' ).list().size() == 11
+                                new File( outputDirectory, 'pl-679/8' ).list().size() == ${springProvidedDependencies}
                             </assertGroovy>
                         </configuration>
                     </execution>

@@ -44,9 +44,11 @@
         <!-- Number of transitive String dependencies -->
         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
+        <springCompileTestProvidedDependencies>32</springCompileTestProvidedDependencies>
         <springCompileTestDependencies>29</springCompileTestDependencies>
         <springCompileDependencies>8</springCompileDependencies>
         <springTestDependencies>13</springTestDependencies>
+        <springProvidedDependencies>1</springProvidedDependencies>
 
         <!-- ~~~~~~~~~~~~~~~~~ -->
         <!-- OS-specific tests -->
