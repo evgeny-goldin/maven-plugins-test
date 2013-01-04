@@ -874,6 +874,48 @@ Caused by: java.lang.IllegalArgumentException: Illegal character in path at inde
                             </resource>
                         </configuration>
                     </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-678 -->
+                    <!-- Allow to download dependencies in parallel     -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-678</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resource>
+                                <targetPath>${outputDirectory}/pl-678/1</targetPath>
+                                <parallelDownload>true</parallelDownload>
+                                <dependency>
+                                    <groupId>jboss</groupId>
+                                    <artifactId>jboss-cache</artifactId>
+                                    <version>1.2.2</version>
+                                    <includeScope>compile,test</includeScope>
+                                </dependency>
+                            </resource>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-678-2</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <parallelDownload>true</parallelDownload>
+                            <resource>
+                                <targetPath>${outputDirectory}/pl-678/2</targetPath>
+                                <dependency>
+                                    <groupId>jboss</groupId>
+                                    <artifactId>jboss-cache</artifactId>
+                                    <version>1.2.2</version>
+                                    <includeScope>compile,test</includeScope>
+                                </dependency>
+                            </resource>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-667                                      -->
                     <!-- "Apply dependencies filtering while traversing the transitive dependencies tree"    -->
@@ -1000,6 +1042,7 @@ Caused by: java.lang.IllegalArgumentException: Illegal character in path at inde
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-664 -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-677 -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-678 -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <execution>
                         <id>http://evgeny-goldin.org/youtrack/issue/pl-664</id>
@@ -1045,6 +1088,7 @@ Caused by: java.lang.IllegalArgumentException: Illegal character in path at inde
 
                                 ${outputDirectory}/pl-677/2|${outputDirectory}/pl-677/5
                                 ${outputDirectory}/pl-677/4|${outputDirectory}/pl-677/6
+                                ${outputDirectory}/pl-678/1|${outputDirectory}/pl-678/2
                             </assertEqual>
                             <shouldFailAssertEqual>
                                 ${outputDirectory}/pl-677/1|${outputDirectory}/pl-677/2
@@ -1072,6 +1116,11 @@ Caused by: java.lang.IllegalArgumentException: Illegal character in path at inde
                                 new File( outputDirectory, 'pl-677/4' ).list().size() == 2
                                 new File( outputDirectory, 'pl-677/5' ).list().size() == 6
                                 new File( outputDirectory, 'pl-677/6' ).list().size() == 2
+
+                                new File( outputDirectory, 'pl-678/1' ).list().size()   == 9
+                                new File( outputDirectory, 'pl-678/2' ).list().size()   == 9
+                                new File( outputDirectory, 'pl-678/1' ).directorySize() == 4586198
+                                new File( outputDirectory, 'pl-678/2' ).directorySize() == 4586198
                             </assertGroovy>
                         </configuration>
                     </execution>
