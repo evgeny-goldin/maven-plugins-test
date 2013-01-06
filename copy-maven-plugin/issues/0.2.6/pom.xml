@@ -936,7 +936,6 @@ Caused by: java.lang.IllegalArgumentException: Illegal character in path at inde
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
                                         <includeScope>compile</includeScope>
-                                        <excludeGroupIds>com.sun.jmx,com.sun.jdmk</excludeGroupIds>
                                     </dependency>
                                 </resource>
                                 <resource>
@@ -966,7 +965,6 @@ Caused by: java.lang.IllegalArgumentException: Illegal character in path at inde
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
                                         <includeScope>test</includeScope>
-                                        <excludeGroupIds>com.sun.jmx,com.sun.jdmk</excludeGroupIds>
                                     </dependency>
                                 </resource>
                                 <resource>
@@ -976,7 +974,6 @@ Caused by: java.lang.IllegalArgumentException: Illegal character in path at inde
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
                                         <includeScope>provided</includeScope>
-                                        <excludeGroupIds>com.sun.jmx,com.sun.jdmk</excludeGroupIds>
                                     </dependency>
                                 </resource>
                                 <resource>
@@ -986,7 +983,6 @@ Caused by: java.lang.IllegalArgumentException: Illegal character in path at inde
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
                                         <excludeScope>compile</excludeScope>
-                                        <excludeGroupIds>com.sun.jmx,com.sun.jdmk</excludeGroupIds>
                                     </dependency>
                                 </resource>
                                 <resource>
@@ -996,7 +992,6 @@ Caused by: java.lang.IllegalArgumentException: Illegal character in path at inde
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
                                         <excludeScope>test</excludeScope>
-                                        <excludeGroupIds>com.sun.jmx,com.sun.jdmk</excludeGroupIds>
                                     </dependency>
                                 </resource>
                                 <resource>
@@ -1006,7 +1001,6 @@ Caused by: java.lang.IllegalArgumentException: Illegal character in path at inde
                                         <artifactId>spring-context</artifactId>
                                         <version>${spring-version}</version>
                                         <excludeScope>compile,test</excludeScope>
-                                        <excludeGroupIds>com.sun.jmx,com.sun.jdmk</excludeGroupIds>
                                     </dependency>
                                 </resource>
                             </resources>

@@ -58,17 +58,10 @@
                         <phase>test</phase>
                         <configuration>
                             <assertEqual>
-                                ${outputDirectory}/1|${outputDirectory}/2
                             </assertEqual>
                             <assertFiles>
-                                ${outputDirectory}/1/*.xml
-                                ${outputDirectory}/2/*.xml
-                                ${outputDirectory}/1/pom.xml
-                                ${outputDirectory}/2/pom.xml
                             </assertFiles>
                             <assertGroovy>
-                                new File( outputDirectory, '1' ).list().size() == 1
-                                new File( outputDirectory, '2' ).list().size() == 1
                             </assertGroovy>
                         </configuration>
                     </execution>
