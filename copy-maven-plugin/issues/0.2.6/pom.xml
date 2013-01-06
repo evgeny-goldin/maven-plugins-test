@@ -1010,6 +1010,29 @@ Caused by: java.lang.IllegalArgumentException: Illegal character in path at inde
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-667                                      -->
                     <!-- "Apply dependencies filtering while traversing the transitive dependencies tree"    -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-667</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resource>
+                                <targetPath>${outputDirectory}/pl-667</targetPath>
+                                <parallelDownload>true</parallelDownload>
+                                <dependency>
+                                    <groupId>org.jvnet.hudson.main</groupId>
+                                    <artifactId>hudson-war</artifactId>
+                                    <version>1.394</version>
+                                    <type>war</type>
+                                    <includeScope>compile,test</includeScope>
+                                    <excludeGroupIds>com.bea.xml,ehcache</excludeGroupIds>
+                                    <excludeArtifactIds>stapler,stax-ri</excludeArtifactIds>
+                                    <applyWhileTraversing>true</applyWhileTraversing>
+                                </dependency>
+                            </resource>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 
@@ -1134,6 +1157,7 @@ Caused by: java.lang.IllegalArgumentException: Illegal character in path at inde
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-677 -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-678 -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-679 -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-667 -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <execution>
                         <id>http://evgeny-goldin.org/youtrack/issue/pl-664</id>
@@ -1223,6 +1247,8 @@ Caused by: java.lang.IllegalArgumentException: Illegal character in path at inde
                                 new File( outputDirectory, 'pl-679/6' ).list().size() == 15
                                 new File( outputDirectory, 'pl-679/7' ).list().size() == 11
                                 new File( outputDirectory, 'pl-679/8' ).list().size() == ${springProvidedDependencies}
+
+                                new File( outputDirectory, 'pl-667' ).list().size() == 182
                             </assertGroovy>
                         </configuration>
                     </execution>
