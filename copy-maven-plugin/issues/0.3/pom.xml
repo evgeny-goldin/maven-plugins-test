@@ -7,7 +7,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.goldin.maven-plugins-test</groupId>
-    <artifactId>copy-maven-plugin.issues.0.2.6</artifactId>
+    <artifactId>copy-maven-plugin.issues.0.3</artifactId>
     <packaging>jar</packaging>
     <version>0.1-SNAPSHOT</version>
     <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
@@ -1033,6 +1033,106 @@ Caused by: java.lang.IllegalArgumentException: Illegal character in path at inde
                             </resource>
                         </configuration>
                     </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-640 -->
+                    <!-- Allow to specify custom archive formats        -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-640-ant</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <customArchiveFormats>
+                                zip    = z1, z2
+                                tar    = t
+                                tar.gz = tz
+                            </customArchiveFormats>
+                            <useTrueZipForPack>false</useTrueZipForPack>
+                            <useTrueZipForUnpack>false</useTrueZipForUnpack>
+                            <resources>
+                                <resource>
+                                    <targetPaths>
+                                        <targetPath>${outputDirectory}/pl-640/ant/1.z1</targetPath>
+                                        <targetPath>${outputDirectory}/pl-640/ant/1.z2</targetPath>
+                                        <targetPath>${outputDirectory}/pl-640/ant/1.t</targetPath>
+                                        <targetPath>${outputDirectory}/pl-640/ant/1.tz</targetPath>
+                                    </targetPaths>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <pack>true</pack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-640/ant/z1</targetPath>
+                                    <file>${outputDirectory}/pl-640/ant/1.z1</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-640/ant/z2</targetPath>
+                                    <file>${outputDirectory}/pl-640/ant/1.z2</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-640/ant/t</targetPath>
+                                    <file>${outputDirectory}/pl-640/ant/1.t</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-640/ant/tz</targetPath>
+                                    <file>${outputDirectory}/pl-640/ant/1.tz</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-640-truezip</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <customArchiveFormats>
+                                zip    = z1, z2
+                                tar    = t
+                                tar.gz = tz
+                            </customArchiveFormats>
+                            <useTrueZipForPack>true</useTrueZipForPack>
+                            <useTrueZipForUnpack>true</useTrueZipForUnpack>
+                            <resources>
+                                <resource>
+                                    <targetPaths>
+                                        <targetPath>${outputDirectory}/pl-640/truezip/1.z1</targetPath>
+                                        <targetPath>${outputDirectory}/pl-640/truezip/1.z2</targetPath>
+                                        <targetPath>${outputDirectory}/pl-640/truezip/1.t</targetPath>
+                                        <targetPath>${outputDirectory}/pl-640/truezip/1.tz</targetPath>
+                                    </targetPaths>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <pack>true</pack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-640/truezip/z1</targetPath>
+                                    <file>${outputDirectory}/pl-640/truezip/1.z1</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-640/truezip/z2</targetPath>
+                                    <file>${outputDirectory}/pl-640/truezip/1.z2</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-640/truezip/t</targetPath>
+                                    <file>${outputDirectory}/pl-640/truezip/1.t</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-640/truezip/tz</targetPath>
+                                    <file>${outputDirectory}/pl-640/truezip/1.tz</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 
@@ -1158,6 +1258,7 @@ Caused by: java.lang.IllegalArgumentException: Illegal character in path at inde
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-678 -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-679 -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-667 -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-640 -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <execution>
                         <id>http://evgeny-goldin.org/youtrack/issue/pl-664</id>
@@ -1206,6 +1307,15 @@ Caused by: java.lang.IllegalArgumentException: Illegal character in path at inde
                                 ${outputDirectory}/pl-678/1|${outputDirectory}/pl-678/2
 
                                 ${outputDirectory}/pl-679/5|${outputDirectory}/pl-679/8
+
+                                ${outputDirectory}/pl-640/ant/z1|${outputDirectory}/pl-640/ant/z2
+                                ${outputDirectory}/pl-640/ant/z2|${outputDirectory}/pl-640/ant/t
+                                ${outputDirectory}/pl-640/ant/t|${outputDirectory}/pl-640/ant/tz
+                                ${outputDirectory}/pl-640/ant/tz|${outputDirectory}/pl-640/truezip/z1
+                                ${outputDirectory}/pl-640/truezip/z1|${outputDirectory}/pl-640/truezip/z2
+                                ${outputDirectory}/pl-640/truezip/z2|${outputDirectory}/pl-640/truezip/t
+                                ${outputDirectory}/pl-640/truezip/t|${outputDirectory}/pl-640/truezip/tz
+                                ${outputDirectory}/pl-640/truezip/tz|${outputDirectory}/pl-640/ant/z1
                             </assertEqual>
                             <shouldFailAssertEqual>
                                 ${outputDirectory}/pl-677/1|${outputDirectory}/pl-677/2
@@ -1249,6 +1359,15 @@ Caused by: java.lang.IllegalArgumentException: Illegal character in path at inde
                                 new File( outputDirectory, 'pl-679/8' ).list().size() == ${springProvidedDependencies}
 
                                 new File( outputDirectory, 'pl-667' ).list().size() == 182
+
+                                new File( outputDirectory, 'pl-640/ant/z1'     ).list().size() == 1
+                                new File( outputDirectory, 'pl-640/ant/z2'     ).list().size() == 1
+                                new File( outputDirectory, 'pl-640/ant/t'      ).list().size() == 1
+                                new File( outputDirectory, 'pl-640/ant/tz'     ).list().size() == 1
+                                new File( outputDirectory, 'pl-640/truezip/z1' ).list().size() == 1
+                                new File( outputDirectory, 'pl-640/truezip/z2' ).list().size() == 1
+                                new File( outputDirectory, 'pl-640/truezip/t'  ).list().size() == 1
+                                new File( outputDirectory, 'pl-640/truezip/tz' ).list().size() == 1
                             </assertGroovy>
                         </configuration>
                     </execution>
