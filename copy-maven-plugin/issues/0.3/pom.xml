@@ -1148,9 +1148,9 @@ Caused by: java.lang.IllegalArgumentException: Illegal character in path at inde
                                 <resource>
                                     <targetPath>${outputDirectory}/pl-663/1</targetPath>
                                     <dependency>
-                                        <groupId>com.github.goldin</groupId>
+                                        <groupId>com.test</groupId>
                                         <artifactId>about-maven-plugin</artifactId>
-                                        <version>0.3-20130114.213852-1</version>
+                                        <version>0.3-20130115.002009-1</version>
                                         <stripTimestamp>true</stripTimestamp>
                                     </dependency>
                                 </resource>
@@ -1158,18 +1158,18 @@ Caused by: java.lang.IllegalArgumentException: Illegal character in path at inde
                                     <targetPath>${outputDirectory}/pl-663/2</targetPath>
                                     <stripTimestamp>true</stripTimestamp>
                                     <dependency>
-                                        <groupId>com.github.goldin</groupId>
+                                        <groupId>com.test</groupId>
                                         <artifactId>about-maven-plugin</artifactId>
-                                        <version>0.3-20130114.213852-1</version>
+                                        <version>0.3-20130115.002009-1</version>
                                     </dependency>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDirectory}/pl-663/3</targetPath>
                                     <dependenciesAtM2>false</dependenciesAtM2>
                                     <dependency>
-                                        <groupId>com.github.goldin</groupId>
+                                        <groupId>com.test</groupId>
                                         <artifactId>about-maven-plugin</artifactId>
-                                        <version>0.3-20130114.213852-1</version>
+                                        <version>0.3-20130115.002009-1</version>
                                         <stripTimestamp>true</stripTimestamp>
                                     </dependency>
                                 </resource>
@@ -1178,9 +1178,9 @@ Caused by: java.lang.IllegalArgumentException: Illegal character in path at inde
                                     <dependenciesAtM2>false</dependenciesAtM2>
                                     <stripTimestamp>true</stripTimestamp>
                                     <dependency>
-                                        <groupId>com.github.goldin</groupId>
+                                        <groupId>com.test</groupId>
                                         <artifactId>about-maven-plugin</artifactId>
-                                        <version>0.3-20130114.213852-1</version>
+                                        <version>0.3-20130115.002009-1</version>
                                     </dependency>
                                 </resource>
                             </resources>
@@ -1198,18 +1198,18 @@ Caused by: java.lang.IllegalArgumentException: Illegal character in path at inde
                                 <resource>
                                     <targetPath>${outputDirectory}/pl-663/5</targetPath>
                                     <dependency>
-                                        <groupId>com.github.goldin</groupId>
+                                        <groupId>com.test</groupId>
                                         <artifactId>about-maven-plugin</artifactId>
-                                        <version>0.3-20130114.213852-1</version>
+                                        <version>0.3-20130115.002009-1</version>
                                     </dependency>
                                 </resource>
                                 <resource>
                                     <targetPath>${outputDirectory}/pl-663/6</targetPath>
                                     <dependenciesAtM2>false</dependenciesAtM2>
                                     <dependency>
-                                        <groupId>com.github.goldin</groupId>
+                                        <groupId>com.test</groupId>
                                         <artifactId>about-maven-plugin</artifactId>
-                                        <version>0.3-20130114.213852-1</version>
+                                        <version>0.3-20130115.002009-1</version>
                                     </dependency>
                                 </resource>
                             </resources>

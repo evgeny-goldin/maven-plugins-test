@@ -6,4 +6,4 @@
 
 * Only Maven 3 is supported!
 
-* Run `mvn clean install` to run the tests.
+* Use `"settings.xml"` and run `"mvn clean install"` to run the tests.
