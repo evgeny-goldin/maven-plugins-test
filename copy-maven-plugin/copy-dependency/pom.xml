@@ -275,7 +275,9 @@
                                 ${outputDirectory}/images-1/image-3-abc.zip
                                 ${outputDirectory}/images-1/image-4-def.tar.gz
                                 ${outputDirectory}/images-2/1.png
+                                ${outputDirectory}/images-2/2.png
                                 ${outputDirectory}/images-3/1.png
+                                ${outputDirectory}/images-3/2.png
 
                                 ${outputDirectory}/test-deps-transitive-1/hibernate-cglib-repack-2.1_3.jar
                                 ${outputDirectory}/test-deps-transitive-1/hsqldb-1.8.0.7.jar
@@ -319,8 +321,8 @@
                                 new File( outputDirectory, 'compile-deps-classifiers-2'                ).list().size() == 2
                                 new File( outputDirectory, 'compile-deps-classifiers-3'                ).list().size() == 2
                                 new File( outputDirectory, 'images-1'                                  ).list().size() == 4
-                                new File( outputDirectory, 'images-2'                                  ).list().size() == 1
-                                new File( outputDirectory, 'images-3'                                  ).list().size() == 1
+                                new File( outputDirectory, 'images-2'                                  ).list().size() == 2
+                                new File( outputDirectory, 'images-3'                                  ).list().size() == 2
 
                                 new File( outputDirectory, 'test-deps-transitive-1'                    ).list().size() == 5
                                 new File( outputDirectory, 'test-deps-transitive-2'                    ).list().size() == 5
