@@ -7,3 +7,5 @@
 * Only Maven 3 is supported!
 
 * Run `"mvn clean install -s settings.xml"` to execute the tests.
+
+* Run `"mvn clean install -s settings.xml -Dsilent"` to execute the tests with Maven logging minimized.
