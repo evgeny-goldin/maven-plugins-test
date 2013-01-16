@@ -8,4 +8,4 @@
 
 * Run `"mvn clean install -s settings.xml"` to execute the tests.
 
-* Run `"mvn clean install -s settings.xml -Dsilent"` to execute the tests with Maven logging minimized.
+* Run `"mvn clean install -s settings.xml -Dsilence"` to execute the tests with Maven logging minimized.
