@@ -4,7 +4,7 @@
 
 * [Issue tracker](http://evgeny-goldin.org/youtrack/issues/pl).
 
-* Only Maven 3 is supported!
+* <u>**Maven 3 only is supported!**</u>
 
 * Run `"mvn clean install -s settings.xml"` to execute the tests.
 
