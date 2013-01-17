@@ -175,25 +175,29 @@
                             <dir>${outputDirectory}/dependencies-mix</dir>
                             <dependencies>
                                 <dependency>
+                                    <!-- http://teamcity.jetbrains.com/viewLog.html?buildId=lastSuccessful&buildTypeId=bt343&tab=artifacts&guest=1 -->
                                     <groupId>ivy.org</groupId>
                                     <artifactId>bt343</artifactId>
                                     <version>latest.lastSuccessful</version>
                                     <classifier>core/annotations</classifier>
                                 </dependency>
                                 <dependency>
+                                    <!-- http://teamcity.jetbrains.com/viewLog.html?buildId=lastSuccessful&buildTypeId=bt343&tab=artifacts&guest=1 -->
                                     <groupId>ivy.org</groupId>
                                     <artifactId>bt343</artifactId>
                                     <version>latest.lastSuccessful</version>
                                     <classifier>core/asm</classifier>
                                 </dependency>
                                 <dependency>
+                                    <!-- http://teamcity.jetbrains.com/viewLog.html?buildId=lastSuccessful&buildTypeId=bt345&tab=artifacts&guest=1 -->
                                     <groupId>ivy.org</groupId>
                                     <artifactId>bt345</artifactId>
                                     <version>latest.lastSuccessful</version>
-                                    <classifier>kotlin-(\d+\.){2}\d+</classifier>
+                                    <classifier>kotlin-compiler-(\d+\.){2}\d+</classifier>
                                     <type>zip</type>
                                 </dependency>
                                 <dependency>
+                                    <!-- http://teamcity.jetbrains.com/viewLog.html?buildId=lastSuccessful&buildTypeId=bt354&tab=artifacts&guest=1 -->
                                     <groupId>ivy.org</groupId>
                                     <artifactId>bt354</artifactId>
                                     <version>latest.lastSuccessful</version>

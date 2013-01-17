@@ -26,6 +26,7 @@
         <module>copy-dependency</module>
         <module>copy-mojo</module>
         <module>resource-replace</module>
+        <module>third-party-dependencies</module>
         <module>pack-unpack</module>
         <module>net-scenario</module>
     </modules>

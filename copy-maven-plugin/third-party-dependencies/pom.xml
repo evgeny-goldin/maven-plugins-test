@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns              = "http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi          = "http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0
+                               http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.github.goldin.maven-plugins-test</groupId>
+    <artifactId>copy-maven-plugin.third-party-dependencies</artifactId>
+    <packaging>jar</packaging>
+    <version>0.1-SNAPSHOT</version>
+    <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
+
+    <parent>
+        <groupId>com.github.goldin.maven-plugins-test</groupId>
+        <artifactId>copy-maven-plugin</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.github.goldin</groupId>
+                <artifactId>copy-maven-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <execution>
+                        <id>copy-third-party-dependencies</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <verbose>false</verbose>
+                            <skipIdentical>true</skipIdentical>
+                            <resources>
+                                <resource>
+                                    <description>1</description>
+                                    <targetPath>${outputDirectory}/1</targetPath>
+                                    <dependency>
+                                        <includeScope>compile</includeScope>
+                                    </dependency>
+                                </resource>
+                                <resource>
+                                    <description>2</description>
+                                    <targetPath>${outputDirectory}/2</targetPath>
+                                    <dependencies>
+
+                                        <dependency>
+                                            <groupId>commons-codec</groupId>
+                                            <artifactId>commons-codec</artifactId>
+                                            <version>1.6</version>
+                                            <includeScope>compile</includeScope>
+                                        </dependency>
+
+                                        <dependency>
+                                            <groupId>javax.ws.rs</groupId>
+                                            <artifactId>jsr311-api</artifactId>
+                                            <version>1.1.1</version>
+                                            <includeScope>compile</includeScope>
+                                        </dependency>
+
+                                        <dependency>
+                                            <groupId>org.bouncycastle</groupId>
+                                            <artifactId>bcprov-jdk16</artifactId>
+                                            <version>1.46</version>
+                                            <includeScope>compile</includeScope>
+                                        </dependency>
+
+                                        <dependency>
+                                            <groupId>org.jclouds.api</groupId>
+                                            <artifactId>cloudstack</artifactId>
+                                            <version>1.5.5</version>
+                                            <includeScope>compile</includeScope>
+                                        </dependency>
+
+                                        <dependency>
+                                            <groupId>org.jclouds.api</groupId>
+                                            <artifactId>openstack-nova</artifactId>
+                                            <version>1.5.5</version>
+                                            <includeScope>compile</includeScope>
+                                        </dependency>
+
+                                        <dependency>
+                                            <groupId>org.jclouds.labs</groupId>
+                                            <artifactId>openstack-glance</artifactId>
+                                            <version>1.5.5</version>
+                                            <includeScope>compile</includeScope>
+                                        </dependency>
+
+                                        <dependency>
+                                            <groupId>org.jclouds.labs</groupId>
+                                            <artifactId>openstack-quantum</artifactId>
+                                            <version>1.5.5</version>
+                                            <includeScope>compile</includeScope>
+                                        </dependency>
+
+                                        <dependency>
+                                            <groupId>org.jclouds.api</groupId>
+                                            <artifactId>swift</artifactId>
+                                            <version>1.5.5</version>
+                                            <includeScope>compile</includeScope>
+                                        </dependency>
+
+                                        <dependency>
+                                            <groupId>org.jclouds</groupId>
+                                            <artifactId>jclouds-core</artifactId>
+                                            <version>1.5.5</version>
+                                            <includeScope>compile</includeScope>
+                                        </dependency>
+
+                                        <dependency>
+                                            <groupId>org.jclouds.driver</groupId>
+                                            <artifactId>jclouds-sshj</artifactId>
+                                            <version>1.5.5</version>
+                                            <includeScope>compile</includeScope>
+                                        </dependency>
+
+                                        <dependency>
+                                            <groupId>org.jclouds</groupId>
+                                            <artifactId>jclouds-compute</artifactId>
+                                            <version>1.5.5</version>
+                                            <includeScope>compile</includeScope>
+                                        </dependency>
+
+                                        <dependency>
+                                            <groupId>com.google.guava</groupId>
+                                            <artifactId>guava</artifactId>
+                                            <version>12.0</version>
+                                            <includeScope>compile</includeScope>
+                                        </dependency>
+
+                                        <dependency>
+                                            <groupId>commons-collections</groupId>
+                                            <artifactId>commons-collections</artifactId>
+                                            <version>3.2</version>
+                                            <includeScope>compile</includeScope>
+                                        </dependency>
+
+                                        <dependency>
+                                            <groupId>com.sun.jersey</groupId>
+                                            <artifactId>jersey-client</artifactId>
+                                            <version>1.17</version>
+                                            <includeScope>compile</includeScope>
+                                        </dependency>
+
+                                        <dependency>
+                                            <groupId>com.sun.jersey</groupId>
+                                            <artifactId>jersey-core</artifactId>
+                                            <version>1.17</version>
+                                            <includeScope>compile</includeScope>
+                                        </dependency>
+
+                                        <dependency>
+                                            <groupId>com.sun.jersey</groupId>
+                                            <artifactId>jersey-json</artifactId>
+                                            <version>1.17</version>
+                                            <includeScope>compile</includeScope>
+                                        </dependency>
+
+                                        <dependency>
+                                            <groupId>com.sun.jersey</groupId>
+                                            <artifactId>jersey-server</artifactId>
+                                            <version>1.17</version>
+                                            <includeScope>compile</includeScope>
+                                        </dependency>
+
+                                        <dependency>
+                                            <groupId>com.sun.jersey.contribs</groupId>
+                                            <artifactId>jersey-multipart</artifactId>
+                                            <version>1.17</version>
+                                            <includeScope>compile</includeScope>
+                                        </dependency>
+
+                                        <dependency>
+                                            <groupId>com.thoughtworks.xstream</groupId>
+                                            <artifactId>xstream</artifactId>
+                                            <version>1.4.1</version>
+                                            <includeScope>compile</includeScope>
+                                        </dependency>
+
+                                        <dependency>
+                                            <groupId>gnu-regexp</groupId>
+                                            <artifactId>gnu-regexp</artifactId>
+                                            <version>1.1.4</version>
+                                            <includeScope>compile</includeScope>
+                                        </dependency>
+
+                                        <dependency>
+                                            <groupId>mysql</groupId>
+                                            <artifactId>mysql-connector-java</artifactId>
+                                            <version>5.1.5</version>
+                                            <includeScope>compile</includeScope>
+                                        </dependency>
+
+                                        <dependency>
+                                            <groupId>postgresql</groupId>
+                                            <artifactId>postgresql</artifactId>
+                                            <version>9.1-901.jdbc4</version>
+                                            <includeScope>compile</includeScope>
+                                        </dependency>
+
+                                        <dependency>
+                                            <groupId>net.sourceforge.javacsv</groupId>
+                                            <artifactId>javacsv</artifactId>
+                                            <version>2.0</version>
+                                            <includeScope>compile</includeScope>
+                                        </dependency>
+
+                                        <dependency>
+                                            <groupId>org.openengsb.wrapped</groupId>
+                                            <artifactId>com.jcraft.jsch-all</artifactId>
+                                            <version>1.0.6.RELEASE</version>
+                                            <includeScope>compile</includeScope>
+                                        </dependency>
+
+                                        <dependency>
+                                            <groupId>org.seleniumhq.selenium</groupId>
+                                            <artifactId>selenium-java</artifactId>
+                                            <version>2.25.0</version>
+                                            <includeScope>compile</includeScope>
+                                        </dependency>
+
+                                        <dependency>
+                                            <groupId>javax.servlet</groupId>
+                                            <artifactId>servlet-api</artifactId>
+                                            <version>2.4</version>
+                                            <includeScope>compile</includeScope>
+                                        </dependency>
+
+                                        <dependency>
+                                            <groupId>org.seleniumhq.selenium</groupId>
+                                            <artifactId>selenium-server</artifactId>
+                                            <version>2.25.0</version>
+                                            <includeScope>compile</includeScope>
+                                        </dependency>
+
+                                    </dependencies>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.github.goldin</groupId>
+                <artifactId>assert-maven-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <executions>
+                    <execution>
+                        <id>verify-results</id>
+                        <goals>
+                            <goal>assert</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <assertEqual>
+                                ${outputDirectory}/1|${outputDirectory}/2
+                            </assertEqual>
+                            <assertGroovy>
+                                  new File( outputDirectory, '1' ).list().size()   == 98
+                                  new File( outputDirectory, '2' ).list().size()   == 98
+                                  new File( outputDirectory, '1' ).directorySize() == 38178169
+                                  new File( outputDirectory, '2' ).directorySize() == 38178169
+                            </assertGroovy>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+
+    <dependencies>
+
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>jsr311-api</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk16</artifactId>
+            <version>1.46</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jclouds.api</groupId>
+            <artifactId>cloudstack</artifactId>
+            <version>1.5.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jclouds.api</groupId>
+            <artifactId>openstack-nova</artifactId>
+            <version>1.5.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jclouds.labs</groupId>
+            <artifactId>openstack-glance</artifactId>
+            <version>1.5.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jclouds.labs</groupId>
+            <artifactId>openstack-quantum</artifactId>
+            <version>1.5.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jclouds.api</groupId>
+            <artifactId>swift</artifactId>
+            <version>1.5.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jclouds</groupId>
+            <artifactId>jclouds-core</artifactId>
+            <version>1.5.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jclouds.driver</groupId>
+            <artifactId>jclouds-sshj</artifactId>
+            <version>1.5.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jclouds</groupId>
+            <artifactId>jclouds-compute</artifactId>
+            <version>1.5.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>12.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>3.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-client</artifactId>
+            <version>1.17</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-core</artifactId>
+            <version>1.17</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-json</artifactId>
+            <version>1.17</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-server</artifactId>
+            <version>1.17</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sun.jersey.contribs</groupId>
+            <artifactId>jersey-multipart</artifactId>
+            <version>1.17</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.thoughtworks.xstream</groupId>
+            <artifactId>xstream</artifactId>
+            <version>1.4.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>gnu-regexp</groupId>
+            <artifactId>gnu-regexp</artifactId>
+            <version>1.1.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.1-901.jdbc4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.sourceforge.javacsv</groupId>
+            <artifactId>javacsv</artifactId>
+            <version>2.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openengsb.wrapped</groupId>
+            <artifactId>com.jcraft.jsch-all</artifactId>
+            <version>1.0.6.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>2.25.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-server</artifactId>
+            <version>2.25.0</version>
+        </dependency>
+
+    </dependencies>
+</project>
