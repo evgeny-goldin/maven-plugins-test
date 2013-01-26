@@ -1491,11 +1491,11 @@ Caused by: java.lang.IllegalArgumentException: Illegal character in path at inde
                                 new File( outputDirectory, 'pl-664/0-2' ).list().size() == 2
                                 new File( outputDirectory, 'pl-664/1-1' ).list().size() == 6
                                 new File( outputDirectory, 'pl-664/1-2' ).list().size() == 6
-                                new File( outputDirectory, 'pl-664/2-1' ).list().size() == 57
-                                new File( outputDirectory, 'pl-664/2-2' ).list().size() == 57
-                                new File( outputDirectory, 'pl-664/3-1' ).list().size() == 102
-                                new File( outputDirectory, 'pl-664/3-2' ).list().size() == 102
-                                new File( outputDirectory, 'pl-664/4'   ).list().size() == 174
+                                new File( outputDirectory, 'pl-664/2-1' ).list().size() == 54
+                                new File( outputDirectory, 'pl-664/2-2' ).list().size() == 54
+                                new File( outputDirectory, 'pl-664/3-1' ).list().size() == 94
+                                new File( outputDirectory, 'pl-664/3-2' ).list().size() == 94
+                                new File( outputDirectory, 'pl-664/4'   ).list().size() == 166
 
                                 new File( outputDirectory, 'pl-677/1' ).list().size() == 2
                                 new File( outputDirectory, 'pl-677/2' ).list().size() == 6
