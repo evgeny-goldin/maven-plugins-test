@@ -40,7 +40,7 @@
                             <runIf>{{ ftpTests }}</runIf>
                             <location>${scpPathKey}</location>
                             <command>
-                                rm -rf pl-393 pl-672 pl-673 pl-648
+                                rm -rf pl-*
                                 ls -al
                             </command>
                             <echoCommands>true</echoCommands>
@@ -179,6 +179,67 @@
                                 </resource>
 
                             </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-686 -->
+                    <!-- "Support <skipIdentical> for scp uploads"      -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-686-1</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${scpPathKey}/pl-686</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <skipIdentical>true</skipIdentical>
+                                    <skipIdenticalUseChecksum>true</skipIdenticalUseChecksum>
+                                </resource>
+                                <resource>
+                                    <targetPath>${scpPathKey}/pl-686</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <skipIdentical>true</skipIdentical>
+                                </resource>
+                                <resource>
+                                    <targetPath>${scpPathKey}/pl-686</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <skipIdentical>true</skipIdentical>
+                                    <skipIdenticalUseChecksum>true</skipIdenticalUseChecksum>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-686-2</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <skipIdentical>true</skipIdentical>
+                            <resource>
+                                <targetPath>${scpPathKey}/pl-686</targetPath>
+                                <file>${project.basedir}/pom.xml</file>
+                            </resource>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-686-3</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <skipIdentical>true</skipIdentical>
+                            <skipIdenticalUseChecksum>true</skipIdenticalUseChecksum>
+                            <resource>
+                                <targetPath>${scpPathKey}/pl-686</targetPath>
+                                <file>${project.basedir}/pom.xml</file>
+                            </resource>
                         </configuration>
                     </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
