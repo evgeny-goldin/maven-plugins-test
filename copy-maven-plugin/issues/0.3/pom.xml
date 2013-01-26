@@ -54,68 +54,6 @@
                 <artifactId>copy-maven-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-685                        -->
-                    <!-- "Allow to specify whether checksum is used for <skipIdentical> check" -->
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                    <execution>
-                        <id>http://evgeny-goldin.org/youtrack/issue/pl-685-1</id>
-                        <goals>
-                            <goal>copy</goal>
-                        </goals>
-                        <phase>initialize</phase>
-                        <configuration>
-                            <resources>
-                                <resource>
-                                    <description>pl-685-1-1</description>
-                                    <targetPath>${outputDirectory}/pl-685</targetPath>
-                                    <file>${project.basedir}/pom.xml</file>
-                                    <process>{{ assert files.size() == 1 }}</process>
-                                </resource>
-                                <resource>
-                                    <description>pl-685-1-2</description>
-                                    <targetPath>${outputDirectory}/pl-685</targetPath>
-                                    <file>${project.basedir}/pom.xml</file>
-                                    <skipIdentical>true</skipIdentical>
-                                    <skipIdenticalUseChecksum>true</skipIdenticalUseChecksum>
-                                    <process>{{ assert ! files }}</process>
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>http://evgeny-goldin.org/youtrack/issue/pl-685-2</id>
-                        <goals>
-                            <goal>copy</goal>
-                        </goals>
-                        <phase>initialize</phase>
-                        <configuration>
-                            <skipIdentical>true</skipIdentical>
-                            <skipIdenticalUseChecksum>true</skipIdenticalUseChecksum>
-                            <resource>
-                                <description>pl-685-2</description>
-                                <targetPath>${outputDirectory}/pl-685</targetPath>
-                                <file>${project.basedir}/pom.xml</file>
-                                <process>{{ assert ! files }}</process>
-                            </resource>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>http://evgeny-goldin.org/youtrack/issue/pl-685-3</id>
-                        <goals>
-                            <goal>copy</goal>
-                        </goals>
-                        <phase>initialize</phase>
-                        <configuration>
-                            <skipIdentical>true</skipIdentical>
-                            <resource>
-                                <description>pl-685-3</description>
-                                <targetPath>${outputDirectory}/pl-685</targetPath>
-                                <file>${project.basedir}/pom.xml</file>
-                                <process>{{ assert ! files }}</process>
-                            </resource>
-                        </configuration>
-                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-393                  -->
                     <!-- "Support ssh key file authentication for networking operations" -->
@@ -241,6 +179,68 @@
                                 </resource>
 
                             </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-685                        -->
+                    <!-- "Allow to specify whether checksum is used for <skipIdentical> check" -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-685-1</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <description>pl-685-1-1</description>
+                                    <targetPath>${outputDirectory}/pl-685</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <process>{{ assert files.size() == 1 }}</process>
+                                </resource>
+                                <resource>
+                                    <description>pl-685-1-2</description>
+                                    <targetPath>${outputDirectory}/pl-685</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <skipIdentical>true</skipIdentical>
+                                    <skipIdenticalUseChecksum>true</skipIdenticalUseChecksum>
+                                    <process>{{ assert ! files }}</process>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-685-2</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <skipIdentical>true</skipIdentical>
+                            <skipIdenticalUseChecksum>true</skipIdenticalUseChecksum>
+                            <resource>
+                                <description>pl-685-2</description>
+                                <targetPath>${outputDirectory}/pl-685</targetPath>
+                                <file>${project.basedir}/pom.xml</file>
+                                <process>{{ assert ! files }}</process>
+                            </resource>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-685-3</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <skipIdentical>true</skipIdentical>
+                            <resource>
+                                <description>pl-685-3</description>
+                                <targetPath>${outputDirectory}/pl-685</targetPath>
+                                <file>${project.basedir}/pom.xml</file>
+                                <process>{{ assert ! files }}</process>
+                            </resource>
                         </configuration>
                     </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
