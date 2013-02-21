@@ -54,6 +54,42 @@
                 <artifactId>copy-maven-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-689                                               -->
+                    <!-- "files" <process> variable contains all files in a target directory when archive is unpacked -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-689</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-689/pack/1.zip</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <pack>true</pack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-689/unpack</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileName>1.txt</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-689/unpack</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileName>2.txt</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-689/unpack</targetPath>
+                                    <file>${outputDirectory}/pl-689/pack/1.zip</file>
+                                    <unpack>true</unpack>
+                                    <process>{{ assert files.size == 1 }}</process>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-393                  -->
                     <!-- "Support ssh key file authentication for networking operations" -->
