@@ -54,42 +54,6 @@
                 <artifactId>copy-maven-plugin</artifactId>
                 <version>${plugins-version}</version>
                 <executions>
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-689                                               -->
-                    <!-- "files" <process> variable contains all files in a target directory when archive is unpacked -->
-                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                    <execution>
-                        <id>http://evgeny-goldin.org/youtrack/issue/pl-689</id>
-                        <goals>
-                            <goal>copy</goal>
-                        </goals>
-                        <phase>initialize</phase>
-                        <configuration>
-                            <resources>
-                                <resource>
-                                    <targetPath>${outputDirectory}/pl-689/pack/1.zip</targetPath>
-                                    <file>${project.basedir}/pom.xml</file>
-                                    <pack>true</pack>
-                                </resource>
-                                <resource>
-                                    <targetPath>${outputDirectory}/pl-689/unpack</targetPath>
-                                    <file>${project.basedir}/pom.xml</file>
-                                    <destFileName>1.txt</destFileName>
-                                </resource>
-                                <resource>
-                                    <targetPath>${outputDirectory}/pl-689/unpack</targetPath>
-                                    <file>${project.basedir}/pom.xml</file>
-                                    <destFileName>2.txt</destFileName>
-                                </resource>
-                                <resource>
-                                    <targetPath>${outputDirectory}/pl-689/unpack</targetPath>
-                                    <file>${outputDirectory}/pl-689/pack/1.zip</file>
-                                    <unpack>true</unpack>
-                                    <process>{{ assert files.size == 1 }}</process>
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- http://evgeny-goldin.org/youtrack/issue/pl-393                  -->
                     <!-- "Support ssh key file authentication for networking operations" -->
@@ -214,6 +178,94 @@
                                     <file>${scpPathKey}/pl-672/dir no preserve</file>
                                 </resource>
 
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-687  -->
+                    <!-- Provide a way to set files permissions (chmod)  -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-687</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <runIf>{{ ${isLinux} || ${isMac} }}</runIf>
+                            <resources>
+                                <!-- Setting chmod of files copied -->
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-687/1</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <chmod>555</chmod>
+                                    <process>{{ assert 'ls -l ${outputDirectory}/pl-687/1/pom.xml'.execute().text.startsWith( '-r-xr-xr-x' ) }}</process>
+                                </resource>
+                                <!-- Setting chmod of archive created -->
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-687/2.zip</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <pack>true</pack>
+                                    <chmod>666</chmod>
+                                    <process>{{ assert 'ls -l ${outputDirectory}/pl-687/2.zip'.execute().text.startsWith( '-rw-rw-rw-' ) }}</process>
+                                </resource>
+                                <!-- Setting chmod of files unpacked -->
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-687/2.zip-unpacked</targetPath>
+                                    <file>${outputDirectory}/pl-687/2.zip</file>
+                                    <unpack>true</unpack>
+                                    <chmod>777</chmod>
+                                    <process>{{ assert 'ls -l ${outputDirectory}/pl-687/2.zip-unpacked/pom.xml'.execute().text.startsWith( '-rwxrwxrwx' ) }}</process>
+                                </resource>
+                                <!-- Setting chmod of files packed -->
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-687/3.tar.gz</targetPath>
+                                    <directory>${project.basedir}/</directory>
+                                    <include>pom.xml|444</include>
+                                    <pack>true</pack>
+                                    <process>
+                                    {{
+                                        'tar -xzf ${outputDirectory}/pl-687/3.tar.gz -C ${outputDirectory}/pl-687'.execute().text
+                                        assert 'ls -l ${outputDirectory}/pl-687/pom.xml'.execute().text.startsWith( '-r--r--r--' )
+                                    }}
+                                    </process>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <!-- http://evgeny-goldin.org/youtrack/issue/pl-689                                               -->
+                    <!-- "files" <process> variable contains all files in a target directory when archive is unpacked -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <execution>
+                        <id>http://evgeny-goldin.org/youtrack/issue/pl-689</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-689/pack/1.zip</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <pack>true</pack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-689/unpack</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileName>1.txt</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-689/unpack</targetPath>
+                                    <file>${project.basedir}/pom.xml</file>
+                                    <destFileName>2.txt</destFileName>
+                                </resource>
+                                <resource>
+                                    <targetPath>${outputDirectory}/pl-689/unpack</targetPath>
+                                    <file>${outputDirectory}/pl-689/pack/1.zip</file>
+                                    <unpack>true</unpack>
+                                    <process>{{ assert files.size == 1 }}</process>
+                                </resource>
                             </resources>
                         </configuration>
                     </execution>
