@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns              = "http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi          = "http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0
+                               http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.github.goldin.maven-plugins-test</groupId>
+    <artifactId>artifactory-maven-plugin</artifactId>
+    <packaging>pom</packaging>
+    <version>0.1-SNAPSHOT</version>
+    <name>[${project.groupId}:${project.artifactId}:${project.version}]</name>
+
+
+    <parent>
+        <groupId>com.github.goldin.maven-plugins-test</groupId>
+        <artifactId>main.tests</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+
+    <modules>
+        <module>module-1</module>
+        <module>module-2</module>
+    </modules>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.github.goldin</groupId>
+                <artifactId>artifactory-maven-plugin</artifactId>
+                <version>${plugins-version}</version>
+                <inherited>false</inherited>
+                <executions>
+                    <execution>
+                        <id>create-build-info</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>create-build-info</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

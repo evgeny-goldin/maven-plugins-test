@@ -428,6 +428,7 @@
             <modules>
                 <module>cleanup-temp</module>
                 <module>quick-test</module>
+                <module>artifactory-maven-plugin</module>
                 <module>about-maven-plugin</module>
                 <module>jenkins-maven-plugin</module>
                 <module>ivy-maven-plugin</module>
